@@ -22,16 +22,15 @@ Its main features are:
 
  - specific parsing and checking of cross-references
 
- - provisions for "compatibility-mode" parsing, to allow for not-exactly-
-   standard syntaxes used by other genealogy programs (only the hooks are
-   in at the moment, not the actual compatibility)
+ - "compatibility-mode" parsing, to allow for not-exactly-standard syntaxes
+   used by other genealogy programs; currently, compatibility is added for:
+     - ftree
 
 NOTE:
  - NO BACKWARD COMPATIBILITY is guaranteed for 0.x releases !
 
 To do list:
  - specific parsing of other special values
- - C++ interface
  - compatibility with other genealogy programs
  - older/newer Gedcom standards ?
  - ...
@@ -42,7 +41,7 @@ or to the SourceForge project web site and summary page:
   http://sourceforge.net/projects/gedcom-parse
 
 Also, have a look at the 'Genes' program, from which this library is a
-spin-off, and which intends to use this library:
+spin-off, and which uses this library:
   http://genes.sourceforge.net
   http://sourceforge.net/projects/genes
 

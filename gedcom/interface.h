@@ -24,6 +24,7 @@
 #ifndef __INTERFACE_H
 #define __INTERFACE_H
 
+#include "gedcom_internal.h"
 #include "gedcom.h"
 
 Gedcom_ctxt start_record(Gedcom_rec rec,

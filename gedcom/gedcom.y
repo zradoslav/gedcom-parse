@@ -147,6 +147,7 @@
 #include "interface.h"
 #include "date.h"
 #include "xref.h"
+#include "compat.h"
 
 int  count_level    = 0;
 int  fail           = 0;
@@ -211,7 +212,7 @@ int  compat_mode(int flags);
 		      #TAG, parenttag);                                       \
          HANDLE_ERROR;                                                        \
        }                                                                      \
-     }
+     } 
 #define POP                                                                   \
      { pop_countarray();                                                      \
        --count_level;                                                         \
@@ -443,13 +444,18 @@ head_sect    : OPEN DELIM TAG_HEAD
 					 NULL, GEDCOM_MAKE_NULL(val2));
 	         START(HEAD, $<ctxt>$) }
                head_subs
-               { if (compat_mode(C_FTREE))
-		   CHECK3(SOUR, GEDC, CHAR)
+               { if (compat_mode(C_FTREE)) {
+		   CHECK3(SOUR, GEDC, CHAR);
+		   compat_generate_submitter_link($<ctxt>4);
+		 }
 	         else
 		   CHECK4(SOUR, SUBM, GEDC, CHAR)
 	       }
                CLOSE
-               { end_record(REC_HEAD, $<ctxt>4); }
+               { end_record(REC_HEAD, $<ctxt>4);
+	         if (compat_mode(C_FTREE))
+	           compat_generate_submitter();
+	       }
              ;
 
 head_subs    : /* empty */
@@ -1166,7 +1172,22 @@ indi_afn_sect  : OPEN DELIM TAG_AFN mand_line_item
 
 /* INDI.ADDR (Only for 'ftree' compatibility) */
 ftree_addr_sect : OPEN DELIM TAG_ADDR opt_line_item
-                  { START(ADDR, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                  { Gedcom_ctxt par = compat_generate_resi_start(PARENT);
+		    START(RESI, par);
+		    $<ctxt>$
+		      = start_element(ELT_SUB_ADDR,
+				      par, $1 + 1, $3, $4,
+				      GEDCOM_MAKE_NULL_OR_STRING(val2, $4));
+		    START(ADDR, $<ctxt>$)
+		  }
+                  no_std_subs
+                  { CHECK0 }
+                  CLOSE
+                  { Gedcom_ctxt par = PARENT;
+		    end_element(ELT_SUB_ADDR, par, $<ctxt>5, NULL);
+		    CHECK0;
+		    compat_generate_resi_end(PARENT, par);
+		  }
 
 /*********************************************************************/
 /**** Multimedia record                                           ****/
@@ -1746,7 +1767,7 @@ subm_subs  : /* empty */
            | subm_subs subm_sub
            ;
 
-subm_sub   : subm_name_sect  { OCCUR2(NAME, 0, 1) }
+subm_sub   : subm_name_sect  { OCCUR2(NAME, 1, 1) }
            | addr_struc_sub  /* 0:1 */
            | multim_link_sub  /* 0:M */
            | subm_lang_sect  { OCCUR2(LANG, 0, 3) }
@@ -3496,7 +3517,7 @@ mand_line_item : /* empty */ { gedcom_error(_("Missing value")); YYERROR; }
                                    $$ = $2; }
                ;
 
-opt_line_item : /* empty */ { }
+opt_line_item : /* empty */     { $$ = NULL; }
               | DELIM line_item { gedcom_debug_print("==Val: %s==", $2);
 	                          $$ = $2; }
               ;
