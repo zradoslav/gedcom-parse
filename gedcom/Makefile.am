@@ -19,7 +19,6 @@ libgedcom_la_SOURCES = lex.gedcom_1byte_.c \
                        encoding.c \
                        interface.c
 libgedcom_la_LDFLAGS = -version-info $(LIBVERSION)
-libgedcom_la_LIBADD  = @INTLLIBS@
 BUILT_SOURCES = lex.gedcom_1byte_.c \
 	 	lex.gedcom_hilo_.c \
 		lex.gedcom_lohi_.c \
