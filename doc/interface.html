@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <title>Libgedcom interface details</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Libgedcom interface details</title>
+  
                                          
-  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-</head>
-  <body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
            
 <h1 align="center">Libgedcom interface details</h1>
       <br>
@@ -1847,8 +1845,8 @@ tag.<br>
       &nbsp; <br>
       The string value is the most general used value currently, for all
 those    values that don't have a more specific meaning. &nbsp;In essence,
-the value    that is returned by GEDCOM_STRING is always the same as the
-raw_value passed    to the start callback, and is thus in fact redundant.<br>
+the value    that is returned by <code>GEDCOM_STRING(val)</code> is always the same as the
+<code>raw_value</code> passed    to the start callback, and is thus in fact redundant.<br>
      <br>
       The date value is used for all elements that return a date. &nbsp;See 
 <a href="#struct_date_value">here</a> for the definition.<br>
@@ -1865,7 +1863,7 @@ raw_value passed    to the start callback, and is thus in fact redundant.<br>
      &nbsp; Date_value_type &nbsp;type;<br>
      &nbsp; struct date &nbsp; &nbsp; &nbsp;date1;<br>
      &nbsp; struct date &nbsp; &nbsp; &nbsp;date2;<br>
-     &nbsp; char &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;phrase[MAX_PHRASE_LEN 
+     &nbsp; char &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; phrase[MAX_PHRASE_LEN 
   + 1];<br>
      };</code><br>
        </blockquote>
@@ -2078,8 +2076,7 @@ day number.   &nbsp;Two cases can be distinguished:<br>
                                                  
         <blockquote>                                                    
   
-          <blockquote>These are represented by 2 serial day numbers (<code>
-    sdn1</code> and <code>sdn2</code>) and a <code>Date_type</code> equal 
+          <blockquote>These are represented by 2 serial day numbers (<code>sdn1</code> and <code>sdn2</code>) and a <code>Date_type</code> equal 
 to              <code>DATE_BOUNDED</code>.<br>
                  <br>
      For example, the Gregorian date "MAR 1990" is represented by the serial
@@ -2124,16 +2121,17 @@ with the cross-reference, and then later extracted when the cross-reference
 is used or defined again in the file. &nbsp;This relieves the application 
 from the burden of maintaining the mapping between cross-references and objects.<br>
                <br>
- The parser checks whether all cross-references that are used are defined 
-(if not, an error is produced) and whether all cross-references that are defined
-are used (if not, a warning is produced). &nbsp;It also checks whether the
-type of the cross-reference is the same on definition and use (if not, an
-error is produced).<br>
+  The parser checks whether all cross-references that are used are defined
+ (if not, an error is produced) and whether all cross-references that are
+defined are used (if not, a warning is produced). &nbsp;It also checks whether
+the type of the cross-reference is the same on definition and use (if not,
+an error is produced). &nbsp;The first two checks are done at the end of
+the parsing, because cross-references can be defined after their usage in
+GEDCOM.<br>
                <br>
                                                                        
               <hr width="100%" size="2">                            
               <pre>$Id$<br>$Name$<br></pre>
       <br>
                                                                         
-              </body>
-              </html>
+              </body></html>

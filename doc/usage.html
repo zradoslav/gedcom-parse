@@ -1,9 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Using the GEDCOM parser library</title>
   
                                          
-  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head>
-
-<body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head><body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
            
 <h1 align="center">Using the GEDCOM parser library</h1>
       <br>
@@ -94,8 +92,7 @@ actual   callback mechanism, although it also uses a callback...<br>
      result = <b>gedcom_parse_file</b>("myfamily.ged");</code><br>
          </blockquote>
      In the above piece of code, <code>my_message_handler</code> is the callback 
-  that will be called for errors (<code>type=ERROR</code>), warnings (<code>
-    type=WARNING</code>) and messages (<code>type=MESSAGE</code>). &nbsp;The 
+  that will be called for errors (<code>type=ERROR</code>), warnings (<code>type=WARNING</code>) and messages (<code>type=MESSAGE</code>). &nbsp;The 
  callback must have the signature as in the example. &nbsp;For errors, the 
      <code> msg</code> passed to the callback will have the format:<br>
                              
@@ -169,7 +166,7 @@ a  GEDCOM  file. &nbsp;First, have a look at the following piece of code:<br>
              <br>
      void <b>my_header_end_cb</b> (Gedcom_ctxt self)<br>
      {<br>
-     &nbsp; printf("The header ends, context is %d\n", self); &nbsp; /* context 
+     &nbsp; printf("The header ends, context is %d\n", (int)self); &nbsp; /* context 
   will print as "1" */<br>
      }<br>
              <br>
@@ -207,7 +204,7 @@ need  to have the signatures as shown in the example.<br>
   gedcom.h</code> (so no need to include <code>gedcom-tags.h</code> yourself).<br>
              <br>
      The example passes a simple integer as context, but an application could 
-  e.g. pass a <code>struct</code> that will contain the information for the 
+  e.g. pass a <code>struct</code> (or an object in a C++ application) that will contain the information for the 
   header. &nbsp;In the end callback, the application could then e.g. do some 
   finalizing operations on the <code>struct</code> to put it in its database.<br>
              <br>
@@ -263,11 +260,11 @@ for this)<br>
                </blockquote>
      The subscription mechanism for elements is similar, only the signatures
   of the callbacks differ. &nbsp;The signature for the start callback shows
-  that the context of the parent line (e.g. the <code>struct</code> that
+  that the context of the parent line (here e.g. the <code>struct</code> that
 describes   the header) is passed to this start callback. &nbsp;The callback
-itself returns  here the same context, but this can be its own context object
+itself returns  here in this example the same context, but this can be its own context object
 of course. &nbsp;The end callback is called with both the context of the
-parent and the context of itself, which will be the same in the example.
+parent and the context of itself, which in this example will be the same.
 &nbsp;Again,  the list of identifiers to use as a first argument for the
 subscription function  are detailed in the <a href="interface.html#Element_identifiers">
  interface  details</a> .<br>
@@ -278,7 +275,7 @@ level   number (the initial number of the line in the GEDCOM file), the tag
  raw value is just the raw string that occurs as value on the line next to
  the tag (in UTF-8 encoding). &nbsp;The parsed value is the meaningful value
  that is parsed from that raw string. &nbsp;The parsed tag is described in
- the section for record callbacks.<br>
+ the section for record callbacks above.<br>
                <br>
      The <code>Gedcom_val</code> type is meant to be an opaque type. &nbsp;The 
   only thing that needs to be known about it is that it can contain specific 
@@ -291,9 +288,8 @@ level   number (the initial number of the line in the GEDCOM file), the tag
           <ul>
                  <li>The <code>Gedcom_val</code> argument of the end callback 
   is currently not used. &nbsp;It is there for future enhancements.</li>
-                 <li>There is also a <code>Gedcom_val</code> argument in
-the   start callback for records. &nbsp;This argument is currently a string
-value   giving the pointer in string form.</li>
+                 <li>There are also two <code>Gedcom_val</code> arguments in
+the   start callback for records. &nbsp;The first one (<code>xref</code>) contains the <code>xref_value</code> corresponding to the cross-reference (or <code>NULL</code> if there isn't one), the second one (<code>parsed_value</code>) contains the value that is parsed from the <code>raw_value</code>. &nbsp;See the&nbsp;<a href="interface.html#Record_identifiers">interface details</a>.</li>
                                                            
           </ul>
                                                            
@@ -361,6 +357,8 @@ specifically   subscribed upon by the application, and can thus be called
 in various contexts.   &nbsp;For simplicity, the example above doesn't take
 this into account (the                 <code>parent</code> could be of different
 types, depending  on the context).<br>
+              <br>
+Note also that the default callback is not called when the parent context is&nbsp;<code>NULL</code><code></code>. &nbsp;This is e.g. the case if none of the "upper" tags has been subscribed upon.<br>
                                                                
               <hr width="100%" size="2">                                 
                           
