@@ -118,11 +118,16 @@ int determine_encoding(FILE* f)
 
 int init_called = 0;
 
-void gedcom_init()
+int gedcom_init()
 {
   init_called = 1;
   update_gconv_search_path();
-  setlocale(LC_ALL, "");
+  if (!setlocale(LC_ALL, "")
+      || ! bindtextdomain(PACKAGE, LOCALEDIR)
+      || ! bind_textdomain_codeset(PACKAGE, INTERNAL_ENCODING))
+    return 1;
+  else
+    return 0;
 }
 
 int gedcom_parse_file(const char* file_name)
@@ -130,26 +135,6 @@ int gedcom_parse_file(const char* file_name)
   ENCODING enc;
   int result = 1;
   FILE* file;
-  char *textdom, *save_textdom;
-
-  textdom = textdomain(NULL);
-  if (!textdom) {
-    gedcom_error(_("Could not retrieve text domain: %s"), strerror(errno));
-    return result;
-  }
-  
-  save_textdom = strdup(textdom);
-  if (! save_textdom) {
-    MEMORY_ERROR;
-    return result;
-  }
-  
-  if (! bindtextdomain(PACKAGE, LOCALEDIR)
-      || ! bind_textdomain_codeset(PACKAGE, INTERNAL_ENCODING)
-      || ! textdomain(PACKAGE)) {
-    gedcom_error(_("Could not set text domain: %s"), strerror(errno));
-    return result;
-  }
 
   if (!init_called) {
     gedcom_error(_("Internal error: GEDCOM parser not initialized"));
@@ -177,10 +162,6 @@ int gedcom_parse_file(const char* file_name)
     }
   }
 
-  if (! textdomain(save_textdom)) {
-    gedcom_error(_("Could not restore text domain: %s"), strerror(errno));
-    return result;
-  }
   return result;
 }
 
