@@ -30,6 +30,13 @@ ALL_LINGUAS="nl"
 
 AC_CANONICAL_HOST
 
+EXTRA_CFLAGS=
+case "$host_os" in
+ darwin*) AC_MSG_WARN([Disabling smart preprocessing])
+          EXTRA_CFLAGS="-no-cpp-precomp";;
+esac
+AC_SUBST(EXTRA_CFLAGS)
+
 dnl =============================================================
 dnl Checks for programs.
 AC_PROG_CC
@@ -64,6 +71,7 @@ dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_C_INLINE
 AC_TYPE_SIZE_T
+AC_CHECK_SIZEOF(void *, 4)
 
 dnl ==========================================================
 dnl Checks for library functions.
@@ -76,13 +84,13 @@ dnl ==========================================================
 dnl My local stuff
 
 AM_ICONV
-
-if test "$am_cv_func_iconv" != yes; then
+gedcom_SANE_ICONV
+if test "$am_cv_func_iconv" != yes -o "$is_iconv_sane" != yes; then
   AC_MSG_ERROR([
 *******************************************************************************
-You need 'iconv' to use this library, consider installing GNU libiconv or
-use --with-libiconv-prefix to point to an existing installation of that
-library (see README)
+You need 'iconv' (with features comparable to what is in glibc 2.2) to use this
+library, consider installing GNU libiconv or use --with-libiconv-prefix to
+point to an existing installation of that library (see README)
 *******************************************************************************
   ])
 fi
