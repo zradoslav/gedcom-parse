@@ -1,5 +1,9 @@
 2001-11-01  Peter Verthez  <Peter.Verthez@advalvas.be>
 
+	* release 0.2
+
+	* Now with full error handling of tags and subtags.
+
 	* release 0.1
 
 	* Now covering the entire GEDCOM spec, without error handling.
