@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gedcom-parse 0.14\n"
-"POT-Creation-Date: 2002-01-20 13:38+0100\n"
-"PO-Revision-Date: 2002-01-20 15:09+0100\n"
+"Project-Id-Version: gedcom-parse 0.15\n"
+"POT-Creation-Date: 2002-03-27 21:09+0100\n"
+"PO-Revision-Date: 2002-03-27 21:17+0100\n"
 "Last-Translator: Peter Verthez <Peter.Verthez@advalvas.be>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,58 +24,58 @@ msgstr "Dubbele definitie gevonden voor de codering '%s', wordt genegeerd"
 msgid "No encoding defined for '%s'"
 msgstr "Geen codering gedefinieerd voor '%s'"
 
-#: gedcom/encoding.c:153
+#: gedcom/encoding.c:172
 #, c-format
 msgid "Could not open encoding configuration file '%s'"
 msgstr "Kon configuratie bestand voor coderingen '%s' niet openen"
 
-#: gedcom/encoding.c:160
+#: gedcom/encoding.c:179
 #, c-format
 msgid "Line too long in encoding configuration file '%s'"
 msgstr "Lijn te lang in configuratie bestand voor coderingen '%s'"
 
-#: gedcom/encoding.c:169
+#: gedcom/encoding.c:188
 #, c-format
 msgid "Missing data in encoding configuration file '%s'"
 msgstr "Ontbrekende gegevens in configuratie bestand voor coderingen '%s'"
 
-#: gedcom/encoding.c:201
+#: gedcom/encoding.c:220
 #, c-format
 msgid "Error opening conversion context for encoding %s: %s"
 msgstr "Fout bij het openen van een conversiecontext voor de codering %s: %s"
 
 #. empty
-#: gedcom/gedcom.y:1302 gedcom/gedcom.y:3494
+#: gedcom/gedcom.y:1356 gedcom/gedcom.y:3548
 msgid "Missing value"
 msgstr "Waarde ontbreekt"
 
-#: gedcom/gedcom.y:3430 gedcom/gedcom.y:3454
+#: gedcom/gedcom.y:3484 gedcom/gedcom.y:3508
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr "Ongedefieerde tag (en geen geldige gebruikerstag): %s"
 
 #. empty
-#: gedcom/gedcom.y:3489
+#: gedcom/gedcom.y:3543
 msgid "Missing pointer"
 msgstr "Verwijzing ontbreekt"
 
-#: gedcom/gedcom.y:3567
+#: gedcom/gedcom.y:3621
 msgid "Missing cross-reference"
 msgstr "Naam voor verwijzingen ontbreekt"
 
-#: gedcom/gedcom.y:3730
+#: gedcom/gedcom.y:3784
 msgid "Internal error: count array overflow"
 msgstr "Interne fout: overloop van de telrij"
 
-#: gedcom/gedcom.y:3736
+#: gedcom/gedcom.y:3790
 msgid "Internal error: count array calloc error"
 msgstr "Interne fout: allocatiefout op de telrij"
 
-#: gedcom/gedcom.y:3781
+#: gedcom/gedcom.y:3835
 msgid "Internal error: count array underflow"
 msgstr "Interne fout: underflow van de telrij"
 
-#: gedcom/gedcom.y:3843
+#: gedcom/gedcom.y:3897
 msgid "Enabling compatibility with 'ftree'"
 msgstr "Compatibiliteit met 'ftree' wordt aangezet"
 
@@ -103,7 +103,11 @@ msgstr "Twee-byte codering, laag-hoog, met byte orde teken"
 msgid "Unknown encoding, falling back to one-byte"
 msgstr "Ongekende codering, valt terug op één-byte"
 
-#: gedcom/multilex.c:124
+#: gedcom/multilex.c:130
+msgid "Internal error: GEDCOM parser not initialized"
+msgstr "Interne fout: GEDCOM verwerker niet geïnitializeerd"
+
+#: gedcom/multilex.c:136
 #, c-format
 msgid "Could not open file '%s'"
 msgstr "Kon file '%s' niet openen"
