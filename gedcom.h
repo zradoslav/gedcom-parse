@@ -17,6 +17,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
+#ifdef DMALLOC
+#include <dmalloc.h>
+#endif
 
 #define MAXGEDCLEVEL    99
 #define MAXGEDCLINELEN  255
