@@ -1,0 +1,33 @@
+#!/bin/sh
+
+tarfile=`ls libiconv-*.tar.gz`
+topdir=`pwd`
+libiconvdir=`basename $tarfile .tar.gz`
+libiconvdir="$topdir/$libiconvdir"
+
+#############################################################################
+echo "Getting patches in top directory..."
+cd $libiconvdir
+for file in configure.in configure README
+do
+  echo "  $file"
+  diff -u $file.orig $file > $topdir/$file.patch
+done
+
+#############################################################################
+echo "Getting patches in lib subdirectory..."
+cd $libiconvdir/lib
+for file in encodings.def converters.h Makefile.in
+do
+  echo "  $file"
+  diff -u $file.orig $file > $topdir/$file.patch
+done
+
+#############################################################################
+echo "Getting patches in man subdirectory..."
+cd $libiconvdir/man
+for file in iconv_open.3 iconv_open.3.html
+do
+  echo "  $file"
+  diff -u $file.orig $file > $topdir/$file.patch
+done

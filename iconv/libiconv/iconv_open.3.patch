@@ -1,0 +1,10 @@
+--- iconv_open.3.orig	Wed May 29 16:06:53 2002
++++ iconv_open.3	Fri Oct  4 20:36:35 2002
+@@ -36,6 +36,7 @@
+ Mac{Roman,CentralEurope,Iceland,Croatian,Romania},
+ Mac{Cyrillic,Ukraine,Greek,Turkish},
+ Macintosh
++ANSEL
+ .TP
+ Semitic languages
+ .nf

@@ -1,0 +1,10 @@
+--- converters.h.orig	Wed May 29 16:06:52 2002
++++ converters.h	Fri Oct  4 20:36:35 2002
+@@ -172,6 +172,7 @@
+ #include "mac_thai.h"
+ #include "hp_roman8.h"
+ #include "nextstep.h"
++#include "ansi_z39_47.h"
+ #include "armscii_8.h"
+ #include "georgian_academy.h"
+ #include "georgian_ps.h"

@@ -1,0 +1,5 @@
+2002-10-04  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* lib/ansi_z39_47.h, lib/ANSI_Z39.47-tables.h: Conversion from ANSEL
+	to UTF-8, based on libiconv 1.8.
+

@@ -1,0 +1,12 @@
+--- iconv_open.3.html.orig	Wed May 29 16:17:03 2002
++++ iconv_open.3.html	Fri Oct  4 20:36:35 2002
+@@ -71,7 +71,8 @@
+ KOI8-U, KOI8-RU, CP{1250,1251,1252,1253,1254,1257},
+ CP{850,866},
+ Mac{Roman,CentralEurope,Iceland,Croatian,Romania},
+-Mac{Cyrillic,Ukraine,Greek,Turkish}, Macintosh</td></table>
++Mac{Cyrillic,Ukraine,Greek,Turkish}, Macintosh,
++ANSEL</td></table>
+ 
+ <table width="100%" border=0 rules="none" frame="void"
+        cols="2" cellspacing="0" cellpadding="0">

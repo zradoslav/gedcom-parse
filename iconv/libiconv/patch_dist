@@ -1,0 +1,100 @@
+#!/bin/sh
+
+expected_version=1.8
+tarfile="libiconv-$expected_version.tar.gz"
+topdir=`pwd`
+libiconvdir=`basename $tarfile .tar.gz`
+libiconvdir="$topdir/$libiconvdir"
+
+#############################################################################
+echo "Checking tar file..."
+if [ ! -r $tarfile ]
+then
+  echo "Base package '$tarfile' not found"
+  if [ `which wget` ]
+  then
+    echo -n "Press ENTER to automatically download it..."
+    read
+    wget "ftp://ftp.gnu.org/pub/gnu/libiconv/$tarfile"
+  else
+    exit 1
+  fi
+fi
+
+#############################################################################
+echo "Unpacking tar file..."
+if [ -d $libiconvdir ]
+then
+  rm -rf $libiconvdir
+fi
+
+tar xvfz $tarfile > /dev/null
+
+#############################################################################
+echo "Adding top level files..."
+cd $libiconvdir
+cp $topdir/ChangeLog.gedcom .
+cp $topdir/NEWS.gedcom .
+
+#############################################################################
+echo "Creating header file..."
+cd $libiconvdir/lib
+ln -s $topdir/ansi_z39_47.h .
+ln -s $topdir/../ANSI_Z39.47-tables.h .
+
+#############################################################################
+echo "Patching files in top directory..."
+cd $libiconvdir
+for file in configure.in configure README
+do
+  echo "  $file"
+  patch -s -b -p0 < $topdir/$file.patch
+done
+
+#############################################################################
+echo "Patching files in lib subdirectory..."
+cd $libiconvdir/lib
+for file in encodings.def converters.h Makefile.in
+do
+  echo "  $file"
+  patch -s -b -p0 < $topdir/$file.patch
+done
+
+
+#############################################################################
+echo "Patching files in man subdirectory..."
+cd $libiconvdir/man
+for file in iconv_open.3 iconv_open.3.html
+do
+  echo "  $file"
+  patch -s -b -p0 < $topdir/$file.patch
+done
+
+#############################################################################
+echo "Generating flags..."
+cd $libiconvdir/lib
+gcc -o genflags genflags.c
+./genflags > flags.h
+
+#############################################################################
+echo "Generating aliases..."
+gcc -o genaliases genaliases.c
+./genaliases > aliases.gperf
+
+#############################################################################
+echo "Generating hash function..."
+gperf -t -L ANSI-C -H aliases_hash -N aliases_lookup -G -W aliases -7 -C -k '1,3-11,$' -i 1 aliases.gperf > aliases.h
+
+#############################################################################
+echo "Making distribution..."
+
+package_name=`grep 'PACKAGE_NAME=' $libiconvdir/configure`
+package_name=`echo $package_name | sed "s/^PACKAGE_NAME='//" | sed "s/'$//"`
+
+package_ver=`grep 'PACKAGE_VERSION=' $libiconvdir/configure`
+package_ver=`echo $package_ver | sed "s/^PACKAGE_VERSION='//" | sed "s/'$//"`
+
+cd $topdir
+cp -RL $libiconvdir $package_name-$package_ver
+tar cvfz $package_name-$package_ver.tar.gz $package_name-$package_ver >/dev/null
+rm -rf $package_name-$package_ver

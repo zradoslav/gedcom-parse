@@ -1,0 +1,15 @@
+--- encodings.def.orig	Wed May 29 16:06:53 2002
++++ encodings.def	Fri Oct  4 20:36:35 2002
+@@ -527,6 +527,12 @@
+             nextstep,
+             { nextstep_mbtowc, NULL },    { nextstep_wctomb, NULL })
+ 
++DEFENCODING(( "ANSI_Z39.47",           /* MARC-21 character set */
++              "ANSEL",
++            ),
++            ansi_z39_47,
++           { ansi_z39_47_mbtowc, NULL },  { ansi_z39_47_wctomb, NULL })
++
+ /* Regional 8-bit encodings used for a single language */
+ 
+ DEFENCODING(( "ARMSCII-8",

@@ -1,0 +1,11 @@
+--- configure.in.orig	Fri Oct  4 20:46:54 2002
++++ configure.in	Fri Oct  4 20:47:02 2002
+@@ -18,7 +18,7 @@
+ 
+ AC_PREREQ(2.52)
+ 
+-AC_INIT(libiconv,1.8)
++AC_INIT(libiconv-gedcom,1.8.1)
+ 
+ PACKAGE=$PACKAGE_NAME
+ VERSION=$PACKAGE_VERSION
