@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gedcom-parse 0.11\n"
-"POT-Creation-Date: 2001-12-31 17:01+0100\n"
-"PO-Revision-Date: 2001-12-15 14:23+0100\n"
+"Project-Id-Version: gedcom-parse 0.13\n"
+"POT-Creation-Date: 2002-01-05 15:07+0100\n"
+"PO-Revision-Date: 2002-01-05 15:09+0100\n"
 "Last-Translator: Peter Verthez <Peter.Verthez@advalvas.be>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,100 +14,100 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 # PLEASE KEEP THE CHARSET AS UTF-8 !!
-#: gedcom/encoding.c:66
+#: gedcom/encoding.c:67
 #, c-format
 msgid "Duplicate entry found for encoding '%s', ignoring"
 msgstr "Dubbele definitie gevonden voor de codering '%s', wordt genegeerd"
 
-#: gedcom/encoding.c:83
+#: gedcom/encoding.c:92
 #, c-format
 msgid "No encoding defined for '%s'"
 msgstr "Geen codering gedefinieerd voor '%s'"
 
-#: gedcom/encoding.c:120
+#: gedcom/encoding.c:133
 msgid "Failed updating conversion module path"
 msgstr "Aanpassing van het conversie-module pad is mislukt"
 
-#: gedcom/encoding.c:132
+#: gedcom/encoding.c:148
 #, c-format
 msgid "Could not open encoding configuration file '%s'"
 msgstr "Kon configuratie bestand voor coderingen '%s' niet openen"
 
-#: gedcom/encoding.c:139
+#: gedcom/encoding.c:155
 #, c-format
 msgid "Line too long in encoding configuration file '%s'"
 msgstr "Lijn te lang in configuratie bestand voor coderingen '%s'"
 
-#: gedcom/encoding.c:148
+#: gedcom/encoding.c:164
 #, c-format
 msgid "Missing data in encoding configuration file '%s'"
 msgstr "Ontbrekende gegevens in configuratie bestand voor coderingen '%s'"
 
-#: gedcom/encoding.c:180
+#: gedcom/encoding.c:196
 #, c-format
 msgid "Error opening conversion context for encoding %s: %s"
 msgstr "Fout bij het openen van een conversiecontext voor de codering %s: %s"
 
 #. empty
-#: gedcom/gedcom.y:1238 gedcom/gedcom.y:3339
+#: gedcom/gedcom.y:1300 gedcom/gedcom.y:3492
 msgid "Missing value"
 msgstr "Waarde ontbreekt"
 
-#: gedcom/gedcom.y:3284 gedcom/gedcom.y:3301
+#: gedcom/gedcom.y:3428 gedcom/gedcom.y:3452
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr "Ongedefieerde tag (en geen geldige gebruikerstag): %s"
 
 #. empty
-#: gedcom/gedcom.y:3334
+#: gedcom/gedcom.y:3487
 msgid "Missing pointer"
 msgstr "Verwijzing ontbreekt"
 
-#: gedcom/gedcom.y:3411
+#: gedcom/gedcom.y:3565
 msgid "Missing cross-reference"
 msgstr "Naam voor verwijzingen ontbreekt"
 
-#: gedcom/gedcom.y:3574
+#: gedcom/gedcom.y:3728
 msgid "Internal error: count array overflow"
 msgstr "Interne fout: overloop van de telrij"
 
-#: gedcom/gedcom.y:3580
+#: gedcom/gedcom.y:3734
 msgid "Internal error: count array calloc error"
 msgstr "Interne fout: allocatiefout op de telrij"
 
-#: gedcom/gedcom.y:3625
+#: gedcom/gedcom.y:3779
 msgid "Internal error: count array underflow"
 msgstr "Interne fout: underflow van de telrij"
 
-#: gedcom/gedcom.y:3687
+#: gedcom/gedcom.y:3841
 msgid "Enabling compatibility with 'ftree'"
 msgstr "Compatibiliteit met 'ftree' wordt aangezet"
 
-#: gedcom/multilex.c:74
+#: gedcom/multilex.c:75
 msgid "One-byte encoding"
 msgstr "Eén-byte codering"
 
-#: gedcom/multilex.c:80
+#: gedcom/multilex.c:81
 msgid "Two-byte encoding, high-low"
 msgstr "Twee-byte codering, hoog-laag"
 
-#: gedcom/multilex.c:86
+#: gedcom/multilex.c:87
 msgid "Two-byte encoding, high-low, with BOM"
 msgstr "Twee-byte codering, hoog-laag, met byte orde teken"
 
-#: gedcom/multilex.c:91
+#: gedcom/multilex.c:92
 msgid "Two-byte encoding, low-high"
 msgstr "Twee-byte codering, laag-hoog"
 
-#: gedcom/multilex.c:97
+#: gedcom/multilex.c:98
 msgid "Two-byte encoding, low-high, with BOM"
 msgstr "Twee-byte codering, laag-hoog, met byte orde teken"
 
-#: gedcom/multilex.c:101
+#: gedcom/multilex.c:102
 msgid "Unknown encoding, falling back to one-byte"
 msgstr "Ongekende codering, valt terug op één-byte"
 
-#: gedcom/multilex.c:123
+#: gedcom/multilex.c:124
 #, c-format
 msgid "Could not open file '%s'"
 msgstr "Kon file '%s' niet openen"
@@ -122,21 +122,85 @@ msgstr "Waarschuwing op lijn %d: "
 msgid "Error on line %d: "
 msgstr "Fout op lijn %d: "
 
-#: gedcom/interface.c:96
+#: gedcom/interface.c:98
 msgid "null value"
 msgstr "geen waarde"
 
-#: gedcom/interface.c:97
+#: gedcom/interface.c:99
 msgid "character string"
 msgstr "karakterrij"
 
-#: gedcom/interface.c:98
+#: gedcom/interface.c:100
 msgid "date"
 msgstr "datum"
 
-#: gedcom/interface.c:105
+#: gedcom/interface.c:101
+msgid "cross-reference"
+msgstr "verwijzing"
+
+#: gedcom/interface.c:108
 #, c-format
 msgid "Wrong cast of value in file %s, at line %d: %s instead of %s"
 msgstr ""
 "Verkeerde type-omzetting van een waarde in bestand %s, op lijn %d: %s in "
 "plaats van %s"
+
+#: gedcom/xref.c:31
+msgid "nothing"
+msgstr "niets"
+
+#: gedcom/xref.c:32
+msgid "a family"
+msgstr "een familie"
+
+#: gedcom/xref.c:33
+msgid "an individual"
+msgstr "een individu"
+
+#: gedcom/xref.c:34
+msgid "a note"
+msgstr "een nota"
+
+#: gedcom/xref.c:35
+msgid "a multimedia object"
+msgstr "een multimedia object"
+
+#: gedcom/xref.c:36
+msgid "a source repository"
+msgstr "een bronverzameling"
+
+#: gedcom/xref.c:37
+msgid "a source"
+msgstr "een bron"
+
+#: gedcom/xref.c:38
+msgid "a submitter"
+msgstr "een indiener"
+
+#: gedcom/xref.c:39
+msgid "a submission record"
+msgstr "een indieningsbeschrijving"
+
+#: gedcom/xref.c:40
+msgid "an application-specific record"
+msgstr "een toepassingsafhankelijk gegeven"
+
+#: gedcom/xref.c:96
+#, c-format
+msgid "Cross-reference %s used on line %d is not defined"
+msgstr "Verwijzing %s gebruikt op lijn %d is niet gedefinieerd"
+
+#: gedcom/xref.c:101
+#, c-format
+msgid "Cross-reference %s defined on line %d is never used"
+msgstr "Verwijzing %s gedefinieerd op lijn %d is nergens gebruikt"
+
+#: gedcom/xref.c:139
+#, c-format
+msgid "Cross-reference %s previously defined as pointer to %s, on line %d"
+msgstr "Verwijzing %s is voorheen gedefinieerd als een verwijzing naar %s, op lijn %d"
+
+#: gedcom/xref.c:149
+#, c-format
+msgid "Cross-reference %s previously used as pointer to %s, on line %d"
+msgstr "Verwijzing %s is voorheen gebruikt als een verwijzing naar %s, op lijn %d"
