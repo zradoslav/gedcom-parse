@@ -36,7 +36,11 @@
 #define _(string) gettext(string)
 #define N_(string) (string)
 
+#ifdef __GNUC__
 #define UNUSED __attribute__((unused))
+#else
+#define UNUSED
+#endif
 
 typedef enum {
   T_NULL,

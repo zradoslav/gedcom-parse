@@ -49,7 +49,11 @@
 
 #define GEDCOM_INTERNAL 1
 
+#ifdef __GNUC__
 #define UNUSED __attribute__((unused))
+#else
+#define UNUSED
+#endif
 
 struct tag_struct {
   char *string;
