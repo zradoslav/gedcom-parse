@@ -5,4 +5,8 @@
 2 VERS 5.5
 2 FORM LINEAGE-LINKED
 1 CHAR ASCII
+1 NOTE This note is for testing the continuation stuff
+2 CONT Some Specials: This line is very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long but too long (255 caharcters is the limit), so th
+2 CONC is is going over the border
+2 CONT And now we have an at character: @@, which should be doubled
 0 TRLR

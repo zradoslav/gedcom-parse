@@ -59,17 +59,27 @@ void show_help ()
   printf("        <terminator> can be CR, LF, CR_LF, LF_CR\n");
 }
 
-int update_charset(char* encoding)
+int update_header(char* encoding)
 {
   struct header* head = NULL;
   char* value;
+  char* long_note = "This note is for testing the continuation stuff\n"
+    "Some Specials: This line is very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long but too long (255 caharcters is the limit), so this is going over the border\n"
+    "And now we have an at character: @, which should be doubled";
 
   head = gom_get_header();
   if (head == NULL)
     return 1;
   else {
+    /*
     value = gom_set_string(&head->charset.name, encoding);
     if (value == NULL || strcmp(value, encoding))
+      return 1;
+    else
+      return 0;
+    */
+    value = gom_set_string(&head->note, long_note);
+    if (value == NULL || strcmp(value, long_note))
       return 1;
     else
       return 0;
@@ -193,10 +203,8 @@ int main(int argc, char* argv[])
   output_open(outfilename);
   
   result = gom_new_model();
-  /*
   if (result == 0)
-    result |= update_charset(encoding);
-  */
+    result |= update_header(encoding);
   if (result == 0)
     result |= gom_write_file(gedfilename, &total_conv_fails);
   if (result == 0 && total_conv_fails == 0) {
