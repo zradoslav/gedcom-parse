@@ -65,31 +65,41 @@ STRING_CB(header, head_note_start, note)
 void header_add_address(Gom_ctxt ctxt, struct address* addr)
 {
   struct header *head = SAFE_CTXT_CAST(header, ctxt);
-  head->source.corporation.address = addr;
+  if (head)
+    head->source.corporation.address = addr;
 }
 
 void header_add_phone(Gom_ctxt ctxt, char* phone)
 {
   struct header *head = SAFE_CTXT_CAST(header, ctxt);
-  struct header_corporation *corp = &(head->source.corporation);
-  if (! corp->phone[0])
-    corp->phone[0] = strdup(phone);
-  else if (! corp->phone[1])
-    corp->phone[1] = strdup(phone);
-  else if (! corp->phone[2])
-    corp->phone[2] = strdup(phone);
+  if (head) {
+    struct header_corporation *corp = &(head->source.corporation);
+    int i = 0;
+    while (i<2 && corp->phone[i]) i++;
+    if (! corp->phone[i]) {
+      corp->phone[i] = strdup(phone);
+      if (! corp->phone[i]) MEMORY_ERROR;
+    }
+  }
 }
 
 void header_add_to_note(NL_TYPE type, Gom_ctxt ctxt, char* str)
 {
   struct header *head = SAFE_CTXT_CAST(header, ctxt);
-  head->note = concat_strings (type, head->note, str);
+  if (head) {
+    char *newvalue = concat_strings(type, head->note, str);
+    if (newvalue)
+      head->note = newvalue;
+    else
+      MEMORY_ERROR;
+  }
 }
 
 void header_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct header *head = SAFE_CTXT_CAST(header, ctxt);
-  LINK_CHAIN_ELT(user_data, head->extra, data)
+  if (head)
+    LINK_CHAIN_ELT(user_data, head->extra, data);
 }
 
 void header_subscribe()
@@ -156,7 +166,7 @@ void header_cleanup()
   SAFE_FREE(gom_header.language);
   SAFE_FREE(gom_header.place_hierarchy);
   SAFE_FREE(gom_header.note);
-  DESTROY_CHAIN_ELTS(user_data, gom_header.extra, user_data_cleanup)
+  DESTROY_CHAIN_ELTS(user_data, gom_header.extra, user_data_cleanup);
 }
 
 struct header* gom_get_header()

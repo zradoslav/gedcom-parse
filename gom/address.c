@@ -36,44 +36,71 @@
 Gedcom_ctxt sub_addr_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct address *addr = (struct address *)malloc(sizeof(struct address));
-  char *str = GEDCOM_STRING(parsed_value);
-  
-  memset (addr, 0, sizeof(struct address));
-  addr->full_label = strdup(str);
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    switch (ctxt->ctxt_type) {
-      case ELT_HEAD_SOUR_CORP:
-	header_add_address(ctxt, addr); break;
-      case ELT_SUB_FAM_EVT:
-      case ELT_SUB_FAM_EVT_EVEN:
-      case ELT_SUB_INDIV_ATTR:
-      case ELT_SUB_INDIV_RESI:
-      case ELT_SUB_INDIV_BIRT:
-      case ELT_SUB_INDIV_GEN:
-      case ELT_SUB_INDIV_ADOP:
-      case ELT_SUB_INDIV_EVEN:
-	event_add_address(ctxt, addr); break;
-      case REC_REPO:
-	repository_add_address(ctxt, addr); break;
-      case REC_SUBM:
-	submitter_add_address(ctxt, addr); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+  if (!ctxt)
+    NO_CONTEXT;
+  else {
+    struct address *addr = (struct address *)malloc(sizeof(struct address));
+    if (!addr)
+      MEMORY_ERROR;
+    else {
+      char *str = GEDCOM_STRING(parsed_value);
+      memset (addr, 0, sizeof(struct address));
+      addr->full_label = strdup(str);
+      
+      if (! addr->full_label) {
+	MEMORY_ERROR;
+	free(addr);
+      }
+      else {
+	switch (ctxt->ctxt_type) {
+	  case ELT_HEAD_SOUR_CORP:
+	    header_add_address(ctxt, addr); break;
+	  case ELT_SUB_FAM_EVT:
+	  case ELT_SUB_FAM_EVT_EVEN:
+	  case ELT_SUB_INDIV_ATTR:
+	  case ELT_SUB_INDIV_RESI:
+	  case ELT_SUB_INDIV_BIRT:
+	  case ELT_SUB_INDIV_GEN:
+	  case ELT_SUB_INDIV_ADOP:
+	  case ELT_SUB_INDIV_EVEN:
+	    event_add_address(ctxt, addr); break;
+	  case REC_REPO:
+	    repository_add_address(ctxt, addr); break;
+	  case REC_SUBM:
+	    submitter_add_address(ctxt, addr); break;
+	  default:
+	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	}
+	result = MAKE_GOM_CTXT(elt, address, addr);
+      }
     }
   }
   
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, address, addr);
+  return (Gedcom_ctxt)result;
 }
 
 Gedcom_ctxt sub_addr_cont_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct address *addr = SAFE_CTXT_CAST(address, ctxt);
-  char *str = GEDCOM_STRING(parsed_value);
-  addr->full_label = concat_strings (WITH_NL, addr->full_label, str);
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, address, addr);
+  Gom_ctxt result = NULL;
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct address *addr = SAFE_CTXT_CAST(address, ctxt);
+    if (addr) {
+      char *str = GEDCOM_STRING(parsed_value);
+      char *newvalue = concat_strings (WITH_NL, addr->full_label, str);
+      if (! newvalue)
+	MEMORY_ERROR;
+      else {
+	addr->full_label = newvalue;
+	result = MAKE_GOM_CTXT(elt, address, addr);
+      }
+    }
+  }
+  return (Gedcom_ctxt)result;
 }
 
 STRING_CB(address, sub_addr_adr1_start, line1)
@@ -86,8 +113,11 @@ STRING_CB(address, sub_addr_ctry_start, country)
 Gedcom_ctxt sub_phon_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
     char *str = GEDCOM_STRING(parsed_value);
     switch (ctxt->ctxt_type) {
       case ELT_HEAD_SOUR_CORP:
@@ -107,10 +137,9 @@ Gedcom_ctxt sub_phon_start(_ELT_PARAMS_)
       default:
 	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
     }
-    return (Gedcom_ctxt) make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+    result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
   }
-  else
-    return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, NULL, NULL);
+  return (Gedcom_ctxt)result;
 }
 
 void address_subscribe()
@@ -136,7 +165,8 @@ void address_subscribe()
 void address_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct address *obj = SAFE_CTXT_CAST(address, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void address_cleanup(struct address *address)
@@ -149,7 +179,7 @@ void address_cleanup(struct address *address)
     SAFE_FREE(address->state);
     SAFE_FREE(address->postal);
     SAFE_FREE(address->country);
-    DESTROY_CHAIN_ELTS(user_data, address->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(user_data, address->extra, user_data_cleanup);
   }
   SAFE_FREE(address);
 }

@@ -38,32 +38,47 @@
 Gedcom_ctxt sub_user_ref_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct user_ref_number *refn = NULL;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    refn = (struct user_ref_number *)malloc(sizeof(struct user_ref_number));
-    memset (refn, 0, sizeof(struct user_ref_number));
-    refn->value = strdup(GEDCOM_STRING(parsed_value));
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct user_ref_number *refn
+      = (struct user_ref_number *)malloc(sizeof(struct user_ref_number));
 
-    switch (ctxt->ctxt_type) {
-      case REC_FAM:
-	family_add_user_ref(ctxt, refn); break;
-      case REC_INDI:
-	individual_add_user_ref(ctxt, refn); break;
-      case REC_OBJE:
-	multimedia_add_user_ref(ctxt, refn); break;
-      case REC_NOTE:
-	note_add_user_ref(ctxt, refn); break;
-      case REC_REPO:
-	repository_add_user_ref(ctxt, refn); break;
-      case REC_SOUR:
-	source_add_user_ref(ctxt, refn); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+    if (! refn)
+      MEMORY_ERROR;
+    else {
+      memset (refn, 0, sizeof(struct user_ref_number));
+      refn->value = strdup(GEDCOM_STRING(parsed_value));
+      if (! refn->value) {
+	MEMORY_ERROR;
+	free(refn);
+      }
+      else {
+	switch (ctxt->ctxt_type) {
+	  case REC_FAM:
+	    family_add_user_ref(ctxt, refn); break;
+	  case REC_INDI:
+	    individual_add_user_ref(ctxt, refn); break;
+	  case REC_OBJE:
+	    multimedia_add_user_ref(ctxt, refn); break;
+	  case REC_NOTE:
+	    note_add_user_ref(ctxt, refn); break;
+	  case REC_REPO:
+	    repository_add_user_ref(ctxt, refn); break;
+	  case REC_SOUR:
+	    source_add_user_ref(ctxt, refn); break;
+	  default:
+	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	}
+	
+	result = MAKE_GOM_CTXT(elt, user_ref_number, refn);
+      }
     }
   }
 
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, user_ref_number, refn);
+  return (Gedcom_ctxt)result;
 }
 
 STRING_CB(user_ref_number, sub_user_ref_type_start, type)
@@ -71,7 +86,11 @@ STRING_CB(user_ref_number, sub_user_ref_type_start, type)
 Gedcom_ctxt sub_user_rin_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  if (ctxt) {
+  Gom_ctxt result = NULL;
+  
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
     char *str = GEDCOM_STRING(parsed_value);
 
     switch (ctxt->ctxt_type) {
@@ -90,8 +109,9 @@ Gedcom_ctxt sub_user_rin_start(_ELT_PARAMS_)
       default:
 	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
     }
+    result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
   }
-  return (Gedcom_ctxt) make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+  return (Gedcom_ctxt)result;
 }
 
 void user_ref_subscribe()
@@ -107,7 +127,8 @@ void user_ref_subscribe()
 void user_ref_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct user_ref_number *obj = SAFE_CTXT_CAST(user_ref_number, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void user_ref_cleanup(struct user_ref_number* refn)
@@ -115,6 +136,6 @@ void user_ref_cleanup(struct user_ref_number* refn)
   if (refn) {
     SAFE_FREE(refn->value);
     SAFE_FREE(refn->type);
-    DESTROY_CHAIN_ELTS(user_data, refn->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(user_data, refn->extra, user_data_cleanup);
   }
 }

@@ -57,7 +57,10 @@ Gedcom_ctxt user_rec_start(_REC_PARAMS_)
 {
   struct user_rec* user = NULL;
   struct xref_value* xr = NULL;
+  Gom_ctxt result  = NULL;
   Gedcom_ctxt ctxt = NULL;
+  int err = 0;
+  
   if (GEDCOM_IS_XREF_PTR(xref))
     xr = GEDCOM_XREF_PTR(xref);
   if (xr) {
@@ -74,14 +77,28 @@ Gedcom_ctxt user_rec_start(_REC_PARAMS_)
     user = make_user_record(NULL);
     ctxt = (Gedcom_ctxt) user;
   }
+
+  if (user) {
+    user->tag = strdup(tag);
+    if (! user->tag) {
+      MEMORY_ERROR;
+      err = 1;
+    }
+    else if (GEDCOM_IS_STRING(parsed_value)) {
+      user->str_value = strdup(GEDCOM_STRING(parsed_value));
+      if (!user->str_value) {
+	MEMORY_ERROR;
+	err = 1;
+      }
+    }
+    else if (GEDCOM_IS_XREF_PTR(parsed_value))
+      user->xref_value = GEDCOM_XREF_PTR(parsed_value);
+    
+    if (! err)
+      result = MAKE_GOM_CTXT(rec, user_rec, ctxt);
+  }
   
-  user->tag = strdup(tag);
-  if (GEDCOM_IS_STRING(parsed_value))
-    user->str_value = strdup(GEDCOM_STRING(parsed_value));
-  else if (GEDCOM_IS_XREF_PTR(parsed_value))
-    user->xref_value = GEDCOM_XREF_PTR(parsed_value);
-  
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(rec, user_rec, ctxt);
+  return (Gedcom_ctxt)result;
 }
 
 GET_REC_BY_XREF(user_rec, XREF_USER, gom_get_user_rec_by_xref)
@@ -89,72 +106,98 @@ GET_REC_BY_XREF(user_rec, XREF_USER, gom_get_user_rec_by_xref)
 Gedcom_ctxt user_elt_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct user_data *data = (struct user_data *)malloc(sizeof(struct user_data));
-  memset (data, 0, sizeof(struct user_data));
+  Gom_ctxt result = NULL;
+  int err = 0;
 
-  data->level = level;
-  data->tag = strdup(tag);
-  if (GEDCOM_IS_STRING(parsed_value))
-    data->str_value = strdup(GEDCOM_STRING(parsed_value));
-  else if (GEDCOM_IS_XREF_PTR(parsed_value))
-    data->xref_value = GEDCOM_XREF_PTR(parsed_value);
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct user_data *data
+      = (struct user_data *)malloc(sizeof(struct user_data));
 
-  if (ctxt) {
-    switch (ctxt->obj_type) {
-      case T_header:
-	header_add_user_data(ctxt, data); break;
-      case T_submission:
-	submission_add_user_data(ctxt, data); break;
-      case T_submitter:
-	submitter_add_user_data(ctxt, data); break;
-      case T_family:
-	family_add_user_data(ctxt, data); break;
-      case T_individual:
-	individual_add_user_data(ctxt, data); break;
-      case T_multimedia:
-	multimedia_add_user_data(ctxt, data); break;
-      case T_note:
-	note_add_user_data(ctxt, data); break;
-      case T_repository:
-	repository_add_user_data(ctxt, data); break;
-      case T_source:
-	source_add_user_data(ctxt, data); break;
-      case T_user_rec:
-	user_rec_add_user_data(ctxt, data); break;
-      case T_address:
-	address_add_user_data(ctxt, data); break;
-      case T_event:
-	event_add_user_data(ctxt, data); break;
-      case T_place:
-	place_add_user_data(ctxt, data); break;
-      case T_source_citation:
-	citation_add_user_data(ctxt, data); break;
-      case T_note_sub:
-	note_sub_add_user_data(ctxt, data); break;
-      case T_multimedia_link:
-	multimedia_link_add_user_data(ctxt, data); break;
-      case T_lds_event:
-	lds_event_add_user_data(ctxt, data); break;
-      case T_user_ref_number:
-	user_ref_add_user_data(ctxt, data); break;
-      case T_change_date:
-	change_date_add_user_data(ctxt, data); break;
-      case T_personal_name:
-	name_add_user_data(ctxt, data); break;
-      case T_family_link:
-	family_link_add_user_data(ctxt, data); break;
-      case T_association:
-	association_add_user_data(ctxt, data); break;
-      case T_source_event:
-	source_event_add_user_data(ctxt, data); break;
-      case T_source_description:
-	source_description_add_user_data(ctxt, data); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+    if (! data)
+      MEMORY_ERROR;
+    else {
+      memset (data, 0, sizeof(struct user_data));
+      
+      data->level = level;
+      data->tag = strdup(tag);
+      if (! data->tag) {
+	MEMORY_ERROR;
+	free(data);
+	err = 1;
+      }
+      else if (GEDCOM_IS_STRING(parsed_value)) {
+	data->str_value = strdup(GEDCOM_STRING(parsed_value));
+	if (! data->str_value) {
+	  MEMORY_ERROR;
+	  free(data->tag);
+	  free(data->str_value);
+	  err = 1;
+	}
+      }
+      else if (GEDCOM_IS_XREF_PTR(parsed_value))
+	data->xref_value = GEDCOM_XREF_PTR(parsed_value);
+
+      if (! err) {
+	switch (ctxt->obj_type) {
+	  case T_header:
+	    header_add_user_data(ctxt, data); break;
+	  case T_submission:
+	    submission_add_user_data(ctxt, data); break;
+	  case T_submitter:
+	    submitter_add_user_data(ctxt, data); break;
+	  case T_family:
+	    family_add_user_data(ctxt, data); break;
+	  case T_individual:
+	    individual_add_user_data(ctxt, data); break;
+	  case T_multimedia:
+	    multimedia_add_user_data(ctxt, data); break;
+	  case T_note:
+	    note_add_user_data(ctxt, data); break;
+	  case T_repository:
+	    repository_add_user_data(ctxt, data); break;
+	  case T_source:
+	    source_add_user_data(ctxt, data); break;
+	  case T_user_rec:
+	    user_rec_add_user_data(ctxt, data); break;
+	  case T_address:
+	    address_add_user_data(ctxt, data); break;
+	  case T_event:
+	    event_add_user_data(ctxt, data); break;
+	  case T_place:
+	    place_add_user_data(ctxt, data); break;
+	  case T_source_citation:
+	    citation_add_user_data(ctxt, data); break;
+	  case T_note_sub:
+	    note_sub_add_user_data(ctxt, data); break;
+	  case T_multimedia_link:
+	    multimedia_link_add_user_data(ctxt, data); break;
+	  case T_lds_event:
+	    lds_event_add_user_data(ctxt, data); break;
+	  case T_user_ref_number:
+	    user_ref_add_user_data(ctxt, data); break;
+	  case T_change_date:
+	    change_date_add_user_data(ctxt, data); break;
+	  case T_personal_name:
+	    name_add_user_data(ctxt, data); break;
+	  case T_family_link:
+	    family_link_add_user_data(ctxt, data); break;
+	  case T_association:
+	    association_add_user_data(ctxt, data); break;
+	  case T_source_event:
+	    source_event_add_user_data(ctxt, data); break;
+	  case T_source_description:
+	    source_description_add_user_data(ctxt, data); break;
+	  default:
+	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	}
+	result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+      }
     }
   }
   
-  return (Gedcom_ctxt) make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+  return (Gedcom_ctxt)result;
 }
 
 void user_rec_subscribe()
@@ -166,21 +209,26 @@ void user_rec_subscribe()
 void user_rec_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct user_rec *obj = SAFE_CTXT_CAST(user_rec, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void user_data_cleanup(struct user_data* data)
 {
-  SAFE_FREE(data->tag);
-  SAFE_FREE(data->str_value);
+  if (data) {
+    SAFE_FREE(data->tag);
+    SAFE_FREE(data->str_value);
+  }
 }
 
 void user_rec_cleanup(struct user_rec* rec)
 {
-  SAFE_FREE(rec->xrefstr);
-  SAFE_FREE(rec->tag);
-  SAFE_FREE(rec->str_value);
-  DESTROY_CHAIN_ELTS(user_data, rec->extra, user_data_cleanup);
+  if (rec) {
+    SAFE_FREE(rec->xrefstr);
+    SAFE_FREE(rec->tag);
+    SAFE_FREE(rec->str_value);
+    DESTROY_CHAIN_ELTS(user_data, rec->extra, user_data_cleanup);
+  }
 }
 
 void user_recs_cleanup()
@@ -195,9 +243,11 @@ struct user_rec* gom_get_first_user_rec()
 
 struct user_rec* make_user_record(char* xrefstr)
 {
-  struct user_rec* rec;
+  struct user_rec* rec = NULL;
   MAKE_CHAIN_ELT(user_rec, gom_first_user_rec, rec);
-  if (xrefstr)
+  if (rec && xrefstr) {
     rec->xrefstr = strdup(xrefstr);
+    if (! rec->xrefstr) MEMORY_ERROR;
+  }
   return rec;
 }

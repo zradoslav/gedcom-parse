@@ -40,32 +40,41 @@
 Gedcom_ctxt sub_chan_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct change_date *chan
-    = (struct change_date *)malloc(sizeof(struct change_date));
-  memset (chan, 0, sizeof(struct change_date));
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    switch (ctxt->ctxt_type) {
-      case REC_FAM:
-	family_set_change_date(ctxt, chan); break;
-      case REC_INDI:
-	individual_set_change_date(ctxt, chan); break;
-      case REC_OBJE:
-	multimedia_set_change_date(ctxt, chan); break;
-      case REC_NOTE:
-	note_set_change_date(ctxt, chan); break;
-      case REC_REPO:
-	repository_set_change_date(ctxt, chan); break;
-      case REC_SOUR:
-	source_set_change_date(ctxt, chan); break;
-      case REC_SUBM:
-	submitter_set_change_date(ctxt, chan); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct change_date *chan
+      = (struct change_date *)malloc(sizeof(struct change_date));
+    if (! chan)
+      MEMORY_ERROR;
+    else {
+      memset (chan, 0, sizeof(struct change_date));
+      
+      switch (ctxt->ctxt_type) {
+	case REC_FAM:
+	  family_set_change_date(ctxt, chan); break;
+	case REC_INDI:
+	  individual_set_change_date(ctxt, chan); break;
+	case REC_OBJE:
+	  multimedia_set_change_date(ctxt, chan); break;
+	case REC_NOTE:
+	  note_set_change_date(ctxt, chan); break;
+	case REC_REPO:
+	  repository_set_change_date(ctxt, chan); break;
+	case REC_SOUR:
+	  source_set_change_date(ctxt, chan); break;
+	case REC_SUBM:
+	  submitter_set_change_date(ctxt, chan); break;
+	default:
+	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+      }
+      result = MAKE_GOM_CTXT(elt, change_date, chan);
     }
   }
   
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, change_date, chan);
+  return (Gedcom_ctxt)result;
 }
 
 DATE_CB(change_date, sub_chan_date_start, date)
@@ -83,13 +92,15 @@ void change_date_subscribe()
 void change_date_add_note(Gom_ctxt ctxt, struct note_sub* note)
 {
   struct change_date *chan = SAFE_CTXT_CAST(change_date, ctxt);
-  LINK_CHAIN_ELT(note_sub, chan->note, note)
+  if (chan)
+    LINK_CHAIN_ELT(note_sub, chan->note, note);
 }
 
 void change_date_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct change_date *obj = SAFE_CTXT_CAST(change_date, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void change_date_cleanup(struct change_date *chan)
@@ -97,8 +108,8 @@ void change_date_cleanup(struct change_date *chan)
   if (chan) {
     SAFE_FREE(chan->date);
     SAFE_FREE(chan->time);
-    DESTROY_CHAIN_ELTS(note_sub, chan->note, note_sub_cleanup)
-    DESTROY_CHAIN_ELTS(user_data, chan->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(note_sub, chan->note, note_sub_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, chan->extra, user_data_cleanup);
   }
   SAFE_FREE(chan);
 }

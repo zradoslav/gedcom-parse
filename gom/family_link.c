@@ -34,32 +34,57 @@
 Gedcom_ctxt sub_fam_link_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct family_link *link = NULL;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    link = (struct family_link *)malloc(sizeof(struct family_link));
-    memset (link, 0, sizeof(struct family_link));
-    link->family = GEDCOM_XREF_PTR(parsed_value);
-
-    switch (ctxt->ctxt_type) {
-      case REC_INDI:
-	individual_add_family_link(ctxt, elt, link); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct family_link *link
+      = (struct family_link *)malloc(sizeof(struct family_link));
+    if (! link)
+      MEMORY_ERROR;
+    else {
+      memset (link, 0, sizeof(struct family_link));
+      link->family = GEDCOM_XREF_PTR(parsed_value);
+      
+      switch (ctxt->ctxt_type) {
+	case REC_INDI:
+	  individual_add_family_link(ctxt, elt, link); break;
+	default:
+	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+      }
+      result = MAKE_GOM_CTXT(elt, family_link, link);
     }
   }
 
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, family_link, link);
+  return (Gedcom_ctxt)result;
 }
 
 Gedcom_ctxt sub_fam_link_pedi_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct family_link *link = SAFE_CTXT_CAST(family_link, ctxt);
-  struct pedigree *ped;
-  MAKE_CHAIN_ELT(pedigree, link->pedigree, ped);
-  ped->pedigree = strdup(GEDCOM_STRING(parsed_value));
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, pedigree, ped);
+  Gom_ctxt result = NULL;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct family_link *link = SAFE_CTXT_CAST(family_link, ctxt);
+    if (link) {
+      int err = 0;
+      struct pedigree *ped = NULL;
+      MAKE_CHAIN_ELT(pedigree, link->pedigree, ped);
+      if (ped) {
+	ped->pedigree = strdup(GEDCOM_STRING(parsed_value));
+	if (! ped->pedigree) {
+	  MEMORY_ERROR;
+	  err = 1;
+	}
+      }
+      if (! err)
+	result = MAKE_GOM_CTXT(elt, pedigree, ped);
+    }
+  }
+  return (Gedcom_ctxt)result;
 }
 
 void family_link_subscribe()
@@ -75,13 +100,15 @@ void family_link_subscribe()
 void family_link_add_note(Gom_ctxt ctxt, struct note_sub* note)
 {
   struct family_link *link = SAFE_CTXT_CAST(family_link, ctxt);
-  LINK_CHAIN_ELT(note_sub, link->note, note)
+  if (link)
+    LINK_CHAIN_ELT(note_sub, link->note, note);
 }
 
 void family_link_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct family_link *obj = SAFE_CTXT_CAST(family_link, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void pedigree_cleanup(struct pedigree* ped)
@@ -94,8 +121,8 @@ void pedigree_cleanup(struct pedigree* ped)
 void family_link_cleanup(struct family_link *link)
 {
   if (link) {
-    DESTROY_CHAIN_ELTS(pedigree, link->pedigree, pedigree_cleanup)
-    DESTROY_CHAIN_ELTS(note_sub, link->note, note_sub_cleanup)
-    DESTROY_CHAIN_ELTS(user_data, link->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(pedigree, link->pedigree, pedigree_cleanup);
+    DESTROY_CHAIN_ELTS(note_sub, link->note, note_sub_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, link->extra, user_data_cleanup);
   }
 }

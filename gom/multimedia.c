@@ -44,13 +44,35 @@ XREF_CB(multimedia, obje_obje_start, continued, make_multimedia_record)
 Gedcom_ctxt obje_blob_cont_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct multimedia *obj = SAFE_CTXT_CAST(multimedia, ctxt);
-  char *str = GEDCOM_STRING(parsed_value);
-  if (obj->data)
-    obj->data = concat_strings (WITHOUT_NL, obj->data, str);
-  else
-    obj->data = strdup(str);
-  return (Gedcom_ctxt) make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+  Gom_ctxt result = NULL;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct multimedia *obj = SAFE_CTXT_CAST(multimedia, ctxt);
+    if (obj) {
+      char *str = GEDCOM_STRING(parsed_value);
+      if (obj->data) {
+	char *newvalue = concat_strings (WITHOUT_NL, obj->data, str);
+	if (newvalue)
+	  obj->data = newvalue;
+	else {
+	  free(obj->data);
+	  obj->data = NULL;
+	}
+      }
+      else
+	obj->data = strdup(str);
+      
+      if (! obj->data) {
+	MEMORY_ERROR;
+	free(obj);
+      }
+      else
+	result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+    }
+  }
+  return (Gedcom_ctxt)result;
 }
 
 void multimedia_subscribe()
@@ -67,44 +89,53 @@ void multimedia_subscribe()
 void multimedia_add_note(Gom_ctxt ctxt, struct note_sub* note)
 {
   struct multimedia* obj = SAFE_CTXT_CAST(multimedia, ctxt);
-  LINK_CHAIN_ELT(note_sub, obj->note, note)
+  if (obj)
+    LINK_CHAIN_ELT(note_sub, obj->note, note);
 }
 
 void multimedia_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
 {
   struct multimedia *obj = SAFE_CTXT_CAST(multimedia, ctxt);
-  LINK_CHAIN_ELT(user_ref_number, obj->ref, ref)
+  if (obj)
+    LINK_CHAIN_ELT(user_ref_number, obj->ref, ref);
 }
 
 void multimedia_set_record_id(Gom_ctxt ctxt, char *rin)
 {
   struct multimedia *obj = SAFE_CTXT_CAST(multimedia, ctxt);
-  obj->record_id = strdup(rin);
+  if (obj) {
+    obj->record_id = strdup(rin);
+    if (! obj->record_id) MEMORY_ERROR;
+  }
 }
 
 void multimedia_set_change_date(Gom_ctxt ctxt, struct change_date* chan)
 {
   struct multimedia *obj = SAFE_CTXT_CAST(multimedia, ctxt);
-  obj->change_date = chan;
+  if (obj)
+    obj->change_date = chan;
 }
 
 void multimedia_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct multimedia *obj = SAFE_CTXT_CAST(multimedia, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void multimedia_cleanup(struct multimedia* obj)
 {
-  SAFE_FREE(obj->xrefstr);
-  SAFE_FREE(obj->form);
-  SAFE_FREE(obj->title);
-  DESTROY_CHAIN_ELTS(note_sub, obj->note, note_sub_cleanup)
-  SAFE_FREE(obj->data);
-  DESTROY_CHAIN_ELTS(user_ref_number, obj->ref, user_ref_cleanup)
-  SAFE_FREE(obj->record_id);
-  change_date_cleanup(obj->change_date);
-  DESTROY_CHAIN_ELTS(user_data, obj->extra, user_data_cleanup)
+  if (obj) {
+    SAFE_FREE(obj->xrefstr);
+    SAFE_FREE(obj->form);
+    SAFE_FREE(obj->title);
+    DESTROY_CHAIN_ELTS(note_sub, obj->note, note_sub_cleanup);
+    SAFE_FREE(obj->data);
+    DESTROY_CHAIN_ELTS(user_ref_number, obj->ref, user_ref_cleanup);
+    SAFE_FREE(obj->record_id);
+    change_date_cleanup(obj->change_date);
+    DESTROY_CHAIN_ELTS(user_data, obj->extra, user_data_cleanup);
+  }
 }
 
 void multimedias_cleanup()
@@ -119,8 +150,11 @@ struct multimedia* gom_get_first_multimedia()
 
 struct multimedia* make_multimedia_record(char* xrefstr)
 {
-  struct multimedia* multi;
+  struct multimedia* multi = NULL;
   MAKE_CHAIN_ELT(multimedia, gom_first_multimedia, multi);
-  multi->xrefstr = strdup(xrefstr);
+  if (multi) {
+    multi->xrefstr = strdup(xrefstr);
+    if (! multi->xrefstr) MEMORY_ERROR;
+  }
   return multi;
 }

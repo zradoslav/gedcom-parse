@@ -42,60 +42,95 @@
 Gedcom_ctxt sub_citation_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct source_citation *cit = NULL;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    cit = (struct source_citation *)malloc(sizeof(struct source_citation));
-    memset (cit, 0, sizeof(struct source_citation));
-    if (GEDCOM_IS_STRING(parsed_value))
-      cit->description = strdup(GEDCOM_STRING(parsed_value));
-    else if (GEDCOM_IS_XREF_PTR(parsed_value))
-      cit->reference = GEDCOM_XREF_PTR(parsed_value);
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct source_citation *cit
+      = (struct source_citation *)malloc(sizeof(struct source_citation));
 
-    switch (ctxt->ctxt_type) {
-      case ELT_SUB_PLAC:
-	place_add_citation(ctxt, cit); break;
-      case ELT_SUB_FAM_EVT:
-      case ELT_SUB_FAM_EVT_EVEN:
-      case ELT_SUB_INDIV_ATTR:
-      case ELT_SUB_INDIV_RESI:
-      case ELT_SUB_INDIV_BIRT:
-      case ELT_SUB_INDIV_GEN:
-      case ELT_SUB_INDIV_ADOP:
-      case ELT_SUB_INDIV_EVEN:
-	event_add_citation(ctxt, cit); break;
-      case ELT_SUB_NOTE:
-	note_sub_add_citation(ctxt, cit); break;
-      case ELT_SUB_LSS_SLGS:
-      case ELT_SUB_LIO_BAPL:
-      case ELT_SUB_LIO_SLGC:
-	lds_event_add_citation(ctxt, cit); break;
-      case REC_FAM:
-	family_add_citation(ctxt, cit); break;
-      case ELT_SUB_PERS_NAME:
-	name_add_citation(ctxt, cit); break;
-      case REC_INDI:
-	individual_add_citation(ctxt, cit); break;
-      case ELT_SUB_ASSO:
-	association_add_citation(ctxt, cit); break;
-      case REC_NOTE:
-	note_add_citation(ctxt, cit); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+    if (! cit)
+      MEMORY_ERROR;
+    else {
+      int err = 0;
+      memset (cit, 0, sizeof(struct source_citation));
+      if (GEDCOM_IS_STRING(parsed_value)) {
+	cit->description = strdup(GEDCOM_STRING(parsed_value));
+	if (! cit->description) {
+	  MEMORY_ERROR;
+	  free(cit);
+	  err = 1;
+	}
+      }
+      else if (GEDCOM_IS_XREF_PTR(parsed_value))
+	cit->reference = GEDCOM_XREF_PTR(parsed_value);
+
+      if (! err) {
+	switch (ctxt->ctxt_type) {
+	  case ELT_SUB_PLAC:
+	    place_add_citation(ctxt, cit); break;
+	  case ELT_SUB_FAM_EVT:
+	  case ELT_SUB_FAM_EVT_EVEN:
+	  case ELT_SUB_INDIV_ATTR:
+	  case ELT_SUB_INDIV_RESI:
+	  case ELT_SUB_INDIV_BIRT:
+	  case ELT_SUB_INDIV_GEN:
+	  case ELT_SUB_INDIV_ADOP:
+	  case ELT_SUB_INDIV_EVEN:
+	    event_add_citation(ctxt, cit); break;
+	  case ELT_SUB_NOTE:
+	    note_sub_add_citation(ctxt, cit); break;
+	  case ELT_SUB_LSS_SLGS:
+	  case ELT_SUB_LIO_BAPL:
+	  case ELT_SUB_LIO_SLGC:
+	    lds_event_add_citation(ctxt, cit); break;
+	  case REC_FAM:
+	    family_add_citation(ctxt, cit); break;
+	  case ELT_SUB_PERS_NAME:
+	    name_add_citation(ctxt, cit); break;
+	  case REC_INDI:
+	    individual_add_citation(ctxt, cit); break;
+	  case ELT_SUB_ASSO:
+	    association_add_citation(ctxt, cit); break;
+	  case REC_NOTE:
+	    note_add_citation(ctxt, cit); break;
+	  default:
+	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	}
+	result = MAKE_GOM_CTXT(elt, source_citation, cit);
+      }
     }
   }
 
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, source_citation, cit);
+  return (Gedcom_ctxt)result;
 }
 
 Gedcom_ctxt sub_cit_text_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct source_citation *cit = SAFE_CTXT_CAST(source_citation, ctxt);
-  struct text *t;
-  MAKE_CHAIN_ELT(text, cit->text, t);
-  t->text = strdup(GEDCOM_STRING(parsed_value));
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, text, t);
+  Gom_ctxt result = NULL;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct source_citation *cit = SAFE_CTXT_CAST(source_citation, ctxt);
+    if (cit) {
+      struct text *t = NULL;
+      MAKE_CHAIN_ELT(text, cit->text, t);
+      if (t) {
+	t->text = strdup(GEDCOM_STRING(parsed_value));
+	if (! t->text) {
+	  MEMORY_ERROR;
+	  free(t);
+	}
+	else
+	  result = MAKE_GOM_CTXT(elt, text, t);
+      }
+    }
+  }
+  
+  return (Gedcom_ctxt)result;
 }
 
 STRING_CB(source_citation, sub_cit_page_start, page)
@@ -127,31 +162,46 @@ void citation_subscribe()
 void citation_add_note(Gom_ctxt ctxt, struct note_sub* note)
 {
   struct source_citation *cit = SAFE_CTXT_CAST(source_citation, ctxt);
-  LINK_CHAIN_ELT(note_sub, cit->note, note)    
+  if (cit)
+    LINK_CHAIN_ELT(note_sub, cit->note, note);    
 }
 
 void citation_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm)
 {
   struct source_citation *cit = SAFE_CTXT_CAST(source_citation, ctxt);
-  LINK_CHAIN_ELT(multimedia_link, cit->mm_link, mm)    
+  if (cit)
+    LINK_CHAIN_ELT(multimedia_link, cit->mm_link, mm);    
 }
 
 void citation_add_to_desc(NL_TYPE type, Gom_ctxt ctxt, char* str)
 {
   struct source_citation *cit = SAFE_CTXT_CAST(source_citation, ctxt);
-  cit->description = concat_strings (type, cit->description, str);
+  if (cit) {
+    char *newvalue = concat_strings (type, cit->description, str);
+    if (newvalue)
+      cit->description = newvalue;
+    else
+      MEMORY_ERROR;
+  }
 }
 
 void citation_add_to_text(NL_TYPE type, Gom_ctxt ctxt, char* str)
 {
   struct text *t = SAFE_CTXT_CAST(text, ctxt);
-  t->text = concat_strings (type, t->text, str);
+  if (t) {
+    char *newvalue = concat_strings (type, t->text, str);
+    if (newvalue)
+      t->text = newvalue;
+    else
+      MEMORY_ERROR;
+  }
 }
 
 void citation_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct source_citation *obj = SAFE_CTXT_CAST(source_citation, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void text_cleanup(struct text* t)
@@ -169,10 +219,10 @@ void citation_cleanup(struct source_citation* cit)
     SAFE_FREE(cit->event);
     SAFE_FREE(cit->role);
     SAFE_FREE(cit->date);
-    DESTROY_CHAIN_ELTS(text, cit->text, text_cleanup)
+    DESTROY_CHAIN_ELTS(text, cit->text, text_cleanup);
     SAFE_FREE(cit->quality);
-    DESTROY_CHAIN_ELTS(multimedia_link, cit->mm_link, multimedia_link_cleanup)
-    DESTROY_CHAIN_ELTS(note_sub, cit->note, note_sub_cleanup)
-    DESTROY_CHAIN_ELTS(user_data, cit->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(multimedia_link, cit->mm_link, multimedia_link_cleanup);
+    DESTROY_CHAIN_ELTS(note_sub, cit->note, note_sub_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, cit->extra, user_data_cleanup);
   }
 }

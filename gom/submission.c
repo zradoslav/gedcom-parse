@@ -56,7 +56,8 @@ void submission_subscribe()
 void submission_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct submission *obj = SAFE_CTXT_CAST(submission, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void submission_cleanup()
@@ -69,7 +70,7 @@ void submission_cleanup()
     SAFE_FREE(gom_submission->nr_of_descendant_gens);
     SAFE_FREE(gom_submission->ordinance_process_flag);
     SAFE_FREE(gom_submission->record_id);
-    DESTROY_CHAIN_ELTS(user_data, gom_submission->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(user_data, gom_submission->extra, user_data_cleanup);
     SAFE_FREE(gom_submission);
   }
 }
@@ -83,8 +84,13 @@ struct submission* make_submission_record(char* xref)
 {
   if (! gom_submission) {
     gom_submission = (struct submission*)malloc(sizeof(struct submission));
-    memset(gom_submission, 0, sizeof(struct submission));
-    gom_submission->xrefstr = strdup(xref);
+    if (! gom_submission)
+      MEMORY_ERROR;
+    else {
+      memset(gom_submission, 0, sizeof(struct submission));
+      gom_submission->xrefstr = strdup(xref);
+      if (!gom_submission->xrefstr) MEMORY_ERROR;
+    }
   }
   
   return gom_submission;

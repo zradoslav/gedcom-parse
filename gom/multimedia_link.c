@@ -39,40 +39,48 @@
 Gedcom_ctxt sub_obje_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct multimedia_link *mm = NULL;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    mm = (struct multimedia_link *)malloc(sizeof(struct multimedia_link));
-    memset (mm, 0, sizeof(struct multimedia_link));
-    if (GEDCOM_IS_XREF_PTR(parsed_value))
-      mm->reference = GEDCOM_XREF_PTR(parsed_value);
-
-    switch (ctxt->ctxt_type) {
-      case ELT_SUB_FAM_EVT:
-      case ELT_SUB_FAM_EVT_EVEN:
-      case ELT_SUB_INDIV_ATTR:
-      case ELT_SUB_INDIV_RESI:
-      case ELT_SUB_INDIV_BIRT:
-      case ELT_SUB_INDIV_GEN:
-      case ELT_SUB_INDIV_ADOP:
-      case ELT_SUB_INDIV_EVEN:
-	event_add_mm_link(ctxt, mm); break;
-      case ELT_SUB_SOUR:
-	citation_add_mm_link(ctxt, mm); break;
-      case REC_FAM:
-	family_add_mm_link(ctxt, mm); break;
-      case REC_INDI:
-	individual_add_mm_link(ctxt, mm); break;
-      case REC_SOUR:
-	source_add_mm_link(ctxt, mm); break;
-      case REC_SUBM:
-	submitter_add_mm_link(ctxt, mm); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct multimedia_link *mm
+      = (struct multimedia_link *)malloc(sizeof(struct multimedia_link));
+    if (! mm)
+      MEMORY_ERROR;
+    else {
+      memset (mm, 0, sizeof(struct multimedia_link));
+      if (GEDCOM_IS_XREF_PTR(parsed_value))
+	mm->reference = GEDCOM_XREF_PTR(parsed_value);
+      
+      switch (ctxt->ctxt_type) {
+	case ELT_SUB_FAM_EVT:
+	case ELT_SUB_FAM_EVT_EVEN:
+	case ELT_SUB_INDIV_ATTR:
+	case ELT_SUB_INDIV_RESI:
+	case ELT_SUB_INDIV_BIRT:
+	case ELT_SUB_INDIV_GEN:
+	case ELT_SUB_INDIV_ADOP:
+	case ELT_SUB_INDIV_EVEN:
+	  event_add_mm_link(ctxt, mm); break;
+	case ELT_SUB_SOUR:
+	  citation_add_mm_link(ctxt, mm); break;
+	case REC_FAM:
+	  family_add_mm_link(ctxt, mm); break;
+	case REC_INDI:
+	  individual_add_mm_link(ctxt, mm); break;
+	case REC_SOUR:
+	  source_add_mm_link(ctxt, mm); break;
+	case REC_SUBM:
+	  submitter_add_mm_link(ctxt, mm); break;
+	default:
+	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+      }
+      result = MAKE_GOM_CTXT(elt, multimedia_link, mm);
     }
   }
 
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, multimedia_link, mm);
+  return (Gedcom_ctxt)result;
 }
 
 STRING_CB(multimedia_link, sub_obje_form_start, form)
@@ -94,13 +102,15 @@ void multimedia_link_subscribe()
 void multimedia_link_add_note(Gom_ctxt ctxt, struct note_sub* note)
 {
   struct multimedia_link *mm = SAFE_CTXT_CAST(multimedia_link, ctxt);
-  LINK_CHAIN_ELT(note_sub, mm->note, note)    
+  if (mm)
+    LINK_CHAIN_ELT(note_sub, mm->note, note);    
 }
 
 void multimedia_link_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct multimedia_link *obj = SAFE_CTXT_CAST(multimedia_link, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void multimedia_link_cleanup(struct multimedia_link* mm)
@@ -109,7 +119,7 @@ void multimedia_link_cleanup(struct multimedia_link* mm)
     SAFE_FREE(mm->form);
     SAFE_FREE(mm->title);
     SAFE_FREE(mm->file);
-    DESTROY_CHAIN_ELTS(note_sub, mm->note, note_sub_cleanup)
-    DESTROY_CHAIN_ELTS(user_data, mm->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(note_sub, mm->note, note_sub_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, mm->extra, user_data_cleanup);
   }
 }

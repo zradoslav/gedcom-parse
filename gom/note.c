@@ -39,14 +39,21 @@ struct note* gom_first_note = NULL;
 
 Gedcom_ctxt note_start(_REC_PARAMS_)
 {
+  Gom_ctxt result = NULL;
   struct xref_value* xr = GEDCOM_XREF_PTR(xref);
   struct note* note = (struct note*) xr->object;
-  if (! xr->object) {
+  if (! note) {
     note = make_note_record(xr->string);
     xr->object = (Gedcom_ctxt) note;
   }
-  note->text = strdup(GEDCOM_STRING(parsed_value));
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(rec, note, xr->object);
+  if (note) {
+    note->text = strdup(GEDCOM_STRING(parsed_value));
+    if (! note->text)
+      MEMORY_ERROR;
+    else
+      result = MAKE_GOM_CTXT(rec, note, xr->object);
+  }
+  return (Gedcom_ctxt)result;
 }
 
 GET_REC_BY_XREF(note, XREF_NOTE, gom_get_note_by_xref)
@@ -54,8 +61,11 @@ GET_REC_BY_XREF(note, XREF_NOTE, gom_get_note_by_xref)
 Gedcom_ctxt sub_cont_conc_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
     char *str = GEDCOM_STRING(parsed_value);
     NL_TYPE type = (elt == ELT_SUB_CONT ? WITH_NL : WITHOUT_NL);
     switch (ctxt->ctxt_type) {
@@ -77,11 +87,9 @@ Gedcom_ctxt sub_cont_conc_start(_ELT_PARAMS_)
       default:
 	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
     }
-    return (Gedcom_ctxt) make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+    result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
   }
-  else {
-    return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, NULL, NULL);
-  }
+  return (Gedcom_ctxt)result;
 }
 
 void note_subscribe()
@@ -94,48 +102,63 @@ void note_subscribe()
 void note_add_to_note(NL_TYPE type, Gom_ctxt ctxt, char* str)
 {
   struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  note->text = concat_strings (type, note->text, str);
+  if (note) {
+    char *newvalue = concat_strings (type, note->text, str);
+    if (newvalue)
+      note->text = newvalue;
+    else
+      MEMORY_ERROR;
+  }
 }
 
 void note_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
 {
   struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  LINK_CHAIN_ELT(source_citation, note->citation, cit)    
+  if (note)
+    LINK_CHAIN_ELT(source_citation, note->citation, cit);    
 }
 
 void note_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
 {
   struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  LINK_CHAIN_ELT(user_ref_number, note->ref, ref)
+  if (note)
+    LINK_CHAIN_ELT(user_ref_number, note->ref, ref);
 }
 
 void note_set_record_id(Gom_ctxt ctxt, char *rin)
 {
   struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  note->record_id = strdup(rin);
+  if (note) {
+    note->record_id = strdup(rin);
+    if (! note->record_id) MEMORY_ERROR;
+  }
 }
 
 void note_set_change_date(Gom_ctxt ctxt, struct change_date* chan)
 {
   struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  note->change_date = chan;
+  if (note)
+    note->change_date = chan;
 }
 
 void note_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct note *obj = SAFE_CTXT_CAST(note, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void note_cleanup(struct note* note)
 {
-  SAFE_FREE(note->xrefstr);
-  SAFE_FREE(note->text);
-  DESTROY_CHAIN_ELTS(source_citation, note->citation, citation_cleanup)
-  DESTROY_CHAIN_ELTS(user_ref_number, note->ref, user_ref_cleanup)
-  SAFE_FREE(note->record_id);
-  change_date_cleanup(note->change_date);
-  DESTROY_CHAIN_ELTS(user_data, note->extra, user_data_cleanup)
+  if (note) {
+    SAFE_FREE(note->xrefstr);
+    SAFE_FREE(note->text);
+    DESTROY_CHAIN_ELTS(source_citation, note->citation, citation_cleanup);
+    DESTROY_CHAIN_ELTS(user_ref_number, note->ref, user_ref_cleanup);
+    SAFE_FREE(note->record_id);
+    change_date_cleanup(note->change_date);
+    DESTROY_CHAIN_ELTS(user_data, note->extra, user_data_cleanup);
+  }
 }
 
 void notes_cleanup()
@@ -150,8 +173,11 @@ struct note* gom_get_first_note()
 
 struct note* make_note_record(char* xrefstr)
 {
-  struct note* note;
+  struct note* note = NULL;
   MAKE_CHAIN_ELT(note, gom_first_note, note);
-  note->xrefstr = strdup(xrefstr);
+  if (note) {
+    note->xrefstr = strdup(xrefstr);
+    if (! note->xrefstr) MEMORY_ERROR;
+  }
   return note;
 }

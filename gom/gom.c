@@ -145,6 +145,12 @@ void gom_unexpected_context(char* file, int line, OBJ_TYPE found)
 		 file, line, found);
 }
 
+void gom_no_context(char* file, int line)
+{
+  gedcom_warning(_("Internal error: No context at %s, line %d"),
+		 file, line);
+}
+
 void gom_default_callback (Gedcom_elt elt, Gedcom_ctxt parent, int level, char* tag,
 			   char* raw_value, int parsed_tag)
 {
@@ -198,10 +204,8 @@ char* concat_strings(NL_TYPE type, char *str1, const char *str2)
     if (type == WITH_NL)
       len++;
     newp = (char*) realloc(str1, len);
-    if (newp == NULL) {
-      free (str1);
+    if (newp == NULL)
       return NULL;
-    }
     wp   = newp + len1;
     str1 = newp;
     if (type == WITH_NL)

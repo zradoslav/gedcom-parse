@@ -39,49 +39,96 @@
 Gedcom_ctxt sub_evt_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct event *evt = NULL;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    evt = (struct event *)malloc(sizeof(struct event));
-    memset (evt, 0, sizeof(struct event));
-    evt->event = parsed_tag;
-    evt->event_name = strdup(tag);
-    if (GEDCOM_IS_STRING(parsed_value))
-      evt->val = strdup(GEDCOM_STRING(parsed_value));
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct event *evt = (struct event *)malloc(sizeof(struct event));
+    if (! evt)
+      MEMORY_ERROR;
+    else {
+      memset (evt, 0, sizeof(struct event));
+      evt->event = parsed_tag;
+      evt->event_name = strdup(tag);
+      if (! evt->event_name) {
+	MEMORY_ERROR;
+	free(evt);
+      }
+      else {
+	int err = 0;
+	if (GEDCOM_IS_STRING(parsed_value)) {
+	  evt->val = strdup(GEDCOM_STRING(parsed_value));
+	  if (! evt->val) {
+	    MEMORY_ERROR;
+	    free(evt->event_name);
+	    free(evt);
+	    err = 1;
+	  }
+	}
 
-    switch (ctxt->ctxt_type) {
-      case REC_FAM:
-	family_add_event(ctxt, evt); break;
-      case REC_INDI:
-	individual_add_event(ctxt, evt); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	if (! err) {
+	  switch (ctxt->ctxt_type) {
+	    case REC_FAM:
+	      family_add_event(ctxt, evt); break;
+	    case REC_INDI:
+	      individual_add_event(ctxt, evt); break;
+	    default:
+	      UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  }
+	  result = MAKE_GOM_CTXT(elt, event, evt);
+	}
+      }
     }
   }
 
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, event, evt);
+  return (Gedcom_ctxt)result;
 }
 
 Gedcom_ctxt sub_attr_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct event *evt = NULL;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    evt = (struct event *)malloc(sizeof(struct event));
-    memset (evt, 0, sizeof(struct event));
-    evt->event = parsed_tag;
-    evt->event_name = strdup(tag);
-    if (GEDCOM_IS_STRING(parsed_value))
-      evt->val = strdup(GEDCOM_STRING(parsed_value));
-    switch (ctxt->ctxt_type) {
-      case REC_INDI:
-	individual_add_attribute(ctxt, evt); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct event *evt = (struct event *)malloc(sizeof(struct event));
+    if (! evt)
+      MEMORY_ERROR;
+    else {
+      memset (evt, 0, sizeof(struct event));
+      evt->event = parsed_tag;
+      evt->event_name = strdup(tag);
+      if (! evt->event_name) {
+	MEMORY_ERROR;
+	free(evt);
+      }
+      else {
+	int err = 0;
+	if (GEDCOM_IS_STRING(parsed_value)) {
+	  evt->val = strdup(GEDCOM_STRING(parsed_value));
+	  if (! evt->val) {
+	    MEMORY_ERROR;
+	    free(evt->event_name);
+	    free(evt);
+	    err = 1;
+	  }
+	}
+
+	if (! err) {
+	  switch (ctxt->ctxt_type) {
+	    case REC_INDI:
+	      individual_add_attribute(ctxt, evt); break;
+	    default:
+	      UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  }
+	  result = MAKE_GOM_CTXT(elt, event, evt);
+	}
+      }
     }
   }
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, event, evt);
+  return (Gedcom_ctxt)result;
 }
 
 STRING_CB(event, sub_evt_type_start, type)
@@ -95,68 +142,94 @@ STRING_CB(event, sub_evt_famc_adop_start, adoption_parent)
      
 Gedcom_ctxt sub_fam_evt_age_start(_ELT_PARAMS_)
 {
-  struct age_value age = GEDCOM_AGE(parsed_value);
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct event *evt = NULL;
-  if (ctxt) {
-    evt = SAFE_CTXT_CAST(event, ctxt);
-    switch (ctxt->ctxt_type) {
-      case ELT_SUB_FAM_EVT_HUSB:
-	evt->husband_age = dup_age(age); break;
-      case ELT_SUB_FAM_EVT_WIFE:
-	evt->wife_age = dup_age(age); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+  Gom_ctxt result = NULL;
+  
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct event *evt = SAFE_CTXT_CAST(event, ctxt);
+    if (evt) {
+      int err = 0;
+      struct age_value age = GEDCOM_AGE(parsed_value);
+      switch (ctxt->ctxt_type) {
+	case ELT_SUB_FAM_EVT_HUSB:
+	  evt->husband_age = dup_age(age);
+	  if (! evt->husband_age) {
+	    MEMORY_ERROR;
+	    err = 1;
+	  }
+	  break;
+	case ELT_SUB_FAM_EVT_WIFE:
+	  evt->wife_age = dup_age(age);
+	  if (! evt->wife_age) {
+	    MEMORY_ERROR;
+	    err = 1;
+	  }
+	  break;
+	default:
+	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+      }
+      if (! err)
+	result = MAKE_GOM_CTXT(elt, event, evt);
     }
   }
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, event, evt);
+  return (Gedcom_ctxt)result;
 }
 
 void event_add_place(Gom_ctxt ctxt, struct place* place)
 {
   struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  evt->place = place;
+  if (evt)
+    evt->place = place;
 }
 
 void event_add_address(Gom_ctxt ctxt, struct address* address)
 {
   struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  evt->address = address;
+  if (evt)
+    evt->address = address;
 }
 
 void event_add_phone(Gom_ctxt ctxt, char *phone)
 {
   struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  if (! evt->phone[0])
-    evt->phone[0] = strdup(phone);
-  else if (! evt->phone[1])
-    evt->phone[1] = strdup(phone);
-  else if (! evt->phone[2])
-    evt->phone[2] = strdup(phone);
+  if (evt) {
+    int i = 0;
+    while (i<2 && evt->phone[i]) i++;
+    if (! evt->phone[i]) {
+      evt->phone[i] = strdup(phone);
+      if (! evt->phone[i]) MEMORY_ERROR;
+    }
+  }
 }
 
 void event_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
 {
   struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  LINK_CHAIN_ELT(source_citation, evt->citation, cit)    
+  if (evt)
+    LINK_CHAIN_ELT(source_citation, evt->citation, cit);  
 }
 
 void event_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm)
 {
   struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  LINK_CHAIN_ELT(multimedia_link, evt->mm_link, mm)    
+  if (evt)
+    LINK_CHAIN_ELT(multimedia_link, evt->mm_link, mm);
 }
 
 void event_add_note(Gom_ctxt ctxt, struct note_sub* note)
 {
   struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  LINK_CHAIN_ELT(note_sub, evt->note, note)    
+  if (evt)
+    LINK_CHAIN_ELT(note_sub, evt->note, note);
 }
 
 void event_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct event *obj = SAFE_CTXT_CAST(event, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void event_subscribe()
@@ -215,12 +288,12 @@ void event_cleanup(struct event* evt)
     SAFE_FREE(evt->age);
     SAFE_FREE(evt->agency);
     SAFE_FREE(evt->cause);
-    DESTROY_CHAIN_ELTS(source_citation, evt->citation, citation_cleanup)
-    DESTROY_CHAIN_ELTS(multimedia_link, evt->mm_link, multimedia_link_cleanup)
-    DESTROY_CHAIN_ELTS(note_sub, evt->note, note_sub_cleanup)
+    DESTROY_CHAIN_ELTS(source_citation, evt->citation, citation_cleanup);
+    DESTROY_CHAIN_ELTS(multimedia_link, evt->mm_link, multimedia_link_cleanup);
+    DESTROY_CHAIN_ELTS(note_sub, evt->note, note_sub_cleanup);
     SAFE_FREE(evt->husband_age);
     SAFE_FREE(evt->wife_age);
     SAFE_FREE(evt->adoption_parent);
-    DESTROY_CHAIN_ELTS(user_data, evt->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(user_data, evt->extra, user_data_cleanup);
   }
 }

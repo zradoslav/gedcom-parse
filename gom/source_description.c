@@ -33,23 +33,36 @@
 Gedcom_ctxt sub_sour_caln_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct source_description *desc = NULL;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    desc
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct source_description *desc
       = (struct source_description *)malloc(sizeof(struct source_description));
-    memset (desc, 0, sizeof(struct source_description));
-    desc->call_number = strdup(GEDCOM_STRING(parsed_value));
+    if (! desc)
+      MEMORY_ERROR;
+    else {
+      memset (desc, 0, sizeof(struct source_description));
+      desc->call_number = strdup(GEDCOM_STRING(parsed_value));
 
-    switch (ctxt->ctxt_type) {
-      case ELT_SUB_REPO:
-	source_add_description(ctxt, desc); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+      if (! desc->call_number) {
+	MEMORY_ERROR;
+	free(desc);
+      }
+      else {
+	switch (ctxt->ctxt_type) {
+	  case ELT_SUB_REPO:
+	    source_add_description(ctxt, desc); break;
+	  default:
+	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	}
+	result = MAKE_GOM_CTXT(elt, source_description, desc);
+      }
     }
   }
 
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, source_description, desc);
+  return (Gedcom_ctxt)result;
 }
 
 STRING_CB(source_description, sub_sour_caln_medi_start, media)
@@ -65,7 +78,8 @@ void source_description_subscribe()
 void source_description_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct source_description *obj = SAFE_CTXT_CAST(source_description, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void source_description_cleanup(struct source_description* desc)
@@ -73,6 +87,6 @@ void source_description_cleanup(struct source_description* desc)
   if (desc) {
     SAFE_FREE(desc->call_number);
     SAFE_FREE(desc->media);
-    DESTROY_CHAIN_ELTS(user_data, desc->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(user_data, desc->extra, user_data_cleanup);
   }
 }

@@ -48,6 +48,12 @@ typedef enum {
   T_association, T_source_event, T_source_description
 } OBJ_TYPE;
 
+/* Assumptions for context:
+    - In case of error, NULL is passed as context
+    - If not NULL, the ctxt_ptr of the context is not NULL also
+    - UNEXPECTED_CONTEXT is not treated as an error, but as a warning
+*/
+
 struct Gom_ctxt_struct {
   int ctxt_type;
   OBJ_TYPE obj_type;
@@ -59,6 +65,7 @@ typedef struct Gom_ctxt_struct *Gom_ctxt;
 Gom_ctxt make_gom_ctxt(int ctxt_type, OBJ_TYPE obj_type, void *ctxt_ptr);
 void destroy_gom_ctxt(Gom_ctxt ctxt);
 void gom_cast_error(char* file, int line, OBJ_TYPE expected, OBJ_TYPE found);
+void gom_no_context(char* file, int line);
 void gom_unexpected_context(char* file, int line, OBJ_TYPE found);
 
 #define MAKE_GOM_CTXT(CTXT_TYPE, STRUCTTYPE, CTXT_PTR)                        \
@@ -78,6 +85,9 @@ void gom_unexpected_context(char* file, int line, OBJ_TYPE found);
 
 #define UNEXPECTED_CONTEXT(CTXT_TYPE)                                         \
   gom_unexpected_context(__FILE__, __LINE__, CTXT_TYPE)
+
+#define NO_CONTEXT                                                            \
+  gom_no_context(__FILE__, __LINE__)
 
 void gom_mem_error(char *filename, int line);
 
@@ -153,7 +163,10 @@ void NULL_DESTROY(void* anything);
     struct xref_value* xr = GEDCOM_XREF_PTR(xref);                            \
     if (! xr->object)                                                         \
       xr->object = (Gedcom_ctxt) FUNC(xr->string);                            \
-    return (Gedcom_ctxt) MAKE_GOM_CTXT(rec, STRUCTTYPE, xr->object);          \
+    if (xr->object)                                                           \
+      return (Gedcom_ctxt) MAKE_GOM_CTXT(rec, STRUCTTYPE, xr->object);        \
+    else                                                                      \
+      return NULL;                                                            \
   }
 
 #define GET_REC_BY_XREF(STRUCTTYPE,XREF_TYPE,FUNC_NAME)                       \
@@ -169,83 +182,123 @@ void NULL_DESTROY(void* anything);
 #define STRING_CB(STRUCTTYPE,CB_NAME,FIELD)                                   \
   Gedcom_ctxt CB_NAME(_ELT_PARAMS_)                                           \
   {                                                                           \
-    char *str = GEDCOM_STRING(parsed_value);                                  \
-    struct STRUCTTYPE *obj                                                    \
-      = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                         \
-    if (obj) {                                                                \
-      obj->FIELD = strdup(str);                                               \
-      if (! obj->FIELD) {                                                     \
-	MEMORY_ERROR;                                                         \
-	return NULL;                                                          \
+    Gom_ctxt result = NULL;                                                   \
+    if (! parent)                                                             \
+      NO_CONTEXT;                                                             \
+    else {                                                                    \
+      struct STRUCTTYPE *obj                                                  \
+        = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                       \
+      if (obj) {                                                              \
+        char *str = GEDCOM_STRING(parsed_value);                              \
+        obj->FIELD = strdup(str);                                             \
+        if (! obj->FIELD)                                                     \
+	  MEMORY_ERROR;                                                       \
+        else                                                                  \
+          result = MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                       \
       }                                                                       \
     }                                                                         \
-    return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                 \
+    return (Gedcom_ctxt)result;                                               \
   }
 
 #define DATE_CB(STRUCTTYPE,CB_NAME,FIELD)                                     \
   Gedcom_ctxt CB_NAME(_ELT_PARAMS_)                                           \
   {                                                                           \
-    struct date_value dv = GEDCOM_DATE(parsed_value);                         \
-    struct STRUCTTYPE *obj                                                    \
-      = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                         \
-    if (obj) {                                                                \
-      obj->FIELD = dup_date(dv);                                              \
-      if (! obj->FIELD) {                                                     \
-	MEMORY_ERROR;                                                         \
-	return NULL;                                                          \
+    Gom_ctxt result = NULL;                                                   \
+    if (! parent)                                                             \
+      NO_CONTEXT;                                                             \
+    else {                                                                    \
+      struct STRUCTTYPE *obj                                                  \
+        = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                       \
+      if (obj) {                                                              \
+        struct date_value dv = GEDCOM_DATE(parsed_value);                     \
+        obj->FIELD = dup_date(dv);                                            \
+        if (! obj->FIELD)                                                     \
+	  MEMORY_ERROR;                                                       \
+        else                                                                  \
+          result = MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                       \
       }                                                                       \
     }                                                                         \
-    return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                 \
+    return (Gedcom_ctxt)result;                                               \
   }
 
 #define AGE_CB(STRUCTTYPE,CB_NAME,FIELD)                                      \
   Gedcom_ctxt CB_NAME(_ELT_PARAMS_)                                           \
   {                                                                           \
-    struct age_value age = GEDCOM_AGE(parsed_value);                          \
-    struct STRUCTTYPE *obj                                                    \
-      = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                         \
-    if (obj) {                                                                \
-      obj->FIELD = dup_age(age);                                              \
-      if (! obj->FIELD) {                                                     \
-	MEMORY_ERROR;                                                         \
-	return NULL;                                                          \
+    Gom_ctxt result = NULL;                                                   \
+    if (! parent)                                                             \
+      NO_CONTEXT;                                                             \
+    else {                                                                    \
+      struct STRUCTTYPE *obj                                                  \
+        = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                       \
+      if (obj) {                                                              \
+        struct age_value age = GEDCOM_AGE(parsed_value);                      \
+        obj->FIELD = dup_age(age);                                            \
+        if (! obj->FIELD)                                                     \
+	  MEMORY_ERROR;                                                       \
+        else                                                                  \
+          result = MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                       \
       }                                                                       \
     }                                                                         \
-    return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                 \
+    return (Gedcom_ctxt)result;                                               \
   }
 
 #define XREF_CB(STRUCTTYPE,CB_NAME,FIELD,FUNC)                                \
   Gedcom_ctxt CB_NAME(_ELT_PARAMS_)                                           \
   {                                                                           \
-    struct xref_value *xr = GEDCOM_XREF_PTR(parsed_value);                    \
-    struct STRUCTTYPE *obj                                                    \
-      = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                         \
-    if (! xr->object)                                                         \
-      xr->object = (Gedcom_ctxt) FUNC(xr->string);                            \
-    if (obj) obj->FIELD = xr;                                                 \
-    return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                 \
+    Gom_ctxt result = NULL;                                                   \
+    if (! parent)                                                             \
+      NO_CONTEXT;                                                             \
+    else {                                                                    \
+      struct STRUCTTYPE *obj                                                  \
+        = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                       \
+      struct xref_value *xr = GEDCOM_XREF_PTR(parsed_value);                  \
+      if (! xr->object)                                                       \
+        xr->object = (Gedcom_ctxt) FUNC(xr->string);                          \
+      if (obj) {                                                              \
+	obj->FIELD = xr;                                                      \
+        result = MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                         \
+      }                                                                       \
+    }                                                                         \
+    return (Gedcom_ctxt)result;                                               \
   }
 
 #define XREF_LIST_CB(STRUCTTYPE,CB_NAME,FIELD,FUNC)                           \
   Gedcom_ctxt CB_NAME(_ELT_PARAMS_)                                           \
   {                                                                           \
-    struct xref_value *xr = GEDCOM_XREF_PTR(parsed_value);                    \
-    struct STRUCTTYPE *obj                                                    \
-      = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                         \
-    struct xref_list *xrl;                                                    \
-    if (! xr->object)                                                         \
-      xr->object = (Gedcom_ctxt) FUNC(xr->string);                            \
-    MAKE_CHAIN_ELT(xref_list, obj->FIELD, xrl);                               \
-    xrl->xref = xr;                                                           \
-    return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                 \
+    Gom_ctxt result = NULL;                                                   \
+    if (! parent)                                                             \
+      NO_CONTEXT;                                                             \
+    else {                                                                    \
+      struct STRUCTTYPE *obj                                                  \
+        = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                       \
+      struct xref_value *xr = GEDCOM_XREF_PTR(parsed_value);                  \
+      struct xref_list *xrl;                                                  \
+      if (! xr->object)                                                       \
+        xr->object = (Gedcom_ctxt) FUNC(xr->string);                          \
+      if (obj) {                                                              \
+        MAKE_CHAIN_ELT(xref_list, obj->FIELD, xrl);                           \
+        if (xrl) {                                                            \
+          xrl->xref = xr;                                                     \
+          result = MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                       \
+        }                                                                     \
+      }                                                                       \
+    }                                                                         \
+    return (Gedcom_ctxt)result;                                               \
   }
 
 #define NULL_CB(STRUCTTYPE,CB_NAME)                                           \
   Gedcom_ctxt CB_NAME(_ELT_PARAMS_)                                           \
   {                                                                           \
-    struct STRUCTTYPE *obj                                                    \
-      = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                         \
-    return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                 \
+    Gom_ctxt result = NULL;                                                   \
+    if (! parent)                                                             \
+      NO_CONTEXT;                                                             \
+    else {                                                                    \
+      struct STRUCTTYPE *obj                                                  \
+        = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                       \
+      if (obj)                                                                \
+	result = MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                         \
+    }                                                                         \
+    return (Gedcom_ctxt)result;                                               \
   }
 
 #endif /* __GOM_INTERNAL_H */

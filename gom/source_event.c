@@ -33,22 +33,36 @@
 Gedcom_ctxt sub_sour_even_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
-  struct source_event *evt = NULL;
+  Gom_ctxt result = NULL;
 
-  if (ctxt) {
-    evt = (struct source_event *)malloc(sizeof(struct source_event));
-    memset (evt, 0, sizeof(struct source_event));
-    evt->recorded_events = strdup(GEDCOM_STRING(parsed_value));
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct source_event *evt
+      = (struct source_event *)malloc(sizeof(struct source_event));
+    if (! evt)
+      MEMORY_ERROR;
+    else {
+      memset (evt, 0, sizeof(struct source_event));
+      evt->recorded_events = strdup(GEDCOM_STRING(parsed_value));
 
-    switch (ctxt->ctxt_type) {
-      case ELT_SOUR_DATA:
-	source_add_event(ctxt, evt); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+      if (! evt->recorded_events) {
+	MEMORY_ERROR;
+	free(evt);
+      }
+      else {
+	switch (ctxt->ctxt_type) {
+	  case ELT_SOUR_DATA:
+	    source_add_event(ctxt, evt); break;
+	  default:
+	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	}
+	result = MAKE_GOM_CTXT(elt, source_event, evt);
+      }
     }
   }
 
-  return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, source_event, evt);
+  return (Gedcom_ctxt)result;
 }
 
 DATE_CB(source_event, sub_sour_even_date_start, date_period)
@@ -67,7 +81,8 @@ void source_event_subscribe()
 void source_event_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 {
   struct source_event *obj = SAFE_CTXT_CAST(source_event, ctxt);
-  LINK_CHAIN_ELT(user_data, obj->extra, data)
+  if (obj)
+    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void source_event_cleanup(struct source_event* evt)
@@ -76,6 +91,6 @@ void source_event_cleanup(struct source_event* evt)
     SAFE_FREE(evt->recorded_events);
     SAFE_FREE(evt->date_period);
     SAFE_FREE(evt->jurisdiction);
-    DESTROY_CHAIN_ELTS(user_data, evt->extra, user_data_cleanup)
+    DESTROY_CHAIN_ELTS(user_data, evt->extra, user_data_cleanup);
   }
 }
