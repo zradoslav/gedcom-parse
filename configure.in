@@ -159,4 +159,5 @@ AC_OUTPUT(GNUmakefile
 	  include/gedcom.h
           intl/Makefile
           po/Makefile.in
-	  m4/Makefile)
+	  m4/Makefile
+	  bin/Makefile)
