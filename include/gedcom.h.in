@@ -328,7 +328,8 @@ typedef enum _XREF_TYPE {
   XREF_SOUR,
   XREF_SUBM,
   XREF_SUBN,
-  XREF_USER
+  XREF_USER,
+  XREF_ANY
 } Xref_type;
 
 struct xref_value {
@@ -486,6 +487,7 @@ void    gedcom_subscribe_to_element(Gedcom_elt elt,
 /* Separate value parsing functions */
 struct date_value gedcom_parse_date(char* line_value);
 struct age_value  gedcom_parse_age(char* line_value);
+struct xref_value *gedcom_get_by_xref(char *key);
 
 __END_DECLS
 
