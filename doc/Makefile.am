@@ -2,7 +2,7 @@
 # $Id$
 # $Name$
 
-SUBDIRS = images .
+SUBDIRS = images . doxygen
 DOC_FILES = index.html usage.html parser.html interface.html links.html \
 	    encoding.html gom.html
 GENERATED_DOC_FILES = gomxref.html utf8tools.html
