@@ -44,5 +44,6 @@ void individual_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
 void individual_set_record_id(Gom_ctxt ctxt, const char *rin);
 void individual_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void individual_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_individuals(Gedcom_write_hndl hndl);
 
 #endif /* __INDIVIDUAL_H */

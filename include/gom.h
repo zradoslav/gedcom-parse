@@ -87,9 +87,9 @@ struct note_sub {                     /* NOTE_STRUCTURE */
 struct place {                        /* PLACE_STRUCTURE */
   char *value;                        /* PLACE_VALUE */
   char *place_hierarchy;              /* PLACE_HIERARCHY */
-  struct user_data *extra;
   struct source_citation *citation;
   struct note_sub *note;
+  struct user_data *extra;
 };
 
 struct multimedia_link {              /* MULTIMEDIA_LINK */
@@ -104,6 +104,8 @@ struct multimedia_link {              /* MULTIMEDIA_LINK */
 };
 
 struct lds_event {                    /* LDS_INDIVIDUAL_ORDINANCE */
+  int event;
+  char *event_name;
   char *date_status;                  /* LDS_BAPTISM_DATE_STATUS */
   struct date_value *date;            /* DATE_LDS_ORD */
   char *temple_code;                  /* TEMPLE_CODE */

@@ -27,9 +27,16 @@
 #include "gom.h"
 #include "gom_internal.h"
 
+typedef enum _LINK_TYPE {
+  LINK_TYPE_CHILD,
+  LINK_TYPE_SPOUSE
+} LinkType;
+
 void family_link_subscribe();
 void family_link_cleanup(struct family_link* link);
 void family_link_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void family_link_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_family_links(Gedcom_write_hndl hndl, int parent, LinkType type,
+		       struct family_link *link);
 
 #endif /* __FAMILY_LINK_H */

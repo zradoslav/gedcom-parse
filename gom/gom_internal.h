@@ -75,6 +75,10 @@ void gom_cast_error(const char* file, int line,
 void gom_no_context(const char* file, int line);
 void gom_unexpected_context(const char* file, int line, OBJ_TYPE found);
 
+int gom_write_xref_list(Gedcom_write_hndl hndl,
+			Gedcom_elt elt, int tag, int parent_rec_or_elt,
+			struct xref_list* val);
+
 #define MAKE_GOM_CTXT(CTXT_TYPE, STRUCTTYPE, CTXT_PTR)                        \
   make_gom_ctxt(CTXT_TYPE, T_ ## STRUCTTYPE, CTXT_PTR)
 

@@ -297,3 +297,108 @@ void event_cleanup(struct event* evt)
     DESTROY_CHAIN_ELTS(user_data, evt->extra, user_data_cleanup);
   }
 }
+
+static int get_gedcom_elt(EventType evt_type, int parsed_tag)
+{
+  int obj_elt = 0;
+  switch (evt_type) {
+    case EVT_TYPE_FAMILY:
+      obj_elt = (parsed_tag == TAG_EVEN ? ELT_SUB_FAM_EVT_EVEN :
+		 ELT_SUB_FAM_EVT);
+      break;
+    case EVT_TYPE_INDIV_ATTR:
+      obj_elt = (parsed_tag == TAG_RESI ? ELT_SUB_INDIV_RESI :
+		 ELT_SUB_INDIV_ATTR);
+      break;
+    case EVT_TYPE_INDIV_EVT:
+      switch (parsed_tag) {
+	case TAG_BIRT: case TAG_CHR:
+	  obj_elt = ELT_SUB_INDIV_BIRT; break;
+	case TAG_DEAT: case TAG_BURI: case TAG_CREM: case TAG_BAPM:
+	case TAG_BARM: case TAG_BASM: case TAG_BLES: case TAG_CHRA:
+	case TAG_CONF: case TAG_FCOM: case TAG_ORDN: case TAG_NATU:
+	case TAG_EMIG: case TAG_IMMI: case TAG_CENS: case TAG_PROB:
+	case TAG_WILL: case TAG_GRAD: case TAG_RETI:
+	  obj_elt = ELT_SUB_INDIV_GEN; break;
+	case TAG_ADOP:
+	  obj_elt = ELT_SUB_INDIV_ADOP; break;
+	case TAG_EVEN:
+	  obj_elt = ELT_SUB_INDIV_EVEN; break;
+	default:
+	  gedcom_warning(_("Internal error: unknown evt tag %d"), parsed_tag);
+      }
+      break;
+    default:
+      gedcom_warning(_("Internal error: unknown evt type %d"), evt_type);
+  }
+  return obj_elt;
+}
+
+int get_gedcom_fam_elt(int elt)
+{
+  int fam_obj_elt = 0;
+  switch (elt) {
+    case ELT_SUB_INDIV_BIRT:
+      fam_obj_elt = ELT_SUB_INDIV_BIRT_FAMC;
+      break;
+    case ELT_SUB_INDIV_ADOP:
+      fam_obj_elt = ELT_SUB_INDIV_ADOP_FAMC;
+      break;
+    default:
+      gedcom_warning(_("Internal error: wrong parent for evt->family"));
+  }
+  return fam_obj_elt;
+}
+
+int write_events(Gedcom_write_hndl hndl, int parent, EventType evt_type,
+		 struct event* evt)
+{
+  int result = 0;
+  int i;
+  struct event* obj;
+
+  if (!evt) return 1;
+
+  for (obj = evt; obj; obj = obj->next) {
+    int obj_elt = get_gedcom_elt(evt_type, obj->event);
+    result |= gedcom_write_element_str(hndl, obj_elt, obj->event,
+				       parent, obj->val);
+    if (obj->type)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_EVT_TYPE, 0,
+					 obj_elt, obj->type);
+    if (obj->place)
+      result |= write_place(hndl, obj_elt, obj->place);
+    if (obj->address)
+      result |= write_address(hndl, obj_elt, obj->address);
+    for (i = 0; i < 3 && obj->phone[i]; i++)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_PHON, 0, obj_elt,
+					 obj->phone[i]);
+    if (obj->agency)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_EVT_AGNC, 0,
+					 obj_elt, obj->agency);
+    if (obj->cause)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_EVT_CAUS, 0,
+					 obj_elt, obj->cause);
+    if (obj->citation)
+      result |= write_citations(hndl, obj_elt, obj->citation);
+    if (obj->mm_link)
+      result |= write_multimedia_links(hndl, obj_elt, obj->mm_link);
+    if (obj->note)
+      result |= write_note_subs(hndl, obj_elt, obj->note);
+    if (obj->family) {
+      int fam_obj_elt = get_gedcom_fam_elt(obj_elt);
+      result |= gedcom_write_element_xref(hndl, fam_obj_elt, 0,
+					  obj_elt, obj->family);
+      if (obj->adoption_parent) {
+	result |= gedcom_write_element_str(hndl, ELT_SUB_INDIV_ADOP_FAMC_ADOP,
+					   0, fam_obj_elt,
+					   obj->adoption_parent);
+      }
+    }
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+  
+  return result;
+}
+  

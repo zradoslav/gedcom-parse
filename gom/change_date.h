@@ -31,5 +31,7 @@ void change_date_subscribe();
 void change_date_cleanup(struct change_date *chan);
 void change_date_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void change_date_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_change_date(Gedcom_write_hndl hndl, int parent,
+		      struct change_date *chan);
 
 #endif /* __CHANGE_DATE_H */

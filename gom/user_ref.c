@@ -139,3 +139,24 @@ void user_ref_cleanup(struct user_ref_number* refn)
     DESTROY_CHAIN_ELTS(user_data, refn->extra, user_data_cleanup);
   }
 }
+
+int write_user_refs(Gedcom_write_hndl hndl, int parent,
+		    struct user_ref_number *refn)
+{
+  int result = 0;
+  struct user_ref_number* obj;
+
+  if (!refn) return 1;
+
+  for (obj = refn; obj; obj = obj->next) {
+    result |= gedcom_write_element_str(hndl, ELT_SUB_IDENT_REFN, 0,
+				       parent, obj->value);
+    if (obj->type)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_IDENT_REFN_TYPE, 0,
+					 ELT_SUB_IDENT_REFN, obj->type);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);    
+  }
+
+  return result;
+}

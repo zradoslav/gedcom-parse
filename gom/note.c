@@ -144,3 +144,28 @@ struct note* make_note_record(const char* xrefstr)
   }
   return note;
 }
+
+int write_notes(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+  struct note* obj;
+
+  for (obj = gom_first_note; obj; obj = obj->next) {
+    result |= gedcom_write_record_str(hndl, REC_NOTE, 0,
+				      obj->xrefstr, obj->text);
+    if (obj->citation)
+      result |= write_citations(hndl, REC_NOTE, obj->citation);
+    if (obj->ref)
+      result |= write_user_refs(hndl, REC_NOTE, obj->ref);
+    if (obj->record_id)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_IDENT_RIN, 0,
+					 REC_NOTE, obj->record_id);
+    if (obj->change_date)
+      result |= write_change_date(hndl, REC_NOTE, obj->change_date);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+  
+  return result;
+}
+

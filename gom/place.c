@@ -115,3 +115,24 @@ void place_cleanup(struct place* place)
   }
   SAFE_FREE(place);
 }
+
+int write_place(Gedcom_write_hndl hndl, int parent, struct place* place)
+{
+  int result = 0;
+  
+  if (!place) return 1;
+  
+  result |= gedcom_write_element_str(hndl, ELT_SUB_PLAC, 0,
+				     parent, place->value);
+  if (place->place_hierarchy)
+    result |= gedcom_write_element_str(hndl, ELT_SUB_PLAC_FORM, 0,
+				       ELT_SUB_PLAC, place->place_hierarchy);
+  if (place->citation)
+    result |= write_citations(hndl, ELT_SUB_PLAC, place->citation);
+  if (place->note)
+    result |= write_note_subs(hndl, ELT_SUB_PLAC, place->note);
+  if (place->extra)
+    result |= write_user_data(hndl, place->extra);
+
+  return result;
+}

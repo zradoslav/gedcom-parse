@@ -32,5 +32,7 @@ void user_recs_cleanup();
 struct user_rec* make_user_record(const char* xref);
 void user_data_cleanup(struct user_data* data);
 void user_rec_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_user_recs(Gedcom_write_hndl hndl);
+int write_user_data(Gedcom_write_hndl hndl, struct user_data* data);
 
 #endif /* __USER_REC_H */

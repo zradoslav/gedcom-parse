@@ -123,3 +123,38 @@ void multimedia_link_cleanup(struct multimedia_link* mm)
     DESTROY_CHAIN_ELTS(user_data, mm->extra, user_data_cleanup);
   }
 }
+
+int write_multimedia_links(Gedcom_write_hndl hndl, int parent,
+			   struct multimedia_link* mm)
+{
+  int result = 0;
+  struct multimedia_link* obj;
+
+  if (!mm) return 1;
+
+  for (obj = mm; obj; obj = obj->next) {
+    if (obj->reference) {
+      result |= gedcom_write_element_xref(hndl, ELT_SUB_MULTIM_OBJE, 0,
+					  parent, obj->reference);
+    }
+    else {
+      result |= gedcom_write_element_str(hndl, ELT_SUB_MULTIM_OBJE, 0,
+					 parent, NULL);
+      if (obj->form)
+	result |= gedcom_write_element_str(hndl, ELT_SUB_MULTIM_OBJE_FORM, 0,
+					   ELT_SUB_MULTIM_OBJE, obj->form);
+      if (obj->title)
+	result |= gedcom_write_element_str(hndl, ELT_SUB_MULTIM_OBJE_TITL, 0,
+					   ELT_SUB_MULTIM_OBJE, obj->title);
+      if (obj->file)
+	result |= gedcom_write_element_str(hndl, ELT_SUB_MULTIM_OBJE_FILE, 0,
+					   ELT_SUB_MULTIM_OBJE, obj->file);
+      if (obj->note)
+	result |= write_note_subs(hndl, ELT_SUB_MULTIM_OBJE, obj->note);
+      if (obj->extra)
+	result |= write_user_data(hndl, obj->extra);
+    }
+  }
+
+  return result;
+}

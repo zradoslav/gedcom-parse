@@ -139,3 +139,36 @@ struct repository* make_repository_record(const char* xrefstr)
   }
   return repo;
 }
+
+int write_repositories(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+  int i;
+  struct repository* obj;
+
+  for (obj = gom_first_repository; obj; obj = obj->next) {
+    result |= gedcom_write_record_str(hndl, REC_REPO, 0,
+				      obj->xrefstr, NULL);
+    if (obj->name)
+      result |= gedcom_write_element_str(hndl, ELT_REPO_NAME, 0,
+					 REC_REPO, obj->name);
+    if (obj->address)
+      result |= write_address(hndl, REC_REPO, obj->address);
+    for (i = 0; i < 3 && obj->phone[i]; i++)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_PHON, 0, REC_REPO,
+					 obj->phone[i]);
+    if (obj->note)
+      result |= write_note_subs(hndl, REC_REPO, obj->note);
+    if (obj->ref)
+      result |= write_user_refs(hndl, REC_REPO, obj->ref);
+    if (obj->record_id)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_IDENT_RIN, 0,
+					 REC_REPO, obj->record_id);
+    if (obj->change_date)
+      result |= write_change_date(hndl, REC_REPO, obj->change_date);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+  
+  return result;
+}

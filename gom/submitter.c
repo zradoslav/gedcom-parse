@@ -161,3 +161,41 @@ struct submitter* make_submitter_record(const char* xrefstr)
   }
   return subm;
 }
+
+int write_submitters(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+  int i;
+  struct submitter* obj;
+
+  for (obj = gom_first_submitter; obj; obj = obj->next) {
+    result |= gedcom_write_record_str(hndl, REC_SUBM, 0,
+				      obj->xrefstr, NULL);
+    if (obj->name)
+      result |= gedcom_write_element_str(hndl, ELT_SUBM_NAME, 0, REC_SUBM,
+					 obj->name);
+    if (obj->address)
+      result |= write_address(hndl, REC_SUBM, obj->address);
+    for (i = 0; i < 3 && obj->phone[i]; i++)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_PHON, 0, REC_SUBM,
+					 obj->phone[i]);
+    if (obj->mm_link)
+      result |= write_multimedia_links(hndl, REC_SUBM, obj->mm_link);
+    for (i = 0; i < 3 && obj->language[i]; i++)
+      result |= gedcom_write_element_str(hndl, ELT_SUBM_LANG, 0, REC_SUBM,
+					 obj->language[i]);
+    if (obj->record_file_nr)
+      result |= gedcom_write_element_str(hndl, ELT_SUBM_RFN, 0, REC_SUBM,
+					 obj->record_file_nr);
+    if (obj->record_id)
+      result |= gedcom_write_element_str(hndl, ELT_SUBM_RIN, 0, REC_SUBM,
+					 obj->record_id);
+    if (obj->change_date)
+      result |= write_change_date(hndl, REC_SUBM, obj->change_date);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+  
+  return result;
+}
+

@@ -27,6 +27,12 @@
 #include "gom.h"
 #include "gom_internal.h"
 
+typedef enum _EVT_TYPE {
+  EVT_TYPE_FAMILY,
+  EVT_TYPE_INDIV_ATTR,
+  EVT_TYPE_INDIV_EVT
+} EventType;
+
 void event_subscribe();
 void event_cleanup(struct event* evt);
 void event_add_place(Gom_ctxt ctxt, struct place* place);
@@ -36,5 +42,7 @@ void event_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
 void event_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm);
 void event_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void event_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_events(Gedcom_write_hndl hndl, int parent, EventType evt_type,
+		 struct event* evt);
 
 #endif /* __EVENT_H */

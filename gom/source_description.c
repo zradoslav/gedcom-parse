@@ -90,3 +90,24 @@ void source_description_cleanup(struct source_description* desc)
     DESTROY_CHAIN_ELTS(user_data, desc->extra, user_data_cleanup);
   }
 }
+
+int write_source_descriptions(Gedcom_write_hndl hndl, int parent,
+			      struct source_description *desc)
+{
+  int result = 0;
+  struct source_description* obj;
+
+  if (!desc) return 1;
+
+  for (obj = desc; obj; obj = obj->next) {
+    result |= gedcom_write_element_str(hndl, ELT_SUB_REPO_CALN, 0,
+				       parent, obj->call_number);
+    if (obj->media)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_REPO_CALN_MEDI, 0,
+					 ELT_SUB_REPO_CALN, obj->media);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);    
+  }
+
+  return result;
+}

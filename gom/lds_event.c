@@ -47,16 +47,23 @@ Gedcom_ctxt sub_lds_event_start(_ELT_PARAMS_)
       MEMORY_ERROR;
     else {
       memset (lds_evt, 0, sizeof(struct lds_event));
-      
-      switch (ctxt->ctxt_type) {
-	case REC_FAM:
-	  family_add_lss(ctxt, lds_evt); break;
-	case REC_INDI:
-	  individual_add_lio(ctxt, lds_evt); break;
-	default:
-	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+      lds_evt->event = parsed_tag;
+      lds_evt->event_name = strdup(tag);
+      if (! lds_evt->event_name) {
+	MEMORY_ERROR;
+	free(lds_evt);
       }
-      result = MAKE_GOM_CTXT(elt, lds_event, lds_evt);
+      else {
+	switch (ctxt->ctxt_type) {
+	  case REC_FAM:
+	    family_add_lss(ctxt, lds_evt); break;
+	  case REC_INDI:
+	    individual_add_lio(ctxt, lds_evt); break;
+	  default:
+	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	}
+	result = MAKE_GOM_CTXT(elt, lds_event, lds_evt);
+      }
     }
   }
 
@@ -121,6 +128,7 @@ void lds_event_add_user_data(Gom_ctxt ctxt, struct user_data* data)
 void lds_event_cleanup(struct lds_event* lds)
 {
   if (lds) {
+    SAFE_FREE(lds->event_name);
     SAFE_FREE(lds->date_status);
     SAFE_FREE(lds->date);
     SAFE_FREE(lds->temple_code);
@@ -129,4 +137,52 @@ void lds_event_cleanup(struct lds_event* lds)
     DESTROY_CHAIN_ELTS(note_sub, lds->note, note_sub_cleanup);
     DESTROY_CHAIN_ELTS(user_data, lds->extra, user_data_cleanup);
   }
+}
+
+static int get_gedcom_elt(int parsed_tag)
+{
+  int obj_elt = 0;
+  switch (parsed_tag) {
+    case TAG_BAPL: case TAG_CONL: case TAG_ENDL:
+      obj_elt = ELT_SUB_LIO_BAPL; break;
+    case TAG_SLGC:
+      obj_elt = ELT_SUB_LIO_SLGC; break;
+    default:
+      gedcom_warning(_("Internal error: unknown evt tag %d"), parsed_tag);
+  }
+  return obj_elt;
+}
+  
+int write_lds_events(Gedcom_write_hndl hndl, int parent, struct lds_event *lds)
+{
+  int result = 0;
+  struct lds_event* obj;
+
+  if (!lds) return 1;
+
+  for (obj = lds; obj; obj = obj->next) {
+    int obj_elt = get_gedcom_elt(obj->event);
+    result |= gedcom_write_element_str(hndl, obj_elt, obj->event,
+				       parent, NULL);
+    if (obj->date_status)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_LIO_BAPL_STAT, 0,
+					 parent, obj->date_status);
+    if (obj->temple_code)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_LIO_BAPL_TEMP, 0,
+					 parent, obj->temple_code);
+    if (obj->place_living_ordinance)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_LIO_BAPL_PLAC, 0,
+					 parent, obj->place_living_ordinance);
+    if (obj->family)
+      result |= gedcom_write_element_xref(hndl, ELT_SUB_LIO_SLGC_FAMC, 0,
+					  parent, obj->family);
+    if (obj->citation)
+      result |= write_citations(hndl, obj_elt, obj->citation);
+    if (obj->note)
+      result |= write_note_subs(hndl, obj_elt, obj->note);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+
+  return result;
 }

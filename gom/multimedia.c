@@ -138,3 +138,40 @@ struct multimedia* make_multimedia_record(const char* xrefstr)
   }
   return multi;
 }
+
+int write_multimedia_recs(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+  struct multimedia* obj;
+
+  for (obj = gom_first_multimedia; obj; obj = obj->next) {
+    result |= gedcom_write_record_str(hndl, REC_OBJE, 0,
+				      obj->xrefstr, NULL);
+    if (obj->form)
+      result |= gedcom_write_element_str(hndl, ELT_OBJE_FORM, 0,
+					 REC_OBJE, obj->form);
+    if (obj->title)
+      result |= gedcom_write_element_str(hndl, ELT_OBJE_TITL, 0,
+					 REC_OBJE, obj->title);
+    if (obj->note)
+      result |= write_note_subs(hndl, REC_OBJE, obj->note);
+    if (obj->data)
+      result |= gedcom_write_element_str(hndl, ELT_OBJE_BLOB, 0,
+					 REC_OBJE, obj->data);
+    if (obj->continued)
+      result |= gedcom_write_element_xref(hndl, ELT_OBJE_OBJE, 0,
+					  REC_OBJE, obj->continued);
+    if (obj->ref)
+      result |= write_user_refs(hndl, REC_OBJE, obj->ref);
+    if (obj->record_id)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_IDENT_RIN, 0,
+					 REC_OBJE, obj->record_id);
+    if (obj->change_date)
+      result |= write_change_date(hndl, REC_OBJE, obj->change_date);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+  
+  return result;
+}
+

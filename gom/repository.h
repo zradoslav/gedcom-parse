@@ -37,5 +37,6 @@ void repository_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
 void repository_set_record_id(Gom_ctxt ctxt, const char *rin);
 void repository_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void repository_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_repositories(Gedcom_write_hndl hndl);
 
 #endif /* __REPOSITORY_H */

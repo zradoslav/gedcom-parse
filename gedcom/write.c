@@ -32,6 +32,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+#define MAXWRITELEN MAXGEDCLINELEN
+
 const char* encoding = "ASCII";
 int write_encoding_details = ONE_BYTE;
 /* SYS_NEWLINE is defined in config.h */
@@ -102,8 +104,10 @@ int write_simple(Gedcom_write_hndl hndl,
       converted = convert_from_utf8(hndl->conv, get_buf_string(&write_buffer),
 				    &conv_fails, &outlen);
       
-      if (converted && (conv_fails == 0))
+      if (converted && (conv_fails == 0)) {
+	line_no++;
 	write(hndl->filedesc, converted, outlen);
+      }
       else {
 	hndl->total_conv_fails += conv_fails;
 	gedcom_error
@@ -124,6 +128,7 @@ int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
 	       int level, char* xref, char* tag, char* value)
 {
   int prefix_len, value_len, term_len;
+  char* nl_pos = strchr(value, '\n');
 
   prefix_len = utf8_strlen(tag) + 3;  /* for e.g. "0 INDI " */
   if (level > 9) prefix_len++;
@@ -131,28 +136,31 @@ int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
   value_len  = utf8_strlen(value);
   term_len   = strlen(hndl->term);
 
-  if (prefix_len + value_len + term_len <= MAXGEDCLINELEN)
+  if (!nl_pos && prefix_len + value_len + term_len <= MAXWRITELEN)
     write_simple(hndl, level, xref, tag, value);
   else {
     char* value_ptr = value;
-    char* nl_pos = strchr(value, '\n');
-    if (nl_pos && !supports_continuation(elt_or_rec, OPT_CONT)) {
+    int cont_supported = supports_continuation(elt_or_rec, OPT_CONT);
+    int cont_as_conc   = supports_continuation(elt_or_rec, OPT_CONT_AS_CONC);
+    if (nl_pos && !cont_supported) {
       gedcom_error (_("The tag %s doesn't support newlines\n"), tag);
       return 1;
     }
     else {
-      char value_part[MAXGEDCLINELEN];
+      char value_part[MAXWRITELEN];
       int cont_prefix_len, write_level = level;
       cont_prefix_len = utf8_strlen("CONT") + 3;
       if (level + 1 > 9) cont_prefix_len++;
 
       while (value_ptr) {
 	char* cont_tag = "CONT";
-	int line_len = (nl_pos ? nl_pos - value_ptr : value_len);
+	int line_len = (nl_pos && cont_supported
+			? nl_pos - value_ptr : value_len);
 
-	if (prefix_len + line_len + term_len > MAXGEDCLINELEN) {
-	  line_len = MAXGEDCLINELEN - prefix_len - term_len;
-	  cont_tag = "CONC";
+	if (prefix_len + line_len + term_len > MAXWRITELEN) {
+	  line_len = MAXWRITELEN - prefix_len - term_len;
+	  if (!cont_as_conc)
+	    cont_tag = "CONC";
 	}
 	
 	memset(value_part, 0, sizeof(value_part));
@@ -275,14 +283,19 @@ int gedcom_write_close(Gedcom_write_hndl hndl, int* total_conv_fails)
   return result;
 }
 
-char* get_tag_string(int elt_or_rec, char* tag)
+char* get_tag_string(int elt_or_rec, int tag)
 {
-  char* result = tag_data[elt_or_rec].tag_name;
+  int tagnum = tag_data[elt_or_rec].tag;
+  if (!tagnum) tagnum = tag;
 
-  if (result)
-    return result;
-  else if (tag)
-    return tag;
+  if (tagnum) {
+    if (tagnum >= TAG_NUM_START && tagnum <= TAG_NUM_END)
+      return tag_name[tagnum - TAG_NUM_START];
+    else {
+      gedcom_error(_("Not a valid tag: %d"), tagnum);
+      return NULL;
+    }
+  }
   else {
     gedcom_error(_("The element or record type '%s' requires a specific tag"
 		   "for writing"),
@@ -345,47 +358,82 @@ char* convert_at(const char* input)
     return NULL;
 }
 
-int gedcom_write_record_str(Gedcom_write_hndl hndl,
-			    Gedcom_rec rec, char* tag,
-			    struct xref_value* xref, char* val)
+int _gedcom_write_val(Gedcom_write_hndl hndl,
+		      int rec_or_elt, int tag, int parent_rec_or_elt,
+		      char* xrefstr, char* val)
 {
   int result = 1;
   int level = 0;
   char* tag_str = NULL;
-  char* xref_str = NULL;
 
-  tag_str = get_tag_string(rec, tag);
-  level   = get_level(hndl, rec, -1);
-  if (tag_str && check_type(rec, (val ? GV_CHAR_PTR : GV_NULL))) {
-    if (xref)
-      xref_str = xref->string;
-    if (supports_continuation(rec, OPT_CONT | OPT_CONC))
-      result = write_long(hndl, rec, level, xref_str, tag_str,
-			  convert_at(val));
+  tag_str = get_tag_string(rec_or_elt, tag);
+  level   = get_level(hndl, rec_or_elt, parent_rec_or_elt);
+  if (tag_str && (level != -1)) {
+    if (supports_continuation(rec_or_elt, OPT_CONT|OPT_CONC|OPT_CONT_AS_CONC))
+      result = write_long(hndl, rec_or_elt, level, xrefstr, tag_str, val);
     else
-      result = write_simple(hndl, level, xref_str, tag_str, convert_at(val));
+      result = write_simple(hndl, level, xrefstr, tag_str, val);
   }
 
   return result;
 }
 
+int gedcom_write_record_str(Gedcom_write_hndl hndl,
+			    Gedcom_rec rec, int tag,
+			    char* xrefstr, char* val)
+{
+  int result = 1;
+  if (check_type(rec, (val ? GV_CHAR_PTR : GV_NULL)))
+    result = _gedcom_write_val(hndl, rec, tag, -1, xrefstr, convert_at(val));
+  return result;
+}
+
 int gedcom_write_element_str(Gedcom_write_hndl hndl,
-			     Gedcom_elt elt, char* tag, int parent_rec_or_elt,
+			     Gedcom_elt elt, int tag, int parent_rec_or_elt,
 			     char* val)
 {
   int result = 1;
-  int level  = -1;
-  char* tag_str = NULL;
+  if (check_type(elt, (val ? GV_CHAR_PTR : GV_NULL)))
+    result = _gedcom_write_val(hndl, elt, tag, parent_rec_or_elt, NULL,
+			       convert_at(val));
+  return result;
+}
 
-  tag_str = get_tag_string(elt, tag);
-  level   = get_level(hndl, elt, parent_rec_or_elt);
-  if (tag_str && (level != -1)
-      && check_type(elt, (val ? GV_CHAR_PTR : GV_NULL))) {
-    if (supports_continuation(elt, OPT_CONT | OPT_CONC))
-      result = write_long(hndl, elt, level, NULL, tag_str, convert_at(val));
-    else
-      result = write_simple(hndl, level, NULL, tag_str, convert_at(val));
-  }
+int gedcom_write_record_xref(Gedcom_write_hndl hndl,
+			     Gedcom_rec rec, int tag,
+			     char* xrefstr, struct xref_value* val)
+{
+  int result = 1;
+  if (check_type(rec, (val ? GV_XREF_PTR : GV_NULL)))
+    result = _gedcom_write_val(hndl, rec, tag, -1, xrefstr, val->string);
+  return result;
+}
 
+int gedcom_write_element_xref(Gedcom_write_hndl hndl,
+			      Gedcom_elt elt, int tag, int parent_rec_or_elt,
+			      struct xref_value* val)
+{
+  int result = 1;
+  if (check_type(elt, (val ? GV_XREF_PTR : GV_NULL)))
+    result = _gedcom_write_val(hndl, elt, tag, parent_rec_or_elt, NULL,
+			       val->string);
+  return result;
+}
+
+int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, char* tag,
+			  char* xrefstr, char* value)
+{
+  int result = 1;
+  if (tag && tag[0] == '_')
+    result = write_simple(hndl, level, xrefstr, tag, convert_at(value));
+  return result;
+}
+
+int gedcom_write_user_xref(Gedcom_write_hndl hndl, int level, char* tag,
+			   char* xrefstr, struct xref_value* val)
+{
+  int result = 1;
+  if (tag && tag[0] == '_')
+    result = write_simple(hndl, level, xrefstr, tag, val->string);
   return result;
 }

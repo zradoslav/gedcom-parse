@@ -94,3 +94,24 @@ void source_event_cleanup(struct source_event* evt)
     DESTROY_CHAIN_ELTS(user_data, evt->extra, user_data_cleanup);
   }
 }
+
+int write_source_events(Gedcom_write_hndl hndl, int parent,
+			struct source_event *evt)
+{
+  int result = 0;
+  struct source_event* obj;
+
+  if (!evt) return 1;
+
+  for (obj = evt; obj; obj = obj->next) {
+    result |= gedcom_write_element_str(hndl, ELT_SOUR_DATA_EVEN, 0,
+				       parent, obj->recorded_events);
+    if (obj->jurisdiction)
+      result |= gedcom_write_element_str(hndl, ELT_SOUR_DATA_EVEN_PLAC, 0,
+					ELT_SOUR_DATA_EVEN, obj->jurisdiction);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);    
+  }
+
+  return result;
+}

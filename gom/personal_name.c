@@ -125,3 +125,43 @@ void name_cleanup(struct personal_name* name)
     DESTROY_CHAIN_ELTS(user_data, name->extra, user_data_cleanup);
   }
 }
+
+int write_names(Gedcom_write_hndl hndl, int parent,
+		struct personal_name *name)
+{
+  int result = 0;
+  struct personal_name* obj;
+
+  if (!name) return 1;
+
+  for (obj = name; obj; obj = obj->next) {
+    result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME, 0,
+				       parent, obj->name);
+    if (obj->prefix)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_NPFX, 0,
+					 parent, obj->prefix);
+    if (obj->given)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_GIVN, 0,
+					 parent, obj->given);
+    if (obj->nickname)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_NICK, 0,
+					 parent, obj->nickname);
+    if (obj->surname_prefix)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_SPFX, 0,
+					 parent, obj->surname_prefix);
+    if (obj->surname)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_SURN, 0,
+					 parent, obj->surname);
+    if (obj->suffix)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_NSFX, 0,
+					 parent, obj->suffix);
+    if (obj->citation)
+      result |= write_citations(hndl, ELT_SUB_PERS_NAME, obj->citation);
+    if (obj->note)
+      result |= write_note_subs(hndl, ELT_SUB_PERS_NAME, obj->note);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+
+  return result;
+}

@@ -251,3 +251,39 @@ struct user_rec* make_user_record(const char* xrefstr)
   }
   return rec;
 }
+
+int write_user_recs(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+  struct user_rec* obj;
+
+  for (obj = gom_first_user_rec; obj; obj = obj->next) {
+    if (obj->xref_value)
+      result |= gedcom_write_user_xref(hndl, 0, obj->tag, obj->xrefstr,
+				       obj->xref_value);
+    else
+      result |= gedcom_write_user_str(hndl, 0, obj->tag, obj->xrefstr,
+				      obj->str_value);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+  return result;  
+}
+
+int write_user_data(Gedcom_write_hndl hndl, struct user_data* data)
+{
+  int result = 0;
+  struct user_data* obj;
+
+  if (!data) return 1;
+
+  for (obj = data; data; data = data->next) {
+    if (obj->xref_value)
+      result |= gedcom_write_user_xref(hndl, obj->level, obj->tag, NULL,
+				       obj->xref_value);
+    else
+      result |= gedcom_write_user_str(hndl, obj->level, obj->tag, NULL,
+				      obj->str_value);
+  }
+  return result;
+}

@@ -126,3 +126,31 @@ void association_cleanup(struct association* assoc)
     DESTROY_CHAIN_ELTS(user_data, assoc->extra, user_data_cleanup);
   }
 }
+
+int write_associations(Gedcom_write_hndl hndl, int parent,
+		       struct association *assoc)
+{
+  int result = 0;
+  struct association* obj;
+
+  if (!assoc) return 1;
+
+  for (obj = assoc; obj; obj = obj->next) {
+    result |= gedcom_write_element_xref(hndl, ELT_SUB_ASSO, 0, parent,
+					obj->to);
+    if (obj->type)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_ASSO_TYPE, 0, parent,
+					 obj->type);
+    if (obj->relation)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_ASSO_RELA, 0, parent,
+					 obj->relation);
+    if (obj->citation)
+      result |= write_citations(hndl, ELT_SUB_ASSO, obj->citation);
+    if (obj->note)
+      result |= write_note_subs(hndl, ELT_SUB_ASSO, obj->note);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+
+  return result;
+}

@@ -142,3 +142,28 @@ void note_sub_cleanup(struct note_sub* note)
     DESTROY_CHAIN_ELTS(user_data, note->extra, user_data_cleanup);
   }
 }
+
+int write_note_subs(Gedcom_write_hndl hndl, int parent, struct note_sub* note)
+{
+  int result = 0;
+  struct note_sub* obj;
+
+  if (!note) return 1;
+
+  for (obj = note; obj; obj = obj->next) {
+    if (obj->reference) {
+      result |= gedcom_write_element_xref(hndl, ELT_SUB_NOTE, 0,
+					  parent, obj->reference);
+    }
+    else {
+      result |= gedcom_write_element_str(hndl, ELT_SUB_NOTE, 0,
+					 parent, obj->text);
+    }
+    if (obj->citation)
+      result |= write_citations(hndl, ELT_SUB_NOTE, obj->citation);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+
+  return result;
+}

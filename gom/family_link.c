@@ -126,3 +126,43 @@ void family_link_cleanup(struct family_link *link)
     DESTROY_CHAIN_ELTS(user_data, link->extra, user_data_cleanup);
   }
 }
+
+int write_pedigrees(Gedcom_write_hndl hndl, int parent, struct pedigree* ped)
+{
+  int result = 0;
+  struct pedigree* obj;
+
+  if (!ped) return 1;
+
+  for (obj = ped; obj; obj = obj->next) {
+    result |= gedcom_write_element_str(hndl, ELT_SUB_FAMC_PEDI, 0, parent,
+				       obj->pedigree);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);  
+  }
+  
+  return result;
+}
+
+int write_family_links(Gedcom_write_hndl hndl, int parent, LinkType type,
+		       struct family_link *link)
+{
+  int result = 0;
+  struct family_link* obj;
+  int elt = (type == LINK_TYPE_CHILD ? ELT_SUB_FAMC : ELT_SUB_FAMS);
+
+  if (!link) return 1;
+
+  for (obj = link; obj; obj = obj->next) {
+    result |= gedcom_write_element_xref(hndl, elt, 0, parent,
+					obj->family);
+    if (obj->pedigree)
+      result |= write_pedigrees(hndl, elt, obj->pedigree);
+    if (obj->note)
+      result |= write_note_subs(hndl, elt, obj->note);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);      
+  }
+
+  return result;
+}

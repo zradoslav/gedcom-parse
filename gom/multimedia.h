@@ -35,5 +35,6 @@ void multimedia_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
 void multimedia_set_record_id(Gom_ctxt ctxt, const char *rin);
 void multimedia_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void multimedia_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_multimedia_recs(Gedcom_write_hndl hndl);
 
 #endif /* __MULTIMEDIA_H */

@@ -31,5 +31,7 @@
 void source_description_subscribe();
 void source_description_cleanup(struct source_description* desc);
 void source_description_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_source_descriptions(Gedcom_write_hndl hndl, int parent,
+			      struct source_description *desc);
 
 #endif /* __SOURCE_DESCRIPTION_H */

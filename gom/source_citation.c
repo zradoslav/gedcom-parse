@@ -208,3 +208,67 @@ void citation_cleanup(struct source_citation* cit)
     DESTROY_CHAIN_ELTS(user_data, cit->extra, user_data_cleanup);
   }
 }
+
+int write_texts(Gedcom_write_hndl hndl, int parent, struct text* t)
+{
+  int result = 0;
+  struct text* obj;
+  
+  if (!t) return 1;
+
+  for (obj = t; obj; obj = obj->next) {
+    result |= gedcom_write_element_str(hndl, ELT_SUB_SOUR_TEXT, 0, parent,
+				       obj->text);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);    
+  }
+  
+  return result;
+}
+
+int write_citations(Gedcom_write_hndl hndl, int parent,
+		    struct source_citation* cit)
+{
+  int result = 0;
+  struct source_citation* obj;
+  
+  if (!cit) return 1;
+
+  for (obj = cit; obj; obj = obj->next) {
+    if (obj->reference) {
+      result |= gedcom_write_element_xref(hndl, ELT_SUB_SOUR, 0, parent,
+					  obj->reference);
+      if (obj->page)
+	result |= gedcom_write_element_str(hndl, ELT_SUB_SOUR_PAGE, 0,
+					   ELT_SUB_SOUR, obj->page);
+      if (obj->event)
+	result |= gedcom_write_element_str(hndl, ELT_SUB_SOUR_EVEN, 0,
+					   ELT_SUB_SOUR, obj->event);
+      if (obj->role)
+	result |= gedcom_write_element_str(hndl, ELT_SUB_SOUR_EVEN_ROLE, 0,
+					   ELT_SUB_SOUR_EVEN, obj->role);
+      if (obj->date || obj->text)
+	result |= gedcom_write_element_str(hndl, ELT_SUB_SOUR_DATA, 0,
+					   ELT_SUB_SOUR, NULL);
+      if (obj->text)
+	result |= write_texts(hndl, ELT_SUB_SOUR_DATA, obj->text);
+      if (obj->quality)
+	result |= gedcom_write_element_str(hndl, ELT_SUB_SOUR_QUAY, 0,
+					   ELT_SUB_SOUR, obj->quality);
+      if (obj->mm_link)
+	result |= write_multimedia_links(hndl, ELT_SUB_SOUR, obj->mm_link);
+    }
+    else {
+      result |= gedcom_write_element_str(hndl, ELT_SUB_SOUR, 0, parent,
+					 obj->description);
+      if (obj->text)
+	result |= write_texts(hndl, ELT_SUB_SOUR, obj->text);
+    }
+    if (obj->note)
+      result |= write_note_subs(hndl, ELT_SUB_SOUR, obj->note);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);    
+  }
+  
+  return result;
+}

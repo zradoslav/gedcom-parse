@@ -183,3 +183,65 @@ struct source* make_source_record(const char* xrefstr)
   }
   return src;
 }
+
+int write_sources(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+  struct source* obj;
+
+  for (obj = gom_first_source; obj; obj = obj->next) {
+    result |= gedcom_write_record_str(hndl, REC_SOUR, 0,
+				      obj->xrefstr, NULL);
+    if (obj->data.event || obj->data.agency || obj->data.note)
+      result |= gedcom_write_element_str(hndl, ELT_SOUR_DATA, 0,
+					 REC_SOUR, NULL);
+    if (obj->data.event)
+      result |= write_source_events(hndl, ELT_SOUR_DATA, obj->data.event);
+    if (obj->data.agency)
+      result |= gedcom_write_element_str(hndl, ELT_SOUR_DATA_AGNC, 0,
+					 ELT_SOUR_DATA, obj->data.agency);
+    if (obj->data.note)
+      result |= write_note_subs(hndl, ELT_SOUR_DATA, obj->data.note);
+    if (obj->author)
+      result |= gedcom_write_element_str(hndl, ELT_SOUR_AUTH, 0,
+					 REC_SOUR, obj->author);
+    if (obj->title)
+      result |= gedcom_write_element_str(hndl, ELT_SOUR_TITL, 0,
+					 REC_SOUR, obj->title);
+    if (obj->abbreviation)
+      result |= gedcom_write_element_str(hndl, ELT_SOUR_ABBR, 0,
+					 REC_SOUR, obj->abbreviation);
+    if (obj->publication)
+      result |= gedcom_write_element_str(hndl, ELT_SOUR_PUBL, 0,
+					 REC_SOUR, obj->publication);
+    if (obj->text)
+      result |= gedcom_write_element_str(hndl, ELT_SOUR_TEXT, 0,
+					 REC_SOUR, obj->text);
+    if (obj->repository.link || obj->repository.note
+	|| obj->repository.description) {
+      result |= gedcom_write_element_xref(hndl, ELT_SUB_REPO, 0,
+					  REC_SOUR, obj->repository.link);
+    }
+    if (obj->repository.note)
+      result |= write_note_subs(hndl, ELT_SUB_REPO, obj->repository.note);
+    if (obj->repository.description)
+      result |= write_source_descriptions(hndl, ELT_SUB_REPO,
+					  obj->repository.description);
+    if (obj->mm_link)
+      result |= write_multimedia_links(hndl, REC_SOUR, obj->mm_link);
+    if (obj->note)
+      result |= write_note_subs(hndl, REC_SOUR, obj->note);
+    if (obj->ref)
+      result |= write_user_refs(hndl, REC_SOUR, obj->ref);
+    if (obj->record_id)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_IDENT_RIN, 0,
+					 REC_SOUR, obj->record_id);
+    if (obj->change_date)
+      result |= write_change_date(hndl, REC_SOUR, obj->change_date);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+  
+  return result;
+}
+

@@ -123,9 +123,31 @@ int gom_write_file(const char* file_name, int *total_conv_fails)
   hndl = gedcom_write_open(file_name);
   if (hndl) {
     result = write_header(hndl);
+    result |= write_submission(hndl);
+    result |= write_submitters(hndl);
+    result |= write_individuals(hndl);
+    result |= write_families(hndl);
+    result |= write_multimedia_recs(hndl);
+    result |= write_notes(hndl);
+    result |= write_repositories(hndl);
+    result |= write_sources(hndl);
+    result |= write_user_recs(hndl);
     result |= gedcom_write_close(hndl, total_conv_fails);
   }
 
+  return result;
+}
+
+int gom_write_xref_list(Gedcom_write_hndl hndl,
+			Gedcom_elt elt, int tag, int parent_rec_or_elt,
+			struct xref_list* val)
+{
+  int result = 0;
+  struct xref_list* xrl;
+  for (xrl = val; xrl; xrl = xrl->next) {
+    result |= gedcom_write_element_xref(hndl, elt, tag, parent_rec_or_elt,
+					xrl->xref);
+  }
   return result;
 }
 

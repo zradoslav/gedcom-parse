@@ -162,3 +162,49 @@ struct family* make_family_record(const char* xrefstr)
   }
   return fam;
 }
+
+int write_families(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+  struct family* obj;
+
+  for (obj = gom_first_family; obj; obj = obj->next) {
+    result |= gedcom_write_record_str(hndl, REC_FAM, 0,
+				      obj->xrefstr, NULL);
+    if (obj->event)
+      result |= write_events(hndl, REC_FAM, EVT_TYPE_FAMILY, obj->event);
+    if (obj->husband)
+      result |= gedcom_write_element_xref(hndl, ELT_FAM_HUSB, 0,
+					  REC_FAM, obj->husband);
+    if (obj->wife)
+      result |= gedcom_write_element_xref(hndl, ELT_FAM_WIFE, 0,
+					  REC_FAM, obj->wife);
+    result |= gom_write_xref_list(hndl, ELT_FAM_CHIL, 0,
+				  REC_FAM, obj->children);
+    if (obj->nr_of_children)
+      result |= gedcom_write_element_str(hndl, ELT_FAM_NCHI, 0,
+					 REC_FAM, obj->nr_of_children);
+    result |= gom_write_xref_list(hndl, ELT_FAM_SUBM, 0,
+				  REC_FAM, obj->submitters);
+    if (obj->lds_spouse_sealing)
+      result |= write_lds_events(hndl, REC_FAM, obj->lds_spouse_sealing);
+    if (obj->citation)
+      result |= write_citations(hndl, REC_FAM, obj->citation);
+    if (obj->mm_link)
+      result |= write_multimedia_links(hndl, REC_FAM, obj->mm_link);
+    if (obj->note)
+      result |= write_note_subs(hndl, REC_FAM, obj->note);
+    if (obj->ref)
+      result |= write_user_refs(hndl, REC_FAM, obj->ref);
+    if (obj->record_id)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_IDENT_RIN, 0,
+					 REC_FAM, obj->record_id);
+    if (obj->change_date)
+      result |= write_change_date(hndl, REC_FAM, obj->change_date);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+  
+  return result;
+}
+

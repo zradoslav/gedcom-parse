@@ -32,5 +32,7 @@ void name_cleanup(struct personal_name* name);
 void name_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
 void name_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void name_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_names(Gedcom_write_hndl hndl, int parent,
+		struct personal_name *name);
 
 #endif /* __PERSONAL_NAME_H */

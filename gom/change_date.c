@@ -113,3 +113,19 @@ void change_date_cleanup(struct change_date *chan)
   }
   SAFE_FREE(chan);
 }
+
+int write_change_date(Gedcom_write_hndl hndl, int parent,
+		      struct change_date *chan)
+{
+  int result = 0;
+
+  if (!chan) return 1;
+
+  result |= gedcom_write_element_str(hndl, ELT_SUB_CHAN, 0, parent, NULL);
+  if (chan->note)
+    result |= write_note_subs(hndl, ELT_SUB_CHAN, chan->note);
+  if (chan->extra)
+    result |= write_user_data(hndl, chan->extra);
+  
+  return result;
+}

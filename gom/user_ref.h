@@ -30,5 +30,7 @@
 void user_ref_subscribe();
 void user_ref_cleanup(struct user_ref_number* refn);
 void user_ref_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_user_refs(Gedcom_write_hndl hndl, int parent,
+		    struct user_ref_number *refn);
 
 #endif /* __USER_REF_H */

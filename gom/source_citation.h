@@ -33,5 +33,7 @@ void citation_cleanup(struct source_citation* cit);
 void citation_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void citation_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm);
 void citation_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_citations(Gedcom_write_hndl hndl, int parent,
+		    struct source_citation* cit);
 
 #endif /* __SOURCE_CITATION_H */

@@ -29,5 +29,6 @@
 void address_subscribe();
 void address_cleanup(struct address *address);
 void address_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_address(Gedcom_write_hndl hndl, int parent, struct address *address);
 
 #endif /* __ADDRESS_H */

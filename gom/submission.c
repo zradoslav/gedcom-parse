@@ -95,3 +95,38 @@ struct submission* make_submission_record(const char* xref)
   
   return gom_submission;
 }
+
+int write_submission(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+
+  if (gom_submission) {
+    result |= gedcom_write_record_str(hndl, REC_SUBN, 0,
+				      gom_submission->xrefstr, NULL);
+    if (gom_submission->submitter)
+      result |= gedcom_write_element_xref(hndl, ELT_SUBN_SUBM, 0,
+					  REC_SUBN, gom_submission->submitter);
+    if (gom_submission->family_file)
+      result |= gedcom_write_element_str(hndl, ELT_SUBN_FAMF, 0, REC_SUBN,
+					 gom_submission->family_file);
+    if (gom_submission->temple_code)
+      result |= gedcom_write_element_str(hndl, ELT_SUBN_TEMP, 0, REC_SUBN,
+					 gom_submission->temple_code);
+    if (gom_submission->nr_of_ancestor_gens)
+      result |= gedcom_write_element_str(hndl, ELT_SUBN_ANCE, 0, REC_SUBN,
+					 gom_submission->nr_of_ancestor_gens);
+    if (gom_submission->nr_of_descendant_gens)
+      result |= gedcom_write_element_str(hndl, ELT_SUBN_DESC, 0, REC_SUBN,
+					gom_submission->nr_of_descendant_gens);
+    if (gom_submission->ordinance_process_flag)
+      result |= gedcom_write_element_str(hndl, ELT_SUBN_ORDI, 0, REC_SUBN,
+				      gom_submission->ordinance_process_flag);
+    if (gom_submission->record_id)
+      result |= gedcom_write_element_str(hndl, ELT_SUBN_RIN, 0, REC_SUBN,
+					 gom_submission->record_id);
+    if (gom_submission->extra)
+      result |= write_user_data(hndl, gom_submission->extra);
+  }
+  
+  return result;
+}

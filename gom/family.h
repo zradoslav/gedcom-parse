@@ -39,5 +39,6 @@ void family_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
 void family_set_record_id(Gom_ctxt ctxt, const char *rin);
 void family_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void family_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_families(Gedcom_write_hndl hndl);
 
 #endif /* __FAMILY_H */

@@ -35,5 +35,6 @@ void submitter_add_phone(Gom_ctxt ctxt, const char *phone);
 void submitter_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link);
 void submitter_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void submitter_add_user_data(Gom_ctxt ctxt, struct user_data* data);
+int write_submitters(Gedcom_write_hndl hndl);
 
 #endif /* __SUBMITTER_H */

@@ -223,3 +223,70 @@ struct individual* make_individual_record(const char* xrefstr)
   }
   return indiv;
 }
+
+int write_individuals(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+  struct individual* obj;
+
+  for (obj = gom_first_individual; obj; obj = obj->next) {
+    result |= gedcom_write_record_str(hndl, REC_INDI, 0,
+				      obj->xrefstr, NULL);
+    if (obj->restriction_notice)
+      result |= gedcom_write_element_str(hndl, ELT_INDI_RESN, 0,
+					 REC_INDI, obj->restriction_notice);
+    if (obj->name)
+      result |= write_names(hndl, REC_INDI, obj->name);
+    if (obj->sex)
+      result |= gedcom_write_element_str(hndl, ELT_INDI_SEX, 0,
+					 REC_INDI, obj->sex);
+    if (obj->event)
+      result |= write_events(hndl, REC_INDI, EVT_TYPE_INDIV_EVT, obj->event);
+    if (obj->attribute)
+      result |= write_events(hndl, REC_INDI, EVT_TYPE_INDIV_ATTR,
+			     obj->attribute);
+    if (obj->lds_individual_ordinance)
+      result |= write_lds_events(hndl, REC_INDI,
+				 obj->lds_individual_ordinance);
+    if (obj->child_to_family)
+      result |= write_family_links(hndl, REC_INDI, LINK_TYPE_CHILD,
+				   obj->child_to_family);
+    if (obj->spouse_to_family)
+      result |= write_family_links(hndl, REC_INDI, LINK_TYPE_SPOUSE,
+				   obj->spouse_to_family);
+    result |= gom_write_xref_list(hndl, ELT_INDI_SUBM, 0,
+				  REC_INDI, obj->submitters);
+    if (obj->association)
+      result |= write_associations(hndl, REC_INDI, obj->association);
+    result |= gom_write_xref_list(hndl, ELT_INDI_ALIA, 0,
+				  REC_INDI, obj->alias);
+    result |= gom_write_xref_list(hndl, ELT_INDI_ANCI, 0,
+				  REC_INDI, obj->ancestor_interest);
+    result |= gom_write_xref_list(hndl, ELT_INDI_DESI, 0,
+				  REC_INDI, obj->descendant_interest);
+    if (obj->citation)
+      result |= write_citations(hndl, REC_INDI, obj->citation);
+    if (obj->mm_link)
+      result |= write_multimedia_links(hndl, REC_INDI, obj->mm_link);
+    if (obj->note)
+      result |= write_note_subs(hndl, REC_INDI, obj->note);
+    if (obj->record_file_nr)
+      result |= gedcom_write_element_str(hndl, ELT_INDI_RFN, 0,
+					 REC_INDI, obj->record_file_nr);
+    if (obj->ancestral_file_nr)
+      result |= gedcom_write_element_str(hndl, ELT_INDI_AFN, 0,
+					 REC_INDI, obj->ancestral_file_nr);
+    if (obj->ref)
+      result |= write_user_refs(hndl, REC_INDI, obj->ref);
+    if (obj->record_id)
+      result |= gedcom_write_element_str(hndl, ELT_SUB_IDENT_RIN, 0,
+					 REC_INDI, obj->record_id);
+    if (obj->change_date)
+      result |= write_change_date(hndl, REC_INDI, obj->change_date);
+    if (obj->extra)
+      result |= write_user_data(hndl, obj->extra);
+  }
+  
+  return result;
+}
+

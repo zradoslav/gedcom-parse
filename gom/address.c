@@ -165,3 +165,36 @@ void address_cleanup(struct address *address)
   }
   SAFE_FREE(address);
 }
+
+int write_address(Gedcom_write_hndl hndl, int parent, struct address *address)
+{
+  int result = 0;
+
+  if (!address) return 1;
+  
+  if (address->full_label)
+    result |= gedcom_write_element_str(hndl, ELT_SUB_ADDR, 0, parent,
+				       address->full_label);
+  if (address->line1)
+    result |= gedcom_write_element_str(hndl, ELT_SUB_ADDR_ADR1, 0,
+				       ELT_SUB_ADDR, address->line1);
+  if (address->line2)
+    result |= gedcom_write_element_str(hndl, ELT_SUB_ADDR_ADR2, 0,
+				       ELT_SUB_ADDR, address->line2);
+  if (address->city)
+    result |= gedcom_write_element_str(hndl, ELT_SUB_ADDR_CITY, 0,
+				       ELT_SUB_ADDR, address->city);
+  if (address->state)
+    result |= gedcom_write_element_str(hndl, ELT_SUB_ADDR_STAE, 0,
+				       ELT_SUB_ADDR, address->state);
+  if (address->postal)
+    result |= gedcom_write_element_str(hndl, ELT_SUB_ADDR_POST, 0,
+				       ELT_SUB_ADDR, address->postal);
+  if (address->country)
+    result |= gedcom_write_element_str(hndl, ELT_SUB_ADDR_CTRY, 0,
+				       ELT_SUB_ADDR, address->country);
+  if (address->extra)
+    result |= write_user_data(hndl, address->extra);
+
+  return result;
+}
