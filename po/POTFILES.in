@@ -1,3 +1,7 @@
+# List of source files containing translatable strings
+# $Id$
+# $Name$
+
 gedcom/encoding.c
 gedcom/gedcom.y
 gedcom/gedcom_lex_common.c
