@@ -149,6 +149,7 @@ int get_date_token(const char* str)
 int get_year_tokens(const char* str, char** year1, char** year2)
 {
   int token;
+  int num_tokens = 0;
   YY_BUFFER_STATE buffer;
 
   token_nr = 0;
@@ -164,22 +165,24 @@ int get_year_tokens(const char* str, char** year1, char** year2)
 	case SLASH: {
 	  token = yylex();
 	  switch (token) {
-	    case NUMBER: {
+	    case NUMBER:
 	      *year2 = buf[token_nr - 1];
-	      return 2;
-	    }
-	    default:  return 0;
+	      num_tokens = 2; break;
+	    default:
+	      num_tokens = 0;
 	  }
 	  break;
 	}
-	case 0:   return 1;
-	default:  return 0;
+	case 0:   num_tokens = 1; break;
+	default:  num_tokens = 0;
       }
       break;
     }
-    case 0:   return 0;
-    default:  return 0;
+    case 0:   num_tokens = 0; break;
+    default:  num_tokens = 0;
   }
+  yy_delete_buffer(buffer);
+  return num_tokens;
 }
 
 int yywrap()
