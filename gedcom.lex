@@ -301,7 +301,8 @@ else {
 	  }
         } 
 
-.  { gedcom_error("Unexpected character: '%s'", gedcom_text);
+.  { gedcom_error("Unexpected character: '%s' (0x%02x)",
+		  gedcom_text, gedcom_text[0]);
      return BADTOKEN;
    }
 
