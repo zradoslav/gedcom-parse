@@ -476,9 +476,16 @@ char* gom_get_string_for_locale(char* data, int* conversion_failures);
 char* gom_set_string_for_locale(char** data, const char* locale_str);
 void  gom_set_unknown(const char* unknown);
 
+typedef enum _DIR {
+  MOVE_UP,
+  MOVE_DOWN
+} Gom_direction;
+  
 struct xref_value* gom_set_xref(struct xref_value** data, const char* xref);
 struct xref_list*  gom_add_xref(struct xref_list** data, const char* xref);
 int                gom_remove_xref(struct xref_list** data, const char* xref);
+int                gom_move_xref(Gom_direction dir, struct xref_list** data,
+				 const char* xref);
 
 struct address*    gom_set_new_address(struct address** obj);
 int                gom_delete_address(struct address** obj);
