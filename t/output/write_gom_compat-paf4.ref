@@ -1,0 +1,7 @@
+WARNING: Warning on line 7: Enabling compatibility with 'Personal Ancestral File', version 4
+WARNING: Warning on line 24: Country 'Australia' lost in the compatibility (out of context)
+WARNING: Warning: Cross-reference @I41@ defined on line 27 is never used
+Writing file...
+Re-parsing file...
+WARNING: Warning: Cross-reference @I41@ defined on line 29 is never used
+Test succeeded

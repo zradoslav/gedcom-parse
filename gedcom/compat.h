@@ -45,6 +45,8 @@ typedef enum _COMPAT_RULES {
   C_NO_GEDC_FORM,
   C_NOTE_NOTE,
   C_TAB_CHARACTER,
+  C_SUBM_CTRY,
+  C_NOTE_TOO_LONG,
   C_NR_OF_RULES
 } Compat_rule;
 
@@ -70,6 +72,13 @@ Gedcom_ctxt compat_generate_head_time_start(int level, struct tag_struct ts,
 					    char* value);
 void compat_generate_head_time_end(Gedcom_ctxt self);
 
+/* C_SUBM_CTRY */
+void compat_save_ctry_parent_context(Gedcom_ctxt parent);
+Gedcom_ctxt compat_generate_addr_ctry_start(int level, struct tag_struct ts,
+					    char* value);
+void compat_generate_addr_ctry_end(Gedcom_ctxt self);
+void compat_free_ctry_parent_context();
+
 /* C_INDI_ATTR */
 Gedcom_ctxt compat_generate_resi_start(Gedcom_ctxt parent);
 void compat_generate_resi_end(Gedcom_ctxt parent, Gedcom_ctxt self);
@@ -88,5 +97,10 @@ void compat_close_subm_comm();
 int  compat_check_subm_comm_cont(const char* tag);
 Gedcom_ctxt compat_subm_comm_cont_start(Gedcom_ctxt parent, char* str);
 void compat_subm_comm_cont_end(Gedcom_ctxt parent, Gedcom_ctxt self);
+
+/* C_NOTE_TOO_LONG */
+int  compat_long_line(int level, int tag);
+char* compat_long_line_get_prefix(char* str);
+void compat_long_line_finish(Gedcom_ctxt parent, int level);
 
 #endif /* __COMPAT_H */

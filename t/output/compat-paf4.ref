@@ -1,0 +1,441 @@
+
+=== Parsing file compat-paf4.ged
+Header start
+Source is PAF (ctxt is 1001, parent is 1)
+== 2 NAME (342) Personal Ancestral File (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 4.0.4.18 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) The Church of Jesus Christ of Latter-day Saints (ctxt is 1001, conversion failures: 0)
+== 3 ADDR (266) 50 East North Temple Street (ctxt is 1001, conversion failures: 0)
+== 4 CONT (300) Salt Lake City, UT 84150 (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 7: Enabling compatibility with 'Personal Ancestral File', version 4
+Source context 1001 in parent 1
+== 1 DEST (310) PAF (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 7 JAN 2002 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 14:07:16 (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) bock.ged (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) ANSEL (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @SUB1@ (ctxt is 1, conversion failures: 0)
+Note: (Peter Verthez) This is a reduced version of the original file found at: (ctxt is 1, parent is 1)
+== 2 CONT (300) http://www.rm.quik.com.au/macca27/gen/gedcom.html (ctxt is 1, conversion failures: 0)
+Complete note:
+(Peter Verthez) This is a reduced version of the original file found at:
+http://www.rm.quik.com.au/macca27/gen/gedcom.html
+Header end, context is 1
+Submitter, xref is @SUB1@
+== 1 NAME (342) Andrew McPhee (ctxt is 10000, conversion failures: 0)
+== 1 ADDR (266) c/o 820 Frauenfelder Street (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) Albury. NSW. Australia. 2641. (ctxt is 10000, conversion failures: 0)
+== 1 CTRY (304) Australia (ctxt is 10000, conversion failures: 0)
+== 1 PHON (357) (0260) 409039 (ctxt is 10000, conversion failures: 0)
+== 1 _EMAIL (264) macca27@rm.quik.com.au (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I41@
+== 1 NAME (342) George Albert /Bock/ (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) George Albert (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) Bock (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 2 APR 1865
+  type: 0
+  date1:
+    calendar type: 0
+    day: 2
+    month: APR
+    year: 1865
+    date type: 1
+    sdn1: 2402329
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) New Dundee,Ontario,Canada (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1 JUL 1943
+  type: 0
+  date1:
+    calendar type: 0
+    day: 1
+    month: JUL
+    year: 1943
+    date type: 1
+    sdn1: 2430907
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Big River,Sask,Canada (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) George was 2 years old when his family moved west from New Dundee to Bruce County in 1867, Em (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) anuel was 16 and still recovering from his hip illness, Rachel was 10 and Allan 5 years. Th (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) e family moved again when George was 9 years to the farm in Bruce County and the 3 boys Allan (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) , George and John went to School Section No. 1 at Saugeen, then in November 1880 when he wa (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s 15 he had to leave school to go to work for another North Bruce farmer after their barn an (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) d stock were destroyed by fire. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) George was hired out to the farmer for 2 years until he went back to Waterloo County where h (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) e had a lot of cousins who helped him to get work - the Rosenbergers and Levi & Aaron Bock i (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) n Wilmot Township. In 1885 when he was 20 years old he returned in the spring and brought wit (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) h him his girl-friend Alberta Godbold whose parents lived in Berlin (Kitchener), Alberta want (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) ed to hire out as a house-keeper and secured such a job for a local banker's wife who was ill (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) , she stayed at this for a year and got on very well with the lady and her 4 year old boy. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) George had spent this year working at Cargill's Mill then in May 1886 they were married and l (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) ived in Port Elgin, their first child Era Alberta was born there on 25 April 1887, George wor (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) ked at the Port Elgin Button Factory until the spring of 1888 the family moved to Cargill whe (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) re George got a job at the mill. In August 1888 another little girl, Ena Margaret was born an (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) d the following spring in 1889 George's father-in-law Ben Godbold offered George a job on hi (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s home-farm near Berlin (Kitchener), George's cousin John Spreeman also worked on this farm w (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) ith him. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) John's wife Geraldine was also Alberta's sister and they had both been born on that farm an (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) d now they each had 2 little girls to play together. In less than 2 years they all moved fro (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) m the farm (father-in-law hired someone else) and George moved his family to Preston in 1890 (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) . It was in 1889 that George's sister Rachel died in Sears, Michigan, Grandma Bock was lookin (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) g after her 2 girls Rosanna and Maud when Lemuel returned and took the girls to Preston, hi (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s relatives were the Rosenbergers who lived there also. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) George and Alberta offered to take care of the girls for Lemuel but he declined them althoug (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) h it was thought that Maud's health would have been better if she'd stayed there. George, Alb (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) erta and the 2 girls moved once again in 1896 west to Russell, Manitoba where George secure (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) d employment with the Beaver Lumber Company, during this time another daughter Edna Aileen wa (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s born in 1898 at St. Jean Baptiste, Manitoba and then in 1900 a boy George Allan was born bu (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) t he died in infancy. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) In 1902 another boy Albert Allan was born at Rosenfeld, Manitoba, soon after this George wa (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s transferred to Lemberg, Saskatchewan. In 1925 George got a job as a store-keeper at the wor (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) kshops of the Canadian National Railroad (C.N.R.) at Watrous, Saskatchewan, it was about thi (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s time that their grand-daughter Beryl came to live with them. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Then in 1930 George retired from the railway aged 65 and took up a homestead at Ladder Valley (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) , Sask, their son Albert and his family (wife Anne and daughter Myrl) and also their eldest d (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) aughter's family (Era and husband Wilber Eddy and children Wilber L., George and Marjorie) al (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) l had adjoining quarter sections. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) In Oct 1941 George's son Albert joined up in the R.C.A.F. and his family left the homestead t (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) o live in Prince Albert for a time, George and Alberta stayed on at the homestead till Georg (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) e passed away there on 1 Jul 1943 then Alberta moved to Regina where she passed away on 3 De (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) c 1944. (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306) 23 DEC 2001 (ctxt is 333, conversion failures: 0)
+== 3 TIME (387) 05:52:22 (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_100.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock c1870 5yo (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original ferrotype photograph 45x74mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_j\bock_js_102.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock (second from R) c1873 8yo (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original albumen carte de visite card 62x101mm.~~Taken same day as bock_j_103.~~Photographer: W. St. John, Walkerton, Ontario.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_am_108.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George (R) with brother Allan M. Bock c1890 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original ferrotype photograph 65x94mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_112.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock c1895 30yo (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original ferrotype photograph 53x73mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_116.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock in his bearskin coat c1900 35yo (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original gelatin-chloride cabinet card 100x138mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\ph_misc\lembergbt_097.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) 1911 Lemberg Baseball Team (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Back: Gardiner, s.s. Roche, p. Pohlman, 3rd b. Steinback, r.f.~~Middle: Bock, 2nd b. McArthur, 1st b. Jolly, mgr. Rist, captain. Saunders, c.f.~~Front: O'Connell, spare. Pohlman, mascot. Bradley, l.f.~~Original gelatin-silver mounted photo 235x190m (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) m. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_140.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock, July 1923, Melville. Sask. (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) George is holding Beryl Bock (L) and Norma Thomas (R).~~Original gelatin-silver photograph 63x70mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_160.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock with his car - 18 Jul 1930 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original gelatin-silver photograph 70x47mm.~~Date is written on reverse.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_180.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock c1938 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original gelatin-silver photograph 39x49mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_168.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock astride his power saw c1940 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Contact print from original gelatin-silver negative 69x205mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+WARNING: Warning: Cross-reference @I41@ defined on line 27 is never used
+
+=== Total conversion failures: 0
+
+=== Parsing file compat-paf4.ged
+Header start
+Source is PAF (ctxt is 1001, parent is 1)
+== 2 NAME (342) Personal Ancestral File (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 4.0.4.18 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) The Church of Jesus Christ of Latter-day Saints (ctxt is 1001, conversion failures: 0)
+== 3 ADDR (266) 50 East North Temple Street (ctxt is 1001, conversion failures: 0)
+== 4 CONT (300) Salt Lake City, UT 84150 (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 7: Enabling compatibility with 'Personal Ancestral File', version 4
+Source context 1001 in parent 1
+== 1 DEST (310) PAF (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 7 JAN 2002 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 14:07:16 (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) bock.ged (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) ANSEL (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @SUB1@ (ctxt is 1, conversion failures: 0)
+Note: (Peter Verthez) This is a reduced version of the original file found at: (ctxt is 1, parent is 1)
+== 2 CONT (300) http://www.rm.quik.com.au/macca27/gen/gedcom.html (ctxt is 1, conversion failures: 0)
+Complete note:
+(Peter Verthez) This is a reduced version of the original file found at:
+http://www.rm.quik.com.au/macca27/gen/gedcom.html
+Header end, context is 1
+Submitter, xref is @SUB1@
+== 1 NAME (342) Andrew McPhee (ctxt is 10000, conversion failures: 0)
+== 1 ADDR (266) c/o 820 Frauenfelder Street (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) Albury. NSW. Australia. 2641. (ctxt is 10000, conversion failures: 0)
+== 1 CTRY (304) Australia (ctxt is 10000, conversion failures: 0)
+== 1 PHON (357) (0260) 409039 (ctxt is 10000, conversion failures: 0)
+== 1 _EMAIL (264) macca27@rm.quik.com.au (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I41@
+== 1 NAME (342) George Albert /Bock/ (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) George Albert (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) Bock (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 2 APR 1865
+  type: 0
+  date1:
+    calendar type: 0
+    day: 2
+    month: APR
+    year: 1865
+    date type: 1
+    sdn1: 2402329
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) New Dundee,Ontario,Canada (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1 JUL 1943
+  type: 0
+  date1:
+    calendar type: 0
+    day: 1
+    month: JUL
+    year: 1943
+    date type: 1
+    sdn1: 2430907
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Big River,Sask,Canada (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) George was 2 years old when his family moved west from New Dundee to Bruce County in 1867, Em (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) anuel was 16 and still recovering from his hip illness, Rachel was 10 and Allan 5 years. Th (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) e family moved again when George was 9 years to the farm in Bruce County and the 3 boys Allan (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) , George and John went to School Section No. 1 at Saugeen, then in November 1880 when he wa (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s 15 he had to leave school to go to work for another North Bruce farmer after their barn an (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) d stock were destroyed by fire. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) George was hired out to the farmer for 2 years until he went back to Waterloo County where h (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) e had a lot of cousins who helped him to get work - the Rosenbergers and Levi & Aaron Bock i (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) n Wilmot Township. In 1885 when he was 20 years old he returned in the spring and brought wit (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) h him his girl-friend Alberta Godbold whose parents lived in Berlin (Kitchener), Alberta want (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) ed to hire out as a house-keeper and secured such a job for a local banker's wife who was ill (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) , she stayed at this for a year and got on very well with the lady and her 4 year old boy. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) George had spent this year working at Cargill's Mill then in May 1886 they were married and l (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) ived in Port Elgin, their first child Era Alberta was born there on 25 April 1887, George wor (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) ked at the Port Elgin Button Factory until the spring of 1888 the family moved to Cargill whe (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) re George got a job at the mill. In August 1888 another little girl, Ena Margaret was born an (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) d the following spring in 1889 George's father-in-law Ben Godbold offered George a job on hi (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s home-farm near Berlin (Kitchener), George's cousin John Spreeman also worked on this farm w (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) ith him. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) John's wife Geraldine was also Alberta's sister and they had both been born on that farm an (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) d now they each had 2 little girls to play together. In less than 2 years they all moved fro (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) m the farm (father-in-law hired someone else) and George moved his family to Preston in 1890 (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) . It was in 1889 that George's sister Rachel died in Sears, Michigan, Grandma Bock was lookin (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) g after her 2 girls Rosanna and Maud when Lemuel returned and took the girls to Preston, hi (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s relatives were the Rosenbergers who lived there also. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) George and Alberta offered to take care of the girls for Lemuel but he declined them althoug (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) h it was thought that Maud's health would have been better if she'd stayed there. George, Alb (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) erta and the 2 girls moved once again in 1896 west to Russell, Manitoba where George secure (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) d employment with the Beaver Lumber Company, during this time another daughter Edna Aileen wa (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s born in 1898 at St. Jean Baptiste, Manitoba and then in 1900 a boy George Allan was born bu (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) t he died in infancy. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) In 1902 another boy Albert Allan was born at Rosenfeld, Manitoba, soon after this George wa (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s transferred to Lemberg, Saskatchewan. In 1925 George got a job as a store-keeper at the wor (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) kshops of the Canadian National Railroad (C.N.R.) at Watrous, Saskatchewan, it was about thi (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) s time that their grand-daughter Beryl came to live with them. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Then in 1930 George retired from the railway aged 65 and took up a homestead at Ladder Valley (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) , Sask, their son Albert and his family (wife Anne and daughter Myrl) and also their eldest d (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) aughter's family (Era and husband Wilber Eddy and children Wilber L., George and Marjorie) al (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) l had adjoining quarter sections. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) In Oct 1941 George's son Albert joined up in the R.C.A.F. and his family left the homestead t (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) o live in Prince Albert for a time, George and Alberta stayed on at the homestead till Georg (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) e passed away there on 1 Jul 1943 then Alberta moved to Regina where she passed away on 3 De (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) c 1944. (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306) 23 DEC 2001 (ctxt is 333, conversion failures: 0)
+== 3 TIME (387) 05:52:22 (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_100.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock c1870 5yo (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original ferrotype photograph 45x74mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_j\bock_js_102.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock (second from R) c1873 8yo (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original albumen carte de visite card 62x101mm.~~Taken same day as bock_j_103.~~Photographer: W. St. John, Walkerton, Ontario.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_am_108.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George (R) with brother Allan M. Bock c1890 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original ferrotype photograph 65x94mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_112.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock c1895 30yo (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original ferrotype photograph 53x73mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_116.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock in his bearskin coat c1900 35yo (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original gelatin-chloride cabinet card 100x138mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\ph_misc\lembergbt_097.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) 1911 Lemberg Baseball Team (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Back: Gardiner, s.s. Roche, p. Pohlman, 3rd b. Steinback, r.f.~~Middle: Bock, 2nd b. McArthur, 1st b. Jolly, mgr. Rist, captain. Saunders, c.f.~~Front: O'Connell, spare. Pohlman, mascot. Bradley, l.f.~~Original gelatin-silver mounted photo 235x190m (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) m. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_140.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock, July 1923, Melville. Sask. (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) George is holding Beryl Bock (L) and Norma Thomas (R).~~Original gelatin-silver photograph 63x70mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_160.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock with his car - 18 Jul 1930 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original gelatin-silver photograph 70x47mm.~~Date is written on reverse.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_180.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock c1938 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Original gelatin-silver photograph 39x49mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) jpg (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) G:\_Rootsweb\bock\bock_g\bock_ga_168.jpg (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) George A. Bock astride his power saw c1940 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Contact print from original gelatin-silver negative 69x205mm.~~This image is cropped and retouched. (ctxt is 333, conversion failures: 0)
+== 2 _SCBK (264) Y (ctxt is 333, conversion failures: 0)
+== 2 _PRIM (264) N (ctxt is 333, conversion failures: 0)
+== 2 _TYPE (264) PHOTO (ctxt is 333, conversion failures: 0)
+WARNING: Warning: Cross-reference @I41@ defined on line 27 is never used
+
+=== Total conversion failures: 0
+Parse succeeded

@@ -261,7 +261,7 @@ void clean_up();
 }
 
 %token_table
-%expect 309
+%expect 310
 
 %token <string> BADTOKEN
 %token <number> OPEN
@@ -1919,11 +1919,14 @@ submit_rec : OPEN DELIM POINTER DELIM TAG_SUBM
 	       $<ctxt>$ = start_record(REC_SUBM,
 				       $1, GEDCOM_MAKE_XREF_PTR(val1, xr), $5,
 				       NULL, GEDCOM_MAKE_NULL(val2));
-		START(SUBM, $1, $<ctxt>$) }
+	       START(SUBM, $1, $<ctxt>$) }
              subm_subs
 	     { CHECK1(NAME) }
              CLOSE
-             { end_record(REC_SUBM, $<ctxt>6, GEDCOM_MAKE_NULL(val1)); }
+             { end_record(REC_SUBM, $<ctxt>6, GEDCOM_MAKE_NULL(val1));
+	       if (compat_mode(C_SUBM_CTRY))
+		 compat_free_ctry_parent_context();
+	     }
            ;
 
 subm_subs  : /* empty */
@@ -1937,6 +1940,9 @@ subm_sub   : subm_name_sect  { OCCUR2(NAME, 1, 1) }
            | subm_rfn_sect  { OCCUR2(RFN, 0, 1) }
            | subm_rin_sect  { OCCUR2(RIN, 0, 1) }
            | change_date_sub  /* 0:1 */
+	   | subm_ctry_sect  { if (!compat_mode(C_SUBM_CTRY))
+	                          INVALID_TAG("CTRY");
+	                       OCCUR2(CTRY, 0, 1) }
            | no_std_sub
            ;
 
@@ -2000,6 +2006,19 @@ subm_rin_sect  : OPEN DELIM TAG_RIN mand_line_item
 		 }
                ;
 
+/* SUBM.CTRY (Only for compatibility) */
+subm_ctry_sect : OPEN DELIM TAG_CTRY opt_line_item
+                 { if (compat_mode(C_SUBM_CTRY)) {
+		     $<ctxt>$ = compat_generate_addr_ctry_start($1, $3, $4);
+                   }
+                 }
+                 CLOSE
+                 { if (compat_mode (C_SUBM_CTRY)) {
+		     compat_generate_addr_ctry_end($<ctxt>5);
+		   }
+                 }
+	       ;
+
 /*********************************************************************/
 /**** Substructures                                               ****/
 /*********************************************************************/
@@ -2015,7 +2034,9 @@ addr_sect   : OPEN DELIM TAG_ADDR mand_line_item
 					 GEDCOM_MAKE_STRING(val1, $4));
 	        reset_buffer(&concat_buffer);
 		safe_buf_append(&concat_buffer, $4);
-	        START(ADDR, $1, $<ctxt>$)  
+	        START(ADDR, $1, $<ctxt>$);
+		if (compat_mode(C_SUBM_CTRY))
+		  compat_save_ctry_parent_context($<ctxt>$);
               }
               addr_subs
 	      { CHECK0 }
@@ -3189,14 +3210,19 @@ note_struc_link_sub : source_cit_sub
                     ;
 
 note_struc_emb_sect : OPEN DELIM TAG_NOTE opt_line_item
-                      { $<ctxt>$
+                      { char* str = $4;
+		        if (compat_mode(C_NOTE_TOO_LONG))
+			  str = compat_long_line_get_prefix($4);
+			$<ctxt>$
 			  = start_element(ELT_SUB_NOTE,
-					  PARENT, $1, $3, $4,
-					 GEDCOM_MAKE_NULL_OR_STRING(val1, $4));
+					  PARENT, $1, $3, str,
+					GEDCOM_MAKE_NULL_OR_STRING(val1, str));
 		        reset_buffer(&concat_buffer);
 			if ($4)
 			  safe_buf_append(&concat_buffer, $4);
-		        START(NOTE, $1, $<ctxt>$) 
+		        START(NOTE, $1, $<ctxt>$);
+			if (compat_mode(C_NOTE_TOO_LONG))
+			  compat_long_line_finish($<ctxt>$, $1);
                       }
                       note_struc_emb_subs
 		      { CHECK0 }

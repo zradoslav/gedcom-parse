@@ -33,9 +33,10 @@
 
 static size_t encoding_width;
 static int current_level = -1;
-static int level_diff=MAXGEDCLEVEL;
+static int level_diff = MAXGEDCLEVEL;
 static size_t line_len = 0;
 static int tab_space = 0;
+static int current_tag = -1;
 
 static struct conv_buffer* ptr_buffer = NULL;
 static struct conv_buffer* tag_buffer = NULL;
@@ -93,10 +94,10 @@ int test_loop(ENCODING enc, const char* code)
 /* These are defined as functions here, because xgettext has trouble
    extracting the strings out of long pre-processor defined */
 
-static void error_line_too_long(const char *line)
+static void error_line_too_long()
 {
-  gedcom_error(_("Line too long, max %d characters allowed: %s"),
-	       MAXGEDCLINELEN, line); 
+  gedcom_error(_("Line too long, max %d characters allowed"),
+	       MAXGEDCLINELEN); 
 }
 
 static void error_level_leading_zero()
@@ -162,8 +163,9 @@ static int dummy_conv = 0;
 #define CHECK_LINE_LEN                                                        \
   { if (line_len != (size_t)-1) {                                             \
       line_len += strlen(yytext);                                             \
-      if (line_len > MAXGEDCLINELEN * encoding_width) {                       \
-        error_line_too_long(yytext);                                          \
+      if (line_len > MAXGEDCLINELEN * encoding_width                          \
+	  && ! compat_long_line(current_level, current_tag)) {                \
+        error_line_too_long();                                                \
         line_len = (size_t)-1;                                                \
         return BADTOKEN;                                                      \
       }                                                                       \
@@ -179,10 +181,11 @@ static int dummy_conv = 0;
 #define MKTAGACTION(THETAG)                                                  \
   { CHECK_LINE_LEN;                                                          \
     gedcom_lval.tag.string = TO_INTERNAL(yytext, tag_buffer);                \
-    gedcom_lval.tag.value  = TAG_##THETAG;                                   \
+    current_tag            = TAG_##THETAG;                                   \
+    gedcom_lval.tag.value  = current_tag;                                    \
     BEGIN(NORMAL);                                                           \
     line_no++;                                                               \
-    return TAG_##THETAG;                                                     \
+    return current_tag;                                                      \
   }
 
 /* The GEDCOM level number is converted into a sequence of opening
