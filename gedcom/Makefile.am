@@ -28,7 +28,7 @@ libgedcom_la_SOURCES = lex.gedcom_1byte_.c \
 		       age.c \
 		       compat.c
 libgedcom_la_LDFLAGS = -export-dynamic -version-info $(LIBVERSION) $(LIBICONV)
-libgedcom_la_LIBADD  = calendar/libcalendar.la
+libgedcom_la_LIBADD  = calendar/libcalendar.la @INTLLIBS@
 BUILT_SOURCES = lex.gedcom_1byte_.c \
 	 	lex.gedcom_hilo_.c \
 		lex.gedcom_lohi_.c \
