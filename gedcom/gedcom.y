@@ -3680,6 +3680,11 @@ user_sect   : OPEN DELIM opt_xref USERTAG
 		      && compat_check_551_tag($4.string, &usertag_buffer)) {
 		    $4.string = get_buf_string(&usertag_buffer);
 		  }
+		  else if (compat_mode(C_SUBM_COMM) &&
+			   compat_check_subm_comm($4.string, get_parenttag(0),
+						  &usertag_buffer)) {
+		    $4.string = get_buf_string(&usertag_buffer);
+		  }
 		  else {
 		    gedcom_error(_("Undefined tag (and not a valid user tag): %s"),
 				 $4);
@@ -3696,11 +3701,21 @@ user_sect   : OPEN DELIM opt_xref USERTAG
 	      CLOSE
               { end_element(ELT_USER, PARENT, $<ctxt>7, 
 			    GEDCOM_MAKE_NULL(val1));
+	        if (compat_mode(C_SUBM_COMM))
+	          compat_close_subm_comm();
 	      }
             ;
 
 user_sects   : /* empty */     { }
             | user_sects user_sect { }
+            | user_sects gen_sect
+              { if (compat_mode(C_SUBM_COMM)) {
+                }
+	        else {
+		  gedcom_error(_("Standard tag not allowed in user section"));
+		  YYERROR;
+		}
+	      }
             ;
 
 opt_xref    : /* empty */        { $$ = NULL; }
@@ -3789,9 +3804,23 @@ error_sect  : OPEN DELIM opt_xref anytag opt_value error_subs CLOSE { }
             ;
 
 gen_sect    : OPEN DELIM opt_xref anystdtag
-              { INVALID_TAG($4.string); }
-              opt_value opt_sects CLOSE
-              { }
+              { if (compat_mode(C_SUBM_COMM)
+		    && compat_check_subm_comm_cont($4.string)) {
+		  /* Will pass here */
+		}
+	        else {
+		  INVALID_TAG($4.string);
+		}
+	      }
+              opt_value
+              { if (compat_mode(C_SUBM_COMM)) {
+		  $<ctxt>$ = compat_subm_comm_cont_start(PARENT, $6);
+                }
+	      }
+	      opt_sects CLOSE
+              { if (compat_mode(C_SUBM_COMM))
+		  compat_subm_comm_cont_end(PARENT, $<ctxt>7);
+	      }
             ;
 
 gen_rec : gen_rec_top

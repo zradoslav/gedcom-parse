@@ -50,7 +50,8 @@ enum _COMPAT_PROGRAM {
 enum _COMPAT {
   C_FTREE = 0x01,
   C_LIFELINES = 0x02,
-  C_PAF = 0x04
+  C_PAF5 = 0x04,
+  C_PAF2 = 0x08
 };
 
 /* Incompatibility list (with GEDCOM 5.5):
@@ -68,24 +69,31 @@ enum _COMPAT {
 	- '@' not written as '@@' in values
 	- lots of missing required values
 
-    - Personal Ancestral File:
+    - Personal Ancestral File 5:
         - '@' not written as '@@' in values
 	- some 5.5.1 (draft) tags are used: EMAIL, FONE, ROMN
 	- no FAMC field in SLGC
+
+    - Personal Ancestral File 2:
+        - '@' not written as '@@' in values
+	- COMM tag in submitter record
+	- double dates written as e.g. '1815/1816' instead of '1815/16'
  */
 
 int compat_matrix[] =
 {
-  /* C_NO_SUBMITTER */        C_FTREE | C_LIFELINES,
+  /* C_NO_SUBMITTER */        C_FTREE | C_LIFELINES | C_PAF2,
   /* C_INDI_ADDR */           C_FTREE,
   /* C_NOTE_NO_VALUE */       C_FTREE,
-  /* C_NO_GEDC */             C_LIFELINES,
+  /* C_NO_GEDC */             C_LIFELINES | C_PAF2,
   /* C_NO_CHAR */             C_LIFELINES,
   /* C_HEAD_TIME */           C_LIFELINES,
-  /* C_NO_DOUBLE_AT */        C_LIFELINES | C_PAF,
+  /* C_NO_DOUBLE_AT */        C_LIFELINES | C_PAF5 | C_PAF2,
   /* C_NO_REQUIRED_VALUES */  C_LIFELINES,
-  /* C_551_TAGS */            C_PAF,
-  /* C_NO_SLGC_FAMC */        C_PAF
+  /* C_551_TAGS */            C_PAF5,
+  /* C_NO_SLGC_FAMC */        C_PAF5,
+  /* C_SUBM_COMM */           C_PAF2,
+  /* C_DOUBLE_DATES_4 */      C_PAF2
 };
 
 int compat_state[C_NR_OF_RULES];
@@ -115,13 +123,13 @@ void set_compatibility_program(const char* program)
     }
     else if (! strncmp(program, "LIFELINES", 9)) {
       compatibility_program = CP_LIFELINES;
-      if (strlen(program) > 10 && program[9] = ' ')
-	set_compatibility_version(program + 10);
+      if (strlen(program) > 9)
+	set_compatibility_version(program + 9);
     }
     else if (! strncmp(program, "PAF", 3)) {
       compatibility_program = CP_PAF;
-      if (strlen(program) > 4 && program[3] = ' ')
-	set_compatibility_version(program + 4);
+      if (strlen(program) > 3)
+	set_compatibility_version(program + 3);
     }
   }
 }
@@ -132,8 +140,10 @@ void set_compatibility_version(const char* version)
     unsigned int major=0, minor=0, patch=0;
     int result;
     
-    result = sscanf(version, "%u.%u.%u", &major, &minor, &patch);
+    result = sscanf(version, " %u.%u.%u", &major, &minor, &patch);
     if (result > 0) {
+      gedcom_debug_print(_("Setting compat version to %u.%u.%u"),
+			 major, minor, patch);
       compatibility_version = major * 10000 + minor * 100 + patch;
     }
   }
@@ -159,8 +169,14 @@ void compute_compatibility()
       default_charset = "ANSI";
       break;
     case CP_PAF:
-      enable_compat_msg("Personal Ancestral File", 0);
-      compatibility = C_PAF;
+      if (compatibility_version >= 20000 && compatibility_version < 30000) {
+	enable_compat_msg("Personal Ancestral File", 2);
+	compatibility = C_PAF2;
+      }
+      else if (compatibility_version >= 50000) {
+	enable_compat_msg("Personal Ancestral File", 5);
+	compatibility = C_PAF5;
+      }
       break;
     default:
       break;
@@ -171,6 +187,10 @@ int compat_mode(Compat_rule rule)
 {
   return (compat_matrix[rule] & compatibility);
 }
+
+/********************************************************************/
+/*  C_NO_SUBMITTER                                                  */
+/********************************************************************/
 
 void compat_generate_submitter_link(Gedcom_ctxt parent)
 {
@@ -219,6 +239,10 @@ void compat_generate_submitter()
   }
 }
 
+/********************************************************************/
+/*  C_NO_GEDC                                                       */
+/********************************************************************/
+
 void compat_generate_gedcom(Gedcom_ctxt parent)
 {
   struct tag_struct ts;
@@ -254,6 +278,10 @@ void compat_generate_gedcom(Gedcom_ctxt parent)
   end_element(ELT_HEAD_GEDC, parent, self1, NULL);
 }
 
+/********************************************************************/
+/*  C_NO_CHAR                                                       */
+/********************************************************************/
+
 int compat_generate_char(Gedcom_ctxt parent)
 {
   struct tag_struct ts;
@@ -282,6 +310,10 @@ int compat_generate_char(Gedcom_ctxt parent)
     return 0;
 }
 
+/********************************************************************/
+/*  C_INDI_ADDR                                                     */
+/********************************************************************/
+
 Gedcom_ctxt compat_generate_resi_start(Gedcom_ctxt parent)
 {
   Gedcom_ctxt self;
@@ -298,6 +330,10 @@ void compat_generate_resi_end(Gedcom_ctxt parent, Gedcom_ctxt self)
 {
   end_element(ELT_SUB_INDIV_RESI, parent, self, NULL);
 }
+
+/********************************************************************/
+/*  C_551_TAGS                                                      */
+/********************************************************************/
 
 int is_551_tag(const char* tag)
 {
@@ -324,6 +360,10 @@ int compat_check_551_tag(const char* tag, struct safe_buffer* b)
   else
     return 0;
 }
+
+/********************************************************************/
+/*  C_NO_SLGC_FAMC                                                  */
+/********************************************************************/
 
 void compat_generate_slgc_famc_link(Gedcom_ctxt parent)
 {
@@ -360,5 +400,62 @@ void compat_generate_slgc_famc_fam()
     
     /* close "0 FAM" */
     end_record(REC_FAM, self, NULL);
+  }
+}
+
+/********************************************************************/
+/*  C_SUBM_COMM                                                     */
+/********************************************************************/
+
+int compat_check_subm_comm(const char* tag, const char* parent_tag,
+			   struct safe_buffer* b)
+{
+  if (!strcmp(tag, "COMM") && !strcmp(parent_tag, "SUBM")) {
+    reset_buffer(b);
+    SAFE_BUF_ADDCHAR(b, '_');
+    safe_buf_append(b, tag);
+    gedcom_warning(_("Converting non-standard tag '%s' to user tag '%s'"),
+		   tag, get_buf_string(b));
+    compat_state[C_SUBM_COMM] = 1;
+    return 1;
+  }
+  else
+    return 0;
+}
+
+void compat_close_subm_comm()
+{
+  compat_state[C_SUBM_COMM] = 0;
+}
+
+int compat_check_subm_comm_cont(const char* tag)
+{
+  if (compat_state[C_SUBM_COMM] && !strcmp(tag, "CONT")) {
+    compat_state[C_SUBM_COMM] = 2;
+    return 1;
+  }
+  else
+    return 0;
+}
+
+Gedcom_ctxt compat_subm_comm_cont_start(Gedcom_ctxt parent, const char* str)
+{
+  Gedcom_ctxt self = NULL;
+  struct tag_struct ts;
+
+  if (compat_state[C_SUBM_COMM] == 2) {
+    ts.string = "_CONT";
+    ts.value  = USERTAG;
+    self = start_element(ELT_USER, parent, 2, ts, str, &val2);
+  }
+
+  return self;
+}
+
+void compat_subm_comm_cont_end(Gedcom_ctxt parent, Gedcom_ctxt self)
+{
+  if (compat_state[C_SUBM_COMM] == 2) {
+    end_element(ELT_USER, parent, self, NULL);
+    compat_state[C_SUBM_COMM] = 1;
   }
 }
