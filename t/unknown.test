@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$srcdir/test_script unknown.ged 1

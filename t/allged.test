@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$srcdir/test_script -2 allged.ged 0

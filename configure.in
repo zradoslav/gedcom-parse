@@ -46,6 +46,7 @@ AC_OUTPUT(Makefile
 	  gedcom/calendar/Makefile
 	  ansel/Makefile
 	  t/Makefile
+	  t/input/Makefile
 	  doc/Makefile
 	  doc/images/Makefile
 	  include/Makefile

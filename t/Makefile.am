@@ -2,18 +2,10 @@
 # $Id$
 # $Name$
 
-TEST_SCRIPT=test_script
+SUBDIRS=input
 
-TESTS_ENVIRONMENT=$(srcdir)/$(TEST_SCRIPT)
-TESTS = allged.ged \
-	ansel.ged \
-        uhlbomcl.ged \
-	uhlcl.ged \
-	ulhbomcl.ged \
-	ulhc.ged \
-	ulhcl.ged \
-	ulhl.ged \
-	ulhlc.ged
+TEST_SCRIPT=test_script
+TESTS := $(wildcard $(srcdir)/*.test)
 
 EXTRA_DIST=$(TEST_SCRIPT) $(TESTS)
 

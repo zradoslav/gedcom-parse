@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$srcdir/test_script -2 ansel.ged 0

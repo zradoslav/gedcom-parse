@@ -1,3 +1,7 @@
+2002-01-20  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* restructured the test setup
+
 2002-01-19  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gedcom.h: Renamed to gedcom.h.in: at configure, the VERSION
