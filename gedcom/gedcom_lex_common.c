@@ -48,7 +48,7 @@ int gedcom_lex();
 
 void message_handler(Gedcom_msg_type type, char *msg)
 {
-  fprintf(stderr, msg);
+  fprintf(stderr, "(%d) %s\n", type, msg);
 }
 
 int test_loop(ENCODING enc, char* code)

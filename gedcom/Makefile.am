@@ -77,11 +77,11 @@ lex.gedcom_date_.c:	gedcom_date.tab.h
 
 EXTRA_PROGRAMS = lexer_1byte lexer_hilo lexer_lohi
 lexer_1byte_SOURCES =
-lexer_1byte_LDADD = lex.gedcom_1byte_.test.o message.o encoding.o
+lexer_1byte_LDADD = lex.gedcom_1byte_.test.o message.o encoding.o hash.o
 lexer_hilo_SOURCES =
-lexer_hilo_LDADD = lex.gedcom_hilo_.test.o message.o encoding.o
+lexer_hilo_LDADD = lex.gedcom_hilo_.test.o message.o encoding.o hash.o
 lexer_lohi_SOURCES =
-lexer_lohi_LDADD = lex.gedcom_lohi_.test.o message.o encoding.o
+lexer_lohi_LDADD = lex.gedcom_lohi_.test.o message.o encoding.o hash.o
 
 lex.gedcom_1byte_.test.o:	lex.gedcom_1byte_.c
 	$(COMPILE) -DLEXER_TEST -c $(CPPFLAGS) $(CFLAGS) $< -o $@
