@@ -1,5 +1,5 @@
 
-=== Parsing file ./input/dates.ged
+=== Parsing file dates.ged
 Error on line 38: Unknown calendar type
 Error on line 38: parse error
 Warning: Cross-reference @PERS07@ defined on line 38 is never used

@@ -1,5 +1,5 @@
 
-=== Parsing file ./input/unknown.ged
+=== Parsing file unknown.ged
 Header start
 ERROR: Error on line 3: No encoding defined for 'Unknown_CHARSET'
 == 1 CHAR (292) Unknown_CHARSET (ctxt is 1, conversion failures: 0)

@@ -7,7 +7,7 @@ ERROR: Error on line 15: '@' character should be written as '@@' in values
 ERROR: Error on line 18: '@' character should be written as '@@' in values
 ERROR: Error on line 26: '@' character should be written as '@@' in values
 
-=== Parsing file ./input/minimal.ged
+=== Parsing file minimal.ged
 Header start
 == 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
 Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
@@ -22,7 +22,7 @@ Submitter, xref is @SUBMITTER@
 
 === Total conversion failures: 0
 
-=== Parsing file ./input/minimal.ged
+=== Parsing file minimal.ged
 Header start
 == 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
 Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)

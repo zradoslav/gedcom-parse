@@ -1,5 +1,5 @@
 
-=== Parsing file ./input/allged.ged
+=== Parsing file allged.ged
 Header start
 == 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
 == 2 VERS (391) Version number of ASCII (whatever it means) (ctxt is 1, conversion failures: 0)
@@ -2271,7 +2271,7 @@ Rec _MYOWNTAG start, xref is (null)
 
 === Total conversion failures: 0
 
-=== Parsing file ./input/allged.ged
+=== Parsing file allged.ged
 Header start
 == 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
 == 2 VERS (391) Version number of ASCII (whatever it means) (ctxt is 1, conversion failures: 0)

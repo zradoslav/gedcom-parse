@@ -1,5 +1,5 @@
 
-=== Parsing file ./input/ansel.ged
+=== Parsing file ansel.ged
 Header start
 == 1 CHAR (292) ANSEL (ctxt is 1, conversion failures: 0)
 Source is REGISTERED_SOURCE_NAME (ctxt is 1001, parent is 1)
@@ -320,7 +320,7 @@ Family end, xref is @FAMILY@
 
 === Total conversion failures: 1543
 
-=== Parsing file ./input/ansel.ged
+=== Parsing file ansel.ged
 Header start
 == 1 CHAR (292) ANSEL (ctxt is 1, conversion failures: 0)
 Source is REGISTERED_SOURCE_NAME (ctxt is 1001, parent is 1)

@@ -1,5 +1,5 @@
 
-=== Parsing file ./input/ulhlc.ged
+=== Parsing file ulhlc.ged
 Header start
 == 1 CHAR (292) UNICODE (ctxt is 1, conversion failures: 0)
 Source is REGISTERED_SOURCE_NAME (ctxt is 1001, parent is 1)
@@ -334,7 +334,7 @@ Family end, xref is @FAMILY@
 
 === Total conversion failures: 460
 
-=== Parsing file ./input/ulhlc.ged
+=== Parsing file ulhlc.ged
 Header start
 == 1 CHAR (292) UNICODE (ctxt is 1, conversion failures: 0)
 Source is REGISTERED_SOURCE_NAME (ctxt is 1001, parent is 1)

@@ -1,5 +1,5 @@
 
-=== Parsing file ./input/encoding_error.ged
+=== Parsing file encoding_error.ged
 Header start
 == 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
 Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
@@ -51,7 +51,7 @@ WARNING: Warning: Cross-reference @F01@ defined on line 18 is never used
 
 === Total conversion failures: 0
 
-=== Parsing file ./input/encoding_error.ged
+=== Parsing file encoding_error.ged
 Header start
 == 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
 Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
