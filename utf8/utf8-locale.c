@@ -11,10 +11,10 @@
 
 #include <stdlib.h>
 #include <iconv.h>
-#include <langinfo.h>
 #include <assert.h>
 #include <errno.h>
 #include "config.h"
+#include "libcharset.h"
 #include "utf8-locale.h"
 
 #define INITIAL_OUTSIZE 256
@@ -43,11 +43,11 @@ int open_conversion_contexts()
 {
   assert(utf8_to_locale == (iconv_t) -1);
   assert(locale_to_utf8 == (iconv_t) -1);
-  utf8_to_locale = iconv_open(nl_langinfo(CODESET), "UTF-8");
+  utf8_to_locale = iconv_open(locale_charset(), "UTF-8");
   if (utf8_to_locale == (iconv_t) -1)
     return -1;
   else {
-    locale_to_utf8 = iconv_open("UTF-8", nl_langinfo(CODESET));
+    locale_to_utf8 = iconv_open("UTF-8", locale_charset());
     if (locale_to_utf8 == (iconv_t) -1) {
       close_conversion_contexts();
       return -1;
