@@ -1,3 +1,8 @@
+/* This file is taken from the glibc sources (release 2.2.4).
+   Only this initial comment has been added.  The next comment
+   gives the original copyright notice.
+*/
+
 /* Conversion loop frame work.
    Copyright (C) 1998, 1999, 2000, 2001 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
