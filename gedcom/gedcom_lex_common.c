@@ -21,7 +21,7 @@
 /* $Id$ */
 /* $Name$ */
 
-#ifndef IN_LEX
+#if LEX_SECTION == 1
 
 #include "gedcom_internal.h"
 #include "multilex.h"
@@ -136,14 +136,7 @@ static void error_unexpected_character(const char* str, char ch)
   gedcom_error(_("Unexpected character: '%s' (0x%02x)"), str, ch);
 }
 
-static void yylex_cleanup()
-{
-  /* fix memory leak in lex */
-  yy_delete_buffer(yy_current_buffer);
-  yy_current_buffer = NULL;
-}
-
-#else  /* of #ifndef IN_LEX */
+#elif LEX_SECTION == 2
 
 #define TO_INTERNAL(STR,OUTBUF) \
   to_internal(STR, yyleng, OUTBUF, sizeof(OUTBUF))
@@ -347,10 +340,7 @@ static void yylex_cleanup()
     }                                                                         \
     else {                                                                    \
       char* ptr; int size;                                                    \
-      /* Reset our state */                                                   \
-      current_level = -1;                                                     \
-      level_diff = MAXGEDCLEVEL;                                              \
-      /* ... then terminate lex */                                            \
+      /* ... terminate lex */                                                 \
       yyterminate();                                                          \
       /* Get rid of f*cking compiler warning from lex generated code */       \
       /* yyterminate does return(), so program will never come here  */       \
@@ -383,4 +373,31 @@ static void yylex_cleanup()
     return BADTOKEN;                                                          \
   }
 
-#endif /* IN_LEX */
+#elif LEX_SECTION == 3
+
+int yywrap()
+{
+  return 1;
+}
+
+static void yylex_cleanup()
+{
+  /* fix memory leak in lex */
+  yy_delete_buffer(yy_current_buffer);
+  yy_current_buffer = NULL;
+}
+
+static int exitfuncregistered = 0;
+
+void yymyinit(FILE *f)
+{
+  if (! exitfuncregistered && atexit(yylex_cleanup) == 0)
+    exitfuncregistered = 1;
+  yyin = f;
+  yyrestart(f);
+  /* Reset our state */
+  current_level = -1;
+  level_diff = MAXGEDCLEVEL;
+}
+
+#endif
