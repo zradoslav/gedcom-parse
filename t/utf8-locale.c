@@ -79,7 +79,7 @@ char* convert_utf8_to_locale(char* input, int *conv_fails)
   outsize = outbufsize;
   memset(outbuffer, 0, outbufsize);
   nconv = iconv(utf8_to_locale, &inptr, &insize, &outptr, &outsize);
-  while (nconv == -1) {
+  while (nconv == (size_t)-1) {
     if (errno == E2BIG) {
       /* grow the output buffer */
       size_t outlen;
@@ -136,7 +136,7 @@ char* convert_locale_to_utf8(char* input)
   outsize = outbufsize;
   memset(outbuffer, 0, outbufsize);
   nconv = iconv(locale_to_utf8, &inptr, &insize, &outptr, &outsize);
-  while (nconv == -1) {
+  while (nconv == (size_t)-1) {
     if (errno == E2BIG) {
       /* grow the output buffer */
       size_t outlen;
