@@ -22,12 +22,27 @@
 #define INTERNAL_BUFFER 0
 #define EXTERNAL_BUFFER 1
 
-void reset_conv_buffer(struct conv_buffer* buf)
+struct conv_buffer {
+  char*   buffer;
+  size_t  size;
+  int     type;  /* For internal use */
+};
+
+struct convert {
+  iconv_t from_utf8;
+  iconv_t to_utf8;
+  struct conv_buffer* inbuf;
+  size_t  insize;
+  struct conv_buffer* outbuf;
+  char*   unknown;
+};
+
+void reset_conv_buffer(conv_buffer_t buf)
 {
   memset(buf->buffer, 0, buf->size);
 }
 
-struct conv_buffer* create_conv_buffer(int size)
+conv_buffer_t create_conv_buffer(int size)
 {
   struct conv_buffer* buf = NULL;
 
@@ -47,7 +62,7 @@ struct conv_buffer* create_conv_buffer(int size)
   return buf;
 }
 
-void free_conv_buffer(struct conv_buffer* buf)
+void free_conv_buffer(conv_buffer_t buf)
 {
   if (buf) {
     free(buf->buffer);
@@ -55,7 +70,7 @@ void free_conv_buffer(struct conv_buffer* buf)
   }
 }
 
-char* grow_conv_buffer(struct conv_buffer* buf, char* curr_pos)
+char* grow_conv_buffer(conv_buffer_t buf, char* curr_pos)
 {
   size_t outlen, new_size;
   char*  new_buffer;
@@ -142,7 +157,7 @@ int conversion_set_unknown(convert_t conv, const char* unknown)
   return result;
 }
 
-int conversion_set_output_buffer(convert_t conv, struct conv_buffer* buf)
+int conversion_set_output_buffer(convert_t conv, conv_buffer_t buf)
 {
   if (!conv)
     return 0;
