@@ -20,7 +20,7 @@ case "$testenv" in
     export GEDCOM_NOOPTS=1 ;;
 
   print)
-    echo "GEDCOM_TESTENV=$GEDCOM_TESTENV"
+    echo "GEDCOM_TESTENV='$GEDCOM_TESTENV'"
     echo "GEDCOM_NOOPTS=$GEDCOM_NOOPTS" ;;
 
   "")
