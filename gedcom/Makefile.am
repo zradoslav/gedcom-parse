@@ -34,6 +34,7 @@ BUILT_SOURCES = lex.gedcom_1byte_.c \
 		lex.gedcom_date_.c \
 		gedcom.tab.c \
 		gedcom.tab.h \
+		gedcom.tabgen.h \
 		gedcom_date.tab.c \
 		gedcom_date.tab.h
 noinst_HEADERS = encoding.h \
@@ -51,6 +52,8 @@ EXTRA_DIST = gedcom.y \
 	     gedcom_lohi.lex \
 	     gedcom_date.lex \
 	     gedcom_lex_common.c
+
+include $(top_srcdir)/Makefile.inc
 
 gedcom.tab.c gedcom.tab.h:	gedcom.y
 	$(YACC) $(YFLAGS) --name-prefix=gedcom_ $<
@@ -70,10 +73,10 @@ lex.gedcom_lohi_.c:	gedcom_lohi.lex
 lex.gedcom_date_.c:	gedcom_date.lex
 	$(LEX) $(LFLAGS) -Pgedcom_date_ $<
 
-lex.gedcom_1byte_.c:	gedcom.tab.h gedcom_lex_common.c
-lex.gedcom_hilo_.c:	gedcom.tab.h gedcom_lex_common.c
-lex.gedcom_lohi_.c:	gedcom.tab.h gedcom_lex_common.c
-lex.gedcom_date_.c:	gedcom_date.tab.h
+lex.gedcom_1byte_.c:	gedcom.tabgen.h gedcom_lex_common.c
+lex.gedcom_hilo_.c:	gedcom.tabgen.h gedcom_lex_common.c
+lex.gedcom_lohi_.c:	gedcom.tabgen.h gedcom_lex_common.c
+lex.gedcom_date_.c:	gedcom_date.tabgen.h
 
 # Lexer test programs
 
