@@ -67,7 +67,7 @@ void show_help ()
   printf("  -q    No output to standard output\n");
 }
 
-Gedcom_ctxt header_start(int level, Gedcom_val xref, char *tag,
+Gedcom_ctxt header_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
 			 char *raw_value, int tag_value,
 			 Gedcom_val parsed_value)
 {
@@ -75,7 +75,7 @@ Gedcom_ctxt header_start(int level, Gedcom_val xref, char *tag,
   return (Gedcom_ctxt)1;
 }
 
-void header_end(Gedcom_ctxt self)
+void header_end(Gedcom_rec rec, Gedcom_ctxt self)
 {
   output(1, "Header end, context is %d\n", (int)self);
 }
