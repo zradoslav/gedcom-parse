@@ -117,6 +117,101 @@ int test_string_functions()
   return 0;
 }
 
+char* print_date(const char* message, struct date_value* dv)
+{
+  char* date_str;
+  output(0, "\n%s:", message);
+  show_date(dv);
+  date_str = gedcom_date_to_string(dv);
+  output(0, "String: '%s'\n", str_val(date_str));
+  return date_str;
+}
+
+int test_date_functions()
+{
+  struct header* head;
+  struct date_value* dv;
+  char* date_str;
+  int normalized;
+  
+  head = gom_get_header();
+  if (head == NULL)
+    return 100;
+
+  dv = head->date;
+  if (dv != NULL)
+    return 101;
+
+  dv = gedcom_new_date_value(NULL);
+  if (dv == NULL)
+    return 102;
+
+  head->date = dv;
+  date_str = print_date("Initial date value", dv);
+  if (date_str[0])
+    return 103;
+
+  dv->date1.cal = CAL_GREGORIAN;
+  strcpy(dv->date1.year_str, "1990");
+  normalized = gedcom_normalize_date(DI_FROM_STRINGS, dv);
+  if (normalized != 0)
+    return 104;
+  date_str = print_date("Setting only year string", dv);
+  if (! date_str[0])
+    return 105;
+
+  dv->date1.year = 1989;
+  normalized = gedcom_normalize_date(DI_FROM_NUMBERS, dv);
+  if (normalized != 0)
+    return 106;
+  date_str = print_date("Setting only year number", dv);
+  if (! date_str[0])
+    return 107;
+
+  dv->date1.type = DATE_EXACT;
+  dv->date1.sdn1 = 2500000;
+  dv->date1.sdn2 = -1;
+  normalized = gedcom_normalize_date(DI_FROM_SDN, dv);
+  if (normalized != 0)
+    return 108;
+  date_str = print_date("Setting only SDN 1", dv);
+  if (! date_str[0])
+    return 109;
+
+  dv->date1.cal = CAL_HEBREW;
+  normalized = gedcom_normalize_date(DI_FROM_SDN, dv);  
+  if (normalized != 0)
+    return 110;
+  date_str = print_date("Same date in Hebrew calendar", dv);
+  if (! date_str[0])
+    return 111;
+
+  dv->date1.cal = CAL_FRENCH_REV;
+  normalized = gedcom_normalize_date(DI_FROM_SDN, dv);  
+  if (normalized == 0)
+    return 112;
+  date_str = print_date("Same date in French revolution calendar", dv);
+  if (date_str[0])
+    return 113;
+
+  dv->date1.cal = CAL_GREGORIAN;
+  dv->date1.day = 4;
+  dv->date1.month = 2;
+  dv->date1.year = 1799;
+  normalized = gedcom_normalize_date(DI_FROM_NUMBERS, dv);
+  if (normalized != 0)
+    return 114;
+  dv->date1.cal = CAL_FRENCH_REV;
+  normalized = gedcom_normalize_date(DI_FROM_SDN, dv);
+  if (normalized != 0)
+    return 115;
+  date_str = print_date("Valid French revolution date", dv);
+  if (! date_str[0])
+    return 116;
+
+  return 0;
+}
+
 int main(int argc, char* argv[])
 {
   int result;
@@ -160,6 +255,8 @@ int main(int argc, char* argv[])
   result = gom_new_model();
   if (result == 0)
     result |= test_string_functions();
+  if (result == 0)
+    result |= test_date_functions();
   if (result == 0) {
     output(1, "Test succeeded\n");
   }
