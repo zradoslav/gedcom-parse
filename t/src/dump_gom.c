@@ -27,6 +27,8 @@
 #include "gedcom.h"
 
 char* null_str = "(null)";
+char* non_null_ptr = "0x<non-null>";
+char* null_ptr = "0x<null>";
 
 char* chk(char* input)
 {
@@ -34,6 +36,14 @@ char* chk(char* input)
     return input;
   else
     return null_str;
+}
+
+char* ptr_val(void* ptr)
+{
+  if (ptr)
+    return non_null_ptr;
+  else
+    return null_ptr;
 }
 
 char* make_prefix(int depth)
@@ -59,7 +69,7 @@ void dump_user_data(int st, int prefix_depth, struct user_data* data)
     }
   }
   else {
-    output(st, "%p\n", data);
+    output(st, "%s\n", ptr_val(data));
   }
   free(prefix);
 }
@@ -80,7 +90,7 @@ void dump_address(int st, int prefix_depth, struct address* addr)
     dump_user_data(st, prefix_depth + 2, addr->extra);
   }
   else {
-    output(st, "%p\n", addr);
+    output(st, "%s\n", ptr_val(addr));
   }
   free(prefix);
 }
@@ -110,7 +120,7 @@ void dump_date(int st, int prefix_depth, struct date_value* dv)
     output(st, "%sphrase: %s\n", prefix, chk(dv->phrase));
   }
   else {
-    output(st, "%p\n", dv);
+    output(st, "%s\n", ptr_val(dv));
   }
   free(prefix);
 }
@@ -128,7 +138,7 @@ void dump_age(int st, int prefix_depth, struct age_value* age)
     output(st, "%sphrase: %s\n", prefix, chk(age->phrase));
   }
   else {
-    output(st, "%p\n", age);
+    output(st, "%s\n", ptr_val(age));
   }
   free(prefix);
 }
@@ -140,10 +150,10 @@ void dump_xref(int st, int prefix_depth, struct xref_value* xr)
     output(st, "\n");
     output(st, "%stype: %d\n", prefix, xr->type);
     output(st, "%sxref: %s\n", prefix, chk(xr->string));
-    output(st, "%sobject: %p\n", prefix, xr->object);
+    output(st, "%sobject: %s\n", prefix, ptr_val(xr->object));
   }
   else {
-    output(st, "%p\n", xr);
+    output(st, "%s\n", ptr_val(xr));
   }
   free(prefix);
 }
@@ -161,7 +171,7 @@ void dump_xref_list(int st, int prefix_depth, struct xref_list* xr)
     }
   }
   else {
-    output(st, "%p\n", xr);
+    output(st, "%s\n", ptr_val(xr));
   }
   free(prefix);
 }
@@ -178,7 +188,7 @@ void dump_texts(int st, int prefix_depth, struct text* t)
     }
   }
   else {
-    output(st, "%p\n", t);
+    output(st, "%s\n", ptr_val(t));
   }
   free(prefix);
 }
@@ -196,7 +206,7 @@ void dump_user_ref(int st, int prefix_depth, struct user_ref_number* ref)
     }
   }
   else {
-    output(st, "%p\n", ref);
+    output(st, "%s\n", ptr_val(ref));
   }
   free(prefix);
 }
@@ -220,7 +230,7 @@ void dump_note_sub(int st, int prefix_depth, struct note_sub* note)
     }
   }
   else {
-    output(st, "%p\n", note);
+    output(st, "%s\n", ptr_val(note));
   }
   free(prefix);
 }
@@ -244,7 +254,7 @@ void dump_mm_links(int st, int prefix_depth, struct multimedia_link* link)
     }
   }
   else {
-    output(st, "%p\n", link);
+    output(st, "%s\n", ptr_val(link));
   }
   free(prefix);
 }
@@ -276,7 +286,7 @@ void dump_citations(int st, int prefix_depth, struct source_citation* cit)
     }
   }
   else {
-    output(st, "%p\n", cit);
+    output(st, "%s\n", ptr_val(cit));
   }
   free(prefix);
 }
@@ -304,7 +314,7 @@ void dump_lds(int st, int prefix_depth, struct lds_event* lds)
     }
   }
   else {
-    output(st, "%p\n", lds);
+    output(st, "%s\n", ptr_val(lds));
   }
   free(prefix);
 }
@@ -323,7 +333,7 @@ void dump_change_date(int st, int prefix_depth, struct change_date* chan)
     dump_user_data(st, prefix_depth + 2, chan->extra);
   }
   else {
-    output(st, "%p\n", chan);
+    output(st, "%s\n", ptr_val(chan));
   }
   free(prefix);
 }
@@ -351,7 +361,7 @@ void dump_personal_name(int st, int prefix_depth, struct personal_name* name)
     }
   }
   else {
-    output(st, "%p\n", name);
+    output(st, "%s\n", ptr_val(name));
   }
   free(prefix);
 }
@@ -368,7 +378,7 @@ void dump_pedigree(int st, int prefix_depth, struct pedigree* p)
     }
   }
   else {
-    output(st, "%p\n", p);
+    output(st, "%s\n", ptr_val(p));
   }
   free(prefix);
 }
@@ -391,7 +401,7 @@ void dump_family_link(int st, int prefix_depth, struct family_link *link)
     }
   }
   else {
-    output(st, "%p\n", link);
+    output(st, "%s\n", ptr_val(link));
   }
   free(prefix);
 }
@@ -416,7 +426,7 @@ void dump_association(int st, int prefix_depth, struct association *assoc)
     }
   }
   else {
-    output(st, "%p\n", assoc);
+    output(st, "%s\n", ptr_val(assoc));
   }
   free(prefix);
 }
@@ -436,7 +446,7 @@ void dump_place(int st, int prefix_depth, struct place* place)
     dump_user_data(st, prefix_depth + 2, place->extra);
   }
   else {
-    output(st, "%p\n", place);
+    output(st, "%s\n", ptr_val(place));
   }
   free(prefix);
 }
@@ -458,7 +468,7 @@ void dump_source_events(int st, int prefix_depth, struct source_event* evt)
     }
   }
   else {
-    output(st, "%p\n", evt);
+    output(st, "%s\n", ptr_val(evt));
   }
   free(prefix);
 }
@@ -478,7 +488,7 @@ void dump_source_descriptions(int st, int prefix_depth,
     }
   }
   else {
-    output(st, "%p\n", desc);
+    output(st, "%s\n", ptr_val(desc));
   }
   free(prefix);
 }
@@ -525,7 +535,7 @@ void dump_events(int st, int prefix_depth, struct event *evt)
     }
   }
   else {
-    output(st, "%p\n", evt);
+    output(st, "%s\n", ptr_val(evt));
   }
   free(prefix);
 }
