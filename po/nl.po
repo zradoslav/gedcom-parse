@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gedcom-parse 0.20.0\n"
+"Project-Id-Version: gedcom-parse 0.90.0\n"
 "POT-Creation-Date: 2003-02-02 15:43+0100\n"
-"PO-Revision-Date: 2002-12-30 11:40+0100\n"
+"PO-Revision-Date: 2003-02-02 15:50+0100\n"
 "Last-Translator: Peter Verthez <Peter.Verthez@advalvas.be>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr "Ongedefieerde tag (en geen geldige gebruikerstag): %s"
 
 #: gedcom/gedcom.y:3939
 msgid "Standard tag not allowed in user section"
-msgstr ""
+msgstr "Standaard tag niet toegelaten in een gebruikerssectie"
 
 #. empty
 #: gedcom/gedcom.y:3960
@@ -123,17 +123,17 @@ msgstr "Interne fout: underflow van de telrij"
 #. as fallback
 #: gedcom/date.c:426 gedcom/gedcom_date.y:129
 msgid "Putting date in 'phrase' member"
-msgstr ""
+msgstr "Datum wordt in 'phrase' veld gezet"
 
 #: gedcom/gedcom_date.y:340
 #, c-format
 msgid "Year is missing: '%s'"
-msgstr ""
+msgstr "Jaartal niet aanwezig: '%s'"
 
 #: gedcom/gedcom_date.y:345
 #, c-format
 msgid "Month is missing: '%s'"
-msgstr ""
+msgstr "Maand niet aanwezig: '%s'"
 
 #: gedcom/gedcom_date.y:354
 #, c-format
@@ -158,12 +158,12 @@ msgstr "Te veel karakters in jaar '%s'"
 #: gedcom/gedcom_date.y:413
 #, c-format
 msgid "Year after slash should be two digits: '%s/%s'"
-msgstr ""
+msgstr "Jaartal na de schuine streep moet twee cijfers zijn: '%s/%s'"
 
 #: gedcom/gedcom_date.y:422
 #, c-format
 msgid "Year after slash should be following year: '%s/%s'"
-msgstr ""
+msgstr "Jaartal na de schuine streep moet het volgende jaar zijn: '%s/%s'"
 
 #: gedcom/gedcom_date.y:430
 #, c-format
@@ -227,7 +227,7 @@ msgstr "'@' karakter moet geschreven worden als '@@' in waarden"
 
 #: gedcom/gedcom_lex_common.c:143
 msgid "Tab character is not allowed in values"
-msgstr ""
+msgstr "Tab karakter is niet toegelaten in waarden"
 
 #: gedcom/gedcom_lex_common.c:148
 #, c-format
@@ -308,7 +308,7 @@ msgstr "datum"
 
 #: gedcom/interface.c:109
 msgid "age"
-msgstr ""
+msgstr "leeftijd"
 
 #: gedcom/interface.c:110
 msgid "cross-reference"
@@ -419,56 +419,54 @@ msgid "Cross-reference %s still in use"
 msgstr "Verwijzing %s wordt nog gebruikt"
 
 #: gedcom/compat.c:168
-#, fuzzy, c-format
+#, c-format
 msgid "Enabling compatibility with '%s', version %d"
-msgstr "Compatibiliteit met 'ftree' wordt aangezet"
+msgstr "Compatibiliteit met '%s', versie %d wordt aangezet"
 
 #: gedcom/compat.c:171
-#, fuzzy, c-format
+#, c-format
 msgid "Enabling compatibility with '%s'"
-msgstr "Compatibiliteit met 'ftree' wordt aangezet"
+msgstr "Compatibiliteit met '%s' wordt aangezet"
 
 #: gedcom/compat.c:281
 #, c-format
 msgid "Adding link to submitter record with xref '%s'"
-msgstr ""
+msgstr "Verwijzing naar indiener record met verwijzing '%s' wordt toegevoegd"
 
 #: gedcom/compat.c:428
-#, fuzzy, c-format
+#, c-format
 msgid "Header change time '%s' lost in the compatibility (out of context)"
-msgstr ""
-"Laatste tijd van verandering van de hoofding ging verloren in de "
-"uitwisselbaarheid"
+msgstr "Laatste tijd van verandering van de hoofding '%s' ging verloren in de uitwisselbaarheid (buiten context)"
 
 #: gedcom/compat.c:468
 #, c-format
 msgid "Country '%s' lost in the compatibility (out of context)"
-msgstr ""
+msgstr "Land '%s' verloren in de compatibilities (buiten context)"
 
 #: gedcom/compat.c:531
 #, c-format
 msgid "Converting 5.5.1 tag '%s' to standard 5.5 user tag '%s'"
-msgstr ""
+msgstr "5.5.1 tag '%s' wordt omgezet naar standaard 5.5 gebruikerstag '%s'"
 
 #: gedcom/compat.c:552
 #, c-format
 msgid "Adding link to family record with xref '%s'"
-msgstr ""
+msgstr "Verwijzing naar familierecord met verwijzing '%s' wordt toegevoegd"
 
 #: gedcom/compat.c:592
 #, c-format
 msgid "Converting non-standard tag '%s' to user tag '%s'"
-msgstr ""
+msgstr "Niet-standaard tag '%s' wordt omgezet naar gebruikerstag '%s'"
 
 #: gedcom/compat.c:744
-#, fuzzy, c-format
+#, c-format
 msgid "Converting undefined tag '%s' to user tag '%s'"
-msgstr "Ongedefieerde tag (en geen geldige gebruikerstag): %s"
+msgstr "Ongedefieerde tag '%s' wordt omgezet naar gebruikerstag '%s'"
 
 #: gedcom/compat.c:761
 #, c-format
 msgid "Converting invalidly used tag '%s' to user tag '%s'"
-msgstr ""
+msgstr "Ongeldig gebruikte tag '%s' wordt omgezet naar gebruikerstag '%s'"
 
 #: gedcom/write.c:85
 msgid "Line too long"
@@ -501,9 +499,8 @@ msgid "Could not open file '%s' for writing: %s"
 msgstr "Kon bestand '%s' niet openen om te schrijven: %s"
 
 #: gedcom/write.c:231
-#, fuzzy
 msgid "Byte order mark configured, but not relevant"
-msgstr "Byte orde teken geconfigureerd, maar geen Unicode"
+msgstr "Byte orde teken geconfigureerd, maar niet relevant"
 
 #: gedcom/write.c:262
 #, c-format
@@ -560,9 +557,9 @@ msgid "Year has to be given in bounded date"
 msgstr "Het jaar moet opgegeven worden voor een begrensde datum"
 
 #: gedcom/date.c:185 gedcom/date.c:194
-#, fuzzy, c-format
+#, c-format
 msgid "Error converting date: year %d, month %d, day %d"
-msgstr "Fout bij het converteren van de datum"
+msgstr "Fout bij het converteren van de datum: jaar %d, maand %d, dag %d"
 
 #: gedcom/date.c:213
 msgid "Cannot compute from SDN for unknown calendar type"
@@ -607,7 +604,7 @@ msgstr "Kan maandnaam niet berekenen voor ongekend kalendertype"
 #: gedcom/date.c:413
 #, c-format
 msgid "Empty value changed to '%s'"
-msgstr ""
+msgstr "Lege waarde veranderd naar '%s'"
 
 #: gedcom/date.c:435
 msgid "Date is not normalized: some fields are invalid"
@@ -622,14 +619,14 @@ msgid "Could not register gom cleanup function"
 msgstr "Kon functie voor vrijgeven van object model niet registreren"
 
 #: gom/gom.c:226
-#, fuzzy, c-format
+#, c-format
 msgid "Cross-reference key '%s' is already in use"
 msgstr "Verwijzing %s bestaat al"
 
 #: gom/gom.c:234
-#, fuzzy, c-format
+#, c-format
 msgid "Internal error: Unexpected context at %s, line %d: %s"
-msgstr "Interne fout: Onverwachte context in %s, lijn %d: %d"
+msgstr "Interne fout: Onverwachte context in %s, lijn %d: %s"
 
 #: gom/gom.c:240
 #, c-format
@@ -637,14 +634,14 @@ msgid "Internal error: No context at %s, line %d"
 msgstr "Interne fout: Geen context in %s, lijn %d"
 
 #: gom/gom.c:246
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move struct of type %s"
-msgstr "Kon bestand '%s' niet openen: %s"
+msgstr "Kon structuur van type '%s' niet verplaatsen"
 
 #: gom/gom.c:251
 #, c-format
 msgid "Could not find struct of type %s in chain"
-msgstr ""
+msgstr "Kon structuur van type %s niet vinden in de keten"
 
 #: gom/gom.c:258
 #, c-format
@@ -662,14 +659,14 @@ msgid "The input '%s' is not a valid string for the locale"
 msgstr "De invoer '%s' is geen geldige karakterrij voor de locale"
 
 #: gom/gom_modify.c:126 gom/gom_modify.c:160 gom/gom_modify.c:178
-#, fuzzy, c-format
+#, c-format
 msgid "No record found for xref '%s'"
-msgstr "Geen codering gedefinieerd voor '%s'"
+msgstr "Geen record gevonden voor verwijzing '%s'"
 
 #: gom/gom_modify.c:188
 #, c-format
 msgid "Xref '%s' not part of chain"
-msgstr ""
+msgstr "Verwijzing '%s' is geen deel van de keten"
 
 #: gom/event.c:297 gom/lds_event.c:151
 #, c-format
@@ -687,51 +684,29 @@ msgstr "Interne fout: verkeerde ouder tag voor evt->family"
 
 #: bin/gedcom-check.c:121
 msgid "Parse succeeded\n"
-msgstr ""
+msgstr "Verwerking gelukt\\n"
 
 #: bin/gedcom-check.c:124 bin/gedcom-sanitize.c:188
 msgid "Parse failed\n"
-msgstr ""
+msgstr "Verwerking niet gelukt\\n"
 
 #: bin/gedcom-check.c:126
 msgid "  Note: Compatibility mode was not enabled\n"
-msgstr ""
+msgstr "  Nota: Compatibiliteitsmode was niet aangezet\\n"
 
 #: bin/gedcom-check.c:127
 msgid "  You could try the check again using the '-c' option\n"
-msgstr ""
+msgstr "  Je zou de controle opnieuw kunnen proberen met de '-c' optie\\n"
 
 #: bin/gedcom-sanitize.c:173
 #, c-format
 msgid "Parse succeeded, now writing file '%s'\n"
-msgstr ""
+msgstr "Verwerking gelukt, nu wordt file '%s' geschreven\\n"
 
 #: bin/gedcom-sanitize.c:181
 msgid "Write succeeded\n"
-msgstr ""
+msgstr "Schrijven gelukt\\n"
 
 #: bin/gedcom-sanitize.c:184
 msgid "Write failed\n"
-msgstr ""
-
-#~ msgid "One-byte encoding"
-#~ msgstr "Eén-byte codering"
-
-#~ msgid "Two-byte encoding, high-low"
-#~ msgstr "Twee-byte codering, hoog-laag"
-
-#~ msgid "Two-byte encoding, high-low, with BOM"
-#~ msgstr "Twee-byte codering, hoog-laag, met byte orde teken"
-
-#~ msgid "Two-byte encoding, low-high"
-#~ msgstr "Twee-byte codering, laag-hoog"
-
-#~ msgid "Two-byte encoding, low-high, with BOM"
-#~ msgstr "Twee-byte codering, laag-hoog, met byte orde teken"
-
-#, fuzzy
-#~ msgid "UTF-8 encoding, with BOM"
-#~ msgstr "Twee-byte codering, laag-hoog, met byte orde teken"
-
-#~ msgid "Enabling compatibility with 'Lifelines'"
-#~ msgstr "Compatibiliteit met 'Lifelines' wordt aangezet"
+msgstr "Schrijven niet gelukt\\n"
