@@ -30,12 +30,15 @@
 #include "gedcom.h"
 #include "encoding.h"
 #include "hash.h"
+#include "utf8.h"
 
 #define ENCODING_CONF_FILE "gedcom.enc"
 #define GCONV_SEARCH_PATH "GCONV_PATH"
 #define MAXBUF 255
 
+/*
 static iconv_t cd_to_internal = (iconv_t) -1;
+*/
 static ENCODING the_enc = ONE_BYTE;
 static hash_t *encodings = NULL;
 
@@ -245,77 +248,44 @@ void set_encoding_width(ENCODING enc)
   the_enc = enc;
 }
 
-static char conv_buf[MAXGEDCLINELEN * 2];
-static size_t conv_buf_size;
+static convert_t to_int = NULL;
+static char* error_value = "<error>";
 
 int open_conv_to_internal(const char* fromcode)
 {
-  iconv_t new_cd_to_internal;
+  convert_t new_to_int = NULL;
   const char *encoding = get_encoding(fromcode, the_enc);
-  if (encoding == NULL) {
-    new_cd_to_internal = (iconv_t) -1;
-  }
-  else {
-    memset(conv_buf, 0, sizeof(conv_buf));
-    conv_buf_size = 0;
-    new_cd_to_internal = iconv_open(INTERNAL_ENCODING, encoding);
-    if (new_cd_to_internal == (iconv_t) -1) {
+  
+  if (encoding != NULL) {
+    new_to_int = initialize_utf8_conversion(encoding, 1);
+    if (new_to_int == NULL) {
       gedcom_error(_("Error opening conversion context for encoding %s: %s"),
 		   encoding, strerror(errno));
     }
   }
-  if (new_cd_to_internal != (iconv_t) -1) {
-    if (cd_to_internal != (iconv_t) -1)
-      iconv_close(cd_to_internal);
-    cd_to_internal = new_cd_to_internal;
+
+  if (new_to_int != NULL) {
+    if (to_int != NULL)
+      cleanup_utf8_conversion(to_int);
+    to_int = new_to_int;
   }
-  return (new_cd_to_internal != (iconv_t) -1);  
+
+  return (new_to_int != NULL);
 }
 
 void close_conv_to_internal()
 {
-  if (cd_to_internal != (iconv_t) -1) {
-    if (iconv_close(cd_to_internal) != 0) {
-      gedcom_warning(_("Error closing conversion context: %s"),
-		     strerror(errno));
-    }
-    cd_to_internal = (iconv_t) -1;
+  if (to_int != NULL) {
+    cleanup_utf8_conversion(to_int);
+    to_int = NULL;
   }
 }
 
-char* to_internal(const char* str, size_t len,
-		  char* output_buffer, size_t out_len)
+
+char* to_internal(const char* str, size_t len, struct conv_buffer* output_buf)
 {
-  size_t res;
-  size_t outsize = out_len;
-  char *wrptr = output_buffer;
-  ICONV_CONST char *rdptr = (ICONV_CONST char*) conv_buf;
-  char *retval = output_buffer;
-  /* set up input buffer (concatenate to what was left previous time) */
-  /* can't use strcpy, because possible null bytes from unicode */
-  memcpy(conv_buf + conv_buf_size, str, len);
-  conv_buf_size += len;
-  /* set up output buffer (empty it) */
-  memset(output_buffer, 0, out_len);
-  /* do the conversion */
-  res = iconv(cd_to_internal, &rdptr, &conv_buf_size, &wrptr, &outsize);
-  if (res == (size_t)-1) {
-    if (errno == EILSEQ) {
-      /* restart from an empty state and return NULL */
-      iconv(cd_to_internal, NULL, NULL, NULL, NULL);
-      retval = NULL;
-      rdptr++;
-      conv_buf_size--;
-    }
-    else if (errno == EINVAL) {
-      /* Do nothing, leave it to next iteration */
-    }
-    else {
-      gedcom_error(_("Error in converting characters: %s"), strerror(errno));
-    }
-  }
-  /* then shift what is left over to the head of the input buffer */
-  memmove(conv_buf, rdptr, conv_buf_size);
-  memset(conv_buf + conv_buf_size, 0, sizeof(conv_buf) - conv_buf_size);
-  return retval;
+  if (conversion_set_output_buffer(to_int, output_buf))
+    return convert_to_utf8_incremental(to_int, str, len);
+  else
+    return error_value;
 }
