@@ -1,5 +1,5 @@
 --- configure.orig	Fri May 24 21:23:09 2002
-+++ configure	Fri Oct  4 20:36:35 2002
++++ configure	Sat Oct  5 09:41:32 2002
 @@ -302,10 +302,10 @@
  mandir='${prefix}/man'
  
@@ -10,8 +10,8 @@
 -PACKAGE_STRING='libiconv 1.8'
 +PACKAGE_NAME='libiconv-gedcom'
 +PACKAGE_TARNAME='libiconv-gedcom'
-+PACKAGE_VERSION='1.8.1'
-+PACKAGE_STRING='libiconv-gedcom 1.8.1'
++PACKAGE_VERSION='1.8.2'
++PACKAGE_STRING='libiconv-gedcom 1.8.2'
  PACKAGE_BUGREPORT=''
  
  ac_prev=
