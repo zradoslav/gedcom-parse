@@ -109,9 +109,6 @@ void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent,
 		 Gedcom_ctxt self, Gedcom_val parsed_value);
 void set_xref_type(struct xref_value *xr, const char* str);
 
-struct date_value* dup_date(struct date_value dv);
-struct age_value*  dup_age(struct age_value age);
-
 /* Doubly-linked list, but last rec->next is NULL (doesn't go to first rec) */
 #define LINK_CHAIN_ELT(STRUCTTYPE, FIRSTVAL, VAL)                             \
   {                                                                           \
@@ -267,7 +264,7 @@ void NULL_DESTROY(void* anything);
         = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                       \
       if (obj) {                                                              \
         struct date_value dv = GEDCOM_DATE(parsed_value);                     \
-        obj->FIELD = dup_date(dv);                                            \
+        obj->FIELD = gedcom_new_date_value(&dv);                              \
         if (! obj->FIELD)                                                     \
 	  MEMORY_ERROR;                                                       \
         else                                                                  \
@@ -288,7 +285,7 @@ void NULL_DESTROY(void* anything);
         = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                       \
       if (obj) {                                                              \
         struct age_value age = GEDCOM_AGE(parsed_value);                      \
-        obj->FIELD = dup_age(age);                                            \
+        obj->FIELD = gedcom_new_age_value(&age);                              \
         if (! obj->FIELD)                                                     \
 	  MEMORY_ERROR;                                                       \
         else                                                                  \

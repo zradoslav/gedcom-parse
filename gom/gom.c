@@ -242,27 +242,3 @@ void set_xref_type(struct xref_value* xr, const char *str)
   else
     xr->type = XREF_ANY;
 }
-
-struct date_value* dup_date(struct date_value dv)
-{
-  struct date_value* dv_ptr;
-  dv_ptr = (struct date_value*) malloc(sizeof(struct date_value));
-  if (! dv_ptr)
-    MEMORY_ERROR;
-  else {
-    memcpy(dv_ptr, &dv, sizeof(struct date_value));
-  }
-  return dv_ptr;
-}
-
-struct age_value* dup_age(struct age_value age)
-{
-  struct age_value* age_ptr;
-  age_ptr = (struct age_value*) malloc(sizeof(struct age_value));
-  if (! age_ptr)
-    MEMORY_ERROR;
-  else {
-    memcpy(age_ptr, &age, sizeof(struct age_value));
-  }
-  return age_ptr;
-}

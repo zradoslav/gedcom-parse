@@ -154,14 +154,14 @@ Gedcom_ctxt sub_fam_evt_age_start(_ELT_PARAMS_)
       struct age_value age = GEDCOM_AGE(parsed_value);
       switch (ctxt->ctxt_type) {
 	case ELT_SUB_FAM_EVT_HUSB:
-	  evt->husband_age = dup_age(age);
+	  evt->husband_age = gedcom_new_age_value(&age);
 	  if (! evt->husband_age) {
 	    MEMORY_ERROR;
 	    err = 1;
 	  }
 	  break;
 	case ELT_SUB_FAM_EVT_WIFE:
-	  evt->wife_age = dup_age(age);
+	  evt->wife_age = gedcom_new_age_value(&age);
 	  if (! evt->wife_age) {
 	    MEMORY_ERROR;
 	    err = 1;
