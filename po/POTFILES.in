@@ -20,5 +20,5 @@ gom/gom.c
 gom/gom_modify.c
 gom/event.c
 gom/lds_event.c
-
+bin/gedcom-check.c
 
