@@ -1,5 +1,11 @@
 2001-12-02  Peter Verthez  <Peter.Verthez@advalvas.be>
 
+	* release 0.9
+
+	* gedcom.h, Makefile: Add dmalloc testability.
+
+	* all: Reset the state properly for parsing new files.
+
 	* release 0.8
 
 	* encoding.c: Specify explicitly the output buffer for to_internal:
