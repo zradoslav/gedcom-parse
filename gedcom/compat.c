@@ -30,7 +30,9 @@
 #include "gedcom.h"
 
 int compat_enabled = 1;
-int compatibility  = 0; 
+int compatibility  = 0;
+int compatibility_program = 0;
+int compatibility_version = 0;
 const char* default_charset = "";
 
 #define SUBMITTER_LINK         "@__COMPAT__SUBM__@"
@@ -38,6 +40,12 @@ const char* default_charset = "";
 #define DEFAULT_SUBMITTER_NAME "Submitter"
 #define DEFAULT_GEDCOM_VERS    "5.5"
 #define DEFAULT_GEDCOM_FORM    "LINEAGE-LINKED"
+
+enum _COMPAT_PROGRAM {
+  CP_FTREE = 1,
+  CP_LIFELINES,
+  CP_PAF
+};
 
 enum _COMPAT {
   C_FTREE = 0x01,
@@ -89,12 +97,49 @@ void gedcom_set_compat_handling(int enable_compat)
   compat_enabled = enable_compat;
 }
 
-void enable_compat_msg(const char* program_name)
+void enable_compat_msg(const char* program_name, int version)
 {
-  gedcom_warning(_("Enabling compatibility with '%s'"), program_name);
+  if (version > 0)
+    gedcom_warning(_("Enabling compatibility with '%s', version %d"),
+		   program_name, version);
+  else
+    gedcom_warning(_("Enabling compatibility with '%s'"),
+		   program_name);
 }
 
-void set_compatibility(const char* program)
+void set_compatibility_program(const char* program)
+{
+  if (compat_enabled) {
+    if (! strncmp(program, "ftree", 6)) {
+      compatibility_program = CP_FTREE;
+    }
+    else if (! strncmp(program, "LIFELINES", 9)) {
+      compatibility_program = CP_LIFELINES;
+      if (strlen(program) > 10 && program[9] = ' ')
+	set_compatibility_version(program + 10);
+    }
+    else if (! strncmp(program, "PAF", 3)) {
+      compatibility_program = CP_PAF;
+      if (strlen(program) > 4 && program[3] = ' ')
+	set_compatibility_version(program + 4);
+    }
+  }
+}
+
+void set_compatibility_version(const char* version)
+{
+  if (compat_enabled) {
+    unsigned int major=0, minor=0, patch=0;
+    int result;
+    
+    result = sscanf(version, "%u.%u.%u", &major, &minor, &patch);
+    if (result > 0) {
+      compatibility_version = major * 10000 + minor * 100 + patch;
+    }
+  }
+}
+
+void compute_compatibility()
 {
   /* Reinitialize compatibility */
   int i;
@@ -102,22 +147,23 @@ void set_compatibility(const char* program)
   compatibility = 0;
   for (i = 0; i < C_NR_OF_RULES; i++)
     compat_state[i] = 0;
-  
-  if (compat_enabled) {
-    if (! strncmp(program, "ftree", 6)) {
-      enable_compat_msg("ftree");
+
+  switch (compatibility_program) {
+    case CP_FTREE:
+      enable_compat_msg("ftree", 0);
       compatibility = C_FTREE;
-    }
-    else if (! strncmp(program, "LIFELINES", 9)) {
-      /* Matches "LIFELINES 3.0.2" */
-      enable_compat_msg("Lifelines");
+      break;
+    case CP_LIFELINES:
+      enable_compat_msg("Lifelines", 0);
       compatibility = C_LIFELINES;
       default_charset = "ANSI";
-    }
-    else if (! strncmp(program, "PAF", 4)) {
-      enable_compat_msg("Personal Ancestral File");
+      break;
+    case CP_PAF:
+      enable_compat_msg("Personal Ancestral File", 0);
       compatibility = C_PAF;
-    }
+      break;
+    default:
+      break;
   }
 }
 

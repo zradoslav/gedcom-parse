@@ -496,7 +496,7 @@ head_sub     : head_sour_sect  { OCCUR2(SOUR, 1, 1) }
 
 /* HEAD.SOUR */
 head_sour_sect : OPEN DELIM TAG_SOUR mand_line_item 
-                 { set_compatibility($4);
+                 { set_compatibility_program($4);
 		   $<ctxt>$ = start_element(ELT_HEAD_SOUR, PARENT,
 					    $1, $3, $4,
 					    GEDCOM_MAKE_STRING(val1, $4));
@@ -505,7 +505,8 @@ head_sour_sect : OPEN DELIM TAG_SOUR mand_line_item
                  head_sour_subs
                  { CHECK0 }
 		 CLOSE
-                 { end_element(ELT_HEAD_SOUR, PARENT, $<ctxt>5,
+                 { compute_compatibility();
+		   end_element(ELT_HEAD_SOUR, PARENT, $<ctxt>5,
 			       GEDCOM_MAKE_NULL(val1)); }
                ;
 
@@ -521,7 +522,8 @@ head_sour_sub : head_sour_vers_sect  { OCCUR2(VERS, 0, 1) }
               ;
 
 head_sour_vers_sect : OPEN DELIM TAG_VERS mand_line_item
-                      { $<ctxt>$ = start_element(ELT_HEAD_SOUR_VERS, PARENT,
+                      { set_compatibility_version($4);
+			$<ctxt>$ = start_element(ELT_HEAD_SOUR_VERS, PARENT,
 						 $1, $3, $4,
 						 GEDCOM_MAKE_STRING(val1, $4));
 		        START(VERS, $1, $<ctxt>$)
