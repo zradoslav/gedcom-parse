@@ -366,6 +366,9 @@ int write_events(Gedcom_write_hndl hndl, int parent, EventType evt_type,
     if (obj->type)
       result |= gedcom_write_element_str(hndl, ELT_SUB_EVT_TYPE, 0,
 					 obj_elt, obj->type);
+    if (obj->date)
+      result |= gedcom_write_element_date(hndl, ELT_SUB_EVT_DATE, 0,
+					  obj_elt, obj->date);
     if (obj->place)
       result |= write_place(hndl, obj_elt, obj->place);
     if (obj->address)
@@ -373,6 +376,9 @@ int write_events(Gedcom_write_hndl hndl, int parent, EventType evt_type,
     for (i = 0; i < 3 && obj->phone[i]; i++)
       result |= gedcom_write_element_str(hndl, ELT_SUB_PHON, 0, obj_elt,
 					 obj->phone[i]);
+    if (obj->age)
+      result |= gedcom_write_element_age(hndl, ELT_SUB_EVT_AGE, 0,
+					 obj_elt, obj->age);
     if (obj->agency)
       result |= gedcom_write_element_str(hndl, ELT_SUB_EVT_AGNC, 0,
 					 obj_elt, obj->agency);
@@ -385,6 +391,20 @@ int write_events(Gedcom_write_hndl hndl, int parent, EventType evt_type,
       result |= write_multimedia_links(hndl, obj_elt, obj->mm_link);
     if (obj->note)
       result |= write_note_subs(hndl, obj_elt, obj->note);
+    if (obj->husband_age) {
+      result |= gedcom_write_element_str(hndl, ELT_SUB_FAM_EVT_HUSB, 0,
+					 obj_elt, NULL);
+      result |= gedcom_write_element_age(hndl, ELT_SUB_FAM_EVT_AGE, 0,
+					 ELT_SUB_FAM_EVT_HUSB,
+					 obj->husband_age);
+    }
+    if (obj->wife_age) {
+      result |= gedcom_write_element_str(hndl, ELT_SUB_FAM_EVT_WIFE, 0,
+					 obj_elt, NULL);
+      result |= gedcom_write_element_age(hndl, ELT_SUB_FAM_EVT_AGE, 0,
+					 ELT_SUB_FAM_EVT_WIFE,
+					 obj->wife_age);
+    }
     if (obj->family) {
       int fam_obj_elt = get_gedcom_fam_elt(obj_elt);
       result |= gedcom_write_element_xref(hndl, fam_obj_elt, 0,

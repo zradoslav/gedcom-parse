@@ -23,6 +23,7 @@
 
 #include "gedcom_internal.h"
 #include "sdncal.h"
+#include "buffer.h"
 #include "date.h"
 
 struct date_value dv_s;
@@ -32,6 +33,14 @@ struct date_value def_date_val;
 struct date def_date;
 
 const char* curr_line_value;
+
+void cleanup_date_buffer();
+struct safe_buffer date_buffer = { NULL, 0, NULL, 0, cleanup_date_buffer };
+
+void cleanup_date_buffer()
+{
+  cleanup_buffer(&date_buffer);
+}
 
 int max_month[] = { 12,  /* CAL_GREGORIAN */
 		    12,  /* CAL_JULIAN */
@@ -128,3 +137,75 @@ struct date_value gedcom_parse_date(const char* line_value)
   return dv_s;
 }
 
+void add_date(struct date* d)
+{
+  switch (d->cal) {
+    case CAL_GREGORIAN: break;
+    case CAL_JULIAN:
+      safe_buf_append(&date_buffer, "@#DJULIAN@ "); break;
+    case CAL_HEBREW:
+      safe_buf_append(&date_buffer, "@#DHEBREW@ "); break;
+    case CAL_FRENCH_REV:
+      safe_buf_append(&date_buffer, "@#DFRENCH R@ "); break;
+    case CAL_UNKNOWN:
+      safe_buf_append(&date_buffer, "@#DUNKNOWN@ "); break;
+    default:
+      break;
+  }
+  if (d->day_str)
+    safe_buf_append(&date_buffer, "%s ", d->day_str);
+  if (d->month_str)
+    safe_buf_append(&date_buffer, "%s ", d->month_str);
+  safe_buf_append(&date_buffer, "%s", d->year_str);
+}
+
+char* gedcom_date_to_string(struct date_value* val)
+{
+  reset_buffer(&date_buffer);
+  
+  switch (val->type) {
+    case DV_NO_MODIFIER:
+      add_date(&val->date1); break;
+    case DV_BEFORE:
+      safe_buf_append(&date_buffer, "BEF ");
+      add_date(&val->date1); break;
+    case DV_AFTER:
+      safe_buf_append(&date_buffer, "AFT ");
+      add_date(&val->date1); break;
+    case DV_BETWEEN:
+      safe_buf_append(&date_buffer, "BET ");
+      add_date(&val->date1);
+      safe_buf_append(&date_buffer, " AND ");
+      add_date(&val->date2); break;
+    case DV_FROM:
+      safe_buf_append(&date_buffer, "FROM ");
+      add_date(&val->date1); break;
+    case DV_TO:
+      safe_buf_append(&date_buffer, "TO ");
+      add_date(&val->date1); break;
+    case DV_FROM_TO:
+      safe_buf_append(&date_buffer, "FROM ");
+      add_date(&val->date1);
+      safe_buf_append(&date_buffer, " TO ");
+      add_date(&val->date2); break;
+    case DV_ABOUT:
+      safe_buf_append(&date_buffer, "ABT ");
+      add_date(&val->date1); break;
+    case DV_CALCULATED:
+      safe_buf_append(&date_buffer, "CAL ");
+      add_date(&val->date1); break;
+    case DV_ESTIMATED:
+      safe_buf_append(&date_buffer, "EST ");
+      add_date(&val->date1); break;
+    case DV_INTERPRETED:
+      safe_buf_append(&date_buffer, "INT ");
+      add_date(&val->date1);
+      safe_buf_append(&date_buffer, " (%s)", val->phrase); break;
+    case DV_PHRASE:
+      safe_buf_append(&date_buffer, "(%s)", val->phrase); break;
+    default:
+      break;
+  }
+  
+  return get_buf_string(&date_buffer);
+}

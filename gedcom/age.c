@@ -27,10 +27,19 @@
 #include <errno.h>
 #include <limits.h>
 #include "gedcom_internal.h"
+#include "buffer.h"
 #include "age.h"
 
 struct age_value age_s;
 struct age_value def_age_val;
+
+void cleanup_age_buffer();
+struct safe_buffer age_buffer = { NULL, 0, NULL, 0, cleanup_age_buffer };
+
+void cleanup_age_buffer()
+{
+  cleanup_buffer(&age_buffer);
+}
 
 void copy_age(struct age_value *to, struct age_value from)
 {
@@ -130,3 +139,50 @@ struct age_value gedcom_parse_age(const char* line_value)
   return age_s;
 }
 
+char* gedcom_age_to_string(struct age_value* val)
+{
+  int num = 0;
+  reset_buffer(&age_buffer);
+
+  switch (val->mod) {
+    case AGE_LESS_THAN:
+      safe_buf_append(&age_buffer, "<"); break;
+    case AGE_GREATER_THAN:
+      safe_buf_append(&age_buffer, ">"); break;
+    default:
+      break;
+  }
+
+  switch (val->type) {
+    case AGE_UNRECOGNIZED:
+      return val->phrase; break;
+    case AGE_CHILD:
+      safe_buf_append(&age_buffer, "CHILD"); break;
+    case AGE_INFANT:
+      safe_buf_append(&age_buffer, "INFANT"); break;
+    case AGE_STILLBORN:
+      safe_buf_append(&age_buffer, "STILLBORN"); break;
+    case AGE_NUMERIC:
+      if (val->years != -1) {
+	num = 1;
+	safe_buf_append(&age_buffer, "%dy", val->years);
+      }
+      if (val->months != -1) {
+	if (num)
+	  safe_buf_append(&age_buffer, " ");
+	num = 1;
+	safe_buf_append(&age_buffer, "%dm", val->months);
+      }
+      if (val->days != -1) {
+	if (num)
+	  safe_buf_append(&age_buffer, " ");
+	num = 1;
+	safe_buf_append(&age_buffer, "%dd", val->days);
+      }
+      break;
+    default:
+      break;
+  }
+  
+  return get_buf_string(&age_buffer);
+}

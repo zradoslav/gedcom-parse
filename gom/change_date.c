@@ -122,6 +122,12 @@ int write_change_date(Gedcom_write_hndl hndl, int parent,
   if (!chan) return 1;
 
   result |= gedcom_write_element_str(hndl, ELT_SUB_CHAN, 0, parent, NULL);
+  if (chan->date)
+    result |= gedcom_write_element_date(hndl, ELT_SUB_CHAN_DATE, 0,
+					ELT_SUB_CHAN, chan->date);
+  if (chan->time)
+    result |= gedcom_write_element_str(hndl, ELT_SUB_CHAN_TIME, 0,
+				       ELT_SUB_CHAN_DATE, chan->time);
   if (chan->note)
     result |= write_note_subs(hndl, ELT_SUB_CHAN, chan->note);
   if (chan->extra)

@@ -166,16 +166,19 @@ int write_lds_events(Gedcom_write_hndl hndl, int parent, struct lds_event *lds)
 				       parent, NULL);
     if (obj->date_status)
       result |= gedcom_write_element_str(hndl, ELT_SUB_LIO_BAPL_STAT, 0,
-					 parent, obj->date_status);
+					 obj_elt, obj->date_status);
+    if (obj->date)
+      result |= gedcom_write_element_date(hndl, ELT_SUB_LIO_BAPL_DATE, 0,
+					  obj_elt, obj->date);
     if (obj->temple_code)
       result |= gedcom_write_element_str(hndl, ELT_SUB_LIO_BAPL_TEMP, 0,
-					 parent, obj->temple_code);
+					 obj_elt, obj->temple_code);
     if (obj->place_living_ordinance)
       result |= gedcom_write_element_str(hndl, ELT_SUB_LIO_BAPL_PLAC, 0,
-					 parent, obj->place_living_ordinance);
+					 obj_elt, obj->place_living_ordinance);
     if (obj->family)
       result |= gedcom_write_element_xref(hndl, ELT_SUB_LIO_SLGC_FAMC, 0,
-					  parent, obj->family);
+					  obj_elt, obj->family);
     if (obj->citation)
       result |= write_citations(hndl, obj_elt, obj->citation);
     if (obj->note)

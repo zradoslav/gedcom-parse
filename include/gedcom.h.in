@@ -515,7 +515,9 @@ void    gedcom_subscribe_to_element(Gedcom_elt elt,
 
 /* Separate value parsing functions */
 struct date_value gedcom_parse_date(const char* line_value);
+char*             gedcom_date_to_string(struct date_value* val);
 struct age_value  gedcom_parse_age(const char* line_value);
+char*             gedcom_age_to_string(struct age_value* val);
 
 /* Handling cross-references */
 struct xref_value *gedcom_get_by_xref(const char *key);
@@ -545,6 +547,13 @@ int gedcom_write_record_xref(Gedcom_write_hndl hndl,
 int gedcom_write_element_xref(Gedcom_write_hndl hndl, Gedcom_elt elt,
                               int parsed_tag, int parent_rec_or_elt,
 			      struct xref_value* val);
+
+int gedcom_write_element_date(Gedcom_write_hndl hndl,
+			      Gedcom_elt elt, int tag, int parent_rec_or_elt,
+			      struct date_value* val);
+int gedcom_write_element_age(Gedcom_write_hndl hndl,
+			     Gedcom_elt elt, int tag, int parent_rec_or_elt,
+			     struct age_value* val);
 
 int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, char* tag,
 			  char* xrefstr, char* value);

@@ -202,6 +202,10 @@ int write_header(Gedcom_write_hndl hndl)
     result |= gedcom_write_element_str(hndl, ELT_HEAD_SOUR_DATA, 0,
 				       ELT_HEAD_SOUR,
 				       gom_header.source.data.name);
+  if (gom_header.source.data.date)
+    result |= gedcom_write_element_date(hndl, ELT_HEAD_SOUR_DATA_DATE, 0,
+					ELT_HEAD_SOUR_DATA,
+					gom_header.source.data.date);
   if (gom_header.source.data.copyright)
     result |= gedcom_write_element_str(hndl, ELT_HEAD_SOUR_DATA_COPR, 0,
 				       ELT_HEAD_SOUR_DATA,
@@ -209,6 +213,12 @@ int write_header(Gedcom_write_hndl hndl)
   if (gom_header.destination)
     result |= gedcom_write_element_str(hndl, ELT_HEAD_DEST, 0, REC_HEAD,
 				       gom_header.destination);
+  if (gom_header.date)
+    result |= gedcom_write_element_date(hndl, ELT_HEAD_DATE, 0, REC_HEAD,
+					gom_header.date);
+  if (gom_header.time)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_DATE_TIME, 0,
+				       ELT_HEAD_DATE, gom_header.time);
   if (gom_header.submitter)
     result |= gedcom_write_element_xref(hndl, ELT_HEAD_SUBM, 0, REC_HEAD,
 					gom_header.submitter);

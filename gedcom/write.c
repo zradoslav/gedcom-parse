@@ -420,6 +420,28 @@ int gedcom_write_element_xref(Gedcom_write_hndl hndl,
   return result;
 }
 
+int gedcom_write_element_date(Gedcom_write_hndl hndl,
+			      Gedcom_elt elt, int tag, int parent_rec_or_elt,
+			      struct date_value* val)
+{
+  int result = 1;
+  if (check_type(elt, (val ? GV_DATE_VALUE : GV_NULL)))
+    result = _gedcom_write_val(hndl, elt, tag, parent_rec_or_elt, NULL,
+			       gedcom_date_to_string(val));
+  return result;
+}
+
+int gedcom_write_element_age(Gedcom_write_hndl hndl,
+			     Gedcom_elt elt, int tag, int parent_rec_or_elt,
+			     struct age_value* val)
+{
+  int result = 1;
+  if (check_type(elt, (val ? GV_AGE_VALUE : GV_NULL)))
+    result = _gedcom_write_val(hndl, elt, tag, parent_rec_or_elt, NULL,
+			       gedcom_age_to_string(val));
+  return result;
+}
+
 int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, char* tag,
 			  char* xrefstr, char* value)
 {

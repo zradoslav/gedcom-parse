@@ -106,6 +106,9 @@ int write_source_events(Gedcom_write_hndl hndl, int parent,
   for (obj = evt; obj; obj = obj->next) {
     result |= gedcom_write_element_str(hndl, ELT_SOUR_DATA_EVEN, 0,
 				       parent, obj->recorded_events);
+    if (obj->date_period)
+      result |= gedcom_write_element_date(hndl, ELT_SOUR_DATA_EVEN_DATE, 0,
+					 ELT_SOUR_DATA_EVEN, obj->date_period);
     if (obj->jurisdiction)
       result |= gedcom_write_element_str(hndl, ELT_SOUR_DATA_EVEN_PLAC, 0,
 					ELT_SOUR_DATA_EVEN, obj->jurisdiction);

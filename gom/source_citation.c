@@ -250,6 +250,9 @@ int write_citations(Gedcom_write_hndl hndl, int parent,
       if (obj->date || obj->text)
 	result |= gedcom_write_element_str(hndl, ELT_SUB_SOUR_DATA, 0,
 					   ELT_SUB_SOUR, NULL);
+      if (obj->date)
+	result |= gedcom_write_element_date(hndl, ELT_SUB_SOUR_DATA_DATE, 0,
+					    ELT_SUB_SOUR_DATA, obj->date);
       if (obj->text)
 	result |= write_texts(hndl, ELT_SUB_SOUR_DATA, obj->text);
       if (obj->quality)
