@@ -1,4 +1,11 @@
+2002-12-22  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom-config.in: New file.
+
 2002-12-21  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* libutf8 is changed to a shared library, and has now its own
+	package (see further ChangeLog in that directory).
 
 	* gedcom/date.c, gedcom/gedcom_date.*: New functions for handling
 	date values.
