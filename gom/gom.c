@@ -242,24 +242,3 @@ struct age_value* dup_age(struct age_value age)
   }
   return age_ptr;
 }
-
-char* gom_get_string(char** data)
-{
-  return *data;
-}
-
-char* gom_set_string(char** data, char* newvalue)
-{
-  char* result = NULL;
-  char* newptr = strdup(newvalue);
-  
-  if (!newptr)
-    MEMORY_ERROR;
-  else {
-    if (*data) free(*data);
-    *data = newptr;
-    result = *data;
-  }
-  
-  return result;
-}
