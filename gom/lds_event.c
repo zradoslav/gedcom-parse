@@ -141,6 +141,8 @@ static int get_gedcom_elt(int parsed_tag)
       obj_elt = ELT_SUB_LIO_BAPL; break;
     case TAG_SLGC:
       obj_elt = ELT_SUB_LIO_SLGC; break;
+    case TAG_SLGS:
+      obj_elt = ELT_SUB_LSS_SLGS; break;
     default:
       gedcom_warning(_("Internal error: unknown evt tag %d"), parsed_tag);
   }
@@ -156,19 +158,28 @@ int write_lds_events(Gedcom_write_hndl hndl, int parent, struct lds_event *lds)
 
   for (obj = lds; obj; obj = obj->next) {
     int obj_elt = get_gedcom_elt(obj->event);
+    int lss = (obj_elt == ELT_SUB_LSS_SLGS);
     result |= gedcom_write_element_str(hndl, obj_elt, obj->event,
 				       parent, NULL);
     if (obj->date_status)
-      result |= gedcom_write_element_str(hndl, ELT_SUB_LIO_BAPL_STAT, 0,
+      result |= gedcom_write_element_str(hndl,
+					 (lss ? ELT_SUB_LSS_SLGS_STAT :
+					  ELT_SUB_LIO_BAPL_STAT), 0,
 					 obj_elt, obj->date_status);
     if (obj->date)
-      result |= gedcom_write_element_date(hndl, ELT_SUB_LIO_BAPL_DATE, 0,
+      result |= gedcom_write_element_date(hndl,
+					  (lss ? ELT_SUB_LSS_SLGS_DATE :
+					   ELT_SUB_LIO_BAPL_DATE), 0,
 					  obj_elt, obj->date);
     if (obj->temple_code)
-      result |= gedcom_write_element_str(hndl, ELT_SUB_LIO_BAPL_TEMP, 0,
+      result |= gedcom_write_element_str(hndl,
+					 (lss ? ELT_SUB_LSS_SLGS_TEMP :
+					  ELT_SUB_LIO_BAPL_TEMP), 0,
 					 obj_elt, obj->temple_code);
     if (obj->place_living_ordinance)
-      result |= gedcom_write_element_str(hndl, ELT_SUB_LIO_BAPL_PLAC, 0,
+      result |= gedcom_write_element_str(hndl,
+					 (lss ? ELT_SUB_LSS_SLGS_PLAC :
+					  ELT_SUB_LIO_BAPL_PLAC), 0,
 					 obj_elt, obj->place_living_ordinance);
     if (obj->family)
       result |= gedcom_write_element_xref(hndl, ELT_SUB_LIO_SLGC_FAMC, 0,
