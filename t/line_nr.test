@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$srcdir/src/test_script -2 line_nr.ged line_nr 1

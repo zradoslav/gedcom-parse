@@ -1,0 +1,19 @@
+
+=== Parsing file line_nr.ged
+Header start
+== 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
+Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+ERROR: Error on line 4: Missing pointer
+
+=== Total conversion failures: 0
+
+=== Parsing file line_nr.ged
+Header start
+== 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
+Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+ERROR: Error on line 4: Missing pointer
+
+=== Total conversion failures: 0
+Parse failed
