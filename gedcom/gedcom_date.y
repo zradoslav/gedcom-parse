@@ -24,6 +24,7 @@
 %{
 #include <stdlib.h>
 #include "date.h"
+#include "compat.h"
 
 int _get_day_num(const char* input);
 int _get_year_num(Year_type ytype, const char* input1, const char* input2);
@@ -106,68 +107,68 @@ int _get_year_num(Year_type ytype, const char* input1, const char* input2);
 %%
 
 date_value   : date           { make_date_value(DV_NO_MODIFIER,
-						$1, def_date, ""); }
+						&$1, &def_date, ""); }
              | date_period    
              | date_range
              | date_approx
              | date_interpr
              | date_phrase    { make_date_value(DV_PHRASE,
-					        def_date, def_date, $1); }
+					        &def_date, &def_date, $1); }
              | /* empty */
                {
 		 /* If empty string: return empty string in 'phrase'
                     member as fallback */
 		 /* Note: this can only happen in compatibility mode */
 		 make_date_value(DV_PHRASE,
-				 def_date, def_date, curr_line_value);
+				 &def_date, &def_date, curr_line_value);
 	       }
              | error { /* On error: put entire string in 'phrase' member
 			  as fallback */
 	               make_date_value(DV_PHRASE,
-				       def_date, def_date, curr_line_value);
+				       &def_date, &def_date, curr_line_value);
 	             }
              ;
 
-date         : ESC_DATE_GREG date_greg { copy_date(&$$, date_s);
+date         : ESC_DATE_GREG date_greg { copy_date(&$$, &date_s);
                                          $$.cal = CAL_GREGORIAN; }
-             | ESC_DATE_JULN date_juln { copy_date(&$$, date_s);
+             | ESC_DATE_JULN date_juln { copy_date(&$$, &date_s);
                                          $$.cal = CAL_JULIAN;  }
-             | ESC_DATE_HEBR date_hebr { copy_date(&$$, date_s);
+             | ESC_DATE_HEBR date_hebr { copy_date(&$$, &date_s);
                                          $$.cal = CAL_HEBREW;  }
-             | ESC_DATE_FREN date_fren { copy_date(&$$, date_s);
+             | ESC_DATE_FREN date_fren { copy_date(&$$, &date_s);
                                          $$.cal = CAL_FRENCH_REV;  }
-             | date_greg               { copy_date(&$$, date_s);
+             | date_greg               { copy_date(&$$, &date_s);
                                          $$.cal = CAL_GREGORIAN;  }
              ;
 
 date_period  : MOD_FROM date   { make_date_value(DV_FROM,
-						 $2, def_date, ""); }
+						 &$2, &def_date, ""); }
              | MOD_TO date     { make_date_value(DV_TO,
-						 $2, def_date, ""); }
-             | MOD_FROM date   { copy_date(&$<date>$, $2); }
+						 &$2, &def_date, ""); }
+             | MOD_FROM date   { copy_date(&$<date>$, &$2); }
 	       MOD_TO date
-                      { make_date_value(DV_FROM_TO, $<date>3, $5, ""); }
+                      { make_date_value(DV_FROM_TO, &$<date>3, &$5, ""); }
              ;
 
 date_range   : MOD_BEF date    { make_date_value(DV_BEFORE,
-						 $2, def_date, ""); }
+						 &$2, &def_date, ""); }
              | MOD_AFT date    { make_date_value(DV_AFTER,
-						 $2, def_date, ""); }
-             | MOD_BET date    { copy_date(&$<date>$, $2); }
+						 &$2, &def_date, ""); }
+             | MOD_BET date    { copy_date(&$<date>$, &$2); }
 	       MOD_AND date
-                      { make_date_value(DV_BETWEEN, $<date>3, $5, ""); }
+                      { make_date_value(DV_BETWEEN, &$<date>3, &$5, ""); }
              ;
 
 date_approx  : MOD_ABT date    { make_date_value(DV_ABOUT,
-						 $2, def_date, ""); }
+						 &$2, &def_date, ""); }
              | MOD_CAL date    { make_date_value(DV_CALCULATED,
-						 $2, def_date, ""); }
+						 &$2, &def_date, ""); }
              | MOD_EST date    { make_date_value(DV_ESTIMATED,
-						 $2, def_date, ""); }
+						 &$2, &def_date, ""); }
              ;
 
 date_interpr : MOD_INT date date_phrase
-                 { make_date_value(DV_INTERPRETED, $2, def_date, $3); }
+                 { make_date_value(DV_INTERPRETED, &$2, &def_date, $3); }
              ;
 
 date_phrase  : OPEN TEXT CLOSE { $$ = $2; }
@@ -305,8 +306,8 @@ year_greg    : NUMBER
 		 }
              | NUMBER SLASH NUMBER
                  { int y = _get_year_num(YEAR_DOUBLE, $1, $3);
-		   if (y != 1) {
-		     sprintf(date_s.year_str, "%s/%s", $1, $3);
+		   if (y != -1) {
+		     sprintf(date_s.year_str, "%d/%d", y-1, y%100);
 		     date_s.year = y;
 		     date_s.year_type = YEAR_DOUBLE;
 		   }
@@ -374,8 +375,26 @@ int _get_year_num(Year_type ytype, const char* input1, const char* input2)
     }
   }
   else {
-    if (strlen(input1) + strlen(input2) + 1 <= MAX_YEAR_LEN) {
-      return atoi(input1) + 1;
+    if (strlen(input2) != 2) {
+      if (compat_mode(C_DOUBLE_DATES_4) && strlen(input2) == 4) {
+	input2 += 2;
+      }
+      else {
+	gedcom_date_error(_("Year after slash should be two digits: '%s/%s'"),
+			  input1, input2);
+	return -1;
+      }
+    }
+    if (strlen(input1) <= MAX_YEAR_LEN - 3) {
+      int year1 = atoi(input1) + 1;
+      int year2 = atoi(input2);
+      if (year1 % 100 != year2) {
+	gedcom_date_error(_("Year after slash should be following year: '%s/%s'"),
+			  input1, input2);
+	return -1;
+      }
+      else 
+	return year1;
     }
     else {
       gedcom_date_error(_("Too many characters in year '%s/%s'"),
