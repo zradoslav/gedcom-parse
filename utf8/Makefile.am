@@ -5,6 +5,7 @@
 SUBDIRS = libcharset .
 
 INCLUDES = -I $(srcdir)/libcharset
+CFLAGS   = -g -O2 -W -Wall -pedantic -Wno-long-long
 
 noinst_LTLIBRARIES = libutf8.la
 libutf8_la_SOURCES = utf8-locale.c
