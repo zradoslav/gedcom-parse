@@ -28,18 +28,22 @@ then
   srcdir=.
   options=$extra_options
 else
-  testfile=input/$file
+  testfile=$srcdir/input/$file
   options="$options $extra_options"
 fi
 
 builddir=`pwd`
-export GCONV_PATH=../ansel:$GCONV_PATH
+export GCONV_PATH=.:$GCONV_PATH
 export LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$LD_LIBRARY_PATH
-cp $builddir/../ansel/.libs/ANSI_Z39.47.so ../ansel
+ln -s $srcdir/../gedcom.enc .
+ln -s $builddir/../ansel/.libs/ANSI_Z39.47.so .
+ln -s $srcdir/../ansel/gconv-modules .
 rm -f core
 $builddir/testgedcom $options $testfile
 result=$?
-rm ../ansel/ANSI_Z39.47.so
+rm gedcom.enc
+rm ANSI_Z39.47.so
+rm gconv-modules
 if [ "$result" -eq "$expected_result" -a ! -r core ]
 then
   exit 0

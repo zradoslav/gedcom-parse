@@ -22,14 +22,15 @@ gomtest_LDFLAGS = -L ../gedcom/.libs -L ../gom/.libs -lgedcom_gom -lgedcom
 
 gomtest_static_SOURCES = gomtest.c
 gomtest_static_LDADD = ../gedcom/.libs/libgedcom.a ../gom/.libs/libgedcom_gom.a
+DMALLOC_LOG = dmalloc.log
 
-TEST_SCRIPT=test_script test_gom test_gom_static
+TEST_SCRIPT=test_script test_gom
 TESTS := $(wildcard $(srcdir)/*.test)
 
 EXTRA_DIST=$(TEST_SCRIPT) $(TESTS)
 
 all-local:
-	@rm -f testgedcom.out dmalloc.log
+	@rm -f testgedcom.out $(DMALLOC_LOG)
 
 check-% :	%.test all-local
 	@srcdir=$(srcdir); export srcdir; \
@@ -45,7 +46,7 @@ check-dmalloc-%:	%.test all-local
 	  exit; \
 	fi; \
 	srcdir=$(srcdir); export srcdir; \
-	GOM_DMALLOC_TEST=1; export GOM_DMALLOC_TEST; \
+	GOM_DMALLOC_TEST=$(DMALLOC_LOG); export GOM_DMALLOC_TEST; \
         if $(TESTS_ENVIRONMENT) ./$<; then \
 	  echo "Test succeeded"; \
 	else \
