@@ -1,3 +1,3 @@
 #!/bin/sh
 
-$srcdir/src/test_script -2 ulhbomcl.ged ulhbomcl 0
+$srcdir/src/test_script -2 ulhbomcl 0 ulhbomcl.ged

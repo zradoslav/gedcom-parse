@@ -1,3 +1,3 @@
 #!/bin/sh
 
-$srcdir/src/test_gom dates.ged dates_gom 0
+$srcdir/src/test_gom dates_gom 0 dates.ged

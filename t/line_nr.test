@@ -1,3 +1,3 @@
 #!/bin/sh
 
-$srcdir/src/test_script -2 line_nr.ged line_nr 1
+$srcdir/src/test_script -2 line_nr 1 line_nr.ged
