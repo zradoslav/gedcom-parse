@@ -26,6 +26,7 @@
 #include "output.h"
 #include "dump_gom.h"
 #include "portability.h"
+#include "string.h"
 #include <locale.h>
 #include <stdio.h>
 

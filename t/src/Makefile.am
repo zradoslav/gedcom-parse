@@ -2,8 +2,8 @@
 # $Id$
 # $Name$
 
-INCLUDES = -DPKGDATADIR=\"$(pkgdatadir)\" -I $(srcdir)/../../include \
-           -I $(srcdir)/../../utf8 -I $(srcdir)/../intl
+INCLUDES = -DPKGDATADIR=\"$(pkgdatadir)\" -I$(srcdir)/../../include \
+           -I$(srcdir)/../../utf8 -I$(srcdir)/../../intl
 CFLAGS   = -O2 @EXTRA_CFLAGS@
 
 noinst_PROGRAMS = testgedcom pathtest gomtest updatetest testintl \

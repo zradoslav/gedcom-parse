@@ -34,7 +34,7 @@ then
   options="$options -i $testfile"
 fi
 
-if [ "$encoding" == "UNICODE" ]
+if [ "$encoding" = "UNICODE" ]
 then
   options="$options -u $unicode_details"
 fi
