@@ -188,13 +188,19 @@ int  compat_mode(int flags);
 	 yyerrok;                                                             \
        }                                                                      \
      }
-#define START(PARENTTAG,PARENTCTXT)                                           \
-     { ++count_level;                                                         \
-       set_parenttag(#PARENTTAG);                                             \
-       set_parentctxt(PARENTCTXT);                                            \
+#define START1(PARENTTAG)                                                     \
+     { set_parenttag(#PARENTTAG);                                             \
+     }
+#define START2(PARENTCTXT)                                                    \
+     { set_parentctxt(PARENTCTXT);                                            \
+       ++count_level;                                                         \
        push_countarray();                                                     \
      }
-#define PARENT                                                              \
+#define START(PARENTTAG,PARENTCTXT)                                           \
+     { START1(PARENTTAG);                                                     \
+       START2(PARENTCTXT);                                                    \
+     }
+#define PARENT                                                                \
      get_parentctxt()
 #define CHK(TAG)                                                              \
      { if (!check_occurrence(TAG_##TAG)) {                                    \
@@ -2142,8 +2148,7 @@ fam_event_sect : OPEN DELIM fam_event_tag opt_value
 		   $<ctxt>$ = start_element(ELT_SUB_FAM_EVT,
 					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_NULL_OR_STRING($4));
-		   /* set the parent context separately from START here */
-		   set_parentctxt($<ctxt>$);
+		   START2($<ctxt>$);
 		 }
                  fam_event_subs
                  { CHECK0 }
@@ -2152,16 +2157,16 @@ fam_event_sect : OPEN DELIM fam_event_tag opt_value
 		 }
                ;
 
-fam_event_tag : TAG_ANUL { $$ = $1; START(ANUL, NULL) }
-              | TAG_CENS { $$ = $1; START(CENS, NULL) }
-              | TAG_DIV { $$ = $1; START(DIV, NULL) }
-              | TAG_DIVF { $$ = $1; START(DIVF, NULL) }
-              | TAG_ENGA { $$ = $1; START(ENGA, NULL) }
-              | TAG_MARR { $$ = $1; START(MARR, NULL) }
-              | TAG_MARB { $$ = $1; START(MARB, NULL) }
-              | TAG_MARC { $$ = $1; START(MARC, NULL) }
-              | TAG_MARL { $$ = $1; START(MARL, NULL) }
-              | TAG_MARS { $$ = $1; START(MARS, NULL) }
+fam_event_tag : TAG_ANUL { $$ = $1; START1(ANUL) }
+              | TAG_CENS { $$ = $1; START1(CENS) }
+              | TAG_DIV { $$ = $1; START1(DIV) }
+              | TAG_DIVF { $$ = $1; START1(DIVF) }
+              | TAG_ENGA { $$ = $1; START1(ENGA) }
+              | TAG_MARR { $$ = $1; START1(MARR) }
+              | TAG_MARB { $$ = $1; START1(MARB) }
+              | TAG_MARC { $$ = $1; START1(MARC) }
+              | TAG_MARL { $$ = $1; START1(MARL) }
+              | TAG_MARS { $$ = $1; START1(MARS) }
               ;
 
 fam_event_subs : /* empty */
@@ -2312,8 +2317,7 @@ indiv_attr_sect : OPEN DELIM indiv_attr_tag mand_line_item
                   { $<ctxt>$ = start_element(ELT_SUB_INDIV_ATTR,
 					     PARENT, $1, $3, $4,
 					     GEDCOM_MAKE_STRING($4));
-		    /* set the parent context separately from START here */
-		    set_parentctxt($<ctxt>$);
+		    START2($<ctxt>$);
 		  }
                   indiv_attr_event_subs
                   { CHECK0 }
@@ -2321,18 +2325,18 @@ indiv_attr_sect : OPEN DELIM indiv_attr_tag mand_line_item
                   { end_element(ELT_SUB_INDIV_ATTR, PARENT, $<ctxt>5, NULL);
 		  }
 
-indiv_attr_tag  : TAG_CAST { $$ = $1; START(CAST, NULL) }
-                | TAG_DSCR { $$ = $1; START(DSCR, NULL) }
-                | TAG_EDUC { $$ = $1; START(EDUC, NULL) }
-                | TAG_IDNO { $$ = $1; START(IDNO, NULL) }
-                | TAG_NATI { $$ = $1; START(NATI, NULL) }
-                | TAG_NCHI { $$ = $1; START(NCHI, NULL) }
-                | TAG_NMR  { $$ = $1; START(NMR, NULL) }
-                | TAG_OCCU { $$ = $1; START(OCCU, NULL) }
-                | TAG_PROP { $$ = $1; START(PROP, NULL) }
-                | TAG_RELI { $$ = $1; START(RELI, NULL) }
-                | TAG_SSN  { $$ = $1; START(SSN, NULL) }
-                | TAG_TITL { $$ = $1; START(TITL, NULL) }
+indiv_attr_tag  : TAG_CAST { $$ = $1; START1(CAST) }
+                | TAG_DSCR { $$ = $1; START1(DSCR) }
+                | TAG_EDUC { $$ = $1; START1(EDUC) }
+                | TAG_IDNO { $$ = $1; START1(IDNO) }
+                | TAG_NATI { $$ = $1; START1(NATI) }
+                | TAG_NCHI { $$ = $1; START1(NCHI) }
+                | TAG_NMR  { $$ = $1; START1(NMR) }
+                | TAG_OCCU { $$ = $1; START1(OCCU) }
+                | TAG_PROP { $$ = $1; START1(PROP) }
+                | TAG_RELI { $$ = $1; START1(RELI) }
+                | TAG_SSN  { $$ = $1; START1(SSN) }
+                | TAG_TITL { $$ = $1; START1(TITL) }
 
 indiv_resi_sect : OPEN DELIM TAG_RESI 
                   { $<ctxt>$ = start_element(ELT_SUB_INDIV_RESI,
@@ -2366,8 +2370,7 @@ indiv_birt_sect : OPEN DELIM indiv_birt_tag opt_value
                   { $<ctxt>$ = start_element(ELT_SUB_INDIV_BIRT,
 					     PARENT, $1, $3, $4,
 					     GEDCOM_MAKE_NULL_OR_STRING($4));
-		    /* set the parent context separately from START here */
-		    set_parentctxt($<ctxt>$);
+		    START2($<ctxt>$);
 		  }
                   indiv_birt_subs
                   { CHECK0 }
@@ -2376,8 +2379,8 @@ indiv_birt_sect : OPEN DELIM indiv_birt_tag opt_value
 		  }
                 ;
 
-indiv_birt_tag  : TAG_BIRT { $$ = $1; START(BIRT, NULL) }
-                | TAG_CHR { $$ = $1; START(CHR, NULL) }
+indiv_birt_tag  : TAG_BIRT { $$ = $1; START1(BIRT) }
+                | TAG_CHR { $$ = $1; START1(CHR) }
                 ;
 
 indiv_birt_subs : /* empty */
@@ -2407,8 +2410,7 @@ indiv_gen_sect  : OPEN DELIM indiv_gen_tag opt_value
                   { $<ctxt>$ = start_element(ELT_SUB_INDIV_GEN,
 					     PARENT, $1, $3, $4,
 					     GEDCOM_MAKE_NULL_OR_STRING($4));
-		    /* set the parent context separately from START here */
-		    set_parentctxt($<ctxt>$);
+		    START2($<ctxt>$);
 		  }
                   indiv_gen_subs
                   { CHECK0 }
@@ -2417,25 +2419,25 @@ indiv_gen_sect  : OPEN DELIM indiv_gen_tag opt_value
 		  }
                 ;
 
-indiv_gen_tag   : TAG_DEAT { $$ = $1; START(DEAT, NULL) }
-                | TAG_BURI { $$ = $1; START(BURI, NULL) }
-                | TAG_CREM { $$ = $1; START(CREM, NULL) }
-                | TAG_BAPM { $$ = $1; START(BAPM, NULL) }
-                | TAG_BARM { $$ = $1; START(BARM, NULL) }
-                | TAG_BASM { $$ = $1; START(BASM, NULL) }
-                | TAG_BLES { $$ = $1; START(BLES, NULL) }
-                | TAG_CHRA { $$ = $1; START(CHRA, NULL) }
-                | TAG_CONF { $$ = $1; START(CONF, NULL) }
-                | TAG_FCOM { $$ = $1; START(FCOM, NULL) }
-                | TAG_ORDN { $$ = $1; START(ORDN, NULL) }
-                | TAG_NATU { $$ = $1; START(NATU, NULL) }
-                | TAG_EMIG { $$ = $1; START(EMIG, NULL) }
-                | TAG_IMMI { $$ = $1; START(IMMI, NULL) }
-                | TAG_CENS { $$ = $1; START(CENS, NULL) }
-                | TAG_PROB { $$ = $1; START(PROB, NULL) }
-                | TAG_WILL { $$ = $1; START(WILL, NULL) }
-                | TAG_GRAD { $$ = $1; START(GRAD, NULL) }
-                | TAG_RETI { $$ = $1; START(RETI, NULL) }
+indiv_gen_tag   : TAG_DEAT { $$ = $1; START1(DEAT) }
+                | TAG_BURI { $$ = $1; START1(BURI) }
+                | TAG_CREM { $$ = $1; START1(CREM) }
+                | TAG_BAPM { $$ = $1; START1(BAPM) }
+                | TAG_BARM { $$ = $1; START1(BARM) }
+                | TAG_BASM { $$ = $1; START1(BASM) }
+                | TAG_BLES { $$ = $1; START1(BLES) }
+                | TAG_CHRA { $$ = $1; START1(CHRA) }
+                | TAG_CONF { $$ = $1; START1(CONF) }
+                | TAG_FCOM { $$ = $1; START1(FCOM) }
+                | TAG_ORDN { $$ = $1; START1(ORDN) }
+                | TAG_NATU { $$ = $1; START1(NATU) }
+                | TAG_EMIG { $$ = $1; START1(EMIG) }
+                | TAG_IMMI { $$ = $1; START1(IMMI) }
+                | TAG_CENS { $$ = $1; START1(CENS) }
+                | TAG_PROB { $$ = $1; START1(PROB) }
+                | TAG_WILL { $$ = $1; START1(WILL) }
+                | TAG_GRAD { $$ = $1; START1(GRAD) }
+                | TAG_RETI { $$ = $1; START1(RETI) }
                 ;
 
 indiv_gen_subs  : /* empty */
@@ -2523,8 +2525,7 @@ lio_bapl_sect : OPEN DELIM lio_bapl_tag
                 { $<ctxt>$ = start_element(ELT_SUB_LIO_BAPL,
 					   PARENT, $1, $3, NULL,
 					   GEDCOM_MAKE_NULL());
-		  /* set the parent context separately from START here */
-		  set_parentctxt($<ctxt>$);
+		  START2($<ctxt>$);
 		}
                 lio_bapl_subs
                 { CHECK0 }
@@ -2533,9 +2534,9 @@ lio_bapl_sect : OPEN DELIM lio_bapl_tag
 		}
               ;
 
-lio_bapl_tag  : TAG_BAPL { $$ = $1; START(BAPL, NULL) }
-              | TAG_CONL { $$ = $1; START(CONL, NULL) }
-              | TAG_ENDL { $$ = $1; START(ENDL, NULL) }
+lio_bapl_tag  : TAG_BAPL { $$ = $1; START1(BAPL) }
+              | TAG_CONL { $$ = $1; START1(CONL) }
+              | TAG_ENDL { $$ = $1; START1(ENDL) }
               ;
 
 lio_bapl_subs : /* empty */
@@ -3600,12 +3601,12 @@ void push_countarray()
 
 void set_parenttag(char* tag)
 {
-  strncpy(tag_stack[count_level], tag, MAXSTDTAGLEN+1);
+  strncpy(tag_stack[count_level+1], tag, MAXSTDTAGLEN+1);
 }
 
 void set_parentctxt(Gedcom_ctxt ctxt)
 {
-  ctxt_stack[count_level] = ctxt;
+  ctxt_stack[count_level+1] = ctxt;
 }
 
 char* get_parenttag()
