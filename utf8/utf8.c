@@ -9,7 +9,7 @@
 /* $Id$ */
 /* $Name$ */
 
-#include "utf8.h"
+#include "utf8tools.h"
 
 int is_utf8_string(const char* str)
 {

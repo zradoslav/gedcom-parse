@@ -9,7 +9,7 @@
 /* $Id$ */
 /* $Name$ */
 
-#include "utf8.h"
+#include "utf8tools.h"
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>

@@ -7,7 +7,8 @@ SUBDIRS = @LCS_SUBDIRS@ .
 INCLUDES = @LCS_INCLUDES@
 CFLAGS   = -O2 -W -Wall -pedantic -Wno-long-long @EXTRA_CFLAGS@
 
-noinst_LTLIBRARIES = libutf8.la
-libutf8_la_SOURCES = utf8-locale.c utf8.c utf8-convert.c
-libutf8_la_LIBADD  = @LCS_LIBADD@ $(LIBICONV)
-noinst_HEADERS = utf8.h
+lib_LTLIBRARIES = libutf8tools.la
+libutf8tools_la_LDFLAGS = -export-dynamic -version-info $(LIBVERSION)
+libutf8tools_la_SOURCES = utf8-locale.c utf8.c utf8-convert.c
+libutf8tools_la_LIBADD  = @LCS_LIBADD@ $(LIBICONV)
+include_HEADERS = utf8tools.h
