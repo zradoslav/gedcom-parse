@@ -2,7 +2,7 @@
 # $Id$
 # $Name$
 
-EXTRA_DIST = index.html usage.html parser.html
+EXTRA_DIST = index.html usage.html parser.html interface.html links.html
 VERSIONED_FILES = index.html
 
 dist-hook:
