@@ -111,9 +111,9 @@ int gedcom_parse_file(char* file_name)
   int result = 1;
   FILE* file;
   
+  char *save_locale  = setlocale(LC_ALL, NULL);
   char *save_textdom = textdomain(NULL);
-  setlocale(LC_ALL, "");   /* In fact only necessary if main program doesn't
-			      do this */
+  setlocale(LC_ALL, "");
   bindtextdomain(PACKAGE, LOCALEDIR);
   bind_textdomain_codeset(PACKAGE, INTERNAL_ENCODING);
   textdomain(PACKAGE);
@@ -139,6 +139,7 @@ int gedcom_parse_file(char* file_name)
   }
 
   textdomain(save_textdom);
+  setlocale(LC_ALL, save_locale);
   return result;
 }
 
