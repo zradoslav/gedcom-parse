@@ -2,7 +2,7 @@
 # $Id$
 # $Name$
 
-INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include
+INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include -I $(srcdir)/../utf8
 CFLAGS   = -g -O2 -W -Wall -Wno-unused-parameter -pedantic
 
 lib_LTLIBRARIES = libgedcom_gom.la
@@ -30,7 +30,8 @@ libgedcom_gom_la_SOURCES = gom.c \
 		    	   association.c \
 			   source_event.c \
 			   source_description.c \
-		  	   user_rec.c
+		  	   user_rec.c \
+			   gom_modify.c
 noinst_HEADERS = header.h \
 		 submission.h \
 		 submitter.h \
@@ -58,3 +59,4 @@ noinst_HEADERS = header.h \
 		 gom_internal.h
 
 libgedcom_gom_la_LDFLAGS = -version-info $(LIBVERSION)
+libgedcom_gom_la_LIBADD  = ../utf8/libutf8.la
