@@ -684,29 +684,29 @@ msgstr "Interne fout: verkeerde ouder tag voor evt->family"
 
 #: bin/gedcom-check.c:121
 msgid "Parse succeeded\n"
-msgstr "Verwerking gelukt\\n"
+msgstr "Verwerking gelukt\n"
 
 #: bin/gedcom-check.c:124 bin/gedcom-sanitize.c:188
 msgid "Parse failed\n"
-msgstr "Verwerking niet gelukt\\n"
+msgstr "Verwerking niet gelukt\n"
 
 #: bin/gedcom-check.c:126
 msgid "  Note: Compatibility mode was not enabled\n"
-msgstr "  Nota: Compatibiliteitsmode was niet aangezet\\n"
+msgstr "  Nota: Compatibiliteitsmode was niet aangezet\n"
 
 #: bin/gedcom-check.c:127
 msgid "  You could try the check again using the '-c' option\n"
-msgstr "  Je zou de controle opnieuw kunnen proberen met de '-c' optie\\n"
+msgstr "  Je zou de controle opnieuw kunnen proberen met de '-c' optie\n"
 
 #: bin/gedcom-sanitize.c:173
 #, c-format
 msgid "Parse succeeded, now writing file '%s'\n"
-msgstr "Verwerking gelukt, nu wordt file '%s' geschreven\\n"
+msgstr "Verwerking gelukt, nu wordt file '%s' geschreven\n"
 
 #: bin/gedcom-sanitize.c:181
 msgid "Write succeeded\n"
-msgstr "Schrijven gelukt\\n"
+msgstr "Schrijven gelukt\n"
 
 #: bin/gedcom-sanitize.c:184
 msgid "Write failed\n"
-msgstr "Schrijven niet gelukt\\n"
+msgstr "Schrijven niet gelukt\n"
