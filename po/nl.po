@@ -198,9 +198,11 @@ msgstr "Verwijzing %s gedefinieerd op lijn %d is nergens gebruikt"
 #: gedcom/xref.c:139
 #, c-format
 msgid "Cross-reference %s previously defined as pointer to %s, on line %d"
-msgstr "Verwijzing %s is voorheen gedefinieerd als een verwijzing naar %s, op lijn %d"
+msgstr ""
+"Verwijzing %s is voorheen gedefinieerd als een verwijzing naar %s, op lijn %d"
 
 #: gedcom/xref.c:149
 #, c-format
 msgid "Cross-reference %s previously used as pointer to %s, on line %d"
-msgstr "Verwijzing %s is voorheen gebruikt als een verwijzing naar %s, op lijn %d"
+msgstr ""
+"Verwijzing %s is voorheen gebruikt als een verwijzing naar %s, op lijn %d"
