@@ -122,6 +122,7 @@
 
 %{
 #include "gedcom.h"
+#include "multilex.h"
 
 int  count_level    = 0;
 int  fail           = 0;
@@ -129,7 +130,7 @@ int  compat_enabled = 1;
 int  gedcom_high_level_debug = 0; 
 int  compatibility  = 0; 
 MECHANISM error_mechanism=IMMED_FAIL;
-char string_buf[MAXGEDCLINELEN+1];
+char string_buf[MAXGEDCLINELEN*4+1];
 char *string_buf_ptr;
 
 enum _COMPAT {
@@ -2109,10 +2110,15 @@ opt_line_item : /* empty */ { }
               | DELIM line_item { }
               ;
 
-line_item   : anychar  { CLEAR_BUFFER(string_buf);
+line_item   : anychar  { int i;
+		         CLEAR_BUFFER(string_buf);
                          string_buf_ptr = string_buf;
 			 /* The following also takes care of '@@' */
-			 *string_buf_ptr++ = $1[0];
+			 if (!strncmp($1, "@@", 3))
+			   *string_buf_ptr++ = '@';
+			 else
+			   for (i=0; i < strlen($1); i++)
+			     *string_buf_ptr++ = $1[i];
 			 $$ = string_buf;
                        }
             | ESCAPE   { CLEAR_BUFFER(string_buf);
@@ -2126,8 +2132,13 @@ line_item   : anychar  { CLEAR_BUFFER(string_buf);
 		      YYERROR;
 		    }
 		    else {
+		      int i;
 		      /* The following also takes care of '@@' */
-		      *string_buf_ptr++ = $2[0];
+		      if (!strncmp($2, "@@", 3))
+			*string_buf_ptr++ = '@';
+		      else
+			for (i=0; i < strlen($2); i++)
+			  *string_buf_ptr++ = $2[i];
 		      $$ = string_buf;
 		    }
 		  }
@@ -2436,3 +2447,4 @@ int compat_mode(int compat_flags)
 {
   return (compat_flags & compatibility);
 }
+

@@ -2,6 +2,7 @@
 /* $Name$ */
 
 #include "gedcom.h"
+#include "multilex.h"
 
 void show_help ()
 {
@@ -15,65 +16,6 @@ void show_help ()
   printf("  -fn   No fail on errors\n");
   printf("  -dg   Debug setting: only libgedcom debug messages\n");
   printf("  -da   Debug setting: libgedcom + yacc debug messages\n");
-}
-
-int determine_encoding(FILE* f)
-{
-  char first[2];
-
-  fread(first, 1, 2, f);
-  if ((first[0] == '0') && (first[1] == ' ')) {
-    gedcom_warning("One-byte encoding");
-    fseek(f, 0, 0);
-    return ONE_BYTE;
-  }
-  else if ((first[0] == '\0') && (first[1] == '0'))
-  {
-    gedcom_warning("Two-byte encoding, high-low");
-    fseek(f, 0, 0);
-    return TWO_BYTE_HILO;
-  }
-  else if ((first[0] == '\xFE') && (first[1] == '\xFF'))
-  {
-    gedcom_warning("Two-byte encoding, high-low, with BOM");
-    return TWO_BYTE_HILO;
-  }
-  else if ((first[0] == '0') && (first[1] == '\0'))
-  {
-    gedcom_warning("Two-byte encoding, low-high");
-    fseek(f, 0, 0);
-    return TWO_BYTE_LOHI;
-  }
-  else if ((first[0] == '\xFF') && (first[1] == '\xFE'))
-  {
-    gedcom_warning("Two-byte encoding, low-high, with BOM");
-    return TWO_BYTE_LOHI;
-  }
-  else {
-    gedcom_warning("Unknown encoding, falling back to one-byte");
-    fseek(f, 0, 0);
-    return ONE_BYTE;
-  }
-}
-
-int gedcom_xxx_parse(char* file_name)
-{
-  ENCODING enc;
-  FILE* file = fopen (file_name, "r");
-  if (!file) {
-    printf("Could not open file '%s'\n", file_name);
-    exit(1);
-  }
-  enc = determine_encoding(file);
-
-  if (enc == ONE_BYTE) {
-    gedcom_in = file;
-    return gedcom_parse();
-  }
-  else {
-    printf("No parser yet for encoding\n");
-    exit(1);
-  }
 }
 
 int main(int argc, char* argv[])
@@ -132,32 +74,4 @@ int main(int argc, char* argv[])
     printf("Parse failed\n");
     return 1;
   }  
-}
-
-int gedcom_warning(char* s, ...)
-{
-  int res;
-  va_list ap;
-
-  va_start(ap, s);
-  fprintf(stderr, "Warning on line %d: ", line_no);
-  res = vfprintf(stderr, s, ap);
-  fprintf(stderr, "\n");
-  va_end(ap);
-  
-  return res;
-}
-
-int gedcom_error(char* s, ...)
-{
-  int res;
-  va_list ap;
-
-  va_start(ap, s);
-  fprintf(stderr, "Error on line %d: ", line_no);
-  res = vfprintf(stderr, s, ap);
-  fprintf(stderr, "\n");
-  va_end(ap);
-  
-  return res;
 }
