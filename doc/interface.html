@@ -2312,6 +2312,9 @@ the value    that is returned by <code>GEDCOM_STRING(val)</code> is always the s
     </tbody>               
   </table>
        <br>
+The following function creates a new <code>date_value</code> struct and initializes it properly, or copies an existing date value:
+<blockquote><code>struct date_value* <b>gedcom_new_date_value</b> (struct date_value* copy_from);<br></code></blockquote>
+<code></code>If the parameter <code>copy_from</code> is <code>NULL</code>, a new value is created and given initial values. &nbsp;If it is non-<code>NULL</code>, the value is copied into a new date value.<br>
                    
   <h3><a name="date"></a>struct date<br>
        </h3>
@@ -2415,10 +2418,85 @@ to              <code>DATE_BOUNDED</code>.<br>
   day numbers for "1 MAR 1990" and "31 MAR 1990", and the Gregorian date
 "1990"   is represented by the serial day numbers for "1 JAN 1990" and "31
 DEC 1990".   &nbsp;Similarly for the other calendar types.<br>
-  </blockquote>
-
-                 <br>
 </blockquote>
+  </blockquote>
+<blockquote>
+
+                 </blockquote>
+<code></code>To ensure that an updated date value is consistent, i.e. all
+its struct fields are consistent with each other, the following function
+can be used:<br>
+<blockquote><code>int <b>gedcom_normalize_date</b> (Date_input compute_from, struct date_value* value);<br></code></blockquote>
+
+<code></code>The <code>compute_from</code> parameter determines which fields
+will be taken as input to compute the other fields. &nbsp;The following table
+gives an overview of the input and output parameters (the calendar type <code>cal</code> is always an input parameter, and should not be <code>CAL_UNKNOWN</code>):<br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top" align="center"><b>compute_from</b><br>
+      </td>
+      <td valign="top" align="center"><b>input parameters</b><br>
+      </td>
+      <td valign="top" align="center"><b>output parameters</b><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><code>DI_FROM_STRINGS</code><br>
+      </td>
+      <td valign="top"><code>day_str, month_str, year_str</code><br>
+      </td>
+      <td valign="top"><code>day, month, year, year_type<br>
+type, sdn1, sdn2</code><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><code>DI_FROM_NUMBERS</code><br>
+      </td>
+      <td valign="top"><code>day, month, year, year_type</code><br>
+      </td>
+      <td valign="top"><code>day_str, month_str, year_str<br>
+
+type, sdn1, sdn2</code><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><code>DI_FROM_SDN</code><br>
+      </td>
+      <td valign="top"><code>type, sdn1, sdn2</code><br>
+      </td>
+      <td valign="top"><code>day, month, year<br>
+day_str, month_str, year_str</code><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+If the type in the date value is <code>DV_PHRASE</code>, no conversions take
+place, otherwise one or both of the date structs are processed according
+to the table above, depending on the type. &nbsp;The function returns 0 in case of success, non-zero in case of an error.<br>
+<br>
+This function could also be used to convert a date from one calendar to another,
+because the serial day number is calendar independent (error handling is
+ignored in this example):<br>
+<blockquote><code>struct date_value* dv = gedcom_new_date_value(NULL);<br>
+dv-&gt;date1.cal = CAL_GREGORIAN;<br>
+dv-&gt;date1.day &nbsp; = 4</code>;<br>
+  <code>dv-&gt;date1.month = 2;<br>
+dv-&gt;date1.year &nbsp;= 1799;<br>
+dv-&gt;date1.year_type = YEAR_SINGLE;<br>
+gedcom_normalize_date(DI_FROM_NUMBERS, dv);<br>
+  <br>
+dv-&gt;date1.cal = CAL_FRENCH_REV;<br>
+gedcom_normalize_date(DI_FROM_SDN, dv);<br>
+/* the day, month and year are now filled in according to the French Revolution calendar */</code><br>
+       </blockquote>
+
+<blockquote>
+                 </blockquote>
+
+
 <h3><a name="age_value"></a>struct age_value</h3>
 
      This struct describes an age as given in the GEDCOM file, and has the
@@ -2497,7 +2575,10 @@ The modifier can be one of the following:<br>
 <ul>
 <li><code> AGE_NO_MODIFIER</code> : no modifier</li><li><code>AGE_LESS_THAN</code><code></code>&nbsp; : the modifier '&lt;' is added</li><li><code>AGE_GREATER_THAN </code>: the modifier '&gt;' is added</li>
 </ul>
-<br>
+The following function creates a new <code>age_value</code> struct and initializes it properly, or copies an existing age value:
+<blockquote><code>struct age_value* <b>gedcom_new_age_value</b> (struct age_value* copy_from);<br></code></blockquote>
+
+<code></code>If the parameter <code>copy_from</code> is <code>NULL</code>, a new value is created and given initial values. &nbsp;If it is non-<code>NULL</code>, the value is copied into a new age value.<br>
 <h3><a name="xref_value"></a>struct xref_value</h3>
 
  This struct represents a cross-reference in the GEDCOM file (but note that 
@@ -2604,6 +2685,7 @@ An example would thus be: "@This is an xref_val@".<br>
       <br>
                                                                         
               <br>
+<br>
 <br>
 <br>
 <br>

@@ -22,12 +22,13 @@
   <ul>
     <li><a href="#User_data">User data</a></li>
   </ul>
-  <li><a href="#Other_functions">Other functions</a></li>
+  <li><a href="#Other_functions">Modifying the object model</a></li>
   <ul>
-    <li><a href="#Manipulating_strings">Manipulating strings</a><br>
-      <br>
+    <li><a href="#Manipulating_strings">Manipulating strings</a></li>
+  </ul><li><a href="#Writing_the_object_model_to_file">Writing the object model to file</a><br>
+<br>
     </li>
-  </ul>
+
 
 
   
@@ -125,7 +126,7 @@ tags is. &nbsp;Each element of the linked list has:<br>
 This way, none of the information in the GEDCOM file is lost, even the non-standard information.<br>
 <br>
 <hr width="100%" size="2">
-<h2><a name="Other_functions"></a>Other functions</h2>
+<h2><a name="Other_functions"></a>Modifying the object model</h2>
 <h3><a name="Manipulating_strings"></a>Manipulating strings<br>
 </h3>
 There are some functions available to retrieve and change strings in the
@@ -170,6 +171,15 @@ want to know this. &nbsp;You can pass <code>NULL</code> if you're not interested
 if an error occurred (e.g. if the given string is not a valid string for
 the current locale); in that case the target data variable is not modified.<br>
 <hr width="100%" size="2">
+<h2><a name="Writing_the_object_model_to_file"></a>Writing the object model to file<br>
+</h2>
+Writing the current object model to a file is simply done using the following function:<br>
+<blockquote><code>int <b>gom_write_file</b> (const char* filename, int* total_conv_fails);<br></code></blockquote>
+This writes the model to the file <code>filename</code>. &nbsp;The second parameter can return the total number of conversion failures (pass&nbsp;<code>NULL</code><code></code> if you're not interested).<br>
+<br>
+The functions in <a href="usage.html#Controlling_some_settings">this section</a> can be used before <code>gom_write_file</code> to control some settings.<br>
+<hr width="100%" size="2"><br>
+
 <pre><font size="-1">$Id$<br>$Name$</font><br></pre>
 
                                                                         
@@ -177,6 +187,8 @@ the current locale); in that case the target data variable is not modified.<br>
 <pre>                    </pre>
                                                                         
                                                         
+<br>
+<br>
 <br>
 <br>
 <br>

@@ -17,7 +17,14 @@
             <li><a href="#Start_and_end_callbacks">Start and end callbacks</a></li>
             <li><a href="#Default_callbacks">Default callbacks</a></li>
                                
-  </ul><li><a href="#Other_API_functions">Other API functions</a></li>
+  </ul><li><a href="#Support_for_writing_GEDCOM_files">Support for writing GEDCOM files</a></li>
+  <ul>
+    <li><a href="#Opening_and_closing_files">Opening and closing files</a></li>
+    <li><a href="#Controlling_some_settings">Controlling some settings</a></li>
+    <li><a href="#Writing_data">Writing data</a><br>
+    </li>
+  </ul>
+<li><a href="#Other_API_functions">Other API functions</a></li>
                            
   <ul>
            <li><a href="#Debugging">Debugging</a></li>
@@ -26,7 +33,7 @@
                            
   </ul>
     <li><a href="#Converting_character_sets">Converting character sets</a></li>
-    <li><a href="#Support_for_configure.in">Support for configure.in</a><br>
+    <li><a href="#Support_for_configure.in">Development support</a><br>
 <br>
      </li>
            <li><a href="interface.html">Interface details of the callback parser</a></li><li><a href="gom.html">C object model</a><br>
@@ -57,9 +64,9 @@ application     program, which implements the callback parser</li>
   </li>
 
                  
-</ul>
-
-         Next to these, there is also a data directory in <code>$PREFIX/share/gedcom-parse</code>
+</ul>There is a separate script to help with library and compilation flags, see the <a href="#Support_for_configure.in">development support</a>.<br>
+<br>
+Next to these, there is also a data directory in <code>$PREFIX/share/gedcom-parse</code>
           that contains some additional stuff, but which is not immediately 
  important    at first. &nbsp;I'll leave the description of the data directory 
  for later.<br>
@@ -412,6 +419,134 @@ raw_value,   int parsed_tag)<br>
  of the "upper" tags has been subscribed upon.<br>
                                                                         
           
+<hr width="100%" size="2"><br>
+<h2><a name="Support_for_writing_GEDCOM_files"></a>Support for writing GEDCOM files</h2>
+The Gedcom parser library also contains functions to writing GEDCOM files.
+&nbsp;Similar as for the parsing itself, there are two interfaces: an interface
+which is very basic, and requires you to call a function for each line in
+the GEDCOM file, and an interface which just dumps the Gedcom object model
+to a file in one shot (if you use the Gedcom object model).<br>
+<br>
+Again, this section focuses on the basic interface, the Gedcom object model interface is described <a href="gom.html#Writing_the_object_model_to_file">here</a>.<br>
+<br>
+<h3><a name="Opening_and_closing_files"></a>Opening and closing files</h3>
+The basic functions for opening and closing Gedcom files for writing are the following:<br>
+<code></code>
+<blockquote><code>Gedcom_write_hndl <b>gedcom_write_open</b> (const char* filename);<br>
+int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>gedcom_write_close</b> (Gedcom_write_hndl hndl, int* total_conv_fails);<br></code></blockquote>
+The function <code>gedcom_write_open</code> takes a parameter the name of
+the file to write, and returns a write handle, which needs to be used in
+subsequent functions. &nbsp;It returns <code>NULL</code> in case of errors.<br>
+<br>
+The function <code>gedcom_write_close</code> takes, next to the write handle,
+an integer pointer as parameter. &nbsp;If you pass an actual pointer for
+this, the function will write in it the total number of conversion failures;
+you can pass <code>NULL</code> if you're not interested. &nbsp;The function returns 0 in case of success, non-zero in case of failure.<br>
+<br>
+<h3><a name="Controlling_some_settings"></a>Controlling some settings<br>
+</h3>
+Note that by default the file is written in ASCII encoding (and hence e.g.
+accented characters will cause a conversion failure). &nbsp;You can change
+this by calling the following function <i>before</i> calling <code>gedcom_write_open</code>, i.e. it affects all files that are opened after it is being called:<code></code><code><br>
+</code>
+<blockquote><code>int <b>gedcom_write_set_encoding</b> (const char* charset, Encoding width, Enc_bom bom);<br></code></blockquote>
+The valid <code>charset</code> values are given in the first column in the file <code>gedcom.enc</code> in the data directory of gedcom-parse (<code>$PREFIX/share/gedcom-parse</code>).
+&nbsp;The character sets UNICODE, ASCII and ANSEL are always supported (these
+are standard for GEDCOM), as well as ANSI (not standard), but there may be
+others.<br>
+<br>
+The <code>width</code> parameter takes one of the following values:<br>
+<ul>
+</ul>
+<ul>
+  <li><code><b>ONE_BYTE</b></code>: This should be used for all character sets except UNICODE.</li>
+  <li><code><b>TWO_BYTE_HILO</b></code>: High-low encoding for UNICODE (i.e. big-endian)</li>
+  <li><code><b>TWO_BYTE_LOHI</b></code>: Low-high encoding for UNICODE (i.e. little-endian)</li>
+</ul>
+The <code>bom</code> parameter determines whether a byte-order-mark should
+be written in the file in case of UNICODE encoding (usually preferred because
+it then clearly indicates the byte ordering). &nbsp;It takes one of the following
+values:<br>
+<ul>
+  <li><code><b>WITHOUT_BOM</b></code></li>
+  <li><code><b>WITH_BOM</b></code></li>
+</ul>
+For both these parameters you can pass 0 for non-UNICODE encodings, since
+that corresponds to the correct values (and is ignored anyway). &nbsp;The
+function returns 0 in case of success, non-zero in case of error.<br>
+<br>
+Further, it is possible to control the kind of line terminator that is used, via the following function (also to be used before <code>gedcom_write_open</code>):<br>
+<blockquote><code>int <b>gedcom_write_set_line_terminator</b> (Enc_line_end end);<br></code></blockquote>
+The <code>end</code> parameter takes one of the following values:<br>
+<ul>
+  <li><b><code>END_CR</code></b>: only carriage return ("/r") (cf. Macintosh)</li>
+  <li><b><code>END_LF</code></b>: only line feed ("/n") (cf. Unix, Mac OS X)</li>
+  <li><b><code>END_CR_LF</code></b>: first carriage return, then line feed ("/r/n") (cf. DOS, Windows)</li>
+  <li><b><code>END_LF_CR</code></b>: first line feed, then carriage return ("/n/r")</li>
+</ul>
+By default, this is set to the appropriate line terminator on the current
+platform, so it only needs to be changed if there is some special reason
+for it.<br>
+<h3><a name="Writing_data"></a>Writing data<br>
+</h3>
+For actually writing the data, the principle is that every line in the GEDCOM
+file to write corresponds to a call to one of the following functions, except
+that CONT/CONC lines can be automatically taken care of. &nbsp;Note that
+the resulting GEDCOM file should conform to the GEDCOM standard. &nbsp;Several
+checks are built in already, and more will follow, to force this. &nbsp;There
+is (currently) no compatibility mode for writing GEDCOM files.<br>
+<br>
+In general, each of the following functions expect their input in UTF-8 encoding (see also <a href="#Converting_character_sets">here</a>). &nbsp;If this is not the case, errors will be returned.<br>
+<br>
+Note that for examples of using these functions you can look at the sources for the Gedcom object model (e.g. the function <code>write_header</code> in <code>gom/header.c</code>).<br>
+<h4>Records</h4>
+For writing lines corresponding to records (i.e. on level 0), the following function is available:
+<blockquote><code>int <b>gedcom_write_record_str</b> (Gedcom_write_hndl hndl, Gedcom_rec rec, char* xrefstr, char* value);<br></code></blockquote>
+The <code>hndl</code> parameter is the write handle that was returned by <code>gedcom_write_open</code>. &nbsp;The <code>rec</code> parameter is one of the identifiers given in the first column in <a href="interface.html#Record_identifiers">this table</a> (except <code>REC_USER</code>: see below). &nbsp;The <code>xrefstr</code> and <code>val</code> parameters are respectively the cross-reference key of the record (something like '<code>@FAM01@</code>'), and the value of the record line, which should be <code>NULL</code> for some record types, according to the same table.<br>
+<h4>Elements</h4>
+For writing lines corresponding to elements (inside records, i.e. on a level
+bigger than 0), the following functions are available, depending on the data
+type:
+<blockquote><code>int <b>gedcom_write_element_str</b> &nbsp;(Gedcom_write_hndl hndl, Gedcom_elt elt, int parsed_tag, <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, char* value);<br>
+i</code><code>nt <b>gedcom_write_element_xref</b> (Gedcom_write_hndl hndl, Gedcom_elt elt, int parsed_tag, <br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, struct xref_value*
+value);</code><br>
+  <code>int <b>gedcom_write_element_date</b> (Gedcom_write_hndl hndl, Gedcom_elt elt, int parsed_tag, <br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, struct date_value*
+value);</code><br>
+  <code>i</code><code>nt <b>gedcom_write_element_age&nbsp;</b> (Gedcom_write_hndl hndl, Gedcom_elt elt, int parsed_tag, <br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, struct age_value*
+value);</code><br>
+</blockquote>
+<blockquote><code></code></blockquote>
+These functions only differ in the type of the last argument, which is the value of the element.<br>
+<br>
+The <code>hndl</code> parameter is again the write handle returned by <code>gedcom_write_open</code>. &nbsp;The <code>elt</code> parameter is one of the identifiers given in the first column in <a href="interface.html#Element_identifiers">this table</a> (except <code>ELT_USER</code>: see below). &nbsp;The <code>parent_rec_or_elt</code> is the corresponding <code>rec</code> or <code>elt</code>
+identifier of the logically enclosing statement: this will determine the
+level number written on the line, as the level number of the parent + 1.<br>
+<br>
+Some of the identifiers can actually stand for different tags. &nbsp;For this reason, the <code>parsed_tag</code> has to be passed for some of them. &nbsp;This parsed tag is the same as was returned by the callback functions defined <a href="#Start_and_end_callbacks">above</a>, and is an identifier of the form <code>TAG_<i>name</i></code>. &nbsp;This parameter is needed whenever the second column in <a href="interface.html#Element_identifiers">this table</a> shows several possible tags (this is e.g. the case for <code>ELT_SUB_FAM_EVT</code>).<br>
+<br>
+Note that for writing a date value, the given value should be valid, i.e.
+all its struct fields filled in properly and consistent. &nbsp;This can be
+done by calling <code>gedcom_normalize_date</code> (see <a href="interface.html#date">here</a>).<br>
+<h4>User-defined tags</h4>
+For user-defined tags (tags starting with an underscore), there are separate functions, again depending on the data type:<code></code>
+<blockquote><code>int <b>gedcom_write_user_str</b> &nbsp;(Gedcom_write_hndl hndl, int level, char* tag, char* xrefstr,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; char* value);<br>
+i</code><code>nt <b>gedcom_write_user_xref</b> (Gedcom_write_hndl hndl, </code><code>int level, char* tag, char* xrefstr,</code><br>
+  <code>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; struct xref_value* value);</code><br>
+  <code></code></blockquote>
+In the case of user-defined tags, the level and tag string are passed verbatim
+(not controlled by the library). &nbsp;This allows to write any extra data
+that doesn't use a standard tag, but is only allowed for tags starting with
+an underscore.<br>
 <hr width="100%" size="2">                                              
                               
 <h2><a name="Other_API_functions"></a>Other API functions<br>
@@ -512,189 +647,17 @@ default)<br>
 the <code>locale</code> mechanism (i.e. via the <code>LANG</code>, <code>
  LC_ALL</code>  or <code>LC_CTYPE</code> environment variables), which also 
 controls the <code>gettext</code>  mechanism in the application. &nbsp;<br>
-                       <br>
-                       <br>
-                                                                        
-                                        The source distribution of <code>
-gedcom-parse</code>   contains an a library implementing help functions for UTF-8 encoding (<code></code>see
-the "utf8" subdirectory of the top directory).&nbsp; &nbsp;Feel free to use
- it in your source code. &nbsp;It isn't installed  anywhere, so you need
-to take over the source and header files in your application. Note that on
-some systems it uses libcharset, which is also included in this subdirectory.
- &nbsp;<br>
-                       <br>
-    Its interface contains first of all the following two help functions:<br>
-                         
-<blockquote>      
-  <pre><code>int   <b>is_utf8_string</b> (char *input);<br>int   <b>utf8_strlen</b> (char *input);<br></code></pre></blockquote>The
-first one returns 1 if the given input is a valid UTF-8 string, it returns
-0 otherwise, the second gives the number of UTF-8 characters in the given
-input. &nbsp;Note that the second function assumes that the input is valid
-UTF-8, and gives unpredictable results if it isn't.<br>
-<br>
-For conversion, the following functions are available:<br>
-<blockquote>
-  <pre><code></code><code>char *<b>convert_utf8_to_locale</b> (char *input, int *conv_failures);<br>char *<b>convert_locale_to_utf8</b> (char *input);<br></code></pre>
-</blockquote>
-<blockquote>
-  </blockquote>
-
-    Both functions return a pointer to a static buffer that is overwritten
- on each call. &nbsp;To function properly, the application must first set
-the locale using the <code>setlocale</code> function (the second step detailed
- below). &nbsp;All other steps given below, including setting up and closing
- down the conversion handles, are transparantly handled by the two functions.
- &nbsp;<br>
-                         <br>
-   If you pass a pointer to an integer to the first function, it will be
-set  to the number of conversion failures, i.e. characters that couldn't
-be converted;  you can also just pass <code>NULL</code> if you are not interested
-(note  that usually, the interesting information is just whether there <i>
-were</i>    conversion failures or not, which is then given by the integer
-being bigger  than zero or not). &nbsp;The second function doesn't need this,
-because any  locale can be converted to UTF-8.<br>
-                         <br>
-    You can change the "?" that is output for characters that can't be converted 
- to any string you want, using the following function before the conversion 
- calls:<br>
-                           
-<blockquote>      
-  <pre><code>void <b>convert_set_unknown</b> (const char *unknown);</code></pre>
-  </blockquote>
-                           <br>
-   If you want to have your own functions for it instead of this example
-implementation,  the following steps need to be taken by the application
-(more detailed info  can be found in the info file of the GNU libc library
-in the "Generic Charset  Conversion" section under "Character Set Handling"
-or online <a href="http://www.gnu.org/manual/glibc-2.2.3/html_chapter/libc_6.html#SEC99">
-  here</a>):<br>
-                         
-<ul>
-                         <li>inclusion of some headers:</li>
-                         
-</ul>
-                         
-<blockquote>                             
-  <blockquote>                                   
-    <pre><code>#include &lt;locale.h&gt;    /* for setlocale */<br>#include &lt;langinfo.h&gt;  /* for nl_langinfo */<br>#include &lt;iconv.h&gt;     /* for iconv_* functions */<br></code></pre>
-                           </blockquote>
-                           </blockquote>
-                             
-<ul>
-                             <li>set the program's current locale to what 
-the user configured in the environment:</li>
-                             
-</ul>
-                             
-<blockquote>                                 
-  <blockquote>                                       
-    <pre><code>setlocale(LC_ALL, "");</code><br></pre>
-                               </blockquote>
-                               </blockquote>
-                                 
-<ul>
-                                 <li>open a conversion handle for conversion
- from UTF-8 to the character set of the current locale (once for the entire
- program):</li>
-                                 
-</ul>
-                                 
-<blockquote>                                     
-  <blockquote>                                           
-    <pre><code>iconv_t iconv_handle;<br>...<br>iconv_handle = iconv_open(nl_langinfo(CODESET), "UTF-8");</code><br>if (iconv_handle == (iconv_t) -1)<br>  /* signal an error */<br></pre>
-                                   </blockquote>
-                                   </blockquote>
-                                     
-<ul>
-                                     <li>then, every string can be converted
- using the following:</li>
-                                     
-</ul>
-                                     
-<blockquote>                                         
-  <blockquote>                                               
-    <pre><code>/* char* in_buf is the input buffer,    size_t in_len is its length */<br>/* char* out_buf is the output buffer,  size_t out_len is its length */<br><br>size_t nconv;<br>char *in_ptr = in_buf;<br>char *out_ptr = out_buf;<br>nconv = iconv(iconv_handle, &amp;in_ptr, &amp;in_len,&nbsp;&amp;out_ptr, &amp;out_len);</code></pre>
-                                       </blockquote>
-                                       </blockquote>
-                                         
-<blockquote>If the output buffer is not big enough, <code>iconv</code> will
- return -1 and set <code>errno</code> to <code>E2BIG</code>. &nbsp;Also,
-the    <code>in_ptr</code> and <code>out_ptr</code> will point just after
-the last successfully converted character in the respective buffers, and
-the   <code> in_len</code> and <code>out_len</code> will be updated to show
-the remaining lengths. &nbsp;There can be two strategies here:<br>
-                                               
-  <ul>
-                                           <li>Make sure from the beginning 
- that the output buffer is big enough. &nbsp;However, it's difficult to find 
- an absolute maximum length in advance, even given the length of the input 
- string.<br>
-                                             <br>
-                                           </li>
-                                           <li>Do the conversion in several
- steps, growing the output buffer each time to make more space, and calling
-       <code>iconv</code>  consecutively until the conversion is complete.
- &nbsp;This is the preferred way (a function could be written to encapsulate
- all this).</li>
-                                               
-  </ul>
-   Another error case is when the conversion was unsuccessful (if one of
-the  characters can't be represented in the target character set). &nbsp;The 
-  <code> iconv</code> function will then also return -1 and set <code>errno</code>
-   to <code>EILSEQ</code>; the <code>in_ptr</code> will point to the character
- that couldn't be converted. &nbsp;In that case, again two strategies are
-possible:<br>
-                                               
-  <ul>
-                                           <li>Just fail the conversion,
-and  show an error. &nbsp;This is not very user friendly, of course.<br>
-                                             <br>
-                                           </li>
-                                           <li>Skip over the character that
- can't be converted and append a "?" to the output buffer, then call <code>
-  iconv</code> again. &nbsp;Skipping over a UTF-8 character is fairly simple,
- as follows from the <a href="http://www.cl.cam.ac.uk/%7Emgk25/unicode.html#utf-8">encoding rules</a>
-  :</li>
-                                               
-  </ul>
-                                               
-  <ol>
-                                                     
-    <ol>
-                                             <li>if the first byte is in
-binary  0xxxxxxx, then the character is only one byte long, just skip over
-that byte<br>
-                                               <br>
-                                             </li>
-                                             <li>if the first byte is in
-binary  11xxxxxx, then skip over that byte and all bytes 10xxxxxx that follow.<br>
-                                             </li>
-                                                     
-    </ol>
-                                               
-  </ol>
-                                         </blockquote>
-                                           
-<ul>
-                                           <li>eventually, the conversion 
-handle needs to be closed (when the program exits):<br>
-                                           </li>
-                                           
-</ul>
-                                           
-<blockquote>                                               
-  <blockquote>                                                     
-    <pre><code>iconv_close(iconv_handle);<br></code></pre>
-                                             </blockquote>
-                                             </blockquote> 
-                                                  The example implementation
-mentioned above grows the output buffer dynamically and outputs "?" for characters 
- that can't be converted.<br>
+                       <br>With<code>
+gedcom-parse</code>   comes a library implementing help functions for UTF-8 encoding (<code></code>see
+the <a href="utf8tools.html">documentation</a> for this library).<br>
                                                                         
                          
 <hr width="100%" size="2">                                              
  
-<h2><a name="Support_for_configure.in"></a>Support for configure.in</h2>There
+<h2><a name="Support_for_configure.in"></a>Development support</h2>
+<h3>Macro for configure.in<br>
+</h3>
+There
 is a macro available for use in configure.in for applications that are using
 autoconf to configure their sources. &nbsp;The following macro checks whether
 the Gedcom parser library is available and whether its version is high enough:<br>
@@ -727,6 +690,20 @@ There are three preprocessor symbols defined for version checks in the
                                                      
 </ul>
    The last one is equal to <code>(GEDCOM_PARSE_VERSION_MAJOR * 1000) + GEDCOM_PARSE_VERSION_MINOR.</code><br>
+<br>
+<h3>Compilation and linking flags</h3>
+Similar to other libraries, the GEDCOM parse library installs a script <code>gedcom-config</code> to help with compilation and linking flags.<br>
+<br>
+To get compilation flags for your program, use (depending on whether you
+only use the callback parser, or also the GEDCOM object model):
+<blockquote><code>gedcom-config --cflags<br>
+gedcom-config --cflags gom</code><br>
+</blockquote>
+Similarly, to get linking flags, use one of the following:
+<blockquote><code>gedcom-config --libs<br>
+gedcom-config --libs gom</code><br>
+</blockquote>
+
 
      
 <hr width="100%" size="2">                                              
@@ -737,6 +714,8 @@ There are three preprocessor symbols defined for version checks in the
 <pre>                    </pre>
                                                                         
                                                         
+<br>
+<br>
 <br>
 <br>
 <br>
