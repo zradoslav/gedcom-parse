@@ -388,7 +388,7 @@ typedef struct _Gedcom_val_struct {
   union _Gedcom_val_union value;
 } Gedcom_val_struct;
 
-void gedcom_cast_error(char* file, int line,
+void gedcom_cast_error(const char* file, int line,
 		       Gedcom_val_type tried_type,
 		       Gedcom_val_type real_type);
 
@@ -471,7 +471,7 @@ typedef void
          char *raw_value, int tag_value);
 
 void    gedcom_init();
-int     gedcom_parse_file(char* file_name);
+int     gedcom_parse_file(const char* file_name);
 void    gedcom_set_debug_level(int level, FILE* trace_output);
 void    gedcom_set_error_handling(Gedcom_err_mech mechanism);
 void    gedcom_set_compat_handling(int enable_compat);
@@ -486,15 +486,15 @@ void    gedcom_subscribe_to_element(Gedcom_elt elt,
 				    Gedcom_elt_end_cb cb_end);
 
 /* Separate value parsing functions */
-struct date_value gedcom_parse_date(char* line_value);
-struct age_value  gedcom_parse_age(char* line_value);
-struct xref_value *gedcom_get_by_xref(char *key);
+struct date_value gedcom_parse_date(const char* line_value);
+struct age_value  gedcom_parse_age(const char* line_value);
+struct xref_value *gedcom_get_by_xref(const char *key);
 
 /* For use in gom */
-int        gedcom_error(char* s, ...);
-int        gedcom_warning(char* s, ...);
-int        gedcom_message(char* s, ...);
-int        gedcom_debug_print(char* s, ...);
+int        gedcom_error(const char* s, ...);
+int        gedcom_warning(const char* s, ...);
+int        gedcom_message(const char* s, ...);
+int        gedcom_debug_print(const char* s, ...);
 
 __END_DECLS
 

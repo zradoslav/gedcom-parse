@@ -3884,7 +3884,7 @@ void gedcom_set_debug_level(int level, FILE* f)
   }
 }
 
-int gedcom_debug_print(char* s, ...)
+int gedcom_debug_print(const char* s, ...)
 {
   int res = 0;
   if (gedcom_high_level_debug) {

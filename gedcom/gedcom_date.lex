@@ -140,7 +140,7 @@ int yywrap()
 
 static YY_BUFFER_STATE hndl;
 
-void init_gedcom_date_lex(char* string)
+void init_gedcom_date_lex(const char* string)
 {
   token_nr = 0;
   hndl = yy_scan_string(string);

@@ -57,7 +57,7 @@ void init_mess_buffer()
   }
 }
 
-int safe_buf_vappend(char *s, va_list ap)
+int safe_buf_vappend(const char *s, va_list ap)
 {
   int res = 0;
   int len;
@@ -82,7 +82,7 @@ int safe_buf_vappend(char *s, va_list ap)
   return res;
 }
 
-int safe_buf_append(char *s, ...)
+int safe_buf_append(const char *s, ...)
 {
   int res;
   va_list ap;
@@ -94,7 +94,7 @@ int safe_buf_append(char *s, ...)
   return res;
 }
 
-int gedcom_message(char* s, ...)
+int gedcom_message(const char* s, ...)
 {
   int res;
   va_list ap;
@@ -108,7 +108,7 @@ int gedcom_message(char* s, ...)
   return res;
 }
 
-int gedcom_warning(char* s, ...)
+int gedcom_warning(const char* s, ...)
 {
   int res;
   va_list ap;
@@ -124,7 +124,7 @@ int gedcom_warning(char* s, ...)
   return res;
 }
 
-int gedcom_error(char* s, ...)
+int gedcom_error(const char* s, ...)
 {
   int res;
   va_list ap;

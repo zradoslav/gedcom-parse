@@ -31,7 +31,7 @@ struct date date_s;
 struct date_value def_date_val;
 struct date def_date;
 
-char* curr_line_value;
+const char* curr_line_value;
 
 int max_month[] = { 12,  /* CAL_GREGORIAN */
 		    12,  /* CAL_JULIAN */
@@ -69,7 +69,7 @@ void init_date(struct date *d)
 }
 
 struct date_value make_date_value(Date_value_type t, struct date d1,
-				  struct date d2, char* p)
+				  struct date d2, const char* p)
 {
   dv_s.type = t;
   copy_date(&dv_s.date1, d1);
@@ -115,7 +115,7 @@ void make_date_complete(struct date *d)
   }
 }
 
-struct date_value gedcom_parse_date(char* line_value)
+struct date_value gedcom_parse_date(const char* line_value)
 {
   init_date(&date_s);
   init_date(&def_date);

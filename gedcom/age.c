@@ -46,7 +46,7 @@ void init_age(struct age_value *age)
   age->days = -1;
 }
 
-int parse_numeric_age(struct age_value *age, char *ptr)
+int parse_numeric_age(struct age_value *age, const char *ptr)
 {
   char *endptr;
   while (ptr) {
@@ -94,9 +94,9 @@ int parse_numeric_age(struct age_value *age, char *ptr)
   return 0;
 }
 
-struct age_value gedcom_parse_age(char* line_value)
+struct age_value gedcom_parse_age(const char* line_value)
 {
-  char *ptr = line_value;
+  const char *ptr = line_value;
   init_age(&age_s);
   init_age(&def_age_val);
 

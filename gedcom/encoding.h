@@ -31,9 +31,9 @@ typedef enum _ENC {
   TWO_BYTE_LOHI = 2
 } ENCODING;
 
-int open_conv_to_internal(char* fromcode);
+int open_conv_to_internal(const char* fromcode);
 void close_conv_to_internal();
-char* to_internal(char* str, size_t len,
+char* to_internal(const char* str, size_t len,
 		  char* output_buffer, size_t out_len);
 void init_encodings();
 void set_encoding_width(ENCODING enc);

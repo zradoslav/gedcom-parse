@@ -39,7 +39,7 @@ static iconv_t cd_to_internal = (iconv_t) -1;
 static ENCODING the_enc = ONE_BYTE;
 static hash_t *encodings = NULL;
 
-char* charwidth_string[] = { "1", "2_HILO", "2_LOHI" };
+const char* charwidth_string[] = { "1", "2_HILO", "2_LOHI" };
 
 hnode_t *node_alloc(void *c __attribute__((unused)))
 {
@@ -53,7 +53,8 @@ void node_free(hnode_t *n, void *c __attribute__((unused)))
   free(n);
 }
 
-void add_encoding(char *gedcom_n, char* charwidth, char *iconv_n)
+void add_encoding(const char *gedcom_n, const char* charwidth,
+		  const char *iconv_n)
 {
   char *key, *val;
 
@@ -79,7 +80,7 @@ void add_encoding(char *gedcom_n, char* charwidth, char *iconv_n)
     MEMORY_ERROR;
 }
 
-char* get_encoding(char* gedcom_n, ENCODING enc)
+char* get_encoding(const char* gedcom_n, ENCODING enc)
 {
   char *key;
   hnode_t *node;
@@ -229,9 +230,9 @@ void set_encoding_width(ENCODING enc)
 static char conv_buf[MAXGEDCLINELEN * 2];
 static size_t conv_buf_size;
 
-int open_conv_to_internal(char* fromcode)
+int open_conv_to_internal(const char* fromcode)
 {
-  char *encoding = get_encoding(fromcode, the_enc);
+  const char *encoding = get_encoding(fromcode, the_enc);
   if (cd_to_internal != (iconv_t) -1)
     iconv_close(cd_to_internal);
   if (encoding == NULL) {
@@ -257,7 +258,7 @@ void close_conv_to_internal()
   cd_to_internal = (iconv_t) -1;
 }
 
-char* to_internal(char* str, size_t len,
+char* to_internal(const char* str, size_t len,
 		  char* output_buffer, size_t out_len)
 {
   size_t res;

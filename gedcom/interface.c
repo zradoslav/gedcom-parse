@@ -107,7 +107,7 @@ char* val_type_str[] = { N_("null value"),
 			 N_("date"),
                          N_("cross-reference") };
 
-void gedcom_cast_error(char* file, int line,
+void gedcom_cast_error(const char* file, int line,
 		       Gedcom_val_type tried_type,
 		       Gedcom_val_type real_type)
 {

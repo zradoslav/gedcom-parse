@@ -34,17 +34,17 @@
 extern struct date_value dv_s;
 extern struct date date_s;
 extern struct date def_date;
-extern char* curr_line_value;
+extern const char* curr_line_value;
 
 int               gedcom_date_parse();
 int               gedcom_date_lex();
 
 /* These are defined in gedcom_date.lex */
-void              init_gedcom_date_lex(char* string);
+void              init_gedcom_date_lex(const char* string);
 void              close_gedcom_date_lex();
 
 struct date_value make_date_value(Date_value_type t, struct date d1,
-				  struct date d2, char* p);
+				  struct date d2, const char* p);
 void              copy_date(struct date *to, struct date from);
 
 #define GEDCOM_MAKE_DATE(VAR, DATE) \

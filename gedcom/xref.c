@@ -133,7 +133,7 @@ int check_xref_table()
   return result;
 }
 
-struct xref_value *gedcom_get_by_xref(char *key)
+struct xref_value *gedcom_get_by_xref(const char *key)
 {
   hnode_t *node = hash_lookup(xrefs, key);
   if (node) {

@@ -33,7 +33,7 @@ enum _COMPAT {
   C_LIFELINES = 0x02
 };
 
-void set_compatibility(char* program);
+void set_compatibility(const char* program);
 int  compat_mode(int flags); 
 void compat_generate_submitter_link(Gedcom_ctxt parent);
 void compat_generate_submitter();

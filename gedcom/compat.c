@@ -31,7 +31,7 @@
 int compat_enabled = 1;
 int compatibility  = 0; 
 int compat_at = 0;
-char* default_charset = "";
+const char* default_charset = "";
 
 #define SUBMITTER_LINK         "@__COMPAT__SUBM__@"
 #define DEFAULT_SUBMITTER_NAME "Submitter"
@@ -61,7 +61,7 @@ void gedcom_set_compat_handling(int enable_compat)
   compat_enabled = enable_compat;
 }
 
-void set_compatibility(char* program)
+void set_compatibility(const char* program)
 {
   /* Reinitialize compatibility */
   compat_at = 0;
@@ -172,8 +172,8 @@ int compat_generate_char(Gedcom_ctxt parent)
   /* first generate "1 CHAR <DEFAULT_CHAR>" */
   ts.string = "CHAR";
   ts.value  = TAG_CHAR;
-  self1 = start_element(ELT_HEAD_CHAR, parent, 1, ts, default_charset,
-			GEDCOM_MAKE_STRING(val1, default_charset));
+  self1 = start_element(ELT_HEAD_CHAR, parent, 1, ts, (char*)default_charset,
+			GEDCOM_MAKE_STRING(val1, (char*)default_charset));
   
   /* close "1 CHAR" */
   end_element(ELT_HEAD_CHAR, parent, self1, NULL);
