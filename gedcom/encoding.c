@@ -14,6 +14,7 @@
 #include <iconv.h>
 #include <search.h>
 #include <stdio.h>
+#include <limits.h>
 #include "gedcom_internal.h"
 #include "encoding.h"
 
@@ -84,7 +85,16 @@ void init_encodings()
     char charwidth[MAXBUF + 1];
     char iconv_n[MAXBUF + 1];
     in = fopen(ENCODING_CONF_FILE, "r");
-    if (in != NULL) {
+    if (in == NULL) {
+      char path[PATH_MAX];
+      sprintf(path, "%s/%s", PKGDATADIR, ENCODING_CONF_FILE);
+      in = fopen(path, "r");
+    }
+    if (in == NULL) {
+      gedcom_warning("Could not open encoding configuration file '%s'",
+		     ENCODING_CONF_FILE);
+    }
+    else {
       while (fgets(buffer, sizeof(buffer), in) != NULL) {
 	if (buffer[strlen(buffer) - 1] != '\n') {
 	  gedcom_error("Line too long in encoding configuration file '%s'",
@@ -103,10 +113,6 @@ void init_encodings()
 	}
       }
       fclose(in);
-    }
-    else {
-      gedcom_warning("Could not open encoding configuration file '%s'",
-		     ENCODING_CONF_FILE);
     }
   }
 }
