@@ -1,0 +1,207 @@
+
+=== Parsing file compat-paf.ged
+Header start
+WARNING: Warning on line 2: Enabling compatibility with 'Personal Ancestral File'
+Source is PAF (ctxt is 1001, parent is 1)
+== 2 NAME (342) Personal Ancestral File (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 5.1.12.0 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) The Church of Jesus Christ of Latter-day Saints (ctxt is 1001, conversion failures: 0)
+== 3 ADDR (266) 50 East North Temple Street (ctxt is 1001, conversion failures: 0)
+== 4 CONT (300) Salt Lake City, UT 84150 (ctxt is 1001, conversion failures: 0)
+== 4 CONT (300) USA (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 DEST (310) Other (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 20 Dec 2002 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 14:22:01 (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) original_filename.ged (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) UTF-8 (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @SUB1@ (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @SUB1@
+== 1 NAME (342) Hans Fugal (ctxt is 10000, conversion failures: 0)
+== 1 ADDR (266) Rivit Lab (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) BYU (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) Provo, UT 84604 (ctxt is 10000, conversion failures: 0)
+WARNING: Warning on line 24: Converting 5.5.1 tag 'EMAIL' to standard 5.5 user tag '_EMAIL'
+== 1 _EMAIL (264) fugalh@rivit.cs.byu.edu (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I436@
+== 1 NAME (342) A Name /SURNAME/ (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) Surname (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) A Name (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 _UID (264) 17ACE70A20D10E41A89A8BD090DEEB351FA5 (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F309@ (ctxt is 333, conversion failures: 0)
+== 1 SLGC (375) (null) (ctxt is 333, conversion failures: 0)
+== 2 STAT (381) BIC (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 33: Adding link to family record with xref '@__COMPAT__FAM_SLGC__@'
+== 2 FAMC (320) @__COMPAT__FAM_SLGC__@ (ctxt is 333, conversion failures: 0)
+== 1 SOUR (377) @S1@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306) 25 Jun 2002 (ctxt is 333, conversion failures: 0)
+== 3 TIME (387) 13:08:34 (ctxt is 333, conversion failures: 0)
+Family start, xref is @__COMPAT__FAM_SLGC__@
+Family end, xref is @__COMPAT__FAM_SLGC__@
+Rec INDI start, xref is @I437@
+== 1 NAME (342) Another Name /SURNAME/ (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) SURNAME (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) Another Name (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 _UID (264) EDDE1E79D27538438E7181E8EFE792EBDF9A (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F309@ (ctxt is 333, conversion failures: 0)
+== 1 SLGC (375) (null) (ctxt is 333, conversion failures: 0)
+== 2 STAT (381) BIC (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 46: Adding link to family record with xref '@__COMPAT__FAM_SLGC__@'
+== 2 FAMC (320) @__COMPAT__FAM_SLGC__@ (ctxt is 333, conversion failures: 0)
+== 1 SOUR (377) @S1@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306) 25 Jun 2002 (ctxt is 333, conversion failures: 0)
+== 3 TIME (387) 13:08:34 (ctxt is 333, conversion failures: 0)
+Family start, xref is @F309@
+== 1 _UID (264) 48A0019460C9884AAB209EF9172FE0272718 (ctxt is 2, conversion failures: 0)
+== 1 HUSB (330) @I436@ (ctxt is 2, conversion failures: 0)
+== 1 WIFE (392) @I437@ (ctxt is 2, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 2, conversion failures: 0)
+Contents of the date_value:
+  raw value: 12 Aug 1908
+  type: 0
+  date1:
+    calendar type: 0
+    day: 12
+    month: Aug
+    year: 1908
+    date type: 1
+    sdn1: 2418166
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Salt Lake City, Salt Lake, UT (ctxt is 2, conversion failures: 0)
+== 1 SLGS (376) (null) (ctxt is 2, conversion failures: 0)
+== 2 DATE (306) 12 Aug 1908 (ctxt is 2, conversion failures: 0)
+== 2 TEMP (385) SLAKE (ctxt is 2, conversion failures: 0)
+Family end, xref is @F309@
+Rec SOUR start, xref is @S1@
+== 1 REPO (367) @REPO1@ (ctxt is 377, conversion failures: 0)
+== 1 TITL (388) Ancestral File (TM) (ctxt is 377, conversion failures: 0)
+== 1 AUTH (278) The Church of Jesus Christ of Latter-day Saints (ctxt is 377, conversion failures: 0)
+== 1 PUBL (362) June 1998 (c), data as of 5 JAN 1998 (ctxt is 377, conversion failures: 0)
+Rec REPO start, xref is @REPO1@
+== 1 NAME (342) Family History Library (ctxt is 367, conversion failures: 0)
+== 1 ADDR (266) 35 N West Temple Street (ctxt is 367, conversion failures: 0)
+== 2 CONT (300) Salt Lake City, UT 84150  USA (ctxt is 367, conversion failures: 0)
+
+=== Total conversion failures: 0
+
+=== Parsing file compat-paf.ged
+Header start
+WARNING: Warning on line 2: Enabling compatibility with 'Personal Ancestral File'
+Source is PAF (ctxt is 1001, parent is 1)
+== 2 NAME (342) Personal Ancestral File (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 5.1.12.0 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) The Church of Jesus Christ of Latter-day Saints (ctxt is 1001, conversion failures: 0)
+== 3 ADDR (266) 50 East North Temple Street (ctxt is 1001, conversion failures: 0)
+== 4 CONT (300) Salt Lake City, UT 84150 (ctxt is 1001, conversion failures: 0)
+== 4 CONT (300) USA (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 DEST (310) Other (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 20 Dec 2002 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 14:22:01 (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) original_filename.ged (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) UTF-8 (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @SUB1@ (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @SUB1@
+== 1 NAME (342) Hans Fugal (ctxt is 10000, conversion failures: 0)
+== 1 ADDR (266) Rivit Lab (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) BYU (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) Provo, UT 84604 (ctxt is 10000, conversion failures: 0)
+WARNING: Warning on line 24: Converting 5.5.1 tag 'EMAIL' to standard 5.5 user tag '_EMAIL'
+== 1 _EMAIL (264) fugalh@rivit.cs.byu.edu (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I436@
+== 1 NAME (342) A Name /SURNAME/ (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) Surname (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) A Name (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 _UID (264) 17ACE70A20D10E41A89A8BD090DEEB351FA5 (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F309@ (ctxt is 333, conversion failures: 0)
+== 1 SLGC (375) (null) (ctxt is 333, conversion failures: 0)
+== 2 STAT (381) BIC (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 33: Adding link to family record with xref '@__COMPAT__FAM_SLGC__@'
+== 2 FAMC (320) @__COMPAT__FAM_SLGC__@ (ctxt is 333, conversion failures: 0)
+== 1 SOUR (377) @S1@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306) 25 Jun 2002 (ctxt is 333, conversion failures: 0)
+== 3 TIME (387) 13:08:34 (ctxt is 333, conversion failures: 0)
+Family start, xref is @__COMPAT__FAM_SLGC__@
+Family end, xref is @__COMPAT__FAM_SLGC__@
+Rec INDI start, xref is @I437@
+== 1 NAME (342) Another Name /SURNAME/ (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) SURNAME (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) Another Name (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 _UID (264) EDDE1E79D27538438E7181E8EFE792EBDF9A (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F309@ (ctxt is 333, conversion failures: 0)
+== 1 SLGC (375) (null) (ctxt is 333, conversion failures: 0)
+== 2 STAT (381) BIC (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 46: Adding link to family record with xref '@__COMPAT__FAM_SLGC__@'
+== 2 FAMC (320) @__COMPAT__FAM_SLGC__@ (ctxt is 333, conversion failures: 0)
+== 1 SOUR (377) @S1@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306) 25 Jun 2002 (ctxt is 333, conversion failures: 0)
+== 3 TIME (387) 13:08:34 (ctxt is 333, conversion failures: 0)
+Family start, xref is @F309@
+== 1 _UID (264) 48A0019460C9884AAB209EF9172FE0272718 (ctxt is 4, conversion failures: 0)
+== 1 HUSB (330) @I436@ (ctxt is 4, conversion failures: 0)
+== 1 WIFE (392) @I437@ (ctxt is 4, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 4, conversion failures: 0)
+Contents of the date_value:
+  raw value: 12 Aug 1908
+  type: 0
+  date1:
+    calendar type: 0
+    day: 12
+    month: Aug
+    year: 1908
+    date type: 1
+    sdn1: 2418166
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Salt Lake City, Salt Lake, UT (ctxt is 4, conversion failures: 0)
+== 1 SLGS (376) (null) (ctxt is 4, conversion failures: 0)
+== 2 DATE (306) 12 Aug 1908 (ctxt is 4, conversion failures: 0)
+== 2 TEMP (385) SLAKE (ctxt is 4, conversion failures: 0)
+Family end, xref is @F309@
+Rec SOUR start, xref is @S1@
+== 1 REPO (367) @REPO1@ (ctxt is 377, conversion failures: 0)
+== 1 TITL (388) Ancestral File (TM) (ctxt is 377, conversion failures: 0)
+== 1 AUTH (278) The Church of Jesus Christ of Latter-day Saints (ctxt is 377, conversion failures: 0)
+== 1 PUBL (362) June 1998 (c), data as of 5 JAN 1998 (ctxt is 377, conversion failures: 0)
+Rec REPO start, xref is @REPO1@
+== 1 NAME (342) Family History Library (ctxt is 367, conversion failures: 0)
+== 1 ADDR (266) 35 N West Temple Street (ctxt is 367, conversion failures: 0)
+== 2 CONT (300) Salt Lake City, UT 84150  USA (ctxt is 367, conversion failures: 0)
+
+=== Total conversion failures: 0
+Parse succeeded
