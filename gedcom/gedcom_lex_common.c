@@ -51,7 +51,7 @@ void message_handler(Gedcom_msg_type type, char *msg)
   fprintf(stderr, "(%d) %s\n", type, msg);
 }
 
-int test_loop(ENCODING enc, char* code)
+int test_loop(ENCODING enc, const char* code)
 {
   int tok, res;
   init_encodings();
@@ -109,18 +109,18 @@ static void error_level_too_high(int level_diff)
 		level_diff); 
 }
 
-static void error_tag_too_long(char *tag)
+static void error_tag_too_long(const char *tag)
 {
   gedcom_error(_("Tag '%s' too long, max %d characters allowed"),
 	       tag, MAXGEDCTAGLEN); 
 }
 
-static void error_invalid_character(char *str, char ch)
+static void error_invalid_character(const char *str, char ch)
 {
   gedcom_error(_("Invalid character for encoding: '%s' (0x%02x)"), str, ch); 
 }
 
-static void error_pointer_too_long(char *ptr)
+static void error_pointer_too_long(const char *ptr)
 {
   gedcom_error(_("Pointer '%s' too long, max %d characters allowed"),
 	       ptr, MAXGEDCPTRLEN);
@@ -131,7 +131,7 @@ static void error_at_character()
   gedcom_error(_("'@' character should be written as '@@' in values"));
 }
 
-static void error_unexpected_character(char* str, char ch)
+static void error_unexpected_character(const char* str, char ch)
 {
   gedcom_error(_("Unexpected character: '%s' (0x%02x)"), str, ch);
 }

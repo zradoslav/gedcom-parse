@@ -102,10 +102,10 @@ void end_element(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
     (*cb)(elt, parent, self, parsed_value);
 }
 
-char* val_type_str[] = { N_("null value"),
-			 N_("character string"),
-			 N_("date"),
-                         N_("cross-reference") };
+const char* val_type_str[] = { N_("null value"),
+			       N_("character string"),
+			       N_("date"),
+			       N_("cross-reference") };
 
 void gedcom_cast_error(const char* file, int line,
 		       Gedcom_val_type tried_type,

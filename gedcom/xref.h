@@ -34,7 +34,7 @@ typedef enum _XREF_CTXT {
 void make_xref_table();
 int check_xref_table();
 
-struct xref_value *gedcom_parse_xref(char *raw_value,
+struct xref_value *gedcom_parse_xref(const char *raw_value,
 				     Xref_ctxt ctxt, Xref_type type);
 
 #define GEDCOM_MAKE_XREF_PTR(VAR, XREF) \

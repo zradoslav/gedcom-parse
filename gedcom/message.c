@@ -140,7 +140,7 @@ int gedcom_error(const char* s, ...)
   return res;
 }
 
-void gedcom_mem_error(char *filename, int line)
+void gedcom_mem_error(const char *filename, int line)
 {
   gedcom_error(_("Could not allocate memory at %s, %d"), filename, line);
 }

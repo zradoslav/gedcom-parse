@@ -28,17 +28,17 @@
 struct xref_value def_xref_val = { XREF_NONE, "<error>", NULL };
 static hash_t *xrefs = NULL;
 
-char* xref_type_str[] = { N_("nothing"),
-                          N_("a family"),
-			  N_("an individual"),
-			  N_("a note"),
-			  N_("a multimedia object"),
-			  N_("a source repository"),
-			  N_("a source"),
-			  N_("a submitter"),
-			  N_("a submission record"),
-			  N_("an application-specific record"),
-                        };
+const char* xref_type_str[] = { N_("nothing"),
+				N_("a family"),
+				N_("an individual"),
+				N_("a note"),
+				N_("a multimedia object"),
+				N_("a source repository"),
+				N_("a source"),
+				N_("a submitter"),
+				N_("a submission record"),
+				N_("an application-specific record"),
+                              };
 
 struct xref_node {
   struct xref_value xref;
@@ -144,7 +144,7 @@ struct xref_value *gedcom_get_by_xref(const char *key)
     return NULL;
 }
 
-struct xref_value *gedcom_parse_xref(char *raw_value,
+struct xref_value *gedcom_parse_xref(const char *raw_value,
 				     Xref_ctxt ctxt, Xref_type xref_type)
 {
   struct xref_node *xr = NULL;
@@ -154,7 +154,7 @@ struct xref_value *gedcom_parse_xref(char *raw_value,
     xr = (struct xref_node *)hnode_get(node);
   }
   else {
-    char *key = strdup(raw_value);
+    const char *key = strdup(raw_value);
     if (key) {
       xr = make_xref_node();
       xr->xref.type = xref_type;

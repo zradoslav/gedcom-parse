@@ -162,7 +162,7 @@ char *line_item_buf_ptr;
 
 /* These are defined at the bottom of the file */ 
 void push_countarray();
-void set_parenttag(char* tag);
+void set_parenttag(const char* tag);
 char* get_parenttag(int offset); 
 void set_parentctxt(Gedcom_ctxt ctxt);
 Gedcom_ctxt get_parentctxt(int offset);
@@ -3816,7 +3816,7 @@ void push_countarray()
   }
 }
 
-void set_parenttag(char* tag)
+void set_parenttag(const char* tag)
 {
   strncpy(tag_stack[count_level+1], tag, MAXSTDTAGLEN+1);
 }
