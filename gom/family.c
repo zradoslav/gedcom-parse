@@ -169,8 +169,7 @@ int write_families(Gedcom_write_hndl hndl)
   struct family* obj;
 
   for (obj = gom_first_family; obj; obj = obj->next) {
-    result |= gedcom_write_record_str(hndl, REC_FAM, 0,
-				      obj->xrefstr, NULL);
+    result |= gedcom_write_record_str(hndl, REC_FAM, obj->xrefstr, NULL);
     if (obj->event)
       result |= write_events(hndl, REC_FAM, EVT_TYPE_FAMILY, obj->event);
     if (obj->husband)

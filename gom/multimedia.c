@@ -145,8 +145,7 @@ int write_multimedia_recs(Gedcom_write_hndl hndl)
   struct multimedia* obj;
 
   for (obj = gom_first_multimedia; obj; obj = obj->next) {
-    result |= gedcom_write_record_str(hndl, REC_OBJE, 0,
-				      obj->xrefstr, NULL);
+    result |= gedcom_write_record_str(hndl, REC_OBJE, obj->xrefstr, NULL);
     if (obj->form)
       result |= gedcom_write_element_str(hndl, ELT_OBJE_FORM, 0,
 					 REC_OBJE, obj->form);

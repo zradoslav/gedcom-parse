@@ -169,8 +169,7 @@ int write_submitters(Gedcom_write_hndl hndl)
   struct submitter* obj;
 
   for (obj = gom_first_submitter; obj; obj = obj->next) {
-    result |= gedcom_write_record_str(hndl, REC_SUBM, 0,
-				      obj->xrefstr, NULL);
+    result |= gedcom_write_record_str(hndl, REC_SUBM, obj->xrefstr, NULL);
     if (obj->name)
       result |= gedcom_write_element_str(hndl, ELT_SUBM_NAME, 0, REC_SUBM,
 					 obj->name);

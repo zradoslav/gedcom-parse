@@ -151,8 +151,7 @@ int write_notes(Gedcom_write_hndl hndl)
   struct note* obj;
 
   for (obj = gom_first_note; obj; obj = obj->next) {
-    result |= gedcom_write_record_str(hndl, REC_NOTE, 0,
-				      obj->xrefstr, obj->text);
+    result |= gedcom_write_record_str(hndl, REC_NOTE, obj->xrefstr, obj->text);
     if (obj->citation)
       result |= write_citations(hndl, REC_NOTE, obj->citation);
     if (obj->ref)

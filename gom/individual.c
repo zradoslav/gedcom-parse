@@ -230,8 +230,7 @@ int write_individuals(Gedcom_write_hndl hndl)
   struct individual* obj;
 
   for (obj = gom_first_individual; obj; obj = obj->next) {
-    result |= gedcom_write_record_str(hndl, REC_INDI, 0,
-				      obj->xrefstr, NULL);
+    result |= gedcom_write_record_str(hndl, REC_INDI, obj->xrefstr, NULL);
     if (obj->restriction_notice)
       result |= gedcom_write_element_str(hndl, ELT_INDI_RESN, 0,
 					 REC_INDI, obj->restriction_notice);

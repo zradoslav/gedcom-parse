@@ -380,12 +380,11 @@ int _gedcom_write_val(Gedcom_write_hndl hndl,
 }
 
 int gedcom_write_record_str(Gedcom_write_hndl hndl,
-			    Gedcom_rec rec, int tag,
-			    char* xrefstr, char* val)
+			    Gedcom_rec rec, char* xrefstr, char* val)
 {
   int result = 1;
   if (check_type(rec, (val ? GV_CHAR_PTR : GV_NULL)))
-    result = _gedcom_write_val(hndl, rec, tag, -1, xrefstr, convert_at(val));
+    result = _gedcom_write_val(hndl, rec, 0, -1, xrefstr, convert_at(val));
   return result;
 }
 
@@ -397,16 +396,6 @@ int gedcom_write_element_str(Gedcom_write_hndl hndl,
   if (check_type(elt, (val ? GV_CHAR_PTR : GV_NULL)))
     result = _gedcom_write_val(hndl, elt, tag, parent_rec_or_elt, NULL,
 			       convert_at(val));
-  return result;
-}
-
-int gedcom_write_record_xref(Gedcom_write_hndl hndl,
-			     Gedcom_rec rec, int tag,
-			     char* xrefstr, struct xref_value* val)
-{
-  int result = 1;
-  if (check_type(rec, (val ? GV_XREF_PTR : GV_NULL)))
-    result = _gedcom_write_val(hndl, rec, tag, -1, xrefstr, val->string);
   return result;
 }
 

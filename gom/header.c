@@ -168,10 +168,9 @@ int write_header(Gedcom_write_hndl hndl)
   int result = 0;
   int i;
   
-  result |= gedcom_write_record_str(hndl, REC_HEAD, 0, NULL, NULL);
+  result |= gedcom_write_record_str(hndl, REC_HEAD, NULL, NULL);
   if (gom_header.charset.name)
-    result |= gedcom_write_element_str(hndl, ELT_HEAD_CHAR, 0,
-				       REC_HEAD,
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_CHAR, 0, REC_HEAD,
 				       gom_header.charset.name);
   if (gom_header.charset.version)
     result |= gedcom_write_element_str(hndl, ELT_HEAD_CHAR_VERS, 0,

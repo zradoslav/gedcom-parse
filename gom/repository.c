@@ -147,8 +147,7 @@ int write_repositories(Gedcom_write_hndl hndl)
   struct repository* obj;
 
   for (obj = gom_first_repository; obj; obj = obj->next) {
-    result |= gedcom_write_record_str(hndl, REC_REPO, 0,
-				      obj->xrefstr, NULL);
+    result |= gedcom_write_record_str(hndl, REC_REPO, obj->xrefstr, NULL);
     if (obj->name)
       result |= gedcom_write_element_str(hndl, ELT_REPO_NAME, 0,
 					 REC_REPO, obj->name);

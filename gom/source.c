@@ -190,8 +190,7 @@ int write_sources(Gedcom_write_hndl hndl)
   struct source* obj;
 
   for (obj = gom_first_source; obj; obj = obj->next) {
-    result |= gedcom_write_record_str(hndl, REC_SOUR, 0,
-				      obj->xrefstr, NULL);
+    result |= gedcom_write_record_str(hndl, REC_SOUR, obj->xrefstr, NULL);
     if (obj->data.event || obj->data.agency || obj->data.note)
       result |= gedcom_write_element_str(hndl, ELT_SOUR_DATA, 0,
 					 REC_SOUR, NULL);

@@ -101,7 +101,7 @@ int write_submission(Gedcom_write_hndl hndl)
   int result = 0;
 
   if (gom_submission) {
-    result |= gedcom_write_record_str(hndl, REC_SUBN, 0,
+    result |= gedcom_write_record_str(hndl, REC_SUBN, 
 				      gom_submission->xrefstr, NULL);
     if (gom_submission->submitter)
       result |= gedcom_write_element_xref(hndl, ELT_SUBN_SUBM, 0,

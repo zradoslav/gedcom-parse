@@ -545,15 +545,11 @@ int  gedcom_write_set_encoding(const char* charset, Encoding width,
 int  gedcom_write_set_line_terminator(Enc_line_end end);
 
 int  gedcom_write_record_str(Gedcom_write_hndl hndl,
-			     Gedcom_rec rec, int parsed_tag,
-			     char* xrefstr, char* val);
-int  gedcom_write_element_str(Gedcom_write_hndl hndl, Gedcom_elt elt,
-	                      int parsed_tag, int parent_rec_or_elt,
-			      char* val);
-
-int gedcom_write_record_xref(Gedcom_write_hndl hndl,
-			     Gedcom_rec rec, int parsed_tag,
-			     char* xrefstr, struct xref_value* val);
+			     Gedcom_rec rec, char* xrefstr, char* val);
+  
+int gedcom_write_element_str(Gedcom_write_hndl hndl, Gedcom_elt elt,
+			     int parsed_tag, int parent_rec_or_elt,
+			     char* val);
 int gedcom_write_element_xref(Gedcom_write_hndl hndl, Gedcom_elt elt,
                               int parsed_tag, int parent_rec_or_elt,
 			      struct xref_value* val);
