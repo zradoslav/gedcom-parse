@@ -49,9 +49,11 @@ void init_mess_buffer()
       mess_buffer[0] = '\0';
       bufsize = INITIAL_BUF_SIZE;
     }
-    else
-      fprintf(stderr, _("Could not allocate memory at %s, %d\n"),
+    else {
+      fprintf(stderr, _("Could not allocate memory at %s, %d"),
 	      __FILE__, __LINE__);
+      fprintf(stderr, "\n");
+    }
   }
 }
 

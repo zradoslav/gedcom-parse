@@ -42,7 +42,7 @@ void gedcom_subscribe_to_record(Gedcom_rec rec,
 				Gedcom_rec_end_cb cb_end)
 {
   if (record_start_callback[rec] || record_end_callback[rec])
-    gedcom_error(_("Internal error: Duplicate registration for record type %d\n"), rec);
+    gedcom_error(_("Internal error: Duplicate registration for record type %d"), rec);
   if (cb_start) {
     record_start_callback[rec] = cb_start;
     record_end_callback[rec]   = cb_end;
@@ -54,7 +54,7 @@ void gedcom_subscribe_to_element(Gedcom_elt elt,
 				 Gedcom_elt_end_cb cb_end)
 {
   if (element_start_callback[elt] || element_end_callback[elt])
-    gedcom_error(_("Internal error: Duplicate registration for element type %d\n"), elt);
+    gedcom_error(_("Internal error: Duplicate registration for element type %d"), elt);
   if (cb_start) {
     element_start_callback[elt] = cb_start;
     element_end_callback[elt]   = cb_end;
