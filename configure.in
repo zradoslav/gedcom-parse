@@ -124,6 +124,7 @@ fi
 
 AC_OUTPUT(GNUmakefile
           Makefile
+	  gedcom-config
 	  gedcom/Makefile
 	  gedcom/calendar/Makefile
 	  gom/Makefile
