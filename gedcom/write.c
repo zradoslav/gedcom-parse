@@ -155,7 +155,7 @@ int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
     int cont_supported = supports_continuation(elt_or_rec, OPT_CONT);
     int cont_as_conc   = supports_continuation(elt_or_rec, OPT_CONT_AS_CONC);
     if (nl_pos && !cont_supported) {
-      gedcom_error (_("The tag %s doesn't support newlines\n"), tag);
+      gedcom_error (_("The tag %s doesn't support newlines"), tag);
       return 1;
     }
     else {
