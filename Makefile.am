@@ -14,13 +14,10 @@ testgedcom_LDADD  = @INTLLIBS@
 EXTRA_DIST = $(pkgdata_DATA)
 VERSIONED_FILES = README
 
+include $(top_srcdir)/Makefile.inc
+
 dist-hook:
-	@cd $(distdir); \
-	for file in $(VERSIONED_FILES); do \
-          sed 's/\@VERSION\@/${VERSION}/' $$file > $$file.new; \
-	  rm $$file; \
-	  mv $$file.new $$file; \
-	done
+	$(replace-VERSION)
 
 clean-local:
 	rm -f testgedcom.out

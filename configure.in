@@ -38,6 +38,7 @@ AC_OUTPUT(Makefile
 	  ansel/Makefile
 	  t/Makefile
 	  doc/Makefile
+	  doc/images/Makefile
 	  include/Makefile
           intl/Makefile
           po/Makefile.in)

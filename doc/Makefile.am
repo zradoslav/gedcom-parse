@@ -2,16 +2,15 @@
 # $Id$
 # $Name$
 
-EXTRA_DIST = index.html usage.html parser.html interface.html links.html
+SUBDIRS = images .
+DOC_FILES = index.html usage.html parser.html interface.html links.html
 VERSIONED_FILES = index.html
+EXTRA_DIST = $(DOC_FILES)
+docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
+
+include $(top_srcdir)/Makefile.inc
+
+doc_DATA = $(DOC_FILES)
 
 dist-hook:
-	mkdir -p $(distdir)/images;
-	cp -p $(srcdir)/images/schema.obj $(srcdir)/images/schema.png \
-	   $(distdir)/images;
-	cd $(distdir); \
-	for file in $(VERSIONED_FILES); do \
-          sed 's/\@VERSION\@/${VERSION}/' $$file > $$file.new; \
-	  rm $$file; \
-	  mv $$file.new $$file; \
-	done
+	$(replace-VERSION)
