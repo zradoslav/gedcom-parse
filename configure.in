@@ -110,6 +110,7 @@ if test "${with_libiconv_prefix+set}" = set; then
   ICONV_PATH=`echo "$withval" | tr : '/bin:'`
   ICONV_PATH="$ICONV_PATH/bin"
 fi
+AC_SUBST(ICONV_LIBPATH)
 AC_SUBST(ICONV_PATH)
 
 AC_MSG_CHECKING(for location of iconv)
@@ -135,11 +136,6 @@ library (see README).
 *******************************************************************************
   ])
 fi
-
-case "$host_os" in
- darwin*) # Hack to get correct locale_charset() function
-          LDFLAGS="$ICONV_LIBPATH -liconv $LDFLAGS";;
-esac
 
 AC_OUTPUT(GNUmakefile
           Makefile
