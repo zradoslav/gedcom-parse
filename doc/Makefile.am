@@ -3,19 +3,5 @@
 # $Name$
 
 SUBDIRS = images . doxygen html
-DOC_FILES = index.html usage.html parser.html interface.html links.html \
-	    encoding.html gom.html
-GENERATED_DOC_FILES = gomxref.html utf8tools.html
 DOC_GEN = make_gom_xref
-EXTRA_DIST = $(DOC_FILES) $(DOC_GEN) index.html.in $(GENERATED_DOC_FILES)
-docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
-DISTCLEANFILES = $(GENERATED_DOC_FILES)
-
-doc_DATA = $(DOC_FILES) $(GENERATED_DOC_FILES)
-
-gomxref.html:	$(srcdir)/../include/gom.h make_gom_xref
-	srcdir=$(srcdir); export srcdir; \
-        perl $(srcdir)/make_gom_xref
-
-utf8tools.html:	$(srcdir)/../utf8/doc/utf8tools.html
-	cp $< $@
+EXTRA_DIST = $(DOC_GEN)
