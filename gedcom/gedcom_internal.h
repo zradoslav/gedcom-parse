@@ -62,4 +62,5 @@ void       gedcom_mem_error(const char *filename, int line);
 #define MEMORY_ERROR gedcom_mem_error(__FILE__, __LINE__)
 
 extern int line_no;
+extern int init_called;
 #endif /* __GEDCOM_INTERNAL_H */

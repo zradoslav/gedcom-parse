@@ -116,7 +116,7 @@ int determine_encoding(FILE* f)
   }
 }
 
-static int init_called = 0;
+int init_called = 0;
 
 void gedcom_init()
 {
@@ -195,14 +195,23 @@ int gedcom_parse_file(const char* file_name)
 int gedcom_new_model()
 {
   int result = 1;
-  char* filename = (char*) malloc(strlen(PKGDATADIR) + strlen(NEW_MODEL_FILE)
-				  + 2);
-  if (!filename)
-    MEMORY_ERROR;
+  FILE* file;
+
+  file = fopen(NEW_MODEL_FILE, "r");
+  if (file) {
+    fclose(file);
+    result = gedcom_parse_file(NEW_MODEL_FILE);
+  }
   else {
-    sprintf(filename, "%s/%s", PKGDATADIR, NEW_MODEL_FILE);
-    result = gedcom_parse(filename);
-    free(filename);
+    char* filename = (char*) malloc(strlen(PKGDATADIR) + strlen(NEW_MODEL_FILE)
+				    + 2);
+    if (!filename)
+      MEMORY_ERROR;
+    else {
+      sprintf(filename, "%s/%s", PKGDATADIR, NEW_MODEL_FILE);
+      result = gedcom_parse_file(filename);
+      free(filename);
+    }
   }
   return result;
 }
