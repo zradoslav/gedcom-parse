@@ -212,6 +212,46 @@ void NULL_DESTROY(void* anything);
     return (Gedcom_ctxt)result;                                               \
   }
 
+#define STRING_END_CB(STRUCTTYPE,CB_NAME,FIELD)                               \
+  void CB_NAME(_ELT_END_PARAMS_)                                              \
+  {                                                                           \
+    Gom_ctxt ctxt = (Gom_ctxt)self;                                           \
+    if (! ctxt)                                                               \
+      NO_CONTEXT;                                                             \
+    else {                                                                    \
+      struct STRUCTTYPE *obj = SAFE_CTXT_CAST(STRUCTTYPE, ctxt);              \
+      if (obj) {                                                              \
+	char *str = GEDCOM_STRING(parsed_value);                              \
+	char *newvalue = strdup(str);                                         \
+	if (! newvalue)                                                       \
+	  MEMORY_ERROR;                                                       \
+	else                                                                  \
+	  obj->FIELD = newvalue;                                              \
+      }                                                                       \
+      destroy_gom_ctxt(ctxt);                                                 \
+    }                                                                         \
+  }
+
+#define STRING_END_REC_CB(STRUCTTYPE,CB_NAME,FIELD)                           \
+  void CB_NAME(_REC_END_PARAMS_)                                              \
+  {                                                                           \
+    Gom_ctxt ctxt = (Gom_ctxt)self;                                           \
+    if (! ctxt)                                                               \
+      NO_CONTEXT;                                                             \
+    else {                                                                    \
+      struct STRUCTTYPE *obj = SAFE_CTXT_CAST(STRUCTTYPE, ctxt);              \
+      if (obj) {                                                              \
+	char *str = GEDCOM_STRING(parsed_value);                              \
+	char *newvalue = strdup(str);                                         \
+	if (! newvalue)                                                       \
+	  MEMORY_ERROR;                                                       \
+	else                                                                  \
+	  obj->FIELD = newvalue;                                              \
+      }                                                                       \
+      destroy_gom_ctxt(ctxt);                                                 \
+    }                                                                         \
+  }
+
 #define DATE_CB(STRUCTTYPE,CB_NAME,FIELD)                                     \
   Gedcom_ctxt CB_NAME(_ELT_PARAMS_)                                           \
   {                                                                           \
