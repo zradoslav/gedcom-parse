@@ -1,0 +1,4 @@
+2002-12-21  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* libutf8 is now separate package (changed license to LGPL).
+
