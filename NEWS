@@ -5,7 +5,7 @@ release 0.18 (NOT RELEASED YET):
  - The library should now be portable, i.e it should work on any POSIX system.
    On systems lacking glibc, libiconv is needed (see README).
 
- - New features (see documentation):
+ - A lot of new features (see documentation):
      - callback interface:
         - functions to manipulate cross-references (add, delete, link and
           unlink)
@@ -19,6 +19,11 @@ release 0.18 (NOT RELEASED YET):
         - support for writing Gedcom files
      - development support:
         - m4 macro that can be used in configure.in
+
+ - The library now comes with an extra shared library (libutf8tools),
+   which needs to be linked in in any programs that use the gedcom parser
+   library (you can use the script 'gedcom-config' to generate link and
+   include flags).  You can use utf8tools in totally unrelated programs too.
 
  - INTERFACE CHANGE: the end record callback function now takes an extra
    argument (similar to the end element callback): a Gedcom_val, which
