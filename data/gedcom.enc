@@ -3,7 +3,7 @@
 
 # Mapping of charsets for gedcom parsing
 # Each line contains (separated by whitespace):
-#   - the gedcom name
+#   - the gedcom name (with space replaced by underscore)
 #   - a token identifying the width of characters and the ordering;
 #     currently supported values: 1, 2_LOHI, 2_HILO
 #   - the iconv name of the charset
@@ -17,5 +17,6 @@ ANSEL		1	ANSEL
 # Then some very frequently used non-standard encodings:
 # Note that CP1252 is a superset of ISO-8859-1, so that is covered too
 ANSI		1	CP1252
+IBM_WINDOWS	1	CP1252
 # The following is explicitly allowed in the draft 5.5.1 GEDCOM standard
 UTF-8		1	UTF-8
