@@ -72,25 +72,6 @@ Gedcom_ctxt sub_addr_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-void sub_addr_end(_ELT_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    struct address *addr = SAFE_CTXT_CAST(address, ctxt);
-    if (addr) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = strdup(str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else
-	addr->full_label = newvalue;
-    }
-  }
-}
-
 Gedcom_ctxt sub_addr_cont_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
@@ -103,6 +84,7 @@ Gedcom_ctxt sub_addr_cont_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+STRING_END_CB(address, sub_addr_end, full_label)
 STRING_CB(address, sub_addr_adr1_start, line1)
 STRING_CB(address, sub_addr_adr2_start, line2)
 STRING_CB(address, sub_addr_city_start, city)
