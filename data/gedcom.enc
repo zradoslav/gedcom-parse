@@ -8,7 +8,7 @@
 #     currently supported values: 1, 2_LOHI, 2_HILO
 #   - the iconv name of the charset
 
-# First the encodings supported by the GEDCOM standard
+# First the encodings supported by the GEDCOM 5.5 standard
 UNICODE		2_LOHI	UCS-2LE
 UNICODE		2_HILO	UCS-2BE
 ASCII		1	ASCII
