@@ -27,6 +27,7 @@
 #include <stdarg.h>
 #include <locale.h>
 #include <errno.h>
+#include <iconv.h>
 #include "gedcom.h"
 #include "utf8-locale.h"
 
@@ -174,7 +175,7 @@ void default_cb(Gedcom_ctxt ctxt, int level, char *tag, char *raw_value,
 		int tag_value)
 {
   char   *converted = NULL;
-  int    conv_fails;
+  int    conv_fails = 0;
   if (raw_value)
     converted = convert_utf8_to_locale(raw_value, &conv_fails);
   output(0, "== %d %s (%d) %s (ctxt is %d, conversion failures: %d)\n",
