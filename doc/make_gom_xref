@@ -8,6 +8,7 @@ use diagnostics;
 my $inputfile ="$ENV{srcdir}/../include/gom.h";
 my $outputfile ="gomxref.html";
 my $ext_link = "interface.html";
+my $generated = "";
 
 my $main_structs = "";
 my $sub_structs="";
@@ -22,6 +23,7 @@ while (<INPUT>)
   $section = "sub"  if m|/\* Sub-structures \*/|;
   $section = "main" if m|/\* Main structures \*/|;
   $section = ""     if m|/\* Functions \*/|;
+  $generated = $1   if m|/\* \$Id$ \*/|;
   next if m|/\*|;
 
   if ($section ne "") {
@@ -49,26 +51,40 @@ while (<INPUT>)
   }
 }
 
-print OUTPUT "<center><h1>Gedcom object model in C</h1></center>\n";
-print OUTPUT <<END_OF_TEXT;
+print OUTPUT <<"END_OF_HTML";
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 FINAL//EN">
+<html>
+<head>
+  <title>Gedcom object model in C</title>
+</head>
+<body bgcolor="White">
+  
+<h1 align="center">Gedcom object model in C</h1>
 This page provides a cross-reference of all objects in the Gedcom object
 model for C.  The following links are fast links to the main structures
 in the Gedcom object model:
-END_OF_TEXT
-print OUTPUT "\n";
-print OUTPUT "<UL>\n";
-print OUTPUT $index;
-print OUTPUT "</UL>\n";
-print OUTPUT "<hr>\n";
-print OUTPUT "<h2>Main structures</h2>\n";
-print OUTPUT "<CODE><PRE>\n";
-print OUTPUT $main_structs;
-print OUTPUT "</PRE></CODE>\n";
-print OUTPUT "<hr>\n";
-print OUTPUT "<h2>Sub-structures</h2>\n";
-print OUTPUT "<CODE><PRE>\n";
-print OUTPUT $sub_structs;
-print OUTPUT "</PRE></CODE>\n";
 
+<UL>
+$index
+</UL>
+<HR>
+
+<h2>Main structures</h2>
+<CODE><PRE>
+$main_structs
+</PRE></CODE>
+<HR>
+
+<h2>Sub-structures</h2>
+<CODE><PRE>
+$sub_structs
+</PRE></CODE>
+<HR>
+
+<SMALL>Generated from: $generated</SMALL>
+</body>
+</html>
+END_OF_HTML
+    
 close OUTPUT;
 close INPUT;
