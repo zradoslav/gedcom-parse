@@ -26,11 +26,11 @@
 #include <stdio.h>
 
 int        gedcom_1byte_lex();
-extern FILE *gedcom_1byte_in;
+void       gedcom_1byte_myinit(FILE* f);
 
 int        gedcom_hilo_lex();
-extern FILE *gedcom_hilo_in;
+void       gedcom_hilo_myinit(FILE* f);
 
 int        gedcom_lohi_lex();
-extern FILE *gedcom_lohi_in;
+void       gedcom_lohi_myinit(FILE* f);
 #endif /* __MULTILEX_H */
