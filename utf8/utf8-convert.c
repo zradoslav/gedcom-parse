@@ -187,7 +187,8 @@ void cleanup_utf8_conversion(convert_t conv)
   }
 }
 
-char* convert_from_utf8(convert_t conv, const char* input, int* conv_fails)
+char* convert_from_utf8(convert_t conv, const char* input, int* conv_fails,
+			size_t* output_len)
 {
   size_t insize = strlen(input);
   size_t outsize;
@@ -246,12 +247,12 @@ char* convert_from_utf8(convert_t conv, const char* input, int* conv_fails)
     }
     nconv = iconv(conv->from_utf8, &inptr, &insize, &outptr, &outsize);
   }
+  if (output_len) *output_len = outptr - outbuf->buffer;
   return outbuf->buffer;
 }
 
-char* convert_to_utf8(convert_t conv, const char* input)
+char* convert_to_utf8(convert_t conv, const char* input, size_t input_len)
 {
-  size_t insize  = strlen(input);
   size_t outsize;
   ICONV_CONST char *inptr  = (ICONV_CONST char*) input;
   char   *outptr;
@@ -267,7 +268,7 @@ char* convert_to_utf8(convert_t conv, const char* input)
   outptr  = outbuf->buffer;
   outsize = outbuf->size;
   reset_conv_buffer(conv->outbuf);
-  nconv = iconv(conv->to_utf8, &inptr, &insize, &outptr, &outsize);
+  nconv = iconv(conv->to_utf8, &inptr, &input_len, &outptr, &outsize);
   while (nconv == (size_t)-1) {
     if (errno == E2BIG) {
       /* grow the output buffer */
@@ -286,7 +287,7 @@ char* convert_to_utf8(convert_t conv, const char* input)
       /* EBADF is an error which should be captured by the first if above */
       return NULL;
     }
-    nconv = iconv(conv->to_utf8, &inptr, &insize, &outptr, &outsize);
+    nconv = iconv(conv->to_utf8, &inptr, &input_len, &outptr, &outsize);
   }
   return outbuf->buffer;  
 }

@@ -12,6 +12,7 @@
 #include "utf8.h"
 #include <stdlib.h>
 #include <assert.h>
+#include <string.h>
 #include "libcharset.h"
 
 static convert_t locale_conv = NULL;
@@ -47,7 +48,7 @@ char* convert_utf8_to_locale(const char* input, int *conv_fails)
   if (!locale_conv)
     open_conversion_contexts();
 
-  return convert_from_utf8(locale_conv, input, conv_fails);
+  return convert_from_utf8(locale_conv, input, conv_fails, NULL);
 }
 
 char* convert_locale_to_utf8(const char* input)
@@ -55,5 +56,5 @@ char* convert_locale_to_utf8(const char* input)
   if (!locale_conv)
     open_conversion_contexts();
 
-  return convert_to_utf8(locale_conv, input);
+  return convert_to_utf8(locale_conv, input, strlen(input));
 }
