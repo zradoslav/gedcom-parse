@@ -30,7 +30,6 @@
 #include "gedcom_internal.h"
 #include "encoding.h"
 
-#define INTERNAL_ENCODING "UTF8"
 #define ENCODING_CONF_FILE "gedcom.enc"
 #define GCONV_SEARCH_PATH "GCONV_PATH"
 #define MAXBUF 255
