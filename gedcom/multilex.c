@@ -228,6 +228,6 @@ int gedcom_check_version(int major, int minor, int patch)
     return 0;
   else if (patch <= GEDCOM_PARSE_VERSION_PATCH)
     return 1;
-  else {
+  else
     return 0;
 }
