@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-20 13:38+0100\n"
+"POT-Creation-Date: 2002-03-27 21:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,58 +24,58 @@ msgstr ""
 msgid "No encoding defined for '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:153
+#: gedcom/encoding.c:172
 #, c-format
 msgid "Could not open encoding configuration file '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:160
+#: gedcom/encoding.c:179
 #, c-format
 msgid "Line too long in encoding configuration file '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:169
+#: gedcom/encoding.c:188
 #, c-format
 msgid "Missing data in encoding configuration file '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:201
+#: gedcom/encoding.c:220
 #, c-format
 msgid "Error opening conversion context for encoding %s: %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:1302 gedcom/gedcom.y:3494
+#: gedcom/gedcom.y:1356 gedcom/gedcom.y:3548
 msgid "Missing value"
 msgstr ""
 
-#: gedcom/gedcom.y:3430 gedcom/gedcom.y:3454
+#: gedcom/gedcom.y:3484 gedcom/gedcom.y:3508
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:3489
+#: gedcom/gedcom.y:3543
 msgid "Missing pointer"
 msgstr ""
 
-#: gedcom/gedcom.y:3567
+#: gedcom/gedcom.y:3621
 msgid "Missing cross-reference"
 msgstr ""
 
-#: gedcom/gedcom.y:3730
+#: gedcom/gedcom.y:3784
 msgid "Internal error: count array overflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3736
+#: gedcom/gedcom.y:3790
 msgid "Internal error: count array calloc error"
 msgstr ""
 
-#: gedcom/gedcom.y:3781
+#: gedcom/gedcom.y:3835
 msgid "Internal error: count array underflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3843
+#: gedcom/gedcom.y:3897
 msgid "Enabling compatibility with 'ftree'"
 msgstr ""
 
@@ -103,7 +103,11 @@ msgstr ""
 msgid "Unknown encoding, falling back to one-byte"
 msgstr ""
 
-#: gedcom/multilex.c:124
+#: gedcom/multilex.c:130
+msgid "Internal error: GEDCOM parser not initialized"
+msgstr ""
+
+#: gedcom/multilex.c:136
 #, c-format
 msgid "Could not open file '%s'"
 msgstr ""
