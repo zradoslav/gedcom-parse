@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Gedcom object model in C</title>
+  
+                                                              
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head><body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
+                 
+<h1 align="center">Gedcom object model in C</h1>
+         <br>
+                 
+<h2>Index</h2>
+               
+<ul>
+          <li><a href="#Main_functions">Main functions</a></li>
+
+    <li><a href="#Object_model_structure">Object model structure</a></li>
+
+    <li><a href="#User_data">User data</a><br>
+<br>
+    </li>
+
+  
+
+         <li><a href="gomxref.html">C object model details</a><br>
+            </li>
+
+               
+</ul>
+               
+<hr width="100%" size="2">         
+
+<h2><a name="Main_functions"></a>Main functions<br>
+
+</h2>
+There are two ways to start with a GEDCOM object model (after having called <code>gedcom_init</code>): either by starting from scratch, or by starting from a given GEDCOM file. &nbsp;This is done via the following two functions:<br>
+<blockquote><code>int <b>gom_parse_file</b> (const char* file_name)<br>
+  </code>
+  <blockquote>This initializes the object model by parsing the GEDCOM file given by <code>file_name</code>. &nbsp;It returns 0 on success and 1 on failure.<br>
+  </blockquote>
+</blockquote>
+<blockquote><code>int <b>gom_new_model</b> ()<br>
+  </code>
+  <blockquote>This starts an empty model. &nbsp;Actually, this is done by processing the file "<code>new.ged</code>" in the gedcom-parse data directory.<br>
+  </blockquote>
+</blockquote>
+In the GEDCOM object model, all the data is immediately available after calling <code>gom_parse_file()</code> or <code>gom_new_model()</code>. &nbsp;For this, an entire model based on C structs is used. &nbsp;These structs are documented <a href="file:///home/verthezp/src/external/gedcom-parse/doc/gomxref.html">here</a>,
+and follow the GEDCOM syntax quite closely. &nbsp;Each of the records in
+a GEDCOM file are modelled by a separate struct, and some common sub-structures
+have their own struct definition.<br>
+<br>
+
+The following functions are available to get at these structs:<br>
+<ul>
+  <li>First, there are two functions to get the header record and the submission
+record (there can be only one of them in a GEDCOM file):<br>
+    <blockquote><code>struct header* &nbsp; &nbsp; &nbsp;<b>gom_get_header</b>();<br>
+struct submission* &nbsp;<b>gom_get_submission</b>();<br>
+      </code></blockquote>
+  </li>
+  <li>Further, for each of the other records, there are two functions, one
+to get the first of such records, and one to get a record via its cross-reference
+tag in the GEDCOM file:<br>
+    <blockquote><code>struct XXX* &nbsp; <b>gom_get_first_XXX</b>();<br>
+struct XXX* &nbsp; <b>gom_get_XXX_by_xref</b>(char* xref);</code><br>
+    </blockquote>
+  </li>
+</ul>
+<blockquote>The <b>XXX</b> stands for one of the following: <code>family, </code><code>individual, multimedia, note, repository, source, submitter, user_rec</code>.<br>
+</blockquote>
+<h2><a name="Object_model_structure"></a>Object model structure<br>
+
+</h2>
+
+All records of a certain type are linked together in a linked list. &nbsp;The
+above functions only give access to the first record of each linked list.
+&nbsp;The others can be accessed by traversing the linked list via the <code>next</code> member of the structs. &nbsp;This means that e.g. the following piece of code will traverse the linked list of family records:<br>
+<blockquote><code>struct family* fam;<br>
+  <br>
+for (fam = gom_get_first_family() ; fam ; fam = fam-&gt;next) {<br>
+&nbsp; ...<br>
+}</code><br>
+</blockquote>
+The <code>next</code> member of the last element in the list is guaranteed to have the <code>NULL</code> value.<br>
+<br>
+Actually, the linked list is a doubly-linked list: each record also has a <code>previous</code> member. &nbsp;But for implementation reasons the behaviour of this <code>previous</code> member on the edges of the linked list will not be guaranteed, i.e. it can be circular or terminated with <code>NULL</code>, no assumptions can be made in the application code.<br>
+<br>
+This linked-list model applies also to all sub-structures of the main record structs, i.e. each struct that has a <code>next </code>and <code>previous</code>
+member following the above conventions. &nbsp;This means that the following
+piece of code traverses all children of a family (see the details of the
+different structs <a href="gomxref.html">here</a>):<br>
+<blockquote><code>struct family* fam = ...;<br>
+  <br>
+struct xref_list* xrl;<br>
+for (xrl = fam-&gt;children ; xrl ; xrl = xrl-&gt;next) {<br>
+&nbsp; ...<br>
+}</code> <br>
+</blockquote>
+Note that all character strings in the object model are encoded in UTF-8 (<a href="file:///home/verthezp/src/external/gedcom-parse/doc/encoding.html">Why UTF-8?</a>).<br>
+<h2><a name="User_data"></a>User data</h2>
+
+Each of the structs has an extra member called <code>extra</code> (of type <code>struct user_data*</code>).
+&nbsp;This gathers all non-standard GEDCOM tags within the scope of the struct
+in a flat linked list, no matter what the internal structure of the non-standard
+tags is. &nbsp;Each element of the linked list has:<br>
+<ul>
+  <li>a level: the level number in the GEDCOM file</li>
+  <li>a tag: the tag given in the GEDCOM file</li>
+  <li>a value: the value, which can be a string value or a cross-reference value (one of the two will be non-NULL)<br>
+  </li>
+</ul>
+This way, none of the information in the GEDCOM file is lost, even the non-standard information.<br>
+<hr width="100%" size="2">                                              
+                              
+<pre><font size="-1">$Id$<br>$Name$</font><br></pre>
+                                                                        
+                  
+<pre>                    </pre>
+                                                                        
+                                                        
+<br>
+<br>
+<br>
+</body></html>
