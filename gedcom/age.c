@@ -111,7 +111,7 @@ struct age_value gedcom_parse_age(const char* line_value)
     while (*ptr == ' ') ptr++;
   }
 
-  if (isdigit(*ptr)) {
+  if (isdigit((unsigned char)*ptr)) {
     int result = parse_numeric_age(&age_s, ptr);
     if (result == 0) {
       age_s.type = AGE_NUMERIC;
