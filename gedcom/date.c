@@ -152,9 +152,9 @@ void add_date(struct date* d)
     default:
       break;
   }
-  if (d->day_str)
+  if (d->day_str[0])
     safe_buf_append(&date_buffer, "%s ", d->day_str);
-  if (d->month_str)
+  if (d->month_str[0])
     safe_buf_append(&date_buffer, "%s ", d->month_str);
   safe_buf_append(&date_buffer, "%s", d->year_str);
 }
