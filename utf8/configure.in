@@ -8,7 +8,7 @@ dnl Global variables
 NAME=libutf8tools
 AC_SUBST(NAME)
 
-VERSION=0.1
+VERSION=0.1.0
 AC_SUBST(VERSION)
 
 LIBVERSION=0:1
