@@ -31,6 +31,7 @@ int write_address(Gedcom_write_hndl hndl, int parent, struct address *address);
 
 DECLARE_SUB_MAKEFUNC(address);
 
+DECLARE_UNREFALLFUNC(address);
 DECLARE_CLEANFUNC(address);
 DECLARE_ADDFUNC2(address, user_data);
 

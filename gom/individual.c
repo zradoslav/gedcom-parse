@@ -102,6 +102,29 @@ void individual_add_family_link(Gom_ctxt ctxt, int ctxt_type,
   }
 }
 
+void UNREFALLFUNC(individual)(struct individual *obj)
+{
+  if (obj) {
+    UNREFALLFUNC(personal_name)(obj->name);
+    UNREFALLFUNC(event)(obj->event);
+    UNREFALLFUNC(event)(obj->attribute);
+    UNREFALLFUNC(lds_event)(obj->lds_individual_ordinance);
+    UNREFALLFUNC(family_link)(obj->child_to_family);
+    UNREFALLFUNC(family_link)(obj->spouse_to_family);
+    UNREFALLFUNC(xref_list)(obj->submitters);
+    UNREFALLFUNC(association)(obj->association);
+    UNREFALLFUNC(xref_list)(obj->alias);
+    UNREFALLFUNC(xref_list)(obj->ancestor_interest);
+    UNREFALLFUNC(xref_list)(obj->descendant_interest);
+    UNREFALLFUNC(source_citation)(obj->citation);
+    UNREFALLFUNC(multimedia_link)(obj->mm_link);
+    UNREFALLFUNC(note_sub)(obj->note);
+    UNREFALLFUNC(user_ref_number)(obj->ref);
+    UNREFALLFUNC(change_date)(obj->change_date);
+    UNREFALLFUNC(user_data)(obj->extra);
+  }
+}
+
 void CLEANFUNC(individual)(struct individual* indiv)
 {
   if (indiv) {

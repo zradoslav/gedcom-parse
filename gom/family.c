@@ -73,6 +73,24 @@ void family_subscribe()
   gedcom_subscribe_to_element(ELT_FAM_SUBM, fam_subm_start, def_elt_end);
 }
 
+void UNREFALLFUNC(family)(struct family *fam)
+{
+  if (fam) {
+    UNREFALLFUNC(event)(fam->event);
+    unref_xref_value(fam->husband);
+    unref_xref_value(fam->wife);
+    UNREFALLFUNC(xref_list)(fam->children);
+    UNREFALLFUNC(xref_list)(fam->submitters);
+    UNREFALLFUNC(lds_event)(fam->lds_spouse_sealing);
+    UNREFALLFUNC(source_citation)(fam->citation);
+    UNREFALLFUNC(multimedia_link)(fam->mm_link);
+    UNREFALLFUNC(note_sub)(fam->note);
+    UNREFALLFUNC(user_ref_number)(fam->ref);
+    UNREFALLFUNC(change_date)(fam->change_date);
+    UNREFALLFUNC(user_data)(fam->extra);
+  }
+}
+
 void CLEANFUNC(family)(struct family* fam)
 {
   if (fam) {

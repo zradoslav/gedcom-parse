@@ -91,6 +91,16 @@ void submitter_subscribe()
   gedcom_subscribe_to_element(ELT_SUBM_RIN, subm_rin_start, def_elt_end);
 }
 
+void UNREFALLFUNC(submitter)(struct submitter *obj)
+{
+  if (obj) {
+    UNREFALLFUNC(address)(obj->address);
+    UNREFALLFUNC(multimedia_link)(obj->mm_link);
+    UNREFALLFUNC(change_date)(obj->change_date);
+    UNREFALLFUNC(user_data)(obj->extra);
+  }
+}
+
 void CLEANFUNC(submitter)(struct submitter* rec)
 {
   if (rec) {

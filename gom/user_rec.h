@@ -35,6 +35,7 @@ int write_user_data(Gedcom_write_hndl hndl, struct user_data* data);
 DECLARE_MAKEFUNC(user_rec);
 DECLARE_ADDFUNC2(user_rec, user_data);
 
+DECLARE_UNREFALLFUNC(user_data);
 DECLARE_CLEANFUNC(user_data);
 
 #endif /* __USER_REC_H */

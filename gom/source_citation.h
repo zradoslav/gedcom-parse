@@ -34,6 +34,7 @@ int write_citations(Gedcom_write_hndl hndl, int parent,
 
 DECLARE_SUB_MAKEFUNC(source_citation);
 
+DECLARE_UNREFALLFUNC(source_citation);
 DECLARE_CLEANFUNC(source_citation);
 DECLARE_ADDFUNC2(source_citation, note_sub);
 DECLARE_ADDFUNC2(source_citation, multimedia_link);

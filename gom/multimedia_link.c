@@ -100,6 +100,18 @@ void multimedia_link_subscribe()
 			      sub_obje_file_start, def_elt_end);
 }
 
+void UNREFALLFUNC(multimedia_link)(struct multimedia_link* obj)
+{
+  if (obj) {
+    struct multimedia_link* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      unref_xref_value(runner->reference);
+      UNREFALLFUNC(note_sub)(runner->note);
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(multimedia_link)(struct multimedia_link* mm)
 {
   if (mm) {

@@ -33,6 +33,7 @@ int write_user_refs(Gedcom_write_hndl hndl, int parent,
 
 DECLARE_SUB_MAKEFUNC(user_ref_number);
 
+DECLARE_UNREFALLFUNC(user_ref_number);
 DECLARE_CLEANFUNC(user_ref_number);
 DECLARE_ADDFUNC2(user_ref_number, user_data);
 

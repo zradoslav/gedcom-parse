@@ -166,10 +166,33 @@ void citation_subscribe()
 			      def_elt_end);
 }
 
+void UNREFALLFUNC(text)(struct text* obj)
+{
+  if (obj) {
+    struct text* runner;
+    for (runner = obj; runner; runner = runner->next)
+      UNREFALLFUNC(user_data)(runner->extra);
+  }
+}
+
 void CLEANFUNC(text)(struct text* t)
 {
   if (t) {
     SAFE_FREE(t->text);
+  }
+}
+
+void UNREFALLFUNC(source_citation)(struct source_citation* obj)
+{
+  if (obj) {
+    struct source_citation* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      unref_xref_value(runner->reference);
+      UNREFALLFUNC(text)(runner->text);
+      UNREFALLFUNC(multimedia_link)(runner->mm_link);
+      UNREFALLFUNC(note_sub)(runner->note);
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
   }
 }
 

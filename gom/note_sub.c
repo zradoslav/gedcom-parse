@@ -122,6 +122,18 @@ void note_sub_subscribe()
   gedcom_subscribe_to_element(ELT_SUB_NOTE, sub_note_start, sub_note_end);
 }
 
+void UNREFALLFUNC(note_sub)(struct note_sub* obj)
+{
+  if (obj) {
+    struct note_sub* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      unref_xref_value(runner->reference);
+      UNREFALLFUNC(source_citation)(runner->citation);
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(note_sub)(struct note_sub* note)
 {
   if (note) {

@@ -123,6 +123,15 @@ void user_ref_subscribe()
 			      def_elt_end);
 }
 
+void UNREFALLFUNC(user_ref_number)(struct user_ref_number* obj)
+{
+  if (obj) {
+    struct user_ref_number* runner;
+    for (runner = obj; runner; runner = runner->next)
+      UNREFALLFUNC(user_data)(runner->extra);
+  }
+}
+
 void CLEANFUNC(user_ref_number)(struct user_ref_number* refn)
 {
   if (refn) {

@@ -92,6 +92,14 @@ void change_date_subscribe()
 			      def_elt_end);
 }
 
+void UNREFALLFUNC(change_date)(struct change_date* obj)
+{
+  if (obj) {
+    UNREFALLFUNC(note_sub)(obj->note);
+    UNREFALLFUNC(user_data)(obj->extra);
+  }
+}
+
 void CLEANFUNC(change_date)(struct change_date *chan)
 {
   if (chan) {

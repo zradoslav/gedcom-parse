@@ -95,6 +95,22 @@ void source_add_note_to_repo(Gom_ctxt ctxt, struct note_sub* note)
     LINK_CHAIN_ELT(note_sub, sour->repository.note, note);  
 }
 
+void UNREFALLFUNC(source)(struct source *obj)
+{
+  if (obj) {
+    UNREFALLFUNC(source_event)(obj->data.event);
+    UNREFALLFUNC(note_sub)(obj->data.note);
+    unref_xref_value(obj->repository.link);
+    UNREFALLFUNC(note_sub)(obj->repository.note);
+    UNREFALLFUNC(source_description)(obj->repository.description);
+    UNREFALLFUNC(multimedia_link)(obj->mm_link);
+    UNREFALLFUNC(note_sub)(obj->note);
+    UNREFALLFUNC(user_ref_number)(obj->ref);
+    UNREFALLFUNC(change_date)(obj->change_date);
+    UNREFALLFUNC(user_data)(obj->extra);
+  }
+}
+
 void CLEANFUNC(source)(struct source* sour)
 {
   if (sour) {

@@ -222,6 +222,22 @@ void event_subscribe()
 			      sub_evt_caus_start, def_elt_end);
 }
 
+void UNREFALLFUNC(event)(struct event* obj)
+{
+  if (obj) {
+    struct event* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      UNREFALLFUNC(place)(runner->place);
+      UNREFALLFUNC(address)(runner->address);
+      UNREFALLFUNC(source_citation)(runner->citation);
+      UNREFALLFUNC(multimedia_link)(runner->mm_link);
+      UNREFALLFUNC(note_sub)(runner->note);
+      unref_xref_value(runner->family);
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(event)(struct event* evt)
 {
   if (evt) {

@@ -77,6 +77,17 @@ void multimedia_subscribe()
   gedcom_subscribe_to_element(ELT_OBJE_OBJE, obje_obje_start, def_elt_end);
 }
 
+void UNREFALLFUNC(multimedia)(struct multimedia *obj)
+{
+  if (obj) {
+    UNREFALLFUNC(note_sub)(obj->note);
+    unref_xref_value(obj->continued);
+    UNREFALLFUNC(user_ref_number)(obj->ref);
+    UNREFALLFUNC(change_date)(obj->change_date);
+    UNREFALLFUNC(user_data)(obj->extra);
+  }
+}
+
 void CLEANFUNC(multimedia)(struct multimedia* obj)
 {
   if (obj) {

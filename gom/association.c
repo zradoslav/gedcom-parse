@@ -97,6 +97,19 @@ void association_subscribe()
 			      def_elt_end);
 }
 
+void UNREFALLFUNC(association)(struct association *obj)
+{
+  if (obj) {
+    struct association* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      unref_xref_value(runner->to);
+      UNREFALLFUNC(source_citation)(runner->citation);
+      UNREFALLFUNC(note_sub)(runner->note);
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(association)(struct association* assoc)
 {
   if (assoc) {

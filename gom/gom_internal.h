@@ -76,6 +76,7 @@ void gom_cast_error(const char* file, int line,
 void gom_no_context(const char* file, int line);
 void gom_unexpected_context(const char* file, int line, OBJ_TYPE found);
 void gom_xref_already_in_use(const char *xrefstr);
+void unref_xref_value(struct xref_value *xref);
 
 int gom_write_xref_list(Gedcom_write_hndl hndl,
 			Gedcom_elt elt, int tag, int parent_rec_or_elt,
@@ -118,6 +119,7 @@ void NULL_DESTROY(void* anything);
 
 #include "func_template.h"
 
+DECLARE_UNREFALLFUNC(xref_list);
 DECLARE_CLEANFUNC(xref_list);
   
 #endif /* __GOM_INTERNAL_H */

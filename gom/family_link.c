@@ -98,10 +98,33 @@ void family_link_subscribe()
 			      def_elt_end);
 }
 
+void UNREFALLFUNC(pedigree)(struct pedigree* obj)
+{
+  if (obj) {
+    struct pedigree* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(pedigree)(struct pedigree* ped)
 {
   if (ped) {
     SAFE_FREE(ped->pedigree);
+  }
+}
+
+void UNREFALLFUNC(family_link)(struct family_link* obj)
+{
+  if (obj) {
+    struct family_link* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      unref_xref_value(runner->family);
+      UNREFALLFUNC(pedigree)(runner->pedigree);
+      UNREFALLFUNC(note_sub)(runner->note);
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
   }
 }
 

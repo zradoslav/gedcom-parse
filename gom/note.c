@@ -85,6 +85,16 @@ void note_subscribe()
   gedcom_subscribe_to_element(ELT_SUB_CONC, sub_cont_conc_start, def_elt_end);
 }
 
+void UNREFALLFUNC(note)(struct note *obj)
+{
+  if (obj) {
+    UNREFALLFUNC(source_citation)(obj->citation);
+    UNREFALLFUNC(user_ref_number)(obj->ref);
+    UNREFALLFUNC(change_date)(obj->change_date);
+    UNREFALLFUNC(user_data)(obj->extra);
+  }
+}
+
 void CLEANFUNC(note)(struct note* note)
 {
   if (note) {

@@ -79,6 +79,23 @@ char* gom_set_string_for_locale(char** data, const char* locale_str)
   return result;
 }
 
+void unref_xref_value(struct xref_value *xref)
+{
+  if (xref)
+    gedcom_unlink_xref(xref->type, xref->string);
+}
+
+void UNREFALLFUNC(xref_list)(struct xref_list* obj)
+{
+  if (obj) {
+    struct xref_list* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      unref_xref_value(runner->xref);
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(xref_list)(struct xref_list *obj)
 {
   if (obj) {

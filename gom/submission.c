@@ -55,7 +55,15 @@ void submission_subscribe()
   gedcom_subscribe_to_element(ELT_SUBN_RIN, subn_rin_start, def_elt_end);  
 }
 
-void submission_cleanup()
+void UNREFALLFUNC(submission)()
+{
+  if (gom_submission) {
+    unref_xref_value(gom_submission->submitter);
+    UNREFALLFUNC(user_data)(gom_submission->extra);
+  }
+}
+
+void CLEANFUNC(submission)()
 {
   if (gom_submission) {
     SAFE_FREE(gom_submission->xrefstr);
@@ -66,7 +74,6 @@ void submission_cleanup()
     SAFE_FREE(gom_submission->ordinance_process_flag);
     SAFE_FREE(gom_submission->record_id);
     DESTROY_CHAIN_ELTS(user_data, gom_submission->extra);
-    SAFE_FREE(gom_submission);
   }
 }
 
@@ -95,8 +102,7 @@ void DESTROYFUNC(submission)()
 {
   if (gom_submission) {
     submission_cleanup();
-    free(gom_submission);
-    gom_submission = NULL;
+    SAFE_FREE(gom_submission);
   }
 }
 
@@ -127,8 +133,10 @@ int DELETEFUNC(submission)()
   int result = 1;
   if (gom_submission) {
     result = gedcom_delete_xref(gom_submission->xrefstr);
-    if (result == 0)
+    if (result == 0) {
+      UNREFALLFUNC(submission)();
       DESTROYFUNC(submission)();
+    }
   }
   return result;
 }

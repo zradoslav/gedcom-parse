@@ -34,6 +34,7 @@ int write_multimedia_links(Gedcom_write_hndl hndl, int parent,
 
 DECLARE_SUB_MAKEFUNC(multimedia_link);
 
+DECLARE_UNREFALLFUNC(multimedia_link);
 DECLARE_CLEANFUNC(multimedia_link);
 DECLARE_ADDFUNC2(multimedia_link, note_sub);
 DECLARE_ADDFUNC2(multimedia_link, user_data);

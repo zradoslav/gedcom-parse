@@ -106,6 +106,19 @@ void lds_event_subscribe()
 			      sub_lds_event_famc_start, def_elt_end);
 }
 
+void UNREFALLFUNC(lds_event)(struct lds_event* obj)
+{
+  if (obj) {
+    struct lds_event* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      unref_xref_value(runner->family);
+      UNREFALLFUNC(source_citation)(runner->citation);
+      UNREFALLFUNC(note_sub)(runner->note);
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(lds_event)(struct lds_event* lds)
 {
   if (lds) {

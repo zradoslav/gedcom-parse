@@ -75,6 +75,16 @@ void source_description_subscribe()
 			      sub_sour_caln_medi_start, def_elt_end);
 }
 
+void UNREFALLFUNC(source_description)(struct source_description* obj)
+{
+  if (obj) {
+    struct source_description* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(source_description)(struct source_description* desc)
 {
   if (desc) {

@@ -32,6 +32,7 @@ int write_place(Gedcom_write_hndl hndl, int parent, struct place* place);
 
 DECLARE_SUB_MAKEFUNC(place);
 
+DECLARE_UNREFALLFUNC(place);
 DECLARE_CLEANFUNC(place);
 DECLARE_ADDFUNC2(place, source_citation);
 DECLARE_ADDFUNC2(place, note_sub);

@@ -91,6 +91,18 @@ void name_subscribe()
 			      def_elt_end);
 }
 
+void UNREFALLFUNC(personal_name)(struct personal_name* obj)
+{
+  if (obj) {
+    struct personal_name* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      UNREFALLFUNC(source_citation)(runner->citation);
+      UNREFALLFUNC(note_sub)(runner->note);
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(personal_name)(struct personal_name* name)
 {
   if (name) {

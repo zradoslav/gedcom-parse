@@ -147,6 +147,13 @@ void address_subscribe()
   gedcom_subscribe_to_element(ELT_SUB_PHON, sub_phon_start, def_elt_end);
 }
 
+void UNREFALLFUNC(address)(struct address *address)
+{
+  if (address) {
+    UNREFALLFUNC(user_data)(address->extra);
+  }
+}
+
 void CLEANFUNC(address)(struct address *address)
 {
   if (address) {

@@ -58,6 +58,17 @@ void repository_subscribe()
   gedcom_subscribe_to_element(ELT_REPO_NAME, repo_name_start, def_elt_end);
 }
 
+void UNREFALLFUNC(repository)(struct repository *obj)
+{
+  if (obj) {
+    UNREFALLFUNC(address)(obj->address);
+    UNREFALLFUNC(note_sub)(obj->note);
+    UNREFALLFUNC(user_ref_number)(obj->ref);
+    UNREFALLFUNC(change_date)(obj->change_date);
+    UNREFALLFUNC(user_data)(obj->extra);
+  }
+}
+
 void CLEANFUNC(repository)(struct repository* repo)
 {
   if (repo) {

@@ -32,6 +32,8 @@ int write_change_date(Gedcom_write_hndl hndl, int parent,
 		      struct change_date *chan);
 
 DECLARE_SUB_MAKEFUNC(change_date);
+
+DECLARE_UNREFALLFUNC(change_date);
 DECLARE_CLEANFUNC(change_date);
 DECLARE_ADDFUNC2(change_date, note_sub);
 DECLARE_ADDFUNC2(change_date, user_data);

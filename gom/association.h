@@ -33,6 +33,7 @@ int write_associations(Gedcom_write_hndl hndl, int parent,
 
 DECLARE_SUB_MAKEFUNC(association);
 
+DECLARE_UNREFALLFUNC(association);
 DECLARE_CLEANFUNC(association);
 DECLARE_ADDFUNC2(association, note_sub);
 DECLARE_ADDFUNC2(association, source_citation);

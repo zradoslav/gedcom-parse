@@ -34,6 +34,7 @@ int write_source_descriptions(Gedcom_write_hndl hndl, int parent,
 
 DECLARE_SUB_MAKEFUNC(source_description);
 
+DECLARE_UNREFALLFUNC(source_description);
 DECLARE_CLEANFUNC(source_description);
 DECLARE_ADDFUNC2(source_description, user_data);
 

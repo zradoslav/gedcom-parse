@@ -33,6 +33,7 @@ int write_source_events(Gedcom_write_hndl hndl, int parent,
 
 DECLARE_SUB_MAKEFUNC(source_event);
 
+DECLARE_UNREFALLFUNC(source_event);
 DECLARE_CLEANFUNC(source_event);
 DECLARE_ADDFUNC2(source_event, user_data);
 

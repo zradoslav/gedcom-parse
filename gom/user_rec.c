@@ -247,11 +247,28 @@ void user_rec_subscribe()
   gedcom_subscribe_to_element(ELT_USER, user_elt_start, def_elt_end);
 }
 
+void UNREFALLFUNC(user_data)(struct user_data *obj)
+{
+  if (obj) {
+    struct user_data* runner;
+    for (runner = obj; runner; runner = runner->next)
+      unref_xref_value(runner->xref_value);
+  }
+}
+
 void CLEANFUNC(user_data)(struct user_data* data)
 {
   if (data) {
     SAFE_FREE(data->tag);
     SAFE_FREE(data->str_value);
+  }
+}
+
+void UNREFALLFUNC(user_rec)(struct user_rec *obj)
+{
+  if (obj) {
+    unref_xref_value(obj->xref_value);
+    UNREFALLFUNC(user_data)(obj->extra);
   }
 }
 

@@ -31,6 +31,7 @@
 #define CLEANFUNC(STRUCTTYPE)    STRUCTTYPE ## _cleanup
 #define ADDFUNC(STRUCTTYPE)      gom_add_ ## STRUCTTYPE
 #define SUB_ADDFUNC(STRUCTTYPE)  gom_add_ ## STRUCTTYPE
+#define UNREFALLFUNC(STRUCTTYPE) STRUCTTYPE ## _unref_all
 #define DELETEFUNC(STRUCTTYPE)   gom_delete_ ## STRUCTTYPE
 #define SUB_DELETEFUNC(STRUCTTYPE) gom_delete_ ## STRUCTTYPE
 #define ADDFUNC2(T1,T2)          T1 ## _add_ ## T2
@@ -47,6 +48,9 @@
 
 #define DECLARE_CLEANFUNC(STRUCTTYPE)                                         \
   void CLEANFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj)
+
+#define DECLARE_UNREFALLFUNC(STRUCTTYPE)                                      \
+  void UNREFALLFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj)
 
 #define DECLARE_ADDFUNC2(STRUCTTYPE,T2)                                       \
   void ADDFUNC2(STRUCTTYPE,T2)(Gom_ctxt ctxt, struct T2* obj)
@@ -145,7 +149,7 @@
   }
 
 #define DEFINE_DESTROYFUNC(STRUCTTYPE,FIRSTVAL)                               \
-  void CLEANFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj);                         \
+  DECLARE_CLEANFUNC(STRUCTTYPE);                                              \
   void DESTROYFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj) {                      \
     if (obj) {                                                                \
       CLEANFUNC(STRUCTTYPE)(obj);                                             \
@@ -195,15 +199,17 @@
     return obj;                                                               \
   }
 
-/* TODO: Check whether there are still xrefs linked in */
 #define DEFINE_DELETEFUNC(STRUCTTYPE)                                         \
+  DECLARE_UNREFALLFUNC(STRUCTTYPE);                                           \
   int DELETEFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj)                          \
   {                                                                           \
     int result = 1;                                                           \
     if (obj) {                                                                \
       result = gedcom_delete_xref(obj->xrefstr);                              \
-      if (result == 0)                                                        \
+      if (result == 0) {                                                      \
+        UNREFALLFUNC(STRUCTTYPE)(obj);                                        \
 	DESTROYFUNC(STRUCTTYPE)(obj);                                         \
+      }                                                                       \
     }                                                                         \
     return result;                                                            \
   }
@@ -213,6 +219,7 @@
   {                                                                           \
     int result = 1;                                                           \
     if (obj && *obj) {                                                        \
+      UNREFALLFUNC(STRUCTTYPE)(*obj);                                         \
       CLEANFUNC(STRUCTTYPE)(*obj);                                            \
       SAFE_FREE(*obj);                                                        \
       result = 0;                                                             \

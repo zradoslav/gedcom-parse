@@ -78,6 +78,16 @@ void source_event_subscribe()
 			      sub_sour_even_plac_start, def_elt_end);
 }
 
+void UNREFALLFUNC(source_event)(struct source_event* obj)
+{
+  if (obj) {
+    struct source_event* runner;
+    for (runner = obj; runner; runner = runner->next) {
+      UNREFALLFUNC(user_data)(runner->extra);
+    }
+  }
+}
+
 void CLEANFUNC(source_event)(struct source_event* evt)
 {
   if (evt) {

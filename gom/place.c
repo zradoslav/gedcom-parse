@@ -88,6 +88,15 @@ void place_subscribe()
 			      sub_place_form_start, def_elt_end);
 }
 
+void UNREFALLFUNC(place)(struct place* obj)
+{
+  if (obj) {
+    UNREFALLFUNC(source_citation)(obj->citation);
+    UNREFALLFUNC(note_sub)(obj->note);
+    UNREFALLFUNC(user_data)(obj->extra);
+  }
+}
+
 void CLEANFUNC(place)(struct place* place)
 {
   if (place) {

@@ -32,6 +32,7 @@ int write_note_subs(Gedcom_write_hndl hndl, int parent, struct note_sub* note);
 
 DECLARE_SUB_MAKEFUNC(note_sub);
 
+DECLARE_UNREFALLFUNC(note_sub);
 DECLARE_CLEANFUNC(note_sub);
 DECLARE_ADDFUNC2(note_sub, source_citation);
 DECLARE_ADDFUNC2(note_sub, user_data);
