@@ -15,7 +15,7 @@ all:	ansel_module gedcom_parse
 
 gedcom_parse:	standalone.o lex.gedcom_1byte_.o lex.gedcom_hilo_.o \
                 lex.gedcom_lohi_.o gedcom.tab.o message.o multilex.o \
-		encoding.o
+		encoding.o interface.o
 	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 ansel_module:
