@@ -47,7 +47,7 @@ int gedcom_check_version(int major, int minor, int patch);
 /***  First the records and elements to subscribe upon                  ***/
 /**************************************************************************/
 									   
-typedef enum Gedcom_rec {
+enum _Gedcom_rec {
   REC_HEAD,
   REC_FAM,
   REC_INDI,
@@ -59,9 +59,17 @@ typedef enum Gedcom_rec {
   REC_SUBM,
   REC_USER,
   NR_OF_RECS     /* Just a final value to be used in array boundaries */
-} Gedcom_rec;
+};
 
-typedef enum Gedcom_elt {
+  /** \brief Record types
+      \ingroup start_end
+
+      See the
+      <a href="interface.html#Record_identifiers">interface details</a>.
+  */
+typedef enum _Gedcom_rec Gedcom_rec;
+
+enum _Gedcom_elt {
   ELT_HEAD_SOUR = NR_OF_RECS,
   ELT_HEAD_SOUR_VERS,
   ELT_HEAD_SOUR_NAME,
@@ -234,7 +242,15 @@ typedef enum Gedcom_elt {
   ELT_USER,
   
   NR_OF_ELTS     /* Just a final value to be used in array boundaries */
-} Gedcom_elt;
+};
+  
+  /** \brief Element types
+      \ingroup start_end
+
+      See the
+      <a href="interface.html#Element_identifiers">interface details</a>.
+  */
+typedef enum _Gedcom_elt Gedcom_elt;
 
 /**************************************************************************/
 /***  Definition of some auxiliary types                                ***/
@@ -245,7 +261,7 @@ typedef enum Gedcom_elt {
   /** \brief Error handling mechanisms.
       
       These are the possible error handling mechanisms.
-      See \ref gedcom_set_error_handling.
+      \sa gedcom_set_error_handling
   */
 enum _Gedcom_err_mech {
   IMMED_FAIL,    /**< immediately fail the parsing on an error (this is
@@ -261,7 +277,7 @@ typedef enum _Gedcom_err_mech Gedcom_err_mech;
   /** \brief Message type in message handler callbacks
       
       This will be passed to the message callback to indicate the message type.
-      See \ref gedcom_set_message_handler.
+      \sa gedcom_set_message_handler
   */
 enum _Gedcom_msg_type {
   ERROR,               /**< An error message */
@@ -273,45 +289,6 @@ enum _Gedcom_msg_type {
 typedef enum _Gedcom_msg_type Gedcom_msg_type;
   /** @} */
 
-typedef enum Date_type {
-  DATE_UNRECOGNIZED,   /* Neither jday1 as jday2 are significant */
-  DATE_EXACT,          /* Only jday1 is significant */
-  DATE_BOUNDED         /* Both jday1 and jday2 are significant */
-} Date_type;
-
-typedef enum Calendar_type {
-  CAL_GREGORIAN,
-  CAL_JULIAN,
-  CAL_HEBREW,
-  CAL_FRENCH_REV,
-  CAL_UNKNOWN
-} Calendar_type;
-
-typedef enum Year_type {
-  YEAR_SINGLE,
-  YEAR_DOUBLE     /* In this case, the 'year' indicates the last value */
-} Year_type;
-
-typedef enum Date_value_type {
-  /* Simple date */
-  DV_NO_MODIFIER,
-  /* Range values */
-  DV_BEFORE,
-  DV_AFTER,
-  DV_BETWEEN,       /* Two dates are given */
-  /* Period values */
-  DV_FROM,
-  DV_TO,
-  DV_FROM_TO,       /* Two dates are given */
-  /* Approx values */
-  DV_ABOUT,
-  DV_CALCULATED,
-  DV_ESTIMATED,
-  /* Other */
-  DV_INTERPRETED,   /* One date and a phrase is given */
-  DV_PHRASE         /* Only phrase is given */
-} Date_value_type;
-
 /* All Unicode characters between U+0000 and U+FFFF can be encoded in
    UTF-8 with 3 or less bytes */
 #define UTF_FACTOR 3
@@ -321,108 +298,367 @@ typedef enum Date_value_type {
 #define MAX_YEAR_LEN   7
 #define MAX_PHRASE_LEN 35 * UTF_FACTOR
 
+  /** \addtogroup parsed_date */
+  /** @{ */
+  /** \brief Date type
+
+      This determines which one of the serial day numbers (Julian days) are
+      relevant in the struct date.
+   */
+enum _Date_type {
+  DATE_UNRECOGNIZED,   /**< Neither date#sdn1 as date#sdn2 are significant */
+  DATE_EXACT,          /**< Only date#sdn1 is significant */
+  DATE_BOUNDED         /**< Both date#sdn1 and date#sdn2 are significant */
+};
+
+  /** \brief Date type */
+typedef enum _Date_type Date_type;
+
+  /** \brief Calendar type
+
+      This determines the calendary type (see calendar overview LINK TBD).
+   */
+enum _Calendar_type {
+  CAL_GREGORIAN,  /**< The Gregorian calendar */
+  CAL_JULIAN,     /**< The Julian calendar */
+  CAL_HEBREW,     /**< The Hebrew (Jewish) calendar */
+  CAL_FRENCH_REV, /**< The calendar used after the French Revolution */
+  CAL_UNKNOWN     /**< An unknown calendar type */
+};
+
+  /** \brief Calendar type */
+typedef enum _Calendar_type Calendar_type;
+
+  /** \brief Year type
+
+      This determines whether the year has one value (e.g. 1677) or two values
+      (e.g. 1677/78, the first value is in annunciation style, the second in
+      circumcision style).
+   */
+enum _Year_type {
+  YEAR_SINGLE,  /**< There is only one value for the year */
+  YEAR_DOUBLE   /**< The date#year_str contains two values.  Note that the
+		   date#year
+		   will then contain the circumcision style year, i.e. the
+		   highest one */
+};
+
+  /** \brief Year type */
+typedef enum _Year_type Year_type;
+
+  /** \brief Date value type
+
+      This determines which members in the struct date_value are relevant, as
+      given in the description below.
+   */
+enum _Date_value_type {
+  /* Simple date */
+  DV_NO_MODIFIER, /**< Just a simple date: date1 */
+  /* Range values */
+  DV_BEFORE,      /**< A range (BEFORE date1) */
+  DV_AFTER,       /**< A range (AFTER date1) */
+  DV_BETWEEN,     /**< A range (BETWEEN date1 AND date2) */
+  /* Period values */
+  DV_FROM,        /**< A period (FROM date1) */
+  DV_TO,          /**< A period (TO date1) */
+  DV_FROM_TO,     /**< A period (FROM date1 TO date2) */
+  /* Approx values */
+  DV_ABOUT,       /**< An approximation (ABOUT date1) */
+  DV_CALCULATED,  /**< An approximation (CALCULATED date1) */
+  DV_ESTIMATED,   /**< An approximation (ESTIMATED date1) */
+  /* Other */
+  DV_INTERPRETED, /**< INTERPRETED date1 FROM phrase */
+  DV_PHRASE       /**< phrase */
+};
+
+  /** \brief Date value type */
+typedef enum _Date_value_type Date_value_type;
+
+  /** \brief Date input type for gedcom_normalize_date
+
+      See explanation for gedcom_normalize_date().
+   */
+enum _Date_input {
+  DI_FROM_STRINGS,
+    /**< compute from date#day_str, date#month_str and date#year_str */
+  DI_FROM_NUMBERS,
+    /**< compute from date#day, date#month, date#year and date#year_type */
+  DI_FROM_SDN
+    /**< compute from date#type, date#sdn1 and date#sdn2 */
+};
+
+  /** \brief Date input type for gedcom_normalize_date */
+typedef enum _Date_input Date_input;
+  
+  /** \brief Parsed date
+
+      This struct describes exactly one date.  It contains the string
+      representation, the numeric representation and the representation using
+      serial day numbers (aka Julian days).
+
+      It is possible that the #year_str is given as e.g. "1677/78".  This is
+      coming from a date in a so called "annunciation style", where the year
+      began on 25 March: "20 March 1677/78" is 20 March 1677 in "annunciation
+      style" and 20 March 1678 in "circumcision style" (the current style).
+      See calendar overview (LINK TBD).
+
+      In this case, the #year will contain the "circumcision style" year (1678
+      in the example), and #year_type will be YEAR_DOUBLE.  Normal dates will
+      have a #year_type equal to YEAR_SINGLE.
+
+      Finally, the last three fields (#type, #sdn1 and #sdn2) are probably
+      the most interesting values
+      for applications that want to process dates.  Basically, the date is
+      converted to a serial day number (aka Julian day), which is the unique
+      day number since November 25, 4714 BC in the Gregorian calendar.  The
+      advantage of these day numbers is that they are unique and independent
+      of the calendar system.  Furthermore, date differences can just be
+      computed by subtracting the serial day numbers.
+
+      However, since dates in GEDCOM are not necessarily exact (e.g. "MAR
+      1990"), it is not possible to represent all GEDCOM dates with 1 serial
+      day number.  Two cases can be distinguished:
+
+         - <b>Exact dates</b> (e.g. "25 MAR 1990"):\n\n
+           These are represented by a serial day number in #sdn1 and a
+	   #type equal to DATE_EXACT.
+
+         - <b>Incomplete dates</b> (e.g. "MAR 1990"):\n\n
+           These are represented by 2 serial day numbers (#sdn1 and #sdn2)
+	   and a #type equal to DATE_BOUNDED.\n\n
+           For example, the Gregorian date "MAR 1990" is represented by the
+	   serial day numbers for "1 MAR 1990" and "31 MAR 1990", and the
+	   Gregorian date "1990" is represented by the serial day numbers
+	   for "1 JAN 1990" and "31 DEC 1990".  Similarly for the other
+	   calendar types.
+   */
 struct date {
-  Calendar_type cal;
+  Calendar_type cal;   /**< The calendar type */
   char day_str[MAX_DAY_LEN + 1];
+                       /**< The literal string part of the date, as parsed from
+			  the value in the GEDCOM file, that denotes
+			  the day (can be an empty string) */
   char month_str[MAX_MONTH_LEN + 1];
+                       /**< The literal string part of the date, as parsed from
+			  the value in the GEDCOM file, that denotes the month
+			  (can be an empty string) */
   char year_str[MAX_YEAR_LEN + 1];
-  int day;    /* starts at 1 */
-  int month;  /* starts at 1 */
-  int year;   /* the highest value for double years */
+                       /**< The literal string part of the date, as parsed from
+			  the value in the GEDCOM file, that denotes the year
+		       */
+  int day;    /**< The numeric representation of the #day_str (starting from
+		 1), or -1 if the #day_str is empty */
+  int month;  /**< The month number of #month_str in the given calendar type
+		 #cal (starting from 1), or -1 if the #month_str is empty */
+  int year;   /**< The numeric representation of the #year_str */
   Year_type year_type;
+              /**< The year type (see detailed description of \ref date)*/
   Date_type type;
-  long int sdn1;
-  long int sdn2;
+              /**< The date type (see detailed description of \ref date) */
+  long int sdn1; /**< The first serial day number */
+  long int sdn2; /**< The second serial day number */
 };
 
+  /** \brief Date value
+
+      The main struct describing a date value.  It depends on the first member,
+      the type, which members are actually relevant.
+   */
 struct date_value {
-  Date_value_type type;
-  struct date date1;
-  struct date date2;
-  char phrase[MAX_PHRASE_LEN + 1];
+  Date_value_type type;  /**< The type of date, which determines which of the
+			    following members are relevant */
+  struct date date1;                /**< First parsed date */
+  struct date date2;                /**< Second parsed date */
+  char phrase[MAX_PHRASE_LEN + 1];  /**< Free-format date phrase */
 };
+  /** @} */
 
-/* Type for context handling, meant to be opaque */
+
+  /** \brief Type for context handling, meant to be opaque
+      \ingroup start_end
+  */
 typedef void* Gedcom_ctxt;
 
-typedef enum Xref_type {
-  XREF_NONE,
-  XREF_FAM,
-  XREF_INDI,
-  XREF_NOTE,
-  XREF_OBJE,
-  XREF_REPO,
-  XREF_SOUR,
-  XREF_SUBM,
-  XREF_SUBN,
-  XREF_USER,
-  XREF_ANY
-} Xref_type;
+  /** \addtogroup parsed_xref */
+  /** @{ */
 
+  /** \brief Cross-reference type
+
+      This determines what kind of object the cross-reference points to.
+   */
+enum _Xref_type {
+  XREF_NONE,   /**< Used as a default value */
+  XREF_FAM,    /**< Points to a family */
+  XREF_INDI,   /**< Points to an individual */
+  XREF_NOTE,   /**< Points to a note */
+  XREF_OBJE,   /**< Points to a multimedia object */
+  XREF_REPO,   /**< Points to a source repository */
+  XREF_SOUR,   /**< Points to a source */
+  XREF_SUBM,   /**< Points to a submitter */
+  XREF_SUBN,   /**< Points to a submission record */
+  XREF_USER,   /**< For application-specific cross-references */
+  XREF_ANY     /**< If the type is not known: it has to come from further
+		  information.  This is the case in an association
+		  (\c ELT_SUB_ASSO): the type is then given by the \c TYPE
+		  subtag.
+	       */
+};
+
+  /** \brief Cross-reference type */
+typedef enum _Xref_type Xref_type;
+
+  /** \brief Cross-reference value
+
+      The struct describing a cross-reference value.
+   */
 struct xref_value {
-  Xref_type type;
-  char *string;
+  Xref_type type;  /**< Determines what the cross-reference points to */
+  char *string;    /**< The actual cross-reference string from the GEDCOM
+		      file. */
   Gedcom_ctxt object;
+                   /**< The referenced object.  This is initially \c NULL, but
+		      can be filled by the application with an object (of any
+		      type) that corresponds with the cross-reference, and then
+		      later extracted when the cross-reference is used or
+		      defined again in the file.  This relieves the application
+		      from the burden of maintaining the mapping between
+		      cross-references and objects. */
+};
+  /** @} */
+
+  /** \addtogroup parsed_age */
+  /** @{ */
+
+  /** \brief Age value type
+
+      This determines which members in the struct age_value are relevant, as
+      given in the description below.
+   */
+enum _Age_type {
+  AGE_UNRECOGNIZED,  /**< Format not recognized, full raw value in phrase */
+  AGE_CHILD,         /**< CHILD, with given modifier */
+  AGE_INFANT,        /**< INFANT, with given modifier */
+  AGE_STILLBORN,     /**< STILLBORN, with given modifier */
+  AGE_NUMERIC        /**< An indication in years, months and/or days (each can
+			be -1 if not given), with given modifier */
 };
 
-typedef enum Age_type {
-  AGE_UNRECOGNIZED,
-  AGE_CHILD,
-  AGE_INFANT,
-  AGE_STILLBORN,
-  AGE_NUMERIC
-} Age_type;
+  /** \brief Age value type */
+typedef enum _Age_type Age_type;
 
-typedef enum Age_modifier {
-  AGE_NO_MODIFIER,
-  AGE_LESS_THAN,
-  AGE_GREATER_THAN
-} Age_modifier;
+  /** \brief Age modifier
 
+      This gives a modifier on the given date (less than or greater than).
+   */
+enum _Age_modifier {
+  AGE_NO_MODIFIER,   /**< No modifier */
+  AGE_LESS_THAN,     /**< The modifier '<' is added */
+  AGE_GREATER_THAN   /**< The modifier '>' is added */
+};
+
+  /** \brief Age modifier */
+typedef enum _Age_modifier Age_modifier;
+
+  /** \brief Age value
+
+      The struct describing an age value.  It depends on the first member,
+      the type, which members are actually relevant.
+   */
 struct age_value {
-  Age_type type;
-  Age_modifier mod;
-  int years;
-  int months;
-  int days;
-  char phrase[MAX_PHRASE_LEN + 1];
+  Age_type type;       /**< The type of age, which determines which of the
+			    following members are relevant */
+  Age_modifier mod;    /**< A modifier (less than or greater than) */
+  int years;           /**< The number of years */
+  int months;          /**< The number of months */
+  int days;            /**< The number of days */
+  char phrase[MAX_PHRASE_LEN + 1];  /**< Free-format age phrase */
+};
+  /** @} */
+
+  /** \addtogroup write */
+  /** @{ */
+
+  /** \brief The encoding width and endianness
+      \sa gedcom_write_set_encoding */
+enum _Encoding {
+  ONE_BYTE      = 0x00, /**< This should be used for all character sets except
+			    UNICODE */
+  TWO_BYTE_HILO = 0x01, /**< High-low encoding for UNICODE (i.e. big-endian) */
+  TWO_BYTE_LOHI = 0x02  /**< Low-high encoding for UNICODE (i.e. little-endian)
+                         */
 };
 
-typedef enum Encoding {
-  ONE_BYTE      = 0x00,
-  TWO_BYTE_HILO = 0x01,
-  TWO_BYTE_LOHI = 0x02
-} Encoding;
+  /** \brief The encoding width and endianness */
+typedef enum _Encoding Encoding;
 
-typedef enum Enc_bom {
-  WITHOUT_BOM = 0x00,
-  WITH_BOM    = 0x10
-} Enc_bom;
+  /** \brief The use of a byte-order-mark in the encoding
+      \sa gedcom_write_set_encoding */
+enum _Enc_bom {
+  WITHOUT_BOM = 0x00,  /**< Without byte-order-mark */
+  WITH_BOM    = 0x10   /**< With byte-order-mark */
+};
 
-typedef enum Enc_line_end {
-  END_CR    = 0,
-  END_LF    = 1,
-  END_CR_LF = 2,
-  END_LF_CR = 3
-} Enc_line_end;
+  /** \brief The use of a byte-order-mark in the encoding */
+typedef enum _Enc_bom Enc_bom;
 
-typedef enum Enc_from {
-  ENC_FROM_FILE = 0,
-  ENC_FROM_SYS  = 1,
-  ENC_MANUAL    = 2
-} Enc_from;
+  /** \brief The line terminator in the encoding
+      \sa gedcom_write_set_line_terminator */
+enum _Enc_line_end {
+  END_CR    = 0, /**< Only carriage return ('\\r') (system value for Mac) */
+  END_LF    = 1, /**< Only line feed ('\\n') (system value for Unix, Mac OSX)
+                  */
+  END_CR_LF = 2, /**< First carriage return, then line feed ('\\r\\n')
+		    (system value for DOS, Windows) */
+  END_LF_CR = 3  /**< First line feed, then carriage return ('\\n\\r') */
+};
+
+  /** \brief The line terminator in the encoding */
+typedef enum _Enc_line_end Enc_line_end;
+
+  /** \brief Source of the encoding settings
+      \sa gedcom_write_set_encoding and gedcom_write_set_line_terminator */
+enum _Enc_from {
+  ENC_FROM_FILE = 0, /**< The same as the read file was in */
+  ENC_FROM_SYS  = 1, /**< The system value */
+  ENC_MANUAL    = 2  /**< From the parameters given in the function */
+};
+
+  /** \brief Source of the encoding settings */
+typedef enum _Enc_from Enc_from;
+  /** @} */
 
 struct encoding_state;
 
-typedef enum Date_input {
-  DI_FROM_STRINGS,
-  DI_FROM_NUMBERS,
-  DI_FROM_SDN
-} Date_input;
-
-typedef enum Gedcom_compat {
+  /** \addtogroup compat */
+  /** @{ */
+  /** \brief Compatibility mode options */
+enum _Gedcom_compat {
   COMPAT_ALLOW_OUT_OF_CONTEXT = 0x01
-} Gedcom_compat;
+    /**< In some compatibility cases, tags are coming out-of-order, i.e. their
+       start element callback would have to come after the end element callback
+       of the parent tag.  E.g. instead of the standard GEDCOM
+       \code
+         1 DATE ...
+         2 TIME ...
+       \endcode
+       the genealogy program has generated something like:
+       \code
+         1 DATE ...
+         1 TIME ...
+       \endcode
+       This can give a problem if your end element callbacks free some
+       resources.  
+
+       If your program can handle elements out of context, you can enable this
+       option.  By default it is disabled, and so the values of these
+       out-of-context tags are lost (the parser generates a warning if this is
+       the case).
+    */
+};
+
+  /** \brief Compatibility mode options */
+typedef enum _Gedcom_compat Gedcom_compat;
+  /** @} */
 
 /**************************************************************************/
 /***  Things meant to be internal, susceptible to changes               ***/
@@ -471,14 +707,25 @@ extern struct xref_value def_xref_val;
 /***  Function interface                                                ***/
 /**************************************************************************/
 
-/* Type for parsed values, meant to be opaque */
+  /** \brief Parsed value
+      \ingroup parsed
+
+      Type for the parsed value.  The struct type Gedcom_val_struct should
+      be seen as internal: the Gedcom_val should be handled using the macros
+      given above.
+  */
 typedef Gedcom_val_struct* Gedcom_val;
 
-/* Type for write handle, meant to be opaque */
 struct Gedcom_write_struct;
-typedef struct Gedcom_write_struct* Gedcom_write_hndl;
+  /** \brief Write handle
+      \ingroup write
 
-/* Check to determine whether there is a parsed value or not */
+      Handle for writing Gedcom files.  The struct type Gedcom_write_struct
+      should be seen as internal: only the handle should be used.
+   */
+typedef struct Gedcom_write_struct* Gedcom_write_hndl; 
+
+/* Check to determine whether there is a parsed value or not */  
 #define GEDCOM_IS_NULL(VAL) \
    GV_IS_TYPE(VAL, GV_NULL)
 
@@ -512,30 +759,148 @@ typedef struct Gedcom_write_struct* Gedcom_write_hndl;
 
   /** \brief Message handler callback
       \ingroup error
-      See description of \ref gedcom_set_message_handler().
+    A callback for errors, warnings and messages.
+    \sa gedcom_set_message_handler
+
+    \param type The message type
+    \param msg  For errors, this will have the format
+      \code
+        Error on line <lineno>: <actual_message>
+      \endcode
+      Note that the entire string will be properly internationalized, and
+      encoded in UTF-8 (<a href=encoding.html>Why UTF-8?</a>).
+      Also, no newline is appended, so that
+      the application program can use it in any way it wants.  Warnings are
+      similar, but use "Warning" instead of "Error".  Messages are plain
+      text, without any prefix.
   */
 typedef void
         (*Gedcom_msg_handler)
         (Gedcom_msg_type type, char *msg);
 
+  /** \brief Record start callback
+      \ingroup start_end
+    A callback to handle the start of records.  A record entry in a GEDCOM
+    file is always of the form <tt>"<level> <xref> <tag> <value>"</tt>, e.g.
+    \code
+      0 @REC003@ NOTE This is a note
+    \endcode
+    The different parameters of the callback return different parts of this
+    entry.
+    \sa gedcom_subscribe_to_record
+
+    \param rec An enum identifying the record type (see the
+    <a href="interface.html#Record_identifiers">interface details</a>)
+    \param level The GEDCOM level (always 0 for records)
+    \param xref The cross-reference key that identifies the record ("@REC003@"
+    in the example above).
+    \param tag The GEDCOM tag, in string format ("NOTE" in the example above).
+    \param raw_value The value of the record, in string format, encoded as
+    UTF-8 ("This is a note" in the example above)
+    \param tag_value The GEDCOM tag, as symbolic value (e.g. \c TAG_NOTE in the
+    example).  These values are defined in the header \c gedcom-tags.h that is
+    installed, and included via \c gedcom.h (so no need to include
+    \c gedcom-tags.h yourself).
+    \param parsed_value The value of the record, in parsed format.
+
+    \return A context to be used for this record (equivalent to a void
+    pointer).  This context will be passed
+    in all callbacks for direct child elements, and in the end callback for the
+    record.
+  */
 typedef Gedcom_ctxt
         (*Gedcom_rec_start_cb)
         (Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
          char *raw_value, int tag_value, Gedcom_val parsed_value);
+  /** \brief Record end callback
+      \ingroup start_end
+    A callback to handle the end of records, i.e. this callback is called when
+    all sub-elements of a record have been processed. 
+    \sa gedcom_subscribe_to_record
+
+    \param rec An enum identifying the record type (see the
+    <a href="interface.html#Record_identifiers">interface details</a>)
+    \param self The context as was given via the start callback.
+    \param parsed_value The value of the record, in parsed format.  Here it is
+    used to pass 'complete' values, e.g. the full text of a note including
+    concatenated lines.
+  */
 typedef void
         (*Gedcom_rec_end_cb)
         (Gedcom_rec rec, Gedcom_ctxt self, Gedcom_val parsed_value);
 
+  /** \brief Element start callback
+      \ingroup start_end
+    A callback to handle the start of elements.  An element in a GEDCOM
+    file is part of a record, and is always of the form
+    <tt>"<level> <tag> <value>"</tt>, e.g.
+    \code
+      1 DATE 1 JAN 1998
+    \endcode
+    The different parameters of the callback return different parts of this
+    entry.
+    \sa gedcom_subscribe_to_element
+
+    \param elt An enum identifying the element type (see the
+    <a href="interface.html#Element_identifiers">interface details</a>)
+    \param parent The context of the parent element or record
+    \param level The GEDCOM level (always bigger than 0 for elements)
+    \param tag The GEDCOM tag, in string format ("DATE" in the example above).
+    \param raw_value The value of the record, in string format, encoded as
+    UTF-8 ("1 JAN 1998" in the example above)
+    \param tag_value The GEDCOM tag, as symbolic value (e.g. \c TAG_DATE in the
+    example).  These values are defined in the header \c gedcom-tags.h that is
+    installed, and included via \c gedcom.h (so no need to include
+    \c gedcom-tags.h yourself).
+    \param parsed_value The value of the record, in parsed format.
+
+    \return A context to be used for this element (equivalent to a void
+    pointer).  This context will be passed
+    in all callbacks for direct child elements, and in the end callback for the
+    element.
+  */
 typedef Gedcom_ctxt
         (*Gedcom_elt_start_cb)
         (Gedcom_elt elt, Gedcom_ctxt parent,
 	 int level, char *tag, char *raw_value,
 	 int tag_value, Gedcom_val parsed_value);
+  /** \brief Element end callback
+      \ingroup start_end
+    A callback to handle the end of element, i.e. this callback is called when
+    all sub-elements of an element have been processed. 
+    \sa gedcom_subscribe_to_element
+
+    \param elt An enum identifying the element type (see the
+    <a href="interface.html#Element_identifiers">interface details</a>)
+    \param parent The context of the parent element or record.
+    \param self The context as was given via the start callback of the element.
+    \param parsed_value The value of the element, in parsed format.  Here it is
+    used to pass 'complete' values, e.g. the full text of a note including
+    concatenated lines.
+  */
 typedef void
         (*Gedcom_elt_end_cb)
         (Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
          Gedcom_val parsed_value);
 
+  /** \brief Default callback
+      \ingroup defcb
+    The default callback, i.e. this callback is called when no specific
+    callback has been registered. 
+    \sa gedcom_set_default_callback
+
+    \param elt An enum identifying the element type (see the
+    <a href="interface.html#Element_identifiers">interface details</a>)
+    \param parent The context of the parent element or record.
+    \param level The GEDCOM level (always bigger than 0 for elements)
+    \param tag The GEDCOM tag, in string format.
+    \param raw_value The value of the record, in string format, encoded as
+    UTF-8
+    \param tag_value The GEDCOM tag, as symbolic value.  These values are
+    defined in the header \c gedcom-tags.h that is
+    installed, and included via \c gedcom.h (so no need to include
+    \c gedcom-tags.h yourself).
+  */
 typedef void
         (*Gedcom_def_cb)
         (Gedcom_elt elt, Gedcom_ctxt parent, int level, char *tag,
@@ -558,68 +923,121 @@ void    gedcom_set_message_handler(Gedcom_msg_handler func);
   /** \brief Determine what happens on an error */
 void    gedcom_set_error_handling(Gedcom_err_mech mechanism);
   /** @} */
-  
-void    gedcom_set_debug_level(int level, FILE* trace_output);
-void    gedcom_set_compat_handling(int enable_compat);
-void    gedcom_set_compat_options(Gedcom_compat options);
-void    gedcom_set_default_callback(Gedcom_def_cb func);
 
+  /** \addtogroup debug */
+  /** @{ */
+  /** \brief Set the debugging level */
+void    gedcom_set_debug_level(int level, FILE* trace_output);
+  /** @} */
+
+  /** \addtogroup compat */
+  /** @{ */
+  /** \brief Enable or disable compatibility mode */
+void    gedcom_set_compat_handling(int enable_compat);
+  /** \brief Set some options for the compatibility mode */
+void    gedcom_set_compat_options(Gedcom_compat options);
+  /** @} */
+  
+  /** \addtogroup defcb */
+  /** @{ */
+  /** \brief Set the default callback */
+void    gedcom_set_default_callback(Gedcom_def_cb func);
+  /** @} */
+
+  /** \addtogroup start_end */
+  /** @{ */
+  /** \brief Subscribe to records, with given start and end callback */
 void    gedcom_subscribe_to_record(Gedcom_rec rec,
 				   Gedcom_rec_start_cb cb_start,
 				   Gedcom_rec_end_cb cb_end);
+  /** \brief Subscribe to elements, with given start and end callback */
 void    gedcom_subscribe_to_element(Gedcom_elt elt,
 				    Gedcom_elt_start_cb cb_start,
 				    Gedcom_elt_end_cb cb_end);
+  /** @} */
 
 /* Separate value parsing functions */
+  /** \addtogroup parsed_date */
+  /** @{ */
+  /** \brief Parse the given string into a date value */
 struct date_value  gedcom_parse_date(const char* line_value);
+  /** \brief Convert the given date value into a string */
 char*              gedcom_date_to_string(const struct date_value* val);
+  /** \brief Create a new date value */
 struct date_value* gedcom_new_date_value(const struct date_value* copy_from);
+  /** \brief Normalize the given date value */
 int   gedcom_normalize_date(Date_input compute_from, struct date_value *val);
+  /** @} */
 
+  /** \addtogroup parsed_age */
+  /** @{ */
+  /** \brief Parse the given string into an age value */
 struct age_value  gedcom_parse_age(const char* line_value);
-struct age_value* gedcom_new_age_value(const struct age_value* copy_from);
+  /** \brief Convert the given age value into a string */
 char*             gedcom_age_to_string(const struct age_value* val);
+  /** \brief Create a new age value */
+struct age_value* gedcom_new_age_value(const struct age_value* copy_from);
+  /** @} */
 
-/* Handling cross-references */
+  /** \addtogroup parsed_xref */
+  /** @{ */
+  /** \brief Retrieve an xref_value using the cross-reference key */
 struct xref_value *gedcom_get_by_xref(const char *key);
+  /** \brief Add a cross-reference  */
 struct xref_value *gedcom_add_xref(Xref_type type, const char* xrefstr,
                                    Gedcom_ctxt object);
+  /** \brief Link via a cross-reference  */
 struct xref_value *gedcom_link_xref(Xref_type type, const char* xrefstr);
+  /** \brief Remove a link via a cross-reference  */
 struct xref_value *gedcom_unlink_xref(Xref_type type, const char* xrefstr);
+  /** \brief Delete a cross-reference  */
 int                gedcom_delete_xref(const char* xrefstr);
+  /** @} */
 
-/* Writing support */
+  /** \addtogroup write */
+  /** @{ */
+  /** \brief Open a file for writing GEDCOM */
 Gedcom_write_hndl  gedcom_write_open(const char* filename);
+  /** \brief Close the file */
 int  gedcom_write_close(Gedcom_write_hndl hndl, int *total_conv_fails);
+  /** \brief Set the encoding for writing GEDCOM files */
 int  gedcom_write_set_encoding(Enc_from from,
 			       const char* charset, Encoding width,
                                Enc_bom bom);
+  /** \brief Set the line terminator for writing GEDCOM files */
 int  gedcom_write_set_line_terminator(Enc_from from, Enc_line_end end);
 
+  /** \brief Write a record line */
 int  gedcom_write_record_str(Gedcom_write_hndl hndl,
 			     Gedcom_rec rec, const char* xrefstr,
                              const char* val);
   
+  /** \brief Write an element line, with string value */
 int gedcom_write_element_str(Gedcom_write_hndl hndl, Gedcom_elt elt,
 			     int parsed_tag, int parent_rec_or_elt,
 			     const char* val);
+  /** \brief Write an element line, with cross-reference value */
 int gedcom_write_element_xref(Gedcom_write_hndl hndl, Gedcom_elt elt,
                               int parsed_tag, int parent_rec_or_elt,
 			      const struct xref_value* val);
 
+  /** \brief Write an element line, with date value */
 int gedcom_write_element_date(Gedcom_write_hndl hndl,
 			      Gedcom_elt elt, int tag, int parent_rec_or_elt,
 			      const struct date_value* val);
+  /** \brief Write an element line, with age value */
 int gedcom_write_element_age(Gedcom_write_hndl hndl,
 			     Gedcom_elt elt, int tag, int parent_rec_or_elt,
 			     const struct age_value* val);
 
+  /** \brief Write an user defined element line, with string value */
 int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, const char* tag,
 			  const char* xrefstr, const char* value);
+  /** \brief Write an user defined element line, with cross-reference value */
 int gedcom_write_user_xref(Gedcom_write_hndl hndl, int level, const char* tag,
 			   const char* xrefstr, const struct xref_value* val);
-
+  /** @} */
+  
 /* For use in gom */
 int        gedcom_error(const char* s, ...);
 int        gedcom_warning(const char* s, ...);
