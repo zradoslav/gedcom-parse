@@ -3,7 +3,7 @@
 # $Name$
 
 INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include -I $(srcdir)/../utf8
-CFLAGS   = -g -O2 -W -Wall -Wno-unused-parameter -pedantic
+CFLAGS   = -g -O2 -W -Wall -pedantic
 
 lib_LTLIBRARIES = libgedcom_gom.la
 libgedcom_gom_la_SOURCES = gom.c \
@@ -58,5 +58,5 @@ noinst_HEADERS = header.h \
 		 user_rec.h \
 		 gom_internal.h
 
-libgedcom_gom_la_LDFLAGS = -version-info $(LIBVERSION)
+libgedcom_gom_la_LDFLAGS = -export-dynamic -version-info $(LIBVERSION)
 libgedcom_gom_la_LIBADD  = ../utf8/libutf8.la
