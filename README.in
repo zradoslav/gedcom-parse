@@ -60,6 +60,7 @@ Requirements:
 
 To build from sources, you'll also need:
  - gcc
+ - GNU make
  - autoconf
  - automake
  - flex
