@@ -48,17 +48,22 @@ char* gom_set_string(char** data, const char* utf8_str)
   char* result = NULL;
   char* newptr;
 
-  if (!is_utf8_string(utf8_str)) {
-    gedcom_error(_("The input '%s' is not a valid UTF-8 string"), utf8_str);
+  if (utf8_str == NULL) {
+    SAFE_FREE(*data);
   }
   else {
-    newptr = strdup(utf8_str);
-    if (!newptr)
-      MEMORY_ERROR;
+    if (!is_utf8_string(utf8_str)) {
+      gedcom_error(_("The input '%s' is not a valid UTF-8 string"), utf8_str);
+    }
     else {
-      if (*data) free(*data);
-      *data = newptr;
-      result = *data;
+      newptr = strdup(utf8_str);
+      if (!newptr)
+	MEMORY_ERROR;
+      else {
+	SAFE_FREE(*data);
+	*data = newptr;
+	result = *data;
+      }
     }
   }
   
@@ -68,13 +73,19 @@ char* gom_set_string(char** data, const char* utf8_str)
 char* gom_set_string_for_locale(char** data, const char* locale_str)
 {
   char* result = NULL;
-  char* utf8_str = convert_locale_to_utf8(locale_str);
-  
-  if (!utf8_str)
-    gedcom_error(_("The input '%s' is not a valid string for the locale"),
-		 locale_str);
-  else
-    result = gom_set_string(data, utf8_str);
+
+  if (locale_str == NULL) {
+    result = gom_set_string(data, NULL);
+  }
+  else {
+    char* utf8_str = convert_locale_to_utf8(locale_str);
+    
+    if (!utf8_str)
+      gedcom_error(_("The input '%s' is not a valid string for the locale"),
+		   locale_str);
+    else
+      result = gom_set_string(data, utf8_str);
+  }
 
   return result;
 }
