@@ -399,6 +399,10 @@ typedef enum _DATE_INPUT {
   DI_FROM_SDN
 } Date_input;
 
+typedef enum _COMPAT_OPTIONS {
+  COMPAT_ALLOW_OUT_OF_CONTEXT = 0x01
+} Gedcom_compat;
+
 /**************************************************************************/
 /***  Things meant to be internal, susceptible to changes               ***/
 /***  Use the GEDCOM_STRING/GEDCOM_DATE interface instead of relying    ***/
@@ -518,6 +522,7 @@ int     gedcom_new_model();
 void    gedcom_set_debug_level(int level, FILE* trace_output);
 void    gedcom_set_error_handling(Gedcom_err_mech mechanism);
 void    gedcom_set_compat_handling(int enable_compat);
+void    gedcom_set_compat_options(Gedcom_compat options);
 void    gedcom_set_message_handler(Gedcom_msg_handler func);
 void    gedcom_set_default_callback(Gedcom_def_cb func);
 
