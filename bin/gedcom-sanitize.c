@@ -41,6 +41,8 @@
 #define UNUSED
 #endif
 
+#define PROG_NAME "GEDCOM_PARSE"
+
 void show_help ()
 {
   printf("Converts a GEDCOM file to strict standard GEDCOM\n\n");
@@ -50,6 +52,7 @@ void show_help ()
   printf("  -dg   Debug setting: only libgedcom debug messages\n");
   printf("  -da   Debug setting: libgedcom + yacc debug messages\n");
   printf("  -e <extension>   Extension to give to file name (default 'new')\n");
+  printf("  -s    Keep source string (otherwise: changed to GEDCOM_PARSE)\n");
   printf("Errors, warnings, ... are sent to stdout\n");
 }
 
@@ -61,11 +64,54 @@ void gedcom_message_handler(Gedcom_msg_type type UNUSED, char *msg)
   printf("%s\n", converted);
 }
 
+int update_header()
+{
+  struct header* head = NULL;
+  head = gom_get_header();
+  if (head == NULL)
+    return 1;
+  else {
+    char* value;
+    int result, i;
+    
+    value = gom_set_string(&head->source.id, PROG_NAME);
+    if (value == NULL || strcmp (value, PROG_NAME))
+      return 1;
+
+    value = gom_set_string(&head->source.name, NULL);
+    if (value != NULL)
+      return 1;
+
+    value = gom_set_string(&head->source.version, VERSION);
+    if (value == NULL || strcmp (value, VERSION))
+      return 1;
+
+    value = gom_set_string(&head->source.corporation.name, NULL);
+    if (value != NULL)
+      return 1;
+
+    result = gom_delete_address(&head->source.corporation.address);
+    if (result != 0)
+      return 1;
+
+    for (i=0; i<3; i++) {
+      if (head->source.corporation.phone[i]) {
+	value = gom_set_string(&head->source.corporation.phone[i], NULL);
+	if (value != NULL)
+	  return 1;
+      }
+    }
+    
+    return 0;
+  }
+}
+
 int main(int argc, char* argv[])
 {
   Gedcom_err_mech mech = DEFER_FAIL;
   int compat_enabled   = 1;
   int debug_level = 0;
+  int keep_source = 0;
   char* file_name = NULL;
   int result;
   char* extension = "new";
@@ -77,6 +123,8 @@ int main(int argc, char* argv[])
 	debug_level = 2;
       else if (!strncmp(argv[i], "-dg", 4))
 	debug_level = 1;
+      else if (!strncmp(argv[i], "-s", 3))
+	keep_source = 1;
       else if (!strncmp(argv[i], "-e", 3)) {
 	if (i<argc) {
 	  extension = argv[++i];
@@ -121,7 +169,11 @@ int main(int argc, char* argv[])
     char* newfile = (char*)malloc(strlen(file_name) + strlen(extension) + 2);
     sprintf(newfile, "%s.%s", file_name, extension);
     printf(_("Parse succeeded, now writing file '%s'\n"), newfile);
-    result = gom_write_file(newfile, NULL);
+    if (! keep_source) {
+      result = update_header();
+    }
+    if (result == 0)
+      result = gom_write_file(newfile, NULL);
     free(newfile);
     if (result == 0) {
       printf(_("Write succeeded\n"));
