@@ -25,11 +25,15 @@
 #define __FUNC_TEMPLATE_H
 
 #define MAKEFUNC(STRUCTTYPE)     make_ ## STRUCTTYPE ## _record
+#define SUB_MAKEFUNC(STRUCTTYPE) make_ ## STRUCTTYPE
 #define DESTROYFUNC(STRUCTTYPE)  destroy_ ## STRUCTTYPE ## _record
 #define GETXREFFUNC(STRUCTTYPE)  gom_get_ ## STRUCTTYPE ## _by_xref
 #define CLEANFUNC(STRUCTTYPE)    STRUCTTYPE ## _cleanup
 #define ADDFUNC(STRUCTTYPE)      gom_add_ ## STRUCTTYPE
+#define SUB_ADDFUNC(STRUCTTYPE)  gom_add_ ## STRUCTTYPE
 #define DELETEFUNC(STRUCTTYPE)   gom_delete_ ## STRUCTTYPE
+#define SUB_DELETEFUNC(STRUCTTYPE) gom_delete_ ## STRUCTTYPE
+#define MAKELINKFUNC(STRUCTTYPE) gom_make_ ## STRUCTTYPE ## _link
 #define ADDFUNC2(T1,T2)          T1 ## _add_ ## T2
 #define ADDFUNC2_TOVAR(T1,T2,F)  T1 ## _add_ ## T2 ## _to_ ## F
 #define ADDFUNC2_NOLIST(T1,T2)   ADDFUNC2(T1,T2)
@@ -38,6 +42,9 @@
 
 #define DECLARE_MAKEFUNC(STRUCTTYPE)                                          \
   struct STRUCTTYPE* MAKEFUNC(STRUCTTYPE)(const char* xref)
+
+#define DECLARE_SUB_MAKEFUNC(STRUCTTYPE)                                      \
+  struct STRUCTTYPE* SUB_MAKEFUNC(STRUCTTYPE)()
 
 #define DECLARE_CLEANFUNC(STRUCTTYPE)                                         \
   void CLEANFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj)
@@ -124,6 +131,17 @@
     return obj;                                                               \
   }
 
+#define DEFINE_SUB_MAKEFUNC(STRUCTTYPE)                                       \
+  struct STRUCTTYPE* SUB_MAKEFUNC(STRUCTTYPE)() {                             \
+    struct STRUCTTYPE* obj = NULL;                                            \
+    obj = (struct STRUCTTYPE*) malloc(sizeof(struct STRUCTTYPE));             \
+    if (!obj)                                                                 \
+      MEMORY_ERROR;                                                           \
+    else                                                                      \
+      memset(obj, 0, sizeof(struct STRUCTTYPE));                              \
+    return obj;                                                               \
+  }
+
 #define DEFINE_DESTROYFUNC(STRUCTTYPE,FIRSTVAL)                               \
   void CLEANFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj);                         \
   void DESTROYFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj) {                      \
@@ -164,6 +182,17 @@
     return obj;                                                               \
   }
 
+#define DEFINE_SUB_ADDFUNC(STRUCTTYPE)                                        \
+  struct STRUCTTYPE *SUB_ADDFUNC(STRUCTTYPE)(struct STRUCTTYPE** addto)       \
+  {                                                                           \
+    struct STRUCTTYPE *obj = NULL;                                            \
+    if (addto && ! *addto) {                                                  \
+      obj = SUB_MAKEFUNC(STRUCTTYPE)();                                       \
+      if (obj) *addto = obj;                                                  \
+    }                                                                         \
+    return obj;                                                               \
+  }
+
 #define DEFINE_DELETEFUNC(STRUCTTYPE)                                         \
   int DELETEFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj)                          \
   {                                                                           \
@@ -174,6 +203,29 @@
 	DESTROYFUNC(STRUCTTYPE)(obj);                                         \
     }                                                                         \
     return result;                                                            \
+  }
+
+#define DEFINE_SUB_DELETEFUNC(STRUCTTYPE)                                     \
+  int SUB_DELETEFUNC(STRUCTTYPE)(struct STRUCTTYPE** obj)                     \
+  {                                                                           \
+    int result = 1;                                                           \
+    if (obj && *obj) {                                                        \
+      CLEANFUNC(STRUCTTYPE)(*obj);                                            \
+      free(*obj);                                                             \
+      *obj = NULL;                                                            \
+      result = 0;                                                             \
+    }                                                                         \
+    return result;                                                            \
+  }
+
+#define DEFINE_MAKELINKFUNC(STRUCTTYPE,XREF_TYPE)                             \
+  struct xref_value* MAKELINKFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj)         \
+  {                                                                           \
+    struct xref_value* xr = NULL;                                             \
+    if (obj && obj->xrefstr) {                                                \
+      xr = gedcom_get_by_xref(obj->xrefstr);                                  \
+    }                                                                         \
+    return xr;                                                                \
   }
 
 #define DEFINE_ADDFUNC2(STRUCTTYPE,T2,FIELD)                                  \
