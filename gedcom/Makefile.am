@@ -44,6 +44,26 @@ lex.gedcom_hilo_.c:	gedcom_hilo.lex
 lex.gedcom_lohi_.c:	gedcom_lohi.lex
 	$(LEX) $(LFLAGS) -Pgedcom_lohi_ $<
 
-lex.gedcom_1byte_.c:	gedcom.tab.h
-lex.gedcom_hilo_.c:	gedcom.tab.h
-lex.gedcom_lohi_.c:	gedcom.tab.h
+lex.gedcom_1byte_.c:	gedcom.tab.h gedcom_lex_common.c
+lex.gedcom_hilo_.c:	gedcom.tab.h gedcom_lex_common.c
+lex.gedcom_lohi_.c:	gedcom.tab.h gedcom_lex_common.c
+
+# Lexer test programs
+
+EXTRA_PROGRAMS = lexer_1byte lexer_hilo lexer_lohi
+lexer_1byte_SOURCES =
+lexer_1byte_LDADD = lex.gedcom_1byte_.test.o message.o encoding.o
+lexer_hilo_SOURCES =
+lexer_hilo_LDADD = lex.gedcom_hilo_.test.o message.o encoding.o
+lexer_lohi_SOURCES =
+lexer_lohi_LDADD = lex.gedcom_lohi_.test.o message.o encoding.o
+
+lex.gedcom_1byte_.test.o:	lex.gedcom_1byte_.c
+	$(COMPILE) -DLEXER_TEST -c $(CPPFLAGS) $(CFLAGS) $< -o $@
+lex.gedcom_hilo_.test.o:	lex.gedcom_hilo_.c
+	$(COMPILE) -DLEXER_TEST -c $(CPPFLAGS) $(CFLAGS) $< -o $@
+lex.gedcom_lohi_.test.o:	lex.gedcom_lohi_.c
+	$(COMPILE) -DLEXER_TEST -c $(CPPFLAGS) $(CFLAGS) $< -o $@
+
+clean-local:
+	rm -f $(EXTRA_PROGRAMS)
