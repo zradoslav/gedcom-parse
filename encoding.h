@@ -20,9 +20,14 @@ typedef enum _ENC {
   TWO_BYTE_LOHI = 2
 } ENCODING;
 
+/* All Unicode characters between U+0000 and U+FFFF can be encoded in
+   UTF-8 with 3 or less bytes */
+#define UTF_FACTOR 3
+
 int open_conv_to_internal(char* fromcode);
 void close_conv_to_internal();
-char* to_internal(char* str, size_t len);
+char* to_internal(char* str, size_t len,
+		  char* output_buffer, size_t out_len);
 void init_encodings();
 void set_encoding_width(ENCODING enc);
 
