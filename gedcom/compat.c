@@ -63,6 +63,11 @@ void gedcom_set_compat_handling(int enable_compat)
 
 void set_compatibility(char* program)
 {
+  /* Reinitialize compatibility */
+  compat_at = 0;
+  default_charset = "";
+  compatibility = 0;
+  
   if (compat_enabled) {
     if (! strncmp(program, "ftree", 6)) {
       gedcom_warning(_("Enabling compatibility with 'ftree'"));
@@ -74,9 +79,6 @@ void set_compatibility(char* program)
       compatibility = C_LIFELINES;
       default_charset = "ANSI";
       compat_at = 1;
-    }
-    else {
-      compatibility = 0;
     }
   }
 }
