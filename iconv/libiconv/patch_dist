@@ -60,11 +60,19 @@ do
   patch -s -b -p0 < $topdir/$file.patch
 done
 
-
 #############################################################################
 echo "Patching files in man subdirectory..."
 cd $libiconvdir/man
 for file in iconv_open.3 iconv_open.3.html
+do
+  echo "  $file"
+  patch -s -b -p0 < $topdir/$file.patch
+done
+
+#############################################################################
+echo "Patching files in libcharset/lib subdirectory..."
+cd $libiconvdir/libcharset/lib
+for file in config.charset
 do
   echo "  $file"
   patch -s -b -p0 < $topdir/$file.patch
