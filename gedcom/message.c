@@ -24,7 +24,13 @@
 #include "gedcom_internal.h"
 #include "gedcom.h"
 
+#if HAVE_VSNPRINTF
 #define INITIAL_BUF_SIZE 256
+#else
+/* Risk on overflowing buffer, so make size big */
+#define INITIAL_BUF_SIZE 65536
+#endif
+
 char *mess_buffer = NULL;
 size_t bufsize;
 
@@ -76,6 +82,7 @@ int safe_buf_vappend(const char *s, va_list ap)
       char *buf_ptr = mess_buffer + len;
       int rest_size = bufsize - len;
       
+#if HAVE_VSNPRINTF
       res = vsnprintf(buf_ptr, rest_size, s, ap);
       
       if (res > -1 && res < rest_size) {
@@ -85,6 +92,15 @@ int safe_buf_vappend(const char *s, va_list ap)
 	bufsize *= 2;
 	mess_buffer = realloc(mess_buffer, bufsize);
       }
+#else /* not HAVE_VSNPRINTF */
+#  if HAVE_VSPRINTF
+#     warning "Using VSPRINTF. Buffer overflow could happen!"
+      vsprintf(buf_ptr, s, ap);
+      break;
+#  else /* not HAVE_VPRINTF */
+#     error "Your standard library has neither vsnprintf nor vsprintf defined. One of them is required!"
+#  endif
+#endif
     }
   }
   return res;
