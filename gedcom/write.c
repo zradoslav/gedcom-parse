@@ -311,7 +311,7 @@ char* get_tag_string(int elt_or_rec, int tag)
     }
   }
   else {
-    gedcom_error(_("The element or record type '%s' requires a specific tag"
+    gedcom_error(_("The element or record type '%s' requires a specific tag "
 		   "for writing"),
 		 tag_data[elt_or_rec].elt_name);
     return NULL;
