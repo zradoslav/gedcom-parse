@@ -1,3 +1,45 @@
+2002-01-16  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/xref.c: Make sure that the 'string' member of an xref always
+	contains a valid string.
+
+	* gedcom/gedcom.y: in use of INVALID_TAG: tag is struct instead of
+	simple string.
+
+	* gedcom/multilex.c (gedcom_parse_file): setlocale returns a string
+	in static storage, so must use strdup and free afterwards.
+
+2002-01-15  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/encoding.c: Separate the modification of GCONV_PATH from the
+	rest of the initialization, and let it be called before main (necessary
+	because iconv_open will only look at GCONV_PATH once, and e.g. GTK
+	calls iconv_open very early).
+
+	* gedcom/gedcom.y: Don't allow the parser to continue if the conversion
+	context couldn't be opened, even if IGNORE_ERRORS.
+
+	* gedcom/multilex.c (gedcom_parse_file): Save the old locale (in case
+	the application had set it).
+
+2002-01-13  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* utf8-locale.c: Example implementation for conversion UTF-8 to
+	locale.
+
+2002-01-12  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* more documentation...
+
+2002-01-10  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* doc/parser.html: Start of character set explanation.
+
+	* enhancements to Makefiles for documentation.
+
+	* gedcom/Makefile.am, gedcom/gedcom_lex_common.c: Some bugfixes for the
+	standalone lexers.
+
 2002-01-05  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* release 0.13
