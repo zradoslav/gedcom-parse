@@ -122,6 +122,7 @@ void gedcom_init()
 {
   init_called = 1;
   update_gconv_search_path();
+  setlocale(LC_ALL, "");
 }
 
 int gedcom_parse_file(const char* file_name)
@@ -129,31 +130,24 @@ int gedcom_parse_file(const char* file_name)
   ENCODING enc;
   int result = 1;
   FILE* file;
-  char *locale, *save_locale, *save_textdom;
+  char *textdom, *save_textdom;
 
-  locale = setlocale(LC_ALL, NULL);
-  if (! locale) {
-    gedcom_error(_("Could not retrieve locale information"));
+  textdom = textdomain(NULL);
+  if (!textdom) {
+    gedcom_error(_("Could not retrieve text domain: %s"), strerror(errno));
     return result;
   }
   
-  save_locale  = strdup(locale);
-  if (! save_locale) {
+  save_textdom = strdup(textdom);
+  if (! save_textdom) {
     MEMORY_ERROR;
     return result;
   }
   
-  save_textdom = textdomain(NULL);
-  if (!save_textdom) {
-    gedcom_error(_("Could not retrieve locale domain: %s"), strerror(errno));
-    return result;
-  }
-  
-  if (! setlocale(LC_ALL, "")
-      || ! bindtextdomain(PACKAGE, LOCALEDIR)
+  if (! bindtextdomain(PACKAGE, LOCALEDIR)
       || ! bind_textdomain_codeset(PACKAGE, INTERNAL_ENCODING)
       || ! textdomain(PACKAGE)) {
-    gedcom_error(_("Could not set locale: %s"), strerror(errno));
+    gedcom_error(_("Could not set text domain: %s"), strerror(errno));
     return result;
   }
 
@@ -183,12 +177,10 @@ int gedcom_parse_file(const char* file_name)
     }
   }
 
-  if (! textdomain(save_textdom)
-      || ! setlocale(LC_ALL, save_locale)) {
-    gedcom_error(_("Could not restore locale: %s"), strerror(errno));
+  if (! textdomain(save_textdom)) {
+    gedcom_error(_("Could not restore text domain: %s"), strerror(errno));
     return result;
   }
-  free(save_locale);
   return result;
 }
 
