@@ -27,6 +27,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <libintl.h>
+#include <time.h>
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -108,6 +109,9 @@ void def_rec_end(Gedcom_rec rec, Gedcom_ctxt self, Gedcom_val parsed_value);
 void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent,
 		 Gedcom_ctxt self, Gedcom_val parsed_value);
 void set_xref_type(struct xref_value *xr, const char* str);
+
+int  update_date(struct date_value** dv, struct tm* tm_ptr);
+int  update_time(char** tv, struct tm* tm_ptr);
 
 /* Doubly-linked list, but last rec->next is NULL (doesn't go to first rec) */
 #define LINK_CHAIN_ELT(STRUCTTYPE, FIRSTVAL, VAL)                             \

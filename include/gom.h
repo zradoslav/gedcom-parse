@@ -25,6 +25,7 @@
 #define __GEDCOM_GOM_H
 
 #include "gedcom.h"
+#include <time.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -422,6 +423,8 @@ int  gom_new_model();
 int  gom_write_file(const char* file_name, int *total_conv_fails);
 
 struct header*     gom_get_header();
+int  gom_header_update_timestamp(time_t t);
+  
 struct submission* gom_get_submission();
 
 struct family*     gom_get_first_family();

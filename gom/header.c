@@ -21,6 +21,7 @@
 /* $Id$ */
 /* $Name$ */
 
+#include <time.h>
 #include "header.h"
 #include "submission.h"
 #include "submitter.h"
@@ -161,6 +162,15 @@ void header_cleanup()
 struct header* gom_get_header()
 {
   return &gom_header;
+}
+
+int gom_header_update_timestamp(time_t t)
+{
+  int result = 0;
+  struct tm *tm_ptr = localtime(&t);
+  result |= update_date(&gom_header.date, tm_ptr);
+  result |= update_time(&gom_header.time, tm_ptr);
+  return result;
 }
 
 int write_header(Gedcom_write_hndl hndl)

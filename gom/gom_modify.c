@@ -23,6 +23,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "utf8tools.h"
 #include "gom.h"
 #include "gom_internal.h"
@@ -77,3 +78,34 @@ char* gom_set_string_for_locale(char** data, const char* locale_str)
 
   return result;
 }
+
+int update_date(struct date_value** dv, struct tm* tm_ptr)
+{
+  int result;
+  struct date_value* dval = gedcom_new_date_value(NULL);
+  dval->type        = DV_NO_MODIFIER;
+  dval->date1.cal   = CAL_GREGORIAN;
+  dval->date1.day   = tm_ptr->tm_mday;
+  dval->date1.month = tm_ptr->tm_mon + 1;
+  dval->date1.year  = tm_ptr->tm_year + 1900;
+  result = gedcom_normalize_date(DI_FROM_NUMBERS, dval);
+
+  if (result == 0) {
+    if (*dv) free(*dv);
+    *dv = dval;
+  }
+  return result;
+}
+
+int update_time(char** tv, struct tm* tm_ptr)
+{
+  char tval[16];
+  sprintf(tval, "%02d:%02d:%02d",
+	  tm_ptr->tm_hour, tm_ptr->tm_min, tm_ptr->tm_sec);
+
+  if (gom_set_string(tv, tval))
+    return 0;
+  else
+    return 1;
+}
+
