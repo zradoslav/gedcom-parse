@@ -332,7 +332,8 @@ int main()
 {
   int tok, res;
   init_encodings();
-  res = open_conv_to_internal("UNICODE(LOHI)");
+  set_encoding_width(TWO_BYTE_LOHI);
+  res = open_conv_to_internal("UNICODE");
   if (!res) {
     gedcom_error("Unable to open conversion context: %s",
 		 strerror(errno));
