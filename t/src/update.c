@@ -161,7 +161,8 @@ int main(int argc, char* argv[])
   output_open();
   
   result = gedcom_new_model();
-  result |= test_xref_functions();
+  if (result == 0)
+    result |= test_xref_functions();
   if (result == 0) {
     output(1, "Test succeeded\n");
   }
