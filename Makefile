@@ -16,14 +16,15 @@ gedcom_parse:	standalone.o
 	$(CC) $(LDFLAGS) $(LDFLAGS_GEDCOM) -lgedcom $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 libgedcom:
-	cd gedcom && $(MAKE)
+	cd gedcom && $(MAKE) DMALLOC_CFLAGS=$(DMALLOC_CFLAGS) \
+	DMALLOC_LOADLIBES=$(DMALLOC_LOADLIBES)
 
 ansel_module:
 	cd ansel && $(MAKE)
 
 .PHONY:	clean
 clean:
-	rm -f core gedcom_parse *.o
+	rm -f core gedcom_parse *.o logfile
 	cd gedcom && $(MAKE) clean
 	cd ansel && $(MAKE) clean
 
