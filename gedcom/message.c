@@ -94,7 +94,6 @@ int gedcom_message(char* s, ...)
   reset_mess_buffer();
   res = safe_buf_vappend(s, ap);
   va_end(ap);
-  safe_buf_append("\n");
   if (msg_handler)
     (*msg_handler)(MESSAGE, mess_buffer);
   return res;
@@ -110,7 +109,6 @@ int gedcom_warning(char* s, ...)
   va_start(ap, s);
   res = safe_buf_vappend(s, ap);
   va_end(ap);
-  safe_buf_append("\n");
   if (msg_handler)
     (*msg_handler)(WARNING, mess_buffer);
   
@@ -127,7 +125,6 @@ int gedcom_error(char* s, ...)
   va_start(ap, s);
   res = safe_buf_vappend(s, ap);
   va_end(ap);
-  safe_buf_append("\n");
   if (msg_handler)
     (*msg_handler)(ERROR, mess_buffer);
   

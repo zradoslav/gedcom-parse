@@ -59,7 +59,7 @@ void show_help ()
   printf("  -3    Run the test parse 3 times instead of once\n");
 }
 
-Gedcom_ctxt header_start(int level, char *xref, char *tag)
+Gedcom_ctxt header_start(int level, Gedcom_val xref, char *tag)
 {
   output(1, "Header start\n");
   return (Gedcom_ctxt)0;
@@ -73,10 +73,10 @@ void header_end(Gedcom_ctxt self)
 char family_xreftags[100][255];
 int  family_nr = 0;
 
-Gedcom_ctxt family_start(int level, char *xref, char *tag)
+Gedcom_ctxt family_start(int level, Gedcom_val xref, char *tag)
 {
-  output(1, "Family start, xref is %s\n", xref);
-  strcpy(family_xreftags[family_nr], xref);
+  output(1, "Family start, xref is %s\n", GEDCOM_STRING(xref));
+  strcpy(family_xreftags[family_nr], GEDCOM_STRING(xref));
   return (Gedcom_ctxt)(family_nr++);
 }
 
@@ -85,9 +85,9 @@ void family_end(Gedcom_ctxt self)
   output(1, "Family end, xref is %s\n", family_xreftags[(int)self]);
 }
 
-Gedcom_ctxt submit_start(int level, char *xref, char *tag)
+Gedcom_ctxt submit_start(int level, Gedcom_val xref, char *tag)
 {
-  output(1, "Submitter, xref is %s\n", xref);
+  output(1, "Submitter, xref is %s\n", GEDCOM_STRING(xref));
   return (Gedcom_ctxt)10000;
 }
 
@@ -157,7 +157,7 @@ void gedcom_message_handler(Gedcom_msg_type type, char *msg)
     fprintf(stderr, "WARNING: ");
   else if (type == ERROR)
     fprintf(stderr, "ERROR: ");
-  fprintf(stderr, msg);
+  fprintf(stderr, "%s\n", msg);
 }
 
 int main(int argc, char* argv[])
