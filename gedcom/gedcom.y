@@ -164,6 +164,10 @@ struct safe_buffer line_item_buffer = { NULL, 0, NULL, 0,
 
 void cleanup_concat_buffer(); 
 struct safe_buffer concat_buffer = { NULL, 0, NULL, 0, cleanup_concat_buffer };
+
+void cleanup_usertag_buffer();
+struct safe_buffer usertag_buffer = { NULL, 0, NULL, 0,
+				      cleanup_usertag_buffer};
  
 /* These are defined at the bottom of the file */ 
 void push_countarray(int level);
@@ -210,7 +214,9 @@ void clean_up();
 		      #TAG, parenttag);                                       \
          HANDLE_ERROR;                                                        \
        }                                                                      \
-     } 
+     }
+#define CHK_COND(TAG)                                                         \
+     check_occurrence(TAG_##TAG)
 #define POP                                                                   \
      { pop_countarray();                                                      \
        --count_level;                                                         \
@@ -444,15 +450,15 @@ head_sect    : OPEN DELIM TAG_HEAD
 					 NULL, GEDCOM_MAKE_NULL(val2));
 	         START(HEAD, $1, $<ctxt>$) }
                head_subs
-               { if (compat_mode(C_NO_SUBMITTER))
+               { if (compat_mode(C_NO_SUBMITTER) && ! CHK_COND(SUBM))
 		   compat_generate_submitter_link($<ctxt>4);
 	         else CHK(SUBM);
 
-	         if (compat_mode(C_NO_GEDC))
+	         if (compat_mode(C_NO_GEDC) && ! CHK_COND(GEDC))
 		   compat_generate_gedcom($<ctxt>4);
 		 else CHK(GEDC);
 
-		 if (compat_mode(C_NO_CHAR)) {
+		 if (compat_mode(C_NO_CHAR) && ! CHK_COND(CHAR)) {
 		   if (compat_generate_char($<ctxt>4)) HANDLE_ERROR;
 		 }
 		 else CHK(CHAR);
@@ -670,7 +676,7 @@ head_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
 		      }
                     ;
 
-/* HEAD.TIME (Only for 'Lifelines' compatibility) */
+/* HEAD.TIME (Only for compatibility) */
 /* Just ignore the time... */
 head_time_sect : OPEN DELIM TAG_TIME opt_line_item CLOSE
                  { gedcom_warning(_("Header change time lost in the compatibility"));
@@ -1049,7 +1055,10 @@ indiv_rec   : OPEN DELIM POINTER DELIM TAG_INDI
               indi_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_INDI, $<ctxt>6, GEDCOM_MAKE_NULL(val1)); }
+              { end_record(REC_INDI, $<ctxt>6, GEDCOM_MAKE_NULL(val1));
+	        if (compat_mode(C_NO_SLGC_FAMC))
+		  compat_generate_slgc_famc_fam();
+	      }
             ;
 
 indi_subs   : /* empty */
@@ -2885,7 +2894,11 @@ lio_slgc_sect : OPEN DELIM TAG_SLGC
 		  START(SLGC, $1, $<ctxt>$) 
                 }
                 lio_slgc_subs
-		{ CHECK1(FAMC) }
+                { if (compat_mode(C_NO_SLGC_FAMC) && ! CHK_COND(FAMC))
+		    compat_generate_slgc_famc_link($<ctxt>4);
+		  else CHK(FAMC);
+		  CHECK0;
+		}
                 CLOSE 
                 { end_element(ELT_SUB_LIO_SLGC, PARENT, $<ctxt>4, 
 			      GEDCOM_MAKE_NULL(val1));
@@ -3631,9 +3644,15 @@ no_std_rec  : user_rec /* 0:M */
 
 user_rec    : OPEN DELIM opt_xref USERTAG
               { if ($4.string[0] != '_') {
-		  gedcom_error(_("Undefined tag (and not a valid user tag): %s"),
-			       $4);
-		  YYERROR;
+		  if (compat_mode(C_551_TAGS)
+		      && compat_check_551_tag($4.string, &usertag_buffer)) {
+		    $4.string = get_buf_string(&usertag_buffer);
+		  }
+		  else {		  
+		    gedcom_error(_("Undefined tag (and not a valid user tag): %s"),
+				 $4);
+		    YYERROR;
+		  }
 	        }
 	      }
               opt_value
@@ -3655,9 +3674,15 @@ user_rec    : OPEN DELIM opt_xref USERTAG
             ;
 user_sect   : OPEN DELIM opt_xref USERTAG
               { if ($4.string[0] != '_') {
-		  gedcom_error(_("Undefined tag (and not a valid user tag): %s"),
-			       $4);
-		  YYERROR;
+		  if (compat_mode(C_551_TAGS)
+		      && compat_check_551_tag($4.string, &usertag_buffer)) {
+		    $4.string = get_buf_string(&usertag_buffer);
+		  }
+		  else {
+		    gedcom_error(_("Undefined tag (and not a valid user tag): %s"),
+				 $4);
+		    YYERROR;
+		  }
 	        }
 	      }
               opt_value
@@ -3698,8 +3723,7 @@ mand_pointer : /* empty */ { gedcom_error(_("Missing pointer")); YYERROR; }
 
 mand_line_item : /* empty */
                  { if (compat_mode(C_NO_REQUIRED_VALUES)) {
-                     /* Lifelines tends to not care about mandatory values */
-		     gedcom_debug_print("==Val: ==");
+                     gedcom_debug_print("==Val: ==");
 		     $$ = "";
 		   }
 		   else {
@@ -4029,6 +4053,11 @@ void cleanup_concat_buffer()
 void cleanup_line_item_buffer()
 {
   cleanup_buffer(&line_item_buffer);
+}
+
+void cleanup_usertag_buffer()
+{
+  cleanup_buffer(&usertag_buffer);
 }
 
 /* Enabling debug mode */

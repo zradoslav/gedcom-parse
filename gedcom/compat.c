@@ -25,6 +25,7 @@
 #include "interface.h"
 #include "encoding.h"
 #include "xref.h"
+#include "buffer.h"
 #include "gedcom_internal.h"
 #include "gedcom.h"
 
@@ -33,13 +34,15 @@ int compatibility  = 0;
 const char* default_charset = "";
 
 #define SUBMITTER_LINK         "@__COMPAT__SUBM__@"
+#define SLGC_FAMC_LINK         "@__COMPAT__FAM_SLGC__@"
 #define DEFAULT_SUBMITTER_NAME "Submitter"
 #define DEFAULT_GEDCOM_VERS    "5.5"
 #define DEFAULT_GEDCOM_FORM    "LINEAGE-LINKED"
 
 enum _COMPAT {
   C_FTREE = 0x01,
-  C_LIFELINES = 0x02
+  C_LIFELINES = 0x02,
+  C_PAF = 0x04
 };
 
 /* Incompatibility list (with GEDCOM 5.5):
@@ -56,6 +59,11 @@ enum _COMPAT {
 	- HEAD.TIME instead of HEAD.DATE.TIME (will be ignored here)
 	- '@' not written as '@@' in values
 	- lots of missing required values
+
+    - Personal Ancestral File:
+        - '@' not written as '@@' in values
+	- some 5.5.1 (draft) tags are used: EMAIL, FONE, ROMN
+	- no FAMC field in SLGC
  */
 
 int compat_matrix[] =
@@ -66,8 +74,26 @@ int compat_matrix[] =
   /* C_NO_GEDC */             C_LIFELINES,
   /* C_NO_CHAR */             C_LIFELINES,
   /* C_HEAD_TIME */           C_LIFELINES,
-  /* C_NO_DOUBLE_AT */        C_LIFELINES,
-  /* C_NO_REQUIRED_VALUES */  C_LIFELINES
+  /* C_NO_DOUBLE_AT */        C_LIFELINES | C_PAF,
+  /* C_NO_REQUIRED_VALUES */  C_LIFELINES,
+  /* C_551_TAGS */            C_PAF,
+  /* C_NO_SLGC_FAMC */        C_PAF,
+  /* C_NR_OF_RULES */         0
+};
+
+int compat_state[] =
+{
+  /* C_NO_SUBMITTER */        0,
+  /* C_INDI_ADDR */           0,
+  /* C_NOTE_NO_VALUE */       0,
+  /* C_NO_GEDC */             0,
+  /* C_NO_CHAR */             0,
+  /* C_HEAD_TIME */           0,
+  /* C_NO_DOUBLE_AT */        0,
+  /* C_NO_REQUIRED_VALUES */  0,
+  /* C_551_TAGS */            0,
+  /* C_NO_SLGC_FAMC */        0,
+  /* C_NR_OF_RULES */         0
 };
 
 /* Compatibility handling */
@@ -77,22 +103,34 @@ void gedcom_set_compat_handling(int enable_compat)
   compat_enabled = enable_compat;
 }
 
+void enable_compat_msg(const char* program_name)
+{
+  gedcom_warning(_("Enabling compatibility with '%s'"), program_name);
+}
+
 void set_compatibility(const char* program)
 {
   /* Reinitialize compatibility */
+  int i;
   default_charset = "";
   compatibility = 0;
+  for (i = 0; i < C_NR_OF_RULES; i++)
+    compat_state[i] = 0;
   
   if (compat_enabled) {
     if (! strncmp(program, "ftree", 6)) {
-      gedcom_warning(_("Enabling compatibility with 'ftree'"));
+      enable_compat_msg("ftree");
       compatibility = C_FTREE;
     }
     else if (! strncmp(program, "LIFELINES", 9)) {
       /* Matches "LIFELINES 3.0.2" */
-      gedcom_warning(_("Enabling compatibility with 'Lifelines'"));
+      enable_compat_msg("Lifelines");
       compatibility = C_LIFELINES;
       default_charset = "ANSI";
+    }
+    else if (! strncmp(program, "PAF", 4)) {
+      enable_compat_msg("Personal Ancestral File");
+      compatibility = C_PAF;
     }
   }
 }
@@ -111,36 +149,42 @@ void compat_generate_submitter_link(Gedcom_ctxt parent)
   
   ts.string = "SUBM";
   ts.value  = TAG_SUBM;
+  gedcom_warning(_("Adding link to submitter record with xref '%s'"),
+		 SUBMITTER_LINK);
   self = start_element(ELT_HEAD_SUBM,
 		       parent, 1, ts, SUBMITTER_LINK,
 		       GEDCOM_MAKE_XREF_PTR(val1, xr));
   end_element(ELT_HEAD_SUBM, parent, self, NULL);
+  compat_state[C_NO_SUBMITTER] = 1;
 }
 
 void compat_generate_submitter()
 {
-  struct xref_value *xr = gedcom_parse_xref(SUBMITTER_LINK, XREF_DEFINED,
-					    XREF_SUBM);
-  struct tag_struct ts;
-  Gedcom_ctxt self1, self2;
-
-  /* first generate "0 SUBM" */
-  ts.string = "SUBM";
-  ts.value  = TAG_SUBM;
-  self1 = start_record(REC_SUBM, 0, GEDCOM_MAKE_XREF_PTR(val1, xr), ts,
-		       NULL, GEDCOM_MAKE_NULL(val2));
-
-  /* then generate "1 NAME ..." */
-  ts.string = "NAME";
-  ts.value  = TAG_NAME;
-  self2 = start_element(ELT_SUBM_NAME, self1, 1, ts, DEFAULT_SUBMITTER_NAME,
-			GEDCOM_MAKE_STRING(val1, DEFAULT_SUBMITTER_NAME));
-
-  /* close "1 NAME ..." */
-  end_element(ELT_SUBM_NAME, self1, self2, NULL);
-
-  /* close "0 SUBM" */
-  end_record(REC_SUBM, self1, NULL);
+  if (compat_state[C_NO_SUBMITTER]) {
+    struct xref_value *xr = gedcom_parse_xref(SUBMITTER_LINK, XREF_DEFINED,
+					      XREF_SUBM);
+    struct tag_struct ts;
+    Gedcom_ctxt self1, self2;
+    
+    /* first generate "0 SUBM" */
+    ts.string = "SUBM";
+    ts.value  = TAG_SUBM;
+    self1 = start_record(REC_SUBM, 0, GEDCOM_MAKE_XREF_PTR(val1, xr), ts,
+			 NULL, GEDCOM_MAKE_NULL(val2));
+    
+    /* then generate "1 NAME ..." */
+    ts.string = "NAME";
+    ts.value  = TAG_NAME;
+    self2 = start_element(ELT_SUBM_NAME, self1, 1, ts, DEFAULT_SUBMITTER_NAME,
+			  GEDCOM_MAKE_STRING(val1, DEFAULT_SUBMITTER_NAME));
+    
+    /* close "1 NAME ..." */
+    end_element(ELT_SUBM_NAME, self1, self2, NULL);
+    
+    /* close "0 SUBM" */
+    end_record(REC_SUBM, self1, NULL);
+    compat_state[C_NO_SUBMITTER] = 0;
+  }
 }
 
 void compat_generate_gedcom(Gedcom_ctxt parent)
@@ -221,4 +265,68 @@ Gedcom_ctxt compat_generate_resi_start(Gedcom_ctxt parent)
 void compat_generate_resi_end(Gedcom_ctxt parent, Gedcom_ctxt self)
 {
   end_element(ELT_SUB_INDIV_RESI, parent, self, NULL);
+}
+
+int is_551_tag(const char* tag)
+{
+  if (strncmp(tag, "EMAIL", 6))
+    return 1;
+  else if (strncmp(tag, "FONE", 5))
+    return 1;
+  else if (strncmp(tag, "ROMN", 5))
+    return 1;
+  else
+    return 0;
+}
+
+int compat_check_551_tag(const char* tag, struct safe_buffer* b)
+{
+  if (is_551_tag(tag)) {
+    reset_buffer(b);
+    SAFE_BUF_ADDCHAR(b, '_');
+    safe_buf_append(b, tag);
+    gedcom_warning(_("Converting 5.5.1 tag '%s' to standard 5.5 user tag '%s'"),
+		   tag, get_buf_string(b));
+    return 1;
+  }
+  else
+    return 0;
+}
+
+void compat_generate_slgc_famc_link(Gedcom_ctxt parent)
+{
+  struct xref_value *xr = gedcom_parse_xref(SLGC_FAMC_LINK, XREF_USED,
+					    XREF_FAM);
+  struct tag_struct ts;
+  Gedcom_ctxt self;
+  
+  ts.string = "FAMC";
+  ts.value  = TAG_FAMC;
+  gedcom_warning(_("Adding link to family record with xref '%s'"),
+		 SLGC_FAMC_LINK);
+  self = start_element(ELT_SUB_LIO_SLGC_FAMC,
+		       parent, 2, ts, SLGC_FAMC_LINK,
+		       GEDCOM_MAKE_XREF_PTR(val1, xr));
+  end_element(ELT_SUB_LIO_SLGC_FAMC, parent, self, NULL);
+  compat_state[C_NO_SLGC_FAMC]++;
+}
+
+void compat_generate_slgc_famc_fam()
+{
+  /* If bigger than 1, then the FAM record has already been generated */
+  if (compat_state[C_NO_SLGC_FAMC] == 1) {
+    struct xref_value *xr = gedcom_parse_xref(SLGC_FAMC_LINK, XREF_DEFINED,
+					      XREF_FAM);
+    struct tag_struct ts;
+    Gedcom_ctxt self;
+    
+    /* generate "0 FAM" */
+    ts.string = "FAM";
+    ts.value  = TAG_FAM;
+    self = start_record(REC_FAM, 0, GEDCOM_MAKE_XREF_PTR(val1, xr), ts,
+			NULL, GEDCOM_MAKE_NULL(val2));
+    
+    /* close "0 FAM" */
+    end_record(REC_FAM, self, NULL);
+  }
 }

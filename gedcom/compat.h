@@ -24,6 +24,7 @@
 #ifndef __COMPAT_H
 #define __COMPAT_H
 
+#include "buffer.h"
 #include "gedcom.h"
 
 typedef enum _COMPAT_RULES {
@@ -34,7 +35,10 @@ typedef enum _COMPAT_RULES {
   C_NO_CHAR,
   C_HEAD_TIME,
   C_NO_DOUBLE_AT,
-  C_NO_REQUIRED_VALUES
+  C_NO_REQUIRED_VALUES,
+  C_551_TAGS,
+  C_NO_SLGC_FAMC,
+  C_NR_OF_RULES
 } Compat_rule;
 
 void set_compatibility(const char* program);
@@ -45,5 +49,8 @@ void compat_generate_gedcom(Gedcom_ctxt parent);
 int  compat_generate_char(Gedcom_ctxt parent);
 Gedcom_ctxt compat_generate_resi_start(Gedcom_ctxt parent);
 void compat_generate_resi_end(Gedcom_ctxt parent, Gedcom_ctxt self);
+int  compat_check_551_tag(const char* tag, struct safe_buffer* b);
+void compat_generate_slgc_famc_link(Gedcom_ctxt parent);
+void compat_generate_slgc_famc_fam();
 
 #endif /* __COMPAT_H */
