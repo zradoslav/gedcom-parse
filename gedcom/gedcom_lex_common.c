@@ -136,10 +136,14 @@ static void error_unexpected_character(const char* str, char ch)
   gedcom_error(_("Unexpected character: '%s' (0x%02x)"), str, ch);
 }
 
+/* This is to bypass the iconv conversion (if the input is UTF-8 coming
+   from the program) */
+static int dummy_conv = 0;
+
 #elif LEX_SECTION == 2
 
 #define TO_INTERNAL(STR,OUTBUF) \
-  to_internal(STR, yyleng, OUTBUF, sizeof(OUTBUF))
+  (dummy_conv ? STR : to_internal(STR, yyleng, OUTBUF, sizeof(OUTBUF)))
 
 #define INIT_LINE_LEN \
   line_len = 0;
@@ -398,6 +402,7 @@ void yymyinit(FILE *f)
   /* Reset our state */
   current_level = -1;
   level_diff = MAXGEDCLEVEL;
+  BEGIN(INITIAL);
 }
 
 #endif
