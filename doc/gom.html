@@ -24,7 +24,12 @@
   </ul>
   <li><a href="#Other_functions">Modifying the object model</a></li>
   <ul>
-    <li><a href="#Manipulating_strings">Manipulating strings</a></li>
+    <li><a href="#Manipulating_strings">Manipulating strings</a></li><li><a href="#Adding_and_removing_records">Adding and removing records</a></li>
+    <li><a href="#Adding_rem_and_moving_xref">Adding, removing and moving cross-references</a><br>
+    </li>
+    <li><a href="#Adding_removing_and_moving">Adding, removing and moving sub-structures</a><br>
+    </li>
+
   </ul><li><a href="#Writing_the_object_model_to_file">Writing the object model to file</a><br>
 <br>
     </li>
@@ -73,7 +78,7 @@ struct submission* &nbsp;<b>gom_get_submission</b>();<br>
 to get the first of such records, and one to get a record via its cross-reference
 tag in the GEDCOM file:<br>
     <blockquote><code>struct XXX* &nbsp; <b>gom_get_first_XXX</b>();<br>
-struct XXX* &nbsp; <b>gom_get_XXX_by_xref</b>(char* xref);</code><br>
+struct XXX* &nbsp; <b>gom_get_XXX_by_xref</b>(const char* xref);</code><br>
     </blockquote>
   </li>
 </ul>
@@ -126,11 +131,7 @@ tags is. &nbsp;Each element of the linked list has:<br>
 This way, none of the information in the GEDCOM file is lost, even the non-standard information.<br>
 <br>
 <hr width="100%" size="2">
-<h2><a name="Other_functions"></a>Modifying the object model</h2>Currently, there are only functions available to modify strings in the model (and the date manipulation functions described <a href="interface.html#date_value">here</a>).
-&nbsp;In principle it is possible to add new records, notes, ... yourself,
-but you have to know what you are doing, because you should keep the model
-consistent. &nbsp;In the next release, functions will be available to add,
-remove and modify anything in the model.<br>
+<h2><a name="Other_functions"></a>Modifying the object model</h2>Note that the date manipulations are described <a href="interface.html#date_value">here</a>.<br>
 
 <h3><a name="Manipulating_strings"></a>Manipulating strings<br>
 </h3>
@@ -175,6 +176,66 @@ failures for the result string. &nbsp;Pass a pointer to an integer if you
 want to know this. &nbsp;You can pass <code>NULL</code> if you're not interested. &nbsp;The function returns <code>NULL</code>
 if an error occurred (e.g. if the given string is not a valid string for
 the current locale); in that case the target data variable is not modified.<br>
+<br>
+<h3><a name="Adding_and_removing_records"></a>Adding and removing records</h3>
+For each of the record types, there are two functions to add and remove records:
+<blockquote><code>struct XXX* &nbsp; <b>gom_new_XXX</b>(const char* xref);<br>
+int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>gom_delete_XXX</b>(struct XXX* obj);</code><br>
+    </blockquote>
+
+  
+The <code><b>XXX</b></code> stands for one of the following: <code><b>family</b>, </code><code><b>individual</b>, <b>multimedia</b>, <b>note</b>, <b>repository</b>, <b>source</b>, <b>submitter</b>, <b>user_rec</b></code>.<br>
+<br>
+For submission records, the <code><b>gom_delete_submission()</b></code> has no parameters (since there can be only one such object anyway).<br>
+<br>
+When creating new records, the application is responsible for making sure
+that mandatory fields (according to the GEDCOM spec) are filled in afterwards.
+&nbsp;In a later release, there will be checks in <code>gom_write_file</code> when something is missing.<br>
+<br>
+<h3><a name="Adding_rem_and_moving_xref"></a>Adding, removing and moving cross-references<br>
+</h3>
+For struct members that are of type <code>struct xref_value</code>, the following function is available:<br>
+<blockquote><code>struct xref_value* &nbsp;<b>gom_set_xref</b>(struct xref_value** data, const char* xref);</code><br>
+    </blockquote>
+This function modifies the <code>data</code> variable to point to the given <code>xref</code>, taking care of unreferencing the old value, and referencing the new value. &nbsp;If an error occurs, <code>NULL</code> is returned (and the <code>data</code> variable is not changed). &nbsp;If xref is <code>NULL</code>, the data is set to <code>NULL</code>.<br>
+<br>
+For struct members that are of type <code>struct xref_list</code>, the following functions are available:<br>
+<blockquote><code>struct xref_list* &nbsp; <b>gom_add_xref</b>(struct xref_list** data, const char* xref);<br>
+int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>&nbsp; &nbsp; &nbsp; gom_remove_xref</b>(struct xref_list** data, const char* xref);<br>
+int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>gom_move_xref</b>(Gom_direction dir, </code><code>struct xref_list** data, const char* xref);</code><br>
+    </blockquote>
+The first function adds the given <code>xref</code> to the end of the <code>data</code> list. &nbsp;The second function removes the given <code>xref</code> from the <code>data</code> list (if present; if not present an error is generated and 1 is returned).<br>
+<br>
+The third function moves the given <code>xref </code>up or down the <code>data</code> list, depending on the <code>dir</code> parameter, which can be:<br>
+<ul>
+  <li><code>MOVE_UP</code></li>
+  <li><code>MOVE_DOWN</code></li>
+</ul>
+Again, an error is generated and 1 is returned if the given xref is not part
+of the list. &nbsp;If the xref cannot be moved up (because the first in the
+list) or down (because the last in the list), a warning is generated, but
+the function still returns success (0).<br>
+<h3><a name="Adding_removing_and_moving"></a>Adding, removing and moving substructures<br>
+</h3>
+For struct members that are just a single value, the following functions are available:<br>
+<blockquote><code>struct XXX* &nbsp; <b>gom_set_new_XXX</b>(struct XXX** data);<br>
+int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>gom_delete_XXX</b>(struct XXX** data);</code><br>
+    </blockquote>
+This is the case for <b><code>XXX</code></b> equal to <b><code>address</code></b>, <b><code>change_date</code></b> or <b><code>place</code></b>. &nbsp;The first function creates a new substructure and assigns it to <code>data</code> (<code>NULL</code> is returned if there was already a value). &nbsp;The second function deletes the value from <code>data</code>.<br>
+<br>
+Note: for <code>change_date</code> structs there is also the following short-cut function, which updates the date and time directly:<br>
+<blockquote><code>int <b>gom_update_timestamp</b> (struct change_date** obj, time_t tval);<br></code></blockquote>
+For struct members that are a list (as described <a href="#Object_lists">here</a>), the following functions are available:<br>
+<blockquote><code>struct XXX* &nbsp; <b>gom_add_new_XXX</b>(struct XXX** data);<br>
+int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>gom_remove_XXX</b>(struct XXX** data, struct XXX* obj);</code><br>
+  <code>int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>gom_move_XXX</b>(Gom_direction dir, struct XXX** data, struct XXX* obj);</code><br>
+    </blockquote>
+
+This is the case for all <code>XXX</code> structs that have a <code>next</code> and <code>previous</code> member. &nbsp;The first function creates a new substructure and adds it to the end of the <code>data</code> list. &nbsp;The second function deletes the object from the <code>data</code> list (if present; if not present, an error is generated and 1 is returned).<br>
+<br>
+The third function moves the given <code>obj</code> up or down the <code>data</code> list, depending on the <code>dir</code> parameter, similar to the xref functions above.<br>
+<br>
+
 <hr width="100%" size="2">
 <h2><a name="Writing_the_object_model_to_file"></a>Writing the object model to file<br>
 </h2>
@@ -199,6 +260,7 @@ result = gom_header_update_timestamp(time(NULL));</code><br>
 <pre>                    </pre>
                                                                         
                                                         
+<br>
 <br>
 <br>
 <br>

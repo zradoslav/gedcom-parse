@@ -163,7 +163,7 @@ out   of  the GEDCOM file. &nbsp;This section focuses on the callback mechanism 
  is called for that   tag, and when all its subordinate lines with their
 tags  have been processed,   the "end element" callback is called for the
 original  tag. &nbsp;Since GEDCOM    is hierarchical, this results in properly
-nested  calls to appropriate "start    element" and "end element" callbacks.<br>
+nested  calls to appropriate "start    element" and "end element" callbacks (note: see <a href="#Compatibility_mode">compatibility handling</a>).<br>
               <br>
         However, it would be typical for a genealogy program to support only
   a  subset  of the GEDCOM standard, certainly a program that is still under
@@ -336,7 +336,9 @@ in   the section for record callbacks above.<br>
   
 <ul>
                     <li>The <code>Gedcom_val</code> argument of the end callback
-    is currently not used. &nbsp;It is there for future enhancements.</li>
+    is used to pass 'complete' values, e.g. the full text of a note. &nbsp;See
+ the&nbsp;<a href="file:///home/verthezp/src/external/gedcom-parse/doc/interface.html#Record_identifiers">interface details</a>
+  for the exact type of this argument.</li>
                     <li>There are also two <code>Gedcom_val</code> arguments
  in the   start callback for records. &nbsp;The first one (<code>xref</code>
   ) contains the <code>xref_value</code> corresponding to the cross-reference
@@ -445,11 +447,18 @@ you can pass <code>NULL</code> if you're not interested. &nbsp;The function retu
 <br>
 <h3><a name="Controlling_some_settings"></a>Controlling some settings<br>
 </h3>
-Note that by default the file is written in ASCII encoding (and hence e.g.
-accented characters will cause a conversion failure). &nbsp;You can change
+Note that by default the file is written in the same encoding as the read file was in. &nbsp;You can change
 this by calling the following function <i>before</i> calling <code>gedcom_write_open</code>, i.e. it affects all files that are opened after it is being called:<code></code><code><br>
 </code>
-<blockquote><code>int <b>gedcom_write_set_encoding</b> (const char* charset, Encoding width, Enc_bom bom);<br></code></blockquote>
+<blockquote><code>int <b>gedcom_write_set_encoding</b> (Enc_from from, const char* charset, Encoding width, Enc_bom bom);<br></code></blockquote>The <code>from</code> parameter indicates how you want the encoding to be set:<br>
+<ul>
+  <li><b><code>ENC_FROM_FILE</code></b>: The same as the read file was in (this is the default).</li>
+  <li><b><code>ENC_FROM_SYS</code></b>: Not a valid value here, see below for <code>gedcom_write_set_terminator</code><br>
+  </li>
+  <li><b><code>ENC_MANUAL</code></b>: From the values given in the following parameters.</li>
+</ul>
+When <code>ENC_FROM_FILE</code><b> </b>is selected, the other parameters in the function are ignored (they can be passed as 0). &nbsp;When <code>ENC_MANUAL</code> is chosen, the meaning of the other parameters is as follows:<br>
+<br>
 The valid <code>charset</code> values are given in the first column in the file <code>gedcom.enc</code> in the data directory of gedcom-parse (<code>$PREFIX/share/gedcom-parse</code>).
 &nbsp;The character sets UNICODE, ASCII and ANSEL are always supported (these
 are standard for GEDCOM), as well as ANSI (not standard), but there may be
@@ -478,12 +487,16 @@ otherwise you will get a warning, and the value will be forced to the correct
 value.<br>
 <br>
 Further, it is possible to control the kind of line terminator that is used, via the following function (also to be used before <code>gedcom_write_open</code>):<br>
-<blockquote><code>int <b>gedcom_write_set_line_terminator</b> (Enc_line_end end);<br></code></blockquote>
+<blockquote><code>int <b>gedcom_write_set_line_terminator</b> (Enc_from from, Enc_line_end end);<br></code></blockquote>The values for the <code>from</code> parameter are given above. &nbsp;The value <b><code>ENC_FROM_SYS</code></b>
+is valid here, and means that the normal terminator for the current system
+is used (the second parameter of the function is then ignored). &nbsp; This
+is the default for this setting.<br>
+<br>
 The <code>end</code> parameter takes one of the following values:<br>
 <ul>
-  <li><b><code>END_CR</code></b>: only carriage return ("/r") (cf. Macintosh)</li>
-  <li><b><code>END_LF</code></b>: only line feed ("/n") (cf. Unix, Mac OS X)</li>
-  <li><b><code>END_CR_LF</code></b>: first carriage return, then line feed ("/r/n") (cf. DOS, Windows)</li>
+  <li><b><code>END_CR</code></b>: only carriage return ("/r") (system value for Macintosh)</li>
+  <li><b><code>END_LF</code></b>: only line feed ("/n") (system value for Unix, Mac OS X)</li>
+  <li><b><code>END_CR_LF</code></b>: first carriage return, then line feed ("/r/n") (system value for DOS, Windows)</li>
   <li><b><code>END_LF_CR</code></b>: first line feed, then carriage return ("/n/r")</li>
 </ul>
 By default, this is set to the appropriate line terminator on the current
@@ -496,14 +509,14 @@ file to write corresponds to a call to one of the following functions, except
 that CONT/CONC lines can be automatically taken care of. &nbsp;Note that
 the resulting GEDCOM file should conform to the GEDCOM standard. &nbsp;Several
 checks are built in already, and more will follow, to force this. &nbsp;There
-is (currently) no compatibility mode for writing GEDCOM files.<br>
+is no compatibility mode for writing GEDCOM files (and probably never will be).<br>
 <br>
 In general, each of the following functions expect their input in UTF-8 encoding (see also <a href="#Converting_character_sets">here</a>). &nbsp;If this is not the case, errors will be returned.<br>
 <br>
 Note that for examples of using these functions you can look at the sources for the Gedcom object model (e.g. the function <code>write_header</code> in <code>gom/header.c</code>).<br>
 <h4>Records</h4>
 For writing lines corresponding to records (i.e. on level 0), the following function is available:
-<blockquote><code>int <b>gedcom_write_record_str</b> (Gedcom_write_hndl hndl, Gedcom_rec rec, char* xrefstr, char* value);<br></code></blockquote>
+<blockquote><code>int <b>gedcom_write_record_str</b> (Gedcom_write_hndl hndl, Gedcom_rec rec, const char* xrefstr, const char* value);<br></code></blockquote>
 The <code>hndl</code> parameter is the write handle that was returned by <code>gedcom_write_open</code>. &nbsp;The <code>rec</code> parameter is one of the identifiers given in the first column in <a href="interface.html#Record_identifiers">this table</a> (except <code>REC_USER</code>: see below). &nbsp;The <code>xrefstr</code> and <code>val</code> parameters are respectively the cross-reference key of the record (something like '<code>@FAM01@</code>'), and the value of the record line, which should be <code>NULL</code> for some record types, according to the same table.<br>
 <h4>Elements</h4>
 For writing lines corresponding to elements (inside records, i.e. on a level
@@ -511,18 +524,18 @@ bigger than 0), the following functions are available, depending on the data
 type:
 <blockquote><code>int <b>gedcom_write_element_str</b> &nbsp;(Gedcom_write_hndl hndl, Gedcom_elt elt, int parsed_tag, <br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, char* value);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, const char* value);<br>
 i</code><code>nt <b>gedcom_write_element_xref</b> (Gedcom_write_hndl hndl, Gedcom_elt elt, int parsed_tag, <br> 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, struct xref_value*
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, const struct xref_value*
 value);</code><br>
   <code>int <b>gedcom_write_element_date</b> (Gedcom_write_hndl hndl, Gedcom_elt elt, int parsed_tag, <br> 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, struct date_value*
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, const struct date_value*
 value);</code><br>
   <code>i</code><code>nt <b>gedcom_write_element_age&nbsp;</b> (Gedcom_write_hndl hndl, Gedcom_elt elt, int parsed_tag, <br> 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, struct age_value*
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parent_rec_or_elt, const struct age_value*
 value);</code><br>
 </blockquote>
 <blockquote><code></code></blockquote>
@@ -539,11 +552,12 @@ all its struct fields filled in properly and consistent. &nbsp;This can be
 done by calling <code>gedcom_normalize_date</code> (see <a href="interface.html#date">here</a>).<br>
 <h4>User-defined tags</h4>
 For user-defined tags (tags starting with an underscore), there are separate functions, again depending on the data type:<code></code>
-<blockquote><code>int <b>gedcom_write_user_str</b> &nbsp;(Gedcom_write_hndl hndl, int level, char* tag, char* xrefstr,<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; char* value);<br>
-i</code><code>nt <b>gedcom_write_user_xref</b> (Gedcom_write_hndl hndl, </code><code>int level, char* tag, char* xrefstr,</code><br>
-  <code>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; struct xref_value* value);</code><br>
+<blockquote><code>int <b>gedcom_write_user_str</b> &nbsp;(Gedcom_write_hndl hndl, int level, const char* tag, const char* xrefstr,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const char* value);<br>
+i</code><code>nt <b>gedcom_write_user_xref</b> (Gedcom_write_hndl hndl, </code><code>int level, const char* tag, const char* xrefstr,</code><br>
+  <code> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; const struct xref_value* value);</code><br>
   <code></code></blockquote>
 In the case of user-defined tags, the level and tag string are passed verbatim
 (not controlled by the library). &nbsp;This allows to write any extra data
@@ -637,7 +651,43 @@ default)<br>
                                                                         
                                         
 </ul>
-       Currently, there is a beginning for compatibility for ftree and Lifelines (3.0.2).<br>
+       Currently, there is (some) compatibility for:<br>
+<ul>
+  <li>ftree</li>
+  <li>Lifelines (3.0.2)</li>
+  <li>Personal Ancestral File (PAF), version 2, 4 and 5</li>
+  <li>Family Origins</li>
+  <li>EasyTree</li>
+</ul>
+The following function allows to set some options for the compatibility handling:<br>
+<blockquote><code>void <b>gedcom_set_compat_options</b>      (Gedcom_compat options)</code><br>
+                           </blockquote>
+The parameter can be an OR'ed combination of the following options:<br>
+<ul>
+  <li><code>COMPAT_ALLOW_OUT_OF_CONTEXT</code></li>
+</ul>
+<blockquote>
+  <blockquote>In some compatibility cases, tags are coming out-of-order,
+i.e. their start element callback would have to come after the end element
+callback of the parent tag. &nbsp;E.g. instead of the standard GEDCOM<br>
+    <blockquote><code>1 DATE ...<br>
+2 TIME ...</code><br>
+    </blockquote>
+the genealogy program has generated something like:<br>
+    <blockquote><code>1 DATE ...<br>
+1 TIME ...</code><br>
+    </blockquote>
+This can give a problem if your end element callbacks free some resources. &nbsp;<br>
+    <br>
+If your program can handle elements out of context, you can enable this option.
+&nbsp;By default it is disabled, and so the values of these out-of-context
+tags are lost (the parser generates a warning if this is the case). &nbsp;Note:
+currently the Gedcom object model in C has this option disabled too, although
+this will change in the future.<br>
+  </blockquote>
+</blockquote>
+<br>
+
                          
 <hr width="100%" size="2">                       
 <h2><a name="Converting_character_sets"></a>Converting character sets</h2>
@@ -728,6 +778,7 @@ gedcom-config --libs gom</code><br>
 <pre>                    </pre>
                                                                         
                                                         
+<br>
 <br>
 <br>
 <br>

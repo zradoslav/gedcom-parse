@@ -1208,7 +1208,7 @@ XREF_PTR(SUBN)</code><br>
     ELT_SUB_SOUR, ELT_SUB_SOUR_TEXT<br>
           </code><br>
            </td>
-           <td valign="top"><code>NULL<BR>STRING</code><br>
+           <td valign="top"><code>NULL<br>STRING</code><br>
            </td><td valign="top"><code>NULL</code><br>
       </td>
 
@@ -2313,7 +2313,7 @@ the value    that is returned by <code>GEDCOM_STRING(val)</code> is always the s
   </table>
        <br>
 The following function creates a new <code>date_value</code> struct and initializes it properly, or copies an existing date value:
-<blockquote><code>struct date_value* <b>gedcom_new_date_value</b> (struct date_value* copy_from);<br></code></blockquote>
+<blockquote><code>struct date_value* <b>gedcom_new_date_value</b> (const struct date_value* copy_from);<br></code></blockquote>
 <code></code>If the parameter <code>copy_from</code> is <code>NULL</code>, a new value is created and given initial values. &nbsp;If it is non-<code>NULL</code>, the value is copied into a new date value.<br>
                    
   <h3><a name="date"></a>struct date<br>
@@ -2576,7 +2576,7 @@ The modifier can be one of the following:<br>
 <li><code> AGE_NO_MODIFIER</code> : no modifier</li><li><code>AGE_LESS_THAN</code><code></code>&nbsp; : the modifier '&lt;' is added</li><li><code>AGE_GREATER_THAN </code>: the modifier '&gt;' is added</li>
 </ul>
 The following function creates a new <code>age_value</code> struct and initializes it properly, or copies an existing age value:
-<blockquote><code>struct age_value* <b>gedcom_new_age_value</b> (struct age_value* copy_from);<br></code></blockquote>
+<blockquote><code>struct age_value* <b>gedcom_new_age_value</b> (const struct age_value* copy_from);<br></code></blockquote>
 
 <code></code>If the parameter <code>copy_from</code> is <code>NULL</code>, a new value is created and given initial values. &nbsp;If it is non-<code>NULL</code>, the value is copied into a new age value.<br>
 <h3><a name="xref_value"></a>struct xref_value</h3>
@@ -2685,6 +2685,7 @@ An example would thus be: "@This is an xref_val@".<br>
       <br>
                                                                         
               <br>
+<br>
 <br>
 <br>
 <br>
