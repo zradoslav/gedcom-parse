@@ -216,7 +216,7 @@ int test_date_functions()
 int test_record_add_delete_functions()
 {
   struct family* fam1;
-  struct individual* ind1;
+  struct individual *ind1, *ind2, *ind3, *ind4;
   struct multimedia* mm1;
   struct note* note1;
   struct repository* repo1;
@@ -225,6 +225,7 @@ int test_record_add_delete_functions()
   struct submission* subn1;
   struct user_rec* user1;
   struct xref_value* xr;
+  struct xref_list* xrl;
   int result;
   char* value;
   const char* new_nr_of_children = "3";
@@ -278,19 +279,40 @@ int test_record_add_delete_functions()
   user1 = gom_add_user_rec("@USER1@", "_TAG");
   if (!user1) return 216;
 
-  xr = gom_make_individual_link(ind1);
-  if (!xr) return 217;
-
-  xr = gom_set_xref_value(&(fam1->husband), xr);
+  xr = gom_set_xref(&(fam1->husband), ind1->xrefstr);
   if (!xr) return 218;
 
-  output(0, "Intermediate output:\n");
+  ind2 = gom_add_individual("@IND2@");
+  if (!ind2) return 219;
+
+  ind3 = gom_add_individual("@IND3@");
+  if (!ind3) return 220;
+
+  ind4 = gom_add_individual("@IND4@");
+  if (!ind4) return 221;
+
+  xrl = gom_add_xref(&(fam1->children), ind2->xrefstr);
+  if (!xrl) return 222;
+
+  xrl = gom_add_xref(&(fam1->children), ind3->xrefstr);
+  if (!xrl) return 223;
+
+  xrl = gom_add_xref(&(fam1->children), ind4->xrefstr);
+  if (!xrl) return 224;
+
+  result = gom_remove_xref(&(fam1->children), ind3->xrefstr);
+  if (result != 0) return 225;
+
+  result = gom_remove_xref(&(fam1->children), ind4->xrefstr);
+  if (result != 0) return 226;
+
+  output(1, "Intermediate output:\n");
   show_data();
 
   result = gom_delete_individual(ind1);
   if (result == 0) return 251;
 
-  xr = gom_set_xref_value(&(fam1->husband), NULL);
+  xr = gom_set_xref(&(fam1->husband), NULL);
   if (xr) return 252;
 
   result = gom_delete_individual(ind1);
