@@ -39,6 +39,13 @@ extern const char* curr_line_value;
 int               gedcom_date_parse();
 int               gedcom_date_lex();
 
+int get_date_token(const char* input);
+int get_year_tokens(const char* str, char** year1, char** year2);
+
+int get_day_num(const char* input);
+int get_month_num(Calendar_type cal, const char* input);
+int get_year_num(const char* input, Year_type* ytype);
+
 /* These are defined in gedcom_date.lex */
 void              init_gedcom_date_lex(const char* string);
 void              close_gedcom_date_lex();

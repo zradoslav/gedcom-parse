@@ -24,6 +24,10 @@
 %{
 #include <stdlib.h>
 #include "date.h"
+
+int _get_day_num(const char* input);
+int _get_year_num(Year_type ytype, const char* input1, const char* input2);
+  
 %}
 
 %union {
@@ -191,13 +195,10 @@ date_fren    : day month_fren year
 
 day          : NUMBER
                {
-		 if (strlen($1) <= MAX_DAY_LEN) {
+		 int d = _get_day_num($1);
+		 if (d != -1) {
 		   strcpy(date_s.day_str, $1);
-		   date_s.day = atoi($1);
-	         }
-	         else {
-		   gedcom_date_error(_("Too many characters in day '%s'"),
-				     $1); 
+		   date_s.day = d;
 		 }
 	       }
              ;
@@ -285,41 +286,115 @@ month_fren   : MON_VEND { strcpy(date_s.month_str, $1);
              ;
 
 year         : NUMBER
-                 { if (strlen($1) <= MAX_YEAR_LEN) {
+                 { int y = _get_year_num(YEAR_SINGLE, $1, NULL);
+		   if (y != -1) {
 		     strcpy(date_s.year_str, $1);
-		     date_s.year = atoi($1);
+		     date_s.year = y;
 		     date_s.year_type = YEAR_SINGLE;
-		   }
-		   else {
-		     gedcom_date_error(_("Too many characters in year '%s'"),
-				     $1); 
 		   }
 		 }
              ;
 
 year_greg    : NUMBER
-                 { if (strlen($1) <= MAX_YEAR_LEN) {
+                 { int y = _get_year_num(YEAR_SINGLE, $1, NULL);
+		   if (y != -1) {
 		     strcpy(date_s.year_str, $1);
-		     date_s.year = atoi($1);
+		     date_s.year = y;
 		     date_s.year_type = YEAR_SINGLE;
-		   }
-		   else {
-		     gedcom_date_error(_("Too many characters in year '%s'"),
-				     $1); 
 		   }
 		 }
              | NUMBER SLASH NUMBER
-                 { if (strlen($1) + strlen($3) + 1 <= MAX_YEAR_LEN) {
+                 { int y = _get_year_num(YEAR_DOUBLE, $1, $3);
+		   if (y != 1) {
 		     sprintf(date_s.year_str, "%s/%s", $1, $3);
-		     date_s.year = atoi($1) + 1;
+		     date_s.year = y;
 		     date_s.year_type = YEAR_DOUBLE;
 		   }
-		   else {
-		     gedcom_date_error(_("Too many characters in year '%s/%s'"),
-				     $1, $3); 
-		   }
-		 
 		 }
              ;
 
 %%
+
+int _get_day_num(const char* input)
+{
+  if (strlen(input) <= MAX_DAY_LEN)
+    return atoi(input);
+  else {
+    gedcom_date_error(_("Too many characters in day '%s'"), input);
+    return -1;
+  }
+}
+
+int get_day_num(const char* input)
+{
+  int token = get_date_token(input);
+  if (token == NUMBER)
+    return _get_day_num(input);
+  else {
+    gedcom_date_error(_("Not a valid day number: '%s'"), input);
+    return -1;
+  }
+}
+
+int begin_month[] =
+{ /* CAL_GREGORIAN */   MON_JAN,
+  /* CAL_JULIAN */      MON_JAN,
+  /* CAL_HEBREW */      MON_TSH,
+  /* CAL_FRENCH_REV */  MON_VEND
+};
+
+int end_month[] =
+{ /* CAL_GREGORIAN */   MON_DEC,
+  /* CAL_JULIAN */      MON_DEC,
+  /* CAL_HEBREW */      MON_ELL,
+  /* CAL_FRENCH_REV */  MON_COMP
+};
+
+int get_month_num(Calendar_type cal, const char* input)
+{
+  int token = get_date_token(input);
+  if (token >= begin_month[cal] && token <= end_month[cal])
+    return token - begin_month[cal] + 1;
+  else {
+    gedcom_date_error(_("Not a valid month for the given calendar: '%s'"),
+		      input);
+    return -1;
+  }
+}
+
+int _get_year_num(Year_type ytype, const char* input1, const char* input2)
+{
+  if (ytype == YEAR_SINGLE) {
+    if (strlen(input1) <= MAX_YEAR_LEN) {
+      return atoi(input1);
+    }
+    else {
+      gedcom_date_error(_("Too many characters in year '%s'"), input1);
+      return -1;
+    }
+  }
+  else {
+    if (strlen(input1) + strlen(input2) + 1 <= MAX_YEAR_LEN) {
+      return atoi(input1) + 1;
+    }
+    else {
+      gedcom_date_error(_("Too many characters in year '%s/%s'"),
+			input1, input2);
+      return -1;
+    }
+  }
+}
+
+int get_year_num(const char* input, Year_type* ytype)
+{
+  char *year1, *year2 = NULL;
+  int numtok = get_year_tokens(input, &year1, &year2);
+  if (numtok) {
+    *ytype = (numtok == 1 ? YEAR_SINGLE : YEAR_DOUBLE);
+    return _get_year_num (*ytype, year1, year2);
+  }
+  else {
+    gedcom_date_error(_("Not a valid year: '%s'"), input); 
+    return -1;
+  }
+}

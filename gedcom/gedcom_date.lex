@@ -133,6 +133,55 @@ COMP            SIMPLE_RETURN(MON_COMP)
 
 %%
 
+int get_date_token(const char* str)
+{
+  int token;
+  YY_BUFFER_STATE buffer;
+
+  token_nr = 0;
+  yy_delete_buffer(YY_CURRENT_BUFFER);
+  buffer = yy_scan_string(str);
+  token = yylex();
+  yy_delete_buffer(buffer);
+  return token;
+}
+
+int get_year_tokens(const char* str, char** year1, char** year2)
+{
+  int token;
+  YY_BUFFER_STATE buffer;
+
+  token_nr = 0;
+  yy_delete_buffer(YY_CURRENT_BUFFER);
+  buffer = yy_scan_string(str);
+
+  token = yylex();
+  switch (token) {
+    case NUMBER: {
+      *year1 = buf[token_nr - 1];
+      token  = yylex();
+      switch (token) {
+	case SLASH: {
+	  token = yylex();
+	  switch (token) {
+	    case NUMBER: {
+	      *year2 = buf[token_nr - 1];
+	      return 2;
+	    }
+	    default:  return 0;
+	  }
+	  break;
+	}
+	case 0:   return 1;
+	default:  return 0;
+      }
+      break;
+    }
+    case 0:   return 0;
+    default:  return 0;
+  }
+}
+
 int yywrap()
 {
   return 1;
