@@ -1,0 +1,7 @@
+
+=== Parsing file ./input/unknown.ged
+Header start
+ERROR: Error on line 3: No encoding defined for 'Unknown_CHARSET'
+
+=== Total conversion failures: 0
+Parse failed

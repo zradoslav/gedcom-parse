@@ -1,0 +1,3520 @@
+
+=== Parsing file ./input/ulhlc.ged
+Parse succeeded
+=== HEADER ===
+Source:
+  ID: REGISTERED_SOURCE_NAME
+  Name: (null)
+  Version: (null)
+  Corporation:
+    Name: (null)
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+  Data:
+    Name: (null)
+    Date: 0x<null>
+    Copyright: (null)
+Destination: (null)
+Date: 
+  type: 0
+  date1:
+    calendar type: 0
+    day: 20
+    month: JAN
+    year: 1998
+    date type: 1
+    sdn1: 2450834
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Time: (null)
+Submitter: 
+  type: 7
+  xref: @SUBMITTER@
+  object: 0x<non-null>
+Submission: 0x<null>
+File name: (null)
+Copyright: (null)
+Gedcom:
+  Version: 5.5
+  Form: Lineage-Linked
+Character set:
+  Name: UNICODE
+  Version: (null)
+Language: (null)
+Place hierarchy: (null)
+Note:
+====
+UNICODE transmission test.
+Each UNICODE character is stored in Lo-Hi order (Intel)
+The transmission does NOT start with a byte order mark (BOM)
+Each line is terminated using line feed + carriage return.
+This GEDCOM transmission contains a charcter set test. It consists
+of a single family (two parents, many children). The parents are used
+to test the cyrillic and greek letters. In both 'persons' the
+BIRT.PLAC tag contains some capital and the DEAT.PLAC tag some
+small letters of alphabet.
+The children contain some combined letters and special charcters.
+The NAME tag of each 'person' is the name of the characters tested
+within the person.
+The first children contain some special characters. Here the strings
+given in BIRT.PLAC and DEAT.PLAC are 'character name (test character), ...'
+where 'character name'is the name of the character (like 'british pound')
+and 'test character' is a single byte representing this character
+in ANSEL.
+The last children contain some combined characters. The name tag gives
+the name of the non-spacing character tested within the 'person'.
+Within the name the hex-values of the non-spacing character is given
+UNICODE. The DEAT.PLAC tag contains all latin characters which are
+combined with the non-spacing character tested here and which have
+a UNICODE code point. The BIRT.PLAC tag contain the same letters
+without the non-spacing part.
+Example: One 'person' is named 'ring above'. The BIRT.PLAC
+tag contains all latin letters which have a UNICODE code point if
+combined with a ring above. The DEAT.PLAC tag contain the same
+charcters combined with this ring.
+Note: Not all charcters can be displayed on all computers.
+This strongly depends on the installed fonts and codepages.
+This file based on the following source:
+www.unicode.org delivered the connection from the code point names
+to the actual values. Note, that much more UNICODE characters are
+possible (like the chinese alphabet).
+====
+User data:0x<null>
+=== FAMILY (@FAMILY@) ===
+Family events: 0x<null>
+Husband: 
+  type: 2
+  xref: @FATHER@
+  object: 0x<non-null>
+Wife: 
+  type: 2
+  xref: @MOTHER@
+  object: 0x<non-null>
+Children: 
+  reference: 
+    type: 2
+    xref: @CHILD0@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD1@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD2@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD3@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD4@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD5@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD6@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD7@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD8@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD9@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD10@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD11@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD12@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD13@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD14@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD15@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD16@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD17@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD18@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD19@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD20@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD21@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD22@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD23@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD24@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD25@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD26@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD27@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD28@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD29@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD30@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD31@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @CHILD32@
+    object: 0x<non-null>
+  User data:0x<null>
+Number of children: (null)
+Submitters: 0x<null>
+LDS spouse sealings: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@FATHER@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /cyrillic/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: M
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: абвгдежзийклмнопрстуфхцчшщъыьэюя
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@MOTHER@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /greek/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: F
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: αβγδεζηθικλμνξοπρςστυφχψω
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD0@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Special Characters 0/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: capital L with stroke (Ł), capital O with stroke (Ø), capital D with stroke (Đ), capital thorn (Þ)
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: capital AE (Æ), capital ligature OE (Œ), modified prime (ʹ), middle dot (·), music flat sign (♭)
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD1@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Special Characters 1/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: registered sign (®), plus-minus sign (±), capital O with horn (Ơ), capital U with horn (Ư)
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: modifier right half ring (ʾ), modifier left half ring (ʿ), small L with stroke (ł), small O with stroke (ø), small D with stroke (đ)
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD2@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Special Characters 2/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: small thorn (þ), small AE (æ), small ligature OE (œ), modified double prime (ʺ)
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: small dotless i (ı), pound sign (£), small eth (ð), small O with horn (ơ), small U with horn (ư)
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD3@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Special Characters 3/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: degree sign (°), script small L (ℓ), sound recording copyright (℗), copyright sign (©)
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: music sharp sign (♯), inverted question mark (¿), inverted exclamation mark (¡), small sharp S (ß)
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD4@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0309/HOOK ABOVE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: AEIOU,Yaeio,uy
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ẢẺỈỎỦ,Ỷảẻỉỏ,ủỷ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD5@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0300/GRAVE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: AEIOU,WYaei,ouwy
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ÀÈÌÒÙ,ẀỲàèì,òùẁỳ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD6@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0301/ACUTE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ACEGI,KLMNO,PRSUW,YZace,giklm,noprs,uwyz
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ÁĆÉǴÍ,ḰĹḾŃÓ,ṔŔŚÚẂ,ÝŹáćé,ǵíḱĺḿ,ńóṕŕś,úẃýź
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD7@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0302/CIRCUMFLEX/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ACEGH,IJOSU,WYZac,eghij,osuwy,z
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ÂĈÊĜĤ,ÎĴÔŜÛ,ŴŶẐâĉ,êĝĥîĵ,ôŝûŵŷ,ẑ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD8@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0303/TILDE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: AEINO,UVYae,inouv,y
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ÃẼĨÑÕ,ŨṼỸãẽ,ĩñõũṽ,ỹ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD9@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0304/MACRON/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: AEGIO,Uaegi,ou
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ĀĒḠĪŌ,Ūāēḡī,ōū
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD10@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0306/BREVE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: AEGIO,Uaegi,ou
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ĂĔĞĬŎ,Ŭăĕğĭ,ŏŭ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD11@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0307/DOT ABOVE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: BCDEF,GHIMN,PRSTW,XYZbc,defgh,mnprs,twxyz
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ḂĊḊĖḞ,ĠḢİṀṄ,ṖṘṠṪẆ,ẊẎŻḃċ,ḋėḟġḣ,ṁṅṗṙṡ,ṫẇẋẏż
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD12@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0308/DIAERESIS/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: AEHIO,UWXYa,ehiot,uwxy
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ÄËḦÏÖ,ÜẄẌŸä,ëḧïöẗ,üẅẍÿ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD13@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 030C/CARON/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ACDEG,IKLNO,RSTUZ,acdeg,ijkln,orstu,z
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ǍČĎĚǦ,ǏǨĽŇǑ,ŘŠŤǓŽ,ǎčďěǧ,ǐǰǩľň,ǒřšťǔ,ž
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD14@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 030A/RING ABOVE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: AUauw,y
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ÅŮåůẘ,ẙ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD15@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: FE20/LIGATURE LEFT HALF/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD16@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: FE21/LIGATURE RIGHT HALF/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD17@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0315/COMMA ABOVE RIGHT/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD18@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 030B/DOUBLE ACUTE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: OUou
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ŐŰőű
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD19@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0310/CANDRABINDU/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD20@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0327/CEDILLA/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: CDGHK,LNRST,cdghk,lnrst
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ÇḐĢḨĶ,ĻŅŖŞŢ,çḑģḩķ,ļņŗşţ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD21@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0328/OGONEK/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: AEIOU,aeiou
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ĄĘĮǪŲ,ąęįǫų
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD22@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0323/DOT BELOW/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ABDEH,IKLMN,ORSTU,VWYZa,bdehi,klmno,rstuv,wyz
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ẠḄḌẸḤ,ỊḲḶṂṆ,ỌṚṢṬỤ,ṾẈỴẒạ,ḅḍẹḥị,ḳḷṃṇọ,ṛṣṭụṿ,ẉỵẓ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD23@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0324/DIAERESIS BELOW/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: Uu
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: Ṳṳ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD24@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0325/RING BELOW/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: Aa
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: Ḁḁ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD25@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0333/DOUBLE LOW LINE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD26@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0332/LINE BELOW/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: BDKLN,RTZbd,hklnr,tz
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: ḆḎḴḺṈ,ṞṮẔḇḏ,ẖḵḻṉṟ,ṯẕ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD27@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0326/COMMA BELOW/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD28@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 031C/LEFT HALF RING BELOW/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD29@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 032E/BREVE BELOW/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: Hh
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: Ḫḫ
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD30@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: FE22/DOUBLE TILDE LEFT HALF/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD31@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: FE23/DOUBLE TILDE RIGHT HALF/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@CHILD32@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: code: 0313/COMMA ABOVE/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 0x<null>
+    Place: 
+      value: - none -
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== SUBMITTER (@SUBMITTER@) ===
+Name: /H. Eichmann/
+Address: 
+  Full label: email: h.eichmann@gmx.de
+  Line 1: (null)
+  Line 2: (null)
+  City: (null)
+  State: (null)
+  Postal: (null)
+  Country: (null)
+  User data:0x<null>
+Phone 1: (null)
+Phone 2: (null)
+Phone 3: (null)
+multimedia links: 0x<null>
+Language 1: (null)
+Language 2: (null)
+Language 3: (null)
+Record file nr: (null)
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>

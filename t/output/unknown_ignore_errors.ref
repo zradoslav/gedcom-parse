@@ -1,0 +1,2274 @@
+
+=== Parsing file ./input/unknown.ged
+Header start
+ERROR: Error on line 3: No encoding defined for 'Unknown_CHARSET'
+== 1 CHAR (292) Unknown_CHARSET (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) Version number of ASCII (whatever it means) (ctxt is 1, conversion failures: 0)
+Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
+== 2 VERS (391) Version number of source-program (ctxt is 1001, conversion failures: 0)
+== 2 NAME (342) Name of source-program (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) Corporation name (ctxt is 1001, conversion failures: 0)
+== 3 ADDR (266) Corporation address line 1 (ctxt is 1001, conversion failures: 0)
+== 4 CONT (300) Corporation address line 2 (ctxt is 1001, conversion failures: 0)
+== 4 CONT (300) Corporation address line 3 (ctxt is 1001, conversion failures: 0)
+== 4 CONT (300) Corporation address line 4 (ctxt is 1001, conversion failures: 0)
+== 4 ADR1 (267) Corporation address line 1 (ctxt is 1001, conversion failures: 0)
+== 4 ADR2 (268) Corporation address line 2 (ctxt is 1001, conversion failures: 0)
+== 4 CITY (296) Corporation address city (ctxt is 1001, conversion failures: 0)
+== 4 STAE (380) Corporation address state (ctxt is 1001, conversion failures: 0)
+== 4 POST (359) Corporation address ZIP code (ctxt is 1001, conversion failures: 0)
+== 4 CTRY (304) Corporation address country (ctxt is 1001, conversion failures: 0)
+== 3 PHON (357) Corporation phone number 1 (ctxt is 1001, conversion failures: 0)
+== 3 PHON (357) Corporation phone number 2 (ctxt is 1001, conversion failures: 0)
+== 3 PHON (357) Corporation phone number 3 (last one!) (ctxt is 1001, conversion failures: 0)
+== 2 DATA (305) Name of source data (ctxt is 1001, conversion failures: 0)
+== 3 DATE (306) 1 JAN 1998 (ctxt is 1001, conversion failures: 0)
+== 3 COPR (301) Copyright of source data (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 DEST (310) Destination of transmission (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 1 JAN 1998 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 13:57:24.80 (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
+== 1 SUBN (383) @SUBMISSION@ (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) ALLGED.GED (ctxt is 1, conversion failures: 0)
+== 1 COPR (301) (C) 1997-2000 by H. Eichmann. You can use and distribute this file freely as long as you do not charge for it (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) language (ctxt is 1, conversion failures: 0)
+== 1 NOTE (348) A general note about this file: (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) It demonstrates most of the data which can be submitted using GEDCOM5.5. It shows the relatives of PERSON1: (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) His 2 wifes (PERSON2, PERSON8), his parents (father: PERSON5, mother not given), (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) adoptive parents (mother: PERSON6, father not given) and his 3 children (PERSON3, PERSON4 and PERSON7). (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) In PERSON1, FAMILY1, SUBMITTER, SUBMISSION and SOURCE1 as many datafields as possible are used. (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) All other individuals/families contain no data. Note, that many data tags can appear more than once (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) (in this transmission this is demonstrated with tags: NAME, OCCU, PLACE and NOTE. Seek the word 'another'. (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) The data transmitted here do not make sence. Just the HEAD.DATE tag contains the date of the creation (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) of this file and will change in future Versions! (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) This file is created by H. Eichmann: h.eichmann@gmx.de. Feel free to copy and use it for any (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) non-commercial purpose. For the creation the GEDCOM standard Release 5.5 (2 JAN 1996) has been used. (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) Copyright: The church of Jesus Christ of latter-day saints, gedcom@gedcom.org (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) Download it (the GEDCOM 5.5 specs) from: ftp.gedcom.com/pub/genealogy/gedcom. (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) Some Specials: This line is very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long but not too long (255 caharcters is the limit). (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) This @ (commercial at) character may only appear ONCE! (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 2 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 1 _MYOWNTAG (264) This is a non-standard tag. Not recommended but allowed (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @SUBMITTER@
+== 1 NAME (342) /Submitter-Name/ (ctxt is 10000, conversion failures: 0)
+== 1 ADDR (266) Submitter address line 1 (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) Submitter address line 2 (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) Submitter address line 3 (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) Submitter address line 4 (ctxt is 10000, conversion failures: 0)
+== 2 ADR1 (267) Submitter address line 1 (ctxt is 10000, conversion failures: 0)
+== 2 ADR2 (268) Submitter address line 2 (ctxt is 10000, conversion failures: 0)
+== 2 CITY (296) Submitter address city (ctxt is 10000, conversion failures: 0)
+== 2 STAE (380) Submitter address state (ctxt is 10000, conversion failures: 0)
+== 2 POST (359) Submitter address ZIP code (ctxt is 10000, conversion failures: 0)
+== 2 CTRY (304) Submitter address country (ctxt is 10000, conversion failures: 0)
+== 1 PHON (357) Submitter phone number 1 (ctxt is 10000, conversion failures: 0)
+== 1 PHON (357) Submitter phone number 2 (ctxt is 10000, conversion failures: 0)
+== 1 PHON (357) Submitter phone number 3 (last one!) (ctxt is 10000, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 10000, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 10000, conversion failures: 0)
+== 2 DATE (306) 19 JUN 2000 (ctxt is 10000, conversion failures: 0)
+== 3 TIME (387) 12:34:56.789 (ctxt is 10000, conversion failures: 0)
+== 2 NOTE (348) A note (ctxt is 10000, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 10000, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 10000, conversion failures: 0)
+== 1 _MYOWNTAG (264) This is a non-standard tag. Not recommended but allowed (ctxt is 10000, conversion failures: 0)
+Rec SUBN start, xref is @SUBMISSION@
+== 1 _MYOWNTAG (264) SUBN does not allow NOTE tags :-(( so, here is my not: SUBN seems to be LDS internal data. The sample data I put in here are probably nonsence. (ctxt is 383, conversion failures: 0)
+== 1 SUBM (382) @SUBMITTER@ (ctxt is 383, conversion failures: 0)
+== 1 FAMF (321) NameOfFamilyFile (ctxt is 383, conversion failures: 0)
+== 1 TEMP (385) Abreviated temple code (ctxt is 383, conversion failures: 0)
+== 1 ANCE (274) 1 (ctxt is 383, conversion failures: 0)
+== 1 DESC (308) 1 (ctxt is 383, conversion failures: 0)
+== 1 ORDI (353) yes (ctxt is 383, conversion failures: 0)
+Rec INDI start, xref is @PERSON1@
+== 1 NAME (342) given name /surname/jr. (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) BEF 1 JAN 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 0 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Personal Name note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 NAME (342) another name /surname/ (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) AFT 1 JAN 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 1 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Personal Name note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 2 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) BIRTH event note (the event of entering into life) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 FAMC (320) @PARENTS@ (ctxt is 333, conversion failures: 0)
+== 1 CHR (294) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: BEF 31 DEC 1997
+  type: 1
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) CHRISTENING event note (the religious event (not LDS) of baptizing and/or naming a child) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 CHR (294) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: AFT 30 DEC 1997
+  type: 2
+  date1:
+    calendar type: 0
+    day: 30
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450813
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Alternative CHRISTENING event note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: BET 31 DEC 1997 AND 1 JAN 1998
+  type: 3
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 0
+    day: 1
+    month: JAN
+    year: 1998
+    date type: 1
+    sdn1: 2450815
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) DEATH event note (the event when mortal life terminates) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 BURI (286) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: ABT 31 DEC 1997
+  type: 7
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) BURIAL event note (the event of the proper disposing of the mortal remains of a deceased person) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 CREM (303) Y (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Cremation event note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 ADOP (269) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: CAL 31 DEC 1997
+  type: 8
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) ADOPTION event note (pertaining to creation of a child-parent relationship that does not exist biologically) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 FAMC (320) @ADOPTIVE_PARENTS@ (ctxt is 333, conversion failures: 0)
+== 3 ADOP (269) BOTH (ctxt is 333, conversion failures: 0)
+== 1 BAPM (280) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: EST 31 DEC 1997
+  type: 9
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) BAPTISM event note (the event of baptism (not LDS), performed in infancy or later. See also BAPL, above, and CHR) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 BARM (281) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: INT 31 DEC 1997 (12/31/97)
+  type: 10
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 12/31/97
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) BAR_MITZVAH event note (the ceremonial event held when a Jewish boy reaches age 13) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 BASM (282) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: FROM 31 DEC 1997
+  type: 4
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) BAS_MITZVAH event note (the ceremonial event held when a Jewish girl reaches age 13, also known as "Bat Mitzvah.") (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 BLES (284) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: TO 31 DEC 1997
+  type: 5
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) BLESSING event note (a religious event of bestowing divine care or intercession. Sometimes given in connection with a naming ceremony) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 CHRA (295) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: FROM 31 DEC 1997 TO 1 FEB 1998
+  type: 6
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 0
+    day: 1
+    month: FEB
+    year: 1998
+    date type: 1
+    sdn1: 2450846
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) ADULT_CHRISTENING event note (the religious event (not LDS) of baptizing and/or naming an adult person) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 CONF (298) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: @#DGREGORIAN@ 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) CONFIRMATION event note (the religious event (not LDS) of conferring the gift of the Holy Ghost and, among protestants, full church membership) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 FCOM (323) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) FIRST_COMMUNION event note (a religious rite, the first act of sharing in the Lord's supper as part of church worship) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 ORDN (354) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) ORDINATION event note (a religious event of receiving authority to act in religious matters) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 NATU (344) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) NATURALIZATION event note (the event of obtaining citizenship) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 EMIG (315) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) EMIGRATION event note (an event of leaving one's homeland with the intent of residing elsewhere) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 IMMI (332) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) IMMIGRATION event note (an event of entering into a new locality with the intent of residing there) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 CENS (290) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) CENSUS event note (the event of the periodic count of the population for a designated locality, such as a national or state Census) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 PROB (360) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) PROBATE event note (an event of judicial determination of the validity of a will. May indicate several related court activities over several dates) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 WILL (393) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) WILL event note (a legal document treated as an event, by which a person disposes of his or her estate, to take effect after death. The event date is the date the will was signed while the person was alive. See also PROBate) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 GRAD (328) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) GRADUATION event note (an event of awarding educational diplomas or degrees to individuals) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 RETI (370) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) RETIREMENT event note (an event of exiting an occupational relationship with an employer after a qualifying time period) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 EVEN (318) (null) (ctxt is 333, conversion failures: 0)
+== 2 TYPE (390) Event type (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) EVENT note (a noteworthy happening related to an individual, a group, or an organization) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 CAST (288) Cast name (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) CASTE event note (the name of an individual's rank or status in society, based   on racial or religious differences, or differences in wealth, inherited   rank, profession, occupation, etc) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 DSCR (313) Physical description (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) PHY_DESCRIPTION event note (the physical characteristics of a person, place, or thing) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 EDUC (314) Education (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) EDUCATION event note (Indicator of a level of education attained) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 IDNO (331) 6942 (ctxt is 333, conversion failures: 0)
+== 2 TYPE (390) type of ID number (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) IDENT_NUMBER event note (A number assigned to identify a person within some significant external system) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 NATI (343) National or tribe origin (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) NATIONALITY event note (the national heritage of an individual) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 NCHI (345) 42 (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Children number event note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 NMR (347) 42 (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Marriages number event note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 OCCU (352) Occupation (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) OCCUPATION event note (The type of work or profession of an individual) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 OCCU (352) Another occupation (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1998
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1998
+    date type: 1
+    sdn1: 2451179
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Occupation event note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 PROP (361) Possessions (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) PROPERTY event note (pertaining to possessions such as real estate or other property of interest) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 RELI (366) Religion (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) RELIGION event note (a religious denomination to which a person is affiliated or for which a record applies) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 RESI (368) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) RESIDENCE event note (The act of dwelling at an address for a period of time) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 SSN (379) 6942 (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) SOC_SEC_NUMBER event note (a number assigned by the United States Social Security Administration. Used for tax identification purposes) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 TITL (388) Nobility title (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 333, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) TITLE event note (a description of a specific writing or other work, such as the title of a book when used in a source context, or a formal designation used by an individual in connection with positions of royalty or other social status, (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) such as Grand Duke) (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @PARENTS@ (ctxt is 333, conversion failures: 0)
+== 2 PEDI (356) birth (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Note about the link to parents (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Another note about the link to parents (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @ADOPTIVE_PARENTS@ (ctxt is 333, conversion failures: 0)
+== 2 PEDI (356) adopted (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Note about the link to adoptive parents (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @FAMILY1@ (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Note about the link to spouse (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) Another note about the link to spouse (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @FAMILY2@ (ctxt is 333, conversion failures: 0)
+== 1 SOUR (377) @SOURCE1@ (ctxt is 333, conversion failures: 0)
+== 2 PAGE (355) 42 (ctxt is 333, conversion failures: 0)
+== 2 DATA (305) (null) (ctxt is 333, conversion failures: 0)
+== 3 DATE (306) 31 DEC 1900 (ctxt is 333, conversion failures: 0)
+== 3 TEXT (386) a sample text (ctxt is 333, conversion failures: 0)
+== 4 CONT (300) Sample text continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 2 QUAY (363) 0 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 333, conversion failures: 0)
+== 2 FORM (325) gif (ctxt is 333, conversion failures: 0)
+== 2 TITL (388) A gif picture (ctxt is 333, conversion failures: 0)
+== 2 FILE (324) \\network\drive\path\file name.gif (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) A note about the inidvidual (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306) 1 APR 1998 (ctxt is 333, conversion failures: 0)
+== 3 TIME (387) 12:34:56.789 (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) A note (ctxt is 333, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 333, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 333, conversion failures: 0)
+== 1 _MYOWNTAG (264) This is a non-standard tag. Not recommended but allowed (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @PERSON2@
+== 1 NAME (342) /Wife/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @FAMILY1@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @PERSON3@
+== 1 NAME (342) /Child 1/ (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @FAMILY1@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @PERSON4@
+== 1 NAME (342) /Child 2/ (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @FAMILY1@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @PERSON5@
+== 1 NAME (342) /Father/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @PARENTS@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @PERSON6@
+== 1 NAME (342) /Adoptive mother/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @ADOPTIVE_PARENTS@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @PERSON7@
+== 1 NAME (342) /Child 3/ (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @FAMILY2@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @PERSON8@
+== 1 NAME (342) /2nd Wife/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @FAMILY2@ (ctxt is 333, conversion failures: 0)
+Family start, xref is @FAMILY1@
+== 1 ANUL (276) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) ANNULMENT event note (declaring a marriage void from the beginning (never existed)) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y
+  type: 4
+  modifier: 0
+  years: 42
+  months: -1
+  days: -1
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y 6m
+  type: 4
+  modifier: 0
+  years: 42
+  months: 6
+  days: -1
+  phrase: 
+== 1 CENS (290) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) CENSUS event note (the event of the periodic count of the population for a designated locality, such as a national or state Census) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y 6m 9d
+  type: 4
+  modifier: 0
+  years: 42
+  months: 6
+  days: 9
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 6m 9d
+  type: 4
+  modifier: 0
+  years: -1
+  months: 6
+  days: 9
+  phrase: 
+== 1 DIV (311) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) DIVORCE event note (an event of dissolving a marriage through civil action) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y 3d
+  type: 4
+  modifier: 0
+  years: 42
+  months: -1
+  days: 3
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42m
+  type: 4
+  modifier: 0
+  years: -1
+  months: 42
+  days: -1
+  phrase: 
+== 1 DIVF (312) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) DIVORCE_FILED event note (an event of filing for a divorce by a spouse) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42d
+  type: 4
+  modifier: 0
+  years: -1
+  months: -1
+  days: 42
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: CHILD
+  type: 1
+  modifier: 0
+  years: -1
+  months: -1
+  days: -1
+  phrase: 
+== 1 ENGA (317) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) ENGAGEMENT event note (an event of recording or announcing an agreement between two people to become married) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y
+  type: 4
+  modifier: 0
+  years: 42
+  months: -1
+  days: -1
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: STILLBORN
+  type: 3
+  modifier: 0
+  years: -1
+  months: -1
+  days: -1
+  phrase: 
+== 1 MARR (339) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) MARRIAGE event note (a legal, common-law, or customary event of creating a family unit of a man and a woman as husband and wife) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y
+  type: 4
+  modifier: 0
+  years: 42
+  months: -1
+  days: -1
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y 6m
+  type: 4
+  modifier: 0
+  years: 42
+  months: 6
+  days: -1
+  phrase: 
+== 1 MARB (336) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) MARRIAGE_BANN event note (an event of an official public notice given that two people intend to marry) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y
+  type: 4
+  modifier: 0
+  years: 42
+  months: -1
+  days: -1
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y 6m
+  type: 4
+  modifier: 0
+  years: 42
+  months: 6
+  days: -1
+  phrase: 
+== 1 MARC (337) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) MARR_CONTRACT event note (an event of recording a formal agreement of marriage, including the prenuptial agreement in which marriage partners reach agreement about the property rights of one or both, securing property to their children) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y
+  type: 4
+  modifier: 0
+  years: 42
+  months: -1
+  days: -1
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: >42y 6m
+  type: 4
+  modifier: 2
+  years: 42
+  months: 6
+  days: -1
+  phrase: 
+== 1 MARL (338) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) MARR_LICENSE event note (an event of obtaining a legal license to marry) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y
+  type: 4
+  modifier: 0
+  years: 42
+  months: -1
+  days: -1
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: <42y 6m
+  type: 4
+  modifier: 1
+  years: 42
+  months: 6
+  days: -1
+  phrase: 
+== 1 MARS (340) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) MARR_SETTLEMENT event note (an event of creating an agreement between two people contemplating marriage, at which time they agree to release or modify property rights that would otherwise arise from the marriage) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y
+  type: 4
+  modifier: 0
+  years: 42
+  months: -1
+  days: -1
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: INFANT
+  type: 2
+  modifier: 0
+  years: -1
+  months: -1
+  days: -1
+  phrase: 
+== 1 EVEN (318) (null) (ctxt is 1, conversion failures: 0)
+== 2 TYPE (390) Other event type (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 DEC 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: DEC
+    year: 1997
+    date type: 1
+    sdn1: 2450814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) The place (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 3 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 3 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 4 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 4 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 5 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 5 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 3 QUAY (363) 3 (ctxt is 1, conversion failures: 0)
+== 3 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) EVENT note (a noteworthy happening related to an individual, a group, or an organization) (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 HUSB (330) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y
+  type: 4
+  modifier: 0
+  years: 42
+  months: -1
+  days: -1
+  phrase: 
+== 2 WIFE (392) (null) (ctxt is 1, conversion failures: 0)
+Contents of the age_value:
+  raw value: 42y 6m
+  type: 4
+  modifier: 0
+  years: 42
+  months: 6
+  days: -1
+  phrase: 
+== 1 HUSB (330) @PERSON1@ (ctxt is 1, conversion failures: 0)
+== 1 WIFE (392) @PERSON2@ (ctxt is 1, conversion failures: 0)
+== 1 CHIL (293) @PERSON3@ (ctxt is 1, conversion failures: 0)
+== 1 CHIL (293) @PERSON4@ (ctxt is 1, conversion failures: 0)
+== 1 NCHI (345) 42 (ctxt is 1, conversion failures: 0)
+== 1 SOUR (377) @SOURCE1@ (ctxt is 1, conversion failures: 0)
+== 2 PAGE (355) 42 (ctxt is 1, conversion failures: 0)
+== 2 DATA (305) (null) (ctxt is 1, conversion failures: 0)
+== 3 DATE (306) 31 DEC 1900 (ctxt is 1, conversion failures: 0)
+== 3 TEXT (386) a sample text (ctxt is 1, conversion failures: 0)
+== 4 CONT (300) Sample text continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 4 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 2 QUAY (363) 0 (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) bmp (ctxt is 1, conversion failures: 0)
+== 2 TITL (388) A bmp picture (ctxt is 1, conversion failures: 0)
+== 2 FILE (324) \\network\drive\path\file name.bmp (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 1 NOTE (348) A note about the family (ctxt is 1, conversion failures: 0)
+== 2 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 2 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 1, conversion failures: 0)
+== 2 DATE (306) 1 APR 1998 (ctxt is 1, conversion failures: 0)
+== 3 TIME (387) 12:34:56.789 (ctxt is 1, conversion failures: 0)
+== 2 NOTE (348) A note (ctxt is 1, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+== 1 _MYOWNTAG (264) This is a non-standard tag. Not recommended but allowed (ctxt is 1, conversion failures: 0)
+Family end, xref is @FAMILY1@
+Family start, xref is @PARENTS@
+== 1 HUSB (330) @PERSON5@ (ctxt is 2, conversion failures: 0)
+== 1 CHIL (293) @PERSON1@ (ctxt is 2, conversion failures: 0)
+Family end, xref is @PARENTS@
+Family start, xref is @ADOPTIVE_PARENTS@
+== 1 WIFE (392) @PERSON6@ (ctxt is 3, conversion failures: 0)
+== 1 CHIL (293) @PERSON1@ (ctxt is 3, conversion failures: 0)
+Family end, xref is @ADOPTIVE_PARENTS@
+Family start, xref is @FAMILY2@
+== 1 HUSB (330) @PERSON1@ (ctxt is 4, conversion failures: 0)
+== 1 WIFE (392) @PERSON8@ (ctxt is 4, conversion failures: 0)
+== 1 CHIL (293) @PERSON7@ (ctxt is 4, conversion failures: 0)
+Family end, xref is @FAMILY2@
+Rec SOUR start, xref is @SOURCE1@
+== 1 DATA (305) (null) (ctxt is 377, conversion failures: 0)
+== 2 EVEN (318) BIRT, CHR (ctxt is 377, conversion failures: 0)
+Contents of the date_value:
+  raw value: FROM 1 JAN 1980 TO 1 FEB 1982
+  type: 6
+  date1:
+    calendar type: 0
+    day: 1
+    month: JAN
+    year: 1980
+    date type: 1
+    sdn1: 2444240
+    sdn2: -1
+  date2:
+    calendar type: 0
+    day: 1
+    month: FEB
+    year: 1982
+    date type: 1
+    sdn1: 2445002
+    sdn2: -1
+  phrase: 
+== 3 PLAC (358) Place (ctxt is 377, conversion failures: 0)
+== 2 EVEN (318) DEAT (ctxt is 377, conversion failures: 0)
+Contents of the date_value:
+  raw value: FROM 1 JAN 1980 TO 1 FEB 1982
+  type: 6
+  date1:
+    calendar type: 0
+    day: 1
+    month: JAN
+    year: 1980
+    date type: 1
+    sdn1: 2444240
+    sdn2: -1
+  date2:
+    calendar type: 0
+    day: 1
+    month: FEB
+    year: 1982
+    date type: 1
+    sdn1: 2445002
+    sdn2: -1
+  phrase: 
+== 3 PLAC (358) Another place (ctxt is 377, conversion failures: 0)
+== 2 AGNC (272) Resposible agency (ctxt is 377, conversion failures: 0)
+== 2 NOTE (348) A note about whatever (ctxt is 377, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 377, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 377, conversion failures: 0)
+== 1 AUTH (278) Author of source (ctxt is 377, conversion failures: 0)
+== 2 CONT (300) Author continued here. The word TE (ctxt is 377, conversion failures: 0)
+== 2 CONC (297) ST should not be broken! (ctxt is 377, conversion failures: 0)
+== 1 TITL (388) Title of source (ctxt is 377, conversion failures: 0)
+== 2 CONT (300) Title continued here. The word TE (ctxt is 377, conversion failures: 0)
+== 2 CONC (297) ST should not be broken! (ctxt is 377, conversion failures: 0)
+== 1 ABBR (265) Short title (ctxt is 377, conversion failures: 0)
+== 1 PUBL (362) Source publication facts (ctxt is 377, conversion failures: 0)
+== 2 CONT (300) Publication facts continued here. The word TE (ctxt is 377, conversion failures: 0)
+== 2 CONC (297) ST should not be broken! (ctxt is 377, conversion failures: 0)
+== 1 TEXT (386) Citation from source (ctxt is 377, conversion failures: 0)
+== 2 CONT (300) Citation continued here. The word TE (ctxt is 377, conversion failures: 0)
+== 2 CONC (297) ST should not be broken! (ctxt is 377, conversion failures: 0)
+== 1 OBJE (351) (null) (ctxt is 377, conversion failures: 0)
+== 2 FORM (325) bmp (ctxt is 377, conversion failures: 0)
+== 2 TITL (388) A bmp picture (ctxt is 377, conversion failures: 0)
+== 2 FILE (324) \\network\drive\path\file name.bmp (ctxt is 377, conversion failures: 0)
+== 2 NOTE (348) A note (ctxt is 377, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 377, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 377, conversion failures: 0)
+== 1 NOTE (348) A note about the family (ctxt is 377, conversion failures: 0)
+== 2 CONT (300) Note continued here. The word TE (ctxt is 377, conversion failures: 0)
+== 2 CONC (297) ST should not be broken! (ctxt is 377, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 377, conversion failures: 0)
+== 2 DATE (306) 1 APR 1998 (ctxt is 377, conversion failures: 0)
+== 3 TIME (387) 12:34:56.789 (ctxt is 377, conversion failures: 0)
+== 2 NOTE (348) A note (ctxt is 377, conversion failures: 0)
+== 3 CONT (300) Note continued here. The word TE (ctxt is 377, conversion failures: 0)
+== 3 CONC (297) ST should not be broken! (ctxt is 377, conversion failures: 0)
+== 1 _MYOWNTAG (264) This is a non-standard tag. Not recommended but allowed (ctxt is 377, conversion failures: 0)
+Rec _MYOWNTAG start, xref is (null)
+
+=== Total conversion failures: 0
+Parse succeeded

@@ -1,0 +1,105 @@
+
+=== Parsing file ./input/encoding_error.ged
+Header start
+== 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
+Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+== 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @SUBMITTER@
+== 1 NAME (342) Peter /Verthez/ (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @PERS00@
+ERROR: Error on line 11: Invalid character for encoding: 'é' (0xffffffe9)
+ERROR: Error on line 11: parse error
+== 1 NAME (342) /Normal date; test character:  should be ok when -fn/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 23 JUL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 23
+    month: JUL
+    year: 1992
+    date type: 1
+    sdn1: 2448827
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS01@
+ERROR: Error on line 15: Invalid character for encoding: 'é' (0xffffffe9)
+ERROR: Error on line 15: parse error
+ERROR: Error on line 16: parse error
+ERROR: Error on line 17: parse error
+== 1 DATE (342) /No day number/JUL 1992 (ctxt is 333, conversion failures: 0)
+ERROR: Error on line 18: parse error
+Family start, xref is @F01@
+== 1 HUSB (330) @PERS01@ (ctxt is 1, conversion failures: 0)
+Family end, xref is @F01@
+WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used
+WARNING: Warning: Cross-reference @F01@ defined on line 18 is never used
+
+=== Total conversion failures: 0
+
+=== Parsing file ./input/encoding_error.ged
+Header start
+== 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
+Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+== 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @SUBMITTER@
+== 1 NAME (342) Peter /Verthez/ (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @PERS00@
+ERROR: Error on line 11: Invalid character for encoding: 'é' (0xffffffe9)
+ERROR: Error on line 11: parse error
+== 1 NAME (342) /Normal date; test character:  should be ok when -fn/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 23 JUL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 23
+    month: JUL
+    year: 1992
+    date type: 1
+    sdn1: 2448827
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS01@
+ERROR: Error on line 15: Invalid character for encoding: 'é' (0xffffffe9)
+ERROR: Error on line 15: parse error
+ERROR: Error on line 16: parse error
+ERROR: Error on line 17: parse error
+== 1 DATE (342) /No day number/JUL 1992 (ctxt is 333, conversion failures: 0)
+ERROR: Error on line 18: parse error
+Family start, xref is @F01@
+== 1 HUSB (330) @PERS01@ (ctxt is 2, conversion failures: 0)
+Family end, xref is @F01@
+WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used
+WARNING: Warning: Cross-reference @F01@ defined on line 18 is never used
+
+=== Total conversion failures: 0
+Parse succeeded

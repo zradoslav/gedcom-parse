@@ -1,0 +1,787 @@
+
+=== Parsing file ./input/dates.ged
+Error on line 38: Unknown calendar type
+Error on line 38: parse error
+Warning: Cross-reference @PERS07@ defined on line 38 is never used
+Warning: Cross-reference @PERS02@ defined on line 18 is never used
+Warning: Cross-reference @PERS00@ defined on line 10 is never used
+Warning: Cross-reference @PERS01@ defined on line 14 is never used
+Warning: Cross-reference @PERS04@ defined on line 26 is never used
+Warning: Cross-reference @PERS09@ defined on line 46 is never used
+Warning: Cross-reference @PERS08@ defined on line 42 is never used
+Warning: Cross-reference @PERS06@ defined on line 34 is never used
+Warning: Cross-reference @PERS05@ defined on line 30 is never used
+Warning: Cross-reference @PERS03@ defined on line 22 is never used
+Parse succeeded
+=== HEADER ===
+Source:
+  ID: APPROVED_SOURCE_NAME
+  Name: (null)
+  Version: (null)
+  Corporation:
+    Name: (null)
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+  Data:
+    Name: (null)
+    Date: 0x<null>
+    Copyright: (null)
+Destination: (null)
+Date: 0x<null>
+Time: (null)
+Submitter: 
+  type: 7
+  xref: @SUBMITTER@
+  object: 0x<non-null>
+Submission: 0x<null>
+File name: (null)
+Copyright: (null)
+Gedcom:
+  Version: 5.5
+  Form: LINEAGE-LINKED
+Character set:
+  Name: ASCII
+  Version: (null)
+Language: (null)
+Place hierarchy: (null)
+Note:
+====
+(null)
+====
+User data:0x<null>
+=== INDIVIDUAL (@PERS00@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Normal date/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 23
+        month: JUL
+        year: 1992
+        date type: 1
+        sdn1: 2448827
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERS01@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /No day number/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 
+        month: JUL
+        year: 1992
+        date type: 2
+        sdn1: 2448805
+        sdn2: 2448835
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERS02@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Only year/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 
+        month: 
+        year: 1992
+        date type: 2
+        sdn1: 2448623
+        sdn2: 2448988
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERS03@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Mixed case/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 23
+        month: Jul
+        year: 1992
+        date type: 1
+        sdn1: 2448827
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERS04@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Strange case/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 23
+        month: JuL
+        year: 1992
+        date type: 1
+        sdn1: 2448827
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERS05@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Zero prefix/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 04
+        month: JUL
+        year: 1992
+        date type: 1
+        sdn1: 2448808
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERS06@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Unexpected calendar type/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 11
+      date1:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: @#DFRENCH@ 03 BRUM 4
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERS07@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /French revolution/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 3
+        day: 03
+        month: BRUM
+        year: 4
+        date type: 1
+        sdn1: 2376968
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERS08@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Hebrew calendar/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 2
+        day: 1
+        month: SHV
+        year: 4
+        date type: 1
+        sdn1: 349209
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERS09@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Julian calendar/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 1
+        day: 12
+        month: APR
+        year: 1302
+        date type: 1
+        sdn1: 2196715
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== SUBMITTER (@SUBMITTER@) ===
+Name: Peter /Verthez/
+Address: 0x<null>
+Phone 1: (null)
+Phone 2: (null)
+Phone 3: (null)
+multimedia links: 0x<null>
+Language 1: (null)
+Language 2: (null)
+Language 3: (null)
+Record file nr: (null)
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>

@@ -1,0 +1,515 @@
+
+=== Parsing file ./input/dates.ged
+Header start
+== 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
+Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+== 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @SUBMITTER@
+== 1 NAME (342) Peter /Verthez/ (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @PERS00@
+== 1 NAME (342) /Normal date/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 23 JUL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 23
+    month: JUL
+    year: 1992
+    date type: 1
+    sdn1: 2448827
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS01@
+== 1 NAME (342) /No day number/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: JUL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: JUL
+    year: 1992
+    date type: 2
+    sdn1: 2448805
+    sdn2: 2448835
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS02@
+== 1 NAME (342) /Only year/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1992
+    date type: 2
+    sdn1: 2448623
+    sdn2: 2448988
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS03@
+== 1 NAME (342) /Mixed case/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 23 Jul 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 23
+    month: Jul
+    year: 1992
+    date type: 1
+    sdn1: 2448827
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS04@
+== 1 NAME (342) /Strange case/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 23 JuL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 23
+    month: JuL
+    year: 1992
+    date type: 1
+    sdn1: 2448827
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS05@
+== 1 NAME (342) /Zero prefix/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 04 JUL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 04
+    month: JUL
+    year: 1992
+    date type: 1
+    sdn1: 2448808
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS06@
+== 1 NAME (342) /Unexpected calendar type/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+ERROR: Error on line 38: Unknown calendar type
+ERROR: Error on line 38: parse error
+Contents of the date_value:
+  raw value: @#DFRENCH@ 03 BRUM 4
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: @#DFRENCH@ 03 BRUM 4
+Rec INDI start, xref is @PERS07@
+== 1 NAME (342) /French revolution/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: @#DFRENCH R@ 03 BRUM 4
+  type: 0
+  date1:
+    calendar type: 3
+    day: 03
+    month: BRUM
+    year: 4
+    date type: 1
+    sdn1: 2376968
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS08@
+== 1 NAME (342) /Hebrew calendar/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: @#DHEBREW@ 1 SHV 4
+  type: 0
+  date1:
+    calendar type: 2
+    day: 1
+    month: SHV
+    year: 4
+    date type: 1
+    sdn1: 349209
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS09@
+== 1 NAME (342) /Julian calendar/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: @#DJULIAN@ 12 APR 1302
+  type: 0
+  date1:
+    calendar type: 1
+    day: 12
+    month: APR
+    year: 1302
+    date type: 1
+    sdn1: 2196715
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+WARNING: Warning: Cross-reference @PERS07@ defined on line 38 is never used
+WARNING: Warning: Cross-reference @PERS02@ defined on line 18 is never used
+WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used
+WARNING: Warning: Cross-reference @PERS01@ defined on line 14 is never used
+WARNING: Warning: Cross-reference @PERS04@ defined on line 26 is never used
+WARNING: Warning: Cross-reference @PERS09@ defined on line 46 is never used
+WARNING: Warning: Cross-reference @PERS08@ defined on line 42 is never used
+WARNING: Warning: Cross-reference @PERS06@ defined on line 34 is never used
+WARNING: Warning: Cross-reference @PERS05@ defined on line 30 is never used
+WARNING: Warning: Cross-reference @PERS03@ defined on line 22 is never used
+
+=== Total conversion failures: 0
+
+=== Parsing file ./input/dates.ged
+Header start
+== 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
+Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+== 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @SUBMITTER@
+== 1 NAME (342) Peter /Verthez/ (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @PERS00@
+== 1 NAME (342) /Normal date/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 23 JUL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 23
+    month: JUL
+    year: 1992
+    date type: 1
+    sdn1: 2448827
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS01@
+== 1 NAME (342) /No day number/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: JUL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: JUL
+    year: 1992
+    date type: 2
+    sdn1: 2448805
+    sdn2: 2448835
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS02@
+== 1 NAME (342) /Only year/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1992
+    date type: 2
+    sdn1: 2448623
+    sdn2: 2448988
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS03@
+== 1 NAME (342) /Mixed case/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 23 Jul 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 23
+    month: Jul
+    year: 1992
+    date type: 1
+    sdn1: 2448827
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS04@
+== 1 NAME (342) /Strange case/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 23 JuL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 23
+    month: JuL
+    year: 1992
+    date type: 1
+    sdn1: 2448827
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS05@
+== 1 NAME (342) /Zero prefix/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 04 JUL 1992
+  type: 0
+  date1:
+    calendar type: 0
+    day: 04
+    month: JUL
+    year: 1992
+    date type: 1
+    sdn1: 2448808
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS06@
+== 1 NAME (342) /Unexpected calendar type/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+ERROR: Error on line 38: Unknown calendar type
+ERROR: Error on line 38: parse error
+Contents of the date_value:
+  raw value: @#DFRENCH@ 03 BRUM 4
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: @#DFRENCH@ 03 BRUM 4
+Rec INDI start, xref is @PERS07@
+== 1 NAME (342) /French revolution/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: @#DFRENCH R@ 03 BRUM 4
+  type: 0
+  date1:
+    calendar type: 3
+    day: 03
+    month: BRUM
+    year: 4
+    date type: 1
+    sdn1: 2376968
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS08@
+== 1 NAME (342) /Hebrew calendar/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: @#DHEBREW@ 1 SHV 4
+  type: 0
+  date1:
+    calendar type: 2
+    day: 1
+    month: SHV
+    year: 4
+    date type: 1
+    sdn1: 349209
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Rec INDI start, xref is @PERS09@
+== 1 NAME (342) /Julian calendar/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: @#DJULIAN@ 12 APR 1302
+  type: 0
+  date1:
+    calendar type: 1
+    day: 12
+    month: APR
+    year: 1302
+    date type: 1
+    sdn1: 2196715
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+WARNING: Warning: Cross-reference @PERS07@ defined on line 38 is never used
+WARNING: Warning: Cross-reference @PERS02@ defined on line 18 is never used
+WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used
+WARNING: Warning: Cross-reference @PERS01@ defined on line 14 is never used
+WARNING: Warning: Cross-reference @PERS04@ defined on line 26 is never used
+WARNING: Warning: Cross-reference @PERS09@ defined on line 46 is never used
+WARNING: Warning: Cross-reference @PERS08@ defined on line 42 is never used
+WARNING: Warning: Cross-reference @PERS06@ defined on line 34 is never used
+WARNING: Warning: Cross-reference @PERS05@ defined on line 30 is never used
+WARNING: Warning: Cross-reference @PERS03@ defined on line 22 is never used
+
+=== Total conversion failures: 0
+Parse succeeded

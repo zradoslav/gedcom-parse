@@ -1,0 +1,5674 @@
+
+=== Parsing file ./input/allged.ged
+Parse succeeded
+=== HEADER ===
+Source:
+  ID: APPROVED_SOURCE_NAME
+  Name: Name of source-program
+  Version: Version number of source-program
+  Corporation:
+    Name: Corporation name
+    Address: 
+      Full label: Corporation address line 1
+Corporation address line 2
+Corporation address line 3
+Corporation address line 4
+      Line 1: Corporation address line 1
+      Line 2: Corporation address line 2
+      City: Corporation address city
+      State: Corporation address state
+      Postal: Corporation address ZIP code
+      Country: Corporation address country
+      User data:0x<null>
+    Phone 1: Corporation phone number 1
+    Phone 2: Corporation phone number 2
+    Phone 3: Corporation phone number 3 (last one!)
+  Data:
+    Name: Name of source data
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 1
+        month: JAN
+        year: 1998
+        date type: 1
+        sdn1: 2450815
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Copyright: Copyright of source data
+Destination: Destination of transmission
+Date: 
+  type: 0
+  date1:
+    calendar type: 0
+    day: 1
+    month: JAN
+    year: 1998
+    date type: 1
+    sdn1: 2450815
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Time: 13:57:24.80
+Submitter: 
+  type: 7
+  xref: @SUBMITTER@
+  object: 0x<non-null>
+Submission: 
+  type: 8
+  xref: @SUBMISSION@
+  object: 0x<non-null>
+File name: ALLGED.GED
+Copyright: (C) 1997-2000 by H. Eichmann. You can use and distribute this file freely as long as you do not charge for it
+Gedcom:
+  Version: 5.5
+  Form: LINEAGE-LINKED
+Character set:
+  Name: ASCII
+  Version: Version number of ASCII (whatever it means)
+Language: language
+Place hierarchy: (null)
+Note:
+====
+A general note about this file:
+It demonstrates most of the data which can be submitted using GEDCOM5.5. It shows the relatives of PERSON1:
+His 2 wifes (PERSON2, PERSON8), his parents (father: PERSON5, mother not given),
+adoptive parents (mother: PERSON6, father not given) and his 3 children (PERSON3, PERSON4 and PERSON7).
+In PERSON1, FAMILY1, SUBMITTER, SUBMISSION and SOURCE1 as many datafields as possible are used.
+All other individuals/families contain no data. Note, that many data tags can appear more than once
+(in this transmission this is demonstrated with tags: NAME, OCCU, PLACE and NOTE. Seek the word 'another'.
+The data transmitted here do not make sence. Just the HEAD.DATE tag contains the date of the creation
+of this file and will change in future Versions!
+This file is created by H. Eichmann: h.eichmann@gmx.de. Feel free to copy and use it for any
+non-commercial purpose. For the creation the GEDCOM standard Release 5.5 (2 JAN 1996) has been used.
+Copyright: The church of Jesus Christ of latter-day saints, gedcom@gedcom.org
+Download it (the GEDCOM 5.5 specs) from: ftp.gedcom.com/pub/genealogy/gedcom.
+Some Specials: This line is very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long but not too long (255 caharcters is the limit).
+This @ (commercial at) character may only appear ONCE!
+Note continued here. The word TEST should not be broken!
+====
+User data:
+  Data: 
+    1, _MYOWNTAG, This is a non-standard tag. Not recommended but allowed
+    reference: 0x<null>
+=== SUBMISSION (@SUBMISSION@) ===
+Submitter: 
+  type: 7
+  xref: @SUBMITTER@
+  object: 0x<non-null>
+Family file: NameOfFamilyFile
+Temple code: Abreviated temple code
+Nr of ancestor generations: 1
+Nr of descendant generations: 1
+Ordinance process flag: yes
+Record id: (null)
+User data:
+  Data: 
+    1, _MYOWNTAG, SUBN does not allow NOTE tags :-(( so, here is my not: SUBN seems to be LDS internal data. The sample data I put in here are probably nonsence.
+    reference: 0x<null>
+=== FAMILY (@PARENTS@) ===
+Family events: 0x<null>
+Husband: 
+  type: 2
+  xref: @PERSON5@
+  object: 0x<non-null>
+Wife: 0x<null>
+Children: 
+  reference: 
+    type: 2
+    xref: @PERSON1@
+    object: 0x<non-null>
+  User data:0x<null>
+Number of children: (null)
+Submitters: 0x<null>
+LDS spouse sealings: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== FAMILY (@ADOPTIVE_PARENTS@) ===
+Family events: 0x<null>
+Husband: 0x<null>
+Wife: 
+  type: 2
+  xref: @PERSON6@
+  object: 0x<non-null>
+Children: 
+  reference: 
+    type: 2
+    xref: @PERSON1@
+    object: 0x<non-null>
+  User data:0x<null>
+Number of children: (null)
+Submitters: 0x<null>
+LDS spouse sealings: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== FAMILY (@FAMILY1@) ===
+Family events: 
+  Event: 276 (ANUL)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: ANNULMENT event note (declaring a marriage void from the beginning (never existed))
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: -1
+      days: -1
+      phrase: 
+    Age of wife: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: 6
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 290 (CENS)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: CENSUS event note (the event of the periodic count of the population for a designated locality, such as a national or state Census)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: 6
+      days: 9
+      phrase: 
+    Age of wife: 
+      type: 4
+      modifier: 0
+      years: -1
+      months: 6
+      days: 9
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 311 (DIV)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: DIVORCE event note (an event of dissolving a marriage through civil action)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: -1
+      days: 3
+      phrase: 
+    Age of wife: 
+      type: 4
+      modifier: 0
+      years: -1
+      months: 42
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 312 (DIVF)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: DIVORCE_FILED event note (an event of filing for a divorce by a spouse)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: -1
+      months: -1
+      days: 42
+      phrase: 
+    Age of wife: 
+      type: 1
+      modifier: 0
+      years: -1
+      months: -1
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 317 (ENGA)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: ENGAGEMENT event note (an event of recording or announcing an agreement between two people to become married)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: -1
+      days: -1
+      phrase: 
+    Age of wife: 
+      type: 3
+      modifier: 0
+      years: -1
+      months: -1
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 339 (MARR)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: MARRIAGE event note (a legal, common-law, or customary event of creating a family unit of a man and a woman as husband and wife)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: -1
+      days: -1
+      phrase: 
+    Age of wife: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: 6
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 336 (MARB)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: MARRIAGE_BANN event note (an event of an official public notice given that two people intend to marry)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: -1
+      days: -1
+      phrase: 
+    Age of wife: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: 6
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 337 (MARC)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: MARR_CONTRACT event note (an event of recording a formal agreement of marriage, including the prenuptial agreement in which marriage partners reach agreement about the property rights of one or both, securing property to their children)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: -1
+      days: -1
+      phrase: 
+    Age of wife: 
+      type: 4
+      modifier: 2
+      years: 42
+      months: 6
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 338 (MARL)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: MARR_LICENSE event note (an event of obtaining a legal license to marry)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: -1
+      days: -1
+      phrase: 
+    Age of wife: 
+      type: 4
+      modifier: 1
+      years: 42
+      months: 6
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 340 (MARS)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: MARR_SETTLEMENT event note (an event of creating an agreement between two people contemplating marriage, at which time they agree to release or modify property rights that would otherwise arise from the marriage)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: -1
+      days: -1
+      phrase: 
+    Age of wife: 
+      type: 2
+      modifier: 0
+      years: -1
+      months: -1
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 318 (EVEN)
+    Value: (null)
+    Type: Other event type
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: EVENT note (a noteworthy happening related to an individual, a group, or an organization)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: -1
+      days: -1
+      phrase: 
+    Age of wife: 
+      type: 4
+      modifier: 0
+      years: 42
+      months: 6
+      days: -1
+      phrase: 
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Husband: 
+  type: 2
+  xref: @PERSON1@
+  object: 0x<non-null>
+Wife: 
+  type: 2
+  xref: @PERSON2@
+  object: 0x<non-null>
+Children: 
+  reference: 
+    type: 2
+    xref: @PERSON3@
+    object: 0x<non-null>
+  User data:0x<null>
+  reference: 
+    type: 2
+    xref: @PERSON4@
+    object: 0x<non-null>
+  User data:0x<null>
+Number of children: 42
+Submitters: 0x<null>
+LDS spouse sealings: 0x<null>
+citations: 
+  Citation: 
+    description: (null)
+    reference: 
+      type: 6
+      xref: @SOURCE1@
+      object: 0x<non-null>
+    page: 42
+    event: (null)
+    role: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1900
+        date type: 1
+        sdn1: 2415385
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    texts: 
+      Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+      User data:0x<null>
+    quality: 0
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: A note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+multimedia links: 
+  link: 
+    reference: 0x<null>
+    Form: bmp
+    Title: A bmp picture
+    File: \\network\drive\path\file name.bmp
+    notes: 
+      Note: 
+        text: A note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+notes: 
+  Note: 
+    text: A note about the family
+Note continued here. The word TEST should not be broken!
+    reference: 0x<null>
+    citations: 0x<null>
+    User data:0x<null>
+user refs: 0x<null>
+Record ID: (null)
+change date: 
+  Date: 
+    type: 0
+    date1:
+      calendar type: 0
+      day: 1
+      month: APR
+      year: 1998
+      date type: 1
+      sdn1: 2450905
+      sdn2: -1
+    date2:
+      calendar type: 4
+      day: 
+      month: 
+      year: 
+      date type: 0
+      sdn1: -1
+      sdn2: -1
+    phrase: 
+  Time: 12:34:56.789
+  notes: 
+    Note: 
+      text: A note
+Note continued here. The word TEST should not be broken!
+      reference: 0x<null>
+      citations: 0x<null>
+      User data:0x<null>
+  User data:0x<null>
+User data:
+  Data: 
+    1, _MYOWNTAG, This is a non-standard tag. Not recommended but allowed
+    reference: 0x<null>
+=== FAMILY (@FAMILY2@) ===
+Family events: 0x<null>
+Husband: 
+  type: 2
+  xref: @PERSON1@
+  object: 0x<non-null>
+Wife: 
+  type: 2
+  xref: @PERSON8@
+  object: 0x<non-null>
+Children: 
+  reference: 
+    type: 2
+    xref: @PERSON7@
+    object: 0x<non-null>
+  User data:0x<null>
+Number of children: (null)
+Submitters: 0x<null>
+LDS spouse sealings: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERSON1@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: given name /surname/jr.
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 1
+          date1:
+            calendar type: 0
+            day: 1
+            month: JAN
+            year: 1900
+            date type: 1
+            sdn1: 2415021
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 0
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    notes: 
+      Note: 
+        text: Personal Name note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+  Name: 
+    Name: another name /surname/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 2
+          date1:
+            calendar type: 0
+            day: 1
+            month: JAN
+            year: 1900
+            date type: 1
+            sdn1: 2415021
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 1
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    notes: 
+      Note: 
+        text: Personal Name note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+Sex: M
+Individual events: 
+  Event: 283 (BIRT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 2
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: BIRTH event note (the event of entering into life)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 
+      type: 1
+      xref: @PARENTS@
+      object: 0x<non-null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 294 (CHR)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 1
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: CHRISTENING event note (the religious event (not LDS) of baptizing and/or naming a child)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 294 (CHR)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 2
+      date1:
+        calendar type: 0
+        day: 30
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450813
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: Alternative CHRISTENING event note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 307 (DEAT)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 3
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 0
+        day: 1
+        month: JAN
+        year: 1998
+        date type: 1
+        sdn1: 2450815
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: DEATH event note (the event when mortal life terminates)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 286 (BURI)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 7
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: BURIAL event note (the event of the proper disposing of the mortal remains of a deceased person)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 303 (CREM)
+    Value: Y
+    Type: (null)
+    Date: 0x<null>
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: Cremation event note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 269 (ADOP)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 8
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: ADOPTION event note (pertaining to creation of a child-parent relationship that does not exist biologically)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 
+      type: 1
+      xref: @ADOPTIVE_PARENTS@
+      object: 0x<non-null>
+    Adoption parent: BOTH
+    User data:0x<null>
+  Event: 280 (BAPM)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 9
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: BAPTISM event note (the event of baptism (not LDS), performed in infancy or later. See also BAPL, above, and CHR)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 281 (BARM)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 10
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 12/31/97
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: BAR_MITZVAH event note (the ceremonial event held when a Jewish boy reaches age 13)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 282 (BASM)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 4
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: BAS_MITZVAH event note (the ceremonial event held when a Jewish girl reaches age 13, also known as "Bat Mitzvah.")
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 284 (BLES)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 5
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: BLESSING event note (a religious event of bestowing divine care or intercession. Sometimes given in connection with a naming ceremony)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 295 (CHRA)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 6
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 0
+        day: 1
+        month: FEB
+        year: 1998
+        date type: 1
+        sdn1: 2450846
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: ADULT_CHRISTENING event note (the religious event (not LDS) of baptizing and/or naming an adult person)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 298 (CONF)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: CONFIRMATION event note (the religious event (not LDS) of conferring the gift of the Holy Ghost and, among protestants, full church membership)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 323 (FCOM)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: FIRST_COMMUNION event note (a religious rite, the first act of sharing in the Lord's supper as part of church worship)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 354 (ORDN)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: ORDINATION event note (a religious event of receiving authority to act in religious matters)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 344 (NATU)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: NATURALIZATION event note (the event of obtaining citizenship)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 315 (EMIG)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: EMIGRATION event note (an event of leaving one's homeland with the intent of residing elsewhere)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 332 (IMMI)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: IMMIGRATION event note (an event of entering into a new locality with the intent of residing there)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 290 (CENS)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: CENSUS event note (the event of the periodic count of the population for a designated locality, such as a national or state Census)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 360 (PROB)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: PROBATE event note (an event of judicial determination of the validity of a will. May indicate several related court activities over several dates)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 393 (WILL)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: WILL event note (a legal document treated as an event, by which a person disposes of his or her estate, to take effect after death. The event date is the date the will was signed while the person was alive. See also PROBate)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 328 (GRAD)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: GRADUATION event note (an event of awarding educational diplomas or degrees to individuals)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 370 (RETI)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: RETIREMENT event note (an event of exiting an occupational relationship with an employer after a qualifying time period)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 318 (EVEN)
+    Value: (null)
+    Type: Event type
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: EVENT note (a noteworthy happening related to an individual, a group, or an organization)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+Individual attributes: 
+  Event: 288 (CAST)
+    Value: Cast name
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: CASTE event note (the name of an individual's rank or status in society, based   on racial or religious differences, or differences in wealth, inherited   rank, profession, occupation, etc)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 313 (DSCR)
+    Value: Physical description
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: PHY_DESCRIPTION event note (the physical characteristics of a person, place, or thing)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 314 (EDUC)
+    Value: Education
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: EDUCATION event note (Indicator of a level of education attained)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 331 (IDNO)
+    Value: 6942
+    Type: type of ID number
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: IDENT_NUMBER event note (A number assigned to identify a person within some significant external system)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 343 (NATI)
+    Value: National or tribe origin
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: NATIONALITY event note (the national heritage of an individual)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 345 (NCHI)
+    Value: 42
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: Children number event note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 347 (NMR)
+    Value: 42
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: Marriages number event note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 352 (OCCU)
+    Value: Occupation
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: OCCUPATION event note (The type of work or profession of an individual)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 352 (OCCU)
+    Value: Another occupation
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1998
+        date type: 1
+        sdn1: 2451179
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: Occupation event note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 361 (PROP)
+    Value: Possessions
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: PROPERTY event note (pertaining to possessions such as real estate or other property of interest)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 366 (RELI)
+    Value: Religion
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: RELIGION event note (a religious denomination to which a person is affiliated or for which a record applies)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 368 (RESI)
+    Value: (null)
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: RESIDENCE event note (The act of dwelling at an address for a period of time)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 379 (SSN)
+    Value: 6942
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: SOC_SEC_NUMBER event note (a number assigned by the United States Social Security Administration. Used for tax identification purposes)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+  Event: 388 (TITL)
+    Value: Nobility title
+    Type: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1997
+        date type: 1
+        sdn1: 2450814
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    Place: 
+      value: The place
+      place_hierarchy: (null)
+      citations: 0x<null>
+      notes: 0x<null>
+      User data:0x<null>
+    Address: 0x<null>
+    Phone 1: (null)
+    Phone 2: (null)
+    Phone 3: (null)
+    Age: 0x<null>
+    Agency: (null)
+    Cause: (null)
+    citations: 
+      Citation: 
+        description: (null)
+        reference: 
+          type: 6
+          xref: @SOURCE1@
+          object: 0x<non-null>
+        page: 42
+        event: (null)
+        role: (null)
+        Date: 
+          type: 0
+          date1:
+            calendar type: 0
+            day: 31
+            month: DEC
+            year: 1900
+            date type: 1
+            sdn1: 2415385
+            sdn2: -1
+          date2:
+            calendar type: 4
+            day: 
+            month: 
+            year: 
+            date type: 0
+            sdn1: -1
+            sdn2: -1
+          phrase: 
+        texts: 
+          Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+          User data:0x<null>
+        quality: 3
+        multimedia links: 0x<null>
+        notes: 
+          Note: 
+            text: A note
+Note continued here. The word TEST should not be broken!
+            reference: 0x<null>
+            citations: 0x<null>
+            User data:0x<null>
+        User data:0x<null>
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: TITLE event note (a description of a specific writing or other work, such as the title of a book when used in a source context, or a formal designation used by an individual in connection with positions of royalty or other social status,
+such as Grand Duke)
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: (null)
+    User data:0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @PARENTS@
+      object: 0x<non-null>
+    pedigrees: 
+      Pedigree: birth
+      User data:0x<null>
+    notes: 
+      Note: 
+        text: Note about the link to parents
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+      Note: 
+        text: Another note about the link to parents
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+  Family:
+    Family: 
+      type: 1
+      xref: @ADOPTIVE_PARENTS@
+      object: 0x<non-null>
+    pedigrees: 
+      Pedigree: adopted
+      User data:0x<null>
+    notes: 
+      Note: 
+        text: Note about the link to adoptive parents
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+Spouse to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY1@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 
+      Note: 
+        text: Note about the link to spouse
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+      Note: 
+        text: Another note about the link to spouse
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY2@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 
+  Citation: 
+    description: (null)
+    reference: 
+      type: 6
+      xref: @SOURCE1@
+      object: 0x<non-null>
+    page: 42
+    event: (null)
+    role: (null)
+    Date: 
+      type: 0
+      date1:
+        calendar type: 0
+        day: 31
+        month: DEC
+        year: 1900
+        date type: 1
+        sdn1: 2415385
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: 
+        month: 
+        year: 
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: 
+    texts: 
+      Text: a sample text
+Sample text continued here. The word TEST should not be broken!
+      User data:0x<null>
+    quality: 0
+    multimedia links: 0x<null>
+    notes: 
+      Note: 
+        text: A note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+multimedia links: 
+  link: 
+    reference: 0x<null>
+    Form: gif
+    Title: A gif picture
+    File: \\network\drive\path\file name.gif
+    notes: 
+      Note: 
+        text: A note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+notes: 
+  Note: 
+    text: A note about the inidvidual
+Note continued here. The word TEST should not be broken!
+    reference: 0x<null>
+    citations: 0x<null>
+    User data:0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 
+  Date: 
+    type: 0
+    date1:
+      calendar type: 0
+      day: 1
+      month: APR
+      year: 1998
+      date type: 1
+      sdn1: 2450905
+      sdn2: -1
+    date2:
+      calendar type: 4
+      day: 
+      month: 
+      year: 
+      date type: 0
+      sdn1: -1
+      sdn2: -1
+    phrase: 
+  Time: 12:34:56.789
+  notes: 
+    Note: 
+      text: A note
+Note continued here. The word TEST should not be broken!
+      reference: 0x<null>
+      citations: 0x<null>
+      User data:0x<null>
+  User data:0x<null>
+User data:
+  Data: 
+    1, _MYOWNTAG, This is a non-standard tag. Not recommended but allowed
+    reference: 0x<null>
+=== INDIVIDUAL (@PERSON2@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Wife/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: F
+Individual events: 0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY1@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERSON3@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Child 1/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY1@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERSON4@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Child 2/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY1@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERSON5@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Father/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: M
+Individual events: 0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @PARENTS@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERSON6@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Adoptive mother/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: F
+Individual events: 0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @ADOPTIVE_PARENTS@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERSON7@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /Child 3/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: (null)
+Individual events: 0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY2@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== INDIVIDUAL (@PERSON8@) ===
+Restriction notice: (null)
+names: 
+  Name: 
+    Name: /2nd Wife/
+    Prefix: (null)
+    Given: (null)
+    Nickname: (null)
+    Surname prefix: (null)
+    Surname: (null)
+    Suffix: (null)
+    citations: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Sex: F
+Individual events: 0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 
+  Family:
+    Family: 
+      type: 1
+      xref: @FAMILY2@
+      object: 0x<non-null>
+    pedigrees: 0x<null>
+    notes: 0x<null>
+    User data:0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: (null)
+Ancestral file nr: (null)
+user refs: 0x<null>
+Record ID: (null)
+change date: 0x<null>
+User data:0x<null>
+=== SOURCE (@SOURCE1@) ===
+Data: 
+  events: 
+    Event:
+      Recorded events: BIRT, CHR
+      Date period: 
+        type: 6
+        date1:
+          calendar type: 0
+          day: 1
+          month: JAN
+          year: 1980
+          date type: 1
+          sdn1: 2444240
+          sdn2: -1
+        date2:
+          calendar type: 0
+          day: 1
+          month: FEB
+          year: 1982
+          date type: 1
+          sdn1: 2445002
+          sdn2: -1
+        phrase: 
+      Jurisdiction: Place
+      User data:0x<null>
+    Event:
+      Recorded events: DEAT
+      Date period: 
+        type: 6
+        date1:
+          calendar type: 0
+          day: 1
+          month: JAN
+          year: 1980
+          date type: 1
+          sdn1: 2444240
+          sdn2: -1
+        date2:
+          calendar type: 0
+          day: 1
+          month: FEB
+          year: 1982
+          date type: 1
+          sdn1: 2445002
+          sdn2: -1
+        phrase: 
+      Jurisdiction: Another place
+      User data:0x<null>
+  Agency: Resposible agency
+  notes: 
+    Note: 
+      text: A note about whatever
+Note continued here. The word TEST should not be broken!
+      reference: 0x<null>
+      citations: 0x<null>
+      User data:0x<null>
+Author: Author of source
+Author continued here. The word TEST should not be broken!
+Title: Title of source
+Title continued here. The word TEST should not be broken!
+Abbreviation: Short title
+Publication: Source publication facts
+Publication facts continued here. The word TEST should not be broken!
+Text: Citation from source
+Citation continued here. The word TEST should not be broken!
+Repository:
+  Link: 0x<null>
+  notes: 0x<null>
+  source descriptions: 0x<null>
+multimedia links: 
+  link: 
+    reference: 0x<null>
+    Form: bmp
+    Title: A bmp picture
+    File: \\network\drive\path\file name.bmp
+    notes: 
+      Note: 
+        text: A note
+Note continued here. The word TEST should not be broken!
+        reference: 0x<null>
+        citations: 0x<null>
+        User data:0x<null>
+    User data:0x<null>
+notes: 
+  Note: 
+    text: A note about the family
+Note continued here. The word TEST should not be broken!
+    reference: 0x<null>
+    citations: 0x<null>
+    User data:0x<null>
+user refs: 0x<null>
+Record ID: (null)
+change date: 
+  Date: 
+    type: 0
+    date1:
+      calendar type: 0
+      day: 1
+      month: APR
+      year: 1998
+      date type: 1
+      sdn1: 2450905
+      sdn2: -1
+    date2:
+      calendar type: 4
+      day: 
+      month: 
+      year: 
+      date type: 0
+      sdn1: -1
+      sdn2: -1
+    phrase: 
+  Time: 12:34:56.789
+  notes: 
+    Note: 
+      text: A note
+Note continued here. The word TEST should not be broken!
+      reference: 0x<null>
+      citations: 0x<null>
+      User data:0x<null>
+  User data:0x<null>
+User data:
+  Data: 
+    1, _MYOWNTAG, This is a non-standard tag. Not recommended but allowed
+    reference: 0x<null>
+=== SUBMITTER (@SUBMITTER@) ===
+Name: /Submitter-Name/
+Address: 
+  Full label: Submitter address line 1
+Submitter address line 2
+Submitter address line 3
+Submitter address line 4
+  Line 1: Submitter address line 1
+  Line 2: Submitter address line 2
+  City: Submitter address city
+  State: Submitter address state
+  Postal: Submitter address ZIP code
+  Country: Submitter address country
+  User data:0x<null>
+Phone 1: Submitter phone number 1
+Phone 2: Submitter phone number 2
+Phone 3: Submitter phone number 3 (last one!)
+multimedia links: 0x<null>
+Language 1: English
+Language 2: (null)
+Language 3: (null)
+Record file nr: (null)
+Record ID: (null)
+change date: 
+  Date: 
+    type: 0
+    date1:
+      calendar type: 0
+      day: 19
+      month: JUN
+      year: 2000
+      date type: 1
+      sdn1: 2451715
+      sdn2: -1
+    date2:
+      calendar type: 4
+      day: 
+      month: 
+      year: 
+      date type: 0
+      sdn1: -1
+      sdn2: -1
+    phrase: 
+  Time: 12:34:56.789
+  notes: 
+    Note: 
+      text: A note
+Note continued here. The word TEST should not be broken!
+      reference: 0x<null>
+      citations: 0x<null>
+      User data:0x<null>
+  User data:0x<null>
+User data:
+  Data: 
+    1, _MYOWNTAG, This is a non-standard tag. Not recommended but allowed
+    reference: 0x<null>
+=== USER RECORD ((null)) ===
+Tag: _MYOWNTAG
+String value: This is a non-standard tag. Not recommended but allowed
+Xref value: 0x<null>
+User data:0x<null>

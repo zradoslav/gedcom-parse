@@ -1,0 +1,11 @@
+ERROR: Error: String 'NOT_AN_XREF' is not a valid cross-reference key
+ERROR: Error: String '@XREF@ BUT EXTRA' is not a valid cross-reference key
+ERROR: Error: Cross-reference @NEWFAM@ already exists
+ERROR: Error: Cross-reference @NEWFAM@ previously defined as pointer to a family
+ERROR: Error: '@' character should be written as '@@' in values
+ERROR: Error: String '@NEWFAM' is not a valid cross-reference key
+ERROR: Error: Cross-reference @OLDINDI@ not defined
+ERROR: Error: Cross-reference @NEWFAM@ still in use
+ERROR: Error: Cross-reference @NEWFAM@ previously defined as pointer to a family
+ERROR: Error: Cross-reference @NEWFAM@ still in use
+Test succeeded

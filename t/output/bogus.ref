@@ -1,0 +1,39 @@
+
+=== Parsing bogus file Makefile.am
+WARNING: Warning on line 1: Unknown encoding, falling back to one-byte
+ERROR: Error on line 1: parse error
+ERROR: Error on line 2: GEDCOM level number is 2 higher than previous
+ERROR: Error on line 15: '@' character should be written as '@@' in values
+ERROR: Error on line 18: '@' character should be written as '@@' in values
+ERROR: Error on line 26: '@' character should be written as '@@' in values
+
+=== Parsing file ./input/minimal.ged
+Header start
+== 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
+Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+== 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @SUBMITTER@
+== 1 NAME (342) Peter /Verthez/ (ctxt is 10000, conversion failures: 0)
+
+=== Total conversion failures: 0
+
+=== Parsing file ./input/minimal.ged
+Header start
+== 1 CHAR (292) ASCII (ctxt is 1, conversion failures: 0)
+Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+== 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @SUBMITTER@
+== 1 NAME (342) Peter /Verthez/ (ctxt is 10000, conversion failures: 0)
+
+=== Total conversion failures: 0
+Parse succeeded
