@@ -61,7 +61,7 @@ struct source_citation {
   char *page;
   char *event;
   char *role;
-  struct date_value* date;
+  struct date_value *date;
   struct text *text;
   char *quality;
   struct multimedia_link *mm_link;
@@ -230,145 +230,145 @@ struct header {
       char *phone[3];
     } corporation;
     struct header_data {
-      char* name;
-      struct date_value* date;
-      char* copyright;
+      char *name;
+      struct date_value *date;
+      char *copyright;
     } data;
   } source;
-  char* destination;
-  struct date_value* date;
-  char* time;
-  struct xref_value* submitter;
-  struct xref_value* submission;
-  char* filename;
-  char* copyright;
+  char *destination;
+  struct date_value *date;
+  char *time;
+  struct xref_value *submitter;
+  struct xref_value *submission;
+  char *filename;
+  char *copyright;
   struct header_gedcom {
-    char* version;
-    char* form;
+    char *version;
+    char *form;
   } gedcom;
   struct header_charset {
-    char* name;
-    char* version;
+    char *name;
+    char *version;
   } charset;
-  char* language;
-  char* place_hierarchy;
-  char* note;
+  char *language;
+  char *place_hierarchy;
+  char *note;
   struct user_data *extra;
 };
 
 struct submission {
-  char* xrefstr;
-  struct xref_value* submitter;
-  char* family_file;
-  char* temple_code;
-  char* nr_of_ancestor_gens;
-  char* nr_of_descendant_gens;
-  char* ordinance_process_flag;
-  char* record_id;
+  char *xrefstr;
+  struct xref_value *submitter;
+  char *family_file;
+  char *temple_code;
+  char *nr_of_ancestor_gens;
+  char *nr_of_descendant_gens;
+  char *ordinance_process_flag;
+  char *record_id;
   struct user_data *extra;
 };
 
 struct family {
-  char* xrefstr;
-  struct event* event;
-  struct xref_value* husband;
-  struct xref_value* wife;
-  struct xref_list* children;
-  char* nr_of_children;
-  struct xref_list* submitters;
-  struct lds_event* lds_spouse_sealing;
+  char *xrefstr;
+  struct event *event;
+  struct xref_value *husband;
+  struct xref_value *wife;
+  struct xref_list *children;
+  char *nr_of_children;
+  struct xref_list *submitters;
+  struct lds_event *lds_spouse_sealing;
   struct source_citation *citation;
   struct multimedia_link *mm_link;
   struct note_sub *note;
   struct user_ref_number *ref;
-  char* record_id;
-  struct change_date* change_date;
+  char *record_id;
+  struct change_date *change_date;
   struct user_data *extra;
-  struct family* next;
-  struct family* previous;
+  struct family *next;
+  struct family *previous;
 };
 
 struct individual {
-  char* xrefstr;
-  char* restriction_notice;
-  struct personal_name* name;
-  char* sex;
-  struct event* event;
-  struct event* attribute;
-  struct lds_event* lds_individual_ordinance;
-  struct family_link* child_to_family;
-  struct family_link* spouse_to_family;
-  struct xref_list* submitters;
-  struct association* association;
-  struct xref_list* alias;
-  struct xref_list* ancestor_interest;
-  struct xref_list* descendant_interest;
+  char *xrefstr;
+  char *restriction_notice;
+  struct personal_name *name;
+  char *sex;
+  struct event *event;
+  struct event *attribute;
+  struct lds_event *lds_individual_ordinance;
+  struct family_link *child_to_family;
+  struct family_link *spouse_to_family;
+  struct xref_list *submitters;
+  struct association *association;
+  struct xref_list *alias;
+  struct xref_list *ancestor_interest;
+  struct xref_list *descendant_interest;
   struct source_citation *citation;
   struct multimedia_link *mm_link;
   struct note_sub *note;
-  char* record_file_nr;
-  char* ancestral_file_nr;
+  char *record_file_nr;
+  char *ancestral_file_nr;
   struct user_ref_number *ref;
-  char* record_id;
-  struct change_date* change_date;
+  char *record_id;
+  struct change_date *change_date;
   struct user_data *extra;
-  struct individual* next;
-  struct individual* previous;
+  struct individual *next;
+  struct individual *previous;
 };
 
 struct multimedia {
-  char* xrefstr;
-  char* form;
-  char* title;
+  char *xrefstr;
+  char *form;
+  char *title;
   struct note_sub *note;
-  char* data;
-  struct xref_value* continued;
+  char *data;
+  struct xref_value *continued;
   struct user_ref_number *ref;
-  char* record_id;
-  struct change_date* change_date;
+  char *record_id;
+  struct change_date *change_date;
   struct user_data *extra;
-  struct multimedia* next;
-  struct multimedia* previous;
+  struct multimedia *next;
+  struct multimedia *previous;
 };
 
 struct note {
-  char* xrefstr;
-  char* text;
+  char *xrefstr;
+  char *text;
   struct source_citation *citation;
   struct user_ref_number *ref;
-  char* record_id;
-  struct change_date* change_date;
+  char *record_id;
+  struct change_date *change_date;
   struct user_data *extra;
-  struct note* next;
-  struct note* previous;
+  struct note *next;
+  struct note *previous;
 };
 
 struct repository {
-  char* xrefstr;
-  char* name;
+  char *xrefstr;
+  char *name;
   struct address *address;
   char *phone[3];
   struct note_sub *note;
   struct user_ref_number *ref;
-  char* record_id;
-  struct change_date* change_date;
+  char *record_id;
+  struct change_date *change_date;
   struct user_data *extra;
-  struct repository* next;
-  struct repository* previous;
+  struct repository *next;
+  struct repository *previous;
 };
 
 struct source {
-  char* xrefstr;
+  char *xrefstr;
   struct source_data {
     struct source_event *event;
     char *agency;
     struct note_sub *note;
   } data;
-  char* author;
-  char* title;
-  char* abbreviation;
-  char* publication;
-  char* text;
+  char *author;
+  char *title;
+  char *abbreviation;
+  char *publication;
+  char *text;
   struct repo_link {
     struct xref_value *link;
     struct note_sub *note;
@@ -377,39 +377,41 @@ struct source {
   struct multimedia_link *mm_link;
   struct note_sub *note;
   struct user_ref_number *ref;
-  char* record_id;
-  struct change_date* change_date;
+  char *record_id;
+  struct change_date *change_date;
   struct user_data *extra;
-  struct source* next;
-  struct source* previous;
+  struct source *next;
+  struct source *previous;
 };
 
 struct submitter {
-  char* xrefstr;
-  char* name;
-  struct address* address;
+  char *xrefstr;
+  char *name;
+  struct address *address;
   char *phone[3];
   struct multimedia_link *mm_link;
   char *language[3];
-  char* record_file_nr;
-  char* record_id;
-  struct change_date* change_date;
+  char *record_file_nr;
+  char *record_id;
+  struct change_date *change_date;
   struct user_data *extra;
-  struct submitter* next;
-  struct submitter* previous;
+  struct submitter *next;
+  struct submitter *previous;
 };
 
 struct user_rec {
-  char* xrefstr;
-  char* tag;
-  char* str_value;
-  struct xref_value* xref_value;
-  struct user_data* extra;
-  struct user_rec* next;
-  struct user_rec* previous;
+  char *xrefstr;
+  char *tag;
+  char *str_value;
+  struct xref_value *xref_value;
+  struct user_data *extra;
+  struct user_rec *next;
+  struct user_rec *previous;
 };
 
-int  gom_parse_file(char* file_name);
+/* Functions */
+
+int  gom_parse_file(char *file_name);
 
 struct header*     gom_get_header();
 struct submission* gom_get_submission();
