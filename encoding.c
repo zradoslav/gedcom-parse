@@ -22,7 +22,6 @@
 #define MAXBUF 255
 
 static iconv_t cd_to_internal = (iconv_t) -1;
-static char int_buf[MAXGEDCLINELEN*2];
 static void *encoding_mapping = NULL;
 static ENCODING the_enc = ONE_BYTE;
 
@@ -142,22 +141,22 @@ void close_conv_to_internal()
   cd_to_internal = (iconv_t) -1;
 }
 
-char* to_internal(char* str, size_t len)
+char* to_internal(char* str, size_t len,
+		  char* output_buffer, size_t out_len)
 {
-  size_t outsize = MAXGEDCLINELEN * 2;
-  char *wrptr = int_buf;
+  size_t outsize = out_len;
+  char *wrptr = output_buffer;
   char *rdptr = conv_buf;
   /* set up input buffer (concatenate to what was left previous time) */
   /* can't use strcpy, because possible null bytes from unicode */
   memcpy(conv_buf + conv_buf_size, str, len);
   conv_buf_size += len;
   /* set up output buffer (empty it) */
-  memset(int_buf, 0, sizeof(int_buf));
+  memset(output_buffer, 0, out_len);
   /* do the conversion */
   iconv(cd_to_internal, &rdptr, &conv_buf_size, &wrptr, &outsize);
   /* then shift what is left over to the head of the input buffer */
   memmove(conv_buf, rdptr, conv_buf_size);
   memset(conv_buf + conv_buf_size, 0, sizeof(conv_buf) - conv_buf_size);
-  return int_buf;
+  return output_buffer;
 }
-
