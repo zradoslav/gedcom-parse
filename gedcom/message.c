@@ -41,6 +41,12 @@ void reset_mess_buffer()
     mess_buffer[0] = '\0';
 }
 
+void cleanup_mess_buffer()
+{
+  if (mess_buffer)
+    free(mess_buffer);
+}
+
 void init_mess_buffer()
 {
   if (mess_buffer == NULL) {
@@ -48,6 +54,8 @@ void init_mess_buffer()
     if (mess_buffer) {
       mess_buffer[0] = '\0';
       bufsize = INITIAL_BUF_SIZE;
+      if (atexit(cleanup_mess_buffer) != 0)
+	gedcom_warning(_("Could not register buffer cleanup function"));
     }
     else {
       fprintf(stderr, _("Could not allocate memory at %s, %d"),
@@ -114,7 +122,10 @@ int gedcom_warning(const char* s, ...)
   va_list ap;
 
   reset_mess_buffer();
-  safe_buf_append(_("Warning on line %d: "), line_no);
+  if (line_no != 0) 
+    safe_buf_append(_("Warning on line %d: "), line_no);
+  else
+    safe_buf_append(_("Warning: "));
   va_start(ap, s);
   res = safe_buf_vappend(s, ap);
   va_end(ap);
@@ -130,7 +141,10 @@ int gedcom_error(const char* s, ...)
   va_list ap;
 
   reset_mess_buffer();
-  safe_buf_append(_("Error on line %d: "), line_no);
+  if (line_no != 0)
+    safe_buf_append(_("Error on line %d: "), line_no);
+  else
+    safe_buf_append(_("Error: "));
   va_start(ap, s);
   res = safe_buf_vappend(s, ap);
   va_end(ap);
