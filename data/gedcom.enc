@@ -9,8 +9,8 @@
 #   - the iconv name of the charset
 
 # First the encodings supported by the GEDCOM standard
-UNICODE		2_LOHI	UNICODELITTLE
-UNICODE		2_HILO	UNICODEBIG
+UNICODE		2_LOHI	UCS-2LE
+UNICODE		2_HILO	UCS-2BE
 ASCII		1	ASCII
 ANSEL		1	ANSEL
 
