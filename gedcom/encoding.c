@@ -107,9 +107,15 @@ char* get_encoding(const char* gedcom_n, ENCODING enc)
   }
 }
 
+static char *new_gconv_path;
+
 void cleanup_encodings()
 {
   hash_free(encodings);
+  /* Clean up environment */
+  putenv(GCONV_SEARCH_PATH);
+  if (new_gconv_path)
+    free(new_gconv_path);
 }
 
 /* Let function be called before main() */
@@ -140,7 +146,6 @@ void update_gconv_search_path()
   /* Add gedcom data directory to gconv search path */
   gconv_path = getenv(GCONV_SEARCH_PATH);
   if (gconv_path == NULL || strstr(gconv_path, PKGDATADIR) == NULL) {
-    char *new_gconv_path;
     if (gconv_path == NULL) {
       new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
 				      + strlen(PKGDATADIR)
