@@ -2,7 +2,7 @@
 # $Id$
 # $Name$
 
-EXTRA_DIST = doxygen.conf.in
+EXTRA_DIST = doxygen.conf.in myfooter.html
 
 doc:	doxygen.conf
 	export VERSION=@VERSION@; doxygen doxygen.conf
