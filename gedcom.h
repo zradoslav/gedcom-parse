@@ -1,5 +1,7 @@
 /* $Id$ */
 /* $Name$ */
+#ifndef __GEDCOM_H
+#define __GEDCOM_H
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -33,3 +35,4 @@ int        gedcom_parse();
 int        gedcom_lex();
 
 extern int line_no;
+#endif /* __GEDCOM_H */
