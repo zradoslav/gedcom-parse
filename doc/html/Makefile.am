@@ -4,8 +4,9 @@
 
 SUBDIRS = images .
 DOC_FILES = encoding.html
+DOC_FILES_PREFIXED := $(addprefix $(srcdir)/, $(DOC_FILES))
 ALL_HTML_FILES := $(wildcard $(srcdir)/*.html)
-GENERATED_DOC_FILES = $(filter-out $(DOC_FILES), $(ALL_HTML_FILES))
+GENERATED_DOC_FILES := $(filter-out $(DOC_FILES_PREFIXED), $(ALL_HTML_FILES))
 GENERATED_EXTRA_FILES = doxygen.css doxygen.png
 
 EXTRA_DIST = $(ALL_HTML_FILES) $(GENERATED_EXTRA_FILES)
