@@ -112,10 +112,14 @@ static char *new_gconv_path;
 void cleanup_encodings()
 {
   hash_free(encodings);
+}
+
+void cleanup_gconv_path()
+{
   /* Clean up environment */
   putenv(GCONV_SEARCH_PATH);
   if (new_gconv_path)
-    free(new_gconv_path);
+    free(new_gconv_path);  
 }
 
 /* Let function be called before main() */
@@ -171,6 +175,9 @@ void update_gconv_search_path()
       abort();
     }
   }
+  if (init_called && atexit(cleanup_gconv_path) != 0) {
+    gedcom_warning(_("Could not register path cleanup function"));
+  }    
 }
 
 void init_encodings()
