@@ -105,8 +105,11 @@ int determine_encoding(FILE* f)
   }
 }
 
+static int init_called = 0;
+
 void gedcom_init()
 {
+  init_called = 1;
   update_gconv_search_path();
 }
 
@@ -123,24 +126,29 @@ int gedcom_parse_file(char* file_name)
   bind_textdomain_codeset(PACKAGE, INTERNAL_ENCODING);
   textdomain(PACKAGE);
 
-  line_no = 1;
-  file = fopen(file_name, "r");
-  if (!file) {
-    gedcom_error(_("Could not open file '%s'"), file_name);
+  if (!init_called) {
+    gedcom_error(_("Internal error: GEDCOM parser not initialized"));
   }
   else {
-    init_encodings();
-    enc = determine_encoding(file);
-    
-    if (lexer_init(enc, file)) {
-      line_no = 1;
-      make_xref_table();
-      result = gedcom_parse();
-      if (result == 0)
-	result = check_xref_table();
+    line_no = 1;
+    file = fopen(file_name, "r");
+    if (!file) {
+      gedcom_error(_("Could not open file '%s'"), file_name);
     }
-    lexer_close();
-    fclose(file);
+    else {
+      init_encodings();
+      enc = determine_encoding(file);
+      
+      if (lexer_init(enc, file)) {
+	line_no = 1;
+	make_xref_table();
+	result = gedcom_parse();
+	if (result == 0)
+	  result = check_xref_table();
+      }
+      lexer_close();
+      fclose(file);
+    }
   }
 
   textdomain(save_textdom);
