@@ -664,9 +664,9 @@ head_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
 
 /* HEAD.TIME (Only for 'Lifelines' compatibility) */
 /* Just ignore the time... */
-head_time_sect : OPEN DELIM TAG_TIME opt_line_item
-                 { }
-                 CLOSE
+head_time_sect : OPEN DELIM TAG_TIME opt_line_item CLOSE
+                 { gedcom_warning(_("Header change time lost in the compatibility"));
+                 }
 	       ;
 
 /* HEAD.SUBM */
