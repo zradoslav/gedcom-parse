@@ -79,13 +79,42 @@ Gedcom_ctxt source_start(Gedcom_ctxt parent, int level, char *tag,
 {
   Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
   printf("Source is %s (ctxt is %d, parent is %d)\n",
-	 (char*)parsed_value, (int) self, (int) parent);
+	 GEDCOM_STRING(parsed_value), (int) self, (int) parent);
   return self;
 }
 
 void source_end(Gedcom_ctxt parent, Gedcom_ctxt self, Gedcom_val parsed_value)
 {
   printf("Source context %d in parent %d\n", (int)self, (int)parent);
+}
+
+Gedcom_ctxt source_date_start(Gedcom_ctxt parent, int level, char *tag,
+			      char* raw_value, Gedcom_val parsed_value)
+{
+  struct date_value dv;
+  Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
+  dv = GEDCOM_DATE(parsed_value);
+  printf("Contents of the date_value:\n");
+  printf("  raw value: %s\n", raw_value);
+  printf("  type: %d\n", dv.type);
+  printf("  date1:\n");
+  printf("    calendar type: %d\n", dv.date1.cal);
+  printf("    day: %s\n", dv.date1.day_str);
+  printf("    month: %s\n", dv.date1.month_str);
+  printf("    year: %s\n", dv.date1.year_str);
+  printf("    date type: %d\n", dv.date1.type);
+  printf("    sdn1: %ld\n", dv.date1.sdn1);
+  printf("    sdn2: %ld\n", dv.date1.sdn2);
+  printf("  date2:\n");
+  printf("    calendar type: %d\n", dv.date2.cal);
+  printf("    day: %s\n", dv.date2.day_str);
+  printf("    month: %s\n", dv.date2.month_str);
+  printf("    year: %s\n", dv.date2.year_str);
+  printf("    date type: %d\n", dv.date2.type);
+  printf("    sdn1: %ld\n", dv.date2.sdn1);
+  printf("    sdn2: %ld\n", dv.date2.sdn2);
+  printf("  phrase: %s\n", dv.phrase);
+  return self;
 }
 
 void default_cb(Gedcom_ctxt ctxt, int level, char *tag, char *raw_value)
@@ -99,6 +128,8 @@ void subscribe_callbacks()
   gedcom_subscribe_to_record(REC_FAM,  family_start, family_end);
   gedcom_subscribe_to_record(REC_SUBM, submit_start, NULL);
   gedcom_subscribe_to_element(ELT_HEAD_SOUR, source_start, source_end);
+  gedcom_subscribe_to_element(ELT_SOUR_DATA_EVEN_DATE,
+			      source_date_start, NULL);
 }
 
 void gedcom_message_handler(Gedcom_msg_type type, char *msg)

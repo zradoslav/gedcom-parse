@@ -34,6 +34,7 @@ AM_GNU_GETTEXT
 
 AC_OUTPUT(Makefile
 	  gedcom/Makefile
+	  gedcom/calendar/Makefile
 	  ansel/Makefile
 	  t/Makefile
 	  doc/Makefile
