@@ -16,3 +16,6 @@ TESTS = allged.ged \
 	ulhlc.ged
 
 EXTRA_DIST=$(TEST_SCRIPT) $(TESTS)
+
+all-local:
+	rm -f ../testgedcom.out

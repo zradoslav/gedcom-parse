@@ -12,3 +12,6 @@ testgedcom_LDFLAGS = -L gedcom/.libs -lgedcom
 testgedcom_LDADD  = @INTLLIBS@
 
 EXTRA_DIST = $(pkgdata_DATA)
+
+clean-local:
+	rm -f testgedcom.out

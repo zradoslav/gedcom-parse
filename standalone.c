@@ -24,12 +24,29 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include "gedcom.h"
+
+#define OUTFILE "testgedcom.out"
+FILE* outfile = NULL;
+
+void output(int to_stdout_too, char* format, ...)
+{
+  va_list ap;
+  va_start(ap, format);
+  if (outfile) {
+    vfprintf(outfile, format, ap);
+  }
+  if (to_stdout_too) {
+    vprintf(format, ap);
+  }
+  va_end(ap);
+}
 
 void show_help ()
 {
   printf("gedcom-parse test program for libgedcom\n\n");
-  printf("Usage:  gedcom-parse [options] file\n");
+  printf("Usage:  testgedcom [options] file\n");
   printf("Options:\n");
   printf("  -h    Show this help text\n");
   printf("  -nc   Disable compatibility mode\n");
@@ -44,13 +61,13 @@ void show_help ()
 
 Gedcom_ctxt header_start(int level, char *xref, char *tag)
 {
-  printf("Header start\n");
+  output(1, "Header start\n");
   return (Gedcom_ctxt)0;
 }
 
 void header_end(Gedcom_ctxt self)
 {
-  printf("Header end, context is %d\n", (int)self);
+  output(1, "Header end, context is %d\n", (int)self);
 }
 
 char family_xreftags[100][255];
@@ -58,19 +75,19 @@ int  family_nr = 0;
 
 Gedcom_ctxt family_start(int level, char *xref, char *tag)
 {
-  printf("Family start, xref is %s\n", xref);
+  output(1, "Family start, xref is %s\n", xref);
   strcpy(family_xreftags[family_nr], xref);
   return (Gedcom_ctxt)(family_nr++);
 }
 
 void family_end(Gedcom_ctxt self)
 {
-  printf("Family end, xref is %s\n", family_xreftags[(int)self]);
+  output(1, "Family end, xref is %s\n", family_xreftags[(int)self]);
 }
 
 Gedcom_ctxt submit_start(int level, char *xref, char *tag)
 {
-  printf("Submitter, xref is %s\n", xref);
+  output(1, "Submitter, xref is %s\n", xref);
   return (Gedcom_ctxt)10000;
 }
 
@@ -78,14 +95,14 @@ Gedcom_ctxt source_start(Gedcom_ctxt parent, int level, char *tag,
 			 char* raw_value, Gedcom_val parsed_value)
 {
   Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
-  printf("Source is %s (ctxt is %d, parent is %d)\n",
+  output(1, "Source is %s (ctxt is %d, parent is %d)\n",
 	 GEDCOM_STRING(parsed_value), (int) self, (int) parent);
   return self;
 }
 
 void source_end(Gedcom_ctxt parent, Gedcom_ctxt self, Gedcom_val parsed_value)
 {
-  printf("Source context %d in parent %d\n", (int)self, (int)parent);
+  output(1, "Source context %d in parent %d\n", (int)self, (int)parent);
 }
 
 Gedcom_ctxt source_date_start(Gedcom_ctxt parent, int level, char *tag,
@@ -94,32 +111,32 @@ Gedcom_ctxt source_date_start(Gedcom_ctxt parent, int level, char *tag,
   struct date_value dv;
   Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
   dv = GEDCOM_DATE(parsed_value);
-  printf("Contents of the date_value:\n");
-  printf("  raw value: %s\n", raw_value);
-  printf("  type: %d\n", dv.type);
-  printf("  date1:\n");
-  printf("    calendar type: %d\n", dv.date1.cal);
-  printf("    day: %s\n", dv.date1.day_str);
-  printf("    month: %s\n", dv.date1.month_str);
-  printf("    year: %s\n", dv.date1.year_str);
-  printf("    date type: %d\n", dv.date1.type);
-  printf("    sdn1: %ld\n", dv.date1.sdn1);
-  printf("    sdn2: %ld\n", dv.date1.sdn2);
-  printf("  date2:\n");
-  printf("    calendar type: %d\n", dv.date2.cal);
-  printf("    day: %s\n", dv.date2.day_str);
-  printf("    month: %s\n", dv.date2.month_str);
-  printf("    year: %s\n", dv.date2.year_str);
-  printf("    date type: %d\n", dv.date2.type);
-  printf("    sdn1: %ld\n", dv.date2.sdn1);
-  printf("    sdn2: %ld\n", dv.date2.sdn2);
-  printf("  phrase: %s\n", dv.phrase);
+  output(1, "Contents of the date_value:\n");
+  output(1, "  raw value: %s\n", raw_value);
+  output(1, "  type: %d\n", dv.type);
+  output(1, "  date1:\n");
+  output(1, "    calendar type: %d\n", dv.date1.cal);
+  output(1, "    day: %s\n", dv.date1.day_str);
+  output(1, "    month: %s\n", dv.date1.month_str);
+  output(1, "    year: %s\n", dv.date1.year_str);
+  output(1, "    date type: %d\n", dv.date1.type);
+  output(1, "    sdn1: %ld\n", dv.date1.sdn1);
+  output(1, "    sdn2: %ld\n", dv.date1.sdn2);
+  output(1, "  date2:\n");
+  output(1, "    calendar type: %d\n", dv.date2.cal);
+  output(1, "    day: %s\n", dv.date2.day_str);
+  output(1, "    month: %s\n", dv.date2.month_str);
+  output(1, "    year: %s\n", dv.date2.year_str);
+  output(1, "    date type: %d\n", dv.date2.type);
+  output(1, "    sdn1: %ld\n", dv.date2.sdn1);
+  output(1, "    sdn2: %ld\n", dv.date2.sdn2);
+  output(1, "  phrase: %s\n", dv.phrase);
   return self;
 }
 
 void default_cb(Gedcom_ctxt ctxt, int level, char *tag, char *raw_value)
 {
-  printf("== %d %s %s (ctxt is %d)\n", level, tag, raw_value, (int)ctxt);
+  output(0, "== %d %s %s (ctxt is %d)\n", level, tag, raw_value, (int)ctxt);
 }
 
 void subscribe_callbacks()
@@ -202,9 +219,15 @@ int main(int argc, char* argv[])
   gedcom_set_default_callback(default_cb);
   
   subscribe_callbacks();
+  outfile = fopen(OUTFILE, "a");
+  if (!outfile) {
+    printf("Could not open %s for appending\n", OUTFILE);
+  }
   while (run_times-- > 0) {
+    output(0, "\n=== Parsing file %s\n", file_name);
     result |= gedcom_parse_file(file_name);
   }
+  fclose(outfile);
   if (result == 0) {
     printf("Parse succeeded\n");
     return 0;
