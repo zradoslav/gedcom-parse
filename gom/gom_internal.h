@@ -100,7 +100,7 @@ void gom_mem_error(const char *filename, int line);
 
 #define MEMORY_ERROR gom_mem_error(__FILE__, __LINE__)
 
-void def_rec_end(Gedcom_rec rec, Gedcom_ctxt self);
+void def_rec_end(Gedcom_rec rec, Gedcom_ctxt self, Gedcom_val parsed_value);
 void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent,
 		 Gedcom_ctxt self, Gedcom_val parsed_value);
 void set_xref_type(struct xref_value *xr, const char* str);

@@ -149,6 +149,7 @@
 #include "age.h"
 #include "xref.h"
 #include "compat.h"
+#include "buffer.h"
 
 int  count_level    = 0;
 int  fail           = 0;
@@ -159,6 +160,9 @@ Gedcom_val_struct val2;
  
 char line_item_buf[MAXGEDCLINELEN * UTF_FACTOR + 1];
 char *line_item_buf_ptr;
+
+void cleanup_concat_buffer(); 
+struct safe_buffer concat_buffer  = { NULL, 0, cleanup_concat_buffer }; 
 
 /* These are defined at the bottom of the file */ 
 void push_countarray(int level);
@@ -456,7 +460,7 @@ head_sect    : OPEN DELIM TAG_HEAD
 		   CHECK4(SOUR, SUBM, GEDC, CHAR)
 	       }
                CLOSE
-               { end_record(REC_HEAD, $<ctxt>4);
+               { end_record(REC_HEAD, $<ctxt>4, NULL);
 	         if (compat_mode(C_FTREE | C_LIFELINES))
 	           compat_generate_submitter();
 	       }
@@ -870,12 +874,16 @@ head_note_sect : OPEN DELIM TAG_NOTE mand_line_item
                  { $<ctxt>$ = start_element(ELT_HEAD_NOTE,
 					    PARENT, $1, $3, $4, 
 					    GEDCOM_MAKE_STRING(val1, $4));
+		   reset_buffer(&concat_buffer);
+		   safe_buf_append(&concat_buffer, $4);
 		   START(NOTE, $1, $<ctxt>$)
 		 }
                  head_note_subs
 		 { CHECK0 }
                  CLOSE
-                 { end_element(ELT_HEAD_NOTE, PARENT, $<ctxt>5, NULL);
+                 { char* complete = get_buf_string(&concat_buffer);
+		   end_element(ELT_HEAD_NOTE, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_STRING(val1, complete));
 		 }
                ;
 
@@ -909,7 +917,7 @@ fam_rec      : OPEN DELIM POINTER DELIM TAG_FAM
                fam_subs
 	       { CHECK0 }
                CLOSE
-               { end_record(REC_FAM, $<ctxt>6); }
+               { end_record(REC_FAM, $<ctxt>6, NULL); }
              ;
 
 fam_subs     : /* empty */
@@ -1027,7 +1035,7 @@ indiv_rec   : OPEN DELIM POINTER DELIM TAG_INDI
               indi_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_INDI, $<ctxt>6); }
+              { end_record(REC_INDI, $<ctxt>6, NULL); }
             ;
 
 indi_subs   : /* empty */
@@ -1247,7 +1255,7 @@ multim_rec  : OPEN DELIM POINTER DELIM TAG_OBJE
               obje_subs
 	      { CHECK2(FORM, BLOB) }
               CLOSE
-              { end_record(REC_OBJE, $<ctxt>6); }
+              { end_record(REC_OBJE, $<ctxt>6, NULL); }
             ;
 
 obje_subs   : /* empty */
@@ -1297,12 +1305,16 @@ obje_blob_sect : OPEN DELIM TAG_BLOB
                  { $<ctxt>$ = start_element(ELT_OBJE_BLOB,
 					    PARENT, $1, $3, NULL,
 					    GEDCOM_MAKE_NULL(val1));
+		   reset_buffer(&concat_buffer);
+		   safe_buf_append(&concat_buffer, "");
 		   START(BLOB, $1, $<ctxt>$)              
 		 }
                  obje_blob_subs
 		 { CHECK1(CONT) }
                  CLOSE              
-		 { end_element(ELT_OBJE_BLOB, PARENT, $<ctxt>4, NULL);
+                 { char* complete = get_buf_string(&concat_buffer);
+		   end_element(ELT_OBJE_BLOB, PARENT, $<ctxt>4,
+			       GEDCOM_MAKE_STRING(val1, complete));
 		 }
                ;
 
@@ -1318,6 +1330,7 @@ obje_blob_cont_sect : OPEN DELIM TAG_CONT mand_line_item
                       { $<ctxt>$ = start_element(ELT_OBJE_BLOB_CONT,
 					         PARENT, $1, $3, $4, 
 						 GEDCOM_MAKE_STRING(val1, $4));
+		        safe_buf_append(&concat_buffer, $4);
 		        START(CONT, $1, $<ctxt>$)               
 		      }                
 		      no_std_subs                
@@ -1355,11 +1368,15 @@ note_rec    : OPEN DELIM POINTER DELIM TAG_NOTE note_line_item
 		$<ctxt>$ = start_record(REC_NOTE,
 					$1, GEDCOM_MAKE_XREF_PTR(val1, xr), $5,
 					$6, GEDCOM_MAKE_STRING(val2, $6));
+		reset_buffer(&concat_buffer);
+		safe_buf_append(&concat_buffer, $6);
 		START(NOTE, $1, $<ctxt>$) }
               note_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_NOTE, $<ctxt>7); }
+              { char* complete = get_buf_string(&concat_buffer);
+		end_record(REC_NOTE, $<ctxt>7,
+			   GEDCOM_MAKE_STRING(val1, complete)); }
             ;
 
 note_line_item : /* empty */
@@ -1400,7 +1417,7 @@ repos_rec   : OPEN DELIM POINTER DELIM TAG_REPO
               repo_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_REPO, $<ctxt>6); }
+              { end_record(REC_REPO, $<ctxt>6, NULL); }
             ;
 
 repo_subs   : /* empty */
@@ -1443,7 +1460,7 @@ source_rec  : OPEN DELIM POINTER DELIM TAG_SOUR
               sour_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_SOUR, $<ctxt>6); }
+              { end_record(REC_SOUR, $<ctxt>6, NULL); }
             ;
 
 sour_subs   : /* empty */
@@ -1561,12 +1578,16 @@ sour_auth_sect : OPEN DELIM TAG_AUTH mand_line_item
                  { $<ctxt>$ = start_element(ELT_SOUR_AUTH,
 					    PARENT, $1, $3, $4, 
 					    GEDCOM_MAKE_STRING(val1, $4));
+		   reset_buffer(&concat_buffer);
+		   safe_buf_append(&concat_buffer, $4);
 		   START(AUTH, $1, $<ctxt>$) 
                  }
                  sour_auth_subs
 		 { CHECK0 }
                  CLOSE 
-                 { end_element(ELT_SOUR_AUTH, PARENT, $<ctxt>5, NULL);
+                 { char* complete = get_buf_string(&concat_buffer);
+		   end_element(ELT_SOUR_AUTH, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_STRING(val1, complete));
 		 }
                ;
 
@@ -1583,12 +1604,16 @@ sour_titl_sect : OPEN DELIM TAG_TITL mand_line_item
                  { $<ctxt>$ = start_element(ELT_SOUR_TITL,
 					    PARENT, $1, $3, $4, 
 					    GEDCOM_MAKE_STRING(val1, $4));
+		   reset_buffer(&concat_buffer);
+		   safe_buf_append(&concat_buffer, $4);
 		   START(TITL, $1, $<ctxt>$)   
                  }
                  sour_titl_subs 
 		 { CHECK0 }
                  CLOSE   
-                 { end_element(ELT_SOUR_TITL, PARENT, $<ctxt>5, NULL);
+                 { char* complete = get_buf_string(&concat_buffer);
+		   end_element(ELT_SOUR_TITL, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_STRING(val1, complete));
 		 }
                ;
 
@@ -1619,12 +1644,16 @@ sour_publ_sect : OPEN DELIM TAG_PUBL mand_line_item
                  { $<ctxt>$ = start_element(ELT_SOUR_PUBL,
 					    PARENT, $1, $3, $4, 
 					    GEDCOM_MAKE_STRING(val1, $4));
+		   reset_buffer(&concat_buffer);
+		   safe_buf_append(&concat_buffer, $4);
 		   START(PUBL, $1, $<ctxt>$)            
                  }
                  sour_publ_subs  
 		 { CHECK0 }
                  CLOSE            
-                 { end_element(ELT_SOUR_PUBL, PARENT, $<ctxt>5, NULL);
+                 { char* complete = get_buf_string(&concat_buffer);
+		   end_element(ELT_SOUR_PUBL, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_STRING(val1, complete));
 		 }
                ;
 
@@ -1641,12 +1670,16 @@ sour_text_sect : OPEN DELIM TAG_TEXT mand_line_item
                  { $<ctxt>$ = start_element(ELT_SOUR_TEXT,
 					    PARENT, $1, $3, $4, 
 					    GEDCOM_MAKE_STRING(val1, $4));
+		   reset_buffer(&concat_buffer);
+		   safe_buf_append(&concat_buffer, $4);
 		   START(TEXT, $1, $<ctxt>$)    
                  }
                  sour_text_subs  
 		 { CHECK0 }
                  CLOSE    
-                 { end_element(ELT_SOUR_TEXT, PARENT, $<ctxt>5, NULL);
+                 { char* complete = get_buf_string(&concat_buffer);
+		   end_element(ELT_SOUR_TEXT, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_STRING(val1, complete));
 		 }
                ;
 
@@ -1672,7 +1705,7 @@ submis_rec  : OPEN DELIM POINTER DELIM TAG_SUBN
               subn_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_SUBN, $<ctxt>6); }
+              { end_record(REC_SUBN, $<ctxt>6, NULL); }
             ;
 
 subn_subs   : /* empty */
@@ -1804,7 +1837,7 @@ submit_rec : OPEN DELIM POINTER DELIM TAG_SUBM
              subm_subs
 	     { CHECK1(NAME) }
              CLOSE
-             { end_record(REC_SUBM, $<ctxt>6); }
+             { end_record(REC_SUBM, $<ctxt>6, NULL); }
            ;
 
 subm_subs  : /* empty */
@@ -1890,12 +1923,16 @@ addr_sect   : OPEN DELIM TAG_ADDR mand_line_item
               { $<ctxt>$ = start_element(ELT_SUB_ADDR,
 					 PARENT, $1, $3, $4, 
 					 GEDCOM_MAKE_STRING(val1, $4));
+	        reset_buffer(&concat_buffer);
+		safe_buf_append(&concat_buffer, $4);
 	        START(ADDR, $1, $<ctxt>$)  
               }
               addr_subs
 	      { CHECK0 }
               CLOSE  
-              { end_element(ELT_SUB_ADDR, PARENT, $<ctxt>5, NULL);
+              { char* complete = get_buf_string(&concat_buffer);
+		end_element(ELT_SUB_ADDR, PARENT, $<ctxt>5,
+			    GEDCOM_MAKE_STRING(val1, complete));
 	      }
             ;
 
@@ -1917,6 +1954,8 @@ addr_cont_sect : OPEN DELIM TAG_CONT mand_line_item
                  { $<ctxt>$ = start_element(ELT_SUB_ADDR_CONT,
 					    PARENT, $1, $3, $4, 
 					    GEDCOM_MAKE_STRING(val1, $4));
+		   safe_buf_append(&concat_buffer, "\n");
+		   safe_buf_append(&concat_buffer, $4);
 		   START(CONT, $1, $<ctxt>$)               
                  }               
                  no_std_subs               
@@ -2179,6 +2218,8 @@ cont_sect : OPEN DELIM TAG_CONT mand_line_item
             { $<ctxt>$ = start_element(ELT_SUB_CONT,
 				       PARENT, $1, $3, $4, 
 				       GEDCOM_MAKE_STRING(val1, $4));
+	      safe_buf_append(&concat_buffer, "\n");
+	      safe_buf_append(&concat_buffer, $4);
 	      START(CONT, $1, $<ctxt>$)  
             }  
             no_std_subs  
@@ -2192,6 +2233,7 @@ conc_sect : OPEN DELIM TAG_CONC mand_line_item
             { $<ctxt>$ = start_element(ELT_SUB_CONC,
 				       PARENT, $1, $3, $4, 
 				       GEDCOM_MAKE_STRING(val1, $4));
+	      safe_buf_append(&concat_buffer, $4);
 	      START(CONC, $1, $<ctxt>$)  
             }  
             no_std_subs  
@@ -3000,7 +3042,7 @@ note_struc_link_sect : OPEN DELIM TAG_NOTE DELIM POINTER
 			   = start_element(ELT_SUB_NOTE,
 					   PARENT, $1, $3, $5,
 					   GEDCOM_MAKE_XREF_PTR(val1, xr));
-		         START(NOTE, $1, $<ctxt>$) 
+			 START(NOTE, $1, $<ctxt>$) 
                        }
                        note_struc_link_subs
 		       { CHECK0 }
@@ -3022,12 +3064,17 @@ note_struc_emb_sect : OPEN DELIM TAG_NOTE opt_line_item
 			  = start_element(ELT_SUB_NOTE,
 					  PARENT, $1, $3, $4,
 					 GEDCOM_MAKE_NULL_OR_STRING(val1, $4));
+		        reset_buffer(&concat_buffer);
+			if ($4)
+			  safe_buf_append(&concat_buffer, $4);
 		        START(NOTE, $1, $<ctxt>$) 
                       }
                       note_struc_emb_subs
 		      { CHECK0 }
                       CLOSE 
-                      { end_element(ELT_SUB_NOTE, PARENT, $<ctxt>5, NULL);
+                      { char* complete = get_buf_string(&concat_buffer);
+			end_element(ELT_SUB_NOTE, PARENT, $<ctxt>5,
+				    GEDCOM_MAKE_STRING(val1, complete));
 		      }
                     ;
 
@@ -3327,13 +3374,16 @@ source_cit_text_sect : OPEN DELIM TAG_TEXT mand_line_item
 			   = start_element(ELT_SUB_SOUR_TEXT,
 					   PARENT, $1, $3, $4,
 					   GEDCOM_MAKE_STRING(val1, $4));
-		         START(TEXT, $1, $<ctxt>$)  
+		        reset_buffer(&concat_buffer);
+		        safe_buf_append(&concat_buffer, $4);
+		        START(TEXT, $1, $<ctxt>$)  
                        }
                        source_cit_text_subs
 		       { CHECK0 }
                        CLOSE  
-                       { end_element(ELT_SUB_SOUR_TEXT, PARENT, $<ctxt>5,
-				     NULL);
+                       { char* complete = get_buf_string(&concat_buffer);
+			 end_element(ELT_SUB_SOUR_TEXT, PARENT, $<ctxt>5,
+				     GEDCOM_MAKE_STRING(val1, complete));
 		       }
                      ;
 
@@ -3364,12 +3414,16 @@ source_cit_emb_sect : OPEN DELIM TAG_SOUR mand_line_item
                       { $<ctxt>$ = start_element(ELT_SUB_SOUR,
 						 PARENT, $1, $3, $4,
 						 GEDCOM_MAKE_STRING(val1, $4));
+		        reset_buffer(&concat_buffer);
+		        safe_buf_append(&concat_buffer, $4);
 		        START(SOUR, $1, $<ctxt>$) 
                       }
                       source_cit_emb_subs
 		      { CHECK0 }
                       CLOSE 
-                      { end_element(ELT_SUB_SOUR, PARENT, $<ctxt>5, NULL);
+                      { char* complete = get_buf_string(&concat_buffer);
+			end_element(ELT_SUB_SOUR, PARENT, $<ctxt>5,
+				    GEDCOM_MAKE_STRING(val1, complete));
 		      }
                     ;
 
@@ -3518,7 +3572,7 @@ user_rec    : OPEN DELIM opt_xref USERTAG
 	      user_sects
               { CHECK0 }
 	      CLOSE
-              { end_record(REC_USER, $<ctxt>7); }
+              { end_record(REC_USER, $<ctxt>7, NULL); }
             ;
 user_sect   : OPEN DELIM opt_xref USERTAG
               { if ($4.string[0] != '_') {
@@ -3887,6 +3941,11 @@ void clean_up()
     pop_countarray();
     --count_level;
   }
+}
+
+void cleanup_concat_buffer()
+{
+  cleanup_buffer(&concat_buffer);
 }
 
 /* Enabling debug mode */

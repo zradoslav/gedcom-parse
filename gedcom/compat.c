@@ -126,7 +126,7 @@ void compat_generate_submitter()
   end_element(ELT_SUBM_NAME, self1, self2, NULL);
 
   /* close "0 SUBM" */
-  end_record(REC_SUBM, self1);
+  end_record(REC_SUBM, self1, NULL);
 }
 
 void compat_generate_gedcom(Gedcom_ctxt parent)

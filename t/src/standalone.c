@@ -62,7 +62,7 @@ Gedcom_ctxt header_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
   return (Gedcom_ctxt)1;
 }
 
-void header_end(Gedcom_rec rec, Gedcom_ctxt self)
+void header_end(Gedcom_rec rec, Gedcom_ctxt self, Gedcom_val parsed_value)
 {
   output(1, "Header end, context is %ld\n", void_ptr_to_int(self));
 }
@@ -102,7 +102,7 @@ Gedcom_ctxt note_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
   return (Gedcom_ctxt)int_to_void_ptr(tag_value);
 }
 
-void family_end(Gedcom_rec rec, Gedcom_ctxt self)
+void family_end(Gedcom_rec rec, Gedcom_ctxt self, Gedcom_val parsed_value)
 {
   output(1, "Family end, xref is %s\n",
 	 family_xreftags[void_ptr_to_int(self)]);
@@ -132,6 +132,23 @@ void source_end(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
 {
   output(1, "Source context %ld in parent %ld\n",
 	 void_ptr_to_int(self), void_ptr_to_int(parent));
+}
+
+Gedcom_ctxt head_note_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
+			    char *tag, char* raw_value,
+			    int tag_value, Gedcom_val parsed_value)
+{
+  Gedcom_ctxt self = (Gedcom_ctxt)(void_ptr_to_int(parent));
+  output(1, "Note: %s (ctxt is %ld, parent is %ld)\n",
+	 GEDCOM_STRING(parsed_value), void_ptr_to_int(self),
+	 void_ptr_to_int(parent));
+  return self;
+}
+
+void head_note_end(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
+		   Gedcom_val parsed_value)
+{
+  output(1, "Complete note:\n%s\n", GEDCOM_STRING(parsed_value));
 }
 
 Gedcom_ctxt date_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
@@ -207,6 +224,7 @@ void subscribe_callbacks()
   gedcom_subscribe_to_record(REC_SUBM, submit_start, NULL);
   gedcom_subscribe_to_record(REC_USER, rec_start, NULL);
   gedcom_subscribe_to_element(ELT_HEAD_SOUR, source_start, source_end);
+  gedcom_subscribe_to_element(ELT_HEAD_NOTE, head_note_start, head_note_end);
   gedcom_subscribe_to_element(ELT_SOUR_DATA_EVEN_DATE,
 			      date_start, NULL);
   gedcom_subscribe_to_element(ELT_SUB_EVT_DATE, date_start, NULL);

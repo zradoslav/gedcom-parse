@@ -185,7 +185,8 @@ void gom_default_callback (Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,
                  level, tag, raw_value);
 }
 
-void def_rec_end(Gedcom_rec rec UNUSED, Gedcom_ctxt self)
+void def_rec_end(Gedcom_rec rec UNUSED, Gedcom_ctxt self,
+		 Gedcom_val parsed_value UNUSED)
 {
   Gom_ctxt ctxt = (Gom_ctxt)self;
   destroy_gom_ctxt(ctxt);

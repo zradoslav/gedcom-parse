@@ -73,11 +73,11 @@ Gedcom_ctxt start_record(Gedcom_rec rec,
     return NULL;
 }
 
-void end_record(Gedcom_rec rec, Gedcom_ctxt self)
+void end_record(Gedcom_rec rec, Gedcom_ctxt self, Gedcom_val parsed_value)
 {
   Gedcom_rec_end_cb cb = record_end_callback[rec];
   if (cb != NULL)
-    (*cb)(rec, self);
+    (*cb)(rec, self, parsed_value);
 }
 
 Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent, 

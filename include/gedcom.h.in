@@ -480,7 +480,7 @@ typedef Gedcom_ctxt
          char *raw_value, int tag_value, Gedcom_val parsed_value);
 typedef void
         (*Gedcom_rec_end_cb)
-        (Gedcom_rec rec, Gedcom_ctxt self);
+        (Gedcom_rec rec, Gedcom_ctxt self, Gedcom_val parsed_value);
 
 typedef Gedcom_ctxt
         (*Gedcom_elt_start_cb)

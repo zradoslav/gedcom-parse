@@ -35,7 +35,7 @@ Source context 1001 in parent 1
 == 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
 == 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
 == 1 LANG (334) language (ctxt is 1, conversion failures: 0)
-== 1 NOTE (348) A general note about this file: (ctxt is 1, conversion failures: 0)
+Note: A general note about this file: (ctxt is 1, parent is 1)
 == 2 CONT (300) It demonstrates most of the data which can be submitted using GEDCOM5.5. It shows the relatives of PERSON1: (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) His 2 wifes (PERSON2, PERSON8), his parents (father: PERSON5, mother not given), (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) adoptive parents (mother: PERSON6, father not given) and his 3 children (PERSON3, PERSON4 and PERSON7). (ctxt is 1, conversion failures: 0)
@@ -52,6 +52,23 @@ Source context 1001 in parent 1
 == 2 CONT (300) This @ (commercial at) character may only appear ONCE! (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
 == 2 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+Complete note:
+A general note about this file:
+It demonstrates most of the data which can be submitted using GEDCOM5.5. It shows the relatives of PERSON1:
+His 2 wifes (PERSON2, PERSON8), his parents (father: PERSON5, mother not given),
+adoptive parents (mother: PERSON6, father not given) and his 3 children (PERSON3, PERSON4 and PERSON7).
+In PERSON1, FAMILY1, SUBMITTER, SUBMISSION and SOURCE1 as many datafields as possible are used.
+All other individuals/families contain no data. Note, that many data tags can appear more than once
+(in this transmission this is demonstrated with tags: NAME, OCCU, PLACE and NOTE. Seek the word 'another'.
+The data transmitted here do not make sence. Just the HEAD.DATE tag contains the date of the creation
+of this file and will change in future Versions!
+This file is created by H. Eichmann: h.eichmann@gmx.de. Feel free to copy and use it for any
+non-commercial purpose. For the creation the GEDCOM standard Release 5.5 (2 JAN 1996) has been used.
+Copyright: The church of Jesus Christ of latter-day saints, gedcom@gedcom.org
+Download it (the GEDCOM 5.5 specs) from: ftp.gedcom.com/pub/genealogy/gedcom.
+Some Specials: This line is very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long but not too long (255 caharcters is the limit).
+This @ (commercial at) character may only appear ONCE!
+Note continued here. The word TEST should not be broken!
 == 1 _MYOWNTAG (264) This is a non-standard tag. Not recommended but allowed (ctxt is 1, conversion failures: 0)
 Header end, context is 1
 Submitter, xref is @SUBMITTER@
@@ -2307,7 +2324,7 @@ Source context 1001 in parent 1
 == 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
 == 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
 == 1 LANG (334) language (ctxt is 1, conversion failures: 0)
-== 1 NOTE (348) A general note about this file: (ctxt is 1, conversion failures: 0)
+Note: A general note about this file: (ctxt is 1, parent is 1)
 == 2 CONT (300) It demonstrates most of the data which can be submitted using GEDCOM5.5. It shows the relatives of PERSON1: (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) His 2 wifes (PERSON2, PERSON8), his parents (father: PERSON5, mother not given), (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) adoptive parents (mother: PERSON6, father not given) and his 3 children (PERSON3, PERSON4 and PERSON7). (ctxt is 1, conversion failures: 0)
@@ -2324,6 +2341,23 @@ Source context 1001 in parent 1
 == 2 CONT (300) This @ (commercial at) character may only appear ONCE! (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) Note continued here. The word TE (ctxt is 1, conversion failures: 0)
 == 2 CONC (297) ST should not be broken! (ctxt is 1, conversion failures: 0)
+Complete note:
+A general note about this file:
+It demonstrates most of the data which can be submitted using GEDCOM5.5. It shows the relatives of PERSON1:
+His 2 wifes (PERSON2, PERSON8), his parents (father: PERSON5, mother not given),
+adoptive parents (mother: PERSON6, father not given) and his 3 children (PERSON3, PERSON4 and PERSON7).
+In PERSON1, FAMILY1, SUBMITTER, SUBMISSION and SOURCE1 as many datafields as possible are used.
+All other individuals/families contain no data. Note, that many data tags can appear more than once
+(in this transmission this is demonstrated with tags: NAME, OCCU, PLACE and NOTE. Seek the word 'another'.
+The data transmitted here do not make sence. Just the HEAD.DATE tag contains the date of the creation
+of this file and will change in future Versions!
+This file is created by H. Eichmann: h.eichmann@gmx.de. Feel free to copy and use it for any
+non-commercial purpose. For the creation the GEDCOM standard Release 5.5 (2 JAN 1996) has been used.
+Copyright: The church of Jesus Christ of latter-day saints, gedcom@gedcom.org
+Download it (the GEDCOM 5.5 specs) from: ftp.gedcom.com/pub/genealogy/gedcom.
+Some Specials: This line is very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long but not too long (255 caharcters is the limit).
+This @ (commercial at) character may only appear ONCE!
+Note continued here. The word TEST should not be broken!
 == 1 _MYOWNTAG (264) This is a non-standard tag. Not recommended but allowed (ctxt is 1, conversion failures: 0)
 Header end, context is 1
 Submitter, xref is @SUBMITTER@

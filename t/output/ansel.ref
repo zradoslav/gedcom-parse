@@ -7,7 +7,7 @@ Source context 1001 in parent 1
 == 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
 == 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
 == 2 FORM (325) Lineage-Linked (ctxt is 1, conversion failures: 0)
-== 1 NOTE (348) This GEDCOM transmission contains a charcter set test. It consists (ctxt is 1, conversion failures: 0)
+Note: This GEDCOM transmission contains a charcter set test. It consists (ctxt is 1, parent is 1)
 == 2 CONT (300) of a single family (two parents, many children). The parents are empty (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) in the ANSEL version of the transmission. The children contain the (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) combined letters and the special charcters (value > 128). (ctxt is 1, conversion failures: 0)
@@ -35,6 +35,35 @@ Source context 1001 in parent 1
 == 2 CONT (300) (see: ftp.gedcom.org/pub/genealogy/gedcom/gedcom55.zip) (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) and on an updated ANSEL description in: (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) http://www.gendex.com/gedcom55/55gcappd.htm (ctxt is 1, conversion failures: 0)
+Complete note:
+This GEDCOM transmission contains a charcter set test. It consists
+of a single family (two parents, many children). The parents are empty
+in the ANSEL version of the transmission. The children contain the
+combined letters and the special charcters (value > 128).
+The NAME tag of each 'person' is the name of the characters tested
+within the person. The BIRT.PLAC and DEAT.PLAC tags contain the
+test-strings.
+The first children contain special characters. Here the test string
+is 'character name (test character), ...' where 'character name'
+is the name of the character (like 'british pound') and
+'test character' is a single byte representing this character
+in ANSEL.
+The last children contain combined characters. The name tag gives
+the name of the non-spacing character tested within the 'person'.
+Within the name the hex-values of the non-spacing character is given
+in ANSEL and UNICODE. The test strings contain the whole latin
+alphabet combined with this non-spacing character: captial letters
+in the BIRT.PLAC tag and small letters in the DEAT.PLAC tag.
+Example: One 'person' is named 'circle above'. The BIRT.PLAC
+tag contains all 26 capital letters with a small ring on top.
+Note: Not all charcters can be displayed on all computers.
+This strongly depends on the installed fonts and codepages.
+Many of the combined characters generated here do not even have
+a UNICDOE code point!
+This file based mainly on the GEDCOM 5.5 specification
+(see: ftp.gedcom.org/pub/genealogy/gedcom/gedcom55.zip)
+and on an updated ANSEL description in:
+http://www.gendex.com/gedcom55/55gcappd.htm
 == 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 20 JAN 1998 (ctxt is 1, conversion failures: 0)
 Header end, context is 1
@@ -328,7 +357,7 @@ Source context 1001 in parent 1
 == 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
 == 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
 == 2 FORM (325) Lineage-Linked (ctxt is 1, conversion failures: 0)
-== 1 NOTE (348) This GEDCOM transmission contains a charcter set test. It consists (ctxt is 1, conversion failures: 0)
+Note: This GEDCOM transmission contains a charcter set test. It consists (ctxt is 1, parent is 1)
 == 2 CONT (300) of a single family (two parents, many children). The parents are empty (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) in the ANSEL version of the transmission. The children contain the (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) combined letters and the special charcters (value > 128). (ctxt is 1, conversion failures: 0)
@@ -356,6 +385,35 @@ Source context 1001 in parent 1
 == 2 CONT (300) (see: ftp.gedcom.org/pub/genealogy/gedcom/gedcom55.zip) (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) and on an updated ANSEL description in: (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) http://www.gendex.com/gedcom55/55gcappd.htm (ctxt is 1, conversion failures: 0)
+Complete note:
+This GEDCOM transmission contains a charcter set test. It consists
+of a single family (two parents, many children). The parents are empty
+in the ANSEL version of the transmission. The children contain the
+combined letters and the special charcters (value > 128).
+The NAME tag of each 'person' is the name of the characters tested
+within the person. The BIRT.PLAC and DEAT.PLAC tags contain the
+test-strings.
+The first children contain special characters. Here the test string
+is 'character name (test character), ...' where 'character name'
+is the name of the character (like 'british pound') and
+'test character' is a single byte representing this character
+in ANSEL.
+The last children contain combined characters. The name tag gives
+the name of the non-spacing character tested within the 'person'.
+Within the name the hex-values of the non-spacing character is given
+in ANSEL and UNICODE. The test strings contain the whole latin
+alphabet combined with this non-spacing character: captial letters
+in the BIRT.PLAC tag and small letters in the DEAT.PLAC tag.
+Example: One 'person' is named 'circle above'. The BIRT.PLAC
+tag contains all 26 capital letters with a small ring on top.
+Note: Not all charcters can be displayed on all computers.
+This strongly depends on the installed fonts and codepages.
+Many of the combined characters generated here do not even have
+a UNICDOE code point!
+This file based mainly on the GEDCOM 5.5 specification
+(see: ftp.gedcom.org/pub/genealogy/gedcom/gedcom55.zip)
+and on an updated ANSEL description in:
+http://www.gendex.com/gedcom55/55gcappd.htm
 == 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 20 JAN 1998 (ctxt is 1, conversion failures: 0)
 Header end, context is 1

@@ -30,7 +30,8 @@
 Gedcom_ctxt start_record(Gedcom_rec rec,
 			 int level, Gedcom_val xref, struct tag_struct tag,
 			 char *raw_value, Gedcom_val parsed_value);
-void        end_record(Gedcom_rec rec, Gedcom_ctxt self);
+void        end_record(Gedcom_rec rec, Gedcom_ctxt self,
+		       Gedcom_val parsed_value);
 
 Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent,
 			  int level, struct tag_struct tag, char *raw_value,

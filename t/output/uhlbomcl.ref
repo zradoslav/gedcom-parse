@@ -7,7 +7,7 @@ Source context 1001 in parent 1
 == 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
 == 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
 == 2 FORM (325) Lineage-Linked (ctxt is 1, conversion failures: 0)
-== 1 NOTE (348) UNICODE transmission test. (ctxt is 1, conversion failures: 0)
+Note: UNICODE transmission test. (ctxt is 1, parent is 1)
 == 2 CONT (300) Each UNICODE character is stored in Hi-Lo order (non-Intel) (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) The transmission does start with a byte order mark (BOM) (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) Each line is terminated using carriage return + line feed. (ctxt is 1, conversion failures: 0)
@@ -41,6 +41,41 @@ Source context 1001 in parent 1
 == 2 CONT (300) www.unicode.org delivered the connection from the code point names (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) to the actual values. Note, that much more UNICODE characters are (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) possible (like the chinese alphabet). (ctxt is 1, conversion failures: 0)
+Complete note:
+UNICODE transmission test.
+Each UNICODE character is stored in Hi-Lo order (non-Intel)
+The transmission does start with a byte order mark (BOM)
+Each line is terminated using carriage return + line feed.
+This GEDCOM transmission contains a charcter set test. It consists
+of a single family (two parents, many children). The parents are used
+to test the cyrillic and greek letters. In both 'persons' the
+BIRT.PLAC tag contains some capital and the DEAT.PLAC tag some
+small letters of alphabet.
+The children contain some combined letters and special charcters.
+The NAME tag of each 'person' is the name of the characters tested
+within the person.
+The first children contain some special characters. Here the strings
+given in BIRT.PLAC and DEAT.PLAC are 'character name (test character), ...'
+where 'character name'is the name of the character (like 'british pound')
+and 'test character' is a single byte representing this character
+in ANSEL.
+The last children contain some combined characters. The name tag gives
+the name of the non-spacing character tested within the 'person'.
+Within the name the hex-values of the non-spacing character is given
+UNICODE. The DEAT.PLAC tag contains all latin characters which are
+combined with the non-spacing character tested here and which have
+a UNICODE code point. The BIRT.PLAC tag contain the same letters
+without the non-spacing part.
+Example: One 'person' is named 'ring above'. The BIRT.PLAC
+tag contains all latin letters which have a UNICODE code point if
+combined with a ring above. The DEAT.PLAC tag contain the same
+charcters combined with this ring.
+Note: Not all charcters can be displayed on all computers.
+This strongly depends on the installed fonts and codepages.
+This file based on the following source:
+www.unicode.org delivered the connection from the code point names
+to the actual values. Note, that much more UNICODE characters are
+possible (like the chinese alphabet).
 == 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 20 JAN 1998 (ctxt is 1, conversion failures: 0)
 Header end, context is 1
@@ -342,7 +377,7 @@ Source context 1001 in parent 1
 == 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
 == 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
 == 2 FORM (325) Lineage-Linked (ctxt is 1, conversion failures: 0)
-== 1 NOTE (348) UNICODE transmission test. (ctxt is 1, conversion failures: 0)
+Note: UNICODE transmission test. (ctxt is 1, parent is 1)
 == 2 CONT (300) Each UNICODE character is stored in Hi-Lo order (non-Intel) (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) The transmission does start with a byte order mark (BOM) (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) Each line is terminated using carriage return + line feed. (ctxt is 1, conversion failures: 0)
@@ -376,6 +411,41 @@ Source context 1001 in parent 1
 == 2 CONT (300) www.unicode.org delivered the connection from the code point names (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) to the actual values. Note, that much more UNICODE characters are (ctxt is 1, conversion failures: 0)
 == 2 CONT (300) possible (like the chinese alphabet). (ctxt is 1, conversion failures: 0)
+Complete note:
+UNICODE transmission test.
+Each UNICODE character is stored in Hi-Lo order (non-Intel)
+The transmission does start with a byte order mark (BOM)
+Each line is terminated using carriage return + line feed.
+This GEDCOM transmission contains a charcter set test. It consists
+of a single family (two parents, many children). The parents are used
+to test the cyrillic and greek letters. In both 'persons' the
+BIRT.PLAC tag contains some capital and the DEAT.PLAC tag some
+small letters of alphabet.
+The children contain some combined letters and special charcters.
+The NAME tag of each 'person' is the name of the characters tested
+within the person.
+The first children contain some special characters. Here the strings
+given in BIRT.PLAC and DEAT.PLAC are 'character name (test character), ...'
+where 'character name'is the name of the character (like 'british pound')
+and 'test character' is a single byte representing this character
+in ANSEL.
+The last children contain some combined characters. The name tag gives
+the name of the non-spacing character tested within the 'person'.
+Within the name the hex-values of the non-spacing character is given
+UNICODE. The DEAT.PLAC tag contains all latin characters which are
+combined with the non-spacing character tested here and which have
+a UNICODE code point. The BIRT.PLAC tag contain the same letters
+without the non-spacing part.
+Example: One 'person' is named 'ring above'. The BIRT.PLAC
+tag contains all latin letters which have a UNICODE code point if
+combined with a ring above. The DEAT.PLAC tag contain the same
+charcters combined with this ring.
+Note: Not all charcters can be displayed on all computers.
+This strongly depends on the installed fonts and codepages.
+This file based on the following source:
+www.unicode.org delivered the connection from the code point names
+to the actual values. Note, that much more UNICODE characters are
+possible (like the chinese alphabet).
 == 1 SUBM (382) @SUBMITTER@ (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 20 JAN 1998 (ctxt is 1, conversion failures: 0)
 Header end, context is 1
