@@ -21,11 +21,11 @@
 /* $Id$ */
 /* $Name$ */
 
+#include "gom.h"
 #include <stdio.h>
 #include <stdarg.h>
 #include <locale.h>
 #include "gedcom.h"
-#include "gom.h"
 
 #define OUTFILE "testgedcom.out"
 FILE* outfile = NULL;
