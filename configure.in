@@ -98,6 +98,18 @@ point to an existing installation of that library (see README)
   ])
 fi
 
+if test "${with_libiconv_prefix+set}" = set; then
+  withval="$with_libiconv_prefix"
+  
+    for dir in `echo "$withval" | tr : ' '`; do
+      if test -d $dir/lib; then ICONV_LIBPATH="$ICONV_LIBPATH -L$dir/lib"; fi
+    done
+
+  ICONV_PATH=`echo "$withval" | tr : '/bin:'`
+  ICONV_PATH="$ICONV_PATH/bin"
+fi
+AC_SUBST(ICONV_PATH)
+
 AC_MSG_CHECKING(for location of iconv)
 if test "$am_cv_lib_iconv" = yes; then
   AC_MSG_RESULT(libiconv)
@@ -121,6 +133,11 @@ library (see README).
 *******************************************************************************
   ])
 fi
+
+case "$host_os" in
+ darwin*) # Hack to get correct locale_charset() function
+          LDFLAGS="$ICONV_LIBPATH -liconv $LDFLAGS";;
+esac
 
 AC_OUTPUT(GNUmakefile
           Makefile

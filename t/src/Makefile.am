@@ -12,33 +12,33 @@ noinst_HEADERS = output.h dump_gom.h portability.h
 
 testgedcom_SOURCES = standalone.c output.c portability.c
 testgedcom_LDFLAGS = -L../../gedcom/.libs -L../../utf8/.libs
-testgedcom_LDADD  = -lgedcom -lutf8tools
+testgedcom_LDADD  = -lgedcom -lutf8tools $(LIBICONV)
 
 pathtest_SOURCES = pathtest.c
 pathtest_LDFLAGS = -L../../gedcom/.libs -L../../utf8/.libs
-pathtest_LDADD = -lgedcom -lutf8tools
+pathtest_LDADD = -lgedcom -lutf8tools $(LIBICONV)
 
 gomtest_SOURCES = gomtest.c output.c dump_gom.c portability.c
 gomtest_LDFLAGS = -L../../gedcom/.libs -L../../gom/.libs -L../../utf8/.libs
-gomtest_LDADD = -lgedcom_gom -lgedcom -lutf8tools
+gomtest_LDADD = -lgedcom_gom -lgedcom -lutf8tools $(LIBICONV)
 
 updatetest_SOURCES = update.c output.c portability.c
 updatetest_LDFLAGS = -L../../gedcom/.libs -L../../utf8/.libs
-updatetest_LDADD = -lgedcom -lutf8tools
+updatetest_LDADD = -lgedcom -lutf8tools $(LIBICONV)
 
 updategomtest_SOURCES = update_gom.c output.c dump_gom.c portability.c
 updategomtest_LDFLAGS = -L../../gedcom/.libs -L../../gom/.libs \
                         -L../../utf8/.libs
-updategomtest_LDADD = -lgedcom_gom -lgedcom -lutf8tools
+updategomtest_LDADD = -lgedcom_gom -lgedcom -lutf8tools $(LIBICONV)
 
 writegomtest_SOURCES = gom_write.c output.c portability.c
 writegomtest_LDFLAGS = -L../../gedcom/.libs -L../../gom/.libs \
                        -L../../utf8/.libs
-writegomtest_LDADD = -lgedcom_gom -lgedcom -lutf8tools
+writegomtest_LDADD = -lgedcom_gom -lgedcom -lutf8tools $(LIBICONV)
 
 testintl_SOURCES = testintl.c output.c
 testintl_LDFLAGS = -L../../gedcom/.libs -L../../utf8/.libs
-testintl_LDADD = -lgedcom -lutf8tools @INTLLIBS@
+testintl_LDADD = -lgedcom -lutf8tools @INTLLIBS@ $(LIBICONV)
 
 TEST_SCRIPT=test_script test_gom test_update test_intl test_updategom test_writegom test_prologue.sh test_bulk.sh
 
