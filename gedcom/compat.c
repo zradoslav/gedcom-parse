@@ -117,6 +117,7 @@ void enable_compat_msg(const char* program_name, int version)
 
 void set_compatibility_program(const char* program)
 {
+  compatibility_program = 0;
   if (compat_enabled) {
     if (! strncmp(program, "ftree", 6)) {
       compatibility_program = CP_FTREE;
