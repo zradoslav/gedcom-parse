@@ -33,7 +33,7 @@ builddir=`pwd`
 ltcmd="$builddir/../libtool --mode=execute -dlopen $builddir/../gedcom/libgedcom.la"
 export GCONV_PATH=.:$GCONV_PATH
 ln -s $srcdir/../data/gedcom.enc .
-ln -s $srcdir/../data/new.ged .
+ln -s $builddir/../data/new.ged .
 ln -s $builddir/../iconv/glibc/.libs/ANSI_Z39.47.so .
 ln -s $srcdir/../iconv/glibc/gconv-modules .
 rm -f core
