@@ -112,6 +112,7 @@ README).
 fi
 
 AC_OUTPUT(GNUmakefile
+	  Makefile
 	  README
 	  gedcom/Makefile
 	  gedcom/calendar/Makefile
