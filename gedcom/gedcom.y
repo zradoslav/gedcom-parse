@@ -157,13 +157,14 @@ int  gedcom_high_level_debug = 0;
 Gedcom_err_mech error_mechanism = IMMED_FAIL;
 Gedcom_val_struct val1;
 Gedcom_val_struct val2; 
- 
-char line_item_buf[MAXGEDCLINELEN * UTF_FACTOR + 1];
-char *line_item_buf_ptr;
+
+void cleanup_line_item_buffer();
+struct safe_buffer line_item_buffer = { NULL, 0, NULL, 0,
+					cleanup_line_item_buffer };
 
 void cleanup_concat_buffer(); 
-struct safe_buffer concat_buffer  = { NULL, 0, cleanup_concat_buffer }; 
-
+struct safe_buffer concat_buffer = { NULL, 0, NULL, 0, cleanup_concat_buffer };
+ 
 /* These are defined at the bottom of the file */ 
 void push_countarray(int level);
 void set_parenttag(const char* tag);
@@ -175,9 +176,6 @@ int  count_tag(int tag);
 int  check_occurrence(int tag);
 void clean_up(); 
 
-#define CLEAR_BUFFER(BUF)                                                     \
-     memset(BUF, 0, sizeof(BUF));
- 
 #define HANDLE_ERROR                                                          \
      { if (error_mechanism == IMMED_FAIL) {                                   \
 	 clean_up(); YYABORT;                                                 \
@@ -3717,38 +3715,36 @@ opt_line_item : /* empty */     { $$ = NULL; }
               ;
 
 line_item   : anychar  { size_t i;
-		         CLEAR_BUFFER(line_item_buf);
-			 line_item_buf_ptr = line_item_buf;
-			 /* The following also takes care of '@@' */
+                         reset_buffer(&line_item_buffer); 
+		         /* The following also takes care of '@@' */
 			 if (!strncmp($1, "@@", 3))
-			   *line_item_buf_ptr++ = '@';
+			   SAFE_BUF_ADDCHAR(&line_item_buffer, '@')
 			 else
 			   for (i=0; i < strlen($1); i++)
-			     *line_item_buf_ptr++ = $1[i];
-			 $$ = line_item_buf;
+			     SAFE_BUF_ADDCHAR(&line_item_buffer, $1[i])
+			 $$ = get_buf_string(&line_item_buffer);
                        }
             | ESCAPE   { size_t i;
-                         CLEAR_BUFFER(line_item_buf);
-	                 line_item_buf_ptr = line_item_buf;
-			 for (i=0; i < strlen($1); i++)
-			   *line_item_buf_ptr++ = $1[i];
-			 $$ = line_item_buf;
+                         reset_buffer(&line_item_buffer); 
+		         for (i=0; i < strlen($1); i++)
+			   SAFE_BUF_ADDCHAR(&line_item_buffer, $1[i])
+			 $$ = get_buf_string(&line_item_buffer);
 	               }
             | line_item anychar
                   { size_t i;
 		    /* The following also takes care of '@@' */
 		    if (!strncmp($2, "@@", 3))
-		      *line_item_buf_ptr++ = '@';
+		      SAFE_BUF_ADDCHAR(&line_item_buffer, '@')
 		    else
 		      for (i=0; i < strlen($2); i++)
-			*line_item_buf_ptr++ = $2[i];
-		    $$ = line_item_buf;
+			SAFE_BUF_ADDCHAR(&line_item_buffer, $2[i])
+		    $$ = get_buf_string(&line_item_buffer);
 		  }
             | line_item ESCAPE
                   { size_t i;
 		    for (i=0; i < strlen($2); i++)
-		      *line_item_buf_ptr++ = $2[i];
-		    $$ = line_item_buf;
+		      SAFE_BUF_ADDCHAR(&line_item_buffer, $2[i])
+		    $$ = get_buf_string(&line_item_buffer);
 		  }
             | line_item error anychar { HANDLE_ERROR; }
             | line_item error ESCAPE  { HANDLE_ERROR; }
@@ -4027,6 +4023,11 @@ void clean_up()
 void cleanup_concat_buffer()
 {
   cleanup_buffer(&concat_buffer);
+}
+
+void cleanup_line_item_buffer()
+{
+  cleanup_buffer(&line_item_buffer);
 }
 
 /* Enabling debug mode */
