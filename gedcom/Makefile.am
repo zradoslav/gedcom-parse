@@ -22,7 +22,8 @@ libgedcom_la_SOURCES = lex.gedcom_1byte_.c \
                        multilex.c \
                        encoding.c \
                        interface.c \
-		       date.c
+		       date.c \
+		       hash.c
 libgedcom_la_LDFLAGS = -version-info $(LIBVERSION)
 libgedcom_la_LIBADD  = calendar/libcalendar.la
 BUILT_SOURCES = lex.gedcom_1byte_.c \
@@ -37,7 +38,8 @@ noinst_HEADERS = encoding.h \
 		 gedcom_internal.h \
 		 interface.h \
 		 multilex.h \
-		 date.h
+		 date.h \
+		 hash.h
 EXTRA_DIST = gedcom.y \
 	     gedcom_date.y \
 	     gedcom_1byte.lex \

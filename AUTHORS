@@ -12,6 +12,8 @@ Integrated external code and data:
   - Skeleton for gconv   : Ulrich Drepper <drepper@cygnus.com>
   - Gedcom test files    : Heiner Eichmann
                            (http://heiner-eichmann.de/gedcom/gedcom.htm)
+  - Hash table code      : Kaz Kylheku
+                           (http://users.footprints.net/~kaz/kazlib.html)
 
 # $Id$
 # $Name$

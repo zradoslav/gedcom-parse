@@ -1,5 +1,5 @@
 /* Conversion between encodings.
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001,2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -23,74 +23,84 @@
 
 #include <string.h>
 #include <iconv.h>
-#include <search.h>
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
 #include "gedcom_internal.h"
 #include "encoding.h"
+#include "hash.h"
 
 #define ENCODING_CONF_FILE "gedcom.enc"
 #define GCONV_SEARCH_PATH "GCONV_PATH"
 #define MAXBUF 255
+#define INIT_NR_ENCODINGS 10
 
 static iconv_t cd_to_internal = (iconv_t) -1;
-static void *encoding_mapping = NULL;
 static ENCODING the_enc = ONE_BYTE;
-
-struct node {
-  char *gedcom_name;
-  char *iconv_name;
-};
+static hash_t *encodings = NULL;
 
 char* charwidth_string[] = { "1", "2_HILO", "2_LOHI" };
 
-int node_compare(const void *node1, const void *node2)
+hnode_t *node_alloc(void *c __attribute__((unused)))
 {
-  return strcmp(((const struct node *) node1)->gedcom_name,
-		((const struct node *) node2)->gedcom_name);
+  return malloc(sizeof *node_alloc(NULL));
+}
+
+void node_free(hnode_t *n, void *c __attribute__((unused)))
+{
+  free((void*)hnode_getkey(n));
+  free(hnode_get(n));
+  free(n);
 }
 
 void add_encoding(char *gedcom_n, char* charwidth, char *iconv_n)
 {
-  void **datum;
-  struct node *nodeptr = (struct node *) malloc(sizeof *nodeptr);
-  nodeptr->gedcom_name = (char *) malloc(strlen(gedcom_n)
-					 + strlen(charwidth) + 3);
-  nodeptr->iconv_name  = (char *) malloc(strlen(iconv_n) + 1);
+  char *key, *val;
+
+  key = (char *) malloc(strlen(gedcom_n) + strlen(charwidth) + 3);
+  val = (char *) malloc(strlen(iconv_n) + 1);
+
   /* sprintf is safe here (malloc'ed before) */
-  sprintf(nodeptr->gedcom_name, "%s(%s)", gedcom_n, charwidth);
-  strcpy(nodeptr->iconv_name, iconv_n);
-  datum = tsearch(nodeptr, &encoding_mapping, node_compare);
-  if ((datum == NULL) || (*datum != nodeptr)) {
+  sprintf(key, "%s(%s)", gedcom_n, charwidth);
+  strcpy(val, iconv_n);
+
+  if (hash_lookup(encodings, key)) {
     gedcom_warning(_("Duplicate entry found for encoding '%s', ignoring"),
 		   gedcom_n);
+  }
+  else {
+    hash_alloc_insert(encodings, key, val);
   }
 }
 
 char* get_encoding(char* gedcom_n, ENCODING enc)
 {
-  void **datum;
-  struct node search_node;
-  char *buffer;
-  buffer = (char*)malloc(strlen(gedcom_n) + strlen(charwidth_string[enc]) + 3);
+  char *key;
+  hnode_t *node;
+  
+  key = (char*)malloc(strlen(gedcom_n) + strlen(charwidth_string[enc]) + 3);
   /* sprintf is safe here (malloc'ed before) */
-  sprintf(buffer, "%s(%s)", gedcom_n, charwidth_string[enc]);
-  search_node.gedcom_name = buffer;
-  datum = tfind(&search_node, &encoding_mapping, node_compare);
-  free(buffer);
-  if (datum == NULL) {
+  sprintf(key, "%s(%s)", gedcom_n, charwidth_string[enc]);
+
+  node = hash_lookup(encodings, key);
+  free(key);
+  if (node) {
+    return hnode_get(node);
+  }
+  else {
     gedcom_error(_("No encoding defined for '%s'"), gedcom_n);
     return NULL;
   }
-  else {
-    return ((const struct node *) *datum)->iconv_name;
-  }
+}
+
+void cleanup_encodings()
+{
+  hash_free(encodings);
 }
 
 void init_encodings()
 {
-  if (encoding_mapping == NULL) {
+  if (encodings == NULL) {
     FILE *in;
     char buffer[MAXBUF + 1];
     char gedcom_n[MAXBUF + 1];
@@ -98,6 +108,8 @@ void init_encodings()
     char iconv_n[MAXBUF + 1];
     char *gconv_path;
 
+    atexit(cleanup_encodings);
+    
     /* Add gedcom data directory to gconv search path */
     gconv_path = getenv(GCONV_SEARCH_PATH);
     if (gconv_path == NULL || strstr(gconv_path, PKGDATADIR) == NULL) {
@@ -120,6 +132,9 @@ void init_encodings()
 	gedcom_warning(_("Failed updating conversion module path"));
       }
     }
+
+    encodings = hash_create(INIT_NR_ENCODINGS, NULL, NULL);
+    hash_set_allocator(encodings, node_alloc, node_free, NULL);
     
     /* Open gedcom configuration file and read */
     in = fopen(ENCODING_CONF_FILE, "r");
