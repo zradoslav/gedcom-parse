@@ -3,11 +3,12 @@
 # $Name$
 
 options="-q"
+extra_options=
 
 while [ $# -gt 0 ]
 do
   case "$1" in
-    -*) options="$options $1";;
+    -*) extra_options="$extra_options $1";;
     *)  break;;
   esac
   shift
@@ -20,12 +21,23 @@ then
   expected_result=0
 fi
 
+# For use outside Makefile
+if [ -z "$srcdir" ]
+then
+  testfile=$file
+  srcdir=.
+  options=$extra_options
+else
+  testfile=t/input/$file
+  options="$options $extra_options"
+fi
+
 builddir=`pwd`
 cd $srcdir/..
 export GCONV_PATH=./ansel:$GCONV_PATH
 export LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$LD_LIBRARY_PATH
 cp $builddir/../ansel/.libs/ANSI_Z39.47.so ansel
-$builddir/testgedcom $options t/input/$file
+$builddir/testgedcom $options $testfile
 result=$?
 rm ansel/ANSI_Z39.47.so
 if [ "$result" -eq "$expected_result" ]
