@@ -12,15 +12,17 @@ CFLAGS=-g -W -Wall -pedantic $(DMALLOC_CFLAGS)
 YFLAGS=--debug --defines
 LFLAGS=-8
 LOADLIBES=$(DMALLOC_LOADLIBES)
+LDFLAGS_GEDCOM=-L.libs
 
 all:	ansel_module libgedcom.so gedcom_parse
 
 gedcom_parse:	standalone.o
-	$(CC) $(LDFLAGS) -L.libs -lgedcom $^ $(LOADLIBES) $(LDLIBS) -o $@
+	$(CC) $(LDFLAGS) $(LDFLAGS_GEDCOM) -lgedcom $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 libgedcom.so:	lex.gedcom_1byte_.lo lex.gedcom_hilo_.lo lex.gedcom_lohi_.lo \
 		gedcom.tab.lo message.lo multilex.lo encoding.lo interface.lo
 	$(LIBTOOL) $(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o libgedcom.la -rpath $(LIBPATH)
+	rm -f libgedcom.so
 	ln -s .libs/libgedcom.so.0.0.0 libgedcom.so
 
 %.lo:	%.c
