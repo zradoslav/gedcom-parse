@@ -61,7 +61,8 @@ enum _COMPAT {
   C_PAF5         = 0x0004,
   C_PAF2         = 0x0008,
   C_FAMORIG      = 0x0010,
-  C_EASYTREE     = 0x0020
+  C_EASYTREE     = 0x0020,
+  C_PAF4         = 0x0040
 };
 
 struct program_data data[] = {
@@ -92,6 +93,7 @@ struct program_data data[] = {
         - '@' not written as '@@' in values
 	- some 5.5.1 (draft) tags are used: EMAIL, FONE, ROMN
 	- no FAMC field in SLGC
+	- uses tab character (will be converted to 8 spaces here)
 
     - Personal Ancestral File 2:
         - '@' not written as '@@' in values
@@ -107,6 +109,9 @@ struct program_data data[] = {
 	- no submitter link in the header
 	- NOTE doesn't have a value
 	- NOTE.NOTE instead of NOTE.COND
+
+    - Personal Ancestral File 4:
+        - '@' not written as '@@' in values
  */
 
 int compat_matrix[] =
@@ -117,15 +122,17 @@ int compat_matrix[] =
   /* C_NO_GEDC */             C_LIFELINES | C_PAF2,
   /* C_NO_CHAR */             C_LIFELINES,
   /* C_HEAD_TIME */           C_LIFELINES,
-  /* C_NO_DOUBLE_AT */        C_LIFELINES | C_PAF5 | C_PAF2 | C_FAMORIG,
-  /* C_NO_REQUIRED_VALUES */  C_LIFELINES,
+  /* C_NO_DOUBLE_AT */        C_LIFELINES | C_PAF5 | C_PAF2 | C_FAMORIG
+                               | C_PAF4,
+  /* C_NO_REQUIRED_VALUES */  C_LIFELINES | C_PAF5,
   /* C_551_TAGS */            C_PAF5,
   /* C_NO_SLGC_FAMC */        C_PAF5,
   /* C_SUBM_COMM */           C_PAF2,
-  /* C_DOUBLE_DATES_4 */      C_PAF2,
+  /* C_DOUBLE_DATES_4 */      C_PAF2 | C_PAF5 | C_PAF4,
   /* C_CONC_NEEDS_SPACE */    C_FAMORIG,
   /* C_NO_GEDC_FORM */        C_EASYTREE,
-  /* C_NOTE_NOTE */           C_EASYTREE
+  /* C_NOTE_NOTE */           C_EASYTREE,
+  /* C_TAB_CHARACTER */       C_PAF5
 };
 
 int compat_state[C_NR_OF_RULES];
@@ -200,6 +207,10 @@ void compute_compatibility()
       if (compatibility_version >= 20000 && compatibility_version < 30000) {
 	compatibility = C_PAF2;
 	version = 2;
+      }
+      if (compatibility_version >= 40000 && compatibility_version < 50000) {
+	compatibility = C_PAF4;
+	version = 4;
       }
       else if (compatibility_version >= 50000) {
 	compatibility = C_PAF5;

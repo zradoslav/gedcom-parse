@@ -35,6 +35,7 @@ static size_t encoding_width;
 static int current_level = -1;
 static int level_diff=MAXGEDCLEVEL;
 static size_t line_len = 0;
+static int tab_space = 0;
 
 static struct conv_buffer* ptr_buffer = NULL;
 static struct conv_buffer* tag_buffer = NULL;
@@ -136,6 +137,11 @@ static void error_at_character()
   gedcom_error(_("'@' character should be written as '@@' in values"));
 }
 
+static void error_tab_character()
+{
+  gedcom_error(_("Tab character is not allowed in values"));
+}
+
 static void error_unexpected_character(const char* str, char ch)
 {
   gedcom_error(_("Unexpected character: '%s' (0x%02x)"), str, ch);
@@ -162,6 +168,12 @@ static int dummy_conv = 0;
         return BADTOKEN;                                                      \
       }                                                                       \
     }                                                                         \
+  }
+
+#define GENERATE_TAB_SPACE                                                    \
+  { gedcom_lval.string = " ";                                                 \
+    tab_space--;                                                              \
+    return DELIM;                                                             \
   }
 
 #define MKTAGACTION(THETAG)                                                  \
@@ -206,10 +218,16 @@ static int dummy_conv = 0;
 
    But because this means that one token is converted into a series
    of tokens, there is some initial code following immediately here
-   that returns "pending" tokens. */
+   that returns "pending" tokens.
+
+   Also, for compatibility tabs are converted into spaces, which is
+   also handled here */
 
 #define ACTION_BEFORE_REGEXPS                                                 \
-   { if (level_diff < 1) {                                                    \
+   { if (compat_mode(C_TAB_CHARACTER) && tab_space-- > 0) {                   \
+       GENERATE_TAB_SPACE;                                                    \
+     }                                                                        \
+     else if (level_diff < 1) {                                               \
        level_diff++;                                                          \
        return CLOSE;                                                          \
      }                                                                        \
@@ -379,6 +397,17 @@ static int dummy_conv = 0;
     }                                                                         \
     else {                                                                    \
       error_at_character();                                                   \
+      return BADTOKEN;                                                        \
+    }                                                                         \
+  }
+
+#define ACTION_TAB                                                            \
+  { if (compat_mode(C_TAB_CHARACTER)) {                                       \
+      tab_space = 8;                                                          \
+      GENERATE_TAB_SPACE;                                                     \
+    }                                                                         \
+    else {                                                                    \
+      error_tab_character();                                                  \
       return BADTOKEN;                                                        \
     }                                                                         \
   }

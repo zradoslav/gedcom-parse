@@ -43,6 +43,7 @@ typedef enum _COMPAT_RULES {
   C_CONC_NEEDS_SPACE,
   C_NO_GEDC_FORM,
   C_NOTE_NOTE,
+  C_TAB_CHARACTER,
   C_NR_OF_RULES
 } Compat_rule;
 

@@ -214,6 +214,8 @@ ACTION_BEFORE_REGEXPS
 
 {normal_at}               ACTION_NORMAL_AT
 
+{tab}                     ACTION_TAB
+
 .                         ACTION_UNEXPECTED
 
 %%
