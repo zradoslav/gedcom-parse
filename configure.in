@@ -110,9 +110,9 @@ fi
 if test "$is_ansel_supported" != yes; then
   AC_MSG_WARN([
 *******************************************************************************
-Your libiconv library doesn't support ANSEL.  Consider installing the modified
-libiconv library if you need ANSEL support in the Gedcom parser library (see
-README).
+Your iconv implementation doesn't support ANSEL.  Consider installing the
+modified libiconv library if you need ANSEL support in the Gedcom parser
+library (see README).
 *******************************************************************************
   ])
 fi
