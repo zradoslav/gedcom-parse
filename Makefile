@@ -9,6 +9,7 @@ LIBPATH=/usr/local/lib
 DMALLOC_CFLAGS=
 DMALLOC_LOADLIBES=
 CFLAGS=-g -W -Wall -pedantic $(DMALLOC_CFLAGS)
+CPPFLAGS=-I ./include
 YFLAGS=--debug --defines
 LFLAGS=-8
 LOADLIBES=$(DMALLOC_LOADLIBES)
