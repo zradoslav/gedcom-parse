@@ -209,7 +209,7 @@ char* convert_from_utf8(convert_t conv, const char* input, int* conv_fails,
   struct conv_buffer* outbuf;
 
   if (!conv || !conv->outbuf || !input) {
-    if (conv_fails != NULL) *conv_fails = insize;
+    if (conv_fails != NULL) *conv_fails = (input ? strlen(input) : 0);
     return NULL;
   }
   insize = strlen(input);
