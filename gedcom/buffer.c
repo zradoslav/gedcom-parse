@@ -70,9 +70,17 @@ void init_buffer(struct safe_buffer *b)
 
 void grow_buffer(struct safe_buffer *b)
 {
+  char* new_buffer;
+  size_t old_size = b->bufsize;
   b->bufsize *= 2;
-  b->buffer = realloc(b->buffer, b->bufsize);
-  b->buf_end = b->buffer + b->buflen;
+  new_buffer = realloc(b->buffer, b->bufsize);
+  if (new_buffer) {
+    b->buffer = new_buffer;
+    memset(b->buffer + old_size, 0, b->bufsize - old_size);
+    b->buf_end = b->buffer + b->buflen;
+  }
+  else
+    b->buffer = NULL;
 }
 
 int safe_buf_vappend(struct safe_buffer *b, const char *s, va_list ap)
