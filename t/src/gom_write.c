@@ -250,9 +250,12 @@ int main(int argc, char* argv[])
   }
   if (result == 0)
     result |= test_timestamps();
-  if (result == 0)
+  if (result == 0) {
+    output(1, "Writing file...\n");
     result |= gom_write_file(gedfilename, &total_conv_fails);
+  }
   if (result == 0 && total_conv_fails == 0) {
+    output(1, "Re-parsing file...\n");
     result |= gom_parse_file(gedfilename);
   }
   if (result == 0) {
