@@ -76,13 +76,14 @@ int test_loop(ENCODING enc, char* code)
   line_len = 0;
 
 #define CHECK_LINE_LEN                                                        \
-  { if (line_len != (size_t)-1)                                               \
+  { if (line_len != (size_t)-1) {                                             \
       line_len += strlen(yytext);                                             \
-    if (line_len > MAXGEDCLINELEN * encoding_width) {                         \
-      gedcom_error("Line too long, max %d characters",                        \
-		   MAXGEDCLINELEN);                                           \
-      line_len = (size_t)-1;                                                  \
-      return BADTOKEN;                                                        \
+      if (line_len > MAXGEDCLINELEN * encoding_width) {                       \
+        gedcom_error("Line too long, max %d characters",                      \
+		     MAXGEDCLINELEN);                                         \
+        line_len = (size_t)-1;                                                \
+        return BADTOKEN;                                                      \
+      }                                                                       \
     }                                                                         \
   }
 
