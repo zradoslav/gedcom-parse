@@ -1047,7 +1047,8 @@ note_line_item : /* empty */
 		     }
 		   }
                | DELIM line_item
-                   { $$ = $2; }
+                   { gedcom_debug_print("==Val: %s==", $2);
+		     $$ = $2; }
                ;
 
 note_subs   : /* empty */
@@ -2312,11 +2313,13 @@ line_value  : POINTER        { $$ = $1; }
             ;
 
 mand_pointer : /* empty */ { gedcom_error(_("Missing pointer")); YYERROR; }
-             | DELIM POINTER { $$ = $2; }
+             | DELIM POINTER { gedcom_debug_print("==Ptr: %s==", $2);
+                               $$ = $2; }
              ;
 
 mand_line_item : /* empty */ { gedcom_error(_("Missing value")); YYERROR; }
-               | DELIM line_item { $$ = $2; }
+               | DELIM line_item { gedcom_debug_print("==Val: %s==", $2);
+                                   $$ = $2; }
                ;
 
 opt_line_item : /* empty */ { }
@@ -2636,6 +2639,7 @@ int gedcom_debug_print(char* s, ...)
     va_start(ap, s);
     res = vfprintf(trace_output, s, ap);
     va_end(ap);
+    fprintf(trace_output, "\n");
   }
   return(res);
 }
