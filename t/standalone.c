@@ -313,13 +313,12 @@ int main(int argc, char* argv[])
     output(0, "\n=== Parsing file %s\n", file_name);
     result |= gedcom_parse_file(file_name);
   }
-  fclose(outfile);
   if (result == 0) {
     output(1, "Parse succeeded\n");
-    return 0;
   }
   else {
     output(1, "Parse failed\n");
-    return 1;
-  }  
+  }
+  fclose(outfile);
+  return result;
 }
