@@ -34,6 +34,8 @@
    - \ref callback
    - \ref gom
 
+  \section libraries_headers Libraries and headers
+  
   The Gedcom Parser Library provides two interfaces.  On the one hand, it can
   be used as a callback-based parser (comparable to the SAX interface of XML);
   on the other hand, the parser can be used to convert the GEDCOM file into an
@@ -56,12 +58,23 @@
      program
 
   There is a separate script and an M4 macro (for autoconf) to help with
-  library and compilation flags, see the development support (TODO: REFERENCE!)
+  library and compilation flags, see the \ref devel "development support".
+
+  \section utf8 Converting character sets
+
+  All strings passed by the GEDCOM parser to the application are in UTF-8
+  encoding.  Typically, an application needs to convert this to something
+  else to be able to display it.
+
+  The most common case is that the output character set is controlled by the
+  locale mechanism (i.e. via the LANG, LC_ALL or LC_CTYPE environment
+  variables), which also controls the gettext mechanism in the application.  
+
+  With gedcom-parse comes a library implementing help functions for UTF-8
+  encoding (see the <a href=utf8tools.html>documentation</a> for this library).
 */
 
 /*! \defgroup callback Callback Interface */
-
-/*! \defgroup gom Gedcom Object Model in C */
 
 /*! \defgroup main Main functions of the parser
     \ingroup callback
@@ -97,7 +110,8 @@
   GEDCOM file, which will be called by the library on errors, warnings and
   messages.
 
-  A typical piece of code would be:
+  A typical piece of code would be (gom_parse_file() would be called in case
+  the C object model is used):
 
   \code
   void my_message_handler(Gedcom_msg_type type, char* msg)
@@ -117,10 +131,360 @@
 
 /*! \defgroup cb_mech Data callback mechanism
     \ingroup callback
+    
+  The most important use of the parser is of course to get the data out of
+  the GEDCOM file.  This section focuses on the callback mechanism (see
+  \ref gom "here" for the C object model).  In fact, the mechanism involves
+  two levels.
+
+  The primary level is that each of the sections in a GEDCOM file is notified
+  to the application code via a "start element" callback and an "end element"
+  callback (much like in a SAX interface for XML), i.e. when a line containing
+  a certain tag is parsed, the "start element" callback is called for that tag
+  , and when all its subordinate lines with their tags have been processed,
+  the "end element" callback is called for the original tag.  Since GEDCOM is
+  hierarchical, this results in properly nested calls to appropriate "start
+  element" and "end element" callbacks (note: see
+  \ref compat "compatibility handling").
+
+  However, it would be typical for a genealogy program to support only a
+  subset of the GEDCOM standard, certainly a program that is still under
+  development.  Moreover, under GEDCOM it is allowed for an application to
+  define its own tags, which will typically not  be supported by another
+  application.  Still, in that case, data preservation is important; it would
+  hardly be accepted that information that is not understood by a certain
+  program is just removed.
+
+  Therefore, the second level of callbacks involves a "default callback".  An
+  application needs to subscribe to callbacks for tags it does support, and
+  need to provide a "default callback" which will be called for tags it
+  doesn't support.  The application can then choose to just store the
+  information that comes via the default callback in plain textual format.  
+*/
+
+/*! \defgroup start_end Start and end callbacks
+    \ingroup cb_mech
+
+  The following simple example gets some information from the header record
+  of a GEDCOM file.
+
+  \code
+    Gedcom_ctxt my_header_start_cb (Gedcom_rec rec,
+                                    int level,
+                                    Gedcom_val xref,
+                                    char *tag,
+                                    char *raw_value,
+                                    int parsed_tag,
+                                    Gedcom_val parsed_value)
+    {
+      printf("The header starts\n");
+      return (Gedcom_ctxt)1;
+    }
+
+    void my_header_end_cb (Gedcom_rec rec, Gedcom_ctxt self)
+    {
+      printf("The header ends, context is %d\n", (int)self);
+    }
+
+    ...
+    gedcom_subscribe_to_record(REC_HEAD, my_header_start_cb, my_header_end_cb);
+    ...
+    result = gedcom_parse_file("myfamily.ged");
+  \endcode
+
+  Using the gedcom_subscribe_to_record() function, the application requests
+  to use the specified callbacks as start and end callback (type
+  \ref Gedcom_rec_start_cb and \ref Gedcom_rec_end_cb).
+
+  Such a callback
+  can return a context value of type \ref Gedcom_ctxt.  This type is meant to
+  be opaque; in fact, it's a void pointer, so you can pass anything via it.
+  This context value will be passed to the callbacks of the direct
+  child elements, and to the end callback.
+
+  The example passes a simple integer as context, but an application could e.g.
+  pass a \c struct (or an object in a C++ application) that will contain the
+  information for the record.  In the end callback, the application could then
+  e.g. do some finalizing operations on the \c struct to put it in its
+  database.
+
+  From the name of the function it becomes clear that this function is
+  specific to complete records.  For the separate elements in records there
+  is another function, which we'll see shortly.  Note that the callbacks need
+  to have the signatures as shown in the example.
+
+  We will now retrieve the SOUR field (the name of the program that wrote the
+  file) from the header:
+  \code
+    Gedcom_ctxt my_header_source_start_cb(Gedcom_elt  elt,
+                                          Gedcom_ctxt parent,
+                                          int         level,
+                                          char*       tag,
+                                          char*       raw_value,
+                                          int         parsed_tag,
+                                          Gedcom_val  parsed_value)
+    {
+      char *source = GEDCOM_STRING(parsed_value);
+      printf("This file was written by %s\n", source);
+      return parent;
+    }
+
+    ...
+    gedcom_subscribe_to_element(ELT_HEAD_SOUR,
+                                my_header_source_start_cb,
+                                NULL);
+    ...
+    result = gedcom_parse_file("myfamily.ged");
+  \endcode
+
+  The subscription mechanism for elements is similar, only the signatures of
+  the callbacks differ.  The signature for the start callback shows that the
+  context of the parent line (here e.g. the \c struct that describes the
+  header) is passed to this start callback.
+
+  The callback itself returns here in this example the same context, but this
+  can be its own context object of course.  The end callback is called with
+  both the context of the parent and the context of itself, which in this
+  example will be the same.
+*/
+
+/*! \defgroup defcb Default callbacks
+    \ingroup cb_mech
+
+  An application doesn't always implement the entire GEDCOM spec, and
+  application-specific tags may have been added by other applications.  To
+  preserve this extra data anyway, a default callback can be registered by
+  the application, as in the following example:
+
+  \code
+    void my_default_cb (Gedcom_elt elt, Gedcom_ctxt parent, int level,
+                        char* tag, char* raw_value, int parsed_tag)
+    {
+      ...
+    }
+
+    ...
+    gedcom_set_default_callback(my_default_cb);
+    ...
+    result = gedcom_parse_file("myfamily.ged");
+  \endcode
+
+  This callback has a similar signature as the previous ones, but it doesn't
+  contain a parsed value.  However, it does contain the parent context, that
+  was returned by the application for the most specific containing tag that
+  the application supported.
+
+  Suppose e.g. that this callback is called for some tags in the header that
+  are specific to some other application, then our application could make
+  sure that the parent context contains the struct or object that represents
+  the header, and use the default callback here to add the level, tag and
+  raw_value as plain text in a member of that struct or object, thus
+  preserving the information.
+
+  The application can then write this out when the data is saved again in a
+  GEDCOM file.  To make it more specific, consider the following example:
+
+  \code
+    struct header {
+      char* source;
+      ...
+      char* extra_text;
+    };
+
+    Gedcom_ctxt my_header_start_cb(Gedcom_rec rec, int level, Gedcom_val xref,
+                                   char* tag, char *raw_value,
+				   int parsed_tag, Gedcom_val parsed_value)
+    {
+      struct header head = my_make_header_struct();
+      return (Gedcom_ctxt)head;
+    }
+
+    void my_default_cb(Gedcom_elt elt, Gedcom_ctxt parent, int level,
+                       char* tag, char* raw_value, int parsed_tag)
+    {
+      struct header head = (struct header)parent;
+      my_header_add_to_extra_text(head, level, tag, raw_value);
+    }
+
+    gedcom_set_default_callback(my_default_cb);
+    gedcom_subscribe_to_record(REC_HEAD, my_header_start, NULL);
+    ...
+    result = gedcom_parse_file(filename);
+  \endcode
+
+  Note that the default callback will be called for any tag that isn't
+  specifically subscribed upon by the application, and can thus be called in
+  various contexts.  For simplicity, the example above doesn't take this into
+  account (the parent could be of different types, depending on the context).
+
+  Note also that the default callback is not called when the parent context is
+  \c NULL.  This is e.g. the case if none of the "upper" tags has been
+  subscribed upon.
+*/
+
+/*! \defgroup parsed Parsed values
+    \ingroup callback
+
+  The \c Gedcom_val type is meant to be an opaque type.  The only thing that
+  needs to be known about it is that it can contains specific data types, which
+  have to be retrieved from it using pre-defined macros.
+
+  Currently, the specific \c Gedcom_val types are (with \c val of type
+  \c Gedcom_val):
+  
+  <table border="1" width="100%">
+    <tr>
+      <td>&nbsp;</td>
+      <td><b>type checker</b></td>
+      <td><b>cast function</b></td>
+    </tr>
+    <tr>
+      <td>null value</td>
+      <td><code>GEDCOM_IS_NULL(val)</code></td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>string</td>
+      <td><code>GEDCOM_IS_STRING(val)</code></td>
+      <td><code>char* str = GEDCOM_STRING(val);</code></td>
+    </tr>
+    <tr>
+      <td>date</td>
+      <td><code>GEDCOM_IS_DATE(val)</code></td>
+      <td><code>struct date_value dv = GEDCOM_DATE(val);</code></td>
+    </tr>
+    <tr>
+      <td>age</td>
+      <td><code>GEDCOM_IS_AGE(val)</code></td>
+      <td><code>struct age_value age = GEDCOM_AGE(val);</code></td>
+    </tr>
+    <tr>
+      <td>xref pointer</td>
+      <td><code>GEDCOM_IS_XREF_PTR(val)</code></td>
+      <td><code>struct xref_value *xr = GEDCOM_XREF_PTR(val);</code></td>
+    </tr>
+  </table>
+
+  The type checker returns a true or a false value according to the type of
+  the value, but this is in principle only necessary in the rare circumstances
+  that two types are possible, or where an optional value can be provided.
+  In most cases, the type is fixed for a specific tag.
+
+  The exact type per tag can be found in the
+  <a href="interface.html">interface details</a>.
+
+  The null value is used for when the GEDCOM spec doesn't allow a value, or
+  when an optional value is allowed but none is given.
+ 
+  The string value is the most general used value currently, for all those
+  values that don't have a more specific meaning.  In essence, the value that
+  is returned by \c GEDCOM_STRING(val) is always the same as the \c raw_value
+  passed to the start callback, and is thus in fact redundant.
+
+  For the other data types, there is a specific section giving details.
+*/
+
+/*! \defgroup parsed_date Date values
+    \ingroup parsed
+
+  The Gedcom_val contains a struct date_value if it denotes a date.  The
+  struct date is a part of the struct date_value.
+*/
+
+/*! \defgroup parsed_age Age values
+    \ingroup parsed
+
+  The Gedcom_val contains a struct age_value if it denotes an age.
+*/
+
+/*! \defgroup parsed_xref Cross-reference values
+    \ingroup parsed
+
+  The Gedcom_val contains a pointer to a struct xref_value if it denotes a
+  cross-reference (note: not the struct itself, but a pointer to it !)
+  
+  The parser checks whether all cross-references that are used are defined
+  (if not, an error is produced) and whether all cross-references that are
+  defined are used (if not, a warning is produced).  It also checks whether
+  the type of the cross-reference is the same on definition and use (if
+  not, an error is produced).
+
+  The first two checks are done at the end of
+  the parsing, because cross-references can be defined after their usage
+  in GEDCOM.
+
+  A cross-reference key must be a string of maximum 22 characters, of the
+  following format:
+
+   - an at sign ('@')
+   - followed by an alphanumeric character (A-Z, a-z, 0-9 or underscore)
+   - followed by zero or more characters, which can be any character
+     except an at sign
+   - terminated by an at sign ('@')
+
+  An example would thus be: <code>"@This is an xref_val@"</code>.
+*/
+
+/*! \defgroup compat Compatibility mode
+    \ingroup callback
+
+  Applications are not necessarily true to the GEDCOM spec (or use a different
+  version than 5.5).  The intention is that the library is resilient to this,
+  and goes in compatibility mode for files written by specific programs
+  (detected via the \c HEAD.SOUR tag).
+
+  Currently, there is (some) compatibility for:
+    - ftree
+    - Lifelines (3.0.2)
+    - Personal Ancestral File (PAF), version 2, 4 and 5
+    - Family Origins
+    - EasyTree
 */
 
 /*! \defgroup write Support for writing GEDCOM files
     \ingroup callback
+
+  The Gedcom parser library also contains functions to writing GEDCOM files.
+  Similar as for the parsing itself, there are two interfaces: an interface
+  which is very basic, and requires you to call a function for each line in
+  the GEDCOM file, and an interface which just dumps the Gedcom object model
+  to a file in one shot (if you use the Gedcom object model).
+
+  Again, this section focuses on the basic interface, the Gedcom object model
+  interface is described \ref gom "here".
+
+  Writing a GEDCOM file involves the following steps:
+
+   - first set the encoding options as you want them using
+     gedcom_write_set_encoding() and gedcom_write_set_line_terminator()\n\n
+     By default a file is written in the same encoding as the last read file
+     was in, and the terminator is set to the appropriate one on the current
+     platform.
+     
+   - open the file using gedcom_write_open()
+   
+   - write the date using gedcom_write_record_str(), ...\n\n
+     The principle is that every line in the GEDCOM file to write corresponds
+     to a call of one of these functions, except that \c CONT/CONC lines can
+     be automatically taken care of.\n\n
+     Note that the result GEDCOM file should conform to the GEDCOM standard.
+     Several checks are built in already, and more will follow, to force this.
+     There is no compatibility mode for writing GEDCOM file (and probably never
+     will be).\n\n
+     All these functions expect their input in UTF-8 encoding.  If this is
+     not the case, errors will be returned.  Note that for examples of using
+     these functions, you can look at the sources of the Gedcom object model
+     (e.g. the function \c write_header in \c gom/header.c).
+
+   - close the file using gedcom_write_close()
+*/
+
+/*! \defgroup debug Debugging
+    \ingroup callback
+
+  The library can generate various debugging output, not only from itself, but
+  also the debugging output generated by the yacc parser.  By default, no
+  debugging output is generated, but this can be changed.
 */
 
 /*! \defgroup gommain Main functions of the object model
@@ -139,3 +503,78 @@
   result = gom_parse_file("myfamily.ged");
   \endcode
 */
+
+/*! \defgroup gom Gedcom Object Model in C */
+
+/*! \defgroup devel Development support
+  \section configure Macro for configure.in
+
+  There is a macro available for use in configure.in for applications that
+  are using autoconf to configure their sources.  The following macro checks
+  whether the Gedcom parser library is available and whether its version is
+  high enough:
+  \code
+    AM_PATH_GEDCOM_PARSER([min_version,[action_if_found,[action_if_not_found,[modules]]]])
+  \endcode
+
+  All the arguments are optional and default to 0.  E.g. to check for version
+  1.34.2, you would put in configure.in the following statement:
+  \code
+    AM_PATH_GEDCOM_PARSER(1.34.2)
+  \endcode
+
+  Note that version numbers now contains three parts (since version 0.20.0:
+  this is also the first version in which this macro is available).
+
+  The macro also sets the variables GEDCOM_CFLAGS and GEDCOM_LIBS for use in
+  Makefiles.  Typically, this would be done as follows in a Makefile.am:
+  \code
+    bin_programs   = myprg
+    myprg_SOURCES  = myprg.c foo.c bar.c
+    INCLUDES       = @GEDCOM_CFLAGS@
+    LDADD          = @GEDCOM_LIBS@
+  \endcode
+
+  If your program uses some extra modules, they can be passed as fourth
+  argument in the macro, so that the CFLAGS and LIBS are correctly filled in.
+  Currently, the only available module is gom (the Gedcom object model).  For
+  example:
+  \code
+    AM_PATH_GEDCOM_PARSER(0.21.2, , ,gom)
+  \endcode
+
+  To be able to use this macro in the sources of your application, you have
+  three options:
+
+   - Put the file \c m4/gedcom.m4 in your autoconf data directory (i.e. the
+     path given by <code>'aclocal --print-ac-dir'</code>, usually
+     <code>/usr/share/aclocal)</code>.  You can
+     do this automatically by going into the m4 subdirectory and typing
+     <code>'make install-m4'</code>.
+
+   - If you're using autoconf, but not automake, copy the contents of
+     \c m4/gedcom.m4 in the \c aclocal.m4 file in your sources.
+
+   - If you're using automake, copy the contents of \c m4/gedcom.m4 in the
+     \c acinclude.m4 file in your sources.
+
+  \section flags Compilation and linking flags
+
+  Similar to other libraries, the GEDCOM parse library installs a script
+  \c gedcom-config to help with compilation and linking flags for programs
+  that don't use autoconf/automake.
+
+  To get compilation flags for your program, use (depending on whether you
+  only use the callback parser, or also the GEDCOM object model):
+  \code
+    gedcom-config --cflags
+    gedcom-config --cflags gom
+  \endcode
+
+  Similarly, to get linking flags, use one of the following:
+  \code
+    gedcom-config --libs
+    gedcom-config --libs gom
+  \endcode
+ */
+
