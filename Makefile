@@ -18,13 +18,16 @@ gedcom_parse:	standalone.o lex.gedcom_1byte_.o lex.gedcom_hilo_.o \
 ansel_module:
 	cd ansel && $(MAKE)
 
-lex.gedcom_1byte_.c:	gedcom_1byte.lex gedcom.tab.h gedcom.h multilex.h
+lex.gedcom_1byte_.c:	gedcom_1byte.lex gedcom.tab.h gedcom.h multilex.h \
+			gedcom_lex_common.c encoding.h
 	$(LEX) $(LFLAGS) -Pgedcom_1byte_ gedcom_1byte.lex
 
-lex.gedcom_hilo_.c:	gedcom_hilo.lex gedcom.tab.h gedcom.h multilex.h
+lex.gedcom_hilo_.c:	gedcom_hilo.lex gedcom.tab.h gedcom.h multilex.h \
+			gedcom_lex_common.c encoding.h
 	$(LEX) $(LFLAGS) -Pgedcom_hilo_ gedcom_hilo.lex
 
-lex.gedcom_lohi_.c:	gedcom_lohi.lex gedcom.tab.h gedcom.h multilex.h
+lex.gedcom_lohi_.c:	gedcom_lohi.lex gedcom.tab.h gedcom.h multilex.h \
+			gedcom_lex_common.c encoding.h
 	$(LEX) $(LFLAGS) -Pgedcom_lohi_ gedcom_lohi.lex
 
 gedcom.tab.c gedcom.tab.h:	gedcom.y gedcom.h
