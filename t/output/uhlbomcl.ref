@@ -67,30 +67,30 @@ Rec INDI start, xref is @CHILD0@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) /Special Characters 0/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) capital L with stroke (?), capital O with stroke (Ø), capital D with stroke (?), capital thorn (Þ) (ctxt is 333, conversion failures: 2)
+== 2 PLAC (358) capital L with stroke (?), capital O with stroke (?), capital D with stroke (?), capital thorn (?) (ctxt is 333, conversion failures: 4)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) capital AE (Æ), capital ligature OE (?), modified prime (?), middle dot (·), music flat sign (?) (ctxt is 333, conversion failures: 3)
+== 2 PLAC (358) capital AE (?), capital ligature OE (?), modified prime (?), middle dot (?), music flat sign (?) (ctxt is 333, conversion failures: 5)
 Rec INDI start, xref is @CHILD1@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) /Special Characters 1/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) registered sign (®), plus-minus sign (±), capital O with horn (?), capital U with horn (?) (ctxt is 333, conversion failures: 2)
+== 2 PLAC (358) registered sign (?), plus-minus sign (?), capital O with horn (?), capital U with horn (?) (ctxt is 333, conversion failures: 4)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) modifier right half ring (?), modifier left half ring (?), small L with stroke (?), small O with stroke (ø), small D with stroke (?) (ctxt is 333, conversion failures: 4)
+== 2 PLAC (358) modifier right half ring (?), modifier left half ring (?), small L with stroke (?), small O with stroke (?), small D with stroke (?) (ctxt is 333, conversion failures: 5)
 Rec INDI start, xref is @CHILD2@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) /Special Characters 2/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) small thorn (þ), small AE (æ), small ligature OE (?), modified double prime (?) (ctxt is 333, conversion failures: 2)
+== 2 PLAC (358) small thorn (?), small AE (?), small ligature OE (?), modified double prime (?) (ctxt is 333, conversion failures: 4)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) small dotless i (?), pound sign (£), small eth (ð), small O with horn (?), small U with horn (?) (ctxt is 333, conversion failures: 3)
+== 2 PLAC (358) small dotless i (?), pound sign (?), small eth (?), small O with horn (?), small U with horn (?) (ctxt is 333, conversion failures: 5)
 Rec INDI start, xref is @CHILD3@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) /Special Characters 3/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) degree sign (°), script small L (?), sound recording copyright (?), copyright sign (©) (ctxt is 333, conversion failures: 2)
+== 2 PLAC (358) degree sign (?), script small L (?), sound recording copyright (?), copyright sign (?) (ctxt is 333, conversion failures: 4)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) music sharp sign (?), inverted question mark (¿), inverted exclamation mark (¡), small sharp S (ß) (ctxt is 333, conversion failures: 1)
+== 2 PLAC (358) music sharp sign (?), inverted question mark (?), inverted exclamation mark (?), small sharp S (?) (ctxt is 333, conversion failures: 4)
 Rec INDI start, xref is @CHILD4@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0309/HOOK ABOVE/ (ctxt is 333, conversion failures: 0)
@@ -104,28 +104,28 @@ Rec INDI start, xref is @CHILD5@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) AEIOU,WYaei,ouwy (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) ÀÈÌÒÙ,??àèì,òù?? (ctxt is 333, conversion failures: 4)
+== 2 PLAC (358) ?????,?????,???? (ctxt is 333, conversion failures: 14)
 Rec INDI start, xref is @CHILD6@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0301/ACUTE/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) ACEGI,KLMNO,PRSUW,YZace,giklm,noprs,uwyz (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Á?É?Í,????Ó,???Ú?,Ý?á?é,?í???,?ó???,ú?ý? (ctxt is 333, conversion failures: 22)
+== 2 PLAC (358) ?????,?????,?????,?????,?????,?????,???? (ctxt is 333, conversion failures: 34)
 Rec INDI start, xref is @CHILD7@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0302/CIRCUMFLEX/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) ACEGH,IJOSU,WYZac,eghij,osuwy,z (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Â?Ê??,Î?Ô?Û,???â?,ê??î?,ô?û??,? (ctxt is 333, conversion failures: 16)
+== 2 PLAC (358) ?????,?????,?????,?????,?????,? (ctxt is 333, conversion failures: 26)
 Rec INDI start, xref is @CHILD8@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0303/TILDE/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) AEINO,UVYae,inouv,y (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Ã??ÑÕ,???ã?,?ñõ??,? (ctxt is 333, conversion failures: 10)
+== 2 PLAC (358) ?????,?????,?????,? (ctxt is 333, conversion failures: 16)
 Rec INDI start, xref is @CHILD9@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0304/MACRON/ (ctxt is 333, conversion failures: 0)
@@ -153,7 +153,7 @@ Rec INDI start, xref is @CHILD12@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) AEHIO,UWXYa,ehiot,uwxy (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) ÄË?ÏÖ,Ü???ä,ë?ïö?,ü??ÿ (ctxt is 333, conversion failures: 8)
+== 2 PLAC (358) ?????,?????,?????,???? (ctxt is 333, conversion failures: 19)
 Rec INDI start, xref is @CHILD13@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 030C/CARON/ (ctxt is 333, conversion failures: 0)
@@ -167,7 +167,7 @@ Rec INDI start, xref is @CHILD14@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) AUauw,y (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Å?å??,? (ctxt is 333, conversion failures: 4)
+== 2 PLAC (358) ?????,? (ctxt is 333, conversion failures: 6)
 Rec INDI start, xref is @CHILD15@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: FE20/LIGATURE LEFT HALF/ (ctxt is 333, conversion failures: 0)
@@ -209,7 +209,7 @@ Rec INDI start, xref is @CHILD20@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) CDGHK,LNRST,cdghk,lnrst (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Ç????,?????,ç????,????? (ctxt is 333, conversion failures: 18)
+== 2 PLAC (358) ?????,?????,?????,????? (ctxt is 333, conversion failures: 20)
 Rec INDI start, xref is @CHILD21@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0328/OGONEK/ (ctxt is 333, conversion failures: 0)
@@ -332,7 +332,7 @@ Family start, xref is @FAMILY@
 == 1 CHIL (293) @CHILD32@ (ctxt is 1, conversion failures: 0)
 Family end, xref is @FAMILY@
 
-=== Total conversion failures: 391
+=== Total conversion failures: 460
 
 === Parsing file ./input/uhlbomcl.ged
 Header start
@@ -402,30 +402,30 @@ Rec INDI start, xref is @CHILD0@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) /Special Characters 0/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) capital L with stroke (?), capital O with stroke (Ø), capital D with stroke (?), capital thorn (Þ) (ctxt is 333, conversion failures: 2)
+== 2 PLAC (358) capital L with stroke (?), capital O with stroke (?), capital D with stroke (?), capital thorn (?) (ctxt is 333, conversion failures: 4)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) capital AE (Æ), capital ligature OE (?), modified prime (?), middle dot (·), music flat sign (?) (ctxt is 333, conversion failures: 3)
+== 2 PLAC (358) capital AE (?), capital ligature OE (?), modified prime (?), middle dot (?), music flat sign (?) (ctxt is 333, conversion failures: 5)
 Rec INDI start, xref is @CHILD1@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) /Special Characters 1/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) registered sign (®), plus-minus sign (±), capital O with horn (?), capital U with horn (?) (ctxt is 333, conversion failures: 2)
+== 2 PLAC (358) registered sign (?), plus-minus sign (?), capital O with horn (?), capital U with horn (?) (ctxt is 333, conversion failures: 4)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) modifier right half ring (?), modifier left half ring (?), small L with stroke (?), small O with stroke (ø), small D with stroke (?) (ctxt is 333, conversion failures: 4)
+== 2 PLAC (358) modifier right half ring (?), modifier left half ring (?), small L with stroke (?), small O with stroke (?), small D with stroke (?) (ctxt is 333, conversion failures: 5)
 Rec INDI start, xref is @CHILD2@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) /Special Characters 2/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) small thorn (þ), small AE (æ), small ligature OE (?), modified double prime (?) (ctxt is 333, conversion failures: 2)
+== 2 PLAC (358) small thorn (?), small AE (?), small ligature OE (?), modified double prime (?) (ctxt is 333, conversion failures: 4)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) small dotless i (?), pound sign (£), small eth (ð), small O with horn (?), small U with horn (?) (ctxt is 333, conversion failures: 3)
+== 2 PLAC (358) small dotless i (?), pound sign (?), small eth (?), small O with horn (?), small U with horn (?) (ctxt is 333, conversion failures: 5)
 Rec INDI start, xref is @CHILD3@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) /Special Characters 3/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) degree sign (°), script small L (?), sound recording copyright (?), copyright sign (©) (ctxt is 333, conversion failures: 2)
+== 2 PLAC (358) degree sign (?), script small L (?), sound recording copyright (?), copyright sign (?) (ctxt is 333, conversion failures: 4)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) music sharp sign (?), inverted question mark (¿), inverted exclamation mark (¡), small sharp S (ß) (ctxt is 333, conversion failures: 1)
+== 2 PLAC (358) music sharp sign (?), inverted question mark (?), inverted exclamation mark (?), small sharp S (?) (ctxt is 333, conversion failures: 4)
 Rec INDI start, xref is @CHILD4@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0309/HOOK ABOVE/ (ctxt is 333, conversion failures: 0)
@@ -439,28 +439,28 @@ Rec INDI start, xref is @CHILD5@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) AEIOU,WYaei,ouwy (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) ÀÈÌÒÙ,??àèì,òù?? (ctxt is 333, conversion failures: 4)
+== 2 PLAC (358) ?????,?????,???? (ctxt is 333, conversion failures: 14)
 Rec INDI start, xref is @CHILD6@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0301/ACUTE/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) ACEGI,KLMNO,PRSUW,YZace,giklm,noprs,uwyz (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Á?É?Í,????Ó,???Ú?,Ý?á?é,?í???,?ó???,ú?ý? (ctxt is 333, conversion failures: 22)
+== 2 PLAC (358) ?????,?????,?????,?????,?????,?????,???? (ctxt is 333, conversion failures: 34)
 Rec INDI start, xref is @CHILD7@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0302/CIRCUMFLEX/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) ACEGH,IJOSU,WYZac,eghij,osuwy,z (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Â?Ê??,Î?Ô?Û,???â?,ê??î?,ô?û??,? (ctxt is 333, conversion failures: 16)
+== 2 PLAC (358) ?????,?????,?????,?????,?????,? (ctxt is 333, conversion failures: 26)
 Rec INDI start, xref is @CHILD8@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0303/TILDE/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) AEINO,UVYae,inouv,y (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Ã??ÑÕ,???ã?,?ñõ??,? (ctxt is 333, conversion failures: 10)
+== 2 PLAC (358) ?????,?????,?????,? (ctxt is 333, conversion failures: 16)
 Rec INDI start, xref is @CHILD9@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0304/MACRON/ (ctxt is 333, conversion failures: 0)
@@ -488,7 +488,7 @@ Rec INDI start, xref is @CHILD12@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) AEHIO,UWXYa,ehiot,uwxy (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) ÄË?ÏÖ,Ü???ä,ë?ïö?,ü??ÿ (ctxt is 333, conversion failures: 8)
+== 2 PLAC (358) ?????,?????,?????,???? (ctxt is 333, conversion failures: 19)
 Rec INDI start, xref is @CHILD13@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 030C/CARON/ (ctxt is 333, conversion failures: 0)
@@ -502,7 +502,7 @@ Rec INDI start, xref is @CHILD14@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) AUauw,y (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Å?å??,? (ctxt is 333, conversion failures: 4)
+== 2 PLAC (358) ?????,? (ctxt is 333, conversion failures: 6)
 Rec INDI start, xref is @CHILD15@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: FE20/LIGATURE LEFT HALF/ (ctxt is 333, conversion failures: 0)
@@ -544,7 +544,7 @@ Rec INDI start, xref is @CHILD20@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 == 2 PLAC (358) CDGHK,LNRST,cdghk,lnrst (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
-== 2 PLAC (358) Ç????,?????,ç????,????? (ctxt is 333, conversion failures: 18)
+== 2 PLAC (358) ?????,?????,?????,????? (ctxt is 333, conversion failures: 20)
 Rec INDI start, xref is @CHILD21@
 == 1 FAMC (320) @FAMILY@ (ctxt is 333, conversion failures: 0)
 == 1 NAME (342) code: 0328/OGONEK/ (ctxt is 333, conversion failures: 0)
@@ -667,5 +667,5 @@ Family start, xref is @FAMILY@
 == 1 CHIL (293) @CHILD32@ (ctxt is 2, conversion failures: 0)
 Family end, xref is @FAMILY@
 
-=== Total conversion failures: 782
+=== Total conversion failures: 920
 Parse succeeded
