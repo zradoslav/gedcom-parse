@@ -470,10 +470,12 @@ values:<br>
 <ul>
   <li><code><b>WITHOUT_BOM</b></code></li>
   <li><code><b>WITH_BOM</b></code></li>
-</ul>
-For both these parameters you can pass 0 for non-UNICODE encodings, since
-that corresponds to the correct values (and is ignored anyway). &nbsp;The
-function returns 0 in case of success, non-zero in case of error.<br>
+</ul> For both these parameters you can pass 0 for non-UNICODE encodings,
+since that corresponds to the correct values (and is ignored anyway). &nbsp;The 
+function returns 0 in case of success, non-zero in case of error. &nbsp;Note
+that you still need to pass the correct charset value for the HEAD.CHAR tag,
+otherwise you will get a warning, and the value will be forced to the correct
+value.<br>
 <br>
 Further, it is possible to control the kind of line terminator that is used, via the following function (also to be used before <code>gedcom_write_open</code>):<br>
 <blockquote><code>int <b>gedcom_write_set_line_terminator</b> (Enc_line_end end);<br></code></blockquote>
@@ -726,6 +728,7 @@ gedcom-config --libs gom</code><br>
 <pre>                    </pre>
                                                                         
                                                         
+<br>
 <br>
 <br>
 <br>
