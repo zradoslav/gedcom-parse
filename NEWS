@@ -1,5 +1,11 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
+release 0.16 (16 August 2002):
+
+ - Another bugfixing release.
+
+ - Some compatibility with Lifelines 3.0.2 is added (not necessarily complete).
+
 release 0.15 (27 March 2002):
 
  - Again mainly a bugfixing release
