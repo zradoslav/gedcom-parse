@@ -47,6 +47,7 @@ DEFINE_DESTROYFUNC(individual, gom_first_individual)
 DEFINE_ADDFUNC(individual, XREF_INDI)
 DEFINE_DELETEFUNC(individual)
 DEFINE_GETXREFFUNC(individual, XREF_INDI)
+DEFINE_MAKELINKFUNC(individual, XREF_INDI)
      
 DEFINE_REC_CB(individual, indi_start)
 DEFINE_STRING_CB(individual, indi_resn_start, restriction_notice)

@@ -39,6 +39,7 @@ DEFINE_DESTROYFUNC(multimedia, gom_first_multimedia)
 DEFINE_ADDFUNC(multimedia, XREF_OBJE)
 DEFINE_DELETEFUNC(multimedia)
 DEFINE_GETXREFFUNC(multimedia, XREF_OBJE)
+DEFINE_MAKELINKFUNC(multimedia, XREF_OBJE)
      
 DEFINE_REC_CB(multimedia, obje_start)
 DEFINE_STRING_CB(multimedia, obje_form_start, form)

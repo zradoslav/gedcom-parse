@@ -40,6 +40,7 @@ DEFINE_DESTROYFUNC(repository, gom_first_repository)
 DEFINE_ADDFUNC(repository, XREF_REPO)
 DEFINE_DELETEFUNC(repository)
 DEFINE_GETXREFFUNC(repository, XREF_REPO)
+DEFINE_MAKELINKFUNC(repository, XREF_REPO)
      
 DEFINE_REC_CB(repository, repo_start)
 DEFINE_STRING_CB(repository, repo_name_start, name)
