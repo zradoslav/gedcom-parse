@@ -1,5 +1,5 @@
 /* General header for the Gedcom parser.
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001, 2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -46,6 +46,13 @@
 #define MAXGEDCPTRLEN   22
 #define GEDCOMTAGOFFSET 257
 #define INTERNAL_ENCODING "UTF8"
+
+#define GEDCOM_INTERNAL 1
+
+struct tag_struct {
+  char *string;
+  int value;
+};
 
 int        gedcom_error(char* s, ...);
 int        gedcom_warning(char* s, ...);

@@ -1,5 +1,5 @@
 /* Common lexer code.
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001, 2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -73,8 +73,8 @@ int test_loop(ENCODING enc, char* code)
       case DELIM: printf("DELIM "); break;
       case ANYCHAR: printf("%s ", gedcom_lval.string); break;
       case POINTER: printf("POINTER(%s) ", gedcom_lval.string); break;
-      case USERTAG: printf("USERTAG(%s) ", gedcom_lval.string); break;
-      default: printf("TAG(%s) ", gedcom_lval.string); break;
+      case USERTAG: printf("USERTAG(%s) ", gedcom_lval.tag.string); break;
+      default: printf("TAG(%s) ", gedcom_lval.tag.string); break;
     }
     tok = gedcom_lex();
   }
@@ -107,7 +107,8 @@ int test_loop(ENCODING enc, char* code)
 
 #define MKTAGACTION(THETAG)                                                  \
   { CHECK_LINE_LEN;                                                          \
-    gedcom_lval.string = TO_INTERNAL(yytext, tag_buf);                       \
+    gedcom_lval.tag.string = TO_INTERNAL(yytext, tag_buf);                   \
+    gedcom_lval.tag.value  = TAG_##THETAG;                                   \
     BEGIN(NORMAL);                                                           \
     return TAG_##THETAG;                                                     \
   }
@@ -211,7 +212,8 @@ int test_loop(ENCODING enc, char* code)
        return BADTOKEN;                                                       \
      }                                                                        \
      CHECK_LINE_LEN;                                                          \
-     gedcom_lval.string = TO_INTERNAL(yytext, tag_buf);                       \
+     gedcom_lval.tag.string = TO_INTERNAL(yytext, tag_buf);                   \
+     gedcom_lval.tag.value  = USERTAG;                                        \
      BEGIN(NORMAL);                                                           \
      return USERTAG;                                                          \
    }

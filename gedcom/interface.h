@@ -1,5 +1,5 @@
 /* Header for interface.c
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001, 2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -27,11 +27,11 @@
 #include "gedcom.h"
 
 Gedcom_ctxt start_record(Gedcom_rec rec,
-			 int level, Gedcom_val xref, char *tag);
+			 int level, Gedcom_val xref, struct tag_struct tag);
 void        end_record(Gedcom_rec rec, Gedcom_ctxt self);
 
 Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent,
-			  int level, char *tag, char *raw_value,
+			  int level, struct tag_struct tag, char *raw_value,
 			  Gedcom_val parsed_value);
 void        end_element(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
 			Gedcom_val parsed_value);

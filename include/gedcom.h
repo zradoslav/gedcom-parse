@@ -1,5 +1,5 @@
 /* External header for the Gedcom parser library.
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001,2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -27,6 +27,10 @@
 #include <stdio.h>
 
 __BEGIN_DECLS
+
+#ifndef GEDCOM_INTERNAL
+#include <gedcom-tags.h>
+#endif
 
 /**************************************************************************/
 /***  First the records and elements to subscribe upon                  ***/
@@ -276,10 +280,14 @@ typedef enum _DATE_VAL_MOD {
   DV_PHRASE         /* Only phrase is given */
 } Date_value_type;
 
+/* All Unicode characters between U+0000 and U+FFFF can be encoded in
+   UTF-8 with 3 or less bytes */
+#define UTF_FACTOR 3
+
 #define MAX_DAY_LEN    2
 #define MAX_MONTH_LEN  4
 #define MAX_YEAR_LEN   7
-#define MAX_PHRASE_LEN 35
+#define MAX_PHRASE_LEN 35 * UTF_FACTOR
 
 struct date {
   Calendar_type cal;
@@ -301,6 +309,9 @@ struct date_value {
   struct date date2;
   char phrase[MAX_PHRASE_LEN + 1];
 };
+
+/* Type for context handling, meant to be opaque */
+typedef void* Gedcom_ctxt;
 
 /**************************************************************************/
 /***  Things meant to be internal, susceptible to changes               ***/
@@ -327,6 +338,7 @@ typedef struct _Gedcom_val_struct {
 void gedcom_cast_error(char* file, int line,
 		       Gedcom_val_type tried_type,
 		       Gedcom_val_type real_type);
+
 extern struct date_value def_date_val;
 
 #define GV_CHECK_CAST(VAL, TYPE, MEMBER, DEFVAL)                              \
@@ -340,9 +352,6 @@ extern struct date_value def_date_val;
 /**************************************************************************/
 /***  Function interface                                                ***/
 /**************************************************************************/
-
-/* Type for context handling, meant to be opaque */
-typedef void* Gedcom_ctxt;
 
 /* Type for parsed values, meant to be opaque */
 typedef Gedcom_val_struct* Gedcom_val;
@@ -371,7 +380,7 @@ typedef void
 
 typedef Gedcom_ctxt
         (*Gedcom_rec_start_cb)
-        (int level, Gedcom_val xref, char *tag);
+        (int level, Gedcom_val xref, char *tag, int tag_value);
 typedef void
         (*Gedcom_rec_end_cb)
         (Gedcom_ctxt self);
@@ -379,14 +388,16 @@ typedef void
 typedef Gedcom_ctxt
         (*Gedcom_elt_start_cb)
         (Gedcom_ctxt parent,
-	 int level, char *tag, char *raw_value, Gedcom_val parsed_value);
+	 int level, char *tag, char *raw_value,
+	 int tag_value, Gedcom_val parsed_value);
 typedef void
         (*Gedcom_elt_end_cb)
         (Gedcom_ctxt parent, Gedcom_ctxt self, Gedcom_val parsed_value);
 
 typedef void
         (*Gedcom_def_cb)
-        (Gedcom_ctxt parent, int level, char *tag, char *raw_value);
+        (Gedcom_ctxt parent, int level, char *tag, char *raw_value,
+	 int tag_value);
 
 int     gedcom_parse_file(char* file_name);
 void    gedcom_set_debug_level(int level, FILE* trace_output);

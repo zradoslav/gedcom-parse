@@ -1,5 +1,5 @@
 /* Test program for the Gedcom library.
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001, 2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -59,7 +59,7 @@ void show_help ()
   printf("  -3    Run the test parse 3 times instead of once\n");
 }
 
-Gedcom_ctxt header_start(int level, Gedcom_val xref, char *tag)
+Gedcom_ctxt header_start(int level, Gedcom_val xref, char *tag, int tag_value)
 {
   output(1, "Header start\n");
   return (Gedcom_ctxt)0;
@@ -73,7 +73,7 @@ void header_end(Gedcom_ctxt self)
 char family_xreftags[100][255];
 int  family_nr = 0;
 
-Gedcom_ctxt family_start(int level, Gedcom_val xref, char *tag)
+Gedcom_ctxt family_start(int level, Gedcom_val xref, char *tag, int tag_value)
 {
   output(1, "Family start, xref is %s\n", GEDCOM_STRING(xref));
   strcpy(family_xreftags[family_nr], GEDCOM_STRING(xref));
@@ -85,14 +85,15 @@ void family_end(Gedcom_ctxt self)
   output(1, "Family end, xref is %s\n", family_xreftags[(int)self]);
 }
 
-Gedcom_ctxt submit_start(int level, Gedcom_val xref, char *tag)
+Gedcom_ctxt submit_start(int level, Gedcom_val xref, char *tag, int tag_value)
 {
   output(1, "Submitter, xref is %s\n", GEDCOM_STRING(xref));
   return (Gedcom_ctxt)10000;
 }
 
 Gedcom_ctxt source_start(Gedcom_ctxt parent, int level, char *tag,
-			 char* raw_value, Gedcom_val parsed_value)
+			 char* raw_value,
+			 int tag_value, Gedcom_val parsed_value)
 {
   Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
   output(1, "Source is %s (ctxt is %d, parent is %d)\n",
@@ -106,7 +107,8 @@ void source_end(Gedcom_ctxt parent, Gedcom_ctxt self, Gedcom_val parsed_value)
 }
 
 Gedcom_ctxt source_date_start(Gedcom_ctxt parent, int level, char *tag,
-			      char* raw_value, Gedcom_val parsed_value)
+			      char* raw_value,
+			      int tag_value, Gedcom_val parsed_value)
 {
   struct date_value dv;
   Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
@@ -134,9 +136,11 @@ Gedcom_ctxt source_date_start(Gedcom_ctxt parent, int level, char *tag,
   return self;
 }
 
-void default_cb(Gedcom_ctxt ctxt, int level, char *tag, char *raw_value)
+void default_cb(Gedcom_ctxt ctxt, int level, char *tag, char *raw_value,
+		int tag_value)
 {
-  output(0, "== %d %s %s (ctxt is %d)\n", level, tag, raw_value, (int)ctxt);
+  output(0, "== %d %s (%d) %s (ctxt is %d)\n",
+	 level, tag, tag_value, raw_value, (int)ctxt);
 }
 
 void subscribe_callbacks()

@@ -1,5 +1,5 @@
 /* Implementation of the interface to applications.
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001, 2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -56,11 +56,11 @@ void gedcom_subscribe_to_element(Gedcom_elt elt,
 }
 
 Gedcom_ctxt start_record(Gedcom_rec rec,
-			 int level, Gedcom_val xref, char *tag)
+			 int level, Gedcom_val xref, struct tag_struct tag)
 {
   Gedcom_rec_start_cb cb = record_start_callback[rec];
   if (cb != NULL)
-    return (*cb)(level, xref, tag);
+    return (*cb)(level, xref, tag.string, tag.value);
   else
     return NULL;
 }
@@ -73,15 +73,16 @@ void end_record(Gedcom_rec rec, Gedcom_ctxt self)
 }
 
 Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent, 
-			  int level, char *tag, char *raw_value,
+			  int level, struct tag_struct tag, char *raw_value,
 			  Gedcom_val parsed_value)
 {
   Gedcom_elt_start_cb cb = element_start_callback[elt];
   Gedcom_ctxt ctxt = parent;
   if (cb != NULL)
-    ctxt = (*cb)(parent, level, tag, raw_value, parsed_value);
+    ctxt = (*cb)(parent, level, tag.string, raw_value,
+		 tag.value, parsed_value);
   else if (default_cb != NULL)
-    (*default_cb)(parent, level, tag, raw_value);
+    (*default_cb)(parent, level, tag.string, raw_value, tag.value);
   return ctxt;
 }
 

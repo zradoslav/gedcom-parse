@@ -1,5 +1,5 @@
 /* Parser for Gedcom.
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001, 2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -243,6 +243,7 @@ int  compat_mode(int flags);
 %union {
   int  number;
   char *string;
+  struct tag_struct tag;
   Gedcom_ctxt ctxt;
 }
 
@@ -256,139 +257,144 @@ int  compat_mode(int flags);
 %token <string> DELIM
 %token <string> ANYCHAR
 %token <string> POINTER
-%token <string> USERTAG
-%token <string> TAG_ABBR
-%token <string> TAG_ADDR
-%token <string> TAG_ADR1
-%token <string> TAG_ADR2
-%token <string> TAG_ADOP
-%token <string> TAG_AFN
-%token <string> TAG_AGE
-%token <string> TAG_AGNC
-%token <string> TAG_ALIA
-%token <string> TAG_ANCE
-%token <string> TAG_ANCI
-%token <string> TAG_ANUL
-%token <string> TAG_ASSO
-%token <string> TAG_AUTH
-%token <string> TAG_BAPL
-%token <string> TAG_BAPM
-%token <string> TAG_BARM
-%token <string> TAG_BASM
-%token <string> TAG_BIRT
-%token <string> TAG_BLES
-%token <string> TAG_BLOB
-%token <string> TAG_BURI
-%token <string> TAG_CALN
-%token <string> TAG_CAST
-%token <string> TAG_CAUS
-%token <string> TAG_CENS
-%token <string> TAG_CHAN
-%token <string> TAG_CHAR
-%token <string> TAG_CHIL
-%token <string> TAG_CHR
-%token <string> TAG_CHRA
-%token <string> TAG_CITY
-%token <string> TAG_CONC
-%token <string> TAG_CONF
-%token <string> TAG_CONL
-%token <string> TAG_CONT
-%token <string> TAG_COPR
-%token <string> TAG_CORP
-%token <string> TAG_CREM
-%token <string> TAG_CTRY
-%token <string> TAG_DATA
-%token <string> TAG_DATE
-%token <string> TAG_DEAT
-%token <string> TAG_DESC
-%token <string> TAG_DESI
-%token <string> TAG_DEST
-%token <string> TAG_DIV
-%token <string> TAG_DIVF
-%token <string> TAG_DSCR
-%token <string> TAG_EDUC
-%token <string> TAG_EMIG
-%token <string> TAG_ENDL
-%token <string> TAG_ENGA
-%token <string> TAG_EVEN
-%token <string> TAG_FAM
-%token <string> TAG_FAMC
-%token <string> TAG_FAMF
-%token <string> TAG_FAMS
-%token <string> TAG_FCOM
-%token <string> TAG_FILE
-%token <string> TAG_FORM
-%token <string> TAG_GEDC
-%token <string> TAG_GIVN
-%token <string> TAG_GRAD
-%token <string> TAG_HEAD
-%token <string> TAG_HUSB
-%token <string> TAG_IDNO
-%token <string> TAG_IMMI
-%token <string> TAG_INDI
-%token <string> TAG_LANG
-%token <string> TAG_LEGA
-%token <string> TAG_MARB
-%token <string> TAG_MARC
-%token <string> TAG_MARL
-%token <string> TAG_MARR
-%token <string> TAG_MARS
-%token <string> TAG_MEDI
-%token <string> TAG_NAME
-%token <string> TAG_NATI
-%token <string> TAG_NATU
-%token <string> TAG_NCHI
-%token <string> TAG_NICK
-%token <string> TAG_NMR
-%token <string> TAG_NOTE
-%token <string> TAG_NPFX
-%token <string> TAG_NSFX
-%token <string> TAG_OBJE
-%token <string> TAG_OCCU
-%token <string> TAG_ORDI
-%token <string> TAG_ORDN
-%token <string> TAG_PAGE
-%token <string> TAG_PEDI
-%token <string> TAG_PHON
-%token <string> TAG_PLAC
-%token <string> TAG_POST
-%token <string> TAG_PROB
-%token <string> TAG_PROP
-%token <string> TAG_PUBL
-%token <string> TAG_QUAY
-%token <string> TAG_REFN
-%token <string> TAG_RELA
-%token <string> TAG_RELI
-%token <string> TAG_REPO
-%token <string> TAG_RESI
-%token <string> TAG_RESN
-%token <string> TAG_RETI
-%token <string> TAG_RFN
-%token <string> TAG_RIN
-%token <string> TAG_ROLE
-%token <string> TAG_SEX
-%token <string> TAG_SLGC
-%token <string> TAG_SLGS
-%token <string> TAG_SOUR
-%token <string> TAG_SPFX
-%token <string> TAG_SSN
-%token <string> TAG_STAE
-%token <string> TAG_STAT
-%token <string> TAG_SUBM
-%token <string> TAG_SUBN
-%token <string> TAG_SURN
-%token <string> TAG_TEMP
-%token <string> TAG_TEXT
-%token <string> TAG_TIME
-%token <string> TAG_TITL
-%token <string> TAG_TRLR
-%token <string> TAG_TYPE
-%token <string> TAG_VERS
-%token <string> TAG_WIFE
-%token <string> TAG_WILL
+%token <tag> USERTAG
+%token <tag> TAG_ABBR
+%token <tag> TAG_ADDR
+%token <tag> TAG_ADR1
+%token <tag> TAG_ADR2
+%token <tag> TAG_ADOP
+%token <tag> TAG_AFN
+%token <tag> TAG_AGE
+%token <tag> TAG_AGNC
+%token <tag> TAG_ALIA
+%token <tag> TAG_ANCE
+%token <tag> TAG_ANCI
+%token <tag> TAG_ANUL
+%token <tag> TAG_ASSO
+%token <tag> TAG_AUTH
+%token <tag> TAG_BAPL
+%token <tag> TAG_BAPM
+%token <tag> TAG_BARM
+%token <tag> TAG_BASM
+%token <tag> TAG_BIRT
+%token <tag> TAG_BLES
+%token <tag> TAG_BLOB
+%token <tag> TAG_BURI
+%token <tag> TAG_CALN
+%token <tag> TAG_CAST
+%token <tag> TAG_CAUS
+%token <tag> TAG_CENS
+%token <tag> TAG_CHAN
+%token <tag> TAG_CHAR
+%token <tag> TAG_CHIL
+%token <tag> TAG_CHR
+%token <tag> TAG_CHRA
+%token <tag> TAG_CITY
+%token <tag> TAG_CONC
+%token <tag> TAG_CONF
+%token <tag> TAG_CONL
+%token <tag> TAG_CONT
+%token <tag> TAG_COPR
+%token <tag> TAG_CORP
+%token <tag> TAG_CREM
+%token <tag> TAG_CTRY
+%token <tag> TAG_DATA
+%token <tag> TAG_DATE
+%token <tag> TAG_DEAT
+%token <tag> TAG_DESC
+%token <tag> TAG_DESI
+%token <tag> TAG_DEST
+%token <tag> TAG_DIV
+%token <tag> TAG_DIVF
+%token <tag> TAG_DSCR
+%token <tag> TAG_EDUC
+%token <tag> TAG_EMIG
+%token <tag> TAG_ENDL
+%token <tag> TAG_ENGA
+%token <tag> TAG_EVEN
+%token <tag> TAG_FAM
+%token <tag> TAG_FAMC
+%token <tag> TAG_FAMF
+%token <tag> TAG_FAMS
+%token <tag> TAG_FCOM
+%token <tag> TAG_FILE
+%token <tag> TAG_FORM
+%token <tag> TAG_GEDC
+%token <tag> TAG_GIVN
+%token <tag> TAG_GRAD
+%token <tag> TAG_HEAD
+%token <tag> TAG_HUSB
+%token <tag> TAG_IDNO
+%token <tag> TAG_IMMI
+%token <tag> TAG_INDI
+%token <tag> TAG_LANG
+%token <tag> TAG_LEGA
+%token <tag> TAG_MARB
+%token <tag> TAG_MARC
+%token <tag> TAG_MARL
+%token <tag> TAG_MARR
+%token <tag> TAG_MARS
+%token <tag> TAG_MEDI
+%token <tag> TAG_NAME
+%token <tag> TAG_NATI
+%token <tag> TAG_NATU
+%token <tag> TAG_NCHI
+%token <tag> TAG_NICK
+%token <tag> TAG_NMR
+%token <tag> TAG_NOTE
+%token <tag> TAG_NPFX
+%token <tag> TAG_NSFX
+%token <tag> TAG_OBJE
+%token <tag> TAG_OCCU
+%token <tag> TAG_ORDI
+%token <tag> TAG_ORDN
+%token <tag> TAG_PAGE
+%token <tag> TAG_PEDI
+%token <tag> TAG_PHON
+%token <tag> TAG_PLAC
+%token <tag> TAG_POST
+%token <tag> TAG_PROB
+%token <tag> TAG_PROP
+%token <tag> TAG_PUBL
+%token <tag> TAG_QUAY
+%token <tag> TAG_REFN
+%token <tag> TAG_RELA
+%token <tag> TAG_RELI
+%token <tag> TAG_REPO
+%token <tag> TAG_RESI
+%token <tag> TAG_RESN
+%token <tag> TAG_RETI
+%token <tag> TAG_RFN
+%token <tag> TAG_RIN
+%token <tag> TAG_ROLE
+%token <tag> TAG_SEX
+%token <tag> TAG_SLGC
+%token <tag> TAG_SLGS
+%token <tag> TAG_SOUR
+%token <tag> TAG_SPFX
+%token <tag> TAG_SSN
+%token <tag> TAG_STAE
+%token <tag> TAG_STAT
+%token <tag> TAG_SUBM
+%token <tag> TAG_SUBN
+%token <tag> TAG_SURN
+%token <tag> TAG_TEMP
+%token <tag> TAG_TEXT
+%token <tag> TAG_TIME
+%token <tag> TAG_TITL
+%token <tag> TAG_TRLR
+%token <tag> TAG_TYPE
+%token <tag> TAG_VERS
+%token <tag> TAG_WIFE
+%token <tag> TAG_WILL
 
-%type <string> anystdtag
-%type <string> anytoptag
+%type <tag> anystdtag
+%type <tag> anytoptag
+%type <tag> fam_event_tag
+%type <tag> indiv_attr_tag
+%type <tag> indiv_birt_tag
+%type <tag> indiv_gen_tag
+%type <tag> lio_bapl_tag
 %type <string> line_item
 %type <string> line_value
 %type <string> mand_line_item
@@ -398,11 +404,6 @@ int  compat_mode(int flags);
 %type <string> opt_xref
 %type <string> opt_value
 %type <string> opt_line_item
-%type <string> fam_event_tag
-%type <string> indiv_attr_tag
-%type <string> indiv_birt_tag
-%type <string> indiv_gen_tag
-%type <string> lio_bapl_tag
 %type <ctxt> head_sect
 
 %%
@@ -514,7 +515,7 @@ head_sour_name_sect : OPEN DELIM TAG_NAME mand_line_item
                     ;
 head_sour_corp_sect : OPEN DELIM TAG_CORP mand_line_item 
                       { $<ctxt>$ = start_element(ELT_HEAD_SOUR_CORP, PARENT,
-						 $1, $3, $4, 
+						 $1, $3, $4,
 						 GEDCOM_MAKE_STRING($4));
 			START(CORP, $<ctxt>$)
 		      }
@@ -536,7 +537,7 @@ head_sour_corp_sub : addr_struc_sub  /* 0:1 */
 
 head_sour_data_sect : OPEN DELIM TAG_DATA mand_line_item 
                       { $<ctxt>$ = start_element(ELT_HEAD_SOUR_DATA, PARENT,
-						 $1, $3, $4, 
+						 $1, $3, $4,
 						 GEDCOM_MAKE_STRING($4));
 			START(DATA, $<ctxt>$)
 		      }
@@ -560,7 +561,7 @@ head_sour_data_sub : head_sour_data_date_sect  { OCCUR2(DATE, 0, 1) }
 head_sour_data_date_sect : OPEN DELIM TAG_DATE mand_line_item
                            { struct date_value dv = gedcom_parse_date($4);
 			     $<ctxt>$ = start_element(ELT_HEAD_SOUR_DATA_DATE,
-						      PARENT, $1, $3, $4, 
+						      PARENT, $1, $3, $4,
 						      GEDCOM_MAKE_DATE(dv));
 			     START(DATE, $<ctxt>$)
 			   }
@@ -573,7 +574,7 @@ head_sour_data_date_sect : OPEN DELIM TAG_DATE mand_line_item
                          ;
 head_sour_data_copr_sect : OPEN DELIM TAG_COPR mand_line_item
                            { $<ctxt>$ = start_element(ELT_HEAD_SOUR_DATA_COPR,
-						      PARENT, $1, $3, $4, 
+						      PARENT, $1, $3, $4,
 						      GEDCOM_MAKE_STRING($4));
 			     START(COPR, $<ctxt>$)
 			   }
@@ -588,7 +589,7 @@ head_sour_data_copr_sect : OPEN DELIM TAG_COPR mand_line_item
 /* HEAD.DEST */
 head_dest_sect : OPEN DELIM TAG_DEST mand_line_item
                  { $<ctxt>$ = start_element(ELT_HEAD_DEST,
-					    PARENT, $1, $3, $4, 
+					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_STRING($4));
 		   START(DEST, $<ctxt>$)
 		 }
@@ -604,7 +605,7 @@ head_dest_sect : OPEN DELIM TAG_DEST mand_line_item
 head_date_sect : OPEN DELIM TAG_DATE mand_line_item 
                  { struct date_value dv = gedcom_parse_date($4);
 		   $<ctxt>$ = start_element(ELT_HEAD_DATE,
-					    PARENT, $1, $3, $4, 
+					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_DATE(dv));
 		   START(DATE, $<ctxt>$)
 		 }
@@ -626,7 +627,7 @@ head_date_sub  : head_date_time_sect  { OCCUR2(TIME, 0, 1) }
 
 head_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
                       { $<ctxt>$ = start_element(ELT_HEAD_DATE_TIME,
-						 PARENT, $1, $3, $4, 
+						 PARENT, $1, $3, $4,
 						 GEDCOM_MAKE_STRING($4));
 		        START(TIME, $<ctxt>$)
 		      }
@@ -641,7 +642,7 @@ head_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
 /* HEAD.SUBM */
 head_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
                  { $<ctxt>$ = start_element(ELT_HEAD_SUBM,
-					    PARENT, $1, $3, $4, 
+					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_STRING($4));
 		   START(SUBM, $<ctxt>$)
 		 }
@@ -655,7 +656,7 @@ head_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
 /* HEAD.SUBN */
 head_subn_sect : OPEN DELIM TAG_SUBN mand_pointer 
                  { $<ctxt>$ = start_element(ELT_HEAD_SUBN,
-					    PARENT, $1, $3, $4, 
+					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_STRING($4));
 		   START(SUBN, $<ctxt>$)
 		 }
@@ -669,7 +670,7 @@ head_subn_sect : OPEN DELIM TAG_SUBN mand_pointer
 /* HEAD.FILE */
 head_file_sect : OPEN DELIM TAG_FILE mand_line_item 
                  { $<ctxt>$ = start_element(ELT_HEAD_FILE,
-					    PARENT, $1, $3, $4, 
+					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_STRING($4));
 		   START(FILE, $<ctxt>$)
 		 }
@@ -682,7 +683,7 @@ head_file_sect : OPEN DELIM TAG_FILE mand_line_item
 /* HEAD.COPR */
 head_copr_sect : OPEN DELIM TAG_COPR mand_line_item 
                  { $<ctxt>$ = start_element(ELT_HEAD_COPR,
-					    PARENT, $1, $3, $4, 
+					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_STRING($4));
 		   START(COPR, $<ctxt>$)
 		 }
@@ -716,7 +717,7 @@ head_gedc_sub  : head_gedc_vers_sect  { OCCUR2(VERS, 1, 1) }
                ;
 head_gedc_vers_sect : OPEN DELIM TAG_VERS mand_line_item  
                       { $<ctxt>$ = start_element(ELT_HEAD_GEDC_VERS,
-						 PARENT, $1, $3, $4, 
+						 PARENT, $1, $3, $4,
 						 GEDCOM_MAKE_STRING($4));
 		        START(VERS, $<ctxt>$)
 		      }
@@ -729,7 +730,7 @@ head_gedc_vers_sect : OPEN DELIM TAG_VERS mand_line_item
                     ;
 head_gedc_form_sect : OPEN DELIM TAG_FORM mand_line_item   
                       { $<ctxt>$ = start_element(ELT_HEAD_GEDC_FORM,
-						 PARENT, $1, $3, $4, 
+						 PARENT, $1, $3, $4,
 						 GEDCOM_MAKE_STRING($4));
 		        START(FORM, $<ctxt>$)
 		      }
@@ -745,7 +746,7 @@ head_gedc_form_sect : OPEN DELIM TAG_FORM mand_line_item
 head_char_sect : OPEN DELIM TAG_CHAR mand_line_item 
                  { if (open_conv_to_internal($4) == 0) YYERROR;
 		   $<ctxt>$ = start_element(ELT_HEAD_CHAR,
-					    PARENT, $1, $3, $4, 
+					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_STRING($4));
 		   START(CHAR, $<ctxt>$)
 		 }
@@ -765,7 +766,7 @@ head_char_sub  : head_char_vers_sect  { OCCUR2(VERS, 0, 1) }
                ;
 head_char_vers_sect : OPEN DELIM TAG_VERS mand_line_item   
                       { $<ctxt>$ = start_element(ELT_HEAD_CHAR_VERS,
-						 PARENT, $1, $3, $4, 
+						 PARENT, $1, $3, $4,
 						 GEDCOM_MAKE_STRING($4));
 		        START(VERS, $<ctxt>$)
 		      }
@@ -780,7 +781,7 @@ head_char_vers_sect : OPEN DELIM TAG_VERS mand_line_item
 /* HEAD.LANG */
 head_lang_sect : OPEN DELIM TAG_LANG mand_line_item   
                  { $<ctxt>$ = start_element(ELT_HEAD_LANG,
-					    PARENT, $1, $3, $4, 
+					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_STRING($4));
 		   START(LANG, $<ctxt>$)
 		 }
@@ -3280,7 +3281,7 @@ no_std_rec  : user_rec /* 0:M */
 	    ;
 
 user_rec    : OPEN DELIM opt_xref USERTAG 
-              { if ($4[0] != '_') {
+              { if ($4.string[0] != '_') {
 		  gedcom_error(_("Undefined tag (and not a valid user tag): %s"),
 			       $4);
 		  YYERROR;
@@ -3297,7 +3298,7 @@ user_rec    : OPEN DELIM opt_xref USERTAG
               { end_record(REC_USER, $<ctxt>7); }
             ;
 user_sect   : OPEN DELIM opt_xref USERTAG 
-              { if ($4[0] != '_') {
+              { if ($4.string[0] != '_') {
 		  gedcom_error(_("Undefined tag (and not a valid user tag): %s"),
 			       $4);
 		  YYERROR;
