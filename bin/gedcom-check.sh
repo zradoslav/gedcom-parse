@@ -12,7 +12,7 @@ ln -s ../data/gedcom.enc .
 ln -s ../data/new.ged .
 ln -s ../iconv/glibc/.libs/ANSI_Z39.47.so .
 ln -s ../iconv/glibc/gconv-modules .
-$ltcmd ./gedcom-check $*
+$ltcmd $GEDCOM_TESTENV ./gedcom-check $*
 result=$?
 rm gedcom.enc
 rm new.ged
