@@ -147,7 +147,7 @@ int numbers_to_sdn(struct date *d)
   int result = 0;
   if (d->cal == CAL_UNKNOWN) {
     d->type = DATE_UNRECOGNIZED;
-    gedcom_error(_("Cannot compute SDN for unknown calendar type"));
+    gedcom_date_error(_("Cannot compute SDN for unknown calendar type"));
     result = 1;
   }
   else {
@@ -171,7 +171,7 @@ int numbers_to_sdn(struct date *d)
 	}
       }
       else {
-	gedcom_error(_("Year has to be given in bounded date"));
+	gedcom_date_error(_("Year has to be given in bounded date"));
 	result = 1;
       }
     }
@@ -182,7 +182,7 @@ int numbers_to_sdn(struct date *d)
     d->sdn1 = checkedCalToSdn(d->cal, begin_date.year, begin_date.month,
 			      begin_date.day);
     if (d->sdn1 == -1) {
-      gedcom_error(_("Error converting date: year %d, month %d, day %d"),
+      gedcom_date_error(_("Error converting date: year %d, month %d, day %d"),
 		   begin_date.year, begin_date.month, begin_date.day);
       result = 1;
     }
@@ -191,7 +191,7 @@ int numbers_to_sdn(struct date *d)
 	d->sdn2 = checkedCalToSdn(d->cal, end_date.year, end_date.month,
 				  end_date.day);
 	if (d->sdn2 == -1) {
-	  gedcom_error(_("Error converting date: year %d, month %d, day %d"),
+	  gedcom_date_error(_("Error converting date: year %d, month %d, day %d"),
 		       end_date.year, end_date.month, end_date.day);
 	  result = 1;
 	}
@@ -210,7 +210,7 @@ int sdn_to_numbers(struct date *d)
 {
   int result = 0;
   if (d->cal == CAL_UNKNOWN) {
-    gedcom_error(_("Cannot compute from SDN for unknown calendar type"));
+    gedcom_date_error(_("Cannot compute from SDN for unknown calendar type"));
     result = 1;
   }
   else {
@@ -218,38 +218,38 @@ int sdn_to_numbers(struct date *d)
     struct date end_date;
 
     if (d->sdn1 <= 0) {
-      gedcom_error(_("SDN 1 should be bigger than zero"));
+      gedcom_date_error(_("SDN 1 should be bigger than zero"));
       result = 1;
     }
     else {
       copy_date(&begin_date, d);
       if (!checkedSdnToCal(d->cal, d->sdn1, &begin_date.year,
 			   &begin_date.month, &begin_date.day)) {
-	gedcom_error(_("SDN 1 isn't a valid date in the given calendar"));
+	gedcom_date_error(_("SDN 1 isn't a valid date in the given calendar"));
 	result = 1;
       }
       else {
 	switch (d->type) {
 	  case DATE_EXACT:
 	    if (d->sdn2 != -1) {
-	      gedcom_error(_("SDN 2 should be -1 for exact dates"));
+	      gedcom_date_error(_("SDN 2 should be -1 for exact dates"));
 	      result = 1;
 	    }
 	    break;
 	  case DATE_BOUNDED:
 	    if (d->sdn2 <= 0) {
-	      gedcom_error(_("SDN 2 should be bigger than zero"));
+	      gedcom_date_error(_("SDN 2 should be bigger than zero"));
 	      result = 1;
 	    }
 	    else if (d->sdn2 <= d->sdn1) {
-	      gedcom_error(_("SDN 2 should be bigger than SDN 1"));
+	      gedcom_date_error(_("SDN 2 should be bigger than SDN 1"));
 	      result = 1;
 	    }
 	    else {
 	      copy_date(&end_date, d);
 	      if (!checkedSdnToCal(d->cal, d->sdn2, &end_date.year,
 				   &end_date.month, &end_date.day)) {
-		gedcom_error(_("SDN 2 isn't a valid date in the given calendar"));
+		gedcom_date_error(_("SDN 2 isn't a valid date in the given calendar"));
 		result = 1;
 	      }
 	      else {
@@ -270,7 +270,7 @@ int sdn_to_numbers(struct date *d)
 		  }
 		}
 		else {
-		  gedcom_error(_("SDN1/SDN2 isn't a bounded date"));
+		  gedcom_date_error(_("SDN1/SDN2 isn't a bounded date"));
 		  result = 1;
 		}
 	      }
@@ -296,7 +296,7 @@ int strings_to_numbers(struct date *d)
 {
   int result = 0;
   if (d->cal == CAL_UNKNOWN) {
-    gedcom_error(_("Cannot compute months for unknown calendar type"));
+    gedcom_date_error(_("Cannot compute months for unknown calendar type"));
     result = 1;
   }
   else {
@@ -329,7 +329,7 @@ int numbers_to_strings(struct date *d)
 {
   int result = 0;
   if (d->cal == CAL_UNKNOWN) {
-    gedcom_error(_("Cannot compute month names for unknown calendar type"));
+    gedcom_date_error(_("Cannot compute month names for unknown calendar type"));
     result = 1;
   }
   else {
@@ -404,23 +404,27 @@ struct date_value* gedcom_new_date_value(struct date_value* copy_from)
 
 struct date_value gedcom_parse_date(const char* line_value)
 {
+  int result = 0;
   init_date(&date_s);
   init_date(&def_date);
   curr_line_value = line_value;
   if (compat_mode(C_NO_REQUIRED_VALUES)
       && !strncmp(curr_line_value, "-", 2)) {
     gedcom_date_error(_("Empty value changed to '-'"));
-    gedcom_date_error(_("Putting date in 'phrase' member"));
-    make_date_value(DV_PHRASE, &def_date, &def_date, curr_line_value);
+    result = 1;
   }
   else {
     init_gedcom_date_lex(line_value);
     gedcom_date_parse();
     close_gedcom_date_lex();
     if (dv_s.date1.cal != CAL_UNKNOWN)
-      numbers_to_sdn(&dv_s.date1);
+      result |= numbers_to_sdn(&dv_s.date1);
     if (dv_s.date2.cal != CAL_UNKNOWN)
-      numbers_to_sdn(&dv_s.date2);
+      result |= numbers_to_sdn(&dv_s.date2);
+  }
+  if (result != 0) {
+    gedcom_date_error(_("Putting date in 'phrase' member"));
+    make_date_value(DV_PHRASE, &def_date, &def_date, curr_line_value);
   }
   return dv_s;
 }
