@@ -1,0 +1,32 @@
+0 HEAD
+1 CHAR IBM_WINDOWS
+1 SOUR EasyTree
+2 VERS V6.0
+2 CORP Sierra On-Line
+1 DEST EasyTree
+1 DATE 9 SEP 2001
+2 TIME 02:46:40
+1 SUBM @__COMPAT__SUBM__@
+1 FILE d:\winapps\SIERRA\GENDlx6\familysearch\FamilySearch.uds
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 NOTE (Peter Verthez) This file is only a very small extract of the original
+2 CONT See http://www.daish.net/downloads.htm
+0 @__COMPAT__SUBM__@ SUBM
+1 NAME Submitter
+1 CHAN
+2 DATE 9 SEP 2001
+3 TIME 02:46:40
+0 @I1@ INDI
+1 NAME Agnes Graden /DAYSH/
+1 SEX F
+1 CHR
+2 DATE 26 AUG 1838
+2 PLAC Shedfield, Hampshire, England
+1 CHR
+2 DATE 8 MAY 1870
+2 PLAC Weston Patrick, Hampshire, England
+0 @N4639@ NOTE -
+1 CONT Relative: Henry Howick WHITE
+0 TRLR

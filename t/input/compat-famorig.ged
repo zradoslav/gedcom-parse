@@ -1,0 +1,106 @@
+0 HEAD
+1 SOUR FamilyOrigins
+2 NAME Family Origins(R) for Windows
+2 VERS 6.0
+2 CORP FormalSoft, Inc.
+1 DEST DISKETTE
+1 DATE 4 JAN 2003
+1 SUBM @SUB1@
+1 FILE AXB45.GED
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 CHAR ANSI
+1 NOTE (Peter Verthez) This is only a very small extract from the original file
+2 CONT For the full file, see http://www.axtellfamily.org/axgenea/axggedco.html
+0 @SUB1@ SUBM
+1 NAME Daniel Gibson Axtell
+1 ADDR 1674 Westminster West Rd
+2 CONT Putney VT 05346
+1 PHON 802-387-4145
+1 _EMAIL daxtell@sover.net
+0 @I1@ INDI
+1 NAME Thomas /Axtell/
+2 GIVN Thomas
+2 SURN Axtell
+1 SEX M
+1 NOTE son of William and Thomasine Axtell, was baptised in St. Peter's
+2 CONC Church,
+2 CONT Berkhamstead, Hertfordshire, England, January 26, 1619 (N.S.). His
+2 CONC father
+2 CONT died in 1638. He married  Mary -- probably in 1638; two children were
+2 CONC born to
+2 CONT them in England, and their baptism is recorded in St. Peter's. They
+2 CONC left
+2 CONT England as early as 1643, for in October of that year, Thomas
+2 CONC purchased five
+2 CONT acres of land in Sudbury, Massachusetts, of Edmond Rice, who himself
+2 CONC had come
+2 CONT from Berkhamstead five years earlier. This land is described as "lying
+2 CONC in ye
+2 CONT south part of ye town-bounds, the southwest side lying to the commons
+2 CONC and
+2 CONT joined to the land of Edmond Rice, southward and northward to the
+2 CONC highway
+2 CONT leading from Sudbury to Mr. Duston's farm." This is what is now
+2 CONC Wayland near
+2 CONT "The Five Paths." Thomas took the oath of fidelity July 8, 1645. He
+2 CONC died in
+2 CONT March, 1646, and was buried the 8th of that month. The following is
+2 CONC the
+2 CONT inventory of Thomas Axtell of Sudbury, lately deceased,
+2 CONT
+2 CONT    Imprimi:
+2 CONT
+2 CONT       His land and house   8£ 10s
+2 CONT
+2 CONT       Cattle   8£ 10s
+2 CONT
+2 CONT       Wearing apparel and bedding with his arms   10£
+2 CONT
+2 CONT       Brass and pewter   5£
+2 CONT
+2 CONT Edmond Rice bought back the land, six acres, and dwelling house. This
+2 CONC was
+2 CONT near the spring.
+2 CONT
+2 CONT    The story told in those words is short, indeed, but we are
+2 CONC permitted to
+2 CONT see what it stands for. The young Englishman was a soldier or at least
+2 CONT trained to arms; he was of strong puritanical leanings, like his
+2 CONC brother
+2 CONT Daniel the regicide. With his wife and two little ones he followed his
+2 CONT neighbor across the sea to make his home in a frontier settlement of
+2 CONC New
+2 CONT England. Scarcely had he set up his rooftree in the wilderness when
+2 CONC hardships
+2 CONT and exposure struck him down.
+2 CONT
+2 CONT    With his last breath he leaves his little all for the helpless
+2 CONC group about
+2 CONT his death bed. Mary, the widow of Thomas, appears to have married John
+2 CONT Maynard, a widower with a boy of eight, on June 16, 1646.
+1 BIRT
+2 DATE ABT 26 JAN 1619
+2 PLAC Berkhamstead, , Hertfordshire, England
+1 DEAT
+2 DATE MAR 1646
+2 PLAC Sudbury, , MA
+1 REFN 1-1
+0 @I71@ INDI
+1 NAME Daniel /Axtell/
+2 GIVN Daniel
+2 SURN Axtell
+1 SEX M
+1 NOTE twin, probably unmarried.
+1 BIRT
+2 DATE 29 FEB 1739
+1 DEAT
+2 DATE 1772
+1 REFN 5-12
+1 FAMC @F23@
+0 @F23@ FAM
+1 CHIL @I71@
+1 MARR
+2 DATE 15 SEP 1737
+0 TRLR

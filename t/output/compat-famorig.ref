@@ -1,0 +1,429 @@
+
+=== Parsing file compat-famorig.ged
+Header start
+Source is FamilyOrigins (ctxt is 1001, parent is 1)
+== 2 NAME (342) Family Origins(R) for Windows (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 6.0 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) FormalSoft, Inc. (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 5: Enabling compatibility with 'Family Origins'
+Source context 1001 in parent 1
+== 1 DEST (310) DISKETTE (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 4 JAN 2003 (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @SUB1@ (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) AXB45.GED (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) ANSI (ctxt is 1, conversion failures: 0)
+Note: (Peter Verthez) This is only a very small extract from the original file (ctxt is 1, parent is 1)
+== 2 CONT (300) For the full file, see http://www.axtellfamily.org/axgenea/axggedco.html (ctxt is 1, conversion failures: 0)
+Complete note:
+(Peter Verthez) This is only a very small extract from the original file
+For the full file, see http://www.axtellfamily.org/axgenea/axggedco.html
+Header end, context is 1
+Submitter, xref is @SUB1@
+== 1 NAME (342) Daniel Gibson Axtell (ctxt is 10000, conversion failures: 0)
+== 1 ADDR (266) 1674 Westminster West Rd (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) Putney VT 05346 (ctxt is 10000, conversion failures: 0)
+== 1 PHON (357) 802-387-4145 (ctxt is 10000, conversion failures: 0)
+== 1 _EMAIL (264) daxtell@sover.net (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I1@
+== 1 NAME (342) Thomas /Axtell/ (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) Thomas (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) Axtell (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) son of William and Thomasine Axtell, was baptised in St. Peter's (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) Church, (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Berkhamstead, Hertfordshire, England, January 26, 1619 (N.S.). His (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) father (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) died in 1638. He married  Mary -- probably in 1638; two children were (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) born to (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) them in England, and their baptism is recorded in St. Peter's. They (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) left (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) England as early as 1643, for in October of that year, Thomas (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) purchased five (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) acres of land in Sudbury, Massachusetts, of Edmond Rice, who himself (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) had come (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) from Berkhamstead five years earlier. This land is described as "lying (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) in ye (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) south part of ye town-bounds, the southwest side lying to the commons (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) and (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) joined to the land of Edmond Rice, southward and northward to the (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) highway (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) leading from Sudbury to Mr. Duston's farm." This is what is now (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) Wayland near (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) "The Five Paths." Thomas took the oath of fidelity July 8, 1645. He (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) died in (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) March, 1646, and was buried the 8th of that month. The following is (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) the (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) inventory of Thomas Axtell of Sudbury, lately deceased, (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)    Imprimi: (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)       His land and house   8? 10s (ctxt is 333, conversion failures: 1)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)       Cattle   8? 10s (ctxt is 333, conversion failures: 1)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)       Wearing apparel and bedding with his arms   10? (ctxt is 333, conversion failures: 1)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)       Brass and pewter   5? (ctxt is 333, conversion failures: 1)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Edmond Rice bought back the land, six acres, and dwelling house. This (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) was (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) near the spring. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)    The story told in those words is short, indeed, but we are (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) permitted to (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) see what it stands for. The young Englishman was a soldier or at least (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) trained to arms; he was of strong puritanical leanings, like his (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) brother (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Daniel the regicide. With his wife and two little ones he followed his (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) neighbor across the sea to make his home in a frontier settlement of (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) New (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) England. Scarcely had he set up his rooftree in the wilderness when (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) hardships (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) and exposure struck him down. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)    With his last breath he leaves his little all for the helpless (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) group about (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) his death bed. Mary, the widow of Thomas, appears to have married John (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Maynard, a widower with a boy of eight, on June 16, 1646. (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: ABT 26 JAN 1619
+  type: 7
+  date1:
+    calendar type: 0
+    day: 26
+    month: JAN
+    year: 1619
+    date type: 1
+    sdn1: 2312413
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Berkhamstead, , Hertfordshire, England (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: MAR 1646
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: MAR
+    year: 1646
+    date type: 2
+    sdn1: 2322309
+    sdn2: 2322339
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Sudbury, , MA (ctxt is 333, conversion failures: 0)
+== 1 REFN (364) 1-1 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I71@
+== 1 NAME (342) Daniel /Axtell/ (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) Daniel (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) Axtell (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) twin, probably unmarried. (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 97: Error converting date: year 1739, month 2, day 29
+WARNING: Warning on line 97: Putting date in 'phrase' member
+Contents of the date_value:
+  raw value: 29 FEB 1739
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 29 FEB 1739
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1772
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1772
+    date type: 2
+    sdn1: 2368270
+    sdn2: 2368635
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 REFN (364) 5-12 (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F23@ (ctxt is 333, conversion failures: 0)
+Family start, xref is @F23@
+== 1 CHIL (293) @I71@ (ctxt is 1, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 15 SEP 1737
+  type: 0
+  date1:
+    calendar type: 0
+    day: 15
+    month: SEP
+    year: 1737
+    date type: 1
+    sdn1: 2355744
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Family end, xref is @F23@
+WARNING: Warning: Cross-reference @I1@ defined on line 22 is never used
+
+=== Total conversion failures: 4
+
+=== Parsing file compat-famorig.ged
+Header start
+Source is FamilyOrigins (ctxt is 1001, parent is 1)
+== 2 NAME (342) Family Origins(R) for Windows (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 6.0 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) FormalSoft, Inc. (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 5: Enabling compatibility with 'Family Origins'
+Source context 1001 in parent 1
+== 1 DEST (310) DISKETTE (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 4 JAN 2003 (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @SUB1@ (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) AXB45.GED (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) ANSI (ctxt is 1, conversion failures: 0)
+Note: (Peter Verthez) This is only a very small extract from the original file (ctxt is 1, parent is 1)
+== 2 CONT (300) For the full file, see http://www.axtellfamily.org/axgenea/axggedco.html (ctxt is 1, conversion failures: 0)
+Complete note:
+(Peter Verthez) This is only a very small extract from the original file
+For the full file, see http://www.axtellfamily.org/axgenea/axggedco.html
+Header end, context is 1
+Submitter, xref is @SUB1@
+== 1 NAME (342) Daniel Gibson Axtell (ctxt is 10000, conversion failures: 0)
+== 1 ADDR (266) 1674 Westminster West Rd (ctxt is 10000, conversion failures: 0)
+== 2 CONT (300) Putney VT 05346 (ctxt is 10000, conversion failures: 0)
+== 1 PHON (357) 802-387-4145 (ctxt is 10000, conversion failures: 0)
+== 1 _EMAIL (264) daxtell@sover.net (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I1@
+== 1 NAME (342) Thomas /Axtell/ (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) Thomas (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) Axtell (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) son of William and Thomasine Axtell, was baptised in St. Peter's (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) Church, (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Berkhamstead, Hertfordshire, England, January 26, 1619 (N.S.). His (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) father (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) died in 1638. He married  Mary -- probably in 1638; two children were (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) born to (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) them in England, and their baptism is recorded in St. Peter's. They (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) left (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) England as early as 1643, for in October of that year, Thomas (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) purchased five (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) acres of land in Sudbury, Massachusetts, of Edmond Rice, who himself (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) had come (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) from Berkhamstead five years earlier. This land is described as "lying (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) in ye (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) south part of ye town-bounds, the southwest side lying to the commons (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) and (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) joined to the land of Edmond Rice, southward and northward to the (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) highway (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) leading from Sudbury to Mr. Duston's farm." This is what is now (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) Wayland near (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) "The Five Paths." Thomas took the oath of fidelity July 8, 1645. He (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) died in (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) March, 1646, and was buried the 8th of that month. The following is (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) the (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) inventory of Thomas Axtell of Sudbury, lately deceased, (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)    Imprimi: (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)       His land and house   8? 10s (ctxt is 333, conversion failures: 1)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)       Cattle   8? 10s (ctxt is 333, conversion failures: 1)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)       Wearing apparel and bedding with his arms   10? (ctxt is 333, conversion failures: 1)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)       Brass and pewter   5? (ctxt is 333, conversion failures: 1)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Edmond Rice bought back the land, six acres, and dwelling house. This (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) was (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) near the spring. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)    The story told in those words is short, indeed, but we are (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) permitted to (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) see what it stands for. The young Englishman was a soldier or at least (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) trained to arms; he was of strong puritanical leanings, like his (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) brother (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Daniel the regicide. With his wife and two little ones he followed his (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) neighbor across the sea to make his home in a frontier settlement of (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) New (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) England. Scarcely had he set up his rooftree in the wilderness when (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) hardships (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) and exposure struck him down. (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) (null) (ctxt is 333, conversion failures: 0)
+== 2 CONT (300)    With his last breath he leaves his little all for the helpless (ctxt is 333, conversion failures: 0)
+== 2 CONC (297) group about (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) his death bed. Mary, the widow of Thomas, appears to have married John (ctxt is 333, conversion failures: 0)
+== 2 CONT (300) Maynard, a widower with a boy of eight, on June 16, 1646. (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: ABT 26 JAN 1619
+  type: 7
+  date1:
+    calendar type: 0
+    day: 26
+    month: JAN
+    year: 1619
+    date type: 1
+    sdn1: 2312413
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Berkhamstead, , Hertfordshire, England (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: MAR 1646
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: MAR
+    year: 1646
+    date type: 2
+    sdn1: 2322309
+    sdn2: 2322339
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Sudbury, , MA (ctxt is 333, conversion failures: 0)
+== 1 REFN (364) 1-1 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I71@
+== 1 NAME (342) Daniel /Axtell/ (ctxt is 333, conversion failures: 0)
+== 2 GIVN (327) Daniel (ctxt is 333, conversion failures: 0)
+== 2 SURN (384) Axtell (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) twin, probably unmarried. (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 97: Error converting date: year 1739, month 2, day 29
+WARNING: Warning on line 97: Putting date in 'phrase' member
+Contents of the date_value:
+  raw value: 29 FEB 1739
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 29 FEB 1739
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1772
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1772
+    date type: 2
+    sdn1: 2368270
+    sdn2: 2368635
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 REFN (364) 5-12 (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F23@ (ctxt is 333, conversion failures: 0)
+Family start, xref is @F23@
+== 1 CHIL (293) @I71@ (ctxt is 2, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 2, conversion failures: 0)
+Contents of the date_value:
+  raw value: 15 SEP 1737
+  type: 0
+  date1:
+    calendar type: 0
+    day: 15
+    month: SEP
+    year: 1737
+    date type: 1
+    sdn1: 2355744
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+Family end, xref is @F23@
+WARNING: Warning: Cross-reference @I1@ defined on line 22 is never used
+
+=== Total conversion failures: 8
+Parse succeeded

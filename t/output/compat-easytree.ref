@@ -1,0 +1,157 @@
+
+=== Parsing file compat-easytree.ged
+Header start
+Source is EasyTree (ctxt is 1001, parent is 1)
+== 2 VERS (391) V6.0 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) Sierra On-Line (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 4: Enabling compatibility with 'EasyTree'
+Source context 1001 in parent 1
+== 1 DEST (310) EasyTree (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 21 JUN 2000 (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) d:\winapps\SIERRA\GENDlx6\familysearch\FamilySearch.uds (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) IBM_WINDOWS (ctxt is 1, conversion failures: 0)
+Note: (Peter Verthez) This file is only a very small extract of the original (ctxt is 1, parent is 1)
+== 2 CONT (300) See http://www.daish.net/downloads.htm (ctxt is 1, conversion failures: 0)
+Complete note:
+(Peter Verthez) This file is only a very small extract of the original
+See http://www.daish.net/downloads.htm
+WARNING: Warning on line 12: Adding link to submitter record with xref '@__COMPAT__SUBM__@'
+== 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @__COMPAT__SUBM__@
+== 1 NAME (342) Submitter (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I1@
+== 1 NAME (342) Agnes Graden /DAYSH/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 CHR (294) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 26 AUG 1838
+  type: 0
+  date1:
+    calendar type: 0
+    day: 26
+    month: AUG
+    year: 1838
+    date type: 1
+    sdn1: 2392613
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Shedfield, Hampshire, England (ctxt is 333, conversion failures: 0)
+== 1 CHR (294) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 8 MAY 1870
+  type: 0
+  date1:
+    calendar type: 0
+    day: 8
+    month: MAY
+    year: 1870
+    date type: 1
+    sdn1: 2404191
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Weston Patrick, Hampshire, England (ctxt is 333, conversion failures: 0)
+== 0 NOTE (348) - (xref is @N4639@)
+== 1 CONT (300) Relative: Henry Howick WHITE (ctxt is 348, conversion failures: 0)
+WARNING: Warning: Cross-reference @I1@ defined on line 13 is never used
+WARNING: Warning: Cross-reference @N4639@ defined on line 22 is never used
+
+=== Total conversion failures: 0
+
+=== Parsing file compat-easytree.ged
+Header start
+Source is EasyTree (ctxt is 1001, parent is 1)
+== 2 VERS (391) V6.0 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) Sierra On-Line (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 4: Enabling compatibility with 'EasyTree'
+Source context 1001 in parent 1
+== 1 DEST (310) EasyTree (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 21 JUN 2000 (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) d:\winapps\SIERRA\GENDlx6\familysearch\FamilySearch.uds (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) IBM_WINDOWS (ctxt is 1, conversion failures: 0)
+Note: (Peter Verthez) This file is only a very small extract of the original (ctxt is 1, parent is 1)
+== 2 CONT (300) See http://www.daish.net/downloads.htm (ctxt is 1, conversion failures: 0)
+Complete note:
+(Peter Verthez) This file is only a very small extract of the original
+See http://www.daish.net/downloads.htm
+WARNING: Warning on line 12: Adding link to submitter record with xref '@__COMPAT__SUBM__@'
+== 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @__COMPAT__SUBM__@
+== 1 NAME (342) Submitter (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I1@
+== 1 NAME (342) Agnes Graden /DAYSH/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 CHR (294) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 26 AUG 1838
+  type: 0
+  date1:
+    calendar type: 0
+    day: 26
+    month: AUG
+    year: 1838
+    date type: 1
+    sdn1: 2392613
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Shedfield, Hampshire, England (ctxt is 333, conversion failures: 0)
+== 1 CHR (294) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 8 MAY 1870
+  type: 0
+  date1:
+    calendar type: 0
+    day: 8
+    month: MAY
+    year: 1870
+    date type: 1
+    sdn1: 2404191
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Weston Patrick, Hampshire, England (ctxt is 333, conversion failures: 0)
+== 0 NOTE (348) - (xref is @N4639@)
+== 1 CONT (300) Relative: Henry Howick WHITE (ctxt is 348, conversion failures: 0)
+WARNING: Warning: Cross-reference @I1@ defined on line 13 is never used
+WARNING: Warning: Cross-reference @N4639@ defined on line 22 is never used
+
+=== Total conversion failures: 0
+Parse succeeded

@@ -1,0 +1,9 @@
+WARNING: Warning on line 4: Enabling compatibility with 'EasyTree'
+WARNING: Warning on line 12: Adding link to submitter record with xref '@__COMPAT__SUBM__@'
+WARNING: Warning: Cross-reference @I1@ defined on line 13 is never used
+WARNING: Warning: Cross-reference @N4639@ defined on line 22 is never used
+Writing file...
+Re-parsing file...
+WARNING: Warning: Cross-reference @I1@ defined on line 21 is never used
+WARNING: Warning: Cross-reference @N4639@ defined on line 30 is never used
+Test succeeded
