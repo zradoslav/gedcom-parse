@@ -114,7 +114,7 @@ void set_encoding_width(ENCODING enc)
 }
 
 static char conv_buf[MAXGEDCLINELEN * 2];
-static int conv_buf_size;
+static size_t conv_buf_size;
 
 int open_conv_to_internal(char* fromcode)
 {
@@ -144,7 +144,6 @@ void close_conv_to_internal()
 
 char* to_internal(char* str, size_t len)
 {
-  size_t insize;
   size_t outsize = MAXGEDCLINELEN * 2;
   char *wrptr = int_buf;
   char *rdptr = conv_buf;
@@ -152,15 +151,13 @@ char* to_internal(char* str, size_t len)
   /* can't use strcpy, because possible null bytes from unicode */
   memcpy(conv_buf + conv_buf_size, str, len);
   conv_buf_size += len;
-  insize = conv_buf_size;
   /* set up output buffer (empty it) */
   memset(int_buf, 0, sizeof(int_buf));
   /* do the conversion */
-  iconv(cd_to_internal, &rdptr, &insize, &wrptr, &outsize);
+  iconv(cd_to_internal, &rdptr, &conv_buf_size, &wrptr, &outsize);
   /* then shift what is left over to the head of the input buffer */
-  memmove(conv_buf, rdptr, insize);
-  memset(conv_buf + insize, 0, sizeof(conv_buf) - insize);
-  conv_buf_size = insize;
+  memmove(conv_buf, rdptr, conv_buf_size);
+  memset(conv_buf + conv_buf_size, 0, sizeof(conv_buf) - conv_buf_size);
   return int_buf;
 }
 
