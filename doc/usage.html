@@ -516,17 +516,29 @@ controls the <code>gettext</code>  mechanism in the application. &nbsp;<br>
                        <br>
                                                                         
                                         The source distribution of <code>
-gedcom-parse</code>   contains an example implementation (<code>utf8-locale.c</code>
- and <code>  utf8-locale.h</code>  in the "t" subdirectory of the top directory).&nbsp;
-&nbsp;Feel free to use  it in your source code (it is not part of the library,
-and it isn't installed  anywhere, so you need to take over the source and
-header file in your application).  &nbsp;<br>
+gedcom-parse</code>   contains an a library implementing help functions for UTF-8 encoding (<code></code>see
+the "utf8" subdirectory of the top directory).&nbsp; &nbsp;Feel free to use
+ it in your source code. &nbsp;It isn't installed  anywhere, so you need
+to take over the source and header files in your application. Note that on
+some systems it uses libcharset, which is also included in this subdirectory.
+ &nbsp;<br>
                        <br>
-    Its interface is:<br>
+    Its interface contains first of all the following two help functions:<br>
                          
 <blockquote>      
-  <pre><code>char *<b>convert_utf8_to_locale</b> (char *input, int *conv_failures);<br>char *<b>convert_locale_to_utf8</b> (char *input);<br></code></pre>
+  <pre><code>int   <b>is_utf8_string</b> (char *input);<br>int   <b>utf8_strlen</b> (char *input);<br></code></pre></blockquote>The
+first one returns 1 if the given input is a valid UTF-8 string, it returns
+0 otherwise, the second gives the number of UTF-8 characters in the given
+input. &nbsp;Note that the second function assumes that the input is valid
+UTF-8, and gives unpredictable results if it isn't.<br>
+<br>
+For conversion, the following functions are available:<br>
+<blockquote>
+  <pre><code></code><code>char *<b>convert_utf8_to_locale</b> (char *input, int *conv_failures);<br>char *<b>convert_locale_to_utf8</b> (char *input);<br></code></pre>
+</blockquote>
+<blockquote>
   </blockquote>
+
     Both functions return a pointer to a static buffer that is overwritten
  on each call. &nbsp;To function properly, the application must first set
 the locale using the <code>setlocale</code> function (the second step detailed
@@ -674,9 +686,9 @@ handle needs to be closed (when the program exits):<br>
   <blockquote>                                                     
     <pre><code>iconv_close(iconv_handle);<br></code></pre>
                                              </blockquote>
-                                             </blockquote>
-                                                  The example implementation 
- mentioned above grows the output buffer dynamically and outputs "?" for characters
+                                             </blockquote> 
+                                                  The example implementation
+mentioned above grows the output buffer dynamically and outputs "?" for characters 
  that can't be converted.<br>
                                                                         
                          
@@ -725,6 +737,7 @@ There are three preprocessor symbols defined for version checks in the
 <pre>                    </pre>
                                                                         
                                                         
+<br>
 <br>
 <br>
 <br>

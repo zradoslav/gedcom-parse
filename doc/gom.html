@@ -134,16 +134,16 @@ or locale-defined strings.<br>
 <br>
 The following functions retrieve and set the string in UTF-8 encoding:<br>
 <blockquote><code>char* <b>gom_get_string</b> (char* data);<br>
-char* <b>gom_set_string</b> (char** data, const char* utf8_str);</code><br>
+char* <b>gom_set_string</b> (char** data, const char* str_in_utf8);</code><br>
 </blockquote>
 The first function is in fact superfluous, because it just returns the <code>data</code>, but it is there for symmetry with the functions given below for the locale-defined input and output. &nbsp;<br>
 <br>
 The second function returns the new value if successful, or <code>NULL</code>
-if an error occurred (e.g. failure to allocate memory). &nbsp;It makes a
+if an error occurred (e.g. failure to allocate memory or the given string is not a valid UTF-8 string). &nbsp;It makes a
 copy of the input string to store it in the object model. &nbsp;It also takes
 care of deallocating the old value of the data if needed. &nbsp;Note that
 the set function needs the address of the data variable, to be able to modify
-it.<br>
+it. &nbsp;In the case of an error, the target data variable is not modified.<br>
 <br>
 Examples of use of these strings would be, e.g. for retrieving and setting the system ID in the header:<br>
 <blockquote><code>struct header* head = gom_get_header();</code><code></code><br>
@@ -157,16 +157,18 @@ char* newvalue = "My_Gedcom_Tool";<br>
 <br>
 A second couple of functions retrieve and set the string in the format defined by the current locale:<br>
 <blockquote><code>char* <b>gom_get_string_for_locale</b> (char* data, int* conversion_failures);<br>
-char* <b>gom_set_string_for_locale</b> (char** data, const char* locale_str)</code>;<br>
+char* <b>gom_set_string_for_locale</b> (char** data, const char* str_in_locale)</code>;<br>
 </blockquote>
 The use of these functions is the same as the previous ones, but e.g. in
 the "en_US" locale the string will be returned by the first function in the
-ISO-8859-1 encoding and the second function expects the <code>locale_str</code> to be in this encoding. &nbsp;Conversion to and from UTF-8 for the object model is done on the fly.<br>
+ISO-8859-1 encoding and the second function expects the <code>str_in_locale</code> to be in this encoding. &nbsp;Conversion to and from UTF-8 for the object model is done on the fly.<br>
 <br>
 Since the conversion from UTF-8 to the locale encoding is not always possible,
 the get function has a second parameter that can return the number of conversion
 failures for the result string. &nbsp;Pass a pointer to an integer if you
-want to know this. &nbsp;You can pass <code>NULL</code> if you're not interested.<br>
+want to know this. &nbsp;You can pass <code>NULL</code> if you're not interested. &nbsp;The function returns <code>NULL</code>
+if an error occurred (e.g. if the given string is not a valid string for
+the current locale); in that case the target data variable is not modified.<br>
 <hr width="100%" size="2">
 <pre><font size="-1">$Id$<br>$Name$</font><br></pre>
 
@@ -175,6 +177,8 @@ want to know this. &nbsp;You can pass <code>NULL</code> if you're not interested
 <pre>                    </pre>
                                                                         
                                                         
+<br>
+<br>
 <br>
 <br>
 <br>
