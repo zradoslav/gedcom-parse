@@ -661,11 +661,23 @@ There
 is a macro available for use in configure.in for applications that are using
 autoconf to configure their sources. &nbsp;The following macro checks whether
 the Gedcom parser library is available and whether its version is high enough:<br>
-<blockquote><code>AM_LIB_GEDCOM_PARSER([<i>major</i>,[<i>minor</i>,[<i>patch</i>]]])</code><br>
+<blockquote><code>AM_PATH_GEDCOM_PARSER([<i>min_version</i>,[<i>action_if_found</i>,[<i>action_if_not_found,</i>[<i>modules</i>]]]])</code><br>
 </blockquote>
 All the arguments are optional and default to 0. &nbsp;E.g. to check for
-version 1.34, you would put in configure.in the following statement:<br>
-<blockquote><code>AM_LIB_GEDCOM_PARSER(1,34)</code><br>
+version 1.34.2, you would put in configure.in the following statement:<br>
+<blockquote><code>AM_PATH_GEDCOM_PARSER(1.34.2)</code><br>
+</blockquote>Note that version numbers now contains three parts (since version
+0.20.0: this is also the first version in which this macro is available).<br>
+<br>
+The macro also sets the variables <code>GEDCOM_CFLAGS</code> and <code>GEDCOM_LIBS</code> for use in Makefiles. &nbsp;Typically, this would be done as follows in a Makefile.am:<br>
+<blockquote><code>bin_programs &nbsp; = myprg</code><br>
+  <code>myprg_SOURCES &nbsp;= myprg.c foo.c bar.c<br>
+INCLUDES &nbsp; &nbsp; &nbsp; = @GEDCOM_CFLAGS@<br>
+LDADD &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= @GEDCOM_LIBS@</code></blockquote>
+If your program uses some extra modules, they can be passed as fourth argument
+in the macro, so that the CFLAGS and LIBS are correctly filled in. &nbsp;Currently,
+the only available module is <code>gom</code> (the Gedcom object model). &nbsp;For example:<br>
+<blockquote><code>AM_PATH_GEDCOM_PARSER(0.21.2, , ,gom)</code><br>
 </blockquote>
 To be able to use this macro in the sources of your application, you have three options:<br>
 <ul>
@@ -689,10 +701,10 @@ There are three preprocessor symbols defined for version checks in the
                                                      </li>
                                                      
 </ul>
-   The last one is equal to <code>(GEDCOM_PARSE_VERSION_MAJOR * 1000) + GEDCOM_PARSE_VERSION_MINOR.</code><br>
+   The last one is equal to <code>(GEDCOM_PARSE_VERSION_MAJOR * 1000) + GEDCOM_PARSE_VERSION_MINOR.</code> As you see, this only checked the major and minor version, not the patch number, so this is obsolete.<br>
 <br>
 <h3>Compilation and linking flags</h3>
-Similar to other libraries, the GEDCOM parse library installs a script <code>gedcom-config</code> to help with compilation and linking flags.<br>
+Similar to other libraries, the GEDCOM parse library installs a script <code>gedcom-config</code> to help with compilation and linking flags for programs that don't use autoconf/automake.<br>
 <br>
 To get compilation flags for your program, use (depending on whether you
 only use the callback parser, or also the GEDCOM object model):
@@ -714,6 +726,7 @@ gedcom-config --libs gom</code><br>
 <pre>                    </pre>
                                                                         
                                                         
+<br>
 <br>
 <br>
 <br>
