@@ -6,8 +6,8 @@ AC_INIT(standalone.c)
 dnl =============================================================
 dnl Global variables
 NAME=gedcom-parse
-VERSION=0.11
-LIBVERSION=0:1
+VERSION=0.12
+LIBVERSION=0:2
 SHELL=/bin/sh
 AC_SUBST(NAME)
 AC_SUBST(VERSION)
