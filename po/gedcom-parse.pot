@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-12-30 11:35+0100\n"
+"POT-Creation-Date: 2002-12-30 11:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -422,7 +422,7 @@ msgstr ""
 
 #: gedcom/write.c:158
 #, c-format
-msgid "The tag %s doesn't support newlines\n"
+msgid "The tag %s doesn't support newlines"
 msgstr ""
 
 #: gedcom/write.c:210
