@@ -1,0 +1,15 @@
+#!/bin/sh
+# $Id$
+# $Name$
+
+builddir=`pwd`
+if [ -z "$srcdir" ]
+then
+  srcdir=.
+fi
+
+test_program=updategomtest
+test_libs="$builddir/../gedcom/libgedcom.la $builddir/../gom/libgedcom_gom.la"
+
+. $srcdir/src/test_prologue.sh
+. $srcdir/src/test_bulk.sh
