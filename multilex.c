@@ -14,7 +14,7 @@
 #include "multilex.h"
 #include "encoding.h"
 
-int line_no = 1;
+int line_no;
 
 typedef int (*lex_func)(void);
 lex_func lf;
@@ -98,6 +98,7 @@ int gedcom_parse_file(char* file_name)
   ENCODING enc;
   int result = 1;
   FILE* file = fopen (file_name, "r");
+  line_no = 1;
   if (!file) {
     gedcom_error("Could not open file '%s'\n", file_name);
     return 1;
@@ -110,6 +111,7 @@ int gedcom_parse_file(char* file_name)
     result = gedcom_parse();
   }
   lexer_close();
+  fclose(file);
   
   return result;
 }

@@ -265,6 +265,10 @@ int test_loop(ENCODING enc, char* code)
       return CLOSE;                                                           \
     }                                                                         \
     else {                                                                    \
+      /* Reset our state */                                                   \
+      current_level = -1;                                                     \
+      level_diff = MAXGEDCLEVEL;                                              \
+      /* ... then terminate lex */                                            \
       yyterminate();                                                          \
     }                                                                         \
   } 
