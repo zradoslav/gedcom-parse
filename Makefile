@@ -4,9 +4,12 @@
 YACC=bison
 LEX=flex
 
-CFLAGS=-g -W -Wall -pedantic
+DMALLOC_CFLAGS=
+DMALLOC_LOADLIBES=
+CFLAGS=-g -W -Wall -pedantic $(DMALLOC_CFLAGS)
 YFLAGS=--debug --defines
 LFLAGS=-8
+LOADLIBES=$(DMALLOC_LOADLIBES)
 
 all:	ansel_module gedcom_parse
 
@@ -33,6 +36,7 @@ lex.gedcom_lohi_.c:	gedcom_lohi.lex gedcom.tab.h gedcom.h multilex.h \
 gedcom.tab.c gedcom.tab.h:	gedcom.y gedcom.h
 	$(YACC) $(YFLAGS) --name-prefix=gedcom_ gedcom.y
 
+.PHONY:	clean
 clean:
 	rm -f core gedcom_parse lexer_* *.o lex.gedcom_* \
         gedcom.tab.* gedcom.output
@@ -73,5 +77,9 @@ test:	all
 	@export GCONV_PATH=./ansel; \
         for file in t/*.ged; do \
 	  echo "=== testing $$file"; \
-	  ./gedcom_parse $$file; \
+	  ./gedcom_parse -2 $$file; \
 	done
+
+testmem:	DMALLOC_CFLAGS=-DMALLOC
+testmem:	DMALLOC_LOADLIBES=-ldmalloc
+testmem:	clean test
