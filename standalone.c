@@ -10,8 +10,10 @@
 /* $Id$ */
 /* $Name$ */
 
-#include "gedcom.h"
-#include "multilex.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "external.h"
 
 void show_help ()
 {
@@ -29,9 +31,52 @@ void show_help ()
   printf("  -3    Run the test parse 3 times instead of once\n");
 }
 
+Gedcom_ctxt header_start(char *xreftag __attribute__ ((unused)))
+{
+  printf("Header start\n");
+  return (Gedcom_ctxt)0;
+}
+
+void header_end(Gedcom_ctxt self)
+{
+  printf("Header end, context is %d\n", (int)self);
+}
+
+char family_xreftags[100][255];
+int  family_nr = 0;
+
+Gedcom_ctxt family_start(char *xreftag)
+{
+  printf("Family start, xreftag is %s\n", xreftag);
+  strcpy(family_xreftags[family_nr], xreftag);
+  return (Gedcom_ctxt)(family_nr++);
+}
+
+void family_end(Gedcom_ctxt self)
+{
+  printf("Family end, xreftag is %s\n", family_xreftags[(int)self]);
+}
+
+void subscribe_callbacks()
+{
+  subscribe_to_record(REC_HEAD, header_start, header_end);
+  subscribe_to_record(REC_FAM,  family_start, family_end);
+}
+
+void gedcom_message_handler(Gedcom_msg_type type, char *msg)
+{
+  if (type == MESSAGE)
+    fprintf(stderr, "MESSAGE: ");
+  else if (type == WARNING)
+    fprintf(stderr, "WARNING: ");
+  else if (type == ERROR)
+    fprintf(stderr, "ERROR: ");
+  fprintf(stderr, msg);
+}
+
 int main(int argc, char* argv[])
 {
-  MECHANISM mech = IMMED_FAIL;
+  Gedcom_err_mech mech = IMMED_FAIL;
   int compat_enabled = 1;
   int debug_level = 0;
   int run_times   = 1;
@@ -81,10 +126,12 @@ int main(int argc, char* argv[])
     exit(1);
   }
 
-  gedcom_set_debug_level(debug_level);
+  gedcom_set_debug_level(debug_level, NULL);
   gedcom_set_compat_handling(compat_enabled);
   gedcom_set_error_handling(mech);
-
+  gedcom_set_message_handler(gedcom_message_handler);
+  
+  subscribe_callbacks();
   while (run_times-- > 0) {
     result |= gedcom_parse_file(file_name);
   }
