@@ -28,12 +28,28 @@
 #include "gedcom.h"
 #include "utf8tools.h"
 
+#define MAX_CHARSET_LEN 32
+#define MAX_TERMINATOR_LEN 2
+
+struct encoding_state {
+  char         charset[MAX_CHARSET_LEN + 1];
+  const char*  encoding;
+  Encoding     width;
+  Enc_bom      bom;
+  char         terminator[MAX_TERMINATOR_LEN + 1];
+};
+
+struct encoding_state read_encoding;
+
+void init_encodings();
+char* get_encoding(const char* gedcom_n, Encoding enc);
+void update_gconv_search_path();
+
 int open_conv_to_internal(const char* fromcode);
 void close_conv_to_internal();
 char* to_internal(const char* str, size_t len, struct conv_buffer *output_buf);
-void init_encodings();
-char* get_encoding(const char* gedcom_n, Encoding enc);
 void set_encoding_width(Encoding enc);
-void update_gconv_search_path();
+void set_encoding_bom(Enc_bom bom);
+void set_encoding_terminator(char* term);
 
 #endif /* __ENCODING_H */

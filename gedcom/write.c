@@ -33,13 +33,10 @@
 #include <fcntl.h>
 
 #define MAXWRITELEN MAXGEDCLINELEN
-#define MAXCHARSETLEN 32
 
-char charset[MAXCHARSETLEN+1]  = "ASCII";
-const char* encoding = "ASCII";
-int write_encoding_details = ONE_BYTE;
 /* SYS_NEWLINE is defined in config.h */
-const char* write_terminator = SYS_NEWLINE;
+struct encoding_state write_encoding =
+{ "ASCII", "ASCII", ONE_BYTE, WITHOUT_BOM, SYS_NEWLINE };
 
 struct Gedcom_write_struct {
   int       filedesc;
@@ -122,12 +119,13 @@ int write_simple(Gedcom_write_hndl hndl,
   return 0;
 }
 
-int write_encoding(Gedcom_write_hndl hndl,
-		   int level, char* xref, char* tag, char* value)
+int write_encoding_value(Gedcom_write_hndl hndl,
+			 int level, char* xref, char* tag, char* value)
 {
-  if (strcmp(value, charset))
-    gedcom_warning(_("Forcing HEAD.CHAR value to '%s'"), charset);
-  return write_simple(hndl, level, xref, tag, charset);
+  if (strcmp(value, write_encoding.charset))
+    gedcom_warning(_("Forcing HEAD.CHAR value to '%s'"),
+		   write_encoding.charset);
+  return write_simple(hndl, level, xref, tag, write_encoding.charset);
 }
 
 int supports_continuation(int elt_or_rec, int which_continuation)
@@ -213,9 +211,10 @@ int gedcom_write_set_encoding(const char* new_charset,
     else {
       new_encoding = get_encoding(new_charset, width);
       if (new_encoding) {
-	encoding = new_encoding;
-	write_encoding_details = width | bom;
-	strncpy(charset, new_charset, MAXCHARSETLEN);
+	write_encoding.encoding = new_encoding;
+	write_encoding.width = width;
+	write_encoding.bom   = bom;
+	strncpy(write_encoding.charset, new_charset, MAX_CHARSET_LEN);
       }
       else
 	return 1;
@@ -224,9 +223,10 @@ int gedcom_write_set_encoding(const char* new_charset,
   else {
     new_encoding = get_encoding(new_charset, ONE_BYTE);
     if (new_encoding) {
-      encoding = new_encoding;
-      write_encoding_details = ONE_BYTE;
-      strncpy(charset, new_charset, MAXCHARSETLEN);
+      write_encoding.encoding = new_encoding;
+      write_encoding.width = ONE_BYTE;
+      write_encoding.bom   = bom;
+      strncpy(write_encoding.charset, new_charset, MAX_CHARSET_LEN);
     }
     else
       return 1;
@@ -236,7 +236,7 @@ int gedcom_write_set_encoding(const char* new_charset,
 
 int gedcom_write_set_line_terminator(Enc_line_end end)
 {
-  write_terminator = terminator[end];
+  strncpy(write_encoding.terminator, terminator[end], MAX_TERMINATOR_LEN);
   return 0;
 }
 
@@ -250,10 +250,10 @@ Gedcom_write_hndl gedcom_write_open(const char *filename)
     MEMORY_ERROR;
   else {
     hndl->total_conv_fails = 0;
-    hndl->conv = initialize_utf8_conversion(encoding, 0);
+    hndl->conv = initialize_utf8_conversion(write_encoding.encoding, 0);
     if (!hndl->conv) {
       gedcom_error(_("Could not open encoding '%s' for writing: %s"),
-		   encoding, strerror(errno));
+		   write_encoding.encoding, strerror(errno));
       free(hndl);
       hndl = NULL;
     }
@@ -267,15 +267,17 @@ Gedcom_write_hndl gedcom_write_open(const char *filename)
 	hndl = NULL;
       }
       else {
-	hndl->term = write_terminator;
+	hndl->term = write_encoding.terminator;
 	hndl->ctxt_level = -1;
-	if (write_encoding_details & WITH_BOM) {
-	  if (write_encoding_details & TWO_BYTE_HILO)
+	if (write_encoding.bom == WITH_BOM) {
+	  if (write_encoding.width == TWO_BYTE_HILO)
 	    write(hndl->filedesc, "\xFE\xFF", 2);
-	  else if (write_encoding_details & TWO_BYTE_LOHI)
+	  else if (write_encoding.width == TWO_BYTE_LOHI)
 	    write(hndl->filedesc, "\xFF\xFE", 2);
+	  else if (!strcmp(write_encoding.encoding, "UTF-8"))
+	    write(hndl->filedesc, "\xEF\xBB\xBF", 3);
 	  else
-	    gedcom_warning(_("Byte order mark configured, but no Unicode"));
+	    gedcom_warning(_("Byte order mark configured, but not relevant"));
 	}
       }
     }
@@ -384,7 +386,7 @@ int _gedcom_write_val(Gedcom_write_hndl hndl,
   level   = get_level(hndl, rec_or_elt, parent_rec_or_elt);
   if (tag_str && (level != -1)) {
     if (rec_or_elt == ELT_HEAD_CHAR)
-      result = write_encoding(hndl, level, xrefstr, tag_str, val);
+      result = write_encoding_value(hndl, level, xrefstr, tag_str, val);
     else if (supports_continuation(rec_or_elt, OPT_CONT|OPT_CONC))
       result = write_long(hndl, rec_or_elt, level, xrefstr, tag_str, val);
     else
