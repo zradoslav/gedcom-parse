@@ -46,35 +46,12 @@ Gedcom_ctxt note_start(_REC_PARAMS_)
     note = make_note_record(xr->string);
     xr->object = (Gedcom_ctxt) note;
   }
-  if (note) {
-    note->text = strdup(GEDCOM_STRING(parsed_value));
-    if (! note->text)
-      MEMORY_ERROR;
-    else
-      result = MAKE_GOM_CTXT(rec, note, xr->object);
-  }
+  if (note)
+    result = MAKE_GOM_CTXT(rec, note, xr->object);
   return (Gedcom_ctxt)result;
 }
 
-void note_end(_REC_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    struct note *note = SAFE_CTXT_CAST(note, ctxt);
-    if (note) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = strdup(str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else
-	note->text = newvalue;
-    }
-  }
-}
-
+STRING_END_REC_CB(note, note_end, text)
 GET_REC_BY_XREF(note, XREF_NOTE, gom_get_note_by_xref)
      
 Gedcom_ctxt sub_cont_conc_start(_ELT_PARAMS_)

@@ -113,25 +113,8 @@ Gedcom_ctxt sub_note_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-void sub_note_end(_ELT_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    struct note_sub *note = SAFE_CTXT_CAST(note_sub, ctxt);
-    if (note) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = strdup(str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else
-	note->text = newvalue;
-    }
-  }
-}
-
+STRING_END_CB(note_sub, sub_note_end, text)
+     
 void note_sub_subscribe()
 {
   gedcom_subscribe_to_element(ELT_SUB_NOTE, sub_note_start, sub_note_end);

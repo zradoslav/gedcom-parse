@@ -113,6 +113,7 @@ void sub_citation_end(_ELT_END_PARAMS_)
 	  cit->description = newvalue;
       }
     }
+    destroy_gom_ctxt(ctxt);
   }
 }
 
@@ -136,33 +137,13 @@ Gedcom_ctxt sub_cit_text_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-void sub_cit_text_end(_ELT_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    if (GEDCOM_IS_STRING(parsed_value)) {
-      struct text *t = SAFE_CTXT_CAST(text, ctxt);
-      if (t) {
-	char *str = GEDCOM_STRING(parsed_value);
-	char *newvalue = strdup(str);
-	if (! newvalue)
-	  MEMORY_ERROR;
-	else
-	  t->text = newvalue;
-      }
-    }
-  }
-}
-
 STRING_CB(source_citation, sub_cit_page_start, page)
 STRING_CB(source_citation, sub_cit_even_start, event)
 STRING_CB(source_citation, sub_cit_even_role_start, role)
 NULL_CB(source_citation, sub_cit_data_start)
 DATE_CB(source_citation, sub_cit_data_date_start, date)
 STRING_CB(source_citation, sub_cit_quay_start, quality)
+STRING_END_CB(text, sub_cit_text_end, text)
      
 void citation_subscribe()
 {

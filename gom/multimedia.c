@@ -38,27 +38,9 @@ REC_CB(multimedia, obje_start, make_multimedia_record)
 GET_REC_BY_XREF(multimedia, XREF_OBJE, gom_get_multimedia_by_xref)
 STRING_CB(multimedia, obje_form_start, form)
 STRING_CB(multimedia, obje_titl_start, title)     
-NULL_CB(multimedia, obje_blob_start)     
+NULL_CB(multimedia, obje_blob_start)
+STRING_END_CB(multimedia, obje_blob_end, data)
 XREF_CB(multimedia, obje_obje_start, continued, make_multimedia_record)
-
-void obje_blob_end(_ELT_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    struct multimedia *obj = SAFE_CTXT_CAST(multimedia, ctxt);
-    if (obj) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = strdup(str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else
-	obj->data = newvalue;
-    }
-  }
-}
 
 Gedcom_ctxt obje_blob_cont_start(_ELT_PARAMS_)
 {

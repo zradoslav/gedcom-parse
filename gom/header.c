@@ -61,26 +61,8 @@ STRING_CB(header, head_lang_start, language)
 NULL_CB(header, head_plac_start)
 STRING_CB(header, head_plac_form_start, place_hierarchy)
 NULL_CB(header, head_note_start) /* the end callback will fill the value */
+STRING_END_CB(header, head_note_end, note)
      
-void head_note_end(_ELT_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    struct header *head = SAFE_CTXT_CAST(header, ctxt);
-    if (head) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = strdup(str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else
-	head->note = newvalue;
-    }
-  }
-}
-
 void header_add_address(Gom_ctxt ctxt, struct address* addr)
 {
   struct header *head = SAFE_CTXT_CAST(header, ctxt);

@@ -43,87 +43,15 @@ GET_REC_BY_XREF(source, XREF_SOUR, gom_get_source_by_xref)
 NULL_CB(source, sour_data_start)
 STRING_CB(source, sour_data_agnc_start, data.agency)
 NULL_CB(source, sour_auth_start)  /* value set by end callback */
+STRING_END_CB(source, sour_auth_end, author)
 NULL_CB(source, sour_titl_start)  /* value set by end callback */
+STRING_END_CB(source, sour_titl_end, title)
 STRING_CB(source, sour_abbr_start, abbreviation)
 NULL_CB(source, sour_publ_start)  /* value set by end callback */
+STRING_END_CB(source, sour_publ_end, publication)
 NULL_CB(source, sour_text_start)  /* value set by end callback */
+STRING_END_CB(source, sour_text_end, text)
 XREF_CB(source, sour_repo_start, repository.link, make_repository_record)
-
-void sour_auth_end(_ELT_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-    if (sour) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = strdup(str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else
-	sour->author = newvalue;
-    }
-  }
-}
-
-void sour_titl_end(_ELT_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-    if (sour) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = strdup(str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else
-	sour->title = newvalue;
-    }
-  }
-}
-
-void sour_publ_end(_ELT_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-    if (sour) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = strdup(str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else
-	sour->publication = newvalue;
-    }
-  }
-}
-
-void sour_text_end(_ELT_END_PARAMS_)
-{
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-
-  if (! ctxt)
-    NO_CONTEXT;
-  else {
-    struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-    if (sour) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = strdup(str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else
-	sour->text = newvalue;
-    }
-  }
-}
 
 void source_subscribe()
 {
