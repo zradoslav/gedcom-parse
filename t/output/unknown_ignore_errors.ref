@@ -1,7 +1,7 @@
 
 === Parsing file unknown.ged
 Header start
-ERROR: Error on line 3: No encoding defined for 'Unknown_CHARSET'
+ERROR: Error on line 2: No encoding defined for 'Unknown_CHARSET'
 == 1 CHAR (292) Unknown_CHARSET (ctxt is 1, conversion failures: 0)
 == 2 VERS (391) Version number of ASCII (whatever it means) (ctxt is 1, conversion failures: 0)
 Source is APPROVED_SOURCE_NAME (ctxt is 1001, parent is 1)

@@ -42,7 +42,7 @@ ERROR: Error on line 15: parse error
 ERROR: Error on line 16: parse error
 ERROR: Error on line 17: parse error
 == 1 DATE (342) /No day number/JUL 1992 (ctxt is 333, conversion failures: 0)
-ERROR: Error on line 18: parse error
+ERROR: Error on line 17: parse error
 Family start, xref is @F01@
 == 1 HUSB (330) @PERS01@ (ctxt is 1, conversion failures: 0)
 Family end, xref is @F01@
@@ -94,7 +94,7 @@ ERROR: Error on line 15: parse error
 ERROR: Error on line 16: parse error
 ERROR: Error on line 17: parse error
 == 1 DATE (342) /No day number/JUL 1992 (ctxt is 333, conversion failures: 0)
-ERROR: Error on line 18: parse error
+ERROR: Error on line 17: parse error
 Family start, xref is @F01@
 == 1 HUSB (330) @PERS01@ (ctxt is 2, conversion failures: 0)
 Family end, xref is @F01@

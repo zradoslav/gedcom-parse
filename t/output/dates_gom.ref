@@ -1,7 +1,7 @@
 
 === Parsing file dates.ged
-Error on line 38: Unknown calendar type
-Error on line 38: parse error
+Error on line 37: Unknown calendar type
+Error on line 37: parse error
 Warning: Cross-reference @PERS07@ defined on line 38 is never used
 Warning: Cross-reference @PERS02@ defined on line 18 is never used
 Warning: Cross-reference @PERS00@ defined on line 10 is never used
