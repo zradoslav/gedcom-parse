@@ -1,3 +1,78 @@
+2003-01-26  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/date.c (numbers_to_strings): Some checking of input.
+
+	* include/gedcom.h.in, gedcom/age.c, gedcom/date.c, gedcom/write.c:
+	Some const correctness fixes.
+
+	* gedcom/date.c (gedcom_parse_date): Put invalid date in phrase member.
+
+2003-01-25  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom.y: Make sure that a note record tag is never empty.
+
+	* gom/note_sub.c (sub_note_end): Bugfix in callback: parsed value can
+	be NULL.
+
+	* gedcom/gedcom.y: Bugfix in compatibility for address (ftree).
+
+	* gedcom/interface.c (gedcom_cast_error): Bugfix in error message.
+
+	* gom/gom.c: Second call of gom_parse_file or gom_new_model should
+	clean up model.
+
+	* gom/gom_modify.c (gom_set_string): Allow setting a string to NULL.
+
+	* gom/personal_name.c (write_names): Correction in containment of
+	tags.
+
+	* gedcom/encoding.c, gedcom/write.c, gedcom/encoding.state.c:
+	Implemented an encoding state.
+
+	* bin/gedcom-sanitize.c: Added program to convert to standard GEDCOM.
+
+2003-01-24  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gom/lds_event.c: Added some missing code for writing LSS events.
+
+2003-01-23  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gom/user_rec.c (write_user_data): Fixed a nasty corruption bug.
+
+2003-01-22  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom_date.y: Cleaned up error handling on dates.
+
+2003-01-18  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom_date.y: Compatibility added for different format of
+	double years.
+
+	* gedcom/date.c: Pass date values via pointers instead of on stack.
+
+2003-01-15  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/compat.c, gedcom/gedcom.y: Start with compatibility for PAF2.
+
+2003-01-14  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/compat.c: Reworked compatibility computation to take program
+	version into account.
+
+2003-01-12  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gom/gom_modify.c, gom/func_template.h, include/gom.h: Function to
+	move xref in a list.
+
+	* gom/*: Unlink xrefs properly when structs are deleted.
+
+2003-01-11  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gom/*, include/gom.h: Functions to add and remove xrefs in objects.
+
+	* gedcom/gedcom_1byte.lex (gedcom_check_token): Fix bug: line length
+	should be reset to 0.
+
 2003-01-04  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gedcom/compat.c, gedcom/gedcom.y: Some compatibility with PAF added.
