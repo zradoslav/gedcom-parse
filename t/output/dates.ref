@@ -267,10 +267,36 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
+Rec INDI start, xref is @PERS11@
+== 1 NAME (342) /Invalid date/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 57: Error converting date: year 1739, month 2, day 29
+WARNING: Warning on line 57: Putting date in 'phrase' member
+Contents of the date_value:
+  raw value: 29 FEB 1739
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 29 FEB 1739
 WARNING: Warning: Cross-reference @PERS07@ defined on line 38 is never used
 WARNING: Warning: Cross-reference @PERS02@ defined on line 18 is never used
 WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used
 WARNING: Warning: Cross-reference @PERS10@ defined on line 50 is never used
+WARNING: Warning: Cross-reference @PERS11@ defined on line 54 is never used
 WARNING: Warning: Cross-reference @PERS01@ defined on line 14 is never used
 WARNING: Warning: Cross-reference @PERS04@ defined on line 26 is never used
 WARNING: Warning: Cross-reference @PERS09@ defined on line 46 is never used
@@ -549,10 +575,36 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
+Rec INDI start, xref is @PERS11@
+== 1 NAME (342) /Invalid date/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 57: Error converting date: year 1739, month 2, day 29
+WARNING: Warning on line 57: Putting date in 'phrase' member
+Contents of the date_value:
+  raw value: 29 FEB 1739
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 29 FEB 1739
 WARNING: Warning: Cross-reference @PERS07@ defined on line 38 is never used
 WARNING: Warning: Cross-reference @PERS02@ defined on line 18 is never used
 WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used
 WARNING: Warning: Cross-reference @PERS10@ defined on line 50 is never used
+WARNING: Warning: Cross-reference @PERS11@ defined on line 54 is never used
 WARNING: Warning: Cross-reference @PERS01@ defined on line 14 is never used
 WARNING: Warning: Cross-reference @PERS04@ defined on line 26 is never used
 WARNING: Warning: Cross-reference @PERS09@ defined on line 46 is never used

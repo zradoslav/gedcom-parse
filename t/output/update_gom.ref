@@ -116,7 +116,7 @@ Same date in Hebrew calendar:
     sdn2: -1
   phrase: ''
 String: '@#DHEBREW@ 19 ELL 5892'
-ERROR: Error: SDN 1 isn't a valid date in the given calendar
+WARNING: Warning: SDN 1 isn't a valid date in the given calendar
 
 Same date in French revolution calendar:
   type: 0

@@ -3,10 +3,13 @@
 Warning on line 37: Unknown calendar type
 Warning on line 37: parse error
 Warning on line 37: Putting date in 'phrase' member
+Warning on line 57: Error converting date: year 1739, month 2, day 29
+Warning on line 57: Putting date in 'phrase' member
 Warning: Cross-reference @PERS07@ defined on line 38 is never used
 Warning: Cross-reference @PERS02@ defined on line 18 is never used
 Warning: Cross-reference @PERS00@ defined on line 10 is never used
 Warning: Cross-reference @PERS10@ defined on line 50 is never used
+Warning: Cross-reference @PERS11@ defined on line 54 is never used
 Warning: Cross-reference @PERS01@ defined on line 14 is never used
 Warning: Cross-reference @PERS04@ defined on line 26 is never used
 Warning: Cross-reference @PERS09@ defined on line 46 is never used
@@ -833,6 +836,80 @@ Individual events:
         sdn1: -1
         sdn2: -1
       phrase: ''
+    Place: 0x<null>
+    Address: 0x<null>
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
+    Age: 0x<null>
+    Agency: '(null)'
+    Cause: '(null)'
+    citations: 0x<null>
+    multimedia links: 0x<null>
+    notes: 0x<null>
+    Age of husband: 0x<null>
+    Age of wife: 0x<null>
+    Family: 0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
+user refs: 0x<null>
+Record ID: '(null)'
+change date: 0x<null>
+User data: 0x<null>
+=== INDIVIDUAL (@PERS11@) ===
+Restriction notice: '(null)'
+names: 
+  Name: 
+    Name: '/Invalid date/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
+    citations: 0x<null>
+    notes: 0x<null>
+    User data: 0x<null>
+Sex: '(null)'
+Individual events: 
+  Event: 283 (BIRT)
+    Value: '(null)'
+    Type: '(null)'
+    Date: 
+      type: 11
+      date1:
+        calendar type: 4
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      date2:
+        calendar type: 4
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
+        date type: 0
+        sdn1: -1
+        sdn2: -1
+      phrase: '29 FEB 1739'
     Place: 0x<null>
     Address: 0x<null>
     Phone 1: '(null)'
