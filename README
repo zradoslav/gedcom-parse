@@ -5,7 +5,9 @@ to parse and process arbitrary genealogy files in the standard gedcom format.
 
 Its main features are:
 
- - strict callback-based parser written in C (using lex/yacc)
+ - strict callback-based parser written in C (using lex/yacc), a C object
+   model is also available (compare to the difference between SAX and DOM
+   in XML).
 
  - supports the Gedcom 5.5 standard fully
 
@@ -22,6 +24,8 @@ Its main features are:
 
  - specific parsing and checking of cross-references
 
+ - specific parsing of age values
+
  - "compatibility-mode" parsing, to allow for not-exactly-standard syntaxes
    used by other genealogy programs; currently, compatibility is added for:
      - ftree
@@ -34,6 +38,9 @@ To do list:
  - specific parsing of other special values
  - compatibility with other genealogy programs
  - older/newer Gedcom standards ?
+ - modifying data
+ - writing GEDCOM files, GEDML files
+ - C++ object model
  - ...
 
 For more information, refer to the documentation in the doc subdirectory,
