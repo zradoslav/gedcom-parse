@@ -236,6 +236,7 @@ static int dummy_conv = 0;
      CHECK_LINE_LEN;                                                          \
      if ((level < 0) || (level > MAXGEDCLEVEL)) {                             \
        error_level_out_of_range();                                            \
+       line_no++;                                                             \
        return BADTOKEN;                                                       \
      }                                                                        \
      level_diff = level - current_level;                                      \
@@ -253,6 +254,7 @@ static int dummy_conv = 0;
      else {                                                                   \
        /* should never happen (error to GEDCOM spec) */                       \
        error_level_too_high(level_diff);                                      \
+       line_no++;                                                             \
        return BADTOKEN;                                                       \
      }                                                                        \
    } 
