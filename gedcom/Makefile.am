@@ -36,7 +36,8 @@ BUILT_SOURCES = lex.gedcom_1byte_.c \
 		gedcom.tab.h \
 		gedcom.tabgen.h \
 		gedcom_date.tab.c \
-		gedcom_date.tab.h
+		gedcom_date.tab.h \
+		gedcom_date.tabgen.h
 noinst_HEADERS = encoding.h \
 		 gedcom_internal.h \
 		 interface.h \

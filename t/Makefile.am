@@ -22,7 +22,7 @@ TESTS := $(wildcard $(srcdir)/*.test)
 EXTRA_DIST=$(TEST_SCRIPT) $(TESTS)
 
 all-local:
-	rm -f ../testgedcom.out
+	rm -f ../testgedcom.out ./testgedcom.out
 
 check-% :	%.test
 	@srcdir=$(srcdir); export srcdir; \
