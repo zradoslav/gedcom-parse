@@ -257,7 +257,7 @@ int  compat_mode(int flags);
 }
 
 %token_table
-%expect 300
+%expect 303
 
 %token <string> BADTOKEN
 %token <number> OPEN
@@ -1172,22 +1172,36 @@ indi_afn_sect  : OPEN DELIM TAG_AFN mand_line_item
 
 /* INDI.ADDR (Only for 'ftree' compatibility) */
 ftree_addr_sect : OPEN DELIM TAG_ADDR opt_line_item
-                  { Gedcom_ctxt par = compat_generate_resi_start(PARENT);
-		    START(RESI, par);
-		    $<ctxt>$
-		      = start_element(ELT_SUB_ADDR,
-				      par, $1 + 1, $3, $4,
-				      GEDCOM_MAKE_NULL_OR_STRING(val2, $4));
-		    START(ADDR, $<ctxt>$)
+                  { if (compat_mode(C_FTREE)) {
+		      Gedcom_ctxt par = compat_generate_resi_start(PARENT);
+		      START(RESI, par);
+		      $<ctxt>$
+			= start_element(ELT_SUB_ADDR,
+					par, $1 + 1, $3, $4,
+					GEDCOM_MAKE_NULL_OR_STRING(val2, $4));
+		      START(ADDR, $<ctxt>$);
+		    }
+		  else { START(ADDR, NULL) }
 		  }
-                  no_std_subs
+                  ftree_addr_subs
                   { CHECK0 }
                   CLOSE
-                  { Gedcom_ctxt par = PARENT;
-		    end_element(ELT_SUB_ADDR, par, $<ctxt>5, NULL);
-		    CHECK0;
-		    compat_generate_resi_end(PARENT, par);
+                  { if (compat_mode(C_FTREE)) {
+		      Gedcom_ctxt par = PARENT;
+		      end_element(ELT_SUB_ADDR, par, $<ctxt>5, NULL);
+		      CHECK0;
+		      compat_generate_resi_end(PARENT, par);
+		    } 
 		  }
+
+ftree_addr_subs : /* empty */
+                | ftree_addr_subs ftree_addr_sub
+                ;
+
+ftree_addr_sub  : continuation_sub
+                | phon_sect
+                | no_std_sub
+                ;
 
 /*********************************************************************/
 /**** Multimedia record                                           ****/
