@@ -3997,7 +3997,7 @@ Gedcom_ctxt ctxt_stack[MAXGEDCLEVEL+1];
 void push_countarray(int level)
 {
   int *count = NULL;
-  gedcom_debug_print("Push Count level: %d, level: %d\n", count_level, level);
+  gedcom_debug_print("Push Count level: %d, level: %d", count_level, level);
   if (count_level != level + 1) {
     gedcom_error(_("Internal error: count level mismatch"));
     exit(1);
@@ -4007,7 +4007,7 @@ void push_countarray(int level)
     exit(1);
   }
   else {
-    gedcom_debug_print("calloc countarray %d\n", count_level);
+    gedcom_debug_print("calloc countarray %d", count_level);
     count = (int *)calloc(YYNTOKENS, sizeof(int));
     if (count == NULL) {
       gedcom_error(_("Internal error: count array calloc error"));
@@ -4054,14 +4054,14 @@ int check_occurrence(int tag)
 void pop_countarray()
 {
   int *count;
-  gedcom_debug_print("Pop Count level: %d\n", count_level);
+  gedcom_debug_print("Pop Count level: %d", count_level);
   if (count_level < 0) {
     gedcom_error(_("Internal error: count array underflow"));
     exit(1);
   }
   else {
     count = count_arrays[count_level];
-    gedcom_debug_print("free countarray %d\n", count_level);
+    gedcom_debug_print("free countarray %d", count_level);
     free(count);
     count_arrays[count_level] = NULL;
   }
@@ -4069,7 +4069,7 @@ void pop_countarray()
 
 void clean_up()
 {
-  gedcom_debug_print("Cleanup countarrays\n");
+  gedcom_debug_print("Cleanup countarrays");
   while (count_level > 0) {
     pop_countarray();
     --count_level;
