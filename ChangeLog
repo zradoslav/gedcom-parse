@@ -1,3 +1,24 @@
+2002-03-27  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.15
+
+	* gedcom/multilex.c: Make the use of gedcom_init() mandatory.
+
+2002-03-17  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom.y: Graceful error handling on bogus input.
+
+	* t/path1.test, t/path2.test, t/pathtest.c: New tests (for the
+	GCONV_PATH environment variable).
+
+	* Moved the test program to the t subdirectory.
+
+	* standalone.c, doc/usage.html: Use of the gedcom_init() function.
+
+	* gedcom/multilex.c, gedcom/encoding.*: Added gedcom_init() function
+	to avoid problem with GCONV_PATH environment variable (see note in
+	gedcom/encoding.c).
+
 2002-01-22  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gedcom/gedcom.y, gedcom/compat.c, gedcom/compat.h: Added

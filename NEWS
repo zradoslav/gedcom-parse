@@ -1,5 +1,17 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
+release 0.15 (27 March 2002):
+
+ - Again mainly a bugfixing release
+
+ - Compatibility with ftree is added, all GEDCOM files written by ftree
+   should load fine now.
+
+ - Note for developers: you now have to call the function gedcom_init()
+   as soon as possible in your program (before any character set handling
+   is done, see documentation for details).  If the function has not been
+   called, gedcom_parse_file() will return an error.
+
 release 0.14 (20 January 2002):
 
  - This is mainly a bugfixing release, no extra features have been added.
