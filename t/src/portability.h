@@ -28,5 +28,6 @@ long int void_ptr_to_int(void* ptr);
 void*    int_to_void_ptr(int t);
 char*    str_val(char* input);
 char*    ptr_val(void* ptr);
+char*    simple_base_name(char* filename);
 
 #endif /* __PORTABILITY_H */

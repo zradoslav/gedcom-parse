@@ -21,6 +21,7 @@
 /* $Id$ */
 /* $Name$ */
 
+#include <string.h>
 #include "config.h"
 
 char* null_str = "(null)";
@@ -71,4 +72,14 @@ void* int_to_void_ptr(int i)
 #endif
   t = i;
   return (void*)t;
+}
+
+char* simple_base_name(char* filename)
+{
+  char* runner = NULL;
+  if (filename) {
+    runner = filename + strlen(filename) - 1;
+    while (runner != filename && *(runner-1) != '/') runner--;
+  }
+  return runner;
 }
