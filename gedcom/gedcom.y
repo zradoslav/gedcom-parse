@@ -261,7 +261,7 @@ void clean_up();
 }
 
 %token_table
-%expect 308
+%expect 309
 
 %token <string> BADTOKEN
 %token <number> OPEN
@@ -755,7 +755,13 @@ head_gedc_sect : OPEN DELIM TAG_GEDC
 		   START(GEDC, $1, $<ctxt>$)
 		 }
                  head_gedc_subs
-		 { CHECK2(VERS, FORM) }
+		 { if (compat_mode(C_NO_GEDC_FORM) && ! CHK_COND(FORM))
+		     compat_generate_gedcom_form($<ctxt>4);
+		   else CHK(FORM);
+		 
+		   CHECK1(VERS)  
+		 }
+
                  CLOSE
                  { end_element(ELT_HEAD_GEDC, PARENT, $<ctxt>4,
 			       GEDCOM_MAKE_NULL(val1));
@@ -1439,7 +1445,30 @@ note_sub    : continuation_sub  /* 0:M */
             | source_cit_sub  /* 0:M */
             | ident_struc_sub  /* 0:1 */
             | change_date_sub  /* 0:1 */
+            | note_note_sect  { if (!compat_mode(C_NOTE_NOTE))
+	                          INVALID_TAG("NOTE");
+                              }
             | no_std_sub
+            ;
+
+/* Same actions as cont_sect, for compatibility */
+note_note_sect : OPEN DELIM TAG_NOTE opt_line_item
+            { $3.string = "CONT";
+	      $3.value  = TAG_CONT;
+	      $<ctxt>$ = start_element(ELT_SUB_CONT,
+				       PARENT, $1, $3, $4, 
+				       GEDCOM_MAKE_NULL_OR_STRING(val1, $4));
+	      SAFE_BUF_ADDCHAR(&concat_buffer, '\n');
+	      if (GEDCOM_IS_STRING(&val1))
+	        safe_buf_append(&concat_buffer, $4);
+	      START(CONT, $1, $<ctxt>$)  
+            }  
+            no_std_subs  
+            { CHECK0 }  
+            CLOSE  
+            { end_element(ELT_SUB_CONT, PARENT, $<ctxt>5,
+			  GEDCOM_MAKE_NULL(val1));
+	    }
             ;
 
 /*********************************************************************/
@@ -2302,6 +2331,9 @@ conc_sect : OPEN DELIM TAG_CONC mand_line_item
             { $<ctxt>$ = start_element(ELT_SUB_CONC,
 				       PARENT, $1, $3, $4, 
 				       GEDCOM_MAKE_STRING(val1, $4));
+	      if (compat_mode(C_CONC_NEEDS_SPACE)) {
+		safe_buf_append(&concat_buffer, " ");
+	      }
 	      safe_buf_append(&concat_buffer, $4);
 	      START(CONC, $1, $<ctxt>$)  
             }  

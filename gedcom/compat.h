@@ -40,6 +40,9 @@ typedef enum _COMPAT_RULES {
   C_NO_SLGC_FAMC,
   C_SUBM_COMM,
   C_DOUBLE_DATES_4,
+  C_CONC_NEEDS_SPACE,
+  C_NO_GEDC_FORM,
+  C_NOTE_NOTE,
   C_NR_OF_RULES
 } Compat_rule;
 
@@ -52,6 +55,7 @@ void compat_generate_submitter_link(Gedcom_ctxt parent);
 void compat_generate_submitter();
 
 void compat_generate_gedcom(Gedcom_ctxt parent);
+void compat_generate_gedcom_form(Gedcom_ctxt parent);
 
 int  compat_generate_char(Gedcom_ctxt parent);
 

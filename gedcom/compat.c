@@ -41,27 +41,36 @@ const char* default_charset = "";
 #define DEFAULT_GEDCOM_VERS    "5.5"
 #define DEFAULT_GEDCOM_FORM    "LINEAGE-LINKED"
 
+struct program_data {
+  const char* name;
+  int         default_compat;
+  const char* default_charset;
+};
+
 enum _COMPAT_PROGRAM {
   CP_FTREE = 1,
   CP_LIFELINES,
   CP_PAF,
-  CP_FAMORIG
-};
-
-const char* program_name[] = {
-  /* NULL */         "",
-  /* CP_FTREE */     "ftree",
-  /* CP_LIFELINES */ "Lifelines",
-  /* CP_PAF */       "Personal Ancestral File",
-  /* CP_FAMORIG */   "Family Origins"
+  CP_FAMORIG,
+  CP_EASYTREE
 };
 
 enum _COMPAT {
-  C_FTREE = 0x01,
-  C_LIFELINES = 0x02,
-  C_PAF5 = 0x04,
-  C_PAF2 = 0x08,
-  C_FAMORIG = 0x10
+  C_FTREE        = 0x0001,
+  C_LIFELINES    = 0x0002,
+  C_PAF5         = 0x0004,
+  C_PAF2         = 0x0008,
+  C_FAMORIG      = 0x0010,
+  C_EASYTREE     = 0x0020
+};
+
+struct program_data data[] = {
+  /* NULL */         { "", 0, "" },
+  /* CP_FTREE */     { "ftree", C_FTREE, "" },
+  /* CP_LIFELINES */ { "Lifelines", C_LIFELINES, "ANSI" },
+  /* CP_PAF */       { "Personal Ancestral File", C_PAF5, "" },
+  /* CP_FAMORIG */   { "Family Origins", C_FAMORIG, "" },
+  /* CP_EASYTREE */  { "EasyTree", C_EASYTREE, "" }
 };
 
 /* Incompatibility list (with GEDCOM 5.5):
@@ -91,13 +100,20 @@ enum _COMPAT {
 
     - Family Origins:
         - '@' not written as '@@' in values
+	- CONC needs an extra space
+
+    - EasyTree:
+        - no GEDC.FORM field
+	- no submitter link in the header
+	- NOTE doesn't have a value
+	- NOTE.NOTE instead of NOTE.COND
  */
 
 int compat_matrix[] =
 {
-  /* C_NO_SUBMITTER */        C_FTREE | C_LIFELINES | C_PAF2,
+  /* C_NO_SUBMITTER */        C_FTREE | C_LIFELINES | C_PAF2 | C_EASYTREE,
   /* C_INDI_ADDR */           C_FTREE,
-  /* C_NOTE_NO_VALUE */       C_FTREE,
+  /* C_NOTE_NO_VALUE */       C_FTREE | C_EASYTREE,
   /* C_NO_GEDC */             C_LIFELINES | C_PAF2,
   /* C_NO_CHAR */             C_LIFELINES,
   /* C_HEAD_TIME */           C_LIFELINES,
@@ -106,7 +122,10 @@ int compat_matrix[] =
   /* C_551_TAGS */            C_PAF5,
   /* C_NO_SLGC_FAMC */        C_PAF5,
   /* C_SUBM_COMM */           C_PAF2,
-  /* C_DOUBLE_DATES_4 */      C_PAF2
+  /* C_DOUBLE_DATES_4 */      C_PAF2,
+  /* C_CONC_NEEDS_SPACE */    C_FAMORIG,
+  /* C_NO_GEDC_FORM */        C_EASYTREE,
+  /* C_NOTE_NOTE */           C_EASYTREE
 };
 
 int compat_state[C_NR_OF_RULES];
@@ -160,6 +179,9 @@ void set_compatibility_program(const char* program)
     else if (program_equal(program, "FamilyOrigins")) {
       compatibility_program = CP_FAMORIG;
     }
+    else if (program_equal(program, "EasyTree")) {
+      compatibility_program = CP_EASYTREE;
+    }
   }
 }
 
@@ -174,13 +196,6 @@ void compute_compatibility()
     compat_state[i] = 0;
 
   switch (compatibility_program) {
-    case CP_FTREE:
-      compatibility = C_FTREE;
-      break;
-    case CP_LIFELINES:
-      compatibility = C_LIFELINES;
-      default_charset = "ANSI";
-      break;
     case CP_PAF:
       if (compatibility_version >= 20000 && compatibility_version < 30000) {
 	compatibility = C_PAF2;
@@ -191,14 +206,14 @@ void compute_compatibility()
 	version = 5;
       }
       break;
-    case CP_FAMORIG:
-      compatibility = C_FAMORIG;
-      break;
     default:
+      compatibility = data[compatibility_program].default_compat;
       break;
   }
-  if (compatibility)
-    enable_compat_msg(program_name[compatibility_program], version);
+  if (compatibility) {
+    default_charset = data[compatibility_program].default_charset;
+    enable_compat_msg(data[compatibility_program].name, version);
+  }
 }
 
 void set_compatibility_version(const char* version)
@@ -298,19 +313,33 @@ void compat_generate_gedcom(Gedcom_ctxt parent)
   end_element(ELT_HEAD_GEDC_VERS, self1, self2, NULL);
   
   /* then generate "2 FORM <DEFAULT_GEDCOM_FORM> */
-  ts.string = "FORM";
-  ts.value  = TAG_FORM;
-  self2 = start_element(ELT_HEAD_GEDC_FORM, self1, 2, ts,
-			DEFAULT_GEDCOM_FORM,
-			GEDCOM_MAKE_STRING(val1, DEFAULT_GEDCOM_FORM));
-  
-  /* close "2 FORM" */
-  end_element(ELT_HEAD_GEDC_FORM, self1, self2, NULL);
+  compat_generate_gedcom_form(self1);
   
   /* close "1 GEDC" */
   end_element(ELT_HEAD_GEDC, parent, self1, NULL);
 }
 
+/********************************************************************/
+/*  C_NO_GEDC_FORM                                                  */
+/********************************************************************/
+
+void compat_generate_gedcom_form(Gedcom_ctxt parent)
+{
+  struct tag_struct ts;
+  Gedcom_ctxt self;
+  
+  /* generate "2 FORM <DEFAULT_GEDCOM_FORM> */
+  ts.string = "FORM";
+  ts.value  = TAG_FORM;
+  self = start_element(ELT_HEAD_GEDC_FORM, parent, 2, ts,
+		       DEFAULT_GEDCOM_FORM,
+		       GEDCOM_MAKE_STRING(val1, DEFAULT_GEDCOM_FORM));
+  
+  /* close "2 FORM" */
+  end_element(ELT_HEAD_GEDC_FORM, parent, self, NULL);
+  
+}
+  
 /********************************************************************/
 /*  C_NO_CHAR                                                       */
 /********************************************************************/
