@@ -9,6 +9,7 @@ GENERATED_DOC_FILES = gomxref.html
 DOC_GEN = make_gom_xref
 EXTRA_DIST = $(DOC_FILES) $(DOC_GEN) index.html.in
 docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
+DISTCLEANFILES = $(GENERATED_DOC_FILES)
 
 doc_DATA = $(DOC_FILES) $(GENERATED_DOC_FILES)
 
