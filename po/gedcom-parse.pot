@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-12-28 18:10+0100\n"
+"POT-Creation-Date: 2002-12-30 11:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,7 +262,7 @@ msgstr ""
 msgid "Error: "
 msgstr ""
 
-#: gedcom/message.c:97 gom/gom.c:187
+#: gedcom/buffer.c:64 gedcom/message.c:97 gom/gom.c:187
 #, c-format
 msgid "Could not allocate memory at %s, %d"
 msgstr ""
@@ -406,56 +406,146 @@ msgstr ""
 msgid "Enabling compatibility with 'Lifelines'"
 msgstr ""
 
-#: gedcom/write.c:101
+#: gedcom/write.c:104
 msgid "Line too long"
 msgstr ""
 
-#: gedcom/write.c:114
+#: gedcom/write.c:117
 #, c-format
 msgid "Error converting output string: %s (%d conversion failures)"
 msgstr ""
 
-#: gedcom/write.c:147
+#: gedcom/write.c:129
+#, c-format
+msgid "Forcing HEAD.CHAR value to '%s'"
+msgstr ""
+
+#: gedcom/write.c:158
 #, c-format
 msgid "The tag %s doesn't support newlines\n"
 msgstr ""
 
-#: gedcom/write.c:199
+#: gedcom/write.c:210
 msgid "Unicode cannot be encoded into one byte"
 msgstr ""
 
-#: gedcom/write.c:242
+#: gedcom/write.c:255
 #, c-format
 msgid "Could not open encoding '%s' for writing: %s"
 msgstr ""
 
-#: gedcom/write.c:250
+#: gedcom/write.c:263
 #, c-format
 msgid "Could not open file '%s' for writing: %s"
 msgstr ""
 
-#: gedcom/write.c:265
+#: gedcom/write.c:278
 msgid "Byte order mark configured, but no Unicode"
 msgstr ""
 
-#: gedcom/write.c:296
+#: gedcom/write.c:309
 #, c-format
 msgid "Not a valid tag: %d"
 msgstr ""
 
-#: gedcom/write.c:301
+#: gedcom/write.c:314
 #, c-format
 msgid "The element or record type '%s' requires a specific tagfor writing"
 msgstr ""
 
-#: gedcom/write.c:314
+#: gedcom/write.c:327
 #, c-format
 msgid "Wrong data type for writing element or record type '%s'"
 msgstr ""
 
-#: gedcom/write.c:332
+#: gedcom/write.c:345
 #, c-format
 msgid "Parent %d not found during write of %d"
+msgstr ""
+
+#: gedcom/age.c:64
+msgid "Number out of range in age"
+msgstr ""
+
+#: gedcom/age.c:75
+msgid "Duplicate year indication in age"
+msgstr ""
+
+#: gedcom/age.c:83
+msgid "Duplicate month indication in age"
+msgstr ""
+
+#: gedcom/age.c:91
+msgid "Duplicate day indication in age"
+msgstr ""
+
+#: gedcom/age.c:96
+#, c-format
+msgid "Unrecognized indication in age: '%s'"
+msgstr ""
+
+#: gedcom/age.c:151
+msgid "Unrecognized age format"
+msgstr ""
+
+#: gedcom/date.c:148
+msgid "Cannot compute SDN for unknown calendar type"
+msgstr ""
+
+#: gedcom/date.c:172
+msgid "Year has to be given in bounded date"
+msgstr ""
+
+#: gedcom/date.c:183 gedcom/date.c:191
+msgid "Error converting date"
+msgstr ""
+
+#: gedcom/date.c:209
+msgid "Cannot compute from SDN for unknown calendar type"
+msgstr ""
+
+#: gedcom/date.c:217
+msgid "SDN 1 should be bigger than zero"
+msgstr ""
+
+#: gedcom/date.c:224
+msgid "SDN 1 isn't a valid date in the given calendar"
+msgstr ""
+
+#: gedcom/date.c:231
+msgid "SDN 2 should be -1 for exact dates"
+msgstr ""
+
+#: gedcom/date.c:237
+msgid "SDN 2 should be bigger than zero"
+msgstr ""
+
+#: gedcom/date.c:241
+msgid "SDN 2 should be bigger than SDN 1"
+msgstr ""
+
+#: gedcom/date.c:248
+msgid "SDN 2 isn't a valid date in the given calendar"
+msgstr ""
+
+#: gedcom/date.c:269
+msgid "SDN1/SDN2 isn't a bounded date"
+msgstr ""
+
+#: gedcom/date.c:295
+msgid "Cannot compute months for unknown calendar type"
+msgstr ""
+
+#: gedcom/date.c:328
+msgid "Cannot compute month names for unknown calendar type"
+msgstr ""
+
+#: gedcom/date.c:419
+msgid "Date is not normalized: some fields are invalid"
+msgstr ""
+
+#: gedcom/buffer.c:59
+msgid "Could not register buffer cleanup function"
 msgstr ""
 
 #: gom/gom.c:102
@@ -477,12 +567,26 @@ msgstr ""
 msgid "Data loss in import: \"%d %s %s\""
 msgstr ""
 
-#: gom/gom_modify.c:51
+#: gom/gom_modify.c:52
 #, c-format
 msgid "The input '%s' is not a valid UTF-8 string"
 msgstr ""
 
-#: gom/gom_modify.c:73
+#: gom/gom_modify.c:74
 #, c-format
 msgid "The input '%s' is not a valid string for the locale"
+msgstr ""
+
+#: gom/event.c:328 gom/lds_event.c:151
+#, c-format
+msgid "Internal error: unknown evt tag %d"
+msgstr ""
+
+#: gom/event.c:332
+#, c-format
+msgid "Internal error: unknown evt type %d"
+msgstr ""
+
+#: gom/event.c:348
+msgid "Internal error: wrong parent for evt->family"
 msgstr ""
