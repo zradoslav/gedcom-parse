@@ -289,7 +289,7 @@ char* to_internal(const char* str, size_t len,
   size_t res;
   size_t outsize = out_len;
   char *wrptr = output_buffer;
-  char *rdptr = conv_buf;
+  ICONV_CONST char *rdptr = (ICONV_CONST char*) conv_buf;
   char *retval = output_buffer;
   /* set up input buffer (concatenate to what was left previous time) */
   /* can't use strcpy, because possible null bytes from unicode */
