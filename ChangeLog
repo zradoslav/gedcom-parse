@@ -1,3 +1,115 @@
+2002-10-28  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* test release 0.17.2
+
+2002-10-27  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/Makefile.am: Put generated lex and yacc files also in dist.
+
+	* doc/Makefile.am: Put generated file gomxref.html also in dist (so
+	perl isn't needed at make-time).
+
+	* utf8/utf8-locale.c (convert_utf8_to_locale): Set conv_fails on total
+	conversion failure too.
+
+	* all: Further small portability fixes.
+
+2002-10-26  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* t/output/*: Reference output for the tests; compare the actual test
+	output to these files.
+
+2002-10-23  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* Makefile.inc: Portability fix: 'if ! diff ...' isn't always supported
+	by sh.
+
+	* include/Makefile.am: Portability fix: grep isn't always understanding
+	full regex syntax.
+
+	* utf8/Makefile.am, configure.in: Only link in libcharset if libiconv
+	is not used.
+
+2002-10-21  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* all: Further portability fixes to Makefile.am and such.
+
+2002-10-20  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* */Makefile.am: Fixes for using included gettext.
+
+	* intl/Makefile.in: Hack for generating libtool convenience library
+	instead of shared library.
+
+	* README: Modify at dist instead of via configure.in (GNU make is used
+	anyway).
+
+	* intl/*: Upgraded to gettext 0.10.38 (to have extra functions, such
+	as bind_textdomain_codeset).
+
+2002-10-14  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/encoding.c (to_internal): Add ICONV_CONST for portability.
+
+	* utf8/utf8-locale.c: Add forgotten header string.h
+
+2002-10-13  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* Makefile: Require GNU make to be used -> normal makefile is then
+	GNUmakefile in top directory.
+
+	* README, doc/index.html: Generate from *.in via configure (for
+	portability).
+
+	* utf8/utf8-locale.c, utf8/libcharset/: Use locale_charset instead of
+	nl_langinfo directly, for portability.
+
+2002-10-05  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* test release 0.17.1
+
+2002-10-04  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* iconv/libiconv/*: libiconv changes for ANSEL encoding.
+
+2002-10-01  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* ansel/ANSI_Z39.47.c: Fixes to ansel decoding and (mostly) encoding.
+
+2002-09-28  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* all: Portability fixes and support for libiconv.
+
+2002-09-22  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/xref.c, include/gedcom.h.in: Added functions to retrieve, add,
+	link/unlink and delete cross-references.
+
+	* gedcom/gedcom_1byte.lex, gedcom/gedcom_lex_common.c: Added a function
+	to check whether a (UTF-8) string is a valid token; bypass iconv
+	conversion for this.
+
+	* gedcom/*: Fixed memory leaks reported by valgrind.
+
+2002-09-21  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* t/standalone.c: Close outfile *after* the last output is done...
+
+	* gedcom/gedcom_*.lex, gedcom/gedcom_lex_common.c: Workaround for
+	memory leak in flex.
+
+	* gedcom/encoding.c: Clean up environment at exit.
+
+2002-09-15  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom.h.in, gedcom/*, gom/*: Take care of const correctness.
+
+2002-09-13  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* include/gom.h: Add include file to be able to recognize __BEGIN_DECLS
+
+	* doc/make_gom_xref: Corrected 'Generated from' string.
+
 2002-09-12  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* release 0.17
