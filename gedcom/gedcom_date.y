@@ -28,6 +28,8 @@
 
 int _get_day_num(const char* input);
 int _get_year_num(Year_type ytype, const char* input1, const char* input2);
+void error_missing_year();
+void error_missing_month(); 
   
 %}
 
@@ -124,8 +126,10 @@ date_value   : date           { make_date_value(DV_NO_MODIFIER,
 	       }
              | error { /* On error: put entire string in 'phrase' member
 			  as fallback */
+	               gedcom_date_error(_("Putting date in 'phrase' member"));
 	               make_date_value(DV_PHRASE,
 				       &def_date, &def_date, curr_line_value);
+		       YYABORT;
 	             }
              ;
 
@@ -177,21 +181,33 @@ date_phrase  : OPEN TEXT CLOSE { $$ = $2; }
 date_greg    : day month_greg year_greg
              | month_greg year_greg
              | year_greg
+             | day month_greg { error_missing_year(); YYERROR; }
+             | month_greg     { error_missing_year(); YYERROR; }
+             | day year_greg  { error_missing_month(); YYERROR; }
              ;
 
 date_juln    : day month_greg year
              | month_greg year
              | year
+             | day month_greg { error_missing_year(); YYERROR; }
+             | month_greg     { error_missing_year(); YYERROR; }
+             | day year_greg  { error_missing_month(); YYERROR; }
              ;
 
 date_hebr    : day month_hebr year
              | month_hebr year
              | year
+             | day month_hebr { error_missing_year(); YYERROR; }
+             | month_hebr     { error_missing_year(); YYERROR; }
+             | day year       { error_missing_month(); YYERROR; }
              ;
 
 date_fren    : day month_fren year
              | month_fren year
              | year
+             | day month_hebr { error_missing_year(); YYERROR; }
+             | month_hebr     { error_missing_year(); YYERROR; }
+             | day year       { error_missing_month(); YYERROR; }
              ;
 
 day          : NUMBER
@@ -201,6 +217,7 @@ day          : NUMBER
 		   strcpy(date_s.day_str, $1);
 		   date_s.day = d;
 		 }
+		 else YYERROR;
 	       }
              ;
 
@@ -293,6 +310,7 @@ year         : NUMBER
 		     date_s.year = y;
 		     date_s.year_type = YEAR_SINGLE;
 		   }
+		   else YYERROR;
 		 }
              ;
 
@@ -303,18 +321,30 @@ year_greg    : NUMBER
 		     date_s.year = y;
 		     date_s.year_type = YEAR_SINGLE;
 		   }
+		   else YYERROR;
 		 }
              | NUMBER SLASH NUMBER
                  { int y = _get_year_num(YEAR_DOUBLE, $1, $3);
 		   if (y != -1) {
-		     sprintf(date_s.year_str, "%d/%d", y-1, y%100);
+		     sprintf(date_s.year_str, "%d/%02d", y-1, y%100);
 		     date_s.year = y;
 		     date_s.year_type = YEAR_DOUBLE;
 		   }
+		   else YYERROR;
 		 }
              ;
 
 %%
+
+void error_missing_year() {
+  gedcom_date_error(_("Year is missing: '%s'"),
+		    curr_line_value);
+}
+
+void error_missing_month() {
+  gedcom_date_error(_("Month is missing: '%s'"),
+		    curr_line_value);
+}
 
 int _get_day_num(const char* input)
 {

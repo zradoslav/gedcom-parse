@@ -28,8 +28,7 @@
 #include "gedcom_internal.h"
 #include "gedcom.h"
 
-#define gedcom_date_error gedcom_error
-#define gedcom_date_warning gedcom_warning
+#define gedcom_date_error gedcom_warning
 #define MAX_DATE_TOKEN 10
 
 extern struct date_value dv_s;
