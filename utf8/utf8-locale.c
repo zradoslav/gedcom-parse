@@ -16,7 +16,7 @@
 #include <string.h>
 #include "config.h"
 #include "libcharset.h"
-#include "utf8-locale.h"
+#include "utf8.h"
 
 #define INITIAL_OUTSIZE 256
 
