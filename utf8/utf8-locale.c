@@ -14,6 +14,7 @@
 #include <langinfo.h>
 #include <assert.h>
 #include <errno.h>
+#include "config.h"
 #include "utf8-locale.h"
 
 #define INITIAL_OUTSIZE 256
@@ -60,11 +61,11 @@ int open_conversion_contexts()
   }
 }
 
-char* convert_utf8_to_locale(char* input, int *conv_fails)
+char* convert_utf8_to_locale(const char* input, int *conv_fails)
 {
   size_t insize  = strlen(input);
   size_t outsize;
-  char   *inptr  = input;
+  ICONV_CONST char *inptr  = (ICONV_CONST char*) input;
   char   *outptr;
   size_t nconv;
 
@@ -118,11 +119,11 @@ char* convert_utf8_to_locale(char* input, int *conv_fails)
   return outbuffer;
 }
 
-char* convert_locale_to_utf8(char* input)
+char* convert_locale_to_utf8(const char* input)
 {
   size_t insize  = strlen(input);
   size_t outsize;
-  char   *inptr  = input;
+  ICONV_CONST char *inptr  = (ICONV_CONST char*) input;
   char   *outptr;
   size_t nconv;
 
