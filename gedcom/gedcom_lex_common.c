@@ -310,10 +310,15 @@ int test_loop(ENCODING enc, char* code)
   { if (compat_at) {                                                          \
       int i, j;                                                               \
       char *yycopy = strdup(yytext);                                          \
-      for (i = 0; i < 2; i++)                                                 \
-        for (j = yyleng - 1; j >= 0; --j)                                     \
-          unput(yycopy[j]);                                                   \
-      free(yycopy);                                                           \
+      if (yycopy) {                                                           \
+        for (i = 0; i < 2; i++)                                               \
+          for (j = yyleng - 1; j >= 0; --j)                                   \
+            unput(yycopy[j]);                                                 \
+        free(yycopy);                                                         \
+      }                                                                       \
+      else {                                                                  \
+        MEMORY_ERROR;                                                         \
+      }                                                                       \
     }                                                                         \
     else {                                                                    \
       gedcom_error(_("'@' character should be written as '@@' in values"));   \

@@ -27,6 +27,7 @@
 #include <limits.h>
 #include <stdlib.h>
 #include "gedcom_internal.h"
+#include "gedcom.h"
 #include "encoding.h"
 #include "hash.h"
 
@@ -42,7 +43,7 @@ char* charwidth_string[] = { "1", "2_HILO", "2_LOHI" };
 
 hnode_t *node_alloc(void *c __attribute__((unused)))
 {
-  return malloc(sizeof *node_alloc(NULL));
+  return (hnode_t *)malloc(sizeof *node_alloc(NULL));
 }
 
 void node_free(hnode_t *n, void *c __attribute__((unused)))
@@ -59,19 +60,23 @@ void add_encoding(char *gedcom_n, char* charwidth, char *iconv_n)
   key = (char *) malloc(strlen(gedcom_n) + strlen(charwidth) + 3);
   val = (char *) malloc(strlen(iconv_n) + 1);
 
-  /* sprintf is safe here (malloc'ed before) */
-  sprintf(key, "%s(%s)", gedcom_n, charwidth);
-  strcpy(val, iconv_n);
-
-  if (hash_lookup(encodings, key)) {
-    gedcom_warning(_("Duplicate entry found for encoding '%s', ignoring"),
-		   gedcom_n);
-    free(key);
-    free(val);
+  if (key && val) {
+    /* sprintf is safe here (malloc'ed before) */
+    sprintf(key, "%s(%s)", gedcom_n, charwidth);
+    strcpy(val, iconv_n);
+    
+    if (hash_lookup(encodings, key)) {
+      gedcom_warning(_("Duplicate entry found for encoding '%s', ignoring"),
+		     gedcom_n);
+      free(key);
+      free(val);
+    }
+    else {
+      hash_alloc_insert(encodings, key, val);
+    }
   }
-  else {
-    hash_alloc_insert(encodings, key, val);
-  }
+  else
+    MEMORY_ERROR;
 }
 
 char* get_encoding(char* gedcom_n, ENCODING enc)
@@ -80,16 +85,23 @@ char* get_encoding(char* gedcom_n, ENCODING enc)
   hnode_t *node;
   
   key = (char*)malloc(strlen(gedcom_n) + strlen(charwidth_string[enc]) + 3);
-  /* sprintf is safe here (malloc'ed before) */
-  sprintf(key, "%s(%s)", gedcom_n, charwidth_string[enc]);
 
-  node = hash_lookup(encodings, key);
-  free(key);
-  if (node) {
-    return hnode_get(node);
+  if (key) {
+    /* sprintf is safe here (malloc'ed before) */
+    sprintf(key, "%s(%s)", gedcom_n, charwidth_string[enc]);
+    
+    node = hash_lookup(encodings, key);
+    free(key);
+    if (node) {
+      return hnode_get(node);
+    }
+    else {
+      gedcom_error(_("No encoding defined for '%s'"), gedcom_n);
+      return NULL;
+    }
   }
   else {
-    gedcom_error(_("No encoding defined for '%s'"), gedcom_n);
+    MEMORY_ERROR;
     return NULL;
   }
 }
@@ -132,18 +144,26 @@ void update_gconv_search_path()
       new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
 				      + strlen(PKGDATADIR)
 				      + 2);
-      sprintf(new_gconv_path, "%s=%s", GCONV_SEARCH_PATH, PKGDATADIR);
+      if (new_gconv_path)
+	sprintf(new_gconv_path, "%s=%s", GCONV_SEARCH_PATH, PKGDATADIR);
     }
     else {
       new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
 				      + strlen(gconv_path)
 				      + strlen(PKGDATADIR)
 				      + 3);
-      sprintf(new_gconv_path, "%s=%s:%s",
-	      GCONV_SEARCH_PATH, gconv_path, PKGDATADIR);
+      if (new_gconv_path)
+	sprintf(new_gconv_path, "%s=%s:%s",
+		GCONV_SEARCH_PATH, gconv_path, PKGDATADIR);
     }
-    /* Ignore failures of putenv (can't do anything about it anyway) */
-    putenv(new_gconv_path);
+    if (new_gconv_path) 
+      /* Ignore failures of putenv (can't do anything about it anyway) */
+      putenv(new_gconv_path);
+    else {
+      fprintf(stderr, "Could not allocate memory at %s, %d\n",
+	      __FILE__, __LINE__);
+      abort();
+    }
   }
 }
 
@@ -156,7 +176,9 @@ void init_encodings()
     char charwidth[MAXBUF + 1];
     char iconv_n[MAXBUF + 1];
 
-    atexit(cleanup_encodings);
+    if (atexit(cleanup_encodings) != 0) {
+      gedcom_warning(_("Could not register encoding cleanup function"));
+    }
     
     encodings = hash_create(HASHCOUNT_T_MAX, NULL, NULL);
     hash_set_allocator(encodings, node_alloc, node_free, NULL);
@@ -169,8 +191,8 @@ void init_encodings()
       in = fopen(path, "r");
     }
     if (in == NULL) {
-      gedcom_warning(_("Could not open encoding configuration file '%s'"),
-		     ENCODING_CONF_FILE);
+      gedcom_warning(_("Could not open encoding configuration file '%s': %s"),
+		     ENCODING_CONF_FILE, strerror(errno));
     }
     else {
       line_no = 1;
@@ -191,7 +213,10 @@ void init_encodings()
 	  }
 	}
       }
-      fclose(in);
+      if (fclose(in) != 0) {
+	gedcom_warning(_("Error closing file '%s': %s"),
+		       ENCODING_CONF_FILE, strerror(errno));
+      }
     }
   }
 }
@@ -226,7 +251,9 @@ int open_conv_to_internal(char* fromcode)
 
 void close_conv_to_internal()
 {
-  iconv_close(cd_to_internal);
+  if (iconv_close(cd_to_internal) != 0) {
+    gedcom_warning(_("Error closing conversion context: %s"), strerror(errno));
+  }
   cd_to_internal = (iconv_t) -1;
 }
 
@@ -253,6 +280,12 @@ char* to_internal(char* str, size_t len,
       retval = NULL;
       rdptr++;
       conv_buf_size--;
+    }
+    else if (errno == EINVAL) {
+      /* Do nothing, leave it to next iteration */
+    }
+    else {
+      gedcom_error(_("Error in converting characters: %s"), strerror(errno));
     }
   }
   /* then shift what is left over to the head of the input buffer */
