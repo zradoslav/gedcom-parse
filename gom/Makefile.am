@@ -2,7 +2,7 @@
 # $Id$
 # $Name$
 
-INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include -I $(srcdir)/../utf8
+INCLUDES = -I$(srcdir)/../intl -I$(srcdir)/../include -I$(srcdir)/../utf8
 CFLAGS   = -O2 -W -Wall -pedantic -Wno-long-long @EXTRA_CFLAGS@
 
 lib_LTLIBRARIES = libgedcom_gom.la

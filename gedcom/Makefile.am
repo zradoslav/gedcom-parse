@@ -5,8 +5,8 @@
 SUBDIRS = calendar .
 
 localedir = $(datadir)/locale
-INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include -I $(srcdir)/calendar \
-           -I $(srcdir)/../utf8 \
+INCLUDES = -I$(srcdir)/../intl -I$(srcdir)/../include -I$(srcdir)/calendar \
+           -I$(srcdir)/../utf8 \
            -DPKGDATADIR=\"$(pkgdatadir)\" -DLOCALEDIR=\"$(localedir)\"
 YFLAGS   = --debug --defines
 LFLAGS   = -8
