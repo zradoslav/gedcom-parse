@@ -172,10 +172,11 @@ void default_cb(Gedcom_ctxt ctxt, int level, char *tag, char *raw_value,
 		int tag_value)
 {
   char   *converted = NULL;
+  int    conv_fails;
   if (raw_value)
-    converted = convert_utf8_to_locale(raw_value);
-  output(0, "== %d %s (%d) %s (ctxt is %d)\n",
-	 level, tag, tag_value, converted, (int)ctxt);
+    converted = convert_utf8_to_locale(raw_value, &conv_fails);
+  output(0, "== %d %s (%d) %s (ctxt is %d, conversion failures: %d)\n",
+	 level, tag, tag_value, converted, (int)ctxt, conv_fails);
 }
 
 void subscribe_callbacks()

@@ -60,7 +60,7 @@ int open_conversion_contexts()
   }
 }
 
-char* convert_utf8_to_locale(char* input)
+char* convert_utf8_to_locale(char* input, int *conv_fails)
 {
   size_t insize  = strlen(input);
   size_t outsize;
@@ -73,6 +73,7 @@ char* convert_utf8_to_locale(char* input)
   assert(utf8_to_locale != (iconv_t) -1);
   /* make sure we start from an empty state */
   iconv(utf8_to_locale, NULL, NULL, NULL, NULL);
+  if (conv_fails != NULL) *conv_fails = 0;
   /* set up output buffer (empty it) */
   outptr  = outbuffer;
   outsize = outbufsize;
@@ -92,6 +93,7 @@ char* convert_utf8_to_locale(char* input)
     else if (errno == EILSEQ) {
       /* skip over character */
       const char* unkn_ptr = the_unknown;
+      if (conv_fails != NULL) (*conv_fails)++;
       if ((*inptr & 0x80) == 0) {
 	/* an ASCII character, just skip one (this case is very improbable) */
 	inptr++; insize--;

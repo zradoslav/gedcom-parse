@@ -17,7 +17,7 @@
 __BEGIN_DECLS
 
 void  convert_set_unknown(const char* unknown);
-char* convert_utf8_to_locale(char* input);
+char* convert_utf8_to_locale(char* input, int *conv_fails);
 char* convert_locale_to_utf8(char* input);
 
 __END_DECLS

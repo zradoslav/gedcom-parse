@@ -452,7 +452,43 @@ All strings passed by the GEDCOM parser to the application are in UTF-8 encoding
 be able to display it.<br>
                     <br>
 The most common case is that the output character set is controlled by the <code>locale</code> mechanism (i.e. via the <code>LANG</code>, <code>LC_ALL</code> or <code>LC_CTYPE</code> environment variables), which also controls the <code>gettext</code>
- mechanism in the application. &nbsp;For this, the following steps need to
+ mechanism in the application. &nbsp;<br>
+                    <br>
+                    <br>
+
+
+                                                                        
+              
+                    The source distribution of <code>gedcom-parse</code> contains an example implementation (<code>utf8-locale.c</code> and <code>utf8-locale.h</code>
+ in the top directory).&nbsp; &nbsp;Feel free to use it in
+your source code (it is not part of the library, and it isn't installed anywhere,
+so you need to take over the source and header file in your application).
+&nbsp;<br>
+                    <br>
+
+Its interface is:<br>
+                    <blockquote><pre><code>char *<b>convert_utf8_to_locale</b> (char *input, int *conv_failures);<br>char *<b>convert_locale_to_utf8</b> (char *input);<br></code></pre></blockquote>
+
+Both functions return a pointer to a static buffer that is overwritten on
+each call. &nbsp;To function properly, the application must first set the
+locale using the <code>setlocale</code> function (the second step detailed below).
+&nbsp;All other steps given below, including setting up and closing down the conversion
+handles, are transparantly handled by the two functions. &nbsp;<br>
+                      <br>
+If you pass a pointer to an integer to the first function, it will be set
+to the number of conversion failures, i.e. characters that couldn't be converted;
+you can also just pass <code>NULL</code> if you are not interested (note that usually, the interesting information is just whether there <i>were</i>
+ conversion failures or not, which is then given by the integer being bigger
+than zero or not). &nbsp;The second function doesn't need this, because any
+locale can be converted to UTF-8.<br>
+                      <br>
+
+You can change the "?" that is output for characters that can't be converted
+to any string you want, using the following function before the conversion
+calls:<br>
+                      <blockquote><pre><code>void <b>convert_set_unknown</b> (const char *unknown);</code></pre></blockquote>
+                        <br>
+If you want to have your own functions for it instead of this example implementation, the following steps need to
 be taken by the application (more detailed info can be found in the info
 file of the GNU libc library in the "Generic Charset Conversion" section
 under "Character Set Handling" or online <a href="http://www.gnu.org/manual/glibc-2.2.3/html_chapter/libc_6.html#SEC99">here</a>):<br>
@@ -527,33 +563,10 @@ characters can't be represented in the target character set). &nbsp;The <code>ic
                                           <pre><code>iconv_close(iconv_handle);<br></code></pre>
                                           </blockquote>
                                           </blockquote>
-
-                                                                        
-              
-                    The source distribution of <code>gedcom-parse</code> contains an example implementation (<code>utf8-locale.c</code> and <code>utf8-locale.h</code>
- in the top directory) that grows the output buffer dynamically and outputs
-"?" for characters that can't be converted. &nbsp;Feel free to use it in
-your source code (it is not part of the library, and it isn't installed anywhere,
-so you need to take over the source and header file in your application).
-&nbsp;<br>
-                                          <br>
-Its interface is:<br>
-                                          <blockquote>
-                                            <pre><code>char *<b>convert_utf8_to_locale</b> (char *input);<br>char *<b>convert_locale_to_utf8</b> (char *input);<br></code></pre>
-                                            </blockquote>
-Both functions return a pointer to a static buffer that is overwritten on
-each call. &nbsp;To function properly, the application must first set the
-locale using the <code>setlocale</code> function (the second step above).
-&nbsp;All other steps, including setting up and closing down the conversion
-handles, are transparantly handled by the two functions.<br>
-                                            <br>
-You can change the "?" that is output for characters that can't be converted
-to any string you want, using the following function before the conversion
-calls:<br>
-                                            <blockquote>
-                                              <pre><code>void <b>convert_set_unknown</b> (const char *unknown);</code></pre>
-                                              </blockquote>
-                                              <hr width="100%" size="2">                           
+                                              The example implementation mentioned above grows the output buffer dynamically and outputs
+"?" for characters that can't be converted.<br>
+                                              <br>
+<hr width="100%" size="2">                           
                                    
                     <pre><font size="-1">$Id$<br>$Name$</font><br></pre>
                                                                  
