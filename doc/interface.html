@@ -1,9 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Libgedcom interface details</title>
   
                                          
-  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head>
-
-<body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head><body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
            
 <h1 align="center">Libgedcom interface details</h1>
       <br>
@@ -17,7 +15,9 @@
                    
   <ul>
          <li><a href="#struct_date_value">struct date_value</a></li>
-         <li><a href="#struct_date">struct date</a></li>
+         <li><a href="#struct_date">struct date</a></li><li><a href="#age_value">struct age_value</a><br>
+    </li>
+
      <li><a href="#struct_xref_value">struct xref_value</a><br>
         </li>
                    
@@ -1087,7 +1087,7 @@ element   start callback.<br>
           <br>
           <br>
            </td>
-           <td valign="top"><code>STRING</code><br>
+           <td valign="top"><code>AGE</code><br>
            </td>
          </tr>
          <tr>
@@ -1170,7 +1170,7 @@ element   start callback.<br>
            <td valign="top"><code>ELT_SUB_FAM_EVT_HUSB</code>,<br>
           <code>ELT_SUB_FAM_EVT_WIFE</code><br>
            </td>
-           <td valign="top"><code>STRING</code><br>
+           <td valign="top"><code>AGE</code><br>
            </td>
          </tr>
          <tr>
@@ -1822,6 +1822,14 @@ element   start callback.<br>
            <td valign="top"><code>struct date_value dv = GEDCOM_DATE(val);</code></td>
          </tr>
      <tr>
+      <td valign="top">age<br>
+      </td>
+      <td valign="top"><code>GEDCOM_IS_AGE(val)</code><br>
+      </td>
+      <td valign="top"><code>struct age_value age = GEDCOM_AGE(val);</code><br>
+      </td>
+    </tr>
+<tr>
        <td valign="top">xref pointer<br>
        </td>
        <td valign="top"><code>GEDCOM_IS_XREF_PTR(val)</code><br>
@@ -2076,17 +2084,100 @@ day number.   &nbsp;Two cases can be distinguished:<br>
                                                  
         <blockquote>                                                    
   
-          <blockquote>These are represented by 2 serial day numbers (<code>sdn1</code> and <code>sdn2</code>) and a <code>Date_type</code> equal 
+          
+  <blockquote>These are represented by 2 serial day numbers (<code>sdn1</code> and <code>sdn2</code>) and a <code>Date_type</code> equal 
 to              <code>DATE_BOUNDED</code>.<br>
-                 <br>
+    <br>
+
      For example, the Gregorian date "MAR 1990" is represented by the serial
   day numbers for "1 MAR 1990" and "31 MAR 1990", and the Gregorian date
 "1990"   is represented by the serial day numbers for "1 JAN 1990" and "31
 DEC 1990".   &nbsp;Similarly for the other calendar types.<br>
+  </blockquote>
+
+                 <br>
+</blockquote>
+<h3><a name="age_value"></a>struct age_value</h3>
+
+     This struct describes an age as given in the GEDCOM file, and has the
+ following  definition:<br>
+
+         
+<blockquote><code>struct age_value {<br>
+     &nbsp; Age_type&nbsp; &nbsp; &nbsp; type;<br>
+     &nbsp; Age_modifier &nbsp;mod;<br>
+     &nbsp; int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; years;<br>
+&nbsp; int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; months;<br>
+&nbsp; int &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; days;<br>
+     &nbsp; char &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;phrase[MAX_PHRASE_LEN 
+  + 1];<br>
+     };</code><br>
+       </blockquote>
+<blockquote>
                  </blockquote>
-                 </blockquote>
+
                               
-            <h3><a name="struct_xref_value"></a>struct xref_value</h3>
+            
+       It depends on the first member, the type, which members are actually 
+ relevant:<br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+<tbody><tr>
+             <td valign="top" align="center"><b>Age_type</b><br>
+             </td>
+             <td valign="top" align="center"><b>Meaning</b><br>
+             </td>
+             <td valign="top" align="center"><b>Relevant members</b><br>
+             </td>
+           </tr>
+           <tr>
+             <td valign="top"><code>AGE_UNRECOGNIZED</code><br>
+             </td>
+             <td valign="top">format not recognized, full raw value in phrase<br>
+             </td>
+             <td valign="top">phrase<br>
+             </td>
+           </tr>
+           <tr>
+             <td valign="top"><code>AGE_CHILD</code><br>
+             </td>
+             <td valign="top">the indication 'CHILD'<br>
+             </td>
+             <td valign="top">mod<br>
+             </td>
+           </tr>
+           <tr>
+             <td valign="top"><code>AGE_INFANT</code><br>
+             </td>
+             <td valign="top">the indication 'INFANT'<br>
+             </td>
+             <td valign="top">mod<br>
+             </td>
+           </tr>
+           <tr>
+             <td valign="top"><code>AGE_STILLBORN</code><br>
+             </td>
+             <td valign="top">the indication 'STILLBORN'<br>
+             </td>
+             <td valign="top">mod<br>
+</td></tr><tr>
+      <td valign="top"><code>AGE_NUMERIC</code><br>
+      </td>
+      <td valign="top">an indication in years, months and/or days (each can be -1 if not given)<br>
+      </td>
+      <td valign="top">mod, years, months, days<br>
+      </td>
+    </tr>
+</tbody>
+</table>
+<br>
+The modifier can be one of the following:<br>
+<ul>
+<li><code> AGE_NO_MODIFIER</code> : no modifier</li><li><code>AGE_LESS_THAN</code><code></code>&nbsp; : the modifier '&lt;' is added</li><li><code>AGE_GREATER_THAN </code>: the modifier '&gt;' is added</li>
+</ul>
+<br>
+<h3><a name="struct_xref_value"></a>struct xref_value</h3>
+
  This struct represents a cross-reference in the GEDCOM file (but note that 
 the <code>Gedcom_val</code> contains a pointer to such a struct, not the struct
 itself). &nbsp;It is defined as:<br>
@@ -2134,4 +2225,5 @@ GEDCOM.<br>
               <pre>$Id$<br>$Name$<br></pre>
       <br>
                                                                         
-              </body></html>
+              <br>
+</body></html>
