@@ -181,6 +181,7 @@ Gedcom_ctxt user_elt_start(_ELT_PARAMS_)
 	data->xref_value = GEDCOM_XREF_PTR(parsed_value);
 
       if (! err) {
+	printf("Tag: %s, value: %s\n", data->tag, data->str_value);
 	switch (ctxt->obj_type) {
 	  case T_header:
 	    ADDFUNC2(header,user_data)(ctxt, data); break;
@@ -317,13 +318,14 @@ int write_user_data(Gedcom_write_hndl hndl, struct user_data* data)
 
   if (!data) return 1;
 
-  for (obj = data; data; data = data->next) {
+  for (obj = data; obj; obj = obj->next) {
     if (obj->xref_value)
       result |= gedcom_write_user_xref(hndl, obj->level, obj->tag, NULL,
 				       obj->xref_value);
-    else
+    else {
       result |= gedcom_write_user_str(hndl, obj->level, obj->tag, NULL,
 				      obj->str_value);
+    }
   }
   return result;
 }
