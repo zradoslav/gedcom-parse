@@ -64,7 +64,7 @@ Gedcom_ctxt header_start(int level, Gedcom_val xref, char *tag,
 			 Gedcom_val parsed_value)
 {
   output(1, "Header start\n");
-  return (Gedcom_ctxt)0;
+  return (Gedcom_ctxt)1;
 }
 
 void header_end(Gedcom_ctxt self)
@@ -73,7 +73,7 @@ void header_end(Gedcom_ctxt self)
 }
 
 char family_xreftags[100][255];
-int  family_nr = 0;
+int  family_nr = 1;
 
 Gedcom_ctxt family_start(int level, Gedcom_val xref, char *tag,
 			 char *raw_value, int tag_value,
