@@ -146,6 +146,7 @@
 #include "encoding.h"
 #include "interface.h"
 #include "date.h"
+#include "age.h"
 #include "xref.h"
 #include "compat.h"
 
@@ -2241,10 +2242,11 @@ event_detail_date_sect : OPEN DELIM TAG_DATE mand_line_item
 			 }
                        ;
 event_detail_age_sect  : OPEN DELIM TAG_AGE mand_line_item 
-                         { $<ctxt>$
+                         { struct age_value age = gedcom_parse_age($4);
+			   $<ctxt>$
 			     = start_element(ELT_SUB_EVT_AGE,
 					     PARENT, $1, $3, $4, 
-					     GEDCOM_MAKE_STRING(val1, $4));
+					     GEDCOM_MAKE_AGE(val1, age));
 			   START(AGE, $<ctxt>$)  
                          }  
                          no_std_subs  
@@ -2347,9 +2349,10 @@ fam_even_husb_sub : fam_even_age_sect  { OCCUR2(AGE, 1, 1) }
                   ;
 
 fam_even_age_sect : OPEN DELIM TAG_AGE mand_line_item  
-                    { $<ctxt>$ = start_element(ELT_SUB_FAM_EVT_AGE,
+                    { struct age_value age = gedcom_parse_age($4);
+		      $<ctxt>$ = start_element(ELT_SUB_FAM_EVT_AGE,
 					       PARENT, $1, $3, $4,
-					       GEDCOM_MAKE_STRING(val1, $4));
+					       GEDCOM_MAKE_AGE(val1, age));
 		      START(AGE, $<ctxt>$)   
                     }   
                     no_std_subs   
