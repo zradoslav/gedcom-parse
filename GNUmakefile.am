@@ -5,6 +5,7 @@ SUBDIRS = intl iconv utf8 gedcom gom include . t doc data po
 
 EXTRA_DIST = Makefile.inc
 VERSIONED_FILES = README
+DISTCLEANFILES = GNUmakefile
 
 include $(top_srcdir)/Makefile.inc
 
