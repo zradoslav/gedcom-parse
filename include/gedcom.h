@@ -128,6 +128,93 @@ typedef enum _ELT {
   ELT_SUB_ADDR_CTRY,
   
   ELT_SUB_PHON,
+
+  ELT_SUB_ASSO,
+  ELT_SUB_ASSO_TYPE,
+  ELT_SUB_ASSO_RELA,
+
+  ELT_SUB_CHAN,
+  ELT_SUB_CHAN_DATE,
+  ELT_SUB_CHAN_TIME,
+
+  ELT_SUB_FAMC,
+  ELT_SUB_FAMC_PEDI,
+
+  ELT_SUB_CONT,
+  ELT_SUB_CONC,
+
+  ELT_SUB_EVT_TYPE,
+  ELT_SUB_EVT_DATE,
+  ELT_SUB_EVT_AGE,
+  ELT_SUB_EVT_AGNC,
+  ELT_SUB_EVT_CAUS,
+
+  ELT_SUB_FAM_EVT,
+  ELT_SUB_FAM_EVT_HUSB,
+  ELT_SUB_FAM_EVT_WIFE,
+  ELT_SUB_FAM_EVT_AGE,
+  ELT_SUB_FAM_EVT_EVEN,
+
+  ELT_SUB_IDENT_REFN,
+  ELT_SUB_IDENT_REFN_TYPE,
+  ELT_SUB_IDENT_RIN,
+
+  ELT_SUB_INDIV_ATTR,
+  ELT_SUB_INDIV_RESI,
+  ELT_SUB_INDIV_BIRT,
+  ELT_SUB_INDIV_BIRT_FAMC,
+  ELT_SUB_INDIV_GEN,
+  ELT_SUB_INDIV_ADOP,
+  ELT_SUB_INDIV_ADOP_FAMC,
+  ELT_SUB_INDIV_ADOP_FAMC_ADOP,
+  ELT_SUB_INDIV_EVEN,
+
+  ELT_SUB_LIO_BAPL,
+  ELT_SUB_LIO_BAPL_STAT,
+  ELT_SUB_LIO_BAPL_DATE,
+  ELT_SUB_LIO_BAPL_TEMP,
+  ELT_SUB_LIO_BAPL_PLAC,
+  ELT_SUB_LIO_SLGC,
+  ELT_SUB_LIO_SLGC_FAMC,
+
+  ELT_SUB_LSS_SLGS,
+  ELT_SUB_LSS_SLGS_STAT,
+  ELT_SUB_LSS_SLGS_DATE,
+  ELT_SUB_LSS_SLGS_TEMP,
+  ELT_SUB_LSS_SLGS_PLAC,
+
+  ELT_SUB_MULTIM_OBJE,
+  ELT_SUB_MULTIM_OBJE_FORM,
+  ELT_SUB_MULTIM_OBJE_TITL,
+  ELT_SUB_MULTIM_OBJE_FILE,
+
+  ELT_SUB_NOTE,
+
+  ELT_SUB_PERS_NAME,
+  ELT_SUB_PERS_NAME_NPFX,
+  ELT_SUB_PERS_NAME_GIVN,
+  ELT_SUB_PERS_NAME_NICK,
+  ELT_SUB_PERS_NAME_SPFX,
+  ELT_SUB_PERS_NAME_SURN,
+  ELT_SUB_PERS_NAME_NSFX,
+
+  ELT_SUB_PLAC,
+  ELT_SUB_PLAC_FORM,
+
+  ELT_SUB_SOUR,
+  ELT_SUB_SOUR_PAGE,
+  ELT_SUB_SOUR_EVEN,
+  ELT_SUB_SOUR_EVEN_ROLE,
+  ELT_SUB_SOUR_DATA,
+  ELT_SUB_SOUR_DATA_DATE,
+  ELT_SUB_SOUR_TEXT,
+  ELT_SUB_SOUR_QUAY,
+
+  ELT_SUB_REPO,
+  ELT_SUB_REPO_CALN,
+  ELT_SUB_REPO_CALN_MEDI,
+
+  ELT_SUB_FAMS,
   
   ELT_USER,
   
@@ -222,6 +309,7 @@ struct date_value {
 /**************************************************************************/
 									   
 typedef enum _GEDCOM_VAL_TYPE {
+  GV_NULL,
   GV_CHAR_PTR,
   GV_DATE_VALUE
 } Gedcom_val_type;
@@ -236,13 +324,18 @@ typedef struct _Gedcom_val_struct {
   union _Gedcom_val_union value;
 } Gedcom_val_struct;
 
-void gedcom_cast_error(char* file, int line);
+void gedcom_cast_error(char* file, int line,
+		       Gedcom_val_type tried_type,
+		       Gedcom_val_type real_type);
 extern struct date_value def_date_val;
 
 #define GV_CHECK_CAST(VAL, TYPE, MEMBER, DEFVAL)                              \
    ((VAL->type == TYPE) ?                                                     \
     VAL->value.MEMBER :                                                       \
-    (gedcom_cast_error(__FILE__,__LINE__), DEFVAL))
+    (gedcom_cast_error(__FILE__,__LINE__, TYPE, VAL->type), DEFVAL))
+
+#define GV_IS_TYPE(VAL, TYPE)                                                 \
+   (VAL->type == TYPE)
 
 /**************************************************************************/
 /***  Function interface                                                ***/
@@ -254,15 +347,23 @@ typedef void* Gedcom_ctxt;
 /* Type for parsed values, meant to be opaque */
 typedef Gedcom_val_struct* Gedcom_val;
 
+/* Check to determine whether there is a parsed value or not */
+#define GEDCOM_IS_NULL(VAL) \
+   GV_IS_TYPE(VAL, GV_NULL)
+
 /* This returns the char* from a Gedcom_val, if appropriate */
 /* It gives a gedcom_warning if the cast is not correct     */
 #define GEDCOM_STRING(VAL) \
    GV_CHECK_CAST(VAL, GV_CHAR_PTR, string_val, "")
+#define GEDCOM_IS_STRING(VAL) \
+   GV_IS_TYPE(VAL, GV_CHAR_PTR)
 
 /* This returns the struct date_value from a Gedcom_val, if appropriate */
 /* It gives a gedcom_warning if the cast is not correct                 */
 #define GEDCOM_DATE(VAL) \
    GV_CHECK_CAST(VAL, GV_DATE_VALUE, date_val, def_date_val)
+#define GEDCOM_IS_DATE(VAL) \
+   GV_IS_TYPE(VAL, GV_DATE_VALUE)
 
 typedef void
         (*Gedcom_msg_handler)

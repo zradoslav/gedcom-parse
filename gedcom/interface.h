@@ -40,8 +40,16 @@ extern Gedcom_val_struct val;
 #define GEDCOM_MAKE(VALUE, TYPE, MEMBER) \
    (val.type = TYPE, val.value.MEMBER = VALUE, &val)
 
+#define GEDCOM_MAKE_NULL() \
+   GEDCOM_MAKE(NULL, GV_NULL, string_val)
+
 #define GEDCOM_MAKE_STRING(STRING) \
    GEDCOM_MAKE(STRING, GV_CHAR_PTR, string_val)
+
+#define GEDCOM_MAKE_NULL_OR_STRING(STRING) \
+   (STRING == NULL ? \
+    GEDCOM_MAKE_NULL() : \
+    GEDCOM_MAKE_STRING(STRING)) \
 
 #define GEDCOM_MAKE_DATE(DATE) \
    GEDCOM_MAKE(DATE, GV_DATE_VALUE, date_val)

@@ -89,7 +89,15 @@ void end_element(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
     (*cb)(parent, self, parsed_value);
 }
 
-void gedcom_cast_error(char* file, int line)
+char* val_type_str[] = { N_("null value"),
+			 N_("character string"),
+			 N_("date") };
+
+void gedcom_cast_error(char* file, int line,
+		       Gedcom_val_type tried_type,
+		       Gedcom_val_type real_type)
 {
-  gedcom_warning(_("Wrong cast of value in file %s, at line %d"), file, line);
+  gedcom_warning
+    (_("Wrong cast of value in file %s, at line %d: %s instead of %s"),
+     file, line, _(val_type_str[tried_type]), _(val_type_str[real_type]));
 }
