@@ -52,8 +52,8 @@
 #include "gom.h"
 #include "gom_internal.h"
 
-void gom_default_callback (Gedcom_elt elt, Gedcom_ctxt parent, int level, char* tag,
-			   char* raw_value, int parsed_tag);
+void gom_default_callback (Gedcom_elt elt, Gedcom_ctxt parent, int level,
+			   char* tag, char* raw_value, int parsed_tag);
 
 void gom_cleanup()
 {
@@ -98,16 +98,22 @@ int gom_parse_file(char* file_name)
   source_event_subscribe();
   source_description_subscribe();
 
-  atexit(gom_cleanup);
+  if (atexit(gom_cleanup) != 0) {
+    gedcom_warning(_("Could not register gom cleanup function"));
+  }
   return gedcom_parse_file(file_name);
 }
 
 Gom_ctxt make_gom_ctxt(int ctxt_type, OBJ_TYPE obj_type, void *ctxt_ptr)
 {
   Gom_ctxt ctxt   = (Gom_ctxt)malloc(sizeof(struct Gom_ctxt_struct));
-  ctxt->ctxt_type = ctxt_type;
-  ctxt->obj_type  = obj_type;
-  ctxt->ctxt_ptr  = ctxt_ptr;
+  if (! ctxt)
+    MEMORY_ERROR;
+  else {
+    ctxt->ctxt_type = ctxt_type;
+    ctxt->obj_type  = obj_type;
+    ctxt->ctxt_ptr  = ctxt_ptr;
+  }
   return ctxt;
 }
 
@@ -117,7 +123,7 @@ void NULL_DESTROY(void* anything)
 
 void destroy_gom_ctxt(Gom_ctxt ctxt)
 {
-  free(ctxt);
+  SAFE_FREE(ctxt);
 }
 
 void gom_cast_error(char* file, int line, OBJ_TYPE expected, OBJ_TYPE found)
@@ -126,6 +132,11 @@ void gom_cast_error(char* file, int line, OBJ_TYPE expected, OBJ_TYPE found)
 	  "Wrong gom ctxt cast at %s, line %d: expected %d, found %d\n",
 	  file, line, expected, found);
   abort();
+}
+
+void gom_mem_error(char *filename, int line)
+{
+  gedcom_error(_("Could not allocate memory at %s, %d"), filename, line);
 }
 
 void gom_unexpected_context(char* file, int line, OBJ_TYPE found)
@@ -207,7 +218,11 @@ struct date_value* dup_date(struct date_value dv)
 {
   struct date_value* dv_ptr;
   dv_ptr = (struct date_value*) malloc(sizeof(struct date_value));
-  memcpy(dv_ptr, &dv, sizeof(struct date_value));
+  if (! dv_ptr)
+    MEMORY_ERROR;
+  else {
+    memcpy(dv_ptr, &dv, sizeof(struct date_value));
+  }
   return dv_ptr;
 }
 
@@ -215,6 +230,10 @@ struct age_value* dup_age(struct age_value age)
 {
   struct age_value* age_ptr;
   age_ptr = (struct age_value*) malloc(sizeof(struct age_value));
-  memcpy(age_ptr, &age, sizeof(struct age_value));
+  if (! age_ptr)
+    MEMORY_ERROR;
+  else {
+    memcpy(age_ptr, &age, sizeof(struct age_value));
+  }
   return age_ptr;
 }

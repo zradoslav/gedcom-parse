@@ -117,8 +117,12 @@ struct age_value*  dup_age(struct age_value age);
 #define MAKE_CHAIN_ELT(STRUCTTYPE, FIRSTVAL, VAL)                             \
   {                                                                           \
     VAL = (struct STRUCTTYPE*) malloc(sizeof(struct STRUCTTYPE));             \
-    memset (VAL, 0, sizeof(struct STRUCTTYPE));                               \
-    LINK_CHAIN_ELT(STRUCTTYPE, FIRSTVAL, VAL)                                 \
+    if (! VAL)                                                                \
+      MEMORY_ERROR;                                                           \
+    else {                                                                    \
+      memset (VAL, 0, sizeof(struct STRUCTTYPE));                             \
+      LINK_CHAIN_ELT(STRUCTTYPE, FIRSTVAL, VAL)                               \
+    }                                                                         \
   }
 
 void NULL_DESTROY(void* anything);
@@ -168,7 +172,13 @@ void NULL_DESTROY(void* anything);
     char *str = GEDCOM_STRING(parsed_value);                                  \
     struct STRUCTTYPE *obj                                                    \
       = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                         \
-    if (obj) obj->FIELD = strdup(str);                                        \
+    if (obj) {                                                                \
+      obj->FIELD = strdup(str);                                               \
+      if (! obj->FIELD) {                                                     \
+	MEMORY_ERROR;                                                         \
+	return NULL;                                                          \
+      }                                                                       \
+    }                                                                         \
     return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                 \
   }
 
@@ -178,7 +188,13 @@ void NULL_DESTROY(void* anything);
     struct date_value dv = GEDCOM_DATE(parsed_value);                         \
     struct STRUCTTYPE *obj                                                    \
       = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                         \
-    if (obj) obj->FIELD = dup_date(dv);                                       \
+    if (obj) {                                                                \
+      obj->FIELD = dup_date(dv);                                              \
+      if (! obj->FIELD) {                                                     \
+	MEMORY_ERROR;                                                         \
+	return NULL;                                                          \
+      }                                                                       \
+    }                                                                         \
     return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                 \
   }
 
@@ -188,7 +204,13 @@ void NULL_DESTROY(void* anything);
     struct age_value age = GEDCOM_AGE(parsed_value);                          \
     struct STRUCTTYPE *obj                                                    \
       = SAFE_CTXT_CAST(STRUCTTYPE, (Gom_ctxt)parent);                         \
-    if (obj) obj->FIELD = dup_age(age);                                       \
+    if (obj) {                                                                \
+      obj->FIELD = dup_age(age);                                              \
+      if (! obj->FIELD) {                                                     \
+	MEMORY_ERROR;                                                         \
+	return NULL;                                                          \
+      }                                                                       \
+    }                                                                         \
     return (Gedcom_ctxt) MAKE_GOM_CTXT(elt, STRUCTTYPE, obj);                 \
   }
 
