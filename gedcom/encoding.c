@@ -22,7 +22,6 @@
 /* $Name$ */
 
 #include <string.h>
-#include <iconv.h>
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -36,10 +35,7 @@
 #define GCONV_SEARCH_PATH "GCONV_PATH"
 #define MAXBUF 255
 
-/*
-static iconv_t cd_to_internal = (iconv_t) -1;
-*/
-static ENCODING the_enc = ONE_BYTE;
+static Encoding the_enc = ONE_BYTE;
 static hash_t *encodings = NULL;
 
 const char* charwidth_string[] = { "1", "2_HILO", "2_LOHI" };
@@ -83,10 +79,12 @@ void add_encoding(const char *gedcom_n, const char* charwidth,
     MEMORY_ERROR;
 }
 
-char* get_encoding(const char* gedcom_n, ENCODING enc)
+char* get_encoding(const char* gedcom_n, Encoding enc)
 {
   char *key;
   hnode_t *node;
+
+  if (encodings == NULL) return NULL;
   
   key = (char*)malloc(strlen(gedcom_n) + strlen(charwidth_string[enc]) + 3);
 
@@ -222,6 +220,7 @@ void init_encodings()
 	if (buffer[strlen(buffer) - 1] != '\n') {
 	  gedcom_error(_("Line too long in encoding configuration file '%s'"),
 		       ENCODING_CONF_FILE);
+	  line_no = 0;
 	  return;
 	}
 	else if ((buffer[0] != '#') && (strcmp(buffer, "\n") != 0)) {
@@ -231,10 +230,12 @@ void init_encodings()
 	  else {
 	    gedcom_error(_("Missing data in encoding configuration file '%s'"),
 			 ENCODING_CONF_FILE);
+	    line_no = 0;
 	    return;
 	  }
 	}
       }
+      line_no = 0;
       if (fclose(in) != 0) {
 	gedcom_warning(_("Error closing file '%s': %s"),
 		       ENCODING_CONF_FILE, strerror(errno));
@@ -243,7 +244,7 @@ void init_encodings()
   }
 }
 
-void set_encoding_width(ENCODING enc)
+void set_encoding_width(Encoding enc)
 {
   the_enc = enc;
 }
