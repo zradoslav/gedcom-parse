@@ -12,7 +12,7 @@ noinst_HEADERS = output.h dump_gom.h
 
 testgedcom_SOURCES = standalone.c output.c
 testgedcom_LDFLAGS = -L ../../gedcom/.libs -lgedcom
-testgedcom_LDADD  = @INTLLIBS@ ../../utf8/libutf8.la
+testgedcom_LDADD  = ../../utf8/libutf8.la
 
 pathtest_SOURCES = pathtest.c
 pathtest_LDFLAGS = -L ../../gedcom/.libs -lgedcom
