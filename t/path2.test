@@ -1,7 +1,7 @@
 #!/bin/sh
 
 builddir=`pwd`
-LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$builddir/../utf8/.libs:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 GCONV_PATH=./ansel
 export GCONV_PATH

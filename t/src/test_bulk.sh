@@ -3,7 +3,7 @@
 # Common test part for the test scripts
 
 ltcmd="$builddir/../libtool --mode=execute"
-for lib in $test_libs
+for lib in $test_libs $builddir/../utf8/libutf8tools.la
 do
   ltcmd="$ltcmd -dlopen $lib"
 done
