@@ -4,8 +4,6 @@
 
 options="-q"
 extra_options=
-dmalloc=`which dmalloc`
-dmalloc_tmp=dmalloc.env
 
 while [ $# -gt 0 ]
 do
@@ -58,6 +56,8 @@ if [ "$GOM_DMALLOC_TEST" = "" ]
 then
   $ltcmd $GEDCOM_TESTENV $builddir/src/gomtest $options $testfile
 else
+  dmalloc=`which dmalloc`
+  dmalloc_tmp=dmalloc.env
   $dmalloc -b -l $GOM_DMALLOC_TEST -i 100 low > $dmalloc_tmp
   . $dmalloc_tmp
   rm $dmalloc_tmp
