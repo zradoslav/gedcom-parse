@@ -213,6 +213,103 @@ int test_date_functions()
   return 0;
 }
 
+int test_record_add_delete_functions()
+{
+  struct family* fam1;
+  struct individual* ind1;
+  struct multimedia* mm1;
+  struct note* note1;
+  struct repository* repo1;
+  struct source* sour1;
+  struct submitter* subm2;
+  struct submission* subn1;
+  struct user_rec* user1;
+  int result;
+  char* value;
+  const char* new_nr_of_children = "3";
+  const char* note_text = "This is some text";
+
+  fam1 = gom_add_family("@FAM1@");
+  if (!fam1) return 201;
+  
+  value = gom_set_string(&fam1->nr_of_children, new_nr_of_children);
+  if (value == NULL)
+    return 202;
+  if (strcmp(value, new_nr_of_children))
+    return 203;
+
+  ind1 = gom_add_individual("@FAM1@");
+  if (ind1) return 204;
+
+  ind1 = gom_add_individual("@IND1@");
+  if (!ind1) return 205;
+
+  mm1 = gom_add_multimedia("@OBJ1@");
+  if (!mm1) return 206;
+
+  note1 = gom_add_note("@NOTE1@");
+  if (!note1) return 207;
+  
+  value = gom_set_string(&note1->text, note_text);
+  if (value == NULL)
+    return 208;
+  if (strcmp(value, note_text))
+    return 209;
+
+  repo1 = gom_add_repository("@REPO1@");
+  if (!repo1) return 210;
+
+  sour1 = gom_add_source("@SOUR1@");
+  if (!sour1) return 211;
+
+  subm2 = gom_add_submitter("@SUBMITTER@");
+  if (subm2) return 212;
+
+  subm2 = gom_add_submitter("@SUBM2@");
+  if (!subm2) return 213;
+
+  subn1 = gom_add_submission("@SUBMISSION@");
+  if (!subn1) return 214;
+
+  user1 = gom_add_user_rec("@USER1@", "WRTAG");
+  if (user1) return 215;
+
+  user1 = gom_add_user_rec("@USER1@", "_TAG");
+  if (!user1) return 216;
+
+  output(0, "Intermediate output:\n");
+  show_data();
+
+  result = gom_delete_family(fam1);
+  if (result != 0) return 217;
+
+  result = gom_delete_individual(ind1);
+  if (result != 0) return 218;
+
+  result = gom_delete_multimedia(mm1);
+  if (result != 0) return 219;
+
+  result = gom_delete_note(note1);
+  if (result != 0) return 220;
+
+  result = gom_delete_repository(repo1);
+  if (result != 0) return 221;
+
+  result = gom_delete_source(sour1);
+  if (result != 0) return 222;
+
+  result = gom_delete_submitter(subm2);
+  if (result != 0) return 223;
+
+  result = gom_delete_submission(subn1);
+  if (result != 0) return 224;
+
+  result = gom_delete_user_rec(user1);
+  if (result != 0) return 225;
+  
+  return 0;
+}
+
 int main(int argc, char* argv[])
 {
   int result;
@@ -258,6 +355,8 @@ int main(int argc, char* argv[])
     result |= test_string_functions();
   if (result == 0)
     result |= test_date_functions();
+  if (result == 0)
+    result |= test_record_add_delete_functions();
   if (result == 0) {
     output(1, "Test succeeded\n");
   }
