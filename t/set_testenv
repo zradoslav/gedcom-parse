@@ -1,0 +1,27 @@
+# Use this script to set certain test environments, as follows:
+#  . set_testenv valgrind
+#  . set_testenv ddd
+# To clear the test environment:
+#  . set_testenv
+
+testenv=$1
+
+case "$testenv" in
+  valgrind)
+    echo "Setting test environment for valgrind"
+    export GEDCOM_TESTENV='valgrind --leak-check=yes --show-reachable=yes --num-callers=20'
+    unset  GEDCOM_NOOPTS ;;
+
+  ddd)
+    echo "Setting test environment for ddd"
+    export GEDCOM_TESTENV='ddd'
+    export GEDCOM_NOOPTS=1 ;;
+
+  "")
+    echo "Clearing test environment"
+    unset GEDCOM_TESTENV
+    unset GEDCOM_NOOPTS ;;
+
+  *)
+    echo "Unknown test environment: $testenv" ;;
+esac

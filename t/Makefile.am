@@ -6,7 +6,7 @@ SUBDIRS=src input output .
 
 TESTS := $(wildcard $(srcdir)/*.test)
 
-EXTRA_DIST=$(TESTS) test_valgrind untest_valgrind
+EXTRA_DIST=$(TESTS) set_testenv
 
 TESTS_ENVIRONMENT=ICONV_PATH=@ICONV_PATH@
 
