@@ -284,11 +284,15 @@ int test_loop(ENCODING enc, char* code)
       return CLOSE;                                                           \
     }                                                                         \
     else {                                                                    \
+      char* ptr; int size;                                                    \
       /* Reset our state */                                                   \
       current_level = -1;                                                     \
       level_diff = MAXGEDCLEVEL;                                              \
       /* ... then terminate lex */                                            \
       yyterminate();                                                          \
+      /* Get rid of f*cking compiler warning from lex generated code */       \
+      /* yyterminate does return(), so program will never come here  */       \
+      yy_flex_realloc(ptr, size);                                             \
     }                                                                         \
   } 
 
