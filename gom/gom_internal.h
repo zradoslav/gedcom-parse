@@ -29,9 +29,6 @@
 #include <libintl.h>
 #include "gom.h"
 #include "gedcom.h"
-#ifdef WITH_DMALLOC
-#include <dmalloc.h>
-#endif
       
 #define _(string) gettext(string)
 #define N_(string) (string)

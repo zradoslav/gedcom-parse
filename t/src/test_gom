@@ -52,17 +52,7 @@ ln -s $srcdir/../iconv/glibc/gconv-modules .
 rm -f core
 echo "======================================================">> $logfile
 echo "Performing test '$test_name'" >> $logfile
-if [ "$GOM_DMALLOC_TEST" = "" ]
-then
-  $ltcmd $GEDCOM_TESTENV $builddir/src/gomtest $options $testfile
-else
-  dmalloc=`which dmalloc`
-  dmalloc_tmp=dmalloc.env
-  $dmalloc -b -l $GOM_DMALLOC_TEST -i 100 low > $dmalloc_tmp
-  . $dmalloc_tmp
-  rm $dmalloc_tmp
-  $ltcmd $GEDCOM_TESTENV $builddir/src/gomtest_static $options $testfile
-fi
+$ltcmd $GEDCOM_TESTENV $builddir/src/gomtest $options $testfile
 result=$?
 rm gedcom.enc
 rm ANSI_Z39.47.so

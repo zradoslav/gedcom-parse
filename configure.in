@@ -58,13 +58,6 @@ fi
 dnl =============================================================
 dnl Checks for libraries.
 AM_GNU_GETTEXT([use-libtool],[need-ngettext])
-AM_WITH_DMALLOC
-
-dnl == Make statically linked test program for dmalloc tests
-if test "$with_dmalloc" = "yes"; then
-  EXTRA_PROGS=gomtest_static
-fi
-AC_SUBST(EXTRA_PROGS)
 
 dnl =============================================================
 dnl Checks for typedefs, structures, and compiler characteristics.

@@ -4,7 +4,6 @@
 
 SUBDIRS=src input output .
 
-DMALLOC_LOG = dmalloc.log
 TESTS := $(wildcard $(srcdir)/*.test)
 
 EXTRA_DIST=$(TESTS)
@@ -21,17 +20,3 @@ check-% :	%.test all-local
 	else \
 	  echo "Test failed"; \
 	fi
-
-check-dmalloc-%:	%.test all-local
-	@if [ "@EXTRA_PROGS@" = "" ]; then \
-	  echo "Please run './configure --with-dmalloc' first"; \
-	  exit; \
-	fi; \
-	srcdir=$(srcdir); export srcdir; \
-	GOM_DMALLOC_TEST=$(DMALLOC_LOG); export GOM_DMALLOC_TEST; \
-        if $(TESTS_ENVIRONMENT) ./$<; then \
-	  echo "Test succeeded"; \
-	else \
-	  echo "Test failed"; \
-	fi
-

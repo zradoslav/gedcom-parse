@@ -32,9 +32,6 @@
 #include <config.h>
 #endif
 #include <libintl.h>
-#ifdef WITH_DMALLOC
-#include <dmalloc.h>
-#endif
 
 #define _(string) gettext(string)
 #define N_(string) (string)
