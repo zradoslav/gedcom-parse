@@ -166,7 +166,7 @@ Valid French revolution date:
 String: '@#DFRENCH R@ 16 PLUV 7'
 ERROR: Error: Cross-reference key '@FAM1@' is already in use
 ERROR: Error: Cross-reference key '@SUBMITTER@' is already in use
-Test succeeded
+Intermediate output:
 === HEADER ===
 Source:
   ID: 'TEST_UPDATE'
@@ -352,4 +352,77 @@ User data: 0x<null>
 Tag: '_TAG'
 String value: '(null)'
 Xref value: 0x<null>
+User data: 0x<null>
+Test succeeded
+=== HEADER ===
+Source:
+  ID: 'TEST_UPDATE'
+  Name: '(null)'
+  Version: '0.20.0'
+  Corporation:
+    Name: '(null)'
+    Address: 0x<null>
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
+  Data:
+    Name: '(null)'
+    Date: 0x<null>
+    Copyright: '(null)'
+Destination: '(null)'
+Date: 
+  type: 0
+  date1:
+    calendar type: 3
+    day: '16', 16
+    month: 'PLUV', 5
+    year: '7', 7
+    year type: 0
+    date type: 1
+    sdn1: 2378166
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: ''
+Time: '(null)'
+Submitter: 
+  type: 7
+  xref: '@SUBMITTER@'
+  object: 0x<non-null>
+Submission: 0x<null>
+File name: '(null)'
+Copyright: '(null)'
+Gedcom:
+  Version: '5.5'
+  Form: 'LINEAGE-LINKED'
+Character set:
+  Name: 'ASCII'
+  Version: '(null)'
+Language: '(null)'
+Place hierarchy: '(null)'
+Note:
+====
+(null)
+====
+User data: 0x<null>
+=== SUBMITTER (@SUBMITTER@) ===
+Name: 'België'
+Address: 0x<null>
+Phone 1: '(null)'
+Phone 2: '(null)'
+Phone 3: '(null)'
+multimedia links: 0x<null>
+Language 1: '(null)'
+Language 2: '(null)'
+Language 3: '(null)'
+Record file nr: '(null)'
+Record ID: '(null)'
+change date: 0x<null>
 User data: 0x<null>
