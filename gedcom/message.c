@@ -30,6 +30,21 @@ void cleanup_mess_buffer();
 struct safe_buffer mess_buffer = { NULL, 0, NULL, 0, cleanup_mess_buffer };
 Gedcom_msg_handler msg_handler = NULL;
 
+/** This function registers a callback that is called if there are errors,
+    warnings or just messages coming from the parser.  See
+    \ref Gedcom_msg_handler for the signature of the callback.
+
+    For errors, the \c msg passed to the callback will have the format:
+    \code
+      Error on line <lineno>: <actual_message>
+    \endcode
+    Note that the entire string will be properly internationalized, and
+    encoded in UTF-8 (<a href=encoding.html>Why UTF-8?</a>).
+    Also, no newline is appended, so that
+    the application program can use it in any way it wants.  Warnings are
+    similar, but use "Warning" instead of "Error".  Messages are plain
+    text, without any prefix.
+*/
 void gedcom_set_message_handler(Gedcom_msg_handler func)
 {
   msg_handler = func;
