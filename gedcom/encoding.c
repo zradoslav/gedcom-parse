@@ -81,7 +81,7 @@ char* get_encoding(char* gedcom_n, ENCODING enc)
   datum = tfind(&search_node, &encoding_mapping, node_compare);
   free(buffer);
   if (datum == NULL) {
-    gedcom_error(_("No encoding found for '%s'"), gedcom_n);
+    gedcom_error(_("No encoding defined for '%s'"), gedcom_n);
     return NULL;
   }
   else {
@@ -118,8 +118,7 @@ void init_encodings()
 		GCONV_SEARCH_PATH, gconv_path, PKGDATADIR);
       }
       if (putenv(new_gconv_path) != 0) {
-	gedcom_warning(_("Failed updating environment variable %s"),
-		       GCONV_SEARCH_PATH);
+	gedcom_warning(_("Failed updating conversion module path"));
       }
     }
     
@@ -135,6 +134,7 @@ void init_encodings()
 		     ENCODING_CONF_FILE);
     }
     else {
+      line_no = 1;
       while (fgets(buffer, sizeof(buffer), in) != NULL) {
 	if (buffer[strlen(buffer) - 1] != '\n') {
 	  gedcom_error(_("Line too long in encoding configuration file '%s'"),

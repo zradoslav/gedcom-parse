@@ -97,7 +97,7 @@ int test_loop(ENCODING enc, char* code)
   { if (line_len != (size_t)-1) {                                             \
       line_len += strlen(yytext);                                             \
       if (line_len > MAXGEDCLINELEN * encoding_width) {                       \
-        gedcom_error(_("Line too long, max %d characters"),                   \
+        gedcom_error(_("Line too long, max %d characters allowed"),           \
 		     MAXGEDCLINELEN);                                         \
         line_len = (size_t)-1;                                                \
         return BADTOKEN;                                                      \
@@ -170,7 +170,7 @@ int test_loop(ENCODING enc, char* code)
 
 
 #define ACTION_0_DIGITS                                                       \
-   { gedcom_error (_("Level number with leading zero"));                      \
+   { gedcom_error (_("Level number with leading zero not allowed"));          \
      return BADTOKEN;                                                         \
    } 
 
@@ -206,7 +206,7 @@ int test_loop(ENCODING enc, char* code)
 
 #define ACTION_ALPHANUM                                                       \
    { if (strlen(yytext) > MAXGEDCTAGLEN * encoding_width) {                   \
-       gedcom_error(_("Tag '%s' too long, max %d characters"),                \
+       gedcom_error(_("Tag '%s' too long, max %d characters allowed"),        \
 		    yytext, MAXGEDCTAGLEN);                                   \
        return BADTOKEN;                                                       \
      }                                                                        \
@@ -248,7 +248,7 @@ int test_loop(ENCODING enc, char* code)
 #define ACTION_POINTER                                                        \
   { CHECK_LINE_LEN;                                                           \
     if (strlen(yytext) > MAXGEDCPTRLEN * encoding_width) {                    \
-      gedcom_error(_("Pointer '%s' too long, max %d characters"),             \
+      gedcom_error(_("Pointer '%s' too long, max %d characters allowed"),     \
 		   yytext, MAXGEDCPTRLEN);                                    \
       return BADTOKEN;                                                        \
     }                                                                         \
