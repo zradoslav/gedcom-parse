@@ -1329,7 +1329,6 @@ obje_blob_sect : OPEN DELIM TAG_BLOB
 					    PARENT, $1, $3, NULL,
 					    GEDCOM_MAKE_NULL(val1));
 		   reset_buffer(&concat_buffer);
-		   safe_buf_append(&concat_buffer, "");
 		   START(BLOB, $1, $<ctxt>$)              
 		 }
                  obje_blob_subs
@@ -1992,7 +1991,7 @@ addr_cont_sect : OPEN DELIM TAG_CONT mand_line_item
                  { $<ctxt>$ = start_element(ELT_SUB_ADDR_CONT,
 					    PARENT, $1, $3, $4, 
 					    GEDCOM_MAKE_STRING(val1, $4));
-		   safe_buf_append(&concat_buffer, "\n");
+		   SAFE_BUF_ADDCHAR(&concat_buffer, '\n');
 		   safe_buf_append(&concat_buffer, $4);
 		   START(CONT, $1, $<ctxt>$)               
                  }               
@@ -2270,7 +2269,7 @@ cont_sect : OPEN DELIM TAG_CONT mand_line_item
             { $<ctxt>$ = start_element(ELT_SUB_CONT,
 				       PARENT, $1, $3, $4, 
 				       GEDCOM_MAKE_STRING(val1, $4));
-	      safe_buf_append(&concat_buffer, "\n");
+	      SAFE_BUF_ADDCHAR(&concat_buffer, '\n');
 	      safe_buf_append(&concat_buffer, $4);
 	      START(CONT, $1, $<ctxt>$)  
             }  
