@@ -110,7 +110,6 @@ void init_encodings()
 	gedcom_warning("Failed updating environment variable %s",
 		       GCONV_SEARCH_PATH);
       }
-      printf("%s\n", new_gconv_path);
     }
     
     /* Open gedcom configuration file and read */
