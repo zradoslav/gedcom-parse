@@ -1,0 +1,7 @@
+WARNING: Warning on line 8: Enabling compatibility with 'Personal Ancestral File', version 5
+WARNING: Warning on line 24: Converting 5.5.1 tag 'EMAIL' to standard 5.5 user tag '_EMAIL'
+WARNING: Warning on line 33: Adding link to family record with xref '@__COMPAT__FAM_SLGC__@'
+WARNING: Warning on line 46: Adding link to family record with xref '@__COMPAT__FAM_SLGC__@'
+Writing file...
+Re-parsing file...
+Test succeeded
