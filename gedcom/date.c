@@ -39,6 +39,14 @@ int max_month[] = { 12,  /* CAL_GREGORIAN */
 		    0    /* CAL_UNKNOWN */
                   };
 
+typedef long int (*cal_func_type) (int, int, int);
+
+cal_func_type cal_func[] = { &GregorianToSdn,   /* CAL_GREGORIAN */
+			     &JulianToSdn,      /* CAL_JULIAN */
+			     &JewishToSdn,      /* CAL_JEWISH */
+			     &FrenchToSdn       /* CAL_FRENCH_REV */
+                           };
+
 void copy_date(struct date *to, struct date from)
 {
   memcpy(to, &from, sizeof(struct date));
@@ -75,6 +83,7 @@ void make_date_complete(struct date *d)
     d->type = DATE_UNRECOGNIZED;
   else {
     struct date end_date;
+    cal_func_type to_sdn;
     if (d->day == -1 || d->month == -1 || d->year == -1) {
       d->type = DATE_BOUNDED;
       copy_date(&end_date, *d);
@@ -95,34 +104,12 @@ void make_date_complete(struct date *d)
     else {
       d->type = DATE_EXACT;
     }
-    
-    if (d->cal == CAL_GREGORIAN) {
-      d->sdn1 = GregorianToSdn(d->year, d->month, d->day);
-      if (d->type == DATE_BOUNDED) {
-	d->sdn2 = GregorianToSdn(end_date.year, end_date.month, end_date.day);
-	d->sdn2 -= 1;
-      }
-    }
-    else if (d->cal == CAL_JULIAN) {
-      d->sdn1 = JulianToSdn(d->year, d->month, d->day);
-      if (d->type == DATE_BOUNDED) {
-	d->sdn2 = JulianToSdn(end_date.year, end_date.month, end_date.day);
-	d->sdn2 -= 1;
-      }
-    }
-    else if (d->cal == CAL_HEBREW) {
-      d->sdn1 = JewishToSdn(d->year, d->month, d->day);
-      if (d->type == DATE_BOUNDED) {
-	d->sdn2 = JewishToSdn(end_date.year, end_date.month, end_date.day);
-	d->sdn2 -= 1;
-      }
-    }
-    else if (d->cal == CAL_FRENCH_REV) {
-      d->sdn1 = FrenchToSdn(d->year, d->month, d->day);
-      if (d->type == DATE_BOUNDED) {
-	d->sdn2 = FrenchToSdn(end_date.year, end_date.month, end_date.day);
-	d->sdn2 -= 1;
-      }
+
+    to_sdn = cal_func[d->cal];
+    d->sdn1 = (*to_sdn)(d->year, d->month, d->day);
+    if (d->type == DATE_BOUNDED) {
+      d->sdn2 = (*to_sdn)(end_date.year, end_date.month, end_date.day);
+      d->sdn2 -= 1;
     }
   }
 }
