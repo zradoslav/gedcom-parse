@@ -45,9 +45,11 @@
 #define MAXSTDTAGLEN    4
 #define MAXGEDCPTRLEN   22
 #define GEDCOMTAGOFFSET 257
-#define INTERNAL_ENCODING "UTF8"
+#define INTERNAL_ENCODING "UTF-8"
 
 #define GEDCOM_INTERNAL 1
+
+#define UNUSED __attribute__((unused))
 
 struct tag_struct {
   char *string;
