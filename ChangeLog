@@ -1,0 +1,6 @@
+2001-11-01  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.1
+
+	* Now covering the entire GEDCOM spec, without error handling.
+
