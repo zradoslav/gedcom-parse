@@ -6,3 +6,4 @@ gedcom/encoding.c
 gedcom/gedcom.y
 gedcom/gedcom_lex_common.c
 gedcom/multilex.c
+gedcom/message.c
