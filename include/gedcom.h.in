@@ -239,20 +239,39 @@ typedef enum Gedcom_elt {
 /**************************************************************************/
 /***  Definition of some auxiliary types                                ***/
 /**************************************************************************/
-									   
-typedef enum Gedcom_err_mech {
-  IMMED_FAIL,
-  DEFER_FAIL,
-  IGNORE_ERRORS
-} Gedcom_err_mech;
+
+  /** \addtogroup error */
+  /** @{ */
+  /** \brief Error handling mechanisms.
+      
+      These are the possible error handling mechanisms.
+      See \ref gedcom_set_error_handling.
+  */
+enum _Gedcom_err_mech {
+  IMMED_FAIL,    /**< immediately fail the parsing on an error (this is
+		       the default) */
+  DEFER_FAIL,    /**< continue parsing after an error, but return a failure
+		       code eventually */
+  IGNORE_ERRORS  /**< continue parsing after an error, return success always */
+};
+
+  /** \brief Error handling mechanisms. */
+typedef enum _Gedcom_err_mech Gedcom_err_mech;
 
   /** \brief Message type in message handler callbacks
-      \ingroup error */
-typedef enum Gedcom_msg_type {
-  ERROR,
-  WARNING,
-  MESSAGE
-} Gedcom_msg_type;
+      
+      This will be passed to the message callback to indicate the message type.
+      See \ref gedcom_set_message_handler.
+  */
+enum _Gedcom_msg_type {
+  ERROR,               /**< An error message */
+  WARNING,             /**< A warning message */
+  MESSAGE              /**< Just a message */
+};
+
+  /** \brief Message type in message handler callbacks */
+typedef enum _Gedcom_msg_type Gedcom_msg_type;
+  /** @} */
 
 typedef enum Date_type {
   DATE_UNRECOGNIZED,   /* Neither jday1 as jday2 are significant */
@@ -492,7 +511,9 @@ typedef struct Gedcom_write_struct* Gedcom_write_hndl;
    GV_IS_TYPE(VAL, GV_XREF_PTR)
 
   /** \brief Message handler callback
-      \ingroup error */
+      \ingroup error
+      See description of \ref gedcom_set_message_handler().
+  */
 typedef void
         (*Gedcom_msg_handler)
         (Gedcom_msg_type type, char *msg);
@@ -520,21 +541,24 @@ typedef void
         (Gedcom_elt elt, Gedcom_ctxt parent, int level, char *tag,
          char *raw_value, int tag_value);
 
-  /** \brief Initializes the Gedcom parser library
-      \ingroup main */
+  /** \addtogroup main */
+  /** @{ */
+  /** \brief Initializes the Gedcom parser library */
 int     gedcom_init();
-  /** \brief Parses an existing Gedcom file
-      \ingroup main */
+  /** \brief Parses an existing Gedcom file */
 int     gedcom_parse_file(const char* file_name);
-  /** \brief Starts a new Gedcom model
-      \ingroup main */
+  /** \brief Starts a new Gedcom model */
 int     gedcom_new_model();
+  /** @} */
 
-  /** \brief Sets the error handler callback
-      \ingroup error */
+  /** \addtogroup error */
+  /** @{ */
+  /** \brief Sets the error handler callback */
 void    gedcom_set_message_handler(Gedcom_msg_handler func);
-  
+  /** \brief Determine what happens on an error */
 void    gedcom_set_error_handling(Gedcom_err_mech mechanism);
+  /** @} */
+  
 void    gedcom_set_debug_level(int level, FILE* trace_output);
 void    gedcom_set_compat_handling(int enable_compat);
 void    gedcom_set_compat_options(Gedcom_compat options);
