@@ -33,7 +33,7 @@ lex_func lf;
 
 #define NEW_MODEL_FILE "new.ged"
 
-int lexer_init(ENCODING enc, FILE* f)
+int lexer_init(Encoding enc, FILE* f)
 {
   if (enc == ONE_BYTE) {
     lf  = &gedcom_1byte_lex;
@@ -122,6 +122,7 @@ int gedcom_init()
 {
   init_called = 1;
   update_gconv_search_path();
+  init_encodings();
   if (!setlocale(LC_ALL, "")
       || ! bindtextdomain(PACKAGE, LOCALEDIR)
       || ! bind_textdomain_codeset(PACKAGE, INTERNAL_ENCODING))
@@ -132,7 +133,7 @@ int gedcom_init()
 
 int gedcom_parse_file(const char* file_name)
 {
-  ENCODING enc;
+  Encoding enc;
   int result = 1;
   FILE* file;
 
@@ -146,7 +147,7 @@ int gedcom_parse_file(const char* file_name)
 		   file_name, strerror(errno));
     }
     else {
-      init_encodings();
+      line_no = 1;
       enc = determine_encoding(file);
       
       if (lexer_init(enc, file)) {
