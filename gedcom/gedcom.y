@@ -2015,7 +2015,7 @@ assoc_struc_sub : asso_sect /* 0:M */
 
 asso_sect : OPEN DELIM TAG_ASSO mand_pointer
             { struct xref_value *xr = gedcom_parse_xref($4, XREF_USED,
-							XREF_INDI);
+							XREF_ANY);
 	      if (xr == NULL) HANDLE_ERROR;
 	      $<ctxt>$ = start_element(ELT_SUB_ASSO,
 				       PARENT, $1, $3, $4, 
