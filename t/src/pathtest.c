@@ -23,15 +23,17 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include "config.h"
 #include "gedcom.h"
 
 int check_gconv_path()
 {
+#ifdef USE_GLIBC_ICONV
   char* path = getenv("GCONV_PATH");
   if (path == NULL || strstr(path, PKGDATADIR) == NULL)
     return 1;
-  else
-    return 0;
+#endif
+  return 0;
 }
 
 int main(int argc, char* argv[])
