@@ -1,0 +1,17 @@
+--- config.charset.orig	Mon May 13 11:58:22 2002
++++ config.charset	Sun Oct 27 14:55:03 2002
+@@ -245,12 +245,13 @@
+ 	#echo "sun_eu_greek ?" # what is this?
+ 	echo "UTF-8 UTF-8"
+ 	;;
+-    freebsd* | os2*)
++    freebsd* | os2* | darwin*)
+ 	# FreeBSD 4.2 doesn't have nl_langinfo(CODESET); therefore
+ 	# localcharset.c falls back to using the full locale name
+ 	# from the environment variables.
+ 	# Likewise for OS/2. OS/2 has XFree86 just like FreeBSD. Just
+ 	# reuse FreeBSD's locale data for OS/2.
++	# Likewise for darwin (MacOS X), which is derived from FreeBSD.
+ 	echo "C ASCII"
+ 	echo "US-ASCII ASCII"
+ 	for l in la_LN lt_LN; do
