@@ -158,64 +158,64 @@ int  check_occurrence(int tag);
 void set_compatibility(char* program);
 int  compat_mode(int flags); 
 
-#define CLEAR_BUFFER(BUF) { memset(BUF, 0, sizeof(BUF)); } 
+#define CLEAR_BUFFER(BUF)                                                     \
+     memset(BUF, 0, sizeof(BUF));
  
-#define HANDLE_ERROR \
-     { \
-       if (error_mechanism == IMMED_FAIL) { \
-	 YYABORT; \
-       } \
-       else if (error_mechanism == DEFER_FAIL) { \
-         yyerrok; fail = 1; \
-       } \
-       else if (error_mechanism == IGNORE_ERRORS) { \
-	 yyerrok; \
-       } \
+#define HANDLE_ERROR                                                          \
+     { if (error_mechanism == IMMED_FAIL) {                                   \
+	 YYABORT;                                                             \
+       }                                                                      \
+       else if (error_mechanism == DEFER_FAIL) {                              \
+         yyerrok; fail = 1;                                                   \
+       }                                                                      \
+       else if (error_mechanism == IGNORE_ERRORS) {                           \
+	 yyerrok;                                                             \
+       }                                                                      \
      }
-#define START(PARENTTAG) \
-     { ++count_level; \
-       set_parenttag(#PARENTTAG); \
-       push_countarray(); \
+#define START(PARENTTAG)                                                      \
+     { ++count_level;                                                         \
+       set_parenttag(#PARENTTAG);                                             \
+       push_countarray();                                                     \
      }
-#define CHK(TAG) \
-     { if (!check_occurrence(TAG_##TAG)) { \
-         char* parenttag = get_parenttag(); \
-         gedcom_error("The tag '%s' is mandatory within '%s', but missing", \
-		      #TAG, parenttag); \
-         HANDLE_ERROR; \
-       } \
+#define CHK(TAG)                                                              \
+     { if (!check_occurrence(TAG_##TAG)) {                                    \
+         char* parenttag = get_parenttag();                                   \
+         gedcom_error("The tag '%s' is mandatory within '%s', but missing",   \
+		      #TAG, parenttag);                                       \
+         HANDLE_ERROR;                                                        \
+       }                                                                      \
      }
-#define POP \
-     { pop_countarray(); \
-       --count_level; \
+#define POP                                                                   \
+     { pop_countarray();                                                      \
+       --count_level;                                                         \
      }
 #define CHECK0 POP; 
 #define CHECK1(TAG1) { CHK(TAG1); POP; }
-#define CHECK2(TAG1,TAG2) \
+#define CHECK2(TAG1,TAG2)                                                     \
      { CHK(TAG1); CHK(TAG2); POP; }
-#define CHECK3(TAG1,TAG2,TAG3) \
+#define CHECK3(TAG1,TAG2,TAG3)                                                \
      { CHK(TAG1); CHK(TAG2); CHK(TAG3); POP; }
-#define CHECK4(TAG1,TAG2,TAG3,TAG4) \
+#define CHECK4(TAG1,TAG2,TAG3,TAG4)                                           \
      { CHK(TAG1); CHK(TAG2); CHK(TAG3); CHK(TAG4); POP; } 
 #define OCCUR1(CHILDTAG, MIN) { count_tag(TAG_##CHILDTAG); } 
-#define OCCUR2(CHILDTAG, MIN, MAX) \
-     { int num = count_tag(TAG_##CHILDTAG); \
-       if (num > MAX) { \
-         char* parenttag = get_parenttag(); \
-         gedcom_error("The tag '%s' can maximally occur %d " \
-		      "time(s) within '%s'", \
-		      #CHILDTAG, MAX, parenttag); \
-         HANDLE_ERROR; \
-       } \
+#define OCCUR2(CHILDTAG, MIN, MAX)                                            \
+     { int num = count_tag(TAG_##CHILDTAG);                                   \
+       if (num > MAX) {                                                       \
+         char* parenttag = get_parenttag();                                   \
+         gedcom_error("The tag '%s' can maximally occur %d "                  \
+		      "time(s) within '%s'",                                  \
+		      #CHILDTAG, MAX, parenttag);                             \
+         HANDLE_ERROR;                                                        \
+       }                                                                      \
      }
-#define INVALID_TAG(CHILDTAG) \
-     { char* parenttag = get_parenttag(); \
-       gedcom_error("The tag '%s' is not a valid tag within '%s'", \
-		    CHILDTAG, parenttag); \
-       HANDLE_ERROR; \
+#define INVALID_TAG(CHILDTAG)                                                 \
+     { char* parenttag = get_parenttag();                                     \
+       gedcom_error("The tag '%s' is not a valid tag within '%s'",            \
+		    CHILDTAG, parenttag);                                     \
+       HANDLE_ERROR;                                                          \
      }
-#define INVALID_TOP_TAG(CHILDTAG) \
-     { gedcom_error("The tag '%s' is not a valid top-level tag", \
+#define INVALID_TOP_TAG(CHILDTAG)                                             \
+     { gedcom_error("The tag '%s' is not a valid top-level tag",              \
 		    CHILDTAG); \
        HANDLE_ERROR; \
      }
