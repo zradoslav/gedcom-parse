@@ -646,6 +646,8 @@ head_date_sect : OPEN DELIM TAG_DATE mand_line_item
 		   $<ctxt>$ = start_element(ELT_HEAD_DATE,
 					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_DATE(val1, dv));
+		   if (compat_mode(C_HEAD_TIME))
+		     compat_save_head_date_context($<ctxt>$);
 		   START(DATE, $1, $<ctxt>$)
 		 }
                  head_date_subs
@@ -679,9 +681,15 @@ head_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
                     ;
 
 /* HEAD.TIME (Only for compatibility) */
-/* Just ignore the time... */
-head_time_sect : OPEN DELIM TAG_TIME opt_line_item CLOSE
-                 { gedcom_warning(_("Header change time lost in the compatibility"));
+head_time_sect : OPEN DELIM TAG_TIME opt_line_item
+                 { if (compat_mode(C_HEAD_TIME)) {
+		     $<ctxt>$ = compat_generate_head_time_start($1, $3, $4);
+                   }
+                 }
+                 CLOSE
+                 { if (compat_mode (C_HEAD_TIME)) {
+		     compat_generate_head_time_end($<ctxt>5);
+		   }
                  }
 	       ;
 
