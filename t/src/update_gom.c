@@ -137,63 +137,63 @@ int test_date_functions()
   
   head = gom_get_header();
   if (head == NULL)
-    return 100;
+    return 50;
 
   dv = head->date;
   if (dv != NULL)
-    return 101;
+    return 51;
 
   dv = gedcom_new_date_value(NULL);
   if (dv == NULL)
-    return 102;
+    return 52;
 
   head->date = dv;
   date_str = print_date("Initial date value", dv);
   if (date_str[0])
-    return 103;
+    return 53;
 
   dv->date1.cal = CAL_GREGORIAN;
   strcpy(dv->date1.year_str, "1990");
   normalized = gedcom_normalize_date(DI_FROM_STRINGS, dv);
   if (normalized != 0)
-    return 104;
+    return 54;
   date_str = print_date("Setting only year string", dv);
   if (! date_str[0])
-    return 105;
+    return 55;
 
   dv->date1.year = 1989;
   normalized = gedcom_normalize_date(DI_FROM_NUMBERS, dv);
   if (normalized != 0)
-    return 106;
+    return 56;
   date_str = print_date("Setting only year number", dv);
   if (! date_str[0])
-    return 107;
+    return 57;
 
   dv->date1.type = DATE_EXACT;
   dv->date1.sdn1 = 2500000;
   dv->date1.sdn2 = -1;
   normalized = gedcom_normalize_date(DI_FROM_SDN, dv);
   if (normalized != 0)
-    return 108;
+    return 58;
   date_str = print_date("Setting only SDN 1", dv);
   if (! date_str[0])
-    return 109;
+    return 59;
 
   dv->date1.cal = CAL_HEBREW;
   normalized = gedcom_normalize_date(DI_FROM_SDN, dv);  
   if (normalized != 0)
-    return 110;
+    return 60;
   date_str = print_date("Same date in Hebrew calendar", dv);
   if (! date_str[0])
-    return 111;
+    return 61;
 
   dv->date1.cal = CAL_FRENCH_REV;
   normalized = gedcom_normalize_date(DI_FROM_SDN, dv);  
   if (normalized == 0)
-    return 112;
+    return 62;
   date_str = print_date("Same date in French revolution calendar", dv);
   if (date_str[0])
-    return 113;
+    return 63;
 
   dv->date1.cal = CAL_GREGORIAN;
   dv->date1.day = 4;
@@ -201,14 +201,14 @@ int test_date_functions()
   dv->date1.year = 1799;
   normalized = gedcom_normalize_date(DI_FROM_NUMBERS, dv);
   if (normalized != 0)
-    return 114;
+    return 64;
   dv->date1.cal = CAL_FRENCH_REV;
   normalized = gedcom_normalize_date(DI_FROM_SDN, dv);
   if (normalized != 0)
-    return 115;
+    return 65;
   date_str = print_date("Valid French revolution date", dv);
   if (! date_str[0])
-    return 116;
+    return 66;
 
   return 0;
 }
@@ -232,115 +232,118 @@ int test_record_add_delete_functions()
   const char* note_text = "This is some text";
 
   fam1 = gom_add_family("@FAM1@");
-  if (!fam1) return 201;
+  if (!fam1) return 101;
   
   value = gom_set_string(&fam1->nr_of_children, new_nr_of_children);
   if (value == NULL)
-    return 202;
+    return 102;
   if (strcmp(value, new_nr_of_children))
-    return 203;
+    return 103;
 
   ind1 = gom_add_individual("@FAM1@");
-  if (ind1) return 204;
+  if (ind1) return 104;
 
   ind1 = gom_add_individual("@IND1@");
-  if (!ind1) return 205;
+  if (!ind1) return 105;
 
   mm1 = gom_add_multimedia("@OBJ1@");
-  if (!mm1) return 206;
+  if (!mm1) return 106;
 
   note1 = gom_add_note("@NOTE1@");
-  if (!note1) return 207;
+  if (!note1) return 107;
   
   value = gom_set_string(&note1->text, note_text);
   if (value == NULL)
-    return 208;
+    return 108;
   if (strcmp(value, note_text))
-    return 209;
+    return 109;
 
   repo1 = gom_add_repository("@REPO1@");
-  if (!repo1) return 210;
+  if (!repo1) return 110;
 
   sour1 = gom_add_source("@SOUR1@");
-  if (!sour1) return 211;
+  if (!sour1) return 111;
 
   subm2 = gom_add_submitter("@SUBMITTER@");
-  if (subm2) return 212;
+  if (subm2) return 112;
 
   subm2 = gom_add_submitter("@SUBM2@");
-  if (!subm2) return 213;
+  if (!subm2) return 113;
 
   subn1 = gom_add_submission("@SUBMISSION@");
-  if (!subn1) return 214;
+  if (!subn1) return 114;
 
   user1 = gom_add_user_rec("@USER1@", "WRTAG");
-  if (user1) return 215;
+  if (user1) return 115;
 
   user1 = gom_add_user_rec("@USER1@", "_TAG");
-  if (!user1) return 216;
+  if (!user1) return 116;
 
   xr = gom_set_xref(&(fam1->husband), ind1->xrefstr);
-  if (!xr) return 218;
+  if (!xr) return 118;
 
   ind2 = gom_add_individual("@IND2@");
-  if (!ind2) return 219;
+  if (!ind2) return 119;
 
   ind3 = gom_add_individual("@IND3@");
-  if (!ind3) return 220;
+  if (!ind3) return 120;
 
   ind4 = gom_add_individual("@IND4@");
-  if (!ind4) return 221;
+  if (!ind4) return 121;
 
   xrl = gom_add_xref(&(fam1->children), ind2->xrefstr);
-  if (!xrl) return 222;
+  if (!xrl) return 122;
 
   xrl = gom_add_xref(&(fam1->children), ind3->xrefstr);
-  if (!xrl) return 223;
+  if (!xrl) return 123;
 
   xrl = gom_add_xref(&(fam1->children), ind4->xrefstr);
-  if (!xrl) return 224;
+  if (!xrl) return 124;
 
   result = gom_remove_xref(&(fam1->children), ind3->xrefstr);
-  if (result != 0) return 225;
+  if (result != 0) return 125;
 
   result = gom_remove_xref(&(fam1->children), ind4->xrefstr);
-  if (result != 0) return 226;
+  if (result != 0) return 126;
 
   output(1, "Intermediate output:\n");
   show_data();
 
   result = gom_delete_individual(ind1);
-  if (result == 0) return 251;
+  if (result == 0) return 150;
 
   xr = gom_set_xref(&(fam1->husband), NULL);
-  if (xr) return 252;
+  if (xr) return 151;
 
   result = gom_delete_individual(ind1);
-  if (result != 0) return 253;
+  if (result != 0) return 152;
 
   result = gom_delete_family(fam1);
-  if (result != 0) return 250;
+  if (result != 0) return 153;
+
+  result = gom_delete_individual(ind2);
+  if (result != 0) return 154;
 
   result = gom_delete_multimedia(mm1);
-  if (result != 0) return 254;
+  if (result != 0) return 155;
 
   result = gom_delete_note(note1);
-  if (result != 0) return 255;
+  if (result != 0) return 156;
 
   result = gom_delete_repository(repo1);
-  if (result != 0) return 256;
+  if (result != 0) return 157;
 
   result = gom_delete_source(sour1);
-  if (result != 0) return 257;
+  if (result != 0) return 158;
 
   result = gom_delete_submitter(subm2);
-  if (result != 0) return 258;
+  if (result != 0) return 159;
 
   result = gom_delete_submission(subn1);
-  if (result != 0) return 259;
+  if (result != 0) return 160;
 
   result = gom_delete_user_rec(user1);
-  if (result != 0) return 260;
+  if (result != 0) return 161;
   
   return 0;
 }
