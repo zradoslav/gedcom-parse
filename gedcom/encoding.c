@@ -41,12 +41,12 @@ static hash_t *encodings = NULL;
 
 const char* charwidth_string[] = { "1", "2_HILO", "2_LOHI" };
 
-hnode_t *node_alloc(void *c __attribute__((unused)))
+hnode_t *node_alloc(void *c UNUSED)
 {
   return (hnode_t *)malloc(sizeof *node_alloc(NULL));
 }
 
-void node_free(hnode_t *n, void *c __attribute__((unused)))
+void node_free(hnode_t *n, void *c UNUSED)
 {
   free((void*)hnode_getkey(n));
   free(hnode_get(n));
@@ -107,12 +107,14 @@ char* get_encoding(const char* gedcom_n, ENCODING enc)
   }
 }
 
-static char *new_gconv_path;
-
 void cleanup_encodings()
 {
   hash_free(encodings);
 }
+
+#ifdef USE_GLIBC_ICONV
+
+static char *new_gconv_path;
 
 void cleanup_gconv_path()
 {
@@ -124,6 +126,8 @@ void cleanup_gconv_path()
 
 /* Let function be called before main() */
 void update_gconv_search_path() __attribute__ ((constructor));
+
+#endif /* USE_GLIBC_ICONV */
 
 /* Note:
 
@@ -146,6 +150,7 @@ void update_gconv_search_path() __attribute__ ((constructor));
 
 void update_gconv_search_path()
 {
+#ifdef USE_GLIBC_ICONV
   char *gconv_path;
   /* Add gedcom data directory to gconv search path */
   gconv_path = getenv(GCONV_SEARCH_PATH);
@@ -178,6 +183,7 @@ void update_gconv_search_path()
   if (init_called && atexit(cleanup_gconv_path) != 0) {
     gedcom_warning(_("Could not register path cleanup function"));
   }    
+#endif /* USE_GLIBC_ICONV */
 }
 
 void init_encodings()
@@ -268,10 +274,13 @@ int open_conv_to_internal(const char* fromcode)
 
 void close_conv_to_internal()
 {
-  if (iconv_close(cd_to_internal) != 0) {
-    gedcom_warning(_("Error closing conversion context: %s"), strerror(errno));
+  if (cd_to_internal != (iconv_t) -1) {
+    if (iconv_close(cd_to_internal) != 0) {
+      gedcom_warning(_("Error closing conversion context: %s"),
+		     strerror(errno));
+    }
+    cd_to_internal = (iconv_t) -1;
   }
-  cd_to_internal = (iconv_t) -1;
 }
 
 char* to_internal(const char* str, size_t len,
