@@ -434,6 +434,7 @@ typedef void
         (Gedcom_ctxt parent, int level, char *tag, char *raw_value,
 	 int tag_value);
 
+void    gedcom_init();
 int     gedcom_parse_file(char* file_name);
 void    gedcom_set_debug_level(int level, FILE* trace_output);
 void    gedcom_set_error_handling(Gedcom_err_mech mechanism);
