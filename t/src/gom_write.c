@@ -87,11 +87,34 @@ int update_header(char* encoding)
   }
 }
 
+int test_timestamps()
+{
+  int result = 0;
+  struct tm* tm_ptr;
+  time_t tval;
+  /* Make sure we get a reproduceable output, in different timezones */
+  tval   = TIMESTAMP;
+  tm_ptr = gmtime(&tval);
+  tm_ptr->tm_isdst = 0;
+  tval   = mktime(tm_ptr);
+  result = gom_header_update_timestamp(tval);
+  
+  /* Also change timestamp of submitter */
+  if (result == 0) {
+    struct submitter* subm = gom_get_first_submitter();
+    if (!subm)
+      result = 100;
+    else {
+      result = gom_update_timestamp(&(subm->change_date), tval);
+    }
+  }
+  
+  return result;
+}
+
 int main(int argc, char* argv[])
 {
   int result;
-  struct tm* tm_ptr;
-  time_t tval;
   int total_conv_fails = 0;
   char* outfilename = NULL;
   char* infilename  = NULL;
@@ -225,14 +248,8 @@ int main(int argc, char* argv[])
     if (result == 0)
       result |= update_header(encoding);
   }
-  /* Make sure we get a reproduceable output, in different timezones */
-  if (result == 0) {
-    tval   = TIMESTAMP;
-    tm_ptr = gmtime(&tval);
-    tm_ptr->tm_isdst = 0;
-    tval   = mktime(tm_ptr);
-    result = gom_header_update_timestamp(tval);
-  }
+  if (result == 0)
+    result |= test_timestamps();
   if (result == 0)
     result |= gom_write_file(gedfilename, &total_conv_fails);
   if (result == 0 && total_conv_fails == 0) {
