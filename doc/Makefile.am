@@ -13,6 +13,6 @@ DISTCLEANFILES = $(GENERATED_DOC_FILES)
 
 doc_DATA = $(DOC_FILES) $(GENERATED_DOC_FILES)
 
-gomxref.html:	$(srcdir)/../include/gom.h
+gomxref.html:	$(srcdir)/../include/gom.h make_gom_xref
 	srcdir=$(srcdir); export srcdir; \
         perl $(srcdir)/make_gom_xref
