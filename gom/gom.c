@@ -204,6 +204,11 @@ void gom_no_context(const char* file, int line)
 		 file, line);
 }
 
+void gom_move_error(const char* type)
+{
+  gedcom_warning(_("Could not move struct of type %s"), type);
+}
+
 void gom_default_callback (Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,
 			   int level, char* tag, char* raw_value,
 			   int parsed_tag UNUSED)

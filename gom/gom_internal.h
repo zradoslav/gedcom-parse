@@ -76,6 +76,7 @@ void gom_cast_error(const char* file, int line,
 void gom_no_context(const char* file, int line);
 void gom_unexpected_context(const char* file, int line, OBJ_TYPE found);
 void gom_xref_already_in_use(const char *xrefstr);
+void gom_move_error(const char* type);
 void unref_xref_value(struct xref_value *xref);
 
 int gom_write_xref_list(Gedcom_write_hndl hndl,

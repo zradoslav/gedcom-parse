@@ -97,6 +97,39 @@
       (FIRSTVAL)->previous = VAL->previous;                                   \
   }
 
+#define MOVE_CHAIN_ELT(STRUCTTYPE, DIR, FIRSTVAL, VAL)                        \
+  {                                                                           \
+    struct STRUCTTYPE *first, *second;                                        \
+    if (DIR == MOVE_UP) {                                                     \
+      first  = VAL->previous;                                                 \
+      second = VAL;                                                           \
+    }                                                                         \
+    else {                                                                    \
+      first  = VAL;                                                           \
+      second = VAL->next;                                                     \
+    }                                                                         \
+    if (second && (second != FIRSTVAL)) {                                     \
+      if (first != FIRSTVAL)                                                  \
+	first->previous->next  = second;                                      \
+      else                                                                    \
+	FIRSTVAL               = second;                                      \
+                                                                              \
+      if (second->next)                                                       \
+	second->next->previous = first;                                       \
+      else                                                                    \
+	(FIRSTVAL)->previous   = first;                                       \
+                                                                              \
+      first->next            = second->next;                                  \
+      second->next           = first;                                         \
+                                                                              \
+      second->previous       = first->previous;                               \
+      first->previous        = second;                                        \
+    }                                                                         \
+    else {                                                                    \
+      gom_move_error(#STRUCTTYPE);                                            \
+    }                                                                         \
+  }
+
 #define MAKE_CHAIN_ELT(STRUCTTYPE, FIRSTVAL, VAL)                             \
   {                                                                           \
     VAL = (struct STRUCTTYPE*) malloc(sizeof(struct STRUCTTYPE));             \

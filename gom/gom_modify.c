@@ -159,29 +159,53 @@ struct xref_list* gom_add_xref(struct xref_list** data, const char* xref)
   return xrl;
 }
 
+struct xref_list* find_xref(struct xref_list** data, const char* xref)
+{
+  struct xref_list* result = NULL;
+  struct xref_value* xr = gedcom_get_by_xref(xref);
+  if (!xr)
+    gedcom_error(_("No record found for xref '%s'"), xref);
+  else {
+    struct xref_list* xrl;
+    for (xrl = *data ; xrl ; xrl = xrl->next) {
+      if (xrl->xref == xr) {
+	result = xrl;
+	break;
+      }
+    }
+    if (! result)
+      gedcom_error(_("Xref '%s' not part of chain"), xref);
+  }
+  return result;
+}
+
 int gom_remove_xref(struct xref_list** data, const char* xref)
 {
-  struct xref_value* xr = NULL;
   int result = 1;
-  
+
   if (data && xref) {
-    xr = gedcom_get_by_xref(xref);
-    if (!xr)
-      gedcom_error(_("No record found for xref '%s'"), xref);
-    else {
-      struct xref_list* xrl = NULL;
-      for (xrl = *data ; xrl ; xrl = xrl->next) {
-	if (xrl->xref == xr) {
-	  UNLINK_CHAIN_ELT(xref_list, *data, xrl);
-	  gedcom_unlink_xref(xr->type, xr->string);
-	  CLEANFUNC(xref_list)(xrl);
-	  SAFE_FREE(xrl);
-	  result = 0;
-	  break;
-	}
-      }
-      if (result == 1)
-	gedcom_error(_("Xref '%s' to remove not part of chain"), xref);
+    struct xref_list* xrl = find_xref(data, xref);
+    if (xrl) {
+      UNLINK_CHAIN_ELT(xref_list, *data, xrl);
+      gedcom_unlink_xref(xrl->xref->type, xrl->xref->string);
+      CLEANFUNC(xref_list)(xrl);
+      SAFE_FREE(xrl);
+      result = 0;
+    }
+  }
+
+  return result;
+}
+
+int gom_move_xref(Gom_direction dir, struct xref_list** data, const char* xref)
+{
+  int result = 1;
+
+  if (data && xref) {
+    struct xref_list* xrl = find_xref(data, xref);
+    if (xrl) {
+      MOVE_CHAIN_ELT(xref_list, dir, *data, xrl);
+      result = 0;
     }
   }
 
