@@ -26,6 +26,7 @@ AC_SUBST(SHELL)
 dnl =============================================================
 AM_INIT_AUTOMAKE(${NAME},${VERSION})
 AM_CONFIG_HEADER(config.h)
+AC_CONFIG_SUBDIRS(utf8)
 ALL_LINGUAS="nl"
 
 AC_CANONICAL_HOST
@@ -80,8 +81,6 @@ dnl ==========================================================
 dnl Checks for library functions.
 AC_CHECK_HEADERS(stddef.h stdlib.h string.h)
 AC_CHECK_FUNCS(setlocale vsnprintf vsprintf)
-jm_LANGINFO_CODESET
-jm_GLIBC21
 
 dnl ==========================================================
 dnl My local stuff
@@ -105,12 +104,6 @@ if test "$am_cv_lib_iconv" = yes; then
   gedcom_LIBICONV_HAS_ANSEL
 else
   AC_MSG_RESULT(libc)
-  LCS_SUBDIRS=libcharset
-  LCS_INCLUDES='-I $(srcdir)/libcharset'
-  LCS_LIBADD=libcharset/libcharset.la
-  AC_SUBST(LCS_SUBDIRS)
-  AC_SUBST(LCS_INCLUDES)
-  AC_SUBST(LCS_LIBADD)
   gedcom_GLIBC22_ICONV
   if test "$is_glibc22_iconv" = yes; then
     DIRS="glibc"
@@ -137,8 +130,6 @@ AC_OUTPUT(GNUmakefile
 	  iconv/Makefile
 	  iconv/glibc/Makefile
 	  iconv/libiconv/Makefile
-	  utf8/Makefile
-	  utf8/libcharset/Makefile
 	  t/Makefile
 	  t/src/Makefile
 	  t/input/Makefile
