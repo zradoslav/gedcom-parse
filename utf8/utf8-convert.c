@@ -48,7 +48,7 @@ struct convert {
   char*   unknown;
 };
 
-void reset_conv_buffer(conv_buffer_t buf)
+static void reset_conv_buffer(conv_buffer_t buf)
 {
   memset(buf->buffer, 0, buf->size);
 }
@@ -81,7 +81,7 @@ void free_conv_buffer(conv_buffer_t buf)
   }
 }
 
-char* grow_conv_buffer(conv_buffer_t buf, char* curr_pos)
+static char* grow_conv_buffer(conv_buffer_t buf, char* curr_pos)
 {
   size_t outlen, new_size;
   char*  new_buffer;
@@ -201,17 +201,18 @@ void cleanup_utf8_conversion(convert_t conv)
 char* convert_from_utf8(convert_t conv, const char* input, int* conv_fails,
 			size_t* output_len)
 {
-  size_t insize = strlen(input);
+  size_t insize;
   size_t outsize;
   ICONV_CONST char* inptr  = (ICONV_CONST char*) input;
   char   *outptr;
   size_t nconv;
   struct conv_buffer* outbuf;
 
-  if (!conv || !conv->outbuf) {
+  if (!conv || !conv->outbuf || !input) {
     if (conv_fails != NULL) *conv_fails = insize;
     return NULL;
   }
+  insize = strlen(input);
   /* make sure we start from an empty state */
   iconv(conv->from_utf8, NULL, NULL, NULL, NULL);
   if (conv_fails != NULL) *conv_fails = 0;
@@ -270,7 +271,7 @@ char* convert_to_utf8(convert_t conv, const char* input, size_t input_len)
   size_t nconv;
   struct conv_buffer* outbuf;
 
-  if (!conv || !conv->outbuf)
+  if (!conv || !conv->outbuf || !input)
     return NULL;
   /* make sure we start from an empty state */
   iconv(conv->to_utf8, NULL, NULL, NULL, NULL);
@@ -316,6 +317,13 @@ char* convert_to_utf8_incremental(convert_t conv,
 
   if (!conv || !conv->outbuf)
     return NULL;
+  
+  if (!input) {
+    iconv(conv->to_utf8, NULL, NULL, NULL, NULL);
+    reset_conv_buffer(inbuf);
+    conv->insize = 0;
+    return NULL;
+  }
   
   /* set up input buffer (concatenate to what was left previous time) */
   /* can't use strcpy, because possible null bytes from unicode */
