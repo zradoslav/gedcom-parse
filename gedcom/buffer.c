@@ -51,8 +51,8 @@ void init_buffer(struct safe_buffer *b)
   if (b && b->buffer == NULL) {
     b->buffer = (char *)malloc(INITIAL_BUF_SIZE);
     if (b->buffer) {
-      b->buffer[0] = '\0';
       b->bufsize = INITIAL_BUF_SIZE;
+      memset(b->buffer, 0, b->bufsize);
       b->buf_end = b->buffer;
       b->buflen  = 0;
       if (b->cleanup_func && atexit(b->cleanup_func) != 0) {
