@@ -1,3 +1,9 @@
+2001-12-09  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.10
+
+	* all: Full move to autoconf/automake.
+
 2001-12-08  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* all: Further specification of interface: message handler.
