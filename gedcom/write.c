@@ -154,8 +154,13 @@ int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
 
 	if (prefix_len + line_len + term_len > MAXWRITELEN) {
 	  line_len = MAXWRITELEN - prefix_len - term_len;
-	  if (!cont_as_conc)
+	  if (!cont_as_conc) {
 	    cont_tag = "CONC";
+	    while (value_ptr[line_len] == ' '
+		   || value_ptr[line_len-1] == ' ') {
+	      line_len--;
+	    }
+	  }
 	}
 	
 	memset(value_part, 0, sizeof(value_part));
