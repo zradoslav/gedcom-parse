@@ -1,3 +1,7 @@
 #!/bin/sh
 
+cp $srcdir/Makefile.am bogus.ged
 $srcdir/src/test_script -2 -b minimal.ged bogus 0
+result=$?
+rm bogus.ged
+exit $result
