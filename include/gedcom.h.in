@@ -25,6 +25,7 @@
 #define __GEDCOM_H
 
 #include <stdio.h>
+#include <stdarg.h>
 
 __BEGIN_DECLS
 
@@ -488,6 +489,12 @@ void    gedcom_subscribe_to_element(Gedcom_elt elt,
 struct date_value gedcom_parse_date(char* line_value);
 struct age_value  gedcom_parse_age(char* line_value);
 struct xref_value *gedcom_get_by_xref(char *key);
+
+/* For use in gom */
+int        gedcom_error(char* s, ...);
+int        gedcom_warning(char* s, ...);
+int        gedcom_message(char* s, ...);
+int        gedcom_debug_print(char* s, ...);
 
 __END_DECLS
 
