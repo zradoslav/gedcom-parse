@@ -119,7 +119,7 @@ int gedcom_parse_file(char* file_name)
   line_no = 1;
   file = fopen(file_name, "r");
   if (!file) {
-    gedcom_error(_("Could not open file '%s'\n"), file_name);
+    gedcom_error(_("Could not open file '%s'"), file_name);
   }
   else {
     init_encodings();
