@@ -45,6 +45,7 @@
 #define MAXSTDTAGLEN    4
 #define MAXGEDCPTRLEN   22
 #define GEDCOMTAGOFFSET 257
+#define INTERNAL_ENCODING "UTF8"
 
 int        gedcom_error(char* s, ...);
 int        gedcom_warning(char* s, ...);
