@@ -3,9 +3,9 @@
 WARNING: Warning on line 1: Unknown encoding, falling back to one-byte
 ERROR: Error: parse error
 ERROR: Error: GEDCOM level number is 2 higher than previous
-ERROR: Error on line 1: '@' character should be written as '@@' in values
-ERROR: Error on line 1: '@' character should be written as '@@' in values
-ERROR: Error on line 1: '@' character should be written as '@@' in values
+ERROR: Error on line 2: '@' character should be written as '@@' in values
+ERROR: Error on line 2: '@' character should be written as '@@' in values
+ERROR: Error on line 2: '@' character should be written as '@@' in values
 
 === Parsing file minimal.ged
 Header start

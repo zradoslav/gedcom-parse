@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cp $srcdir/Makefile.am bogus.ged
+cp $srcdir/input/bogus.ged bogus.ged
 $srcdir/src/test_script -2 -b minimal.ged bogus 0
 result=$?
 rm bogus.ged
