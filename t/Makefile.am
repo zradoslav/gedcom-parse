@@ -2,32 +2,12 @@
 # $Id$
 # $Name$
 
-SUBDIRS=input
-INCLUDES = -DPKGDATADIR=\"$(pkgdatadir)\" -I $(srcdir)/../include \
-           -I $(srcdir)/../utf8
-CFLAGS   = -g -O2
+SUBDIRS=src input .
 
-noinst_PROGRAMS = testgedcom pathtest gomtest @EXTRA_PROGS@
-EXTRA_PROGRAMS  = gomtest_static
-
-testgedcom_SOURCES = standalone.c
-testgedcom_LDFLAGS = -L ../gedcom/.libs -lgedcom
-testgedcom_LDADD  = @INTLLIBS@ ../utf8/libutf8.la
-
-pathtest_SOURCES = pathtest.c
-pathtest_LDFLAGS = -L ../gedcom/.libs -lgedcom
-
-gomtest_SOURCES = gomtest.c
-gomtest_LDFLAGS = -L ../gedcom/.libs -L ../gom/.libs -lgedcom_gom -lgedcom
-
-gomtest_static_SOURCES = gomtest.c
-gomtest_static_LDADD = ../gedcom/.libs/libgedcom.a ../gom/.libs/libgedcom_gom.a
 DMALLOC_LOG = dmalloc.log
-
-TEST_SCRIPT=test_script test_gom
 TESTS := $(wildcard $(srcdir)/*.test)
 
-EXTRA_DIST=$(TEST_SCRIPT) $(TESTS)
+EXTRA_DIST=$(TESTS)
 
 all-local:
 	@rm -f testgedcom.out $(DMALLOC_LOG)

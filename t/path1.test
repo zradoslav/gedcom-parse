@@ -3,4 +3,4 @@
 builddir=`pwd`
 export LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$LD_LIBRARY_PATH
 unset GCONV_PATH
-$builddir/pathtest
+$builddir/src/pathtest
