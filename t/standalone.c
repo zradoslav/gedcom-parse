@@ -174,6 +174,24 @@ Gedcom_ctxt date_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
   return self;
 }
 
+Gedcom_ctxt age_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
+		      char *tag, char *raw_value,
+		      int tag_value, Gedcom_val parsed_value)
+{
+  struct age_value age;
+  Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
+  age = GEDCOM_AGE(parsed_value);
+  output(1, "Contents of the age_value:\n");
+  output(1, "  raw value: %s\n", raw_value);
+  output(1, "  type: %d\n", age.type);
+  output(1, "  modifier: %d\n", age.mod);
+  output(1, "  years: %d\n", age.years);
+  output(1, "  months: %d\n", age.months);
+  output(1, "  days: %d\n", age.days);
+  output(1, "  phrase: %s\n", age.phrase);
+  return self;
+}
+
 void default_cb(Gedcom_elt elt, Gedcom_ctxt ctxt, int level, char *tag,
 		char *raw_value, int tag_value)
 {
@@ -201,6 +219,7 @@ void subscribe_callbacks()
   gedcom_subscribe_to_element(ELT_SOUR_DATA_EVEN_DATE,
 			      date_start, NULL);
   gedcom_subscribe_to_element(ELT_SUB_EVT_DATE, date_start, NULL);
+  gedcom_subscribe_to_element(ELT_SUB_FAM_EVT_AGE, age_start, NULL);
 }
 
 void gedcom_message_handler(Gedcom_msg_type type, char *msg)
