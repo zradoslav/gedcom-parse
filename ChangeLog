@@ -1,3 +1,8 @@
+2003-02-05  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/date.c (gedcom_parse_date): Keep parsed values in date if
+	parse was OK, but didn't result in a valid date.
+
 2003-02-02  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* release 0.90.0

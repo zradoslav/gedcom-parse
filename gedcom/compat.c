@@ -96,11 +96,13 @@ struct program_data data[] = {
 	- no FAMC field in SLGC
 	- uses tab character (will be converted to 8 spaces here)
 	- lines too long
+	- non-standard date formats
 
     - Personal Ancestral File 2:
         - '@' not written as '@@' in values
 	- COMM tag in submitter record
 	- double dates written as e.g. '1815/1816' instead of '1815/16'
+	- non-standard date formats
 
     - Family Origins:
         - '@' not written as '@@' in values
@@ -118,6 +120,7 @@ struct program_data data[] = {
         - '@' not written as '@@' in values
 	- SUBM.CTRY instead of SUBM.ADDR.CTRY
 	- lines too long
+	- non-standard date formats
  */
 
 int compat_matrix[] =
@@ -142,7 +145,8 @@ int compat_matrix[] =
   /* C_SUBM_CTRY */           C_PAF4,
   /* C_NOTE_TOO_LONG */       C_PAF4 | C_PAF5,
   /* C_NOTE_CONC_SOUR */      C_EASYTREE,
-  /* C_NONSTD_SOUR_TAGS */    C_EASYTREE
+  /* C_NONSTD_SOUR_TAGS */    C_EASYTREE,
+  /* C_PAF_DATES */           C_PAF2 | C_PAF4 | C_PAF5
 };
 
 union _COMPAT_STATE {

@@ -2303,7 +2303,9 @@ the value    that is returned by <code>GEDCOM_STRING(val)</code> is always the s
            <tr>
              <td valign="top"><code>DV_PHRASE</code><br>
              </td>
-             <td valign="top">a free form date phrase<br>
+             <td valign="top">a free form date phrase
+(date1 and date2 can contain meaningful values, if the dates could be parsed,
+but did not result in a valid date; the sdn values will then still be -1)<br>
              </td>
              <td valign="top">phrase<br>
              </td>
@@ -2685,6 +2687,7 @@ An example would thus be: "@This is an xref_val@".<br>
       <br>
                                                                         
               <br>
+<br>
 <br>
 <br>
 <br>

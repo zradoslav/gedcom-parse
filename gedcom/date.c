@@ -405,6 +405,8 @@ struct date_value* gedcom_new_date_value(const struct date_value* copy_from)
 struct date_value gedcom_parse_date(const char* line_value)
 {
   int result = 0;
+  init_date(&dv_s.date1);
+  init_date(&dv_s.date2);
   init_date(&date_s);
   init_date(&def_date);
   curr_line_value = line_value;
@@ -424,7 +426,7 @@ struct date_value gedcom_parse_date(const char* line_value)
   }
   if (result != 0) {
     gedcom_date_error(_("Putting date in 'phrase' member"));
-    make_date_value(DV_PHRASE, &def_date, &def_date, curr_line_value);
+    make_date_value(DV_PHRASE, &dv_s.date1, &dv_s.date2, curr_line_value);
   }
   return dv_s;
 }

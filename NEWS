@@ -1,5 +1,12 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
+release 0.91.0 (NOT RELEASED YET):
+
+ - If a date is parsed fine, but cannot be successfully converted to an
+   SDN, the parsed values are now kept in the returned date_value.  This means
+   that a date of DV_PHRASE type can have meaningful values in the string
+   and number values (the sdn value will still be -1).
+
 release 0.90.0 (2 February 2003):
 
  - The interface of libgedcom and libgedcom_gom should now be functionally

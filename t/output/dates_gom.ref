@@ -892,12 +892,12 @@ Individual events:
     Date: 
       type: 11
       date1:
-        calendar type: 4
-        day: '', -1
-        month: '', -1
-        year: '', -1
+        calendar type: 0
+        day: '29', 29
+        month: 'FEB', 2
+        year: '1739', 1739
         year type: 0
-        date type: 0
+        date type: 1
         sdn1: -1
         sdn2: -1
       date2:

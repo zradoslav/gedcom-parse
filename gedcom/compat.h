@@ -49,6 +49,7 @@ typedef enum _COMPAT_RULES {
   C_NOTE_TOO_LONG,
   C_NOTE_CONC_SOUR,
   C_NONSTD_SOUR_TAGS,
+  C_PAF_DATES,
   C_NR_OF_RULES
 } Compat_rule;
 
