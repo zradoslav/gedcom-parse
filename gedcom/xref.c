@@ -51,12 +51,12 @@ struct xref_node {
   int use_count;
 };
 
-hnode_t *xref_alloc(void *c __attribute__((unused)))
+hnode_t *xref_alloc(void *c UNUSED)
 {
   return malloc(sizeof *xref_alloc(NULL));
 }
 
-void xref_free(hnode_t *n, void *c __attribute__((unused)))
+void xref_free(hnode_t *n, void *c UNUSED)
 {
   struct xref_node *xr = (struct xref_node *)hnode_get(n);
   free((void*)hnode_getkey(n));
@@ -148,7 +148,7 @@ struct xref_node* add_xref(Xref_type xref_type, const char* xrefstr,
 			   Gedcom_ctxt object)
 {
   struct xref_node *xr = NULL;
-  const char *key = strdup(xrefstr);
+  char *key = strdup(xrefstr);
   if (key) {
     xr = make_xref_node();
     xr->xref.type = xref_type;
@@ -156,8 +156,15 @@ struct xref_node* add_xref(Xref_type xref_type, const char* xrefstr,
     if (xr->xref.string)
       free(xr->xref.string);
     xr->xref.string = strdup(xrefstr);
-    if (! xr->xref.string) MEMORY_ERROR;
-    hash_alloc_insert(xrefs, key, xr);
+    if (! xr->xref.string) {
+      MEMORY_ERROR;
+      free(key);
+      delete_xref_node(xr);
+      xr = NULL;
+    }
+    else {
+      hash_alloc_insert(xrefs, key, xr);
+    }
   }
   else
     MEMORY_ERROR;
@@ -229,8 +236,12 @@ struct xref_value *gedcom_parse_xref(const char *raw_value,
     xr = add_xref(xref_type, raw_value, NULL);
   }
 
-  set_xref_fields(xr, ctxt, xref_type);
-  return &(xr->xref);
+  if (xr) {
+    set_xref_fields(xr, ctxt, xref_type);
+    return &(xr->xref);
+  }
+  else
+    return NULL;
 }
 
 /* Functions for retrieving, modifying and deleting cross-references */
@@ -266,8 +277,9 @@ struct xref_value* gedcom_add_xref(Xref_type type, const char* xrefstr,
       gedcom_error(_("Cross-reference %s already exists"), xrefstr);
     }
     else {
-      xr = add_xref(type, xrefstr, object);    
-      set_xref_fields(xr, XREF_DEFINED, type);
+      xr = add_xref(type, xrefstr, object);
+      if (xr)
+	set_xref_fields(xr, XREF_DEFINED, type);
     }
   }
   if (xr)
