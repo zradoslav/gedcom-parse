@@ -56,8 +56,10 @@ AC_OUTPUT(Makefile
 	  ansel/Makefile
 	  utf8/Makefile
 	  t/Makefile
+	  t/src/Makefile
 	  t/input/Makefile
 	  data/Makefile
+	  data/new.ged
 	  doc/Makefile
 	  doc/images/Makefile
 	  include/Makefile

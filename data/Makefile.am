@@ -3,10 +3,4 @@
 # $Name$
 pkgdata_DATA = gedcom.enc new.ged
 
-EXTRA_DIST = $(pkgdata_DATA)
-VERSIONED_FILES = new.ged
-
-include $(top_srcdir)/Makefile.inc
-
-dist-hook:
-	$(replace-VERSION)
+EXTRA_DIST = $(pkgdata_DATA) new.ged.in
