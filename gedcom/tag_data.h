@@ -23,31 +23,7 @@
 
 #include "gedcom.h"
 #include "gedcom.tabgen.h"
-
-/* TODO: should be auto-generated */
-
-#define TAG_NUM_START TAG_ABBR
-#define TAG_NUM_END   TAG_WILL
-char* tag_name[] =
-{
-  /* 265 */         "ABBR", "ADDR", "ADR1", "ADR2", "ADOP", "AFN" , "AGE",
-  /* 272 */ "AGNC", "ALIA", "ANCE", "ANCI", "ANUL", "ASSO", "AUTH", "BAPL",
-  /* 280 */ "BAPM", "BARM", "BASM", "BIRT", "BLES", "BLOB", "BURI", "CALN",
-  /* 288 */ "CAST", "CAUS", "CENS", "CHAN", "CHAR", "CHIL", "CHR" , "CHRA",
-  /* 296 */ "CITY", "CONC", "CONF", "CONL", "CONT", "COPR", "CORP", "CREM",
-  /* 304 */ "CTRY", "DATA", "DATE", "DEAT", "DESC", "DESI", "DEST", "DIV",
-  /* 312 */ "DIVF", "DSCR", "EDUC", "EMIG", "ENDL", "ENGA", "EVEN", "FAM",
-  /* 320 */ "FAMC", "FAMF", "FAMS", "FCOM", "FILE", "FORM", "GEDC", "GIVN",
-  /* 328 */ "GRAD", "HEAD", "HUSB", "IDNO", "IMMI", "INDI", "LANG", "LEGA",
-  /* 336 */ "MARB", "MARC", "MARL", "MARR", "MARS", "MEDI", "NAME", "NATI",
-  /* 344 */ "NATU", "NCHI", "NICK", "NMR",  "NOTE", "NPFX", "NSFX", "OBJE",
-  /* 352 */ "OCCU", "ORDI", "ORDN", "PAGE", "PEDI", "PHON", "PLAC", "POST",
-  /* 360 */ "PROB", "PROP", "PUBL", "QUAY", "REFN", "RELA", "RELI", "REPO",
-  /* 368 */ "RESI", "RESN", "RETI", "RFN",  "RIN",  "ROLE", "SEX",  "SLGC",
-  /* 376 */ "SLGS", "SOUR", "SPFX", "SSN",  "STAE", "STAT", "SUBM", "SUBN",
-  /* 384 */ "SURN", "TEMP", "TEXT", "TIME", "TITL", "TRLR", "TYPE", "VERS",
-  /* 392 */ "WIFE", "WILL", 0
-};
+#include "tag_names.h"
 
 typedef enum _OPT {
   OPT_CONC = 0x01,
