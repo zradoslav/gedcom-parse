@@ -89,9 +89,9 @@ the   <code>   xterm</code> coming with XFree86 4.0.x). &nbsp;UTF-8 capabilities
 
        Given the UTF-8 capable terminal, you can now let the <code>testgedcom</code>
         program print the values that it parses. &nbsp;An example of a command
-   line is (in the <code>gedcom</code> directory):<br>
+   line is (in the top <code></code>directory):<br>
                                          
-    <blockquote><code>./testgedcom -dg t/ulhc.ged</code><br>
+    <blockquote><code>./testgedcom -dg t/input/ulhc.ged</code><br>
              </blockquote>
        The <code>-dg</code> option instructs the parser to show its own debug 
   messages  &nbsp;(see <code>./testgedcom -h</code> for the full set of options).
@@ -100,10 +100,10 @@ containing  a lot of special characters.<br>
              <br>
        For the ANSEL test file (<code>t/ansel.ged</code>), you have to set
  the   environment variable <code>GCONV_PATH</code> to the <code>ansel</code>
-   subdirectory   of the gedcom directory:<br>
+   subdirectory   of the top directory:<br>
                                                        
       <blockquote><code>export GCONV_PATH=./ansel<br>
-       ./testgedcom -dg t/ansel.ged<br>
+       ./testgedcom -dg t/input/ansel.ged<br>
                </code></blockquote>
        This is because for the ANSEL character set an extra module is needed
   for  the iconv library (more on this later). &nbsp;But again, this should
@@ -119,7 +119,7 @@ containing  a lot of special characters.<br>
                                                                      
         <blockquote><code>make lexer_1byte<br>
              </code></blockquote>
-   This will generate a lexer program that can process e.g. the <code>t/allged.ged</code>
+   This will generate a lexer program that can process e.g. the <code>t/input/allged.ged</code>
  test file. &nbsp;Simply cat the file through the lexer on standard input
 and you should get all the tokens in the file. &nbsp;Similar  tests can be
 done using <code>make lexer_hilo</code> and <code>
@@ -149,12 +149,20 @@ For each recognized statement in the GEDCOM file, the parser calls some callback
 which can be registered by the application to get the information out of
 the file.<br>
           <br>
-This basic description ignores the problem of character encoding. &nbsp;The next section describes what this problem exactly is.<br>
+This basic description ignores the problem of character encoding.<br>
           <br>
           <h3><a name="Character_encoding"></a>Character encoding</h3>Refer to <a href="encoding.html">this page</a> for some introduction on character encoding...<br>
 
-          <h4></h4><br>
-TO BE COMPLETED<br>
+          <br>
+GEDCOM defines three standard encodings:<br>
+          <ul>
+            <li>ASCII</li>
+            <li>ANSEL</li>
+            <li>UNICODE (assumed to be UCS-2, either big-endian or little-endian: the GEDCOM spec doesn't specify this)</li>
+          </ul>These are all supported by the parser, and converted into UTF-8 format.<br>
+
+            
+
 
                                                
           <hr width="100%" size="2">           
