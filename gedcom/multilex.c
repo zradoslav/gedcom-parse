@@ -71,34 +71,34 @@ int determine_encoding(FILE* f)
 
   fread(first, 1, 2, f);
   if ((first[0] == '0') && (first[1] == ' ')) {
-    gedcom_message("One-byte encoding");
+    gedcom_message(_("One-byte encoding"));
     fseek(f, 0, 0);
     return ONE_BYTE;
   }
   else if ((first[0] == '\0') && (first[1] == '0'))
   {
-    gedcom_message("Two-byte encoding, high-low");
+    gedcom_message(_("Two-byte encoding, high-low"));
     fseek(f, 0, 0);
     return TWO_BYTE_HILO;
   }
   else if ((first[0] == '\xFE') && (first[1] == '\xFF'))
   {
-    gedcom_message("Two-byte encoding, high-low, with BOM");
+    gedcom_message(_("Two-byte encoding, high-low, with BOM"));
     return TWO_BYTE_HILO;
   }
   else if ((first[0] == '0') && (first[1] == '\0'))
   {
-    gedcom_message("Two-byte encoding, low-high");
+    gedcom_message(_("Two-byte encoding, low-high"));
     fseek(f, 0, 0);
     return TWO_BYTE_LOHI;
   }
   else if ((first[0] == '\xFF') && (first[1] == '\xFE'))
   {
-    gedcom_message("Two-byte encoding, low-high, with BOM");
+    gedcom_message(_("Two-byte encoding, low-high, with BOM"));
     return TWO_BYTE_LOHI;
   }
   else {
-    gedcom_message("Unknown encoding, falling back to one-byte");
+    gedcom_message(_("Unknown encoding, falling back to one-byte"));
     fseek(f, 0, 0);
     return ONE_BYTE;
   }
@@ -108,22 +108,31 @@ int gedcom_parse_file(char* file_name)
 {
   ENCODING enc;
   int result = 1;
-  FILE* file = fopen (file_name, "r");
+  FILE* file;
+  
+  char *save_textdom = textdomain(NULL);
+  setlocale(LC_ALL, "");   /* In fact only necessary if main program doesn't
+			      do this */
+  bindtextdomain(PACKAGE, LOCALEDIR);
+  textdomain(PACKAGE);
+
   line_no = 1;
+  file = fopen(file_name, "r");
   if (!file) {
-    gedcom_error("Could not open file '%s'\n", file_name);
-    return 1;
+    gedcom_error(_("Could not open file '%s'\n"), file_name);
+  }
+  else {
+    init_encodings();
+    enc = determine_encoding(file);
+    
+    if (lexer_init(enc, file)) {
+      result = gedcom_parse();
+    }
+    lexer_close();
+    fclose(file);
   }
 
-  init_encodings();
-  enc = determine_encoding(file);
-  
-  if (lexer_init(enc, file)) {
-    result = gedcom_parse();
-  }
-  lexer_close();
-  fclose(file);
-  
+  textdomain(save_textdom);
   return result;
 }
 
