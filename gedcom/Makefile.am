@@ -9,7 +9,7 @@ INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include -I $(srcdir)/calendar \
            -DPKGDATADIR=\"$(pkgdatadir)\" -DLOCALEDIR=\"$(localedir)\"
 YFLAGS   = --debug --defines
 LFLAGS   = -8
-CFLAGS   = -g -O2 -W -Wall -pedantic -Wno-long-long
+CFLAGS   = -g -O2 -W -Wall -pedantic -Wno-long-long @EXTRA_CFLAGS@
 
 lib_LTLIBRARIES = libgedcom.la
 libgedcom_la_SOURCES = lex.gedcom_1byte_.c \
