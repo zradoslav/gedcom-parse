@@ -2,7 +2,7 @@
 # $Id$
 # $Name$
 
-SUBDIRS=src input .
+SUBDIRS=src input output .
 
 DMALLOC_LOG = dmalloc.log
 TESTS := $(wildcard $(srcdir)/*.test)
