@@ -126,8 +126,9 @@
 int  count_level    = 0;
 int  fail           = 0;
 int  compat_enabled = 1;
+int  gedcom_high_level_debug = 0; 
 int  compatibility  = 0; 
-MECHANISM curr_mechanism=IMMED_FAIL;
+MECHANISM error_mechanism=IMMED_FAIL;
 char string_buf[MAXGEDCLINELEN+1];
 char *string_buf_ptr;
 
@@ -149,13 +150,13 @@ int  compat_mode(int flags);
  
 #define HANDLE_ERROR \
      { \
-       if (curr_mechanism == IMMED_FAIL) { \
+       if (error_mechanism == IMMED_FAIL) { \
 	 YYABORT; \
        } \
-       else if (curr_mechanism == DEFER_FAIL) { \
+       else if (error_mechanism == DEFER_FAIL) { \
          yyerrok; fail = 1; \
        } \
-       else if (curr_mechanism == IGNORE_ERRORS) { \
+       else if (error_mechanism == IGNORE_ERRORS) { \
 	 yyerrok; \
        } \
      }
@@ -388,13 +389,11 @@ record      : fam_rec
 head_sect    : OPEN DELIM TAG_HEAD
                { START(HEAD) }
                head_subs
-               { if (compat_mode(C_FTREE)) {
-		   CHECK3(SOUR, GEDC, CHAR);
-		 }
-		 else {
-		   CHECK4(SOUR, SUBM, GEDC, CHAR);
-		 }
-               }
+               { if (compat_mode(C_FTREE))
+		   CHECK3(SOUR, GEDC, CHAR)
+	         else
+		   CHECK4(SOUR, SUBM, GEDC, CHAR)
+	       }
                CLOSE { }
              ;
 
@@ -420,6 +419,7 @@ head_sub     : head_sour_sect  { OCCUR2(SOUR, 1, 1) }
 /* HEAD.SOUR */
 head_sour_sect : OPEN DELIM TAG_SOUR mand_line_item 
                  { set_compatibility($4);
+		   gedcom_debug_print("===Source: '%s'\n", $4);
 		   START(SOUR)
 		 }
                  head_sour_subs
@@ -440,14 +440,17 @@ head_sour_sub : head_sour_vers_sect  { OCCUR2(VERS, 0, 1) }
 
 head_sour_vers_sect : OPEN DELIM TAG_VERS mand_line_item
                       { START(VERS)} no_std_subs { CHECK0 } CLOSE
-                            { }
+                      { gedcom_debug_print("===Source version: '%s'\n", $4);
+		      }
                     ;
 head_sour_name_sect : OPEN DELIM TAG_NAME mand_line_item
                       { START(NAME) } no_std_subs { CHECK0 } CLOSE
-                            { }
+                      { gedcom_debug_print("===Source name: '%s'\n", $4);
+		      }
                     ;
 head_sour_corp_sect : OPEN DELIM TAG_CORP mand_line_item 
-                      { START(CORP) }
+                      { gedcom_debug_print("===Source corp name: '%s'\n", $4);
+			START(CORP) }
                       head_sour_corp_subs
 		      { CHECK0 }
                       CLOSE
@@ -2375,17 +2378,37 @@ void pop_countarray()
 }
 
 /* Enabling debug mode */
-void gedcom_enable_debug()
+/* level 0: no debugging */
+/* level 1: only internal */
+/* level 2: also bison */
+void gedcom_set_debug_level(int level)
 {
+  if (level > 0) {
+    gedcom_high_level_debug = 1;
+  }
+  if (level > 1) {
 #if YYDEBUG != 0
-  gedcom_debug = 1;
+    gedcom_debug = 1;
 #endif
+  }
+}
+
+int gedcom_debug_print(char* s, ...)
+{
+  int res;
+  if (gedcom_high_level_debug) {
+    va_list ap;
+    va_start(ap, s);
+    res = vfprintf(stderr, s, ap);
+    va_end(ap);
+  }
+  return(res);
 }
 
 /* Setting the error mechanism */
 void gedcom_set_error_handling(MECHANISM mechanism)
 {
-  curr_mechanism = mechanism;
+  error_mechanism = mechanism;
 }
 
 /* Compatibility handling */
