@@ -110,10 +110,29 @@ Gedcom_ctxt sub_note_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+void sub_note_end(_ELT_END_PARAMS_)
+{
+  if (GEDCOM_IS_STRING(parsed_value)) {
+    Gom_ctxt ctxt = (Gom_ctxt)self;
+    if (! ctxt)
+      NO_CONTEXT;
+    else {
+      struct note_sub *obj = SAFE_CTXT_CAST(note_sub, ctxt);
+      if (obj) {
+	char *str = GEDCOM_STRING(parsed_value);
+	char *newvalue = strdup(str);
+	if (! newvalue)
+	  MEMORY_ERROR;
+	else
+	  obj->text = newvalue;
+      }
+      destroy_gom_ctxt(ctxt);
+    }
+  }
+}
+
 DEFINE_SUB_MAKEFUNC(note_sub)
      
-DEFINE_STRING_END_CB(note_sub, sub_note_end, text)
-
 DEFINE_ADDFUNC2(note_sub, source_citation, citation)
 DEFINE_ADDFUNC2(note_sub, user_data, extra)
      
