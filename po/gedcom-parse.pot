@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2001-12-31 17:01+0100\n"
+"POT-Creation-Date: 2002-01-05 15:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,100 +14,100 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: ENCODING\n"
 
-#: gedcom/encoding.c:66
+#: gedcom/encoding.c:67
 #, c-format
 msgid "Duplicate entry found for encoding '%s', ignoring"
 msgstr ""
 
-#: gedcom/encoding.c:83
+#: gedcom/encoding.c:92
 #, c-format
 msgid "No encoding defined for '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:120
+#: gedcom/encoding.c:133
 msgid "Failed updating conversion module path"
-msgstr ""
-
-#: gedcom/encoding.c:132
-#, c-format
-msgid "Could not open encoding configuration file '%s'"
-msgstr ""
-
-#: gedcom/encoding.c:139
-#, c-format
-msgid "Line too long in encoding configuration file '%s'"
 msgstr ""
 
 #: gedcom/encoding.c:148
 #, c-format
+msgid "Could not open encoding configuration file '%s'"
+msgstr ""
+
+#: gedcom/encoding.c:155
+#, c-format
+msgid "Line too long in encoding configuration file '%s'"
+msgstr ""
+
+#: gedcom/encoding.c:164
+#, c-format
 msgid "Missing data in encoding configuration file '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:180
+#: gedcom/encoding.c:196
 #, c-format
 msgid "Error opening conversion context for encoding %s: %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:1238 gedcom/gedcom.y:3339
+#: gedcom/gedcom.y:1300 gedcom/gedcom.y:3492
 msgid "Missing value"
 msgstr ""
 
-#: gedcom/gedcom.y:3284 gedcom/gedcom.y:3301
+#: gedcom/gedcom.y:3428 gedcom/gedcom.y:3452
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:3334
+#: gedcom/gedcom.y:3487
 msgid "Missing pointer"
 msgstr ""
 
-#: gedcom/gedcom.y:3411
+#: gedcom/gedcom.y:3565
 msgid "Missing cross-reference"
 msgstr ""
 
-#: gedcom/gedcom.y:3574
+#: gedcom/gedcom.y:3728
 msgid "Internal error: count array overflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3580
+#: gedcom/gedcom.y:3734
 msgid "Internal error: count array calloc error"
 msgstr ""
 
-#: gedcom/gedcom.y:3625
+#: gedcom/gedcom.y:3779
 msgid "Internal error: count array underflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3687
+#: gedcom/gedcom.y:3841
 msgid "Enabling compatibility with 'ftree'"
 msgstr ""
 
-#: gedcom/multilex.c:74
+#: gedcom/multilex.c:75
 msgid "One-byte encoding"
 msgstr ""
 
-#: gedcom/multilex.c:80
+#: gedcom/multilex.c:81
 msgid "Two-byte encoding, high-low"
 msgstr ""
 
-#: gedcom/multilex.c:86
+#: gedcom/multilex.c:87
 msgid "Two-byte encoding, high-low, with BOM"
 msgstr ""
 
-#: gedcom/multilex.c:91
+#: gedcom/multilex.c:92
 msgid "Two-byte encoding, low-high"
 msgstr ""
 
-#: gedcom/multilex.c:97
+#: gedcom/multilex.c:98
 msgid "Two-byte encoding, low-high, with BOM"
 msgstr ""
 
-#: gedcom/multilex.c:101
+#: gedcom/multilex.c:102
 msgid "Unknown encoding, falling back to one-byte"
 msgstr ""
 
-#: gedcom/multilex.c:123
+#: gedcom/multilex.c:124
 #, c-format
 msgid "Could not open file '%s'"
 msgstr ""
@@ -122,19 +122,83 @@ msgstr ""
 msgid "Error on line %d: "
 msgstr ""
 
-#: gedcom/interface.c:96
+#: gedcom/interface.c:98
 msgid "null value"
 msgstr ""
 
-#: gedcom/interface.c:97
+#: gedcom/interface.c:99
 msgid "character string"
 msgstr ""
 
-#: gedcom/interface.c:98
+#: gedcom/interface.c:100
 msgid "date"
 msgstr ""
 
-#: gedcom/interface.c:105
+#: gedcom/interface.c:101
+msgid "cross-reference"
+msgstr ""
+
+#: gedcom/interface.c:108
 #, c-format
 msgid "Wrong cast of value in file %s, at line %d: %s instead of %s"
+msgstr ""
+
+#: gedcom/xref.c:31
+msgid "nothing"
+msgstr ""
+
+#: gedcom/xref.c:32
+msgid "a family"
+msgstr ""
+
+#: gedcom/xref.c:33
+msgid "an individual"
+msgstr ""
+
+#: gedcom/xref.c:34
+msgid "a note"
+msgstr ""
+
+#: gedcom/xref.c:35
+msgid "a multimedia object"
+msgstr ""
+
+#: gedcom/xref.c:36
+msgid "a source repository"
+msgstr ""
+
+#: gedcom/xref.c:37
+msgid "a source"
+msgstr ""
+
+#: gedcom/xref.c:38
+msgid "a submitter"
+msgstr ""
+
+#: gedcom/xref.c:39
+msgid "a submission record"
+msgstr ""
+
+#: gedcom/xref.c:40
+msgid "an application-specific record"
+msgstr ""
+
+#: gedcom/xref.c:96
+#, c-format
+msgid "Cross-reference %s used on line %d is not defined"
+msgstr ""
+
+#: gedcom/xref.c:101
+#, c-format
+msgid "Cross-reference %s defined on line %d is never used"
+msgstr ""
+
+#: gedcom/xref.c:139
+#, c-format
+msgid "Cross-reference %s previously defined as pointer to %s, on line %d"
+msgstr ""
+
+#: gedcom/xref.c:149
+#, c-format
+msgid "Cross-reference %s previously used as pointer to %s, on line %d"
 msgstr ""
