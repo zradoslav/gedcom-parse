@@ -25,7 +25,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <locale.h>
+#include <errno.h>
 #include "gedcom.h"
+#include "utf8-locale.h"
 
 #define OUTFILE "testgedcom.out"
 FILE* outfile = NULL;
@@ -168,8 +171,11 @@ Gedcom_ctxt source_date_start(Gedcom_ctxt parent, int level, char *tag,
 void default_cb(Gedcom_ctxt ctxt, int level, char *tag, char *raw_value,
 		int tag_value)
 {
+  char   *converted = NULL;
+  if (raw_value)
+    converted = convert_utf8_to_locale(raw_value);
   output(0, "== %d %s (%d) %s (ctxt is %d)\n",
-	 level, tag, tag_value, raw_value, (int)ctxt);
+	 level, tag, tag_value, converted, (int)ctxt);
 }
 
 void subscribe_callbacks()
@@ -252,6 +258,7 @@ int main(int argc, char* argv[])
     exit(1);
   }
 
+  setlocale(LC_ALL, "");
   gedcom_set_debug_level(debug_level, NULL);
   gedcom_set_compat_handling(compat_enabled);
   gedcom_set_error_handling(mech);
