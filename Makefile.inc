@@ -16,8 +16,10 @@ endef
 	then \
 	  touch $(srcdir)/$@; \
 	fi
-	if ! diff -q $< $(srcdir)/$@ > /dev/null; \
+	if diff $< $(srcdir)/$@ > /dev/null 2>&1; \
 	then \
+	  : ; \
+	else \
 	  rm $(srcdir)/$@; \
 	  cp $(srcdir)/$< $(srcdir)/$@; \
 	fi
