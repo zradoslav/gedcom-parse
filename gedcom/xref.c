@@ -246,9 +246,15 @@ struct xref_value *gedcom_parse_xref(const char *raw_value,
 
 /* Functions for retrieving, modifying and deleting cross-references */
 
+int is_valid_pointer(const char *key)
+{
+  return (strlen(key) <= 22 &&
+	  gedcom_check_token(key, STATE_NORMAL, POINTER) == 0);
+}
+
 struct xref_value* gedcom_get_by_xref(const char *key)
 {
-  if (gedcom_check_token(key, STATE_NORMAL, POINTER) != 0) {
+  if (!is_valid_pointer(key)) {
     gedcom_error(_("String '%s' is not a valid cross-reference key"), key);
     return NULL;
   }
@@ -268,7 +274,7 @@ struct xref_value* gedcom_add_xref(Xref_type type, const char* xrefstr,
 {
   struct xref_node *xr = NULL;
 
-  if (gedcom_check_token(xrefstr, STATE_NORMAL, POINTER) != 0) {
+  if (!is_valid_pointer(xrefstr)) {
     gedcom_error(_("String '%s' is not a valid cross-reference key"), xrefstr);
   }
   else {
@@ -292,7 +298,7 @@ struct xref_value* gedcom_link_xref(Xref_type type, const char* xrefstr)
 {
   struct xref_node *xr = NULL;
 
-  if (gedcom_check_token(xrefstr, STATE_NORMAL, POINTER) != 0) {
+  if (!is_valid_pointer(xrefstr)) {
     gedcom_error(_("String '%s' is not a valid cross-reference key"), xrefstr);
   }
   else {
@@ -316,7 +322,7 @@ struct xref_value* gedcom_link_xref(Xref_type type, const char* xrefstr)
 struct xref_value* gedcom_unlink_xref(Xref_type type, const char* xrefstr)
 {
   struct xref_node *xr = NULL;
-  if (gedcom_check_token(xrefstr, STATE_NORMAL, POINTER) != 0) {
+  if (!is_valid_pointer(xrefstr)) {
     gedcom_error(_("String '%s' is not a valid cross-reference key"), xrefstr);
   }
   else {
@@ -347,7 +353,7 @@ int gedcom_delete_xref(const char* xrefstr)
   struct xref_node *xr = NULL;
   int result = 1;
 
-  if (gedcom_check_token(xrefstr, STATE_NORMAL, POINTER) != 0) {
+  if (!is_valid_pointer(xrefstr)) {
     gedcom_error(_("String '%s' is not a valid cross-reference key"), xrefstr);
   }
   else {
