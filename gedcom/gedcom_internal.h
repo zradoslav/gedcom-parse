@@ -31,7 +31,13 @@
 #ifdef WITH_DMALLOC
 #include <dmalloc.h>
 #endif
-#include "config.h"
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+#include <libintl.h>
+
+#define _(string) gettext(string)
+#define N_(string) (string)
 
 #define MAXGEDCLEVEL    99
 #define MAXGEDCLINELEN  255
