@@ -3,16 +3,16 @@
 # $Name$
 
 SUBDIRS=input
-INCLUDES = -DPKGDATADIR=\"$(pkgdatadir)\" -I $(srcdir)/../include
+INCLUDES = -DPKGDATADIR=\"$(pkgdatadir)\" -I $(srcdir)/../include \
+           -I $(srcdir)/../utf8
 CFLAGS   = -g -O2
 
 noinst_PROGRAMS = testgedcom pathtest gomtest @EXTRA_PROGS@
 EXTRA_PROGRAMS  = gomtest_static
 
-testgedcom_SOURCES = standalone.c utf8-locale.c
-noinst_HEADERS     = utf8-locale.h
+testgedcom_SOURCES = standalone.c
 testgedcom_LDFLAGS = -L ../gedcom/.libs -lgedcom
-testgedcom_LDADD  = @INTLLIBS@
+testgedcom_LDADD  = @INTLLIBS@ ../utf8/libutf8.la
 
 pathtest_SOURCES = pathtest.c
 pathtest_LDFLAGS = -L ../gedcom/.libs -lgedcom
