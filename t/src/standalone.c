@@ -23,6 +23,7 @@
 
 #include "gedcom.h"
 #include "output.h"
+#include "portability.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -63,7 +64,7 @@ Gedcom_ctxt header_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
 
 void header_end(Gedcom_rec rec, Gedcom_ctxt self)
 {
-  output(1, "Header end, context is %d\n", (int)self);
+  output(1, "Header end, context is %ld\n", void_ptr_to_int(self));
 }
 
 char family_xreftags[100][255];
@@ -76,8 +77,8 @@ Gedcom_ctxt family_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
   struct xref_value *xr = GEDCOM_XREF_PTR(xref);
   output(1, "Family start, xref is %s\n", xr->string);
   strcpy(family_xreftags[family_nr], xr->string);
-  xr->object = (Gedcom_ctxt)family_nr;
-  return (Gedcom_ctxt)(family_nr++);
+  xr->object = (Gedcom_ctxt)int_to_void_ptr(family_nr);
+  return (Gedcom_ctxt)int_to_void_ptr(family_nr++);
 }
 
 Gedcom_ctxt rec_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
@@ -88,7 +89,7 @@ Gedcom_ctxt rec_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
   if (! GEDCOM_IS_NULL(xref))
     xref_str = GEDCOM_XREF_PTR(xref)->string;
   output(1, "Rec %s start, xref is %s\n", tag, xref_str);
-  return (Gedcom_ctxt)tag_value;
+  return (Gedcom_ctxt)int_to_void_ptr(tag_value);
 }
 
 Gedcom_ctxt note_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
@@ -98,12 +99,13 @@ Gedcom_ctxt note_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
   output(1, "== %d %s (%d) %s (xref is %s)\n",
 	 level, tag, tag_value, GEDCOM_STRING(parsed_value),
 	 GEDCOM_XREF_PTR(xref)->string);
-  return (Gedcom_ctxt)tag_value;
+  return (Gedcom_ctxt)int_to_void_ptr(tag_value);
 }
 
 void family_end(Gedcom_rec rec, Gedcom_ctxt self)
 {
-  output(1, "Family end, xref is %s\n", family_xreftags[(int)self]);
+  output(1, "Family end, xref is %s\n",
+	 family_xreftags[void_ptr_to_int(self)]);
 }
 
 Gedcom_ctxt submit_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
@@ -118,16 +120,18 @@ Gedcom_ctxt source_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
 			 char *tag, char* raw_value,
 			 int tag_value, Gedcom_val parsed_value)
 {
-  Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
-  output(1, "Source is %s (ctxt is %d, parent is %d)\n",
-	 GEDCOM_STRING(parsed_value), (int) self, (int) parent);
+  Gedcom_ctxt self = (Gedcom_ctxt)(void_ptr_to_int(parent) + 1000);
+  output(1, "Source is %s (ctxt is %ld, parent is %ld)\n",
+	 GEDCOM_STRING(parsed_value), void_ptr_to_int(self),
+	 void_ptr_to_int(parent));
   return self;
 }
 
 void source_end(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
 		Gedcom_val parsed_value)
 {
-  output(1, "Source context %d in parent %d\n", (int)self, (int)parent);
+  output(1, "Source context %ld in parent %ld\n",
+	 void_ptr_to_int(self), void_ptr_to_int(parent));
 }
 
 Gedcom_ctxt date_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
@@ -135,7 +139,7 @@ Gedcom_ctxt date_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
 		       int tag_value, Gedcom_val parsed_value)
 {
   struct date_value dv;
-  Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
+  Gedcom_ctxt self = (Gedcom_ctxt)(void_ptr_to_int(parent) + 1000);
   dv = GEDCOM_DATE(parsed_value);
   output(1, "Contents of the date_value:\n");
   output(1, "  raw value: %s\n", raw_value);
@@ -165,7 +169,7 @@ Gedcom_ctxt age_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
 		      int tag_value, Gedcom_val parsed_value)
 {
   struct age_value age;
-  Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
+  Gedcom_ctxt self = (Gedcom_ctxt)(void_ptr_to_int(parent) + 1000);
   age = GEDCOM_AGE(parsed_value);
   output(1, "Contents of the age_value:\n");
   output(1, "  raw value: %s\n", raw_value);
@@ -185,8 +189,8 @@ void default_cb(Gedcom_elt elt, Gedcom_ctxt ctxt, int level, char *tag,
   int    conv_fails = 0;
   if (raw_value)
     converted = convert_utf8_to_locale(raw_value, &conv_fails);
-  output(0, "== %d %s (%d) %s (ctxt is %d, conversion failures: %d)\n",
-	 level, tag, tag_value, converted, (int)ctxt, conv_fails);
+  output(0, "== %d %s (%d) %s (ctxt is %ld, conversion failures: %d)\n",
+	 level, tag, tag_value, converted, void_ptr_to_int(ctxt), conv_fails);
   total_conv_fails += conv_fails;
 }
 
