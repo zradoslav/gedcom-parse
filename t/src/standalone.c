@@ -67,7 +67,8 @@ void header_end(Gedcom_rec rec, Gedcom_ctxt self, Gedcom_val parsed_value)
   output(1, "Header end, context is %ld\n", void_ptr_to_int(self));
 }
 
-char family_xreftags[100][255];
+#define MAXFAMILY 100
+char family_xreftags[MAXFAMILY][255];
 int  family_nr = 1;
 
 Gedcom_ctxt family_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
@@ -76,7 +77,10 @@ Gedcom_ctxt family_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
 {
   struct xref_value *xr = GEDCOM_XREF_PTR(xref);
   output(1, "Family start, xref is %s\n", xr->string);
-  strcpy(family_xreftags[family_nr], xr->string);
+  if (family_nr < MAXFAMILY) {
+    printf("%d\n", family_nr);
+    strcpy(family_xreftags[family_nr], xr->string);
+  }
   xr->object = (Gedcom_ctxt)int_to_void_ptr(family_nr);
   return (Gedcom_ctxt)int_to_void_ptr(family_nr++);
 }
@@ -104,8 +108,11 @@ Gedcom_ctxt note_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
 
 void family_end(Gedcom_rec rec, Gedcom_ctxt self, Gedcom_val parsed_value)
 {
-  output(1, "Family end, xref is %s\n",
-	 family_xreftags[void_ptr_to_int(self)]);
+  char* family_xref = "<NOTSAVED>";
+  int   family_nr = void_ptr_to_int(self);
+  if (family_nr < MAXFAMILY)
+    family_xref = family_xreftags[void_ptr_to_int(self)];
+  output(1, "Family end, xref is %s\n", family_xref);
 }
 
 Gedcom_ctxt submit_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
