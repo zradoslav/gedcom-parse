@@ -1,3 +1,7 @@
+2002-10-27  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* libcharset/lib/config.charset: Add darwin (same as freebsd).
+
 2002-10-04  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* lib/ansi_z39_47.h, lib/ANSI_Z39.47-tables.h: Conversion from ANSEL
