@@ -105,13 +105,23 @@ void end_element(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
 const char* val_type_str[] = { N_("null value"),
 			       N_("character string"),
 			       N_("date"),
+			       N_("age"),
 			       N_("cross-reference") };
 
 void gedcom_cast_error(const char* file, int line,
 		       Gedcom_val_type tried_type,
 		       Gedcom_val_type real_type)
 {
+  int tried_bit=0, real_bit=0;
+  while (tried_type && tried_type % 2 == 0) {
+    tried_bit++;
+    tried_type >>= 1;
+  }
+  while (real_type && real_type % 2 == 0) {
+    real_bit++;
+    real_type >>= 1;
+  }
   gedcom_warning
     (_("Wrong cast of value in file %s, at line %d: %s instead of %s"),
-     file, line, _(val_type_str[tried_type]), _(val_type_str[real_type]));
+     file, line, _(val_type_str[tried_bit]), _(val_type_str[real_bit]));
 }
