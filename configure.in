@@ -90,7 +90,7 @@ else
   AC_MSG_RESULT(libc)
   AC_GLIBC_ICONV
   if test "$is_glibc_iconv" = yes; then
-    DIRS="ansel"
+    DIRS="glibc"
     is_ansel_supported=yes
     AC_SUBST(DIRS)
   fi
@@ -110,7 +110,9 @@ AC_OUTPUT(Makefile
 	  gedcom/Makefile
 	  gedcom/calendar/Makefile
 	  gom/Makefile
-	  ansel/Makefile
+	  iconv/Makefile
+	  iconv/glibc/Makefile
+	  iconv/libiconv/Makefile
 	  utf8/Makefile
 	  t/Makefile
 	  t/src/Makefile
