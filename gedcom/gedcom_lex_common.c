@@ -29,7 +29,6 @@
 #include "gedcom.h"
 #include "gedcom.tabgen.h"
 #include "compat.h"
-#include "utf8.h"
 
 static size_t encoding_width;
 static int current_level = -1;

@@ -29,7 +29,7 @@
 #include "gedcom.h"
 #include "encoding.h"
 #include "hash.h"
-#include "utf8.h"
+#include "utf8tools.h"
 
 #define ENCODING_CONF_FILE "gedcom.enc"
 #define GCONV_SEARCH_PATH "GCONV_PATH"

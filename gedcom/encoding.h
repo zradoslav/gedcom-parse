@@ -26,7 +26,7 @@
 #define __ENCODING_H
 
 #include "gedcom.h"
-#include "utf8.h"
+#include "utf8tools.h"
 
 int open_conv_to_internal(const char* fromcode);
 void close_conv_to_internal();

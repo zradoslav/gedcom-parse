@@ -26,7 +26,7 @@
 #include "encoding.h"
 #include "tag_data.h"
 #include "buffer.h"
-#include "utf8.h"
+#include "utf8tools.h"
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
