@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-03-27 21:09+0100\n"
+"POT-Creation-Date: 2002-08-16 18:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,39 +44,43 @@ msgstr ""
 msgid "Error opening conversion context for encoding %s: %s"
 msgstr ""
 
-#. empty
-#: gedcom/gedcom.y:1356 gedcom/gedcom.y:3548
+#: gedcom/gedcom.y:1373 gedcom/gedcom.y:3572
 msgid "Missing value"
 msgstr ""
 
-#: gedcom/gedcom.y:3484 gedcom/gedcom.y:3508
+#: gedcom/gedcom.y:3501 gedcom/gedcom.y:3525
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:3543
+#: gedcom/gedcom.y:3560
 msgid "Missing pointer"
 msgstr ""
 
-#: gedcom/gedcom.y:3621
+#: gedcom/gedcom.y:3647
 msgid "Missing cross-reference"
 msgstr ""
 
-#: gedcom/gedcom.y:3784
+#: gedcom/gedcom.y:3810
 msgid "Internal error: count array overflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3790
+#: gedcom/gedcom.y:3816
 msgid "Internal error: count array calloc error"
 msgstr ""
 
-#: gedcom/gedcom.y:3835
+#: gedcom/gedcom.y:3861
 msgid "Internal error: count array underflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3897
+#: gedcom/gedcom.y:3923
 msgid "Enabling compatibility with 'ftree'"
+msgstr ""
+
+#. Matches "LIFELINES 3.0.2"
+#: gedcom/gedcom.y:3928
+msgid "Enabling compatibility with 'Lifelines'"
 msgstr ""
 
 #: gedcom/multilex.c:75

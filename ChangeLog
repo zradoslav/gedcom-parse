@@ -1,3 +1,33 @@
+2002-08-16  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.16
+
+	* t/dates.test, t/encoding_error.test: New tests.
+
+	* t/utf8-locale.c: Remove conversion warning at compilation.
+
+	* t/test_script: Enhancements to use script outside 'make check'.
+
+	* t/standalone.c, t/bogus.test: Parse bogus file only if enabled
+	via option.
+
+	* t/Makefile.am: Added rule to be able to perform single tests.
+
+	* gedcom/encoding.c, gedcom/gedcom_lex_common.c: Handle illegal
+	characters in to_internal (to avoid crashes).
+
+	* Lots of files: Add compability for Lifelines.
+
+	* Makefile.inc, gedcom/Makefile.am, gedcom/gedcom_lex_common.c,
+	gedcom/gedcom_date.lex:
+	Added rule that can help to avoid unnecessary recompilation of lex
+	files.  It generates a new include file only when necessary: use this
+	one in lex files.
+
+2002-04-08  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* t/minimal.test: Added test on a minimal GEDCOM file.
+
 2002-03-27  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* release 0.15

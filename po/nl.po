@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gedcom-parse 0.15\n"
-"POT-Creation-Date: 2002-03-27 21:09+0100\n"
+"POT-Creation-Date: 2002-08-16 18:33+0200\n"
 "PO-Revision-Date: 2002-03-27 21:17+0100\n"
 "Last-Translator: Peter Verthez <Peter.Verthez@advalvas.be>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -44,40 +44,44 @@ msgstr "Ontbrekende gegevens in configuratie bestand voor coderingen '%s'"
 msgid "Error opening conversion context for encoding %s: %s"
 msgstr "Fout bij het openen van een conversiecontext voor de codering %s: %s"
 
-#. empty
-#: gedcom/gedcom.y:1356 gedcom/gedcom.y:3548
+#: gedcom/gedcom.y:1373 gedcom/gedcom.y:3572
 msgid "Missing value"
 msgstr "Waarde ontbreekt"
 
-#: gedcom/gedcom.y:3484 gedcom/gedcom.y:3508
+#: gedcom/gedcom.y:3501 gedcom/gedcom.y:3525
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr "Ongedefieerde tag (en geen geldige gebruikerstag): %s"
 
 #. empty
-#: gedcom/gedcom.y:3543
+#: gedcom/gedcom.y:3560
 msgid "Missing pointer"
 msgstr "Verwijzing ontbreekt"
 
-#: gedcom/gedcom.y:3621
+#: gedcom/gedcom.y:3647
 msgid "Missing cross-reference"
 msgstr "Naam voor verwijzingen ontbreekt"
 
-#: gedcom/gedcom.y:3784
+#: gedcom/gedcom.y:3810
 msgid "Internal error: count array overflow"
 msgstr "Interne fout: overloop van de telrij"
 
-#: gedcom/gedcom.y:3790
+#: gedcom/gedcom.y:3816
 msgid "Internal error: count array calloc error"
 msgstr "Interne fout: allocatiefout op de telrij"
 
-#: gedcom/gedcom.y:3835
+#: gedcom/gedcom.y:3861
 msgid "Internal error: count array underflow"
 msgstr "Interne fout: underflow van de telrij"
 
-#: gedcom/gedcom.y:3897
+#: gedcom/gedcom.y:3923
 msgid "Enabling compatibility with 'ftree'"
 msgstr "Compatibiliteit met 'ftree' wordt aangezet"
+
+#. Matches "LIFELINES 3.0.2"
+#: gedcom/gedcom.y:3928
+msgid "Enabling compatibility with 'Lifelines'"
+msgstr "Compatibiliteit met 'Lifelines' wordt aangezet"
 
 #: gedcom/multilex.c:75
 msgid "One-byte encoding"
