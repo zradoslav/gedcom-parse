@@ -233,9 +233,11 @@ void close_conv_to_internal()
 char* to_internal(char* str, size_t len,
 		  char* output_buffer, size_t out_len)
 {
+  size_t res;
   size_t outsize = out_len;
   char *wrptr = output_buffer;
   char *rdptr = conv_buf;
+  char *retval = output_buffer;
   /* set up input buffer (concatenate to what was left previous time) */
   /* can't use strcpy, because possible null bytes from unicode */
   memcpy(conv_buf + conv_buf_size, str, len);
@@ -243,9 +245,18 @@ char* to_internal(char* str, size_t len,
   /* set up output buffer (empty it) */
   memset(output_buffer, 0, out_len);
   /* do the conversion */
-  iconv(cd_to_internal, &rdptr, &conv_buf_size, &wrptr, &outsize);
+  res = iconv(cd_to_internal, &rdptr, &conv_buf_size, &wrptr, &outsize);
+  if (res == (size_t)-1) {
+    if (errno == EILSEQ) {
+      /* restart from an empty state and return NULL */
+      iconv(cd_to_internal, NULL, NULL, NULL, NULL);
+      retval = NULL;
+      rdptr++;
+      conv_buf_size--;
+    }
+  }
   /* then shift what is left over to the head of the input buffer */
   memmove(conv_buf, rdptr, conv_buf_size);
   memset(conv_buf + conv_buf_size, 0, sizeof(conv_buf) - conv_buf_size);
-  return output_buffer;
+  return retval;
 }
