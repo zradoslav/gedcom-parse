@@ -253,7 +253,7 @@ void clean_up();
 }
 
 %token_table
-%expect 304
+%expect 308
 
 %token <string> BADTOKEN
 %token <number> OPEN
