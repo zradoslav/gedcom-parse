@@ -28,6 +28,8 @@ AM_INIT_AUTOMAKE(${NAME},${VERSION})
 AM_CONFIG_HEADER(config.h)
 ALL_LINGUAS="nl"
 
+AC_CANONICAL_HOST
+
 dnl =============================================================
 dnl Checks for programs.
 AC_PROG_CC
@@ -65,7 +67,10 @@ AC_TYPE_SIZE_T
 
 dnl ==========================================================
 dnl Checks for library functions.
-AC_CHECK_FUNCS(vsnprintf vsprintf)
+AC_CHECK_HEADERS(stddef.h stdlib.h string.h)
+AC_CHECK_FUNCS(setlocale vsnprintf vsprintf)
+jm_LANGINFO_CODESET
+jm_GLIBC21
 
 dnl ==========================================================
 dnl My local stuff
@@ -114,6 +119,7 @@ AC_OUTPUT(Makefile
 	  iconv/glibc/Makefile
 	  iconv/libiconv/Makefile
 	  utf8/Makefile
+	  utf8/libcharset/Makefile
 	  t/Makefile
 	  t/src/Makefile
 	  t/input/Makefile
