@@ -1,3 +1,22 @@
+2001-12-02  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.8
+
+	* encoding.c: Specify explicitly the output buffer for to_internal:
+	used to put pointers and tags in different output buffer.
+
+	* gedcom_lex_common.c: New file containing all lex actions (is common
+	  for all lexers).  Better checks for maximum lengths.
+
+2001-12-01  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom_*.lex: Return level number together with OPEN token.
+
+2001-11-27  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom.enc: Adapt default iconv encoding names (to also support
+	glibc-2.1.x).
+
 2001-11-25  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* all: added proper copyright notice (copyright to the Genes
