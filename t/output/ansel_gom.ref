@@ -3,55 +3,55 @@
 Parse succeeded
 === HEADER ===
 Source:
-  ID: REGISTERED_SOURCE_NAME
-  Name: (null)
-  Version: (null)
+  ID: 'REGISTERED_SOURCE_NAME'
+  Name: '(null)'
+  Version: '(null)'
   Corporation:
-    Name: (null)
+    Name: '(null)'
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
   Data:
-    Name: (null)
+    Name: '(null)'
     Date: 0x<null>
-    Copyright: (null)
-Destination: (null)
+    Copyright: '(null)'
+Destination: '(null)'
 Date: 
   type: 0
   date1:
     calendar type: 0
-    day: 20
-    month: JAN
-    year: 1998
+    day: '20'
+    month: 'JAN'
+    year: '1998'
     date type: 1
     sdn1: 2450834
     sdn2: -1
   date2:
     calendar type: 4
-    day: 
-    month: 
-    year: 
+    day: ''
+    month: ''
+    year: ''
     date type: 0
     sdn1: -1
     sdn2: -1
-  phrase: 
-Time: (null)
+  phrase: ''
+Time: '(null)'
 Submitter: 
   type: 7
-  xref: @SUBMITTER@
+  xref: '@SUBMITTER@'
   object: 0x<non-null>
 Submission: 0x<null>
-File name: (null)
-Copyright: (null)
+File name: '(null)'
+Copyright: '(null)'
 Gedcom:
-  Version: 5.5
-  Form: Lineage-Linked
+  Version: '5.5'
+  Form: 'Lineage-Linked'
 Character set:
-  Name: ANSEL
-  Version: (null)
-Language: (null)
-Place hierarchy: (null)
+  Name: 'ANSEL'
+  Version: '(null)'
+Language: '(null)'
+Place hierarchy: '(null)'
 Note:
 ====
 This GEDCOM transmission contains a charcter set test. It consists
@@ -83,208 +83,208 @@ This file based mainly on the GEDCOM 5.5 specification
 and on an updated ANSEL description in:
 http://www.gendex.com/gedcom55/55gcappd.htm
 ====
-User data:0x<null>
+User data: 0x<null>
 === FAMILY (@FAMILY@) ===
 Family events: 0x<null>
 Husband: 
   type: 2
-  xref: @FATHER@
+  xref: '@FATHER@'
   object: 0x<non-null>
 Wife: 
   type: 2
-  xref: @MOTHER@
+  xref: '@MOTHER@'
   object: 0x<non-null>
 Children: 
   reference: 
     type: 2
-    xref: @CHILD0@
+    xref: '@CHILD0@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD1@
+    xref: '@CHILD1@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD2@
+    xref: '@CHILD2@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD3@
+    xref: '@CHILD3@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD4@
+    xref: '@CHILD4@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD5@
+    xref: '@CHILD5@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD6@
+    xref: '@CHILD6@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD7@
+    xref: '@CHILD7@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD8@
+    xref: '@CHILD8@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD9@
+    xref: '@CHILD9@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD10@
+    xref: '@CHILD10@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD11@
+    xref: '@CHILD11@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD12@
+    xref: '@CHILD12@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD13@
+    xref: '@CHILD13@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD14@
+    xref: '@CHILD14@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD15@
+    xref: '@CHILD15@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD16@
+    xref: '@CHILD16@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD17@
+    xref: '@CHILD17@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD18@
+    xref: '@CHILD18@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD19@
+    xref: '@CHILD19@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD20@
+    xref: '@CHILD20@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD21@
+    xref: '@CHILD21@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD22@
+    xref: '@CHILD22@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD23@
+    xref: '@CHILD23@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD24@
+    xref: '@CHILD24@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD25@
+    xref: '@CHILD25@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD26@
+    xref: '@CHILD26@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD27@
+    xref: '@CHILD27@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD28@
+    xref: '@CHILD28@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD29@
+    xref: '@CHILD29@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD30@
+    xref: '@CHILD30@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD31@
+    xref: '@CHILD31@'
     object: 0x<non-null>
-  User data:0x<null>
+  User data: 0x<null>
   reference: 
     type: 2
-    xref: @CHILD32@
+    xref: '@CHILD32@'
     object: 0x<non-null>
-  User data:0x<null>
-Number of children: (null)
+  User data: 0x<null>
+Number of children: '(null)'
 Submitters: 0x<null>
 LDS spouse sealings: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@FATHER@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: /cyrillic (not possible in ANSEL)/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: '/cyrillic (not possible in ANSEL)/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: M
+    User data: 0x<null>
+Sex: 'M'
 Individual events: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
@@ -293,11 +293,11 @@ Spouse to family links:
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
 Aliases: 0x<null>
@@ -306,27 +306,27 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@MOTHER@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: /greek (not possible in ANSEL)/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: '/greek (not possible in ANSEL)/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: F
+    User data: 0x<null>
+Sex: 'F'
 Individual events: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
@@ -335,11 +335,11 @@ Spouse to family links:
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
 Aliases: 0x<null>
@@ -348,89 +348,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD0@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: /Special Characters 0/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: '/Special Characters 0/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: slash l - uppercase (Ł), slash o - uppercase (Ø), slash d - uppercase (Đ), thorn - uppercase (Þ)
-      place_hierarchy: (null)
+      value: 'slash l - uppercase (Ł), slash o - uppercase (Ø), slash d - uppercase (Đ), thorn - uppercase (Þ)'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ligature ae - uppercase (Æ), ligature oe - uppercase (Œ), miagkii znak (ʹ), middle dot (·), musical flat (♭)
-      place_hierarchy: (null)
+      value: 'ligature ae - uppercase (Æ), ligature oe - uppercase (Œ), miagkii znak (ʹ), middle dot (·), musical flat (♭)'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -440,89 +440,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD1@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: /Special Characters 1/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: '/Special Characters 1/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: patent mark (®), plus-or-minus (±), hook o - uppercase (Ơ), hook u - uppercase (Ư)
-      place_hierarchy: (null)
+      value: 'patent mark (®), plus-or-minus (±), hook o - uppercase (Ơ), hook u - uppercase (Ư)'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: alif (ʾ), ayn (ʻ), slash l - lowercase (ł), slash o - lowercase (ø), slash d - lowercase (đ)
-      place_hierarchy: (null)
+      value: 'alif (ʾ), ayn (ʻ), slash l - lowercase (ł), slash o - lowercase (ø), slash d - lowercase (đ)'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -532,89 +532,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD2@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: /Special Characters 2/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: '/Special Characters 2/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: thorn - lowercase (þ), ligature ae - lowercase (æ), ligature oe - lowercase (œ), tverdyi znak (ʺ)
-      place_hierarchy: (null)
+      value: 'thorn - lowercase (þ), ligature ae - lowercase (æ), ligature oe - lowercase (œ), tverdyi znak (ʺ)'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: dotless i - lowercase (ı), british pound (£), eth (ð), hook o - lowercase (ơ), hook u - lowercase (ư)
-      place_hierarchy: (null)
+      value: 'dotless i - lowercase (ı), british pound (£), eth (ð), hook o - lowercase (ơ), hook u - lowercase (ư)'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -624,89 +624,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD3@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: /Special Characters 3/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: '/Special Characters 3/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: degree sign (°), script l (ℓ), phonograph copyright mark (℗), copyright symbol (©)
-      place_hierarchy: (null)
+      value: 'degree sign (°), script l (ℓ), phonograph copyright mark (℗), copyright symbol (©)'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: musical sharp (♯), inverted question mark (¿), inverted exclamation mark (¡), es zet (ß)
-      place_hierarchy: (null)
+      value: 'musical sharp (♯), inverted question mark (¿), inverted exclamation mark (¡), es zet (ß)'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -716,89 +716,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD4@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E0 (Unicode: hook above, 0309)/low rising tone mark/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E0 (Unicode: hook above, 0309)/low rising tone mark/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ẢB̉C̉D̉ẺF̉G̉H̉ỈJ̉K̉L̉M̉N̉ỎP̉Q̉R̉S̉T̉ỦV̉W̉X̉ỶZ̉
-      place_hierarchy: (null)
+      value: 'ẢB̉C̉D̉ẺF̉G̉H̉ỈJ̉K̉L̉M̉N̉ỎP̉Q̉R̉S̉T̉ỦV̉W̉X̉ỶZ̉'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ảb̉c̉d̉ẻf̉g̉h̉ỉj̉k̉l̉m̉n̉ỏp̉q̉r̉s̉t̉ủv̉w̉x̉ỷz̉
-      place_hierarchy: (null)
+      value: 'ảb̉c̉d̉ẻf̉g̉h̉ỉj̉k̉l̉m̉n̉ỏp̉q̉r̉s̉t̉ủv̉w̉x̉ỷz̉'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -808,89 +808,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD5@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E1 (Unicode: grave, 0300)/grave accent/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E1 (Unicode: grave, 0300)/grave accent/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ÀB̀C̀D̀ÈF̀G̀H̀ÌJ̀K̀L̀M̀ǸÒP̀Q̀R̀S̀T̀ÙV̀ẀX̀ỲZ̀
-      place_hierarchy: (null)
+      value: 'ÀB̀C̀D̀ÈF̀G̀H̀ÌJ̀K̀L̀M̀ǸÒP̀Q̀R̀S̀T̀ÙV̀ẀX̀ỲZ̀'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: àb̀c̀d̀èf̀g̀h̀ìj̀k̀l̀m̀ǹòp̀q̀r̀s̀t̀ùv̀ẁx̀ỳz̀
-      place_hierarchy: (null)
+      value: 'àb̀c̀d̀èf̀g̀h̀ìj̀k̀l̀m̀ǹòp̀q̀r̀s̀t̀ùv̀ẁx̀ỳz̀'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -900,89 +900,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD6@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E2 (Unicode: acute, 0301)/acute accent/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E2 (Unicode: acute, 0301)/acute accent/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ÁB́ĆD́ÉF́ǴH́ÍJ́ḰĹḾŃÓṔQ́ŔŚT́ÚV́ẂX́ÝŹ
-      place_hierarchy: (null)
+      value: 'ÁB́ĆD́ÉF́ǴH́ÍJ́ḰĹḾŃÓṔQ́ŔŚT́ÚV́ẂX́ÝŹ'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: áb́ćd́éf́ǵh́íj́ḱĺḿńóṕq́ŕśt́úv́ẃx́ýź
-      place_hierarchy: (null)
+      value: 'áb́ćd́éf́ǵh́íj́ḱĺḿńóṕq́ŕśt́úv́ẃx́ýź'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -992,89 +992,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD7@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E3 (Unicode: circumflex, 0302)/circumflex accent/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E3 (Unicode: circumflex, 0302)/circumflex accent/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ÂB̂ĈD̂ÊF̂ĜĤÎĴK̂L̂M̂N̂ÔP̂Q̂R̂ŜT̂ÛV̂ŴX̂ŶẐ
-      place_hierarchy: (null)
+      value: 'ÂB̂ĈD̂ÊF̂ĜĤÎĴK̂L̂M̂N̂ÔP̂Q̂R̂ŜT̂ÛV̂ŴX̂ŶẐ'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: âb̂ĉd̂êf̂ĝĥîĵk̂l̂m̂n̂ôp̂q̂r̂ŝt̂ûv̂ŵx̂ŷẑ
-      place_hierarchy: (null)
+      value: 'âb̂ĉd̂êf̂ĝĥîĵk̂l̂m̂n̂ôp̂q̂r̂ŝt̂ûv̂ŵx̂ŷẑ'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1084,89 +1084,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD8@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E4 (Unicode: tilde, 0303)/tilde/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E4 (Unicode: tilde, 0303)/tilde/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ÃB̃C̃D̃ẼF̃G̃H̃ĨJ̃K̃L̃M̃ÑÕP̃Q̃R̃S̃T̃ŨṼW̃X̃ỸZ̃
-      place_hierarchy: (null)
+      value: 'ÃB̃C̃D̃ẼF̃G̃H̃ĨJ̃K̃L̃M̃ÑÕP̃Q̃R̃S̃T̃ŨṼW̃X̃ỸZ̃'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ãb̃c̃d̃ẽf̃g̃h̃ĩj̃k̃l̃m̃ñõp̃q̃r̃s̃t̃ũṽw̃x̃ỹz̃
-      place_hierarchy: (null)
+      value: 'ãb̃c̃d̃ẽf̃g̃h̃ĩj̃k̃l̃m̃ñõp̃q̃r̃s̃t̃ũṽw̃x̃ỹz̃'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1176,89 +1176,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD9@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E5 (Unicode: macron, 0304)/macron/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E5 (Unicode: macron, 0304)/macron/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ĀB̄C̄D̄ĒF̄ḠH̄ĪJ̄K̄L̄M̄N̄ŌP̄Q̄R̄S̄T̄ŪV̄W̄X̄ȲZ̄
-      place_hierarchy: (null)
+      value: 'ĀB̄C̄D̄ĒF̄ḠH̄ĪJ̄K̄L̄M̄N̄ŌP̄Q̄R̄S̄T̄ŪV̄W̄X̄ȲZ̄'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: āb̄c̄d̄ēf̄ḡh̄īj̄k̄l̄m̄n̄ōp̄q̄r̄s̄t̄ūv̄w̄x̄ȳz̄
-      place_hierarchy: (null)
+      value: 'āb̄c̄d̄ēf̄ḡh̄īj̄k̄l̄m̄n̄ōp̄q̄r̄s̄t̄ūv̄w̄x̄ȳz̄'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1268,89 +1268,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD10@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E6 (Unicode: breve, 0306)/breve/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E6 (Unicode: breve, 0306)/breve/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ĂB̆C̆D̆ĔF̆ĞH̆ĬJ̆K̆L̆M̆N̆ŎP̆Q̆R̆S̆T̆ŬV̆W̆X̆Y̆Z̆
-      place_hierarchy: (null)
+      value: 'ĂB̆C̆D̆ĔF̆ĞH̆ĬJ̆K̆L̆M̆N̆ŎP̆Q̆R̆S̆T̆ŬV̆W̆X̆Y̆Z̆'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ăb̆c̆d̆ĕf̆ğh̆ĭj̆k̆l̆m̆n̆ŏp̆q̆r̆s̆t̆ŭv̆w̆x̆y̆z̆
-      place_hierarchy: (null)
+      value: 'ăb̆c̆d̆ĕf̆ğh̆ĭj̆k̆l̆m̆n̆ŏp̆q̆r̆s̆t̆ŭv̆w̆x̆y̆z̆'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1360,89 +1360,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD11@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E7 (Unicode: dot above, 0307)/dot above/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E7 (Unicode: dot above, 0307)/dot above/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ȦḂĊḊĖḞĠḢİJ̇K̇L̇ṀṄȮṖQ̇ṘṠṪU̇V̇ẆẊẎŻ
-      place_hierarchy: (null)
+      value: 'ȦḂĊḊĖḞĠḢİJ̇K̇L̇ṀṄȮṖQ̇ṘṠṪU̇V̇ẆẊẎŻ'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ȧḃċḋėḟġḣi̇j̇k̇l̇ṁṅȯṗq̇ṙṡṫu̇v̇ẇẋẏż
-      place_hierarchy: (null)
+      value: 'ȧḃċḋėḟġḣi̇j̇k̇l̇ṁṅȯṗq̇ṙṡṫu̇v̇ẇẋẏż'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1452,89 +1452,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD12@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E8 (Unicode: diaeresis, 0308)/umlaut (dieresis)/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E8 (Unicode: diaeresis, 0308)/umlaut (dieresis)/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ÄB̈C̈D̈ËF̈G̈ḦÏJ̈K̈L̈M̈N̈ÖP̈Q̈R̈S̈T̈ÜV̈ẄẌŸZ̈
-      place_hierarchy: (null)
+      value: 'ÄB̈C̈D̈ËF̈G̈ḦÏJ̈K̈L̈M̈N̈ÖP̈Q̈R̈S̈T̈ÜV̈ẄẌŸZ̈'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: äb̈c̈d̈ëf̈g̈ḧïj̈k̈l̈m̈n̈öp̈q̈r̈s̈ẗüv̈ẅẍÿz̈
-      place_hierarchy: (null)
+      value: 'äb̈c̈d̈ëf̈g̈ḧïj̈k̈l̈m̈n̈öp̈q̈r̈s̈ẗüv̈ẅẍÿz̈'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1544,89 +1544,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD13@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: E9 (Unicode: caron, 030C)/hacek/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: E9 (Unicode: caron, 030C)/hacek/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ǍB̌ČĎĚF̌ǦȞǏJ̌ǨĽM̌ŇǑP̌Q̌ŘŠŤǓV̌W̌X̌Y̌Ž
-      place_hierarchy: (null)
+      value: 'ǍB̌ČĎĚF̌ǦȞǏJ̌ǨĽM̌ŇǑP̌Q̌ŘŠŤǓV̌W̌X̌Y̌Ž'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ǎb̌čďěf̌ǧȟǐǰǩľm̌ňǒp̌q̌řšťǔv̌w̌x̌y̌ž
-      place_hierarchy: (null)
+      value: 'ǎb̌čďěf̌ǧȟǐǰǩľm̌ňǒp̌q̌řšťǔv̌w̌x̌y̌ž'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1636,89 +1636,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD14@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: EA (Unicode: ring above, 030A)/circle above (angstrom)/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: EA (Unicode: ring above, 030A)/circle above (angstrom)/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ÅB̊C̊D̊E̊F̊G̊H̊I̊J̊K̊L̊M̊N̊O̊P̊Q̊R̊S̊T̊ŮV̊W̊X̊Y̊Z̊
-      place_hierarchy: (null)
+      value: 'ÅB̊C̊D̊E̊F̊G̊H̊I̊J̊K̊L̊M̊N̊O̊P̊Q̊R̊S̊T̊ŮV̊W̊X̊Y̊Z̊'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: åb̊c̊d̊e̊f̊g̊h̊i̊j̊k̊l̊m̊n̊o̊p̊q̊r̊s̊t̊ův̊ẘx̊ẙz̊
-      place_hierarchy: (null)
+      value: 'åb̊c̊d̊e̊f̊g̊h̊i̊j̊k̊l̊m̊n̊o̊p̊q̊r̊s̊t̊ův̊ẘx̊ẙz̊'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1728,89 +1728,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD15@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: EB (Unicode: ligature left half, FE20)/ligature, left half/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: EB (Unicode: ligature left half, FE20)/ligature, left half/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A︠B︠C︠D︠E︠F︠G︠H︠I︠J︠K︠L︠M︠N︠O︠P︠Q︠R︠S︠T︠U︠V︠W︠X︠Y︠Z︠
-      place_hierarchy: (null)
+      value: 'A︠B︠C︠D︠E︠F︠G︠H︠I︠J︠K︠L︠M︠N︠O︠P︠Q︠R︠S︠T︠U︠V︠W︠X︠Y︠Z︠'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a︠b︠c︠d︠e︠f︠g︠h︠i︠j︠k︠l︠m︠n︠o︠p︠q︠r︠s︠t︠u︠v︠w︠x︠y︠z︠
-      place_hierarchy: (null)
+      value: 'a︠b︠c︠d︠e︠f︠g︠h︠i︠j︠k︠l︠m︠n︠o︠p︠q︠r︠s︠t︠u︠v︠w︠x︠y︠z︠'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1820,89 +1820,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD16@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: EC (Unicode: ligature right half, FE21)/ligature, right half/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: EC (Unicode: ligature right half, FE21)/ligature, right half/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A︡B︡C︡D︡E︡F︡G︡H︡I︡J︡K︡L︡M︡N︡O︡P︡Q︡R︡S︡T︡U︡V︡W︡X︡Y︡Z︡
-      place_hierarchy: (null)
+      value: 'A︡B︡C︡D︡E︡F︡G︡H︡I︡J︡K︡L︡M︡N︡O︡P︡Q︡R︡S︡T︡U︡V︡W︡X︡Y︡Z︡'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a︡b︡c︡d︡e︡f︡g︡h︡i︡j︡k︡l︡m︡n︡o︡p︡q︡r︡s︡t︡u︡v︡w︡x︡y︡z︡
-      place_hierarchy: (null)
+      value: 'a︡b︡c︡d︡e︡f︡g︡h︡i︡j︡k︡l︡m︡n︡o︡p︡q︡r︡s︡t︡u︡v︡w︡x︡y︡z︡'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -1912,89 +1912,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD17@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: ED (Unicode: comma above right, 0315)/high comma, off center/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: ED (Unicode: comma above right, 0315)/high comma, off center/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̕B̕C̕D̕E̕F̕G̕H̕I̕J̕K̕L̕M̕N̕O̕P̕Q̕R̕S̕T̕U̕V̕W̕X̕Y̕Z̕
-      place_hierarchy: (null)
+      value: 'A̕B̕C̕D̕E̕F̕G̕H̕I̕J̕K̕L̕M̕N̕O̕P̕Q̕R̕S̕T̕U̕V̕W̕X̕Y̕Z̕'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̕b̕c̕d̕e̕f̕g̕h̕i̕j̕k̕l̕m̕n̕o̕p̕q̕r̕s̕t̕u̕v̕w̕x̕y̕z̕
-      place_hierarchy: (null)
+      value: 'a̕b̕c̕d̕e̕f̕g̕h̕i̕j̕k̕l̕m̕n̕o̕p̕q̕r̕s̕t̕u̕v̕w̕x̕y̕z̕'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2004,89 +2004,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD18@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: EE (Unicode: double acute, 030B)/double acute accent/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: EE (Unicode: double acute, 030B)/double acute accent/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̋B̋C̋D̋E̋F̋G̋H̋I̋J̋K̋L̋M̋N̋ŐP̋Q̋R̋S̋T̋ŰV̋W̋X̋Y̋Z̋
-      place_hierarchy: (null)
+      value: 'A̋B̋C̋D̋E̋F̋G̋H̋I̋J̋K̋L̋M̋N̋ŐP̋Q̋R̋S̋T̋ŰV̋W̋X̋Y̋Z̋'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̋b̋c̋d̋e̋f̋g̋h̋i̋j̋k̋l̋m̋n̋őp̋q̋r̋s̋t̋űv̋w̋x̋y̋z̋
-      place_hierarchy: (null)
+      value: 'a̋b̋c̋d̋e̋f̋g̋h̋i̋j̋k̋l̋m̋n̋őp̋q̋r̋s̋t̋űv̋w̋x̋y̋z̋'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2096,89 +2096,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD19@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: EF (Unicode: candrabindu, 0310)/candrabindu/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: EF (Unicode: candrabindu, 0310)/candrabindu/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̐B̐C̐D̐E̐F̐G̐H̐I̐J̐K̐L̐M̐N̐O̐P̐Q̐R̐S̐T̐U̐V̐W̐X̐Y̐Z̐
-      place_hierarchy: (null)
+      value: 'A̐B̐C̐D̐E̐F̐G̐H̐I̐J̐K̐L̐M̐N̐O̐P̐Q̐R̐S̐T̐U̐V̐W̐X̐Y̐Z̐'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̐b̐c̐d̐e̐f̐g̐h̐i̐j̐k̐l̐m̐n̐o̐p̐q̐r̐s̐t̐u̐v̐w̐x̐y̐z̐
-      place_hierarchy: (null)
+      value: 'a̐b̐c̐d̐e̐f̐g̐h̐i̐j̐k̐l̐m̐n̐o̐p̐q̐r̐s̐t̐u̐v̐w̐x̐y̐z̐'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2188,89 +2188,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD20@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F0 (Unicode: cedilla, 0327)/cedilla/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F0 (Unicode: cedilla, 0327)/cedilla/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̧B̧ÇḐȨF̧ĢḨI̧J̧ĶĻM̧ŅO̧P̧Q̧ŖŞŢU̧V̧W̧X̧Y̧Z̧
-      place_hierarchy: (null)
+      value: 'A̧B̧ÇḐȨF̧ĢḨI̧J̧ĶĻM̧ŅO̧P̧Q̧ŖŞŢU̧V̧W̧X̧Y̧Z̧'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̧b̧çḑȩf̧ģḩi̧j̧ķļm̧ņo̧p̧q̧ŗşţu̧v̧w̧x̧y̧z̧
-      place_hierarchy: (null)
+      value: 'a̧b̧çḑȩf̧ģḩi̧j̧ķļm̧ņo̧p̧q̧ŗşţu̧v̧w̧x̧y̧z̧'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2280,89 +2280,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD21@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F1 (Unicode: ogonek, 0328)/right hook/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F1 (Unicode: ogonek, 0328)/right hook/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ĄB̨C̨D̨ĘF̨G̨H̨ĮJ̨K̨L̨M̨N̨ǪP̨Q̨R̨S̨T̨ŲV̨W̨X̨Y̨Z̨
-      place_hierarchy: (null)
+      value: 'ĄB̨C̨D̨ĘF̨G̨H̨ĮJ̨K̨L̨M̨N̨ǪP̨Q̨R̨S̨T̨ŲV̨W̨X̨Y̨Z̨'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ąb̨c̨d̨ęf̨g̨h̨įj̨k̨l̨m̨n̨ǫp̨q̨r̨s̨t̨ųv̨w̨x̨y̨z̨
-      place_hierarchy: (null)
+      value: 'ąb̨c̨d̨ęf̨g̨h̨įj̨k̨l̨m̨n̨ǫp̨q̨r̨s̨t̨ųv̨w̨x̨y̨z̨'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2372,89 +2372,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD22@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F2 (Unicode: dot below, 0323)/dot below/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F2 (Unicode: dot below, 0323)/dot below/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ẠḄC̣ḌẸF̣G̣ḤỊJ̣ḲḶṂṆỌP̣Q̣ṚṢṬỤṾẈX̣ỴẒ
-      place_hierarchy: (null)
+      value: 'ẠḄC̣ḌẸF̣G̣ḤỊJ̣ḲḶṂṆỌP̣Q̣ṚṢṬỤṾẈX̣ỴẒ'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ạḅc̣ḍẹf̣g̣ḥịj̣ḳḷṃṇọp̣q̣ṛṣṭụṿẉx̣ỵẓ
-      place_hierarchy: (null)
+      value: 'ạḅc̣ḍẹf̣g̣ḥịj̣ḳḷṃṇọp̣q̣ṛṣṭụṿẉx̣ỵẓ'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2464,89 +2464,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD23@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F3 (Unicode: diaeresis below, 0324)/double dot below/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F3 (Unicode: diaeresis below, 0324)/double dot below/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̤B̤C̤D̤E̤F̤G̤H̤I̤J̤K̤L̤M̤N̤O̤P̤Q̤R̤S̤T̤ṲV̤W̤X̤Y̤Z̤
-      place_hierarchy: (null)
+      value: 'A̤B̤C̤D̤E̤F̤G̤H̤I̤J̤K̤L̤M̤N̤O̤P̤Q̤R̤S̤T̤ṲV̤W̤X̤Y̤Z̤'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̤b̤c̤d̤e̤f̤g̤h̤i̤j̤k̤l̤m̤n̤o̤p̤q̤r̤s̤t̤ṳv̤w̤x̤y̤z̤
-      place_hierarchy: (null)
+      value: 'a̤b̤c̤d̤e̤f̤g̤h̤i̤j̤k̤l̤m̤n̤o̤p̤q̤r̤s̤t̤ṳv̤w̤x̤y̤z̤'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2556,89 +2556,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD24@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F4 (Unicode: ring below, 0325)/circle below/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F4 (Unicode: ring below, 0325)/circle below/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ḀB̥C̥D̥E̥F̥G̥H̥I̥J̥K̥L̥M̥N̥O̥P̥Q̥R̥S̥T̥U̥V̥W̥X̥Y̥Z̥
-      place_hierarchy: (null)
+      value: 'ḀB̥C̥D̥E̥F̥G̥H̥I̥J̥K̥L̥M̥N̥O̥P̥Q̥R̥S̥T̥U̥V̥W̥X̥Y̥Z̥'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: ḁb̥c̥d̥e̥f̥g̥h̥i̥j̥k̥l̥m̥n̥o̥p̥q̥r̥s̥t̥u̥v̥w̥x̥y̥z̥
-      place_hierarchy: (null)
+      value: 'ḁb̥c̥d̥e̥f̥g̥h̥i̥j̥k̥l̥m̥n̥o̥p̥q̥r̥s̥t̥u̥v̥w̥x̥y̥z̥'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2648,89 +2648,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD25@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F5 (Unicode: double low line, 0333)/double underscore/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F5 (Unicode: double low line, 0333)/double underscore/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̳B̳C̳D̳E̳F̳G̳H̳I̳J̳K̳L̳M̳N̳O̳P̳Q̳R̳S̳T̳U̳V̳W̳X̳Y̳Z̳
-      place_hierarchy: (null)
+      value: 'A̳B̳C̳D̳E̳F̳G̳H̳I̳J̳K̳L̳M̳N̳O̳P̳Q̳R̳S̳T̳U̳V̳W̳X̳Y̳Z̳'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̳b̳c̳d̳e̳f̳g̳h̳i̳j̳k̳l̳m̳n̳o̳p̳q̳r̳s̳t̳u̳v̳w̳x̳y̳z̳
-      place_hierarchy: (null)
+      value: 'a̳b̳c̳d̳e̳f̳g̳h̳i̳j̳k̳l̳m̳n̳o̳p̳q̳r̳s̳t̳u̳v̳w̳x̳y̳z̳'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2740,89 +2740,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD26@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F6 (Unicode: line below, 0332)/underscore/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F6 (Unicode: line below, 0332)/underscore/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̲B̲C̲D̲E̲F̲G̲H̲I̲J̲K̲L̲M̲N̲O̲P̲Q̲R̲S̲T̲U̲V̲W̲X̲Y̲Z̲
-      place_hierarchy: (null)
+      value: 'A̲B̲C̲D̲E̲F̲G̲H̲I̲J̲K̲L̲M̲N̲O̲P̲Q̲R̲S̲T̲U̲V̲W̲X̲Y̲Z̲'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̲b̲c̲d̲e̲f̲g̲h̲i̲j̲k̲l̲m̲n̲o̲p̲q̲r̲s̲t̲u̲v̲w̲x̲y̲z̲
-      place_hierarchy: (null)
+      value: 'a̲b̲c̲d̲e̲f̲g̲h̲i̲j̲k̲l̲m̲n̲o̲p̲q̲r̲s̲t̲u̲v̲w̲x̲y̲z̲'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2832,89 +2832,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD27@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F7 (Unicode: comma below, 0326)/left hook/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F7 (Unicode: comma below, 0326)/left hook/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̦B̦C̦D̦E̦F̦G̦H̦I̦J̦K̦L̦M̦N̦O̦P̦Q̦R̦ȘȚU̦V̦W̦X̦Y̦Z̦
-      place_hierarchy: (null)
+      value: 'A̦B̦C̦D̦E̦F̦G̦H̦I̦J̦K̦L̦M̦N̦O̦P̦Q̦R̦ȘȚU̦V̦W̦X̦Y̦Z̦'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̦b̦c̦d̦e̦f̦g̦h̦i̦j̦k̦l̦m̦n̦o̦p̦q̦r̦șțu̦v̦w̦x̦y̦z̦
-      place_hierarchy: (null)
+      value: 'a̦b̦c̦d̦e̦f̦g̦h̦i̦j̦k̦l̦m̦n̦o̦p̦q̦r̦șțu̦v̦w̦x̦y̦z̦'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -2924,89 +2924,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD28@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F8 (Unicode: left half ring below, 031C)/right cedilla/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F8 (Unicode: left half ring below, 031C)/right cedilla/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̜B̜C̜D̜E̜F̜G̜H̜I̜J̜K̜L̜M̜N̜O̜P̜Q̜R̜S̜T̜U̜V̜W̜X̜Y̜Z̜
-      place_hierarchy: (null)
+      value: 'A̜B̜C̜D̜E̜F̜G̜H̜I̜J̜K̜L̜M̜N̜O̜P̜Q̜R̜S̜T̜U̜V̜W̜X̜Y̜Z̜'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̜b̜c̜d̜e̜f̜g̜h̜i̜j̜k̜l̜m̜n̜o̜p̜q̜r̜s̜t̜u̜v̜w̜x̜y̜z̜
-      place_hierarchy: (null)
+      value: 'a̜b̜c̜d̜e̜f̜g̜h̜i̜j̜k̜l̜m̜n̜o̜p̜q̜r̜s̜t̜u̜v̜w̜x̜y̜z̜'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -3016,89 +3016,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD29@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: F9 (Unicode: breve below, 032E)/half circle below/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: F9 (Unicode: breve below, 032E)/half circle below/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̮B̮C̮D̮E̮F̮G̮ḪI̮J̮K̮L̮M̮N̮O̮P̮Q̮R̮S̮T̮U̮V̮W̮X̮Y̮Z̮
-      place_hierarchy: (null)
+      value: 'A̮B̮C̮D̮E̮F̮G̮ḪI̮J̮K̮L̮M̮N̮O̮P̮Q̮R̮S̮T̮U̮V̮W̮X̮Y̮Z̮'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̮b̮c̮d̮e̮f̮g̮ḫi̮j̮k̮l̮m̮n̮o̮p̮q̮r̮s̮t̮u̮v̮w̮x̮y̮z̮
-      place_hierarchy: (null)
+      value: 'a̮b̮c̮d̮e̮f̮g̮ḫi̮j̮k̮l̮m̮n̮o̮p̮q̮r̮s̮t̮u̮v̮w̮x̮y̮z̮'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -3108,89 +3108,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD30@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: FA (Unicode: double tilde left half, FE22)/double tilde, left half/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: FA (Unicode: double tilde left half, FE22)/double tilde, left half/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A︢B︢C︢D︢E︢F︢G︢H︢I︢J︢K︢L︢M︢N︢O︢P︢Q︢R︢S︢T︢U︢V︢W︢X︢Y︢Z︢
-      place_hierarchy: (null)
+      value: 'A︢B︢C︢D︢E︢F︢G︢H︢I︢J︢K︢L︢M︢N︢O︢P︢Q︢R︢S︢T︢U︢V︢W︢X︢Y︢Z︢'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a︢b︢c︢d︢e︢f︢g︢h︢i︢j︢k︢l︢m︢n︢o︢p︢q︢r︢s︢t︢u︢v︢w︢x︢y︢z︢
-      place_hierarchy: (null)
+      value: 'a︢b︢c︢d︢e︢f︢g︢h︢i︢j︢k︢l︢m︢n︢o︢p︢q︢r︢s︢t︢u︢v︢w︢x︢y︢z︢'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -3200,89 +3200,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD31@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: FB (Unicode: double tilde right half, FE23)/double tilde, right half/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: FB (Unicode: double tilde right half, FE23)/double tilde, right half/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A︣B︣C︣D︣E︣F︣G︣H︣I︣J︣K︣L︣M︣N︣O︣P︣Q︣R︣S︣T︣U︣V︣W︣X︣Y︣Z︣
-      place_hierarchy: (null)
+      value: 'A︣B︣C︣D︣E︣F︣G︣H︣I︣J︣K︣L︣M︣N︣O︣P︣Q︣R︣S︣T︣U︣V︣W︣X︣Y︣Z︣'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a︣b︣c︣d︣e︣f︣g︣h︣i︣j︣k︣l︣m︣n︣o︣p︣q︣r︣s︣t︣u︣v︣w︣x︣y︣z︣
-      place_hierarchy: (null)
+      value: 'a︣b︣c︣d︣e︣f︣g︣h︣i︣j︣k︣l︣m︣n︣o︣p︣q︣r︣s︣t︣u︣v︣w︣x︣y︣z︣'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -3292,89 +3292,89 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === INDIVIDUAL (@CHILD32@) ===
-Restriction notice: (null)
+Restriction notice: '(null)'
 names: 
   Name: 
-    Name: code: FE (Unicode: comma above, 0313)/high comma, centered/
-    Prefix: (null)
-    Given: (null)
-    Nickname: (null)
-    Surname prefix: (null)
-    Surname: (null)
-    Suffix: (null)
+    Name: 'code: FE (Unicode: comma above, 0313)/high comma, centered/'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
     citations: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
-Sex: (null)
+    User data: 0x<null>
+Sex: '(null)'
 Individual events: 
   Event: 283 (BIRT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: A̓B̓C̓D̓E̓F̓G̓H̓I̓J̓K̓L̓M̓N̓O̓P̓Q̓R̓S̓T̓U̓V̓W̓X̓Y̓Z̓
-      place_hierarchy: (null)
+      value: 'A̓B̓C̓D̓E̓F̓G̓H̓I̓J̓K̓L̓M̓N̓O̓P̓Q̓R̓S̓T̓U̓V̓W̓X̓Y̓Z̓'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
   Event: 307 (DEAT)
-    Value: (null)
-    Type: (null)
+    Value: '(null)'
+    Type: '(null)'
     Date: 0x<null>
     Place: 
-      value: a̓b̓c̓d̓e̓f̓g̓h̓i̓j̓k̓l̓m̓n̓o̓p̓q̓r̓s̓t̓u̓v̓w̓x̓y̓z̓
-      place_hierarchy: (null)
+      value: 'a̓b̓c̓d̓e̓f̓g̓h̓i̓j̓k̓l̓m̓n̓o̓p̓q̓r̓s̓t̓u̓v̓w̓x̓y̓z̓'
+      place_hierarchy: '(null)'
       citations: 0x<null>
       notes: 0x<null>
-      User data:0x<null>
+      User data: 0x<null>
     Address: 0x<null>
-    Phone 1: (null)
-    Phone 2: (null)
-    Phone 3: (null)
+    Phone 1: '(null)'
+    Phone 2: '(null)'
+    Phone 3: '(null)'
     Age: 0x<null>
-    Agency: (null)
-    Cause: (null)
+    Agency: '(null)'
+    Cause: '(null)'
     citations: 0x<null>
     multimedia links: 0x<null>
     notes: 0x<null>
     Age of husband: 0x<null>
     Age of wife: 0x<null>
     Family: 0x<null>
-    Adoption parent: (null)
-    User data:0x<null>
+    Adoption parent: '(null)'
+    User data: 0x<null>
 Individual attributes: 0x<null>
 LDS individual ordinance: 0x<null>
 Child to family links: 
   Family:
     Family: 
       type: 1
-      xref: @FAMILY@
+      xref: '@FAMILY@'
       object: 0x<non-null>
     pedigrees: 0x<null>
     notes: 0x<null>
-    User data:0x<null>
+    User data: 0x<null>
 Spouse to family links: 0x<null>
 Submitters: 0x<null>
 Associations: 0x<null>
@@ -3384,31 +3384,31 @@ Descendant interest: 0x<null>
 citations: 0x<null>
 multimedia links: 0x<null>
 notes: 0x<null>
-Record file nr: (null)
-Ancestral file nr: (null)
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
 user refs: 0x<null>
-Record ID: (null)
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
 === SUBMITTER (@SUBMITTER@) ===
-Name: /H. Eichmann/
+Name: '/H. Eichmann/'
 Address: 
-  Full label: email: h.eichmann@gmx.de
-  Line 1: (null)
-  Line 2: (null)
-  City: (null)
-  State: (null)
-  Postal: (null)
-  Country: (null)
-  User data:0x<null>
-Phone 1: (null)
-Phone 2: (null)
-Phone 3: (null)
+  Full label: 'email: h.eichmann@gmx.de'
+  Line 1: '(null)'
+  Line 2: '(null)'
+  City: '(null)'
+  State: '(null)'
+  Postal: '(null)'
+  Country: '(null)'
+  User data: 0x<null>
+Phone 1: '(null)'
+Phone 2: '(null)'
+Phone 3: '(null)'
 multimedia links: 0x<null>
-Language 1: (null)
-Language 2: (null)
-Language 3: (null)
-Record file nr: (null)
-Record ID: (null)
+Language 1: '(null)'
+Language 2: '(null)'
+Language 3: '(null)'
+Record file nr: '(null)'
+Record ID: '(null)'
 change date: 0x<null>
-User data:0x<null>
+User data: 0x<null>
