@@ -89,6 +89,10 @@ char* get_encoding(const char* gedcom_n, Encoding enc)
   key = (char*)malloc(strlen(gedcom_n) + strlen(charwidth_string[enc]) + 3);
 
   if (key) {
+    char* sp_pos = NULL;
+    while ((sp_pos = strchr(gedcom_n, ' ')) != NULL) {
+      *sp_pos = '_';
+    }
     /* sprintf is safe here (malloc'ed before) */
     sprintf(key, "%s(%s)", gedcom_n, charwidth_string[enc]);
     
