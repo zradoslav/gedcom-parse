@@ -1,9 +1,11 @@
 # $Id$
 # $Name$
 
+LIBTOOL=libtool
 YACC=bison
 LEX=flex
 
+LIBPATH=/usr/local/lib
 DMALLOC_CFLAGS=
 DMALLOC_LOADLIBES=
 CFLAGS=-g -W -Wall -pedantic $(DMALLOC_CFLAGS)
@@ -11,12 +13,18 @@ YFLAGS=--debug --defines
 LFLAGS=-8
 LOADLIBES=$(DMALLOC_LOADLIBES)
 
-all:	ansel_module gedcom_parse
+all:	ansel_module libgedcom.so gedcom_parse
 
-gedcom_parse:	standalone.o lex.gedcom_1byte_.o lex.gedcom_hilo_.o \
-                lex.gedcom_lohi_.o gedcom.tab.o message.o multilex.o \
-		encoding.o interface.o
-	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
+gedcom_parse:	standalone.o
+	$(CC) $(LDFLAGS) -L.libs -lgedcom $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+libgedcom.so:	lex.gedcom_1byte_.lo lex.gedcom_hilo_.lo lex.gedcom_lohi_.lo \
+		gedcom.tab.lo message.lo multilex.lo encoding.lo interface.lo
+	$(LIBTOOL) $(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o libgedcom.la -rpath $(LIBPATH)
+	ln -s .libs/libgedcom.so.0.0.0 libgedcom.so
+
+%.lo:	%.c
+	$(LIBTOOL) $(CC) -c $(CPPFLAGS) $(CFLAGS) $^
 
 ansel_module:
 	cd ansel && $(MAKE)
@@ -38,8 +46,8 @@ gedcom.tab.c gedcom.tab.h:	gedcom.y gedcom.h
 
 .PHONY:	clean
 clean:
-	rm -f core gedcom_parse lexer_* *.o lex.gedcom_* \
-        gedcom.tab.* gedcom.output
+	rm -f core gedcom_parse lexer_* *.o *.lo *.la .libs/* lex.gedcom_* \
+        gedcom.tab.* gedcom.output libgedcom.so
 	cd ansel && $(MAKE) clean
 
 # Lexer test programs
@@ -75,6 +83,7 @@ test_lohi:	lexer_lohi
 
 test:	all
 	@export GCONV_PATH=./ansel; \
+	export LD_LIBRARY_PATH=.libs; \
         for file in t/*.ged; do \
 	  echo "=== testing $$file"; \
 	  ./gedcom_parse -2 $$file; \
