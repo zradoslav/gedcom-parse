@@ -15,11 +15,13 @@
 #include <search.h>
 #include <stdio.h>
 #include <limits.h>
+#include <stdlib.h>
 #include "gedcom_internal.h"
 #include "encoding.h"
 
 #define INTERNAL_ENCODING "UTF8"
 #define ENCODING_CONF_FILE "gedcom.enc"
+#define GCONV_SEARCH_PATH "GCONV_PATH"
 #define MAXBUF 255
 
 static iconv_t cd_to_internal = (iconv_t) -1;
@@ -84,6 +86,34 @@ void init_encodings()
     char gedcom_n[MAXBUF + 1];
     char charwidth[MAXBUF + 1];
     char iconv_n[MAXBUF + 1];
+    char *gconv_path;
+
+    /* Add gedcom data directory to gconv search path */
+    gconv_path = getenv(GCONV_SEARCH_PATH);
+    if (gconv_path == NULL || strstr(gconv_path, PKGDATADIR) == NULL) {
+      char *new_gconv_path;
+      if (gconv_path == NULL) {
+	new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
+					+ strlen(PKGDATADIR)
+					+ 2);
+	sprintf(new_gconv_path, "%s=%s", GCONV_SEARCH_PATH, PKGDATADIR);
+      }
+      else {
+	new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
+					+ strlen(gconv_path)
+					+ strlen(PKGDATADIR)
+					+ 3);
+	sprintf(new_gconv_path, "%s=%s:%s",
+		GCONV_SEARCH_PATH, gconv_path, PKGDATADIR);
+      }
+      if (putenv(new_gconv_path) != 0) {
+	gedcom_warning("Failed updating environment variable %s",
+		       GCONV_SEARCH_PATH);
+      }
+      printf("%s\n", new_gconv_path);
+    }
+    
+    /* Open gedcom configuration file and read */
     in = fopen(ENCODING_CONF_FILE, "r");
     if (in == NULL) {
       char path[PATH_MAX];
