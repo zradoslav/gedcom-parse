@@ -409,8 +409,8 @@ struct date_value gedcom_parse_date(const char* line_value)
   init_date(&def_date);
   curr_line_value = line_value;
   if (compat_mode(C_NO_REQUIRED_VALUES)
-      && !strncmp(curr_line_value, "-", 2)) {
-    gedcom_date_error(_("Empty value changed to '-'"));
+      && !strncmp(curr_line_value, VALUE_IF_MISSING, 2)) {
+    gedcom_date_error(_("Empty value changed to '%s'"), VALUE_IF_MISSING);
     result = 1;
   }
   else {

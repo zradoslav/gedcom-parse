@@ -70,6 +70,7 @@ int  gedcom_check_token(const char* str, ParseState state, int check_token);
 void gedcom_mem_error(const char *filename, int line);
 
 #define MEMORY_ERROR gedcom_mem_error(__FILE__, __LINE__)
+#define VALUE_IF_MISSING "-" 
 
 extern int line_no;
 extern int init_called;
