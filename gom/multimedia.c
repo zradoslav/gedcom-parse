@@ -100,7 +100,7 @@ void multimedia_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
     LINK_CHAIN_ELT(user_ref_number, obj->ref, ref);
 }
 
-void multimedia_set_record_id(Gom_ctxt ctxt, char *rin)
+void multimedia_set_record_id(Gom_ctxt ctxt, const char *rin)
 {
   struct multimedia *obj = SAFE_CTXT_CAST(multimedia, ctxt);
   if (obj) {
@@ -148,7 +148,7 @@ struct multimedia* gom_get_first_multimedia()
   return gom_first_multimedia;
 }
 
-struct multimedia* make_multimedia_record(char* xrefstr)
+struct multimedia* make_multimedia_record(const char* xrefstr)
 {
   struct multimedia* multi = NULL;
   MAKE_CHAIN_ELT(multimedia, gom_first_multimedia, multi);

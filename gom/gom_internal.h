@@ -64,9 +64,10 @@ typedef struct Gom_ctxt_struct *Gom_ctxt;
 
 Gom_ctxt make_gom_ctxt(int ctxt_type, OBJ_TYPE obj_type, void *ctxt_ptr);
 void destroy_gom_ctxt(Gom_ctxt ctxt);
-void gom_cast_error(char* file, int line, OBJ_TYPE expected, OBJ_TYPE found);
-void gom_no_context(char* file, int line);
-void gom_unexpected_context(char* file, int line, OBJ_TYPE found);
+void gom_cast_error(const char* file, int line,
+		    OBJ_TYPE expected, OBJ_TYPE found);
+void gom_no_context(const char* file, int line);
+void gom_unexpected_context(const char* file, int line, OBJ_TYPE found);
 
 #define MAKE_GOM_CTXT(CTXT_TYPE, STRUCTTYPE, CTXT_PTR)                        \
   make_gom_ctxt(CTXT_TYPE, T_ ## STRUCTTYPE, CTXT_PTR)
@@ -89,14 +90,14 @@ void gom_unexpected_context(char* file, int line, OBJ_TYPE found);
 #define NO_CONTEXT                                                            \
   gom_no_context(__FILE__, __LINE__)
 
-void gom_mem_error(char *filename, int line);
+void gom_mem_error(const char *filename, int line);
 
 #define MEMORY_ERROR gom_mem_error(__FILE__, __LINE__)
 
 void def_rec_end(Gedcom_rec rec, Gedcom_ctxt self);
 void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
 		 Gedcom_val parsed_value);
-void set_xref_type(struct xref_value *xr, char* str);
+void set_xref_type(struct xref_value *xr, const char* str);
 
 typedef enum {
   WITHOUT_NL,
@@ -170,7 +171,7 @@ void NULL_DESTROY(void* anything);
   }
 
 #define GET_REC_BY_XREF(STRUCTTYPE,XREF_TYPE,FUNC_NAME)                       \
-  struct STRUCTTYPE *FUNC_NAME(char *xrefstr)                                 \
+  struct STRUCTTYPE *FUNC_NAME(const char *xrefstr)                           \
   {                                                                           \
     struct xref_value* xr = gedcom_get_by_xref(xrefstr);                      \
     if (xr && (xr->type == XREF_TYPE) && xr->object)                          \

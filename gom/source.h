@@ -29,16 +29,16 @@
 
 void source_subscribe();
 void sources_cleanup();
-struct source* make_source_record(char* xref);
+struct source* make_source_record(const char* xref);
 void source_add_event(Gom_ctxt ctxt, struct source_event* evt);
 void source_add_note_to_data(Gom_ctxt ctxt, struct note_sub* note);
-void source_add_to_value(NL_TYPE type, Gom_ctxt ctxt, char* str);
+void source_add_to_value(NL_TYPE type, Gom_ctxt ctxt, const char* str);
 void source_add_note_to_repo(Gom_ctxt ctxt, struct note_sub* note);
 void source_add_description(Gom_ctxt ctxt, struct source_description* desc);
 void source_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link);
 void source_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void source_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void source_set_record_id(Gom_ctxt ctxt, char *rin);
+void source_set_record_id(Gom_ctxt ctxt, const char *rin);
 void source_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void source_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 

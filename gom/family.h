@@ -29,14 +29,14 @@
 
 void family_subscribe();
 void families_cleanup();
-struct family* make_family_record(char* xref);
+struct family* make_family_record(const char* xref);
 void family_add_event(Gom_ctxt ctxt, struct event* evt);
 void family_add_lss(Gom_ctxt ctxt, struct lds_event* lss);
 void family_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
 void family_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link);
 void family_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void family_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void family_set_record_id(Gom_ctxt ctxt, char *rin);
+void family_set_record_id(Gom_ctxt ctxt, const char *rin);
 void family_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void family_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 

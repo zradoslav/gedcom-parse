@@ -87,7 +87,7 @@ void submitter_add_address(Gom_ctxt ctxt, struct address* address)
     subm->address = address;
 }
 
-void submitter_add_phone(Gom_ctxt ctxt, char *phone)
+void submitter_add_phone(Gom_ctxt ctxt, const char *phone)
 {
   struct submitter *subm = SAFE_CTXT_CAST(submitter, ctxt);
   if (subm) {
@@ -151,7 +151,7 @@ struct submitter* gom_get_first_submitter()
   return gom_first_submitter;
 }
 
-struct submitter* make_submitter_record(char* xrefstr)
+struct submitter* make_submitter_record(const char* xrefstr)
 {
   struct submitter* subm = NULL;
   MAKE_CHAIN_ELT(submitter, gom_first_submitter, subm);

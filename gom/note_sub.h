@@ -30,7 +30,7 @@
 void note_sub_subscribe();
 void note_sub_cleanup(struct note_sub* note);
 void note_sub_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
-void note_sub_add_to_note(NL_TYPE type, Gom_ctxt ctxt, char* str);
+void note_sub_add_to_note(NL_TYPE type, Gom_ctxt ctxt, const char* str);
 void note_sub_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 
 #endif /* __NOTE_SUB_H */

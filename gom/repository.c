@@ -52,7 +52,7 @@ void repository_add_address(Gom_ctxt ctxt, struct address* address)
     repo->address = address;
 }
 
-void repository_add_phone(Gom_ctxt ctxt, char *phone)
+void repository_add_phone(Gom_ctxt ctxt, const char *phone)
 {
   struct repository *repo = SAFE_CTXT_CAST(repository, ctxt);
   if (repo) {
@@ -79,7 +79,7 @@ void repository_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
     LINK_CHAIN_ELT(user_ref_number, repo->ref, ref);
 }
 
-void repository_set_record_id(Gom_ctxt ctxt, char *rin)
+void repository_set_record_id(Gom_ctxt ctxt, const char *rin)
 {
   struct repository *repo = SAFE_CTXT_CAST(repository, ctxt);
   if (repo) {
@@ -129,7 +129,7 @@ struct repository* gom_get_first_repository()
   return gom_first_repository;
 }
 
-struct repository* make_repository_record(char* xrefstr)
+struct repository* make_repository_record(const char* xrefstr)
 {
   struct repository* repo = NULL;
   MAKE_CHAIN_ELT(repository, gom_first_repository, repo);

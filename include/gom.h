@@ -413,34 +413,34 @@ struct user_rec {
 
 /* Functions */
 
-int  gom_parse_file(char *file_name);
+int  gom_parse_file(const char *file_name);
 
 struct header*     gom_get_header();
 struct submission* gom_get_submission();
 
 struct family*     gom_get_first_family();
-struct family*     gom_get_family_by_xref(char *xref);
+struct family*     gom_get_family_by_xref(const char *xref);
 
 struct individual* gom_get_first_individual();
-struct individual* gom_get_individual_by_xref(char *xref);
+struct individual* gom_get_individual_by_xref(const char *xref);
 
 struct multimedia* gom_get_first_multimedia();
-struct multimedia* gom_get_multimedia_by_xref(char *xref);
+struct multimedia* gom_get_multimedia_by_xref(const char *xref);
 
 struct note*       gom_get_first_note();
-struct note*       gom_get_note_by_xref(char *xref);
+struct note*       gom_get_note_by_xref(const char *xref);
 
 struct repository* gom_get_first_repository();
-struct repository* gom_get_repository_by_xref(char *xref);
+struct repository* gom_get_repository_by_xref(const char *xref);
 
 struct source*     gom_get_first_source();
-struct source*     gom_get_source_by_xref(char *xref);
+struct source*     gom_get_source_by_xref(const char *xref);
 
 struct submitter*  gom_get_first_submitter();
-struct submitter*  gom_get_submitter_by_xref(char *xref);
+struct submitter*  gom_get_submitter_by_xref(const char *xref);
 
 struct user_rec*   gom_get_first_user_rec();
-struct user_rec*   gom_get_user_rec_by_xref(char *xref);
+struct user_rec*   gom_get_user_rec_by_xref(const char *xref);
 
 __END_DECLS
 

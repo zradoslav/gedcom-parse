@@ -149,7 +149,7 @@ void individual_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
     LINK_CHAIN_ELT(user_ref_number, indiv->ref, ref);
 }
 
-void individual_set_record_id(Gom_ctxt ctxt, char *rin)
+void individual_set_record_id(Gom_ctxt ctxt, const char *rin)
 {
   struct individual *indiv = SAFE_CTXT_CAST(individual, ctxt);
   if (indiv) {
@@ -213,7 +213,7 @@ struct individual* gom_get_first_individual()
   return gom_first_individual;
 }
 
-struct individual* make_individual_record(char* xrefstr)
+struct individual* make_individual_record(const char* xrefstr)
 {
   struct individual* indiv = NULL;
   MAKE_CHAIN_ELT(individual, gom_first_individual, indiv);

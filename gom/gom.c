@@ -69,7 +69,7 @@ void gom_cleanup()
   user_recs_cleanup();
 }
 
-int gom_parse_file(char* file_name)
+int gom_parse_file(const char* file_name)
 {
   gedcom_set_default_callback(gom_default_callback);
   header_subscribe();
@@ -126,7 +126,8 @@ void destroy_gom_ctxt(Gom_ctxt ctxt)
   SAFE_FREE(ctxt);
 }
 
-void gom_cast_error(char* file, int line, OBJ_TYPE expected, OBJ_TYPE found)
+void gom_cast_error(const char* file, int line,
+		    OBJ_TYPE expected, OBJ_TYPE found)
 {
   fprintf(stderr,
 	  "Wrong gom ctxt cast at %s, line %d: expected %d, found %d\n",
@@ -134,25 +135,25 @@ void gom_cast_error(char* file, int line, OBJ_TYPE expected, OBJ_TYPE found)
   abort();
 }
 
-void gom_mem_error(char *filename, int line)
+void gom_mem_error(const char *filename, int line)
 {
   gedcom_error(_("Could not allocate memory at %s, %d"), filename, line);
 }
 
-void gom_unexpected_context(char* file, int line, OBJ_TYPE found)
+void gom_unexpected_context(const char* file, int line, OBJ_TYPE found)
 {
   gedcom_warning(_("Internal error: Unexpected context at %s, line %d: %d"),
 		 file, line, found);
 }
 
-void gom_no_context(char* file, int line)
+void gom_no_context(const char* file, int line)
 {
   gedcom_warning(_("Internal error: No context at %s, line %d"),
 		 file, line);
 }
 
-void gom_default_callback (Gedcom_elt elt, Gedcom_ctxt parent, int level, char* tag,
-			   char* raw_value, int parsed_tag)
+void gom_default_callback (Gedcom_elt elt, Gedcom_ctxt parent, int level,
+			   char* tag, char* raw_value, int parsed_tag)
 {
   gedcom_warning(_("Data loss in import: \"%d %s %s\""),
                  level, tag, raw_value);
@@ -171,7 +172,7 @@ void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
   destroy_gom_ctxt(ctxt);
 }
 
-void set_xref_type(struct xref_value* xr, char *str)
+void set_xref_type(struct xref_value* xr, const char *str)
 {
   if (!strcasecmp(str, "FAM"))
     xr->type = XREF_FAM;
@@ -240,4 +241,25 @@ struct age_value* dup_age(struct age_value age)
     memcpy(age_ptr, &age, sizeof(struct age_value));
   }
   return age_ptr;
+}
+
+char* gom_get_string(char** data)
+{
+  return *data;
+}
+
+char* gom_set_string(char** data, char* newvalue)
+{
+  char* result = NULL;
+  char* newptr = strdup(newvalue);
+  
+  if (!newptr)
+    MEMORY_ERROR;
+  else {
+    if (*data) free(*data);
+    *data = newptr;
+    result = *data;
+  }
+  
+  return result;
 }

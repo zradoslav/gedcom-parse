@@ -99,7 +99,7 @@ void note_subscribe()
   gedcom_subscribe_to_element(ELT_SUB_CONC, sub_cont_conc_start, def_elt_end);
 }
 
-void note_add_to_note(NL_TYPE type, Gom_ctxt ctxt, char* str)
+void note_add_to_note(NL_TYPE type, Gom_ctxt ctxt, const char* str)
 {
   struct note *note = SAFE_CTXT_CAST(note, ctxt);
   if (note) {
@@ -125,7 +125,7 @@ void note_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
     LINK_CHAIN_ELT(user_ref_number, note->ref, ref);
 }
 
-void note_set_record_id(Gom_ctxt ctxt, char *rin)
+void note_set_record_id(Gom_ctxt ctxt, const char *rin)
 {
   struct note *note = SAFE_CTXT_CAST(note, ctxt);
   if (note) {
@@ -171,7 +171,7 @@ struct note* gom_get_first_note()
   return gom_first_note;
 }
 
-struct note* make_note_record(char* xrefstr)
+struct note* make_note_record(const char* xrefstr)
 {
   struct note* note = NULL;
   MAKE_CHAIN_ELT(note, gom_first_note, note);

@@ -30,8 +30,8 @@
 void header_subscribe();
 void header_cleanup();
 void header_add_address(Gom_ctxt header, struct address* addr);
-void header_add_phone  (Gom_ctxt header, char* phone);
-void header_add_to_note(NL_TYPE type, Gom_ctxt header, char* str);
+void header_add_phone  (Gom_ctxt header, const char* phone);
+void header_add_to_note(NL_TYPE type, Gom_ctxt header, const char* str);
 void header_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 
 #endif /* __HEADER_H */

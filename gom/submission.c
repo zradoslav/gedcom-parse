@@ -80,7 +80,7 @@ struct submission* gom_get_submission()
   return gom_submission;
 }
 
-struct submission* make_submission_record(char* xref)
+struct submission* make_submission_record(const char* xref)
 {
   if (! gom_submission) {
     gom_submission = (struct submission*)malloc(sizeof(struct submission));

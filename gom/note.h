@@ -29,11 +29,11 @@
 
 void note_subscribe();
 void notes_cleanup();
-struct note* make_note_record(char* xref);
-void note_add_to_note(NL_TYPE type, Gom_ctxt ctxt, char* str);
+struct note* make_note_record(const char* xref);
+void note_add_to_note(NL_TYPE type, Gom_ctxt ctxt, const char* str);
 void note_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
 void note_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void note_set_record_id(Gom_ctxt ctxt, char *rin);
+void note_set_record_id(Gom_ctxt ctxt, const char *rin);
 void note_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void note_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 

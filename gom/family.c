@@ -100,7 +100,7 @@ void family_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
     LINK_CHAIN_ELT(user_ref_number, fam->ref, ref);
 }
 
-void family_set_record_id(Gom_ctxt ctxt, char *rin)
+void family_set_record_id(Gom_ctxt ctxt, const char *rin)
 {
   struct family *fam = SAFE_CTXT_CAST(family, ctxt);
   if (fam) {
@@ -152,7 +152,7 @@ struct family* gom_get_first_family()
   return gom_first_family;
 }
 
-struct family* make_family_record(char* xrefstr)
+struct family* make_family_record(const char* xrefstr)
 {
   struct family* fam = NULL;
   MAKE_CHAIN_ELT(family, gom_first_family, fam);

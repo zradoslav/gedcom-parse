@@ -173,7 +173,7 @@ void citation_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm)
     LINK_CHAIN_ELT(multimedia_link, cit->mm_link, mm);    
 }
 
-void citation_add_to_desc(NL_TYPE type, Gom_ctxt ctxt, char* str)
+void citation_add_to_desc(NL_TYPE type, Gom_ctxt ctxt, const char* str)
 {
   struct source_citation *cit = SAFE_CTXT_CAST(source_citation, ctxt);
   if (cit) {
@@ -185,7 +185,7 @@ void citation_add_to_desc(NL_TYPE type, Gom_ctxt ctxt, char* str)
   }
 }
 
-void citation_add_to_text(NL_TYPE type, Gom_ctxt ctxt, char* str)
+void citation_add_to_text(NL_TYPE type, Gom_ctxt ctxt, const char* str)
 {
   struct text *t = SAFE_CTXT_CAST(text, ctxt);
   if (t) {

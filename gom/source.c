@@ -91,7 +91,7 @@ void source_add_description(Gom_ctxt ctxt, struct source_description* desc)
     LINK_CHAIN_ELT(source_description, sour->repository.description, desc);  
 }
 
-void source_add_to_value(NL_TYPE type, Gom_ctxt ctxt, char* str)
+void source_add_to_value(NL_TYPE type, Gom_ctxt ctxt, const char* str)
 {
   struct source *sour = SAFE_CTXT_CAST(source, ctxt);
   if (sour) {
@@ -152,7 +152,7 @@ void source_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
     LINK_CHAIN_ELT(user_ref_number, sour->ref, ref);
 }
 
-void source_set_record_id(Gom_ctxt ctxt, char *rin)
+void source_set_record_id(Gom_ctxt ctxt, const char *rin)
 {
   struct source *sour = SAFE_CTXT_CAST(source, ctxt);
   if (sour) {
@@ -209,7 +209,7 @@ struct source* gom_get_first_source()
   return gom_first_source;
 }
 
-struct source* make_source_record(char* xrefstr)
+struct source* make_source_record(const char* xrefstr)
 {
   struct source* src = NULL;
   MAKE_CHAIN_ELT(source, gom_first_source, src);

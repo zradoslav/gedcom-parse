@@ -29,10 +29,10 @@
 
 void multimedia_subscribe();
 void multimedias_cleanup();
-struct multimedia* make_multimedia_record(char* xref);
+struct multimedia* make_multimedia_record(const char* xref);
 void multimedia_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void multimedia_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void multimedia_set_record_id(Gom_ctxt ctxt, char *rin);
+void multimedia_set_record_id(Gom_ctxt ctxt, const char *rin);
 void multimedia_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void multimedia_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 

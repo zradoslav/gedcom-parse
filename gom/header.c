@@ -69,7 +69,7 @@ void header_add_address(Gom_ctxt ctxt, struct address* addr)
     head->source.corporation.address = addr;
 }
 
-void header_add_phone(Gom_ctxt ctxt, char* phone)
+void header_add_phone(Gom_ctxt ctxt, const char* phone)
 {
   struct header *head = SAFE_CTXT_CAST(header, ctxt);
   if (head) {
@@ -83,7 +83,7 @@ void header_add_phone(Gom_ctxt ctxt, char* phone)
   }
 }
 
-void header_add_to_note(NL_TYPE type, Gom_ctxt ctxt, char* str)
+void header_add_to_note(NL_TYPE type, Gom_ctxt ctxt, const char* str)
 {
   struct header *head = SAFE_CTXT_CAST(header, ctxt);
   if (head) {

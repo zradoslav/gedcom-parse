@@ -29,7 +29,7 @@
 
 void individual_subscribe();
 void individuals_cleanup();
-struct individual* make_individual_record(char* xref);
+struct individual* make_individual_record(const char* xref);
 void individual_add_event(Gom_ctxt ctxt, struct event* evt);
 void individual_add_attribute(Gom_ctxt ctxt, struct event* evt);
 void individual_add_name(Gom_ctxt ctxt, struct personal_name* name);
@@ -41,7 +41,7 @@ void individual_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
 void individual_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link);
 void individual_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void individual_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void individual_set_record_id(Gom_ctxt ctxt, char *rin);
+void individual_set_record_id(Gom_ctxt ctxt, const char *rin);
 void individual_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
 void individual_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 

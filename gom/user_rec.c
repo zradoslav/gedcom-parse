@@ -241,7 +241,7 @@ struct user_rec* gom_get_first_user_rec()
   return gom_first_user_rec;
 }
 
-struct user_rec* make_user_record(char* xrefstr)
+struct user_rec* make_user_record(const char* xrefstr)
 {
   struct user_rec* rec = NULL;
   MAKE_CHAIN_ELT(user_rec, gom_first_user_rec, rec);

@@ -32,8 +32,8 @@ void citation_subscribe();
 void citation_cleanup(struct source_citation* cit);
 void citation_add_note(Gom_ctxt ctxt, struct note_sub* note);
 void citation_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm);
-void citation_add_to_desc(NL_TYPE type, Gom_ctxt ctxt, char* str);
-void citation_add_to_text(NL_TYPE type, Gom_ctxt ctxt, char* str);
+void citation_add_to_desc(NL_TYPE type, Gom_ctxt ctxt, const char* str);
+void citation_add_to_text(NL_TYPE type, Gom_ctxt ctxt, const char* str);
 void citation_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 
 #endif /* __SOURCE_CITATION_H */
