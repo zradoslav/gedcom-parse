@@ -336,7 +336,7 @@ int numbers_to_strings(struct date *d)
     if (d->day != -1)
       sprintf(d->day_str, "%d", d->day);
     
-    if (d->month != -1)
+    if (d->month > 0 && d->month <= max_month[d->cal])
       strcpy(d->month_str, month_name[d->cal][d->month - 1]);
     
     if (d->year_type == YEAR_SINGLE)
