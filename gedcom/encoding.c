@@ -102,6 +102,25 @@ void cleanup_encodings()
 /* Let function be called before main() */
 void update_gconv_search_path() __attribute__ ((constructor));
 
+/* Note:
+
+   The environment variable GCONV_PATH has to be adjusted before the very
+   first call of iconv_open.  For the most general case, it means that we
+   have to make our own constructor here (in case some of the other library
+   constructors would use iconv_open).
+
+   However, it looks like a change of an environment variable in a constructor
+   doesn't always survive until the main() function.  This is the case if
+   the environment variable is a new one, for which there was no room yet
+   in the initial environment.  The initial environment is located on the
+   stack, but when variables are added, it is moved to the heap (to be able
+   to grow).  Now, the main function takes again the one from the stack, not
+   from the heap, so changes are lost.
+
+   For this, the function below will also be called in gedcom_init(), which
+   needs to be called as early as possible in the program.
+ */
+
 void update_gconv_search_path()
 {
   char *gconv_path;

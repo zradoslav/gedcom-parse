@@ -37,5 +37,6 @@ char* to_internal(char* str, size_t len,
 		  char* output_buffer, size_t out_len);
 void init_encodings();
 void set_encoding_width(ENCODING enc);
+void update_gconv_search_path();
 
 #endif /* __ENCODING_H */

@@ -105,6 +105,11 @@ int determine_encoding(FILE* f)
   }
 }
 
+void gedcom_init()
+{
+  update_gconv_search_path();
+}
+
 int gedcom_parse_file(char* file_name)
 {
   ENCODING enc;
