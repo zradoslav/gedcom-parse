@@ -30,10 +30,10 @@ ALL_LINGUAS="nl"
 
 AC_CANONICAL_HOST
 
-EXTRA_CFLAGS=
+EXTRA_CFLAGS=""
 case "$host_os" in
  darwin*) AC_MSG_WARN([Disabling smart preprocessing])
-          EXTRA_CFLAGS="-no-cpp-precomp";;
+          EXTRA_CFLAGS="-no-cpp-precomp $EXTRA_CFLAGS";;
 esac
 
 AC_ARG_ENABLE(debug,

@@ -19,11 +19,11 @@ release 0.18 (NOT RELEASED YET):
         - m4 macro that can be used in configure.in
 
  - INTERFACE CHANGE: the end record callback function now takes an extra
-   argument: a Gedcom_val, which contains in the case of a REC_NOTE the
-   complete concatenated string.
+   argument (similar to the end element callback): a Gedcom_val, which
+   contains in the case of a REC_NOTE the complete concatenated string.
 
- - The return value of gedcom_init() has changed from void to int to be able
-   to return a status, but this should not impact any programs.
+ - INTERFACE CHANGE: the return value of gedcom_init() has changed from
+   void to int to be able to return a status.
 
  - Various bugfixes.
 

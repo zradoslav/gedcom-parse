@@ -1,9 +1,15 @@
 2002-12-08  Peter Verthez  <Peter.Verthez@advalvas.be>
 
+	* gedcom/write.c: Writing long strings (with continuation), and
+	doubling of at characters.
+
 	* gedcom/gedcom.y, gedcom/buffer.*: Use safe buffer mechanism for
 	storing gedcom value (to avoid fixed buffer size).
 
 2002-12-07  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gom/*: Use complete concatenated text instead of concatenating the
+	texts itself.
 
 	* gedcom/gedcom.y: Pass complete concatenated text in end callback
 	(this causes a backward incompatibility in the end record callback!)
