@@ -58,5 +58,6 @@ noinst_HEADERS = header.h \
 		 user_rec.h \
 		 gom_internal.h
 
-libgedcom_gom_la_LDFLAGS = -export-dynamic -version-info $(LIBVERSION)
-libgedcom_gom_la_LIBADD  = ../utf8/libutf8.la
+libgedcom_gom_la_LDFLAGS = -export-dynamic -version-info $(LIBVERSION) \
+		       	   -L../utf8/.libs
+libgedcom_gom_la_LIBADD  = -lutf8tools

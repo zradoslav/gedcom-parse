@@ -23,7 +23,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "utf8.h"
+#include "utf8tools.h"
 #include "gom.h"
 #include "gom_internal.h"
 
