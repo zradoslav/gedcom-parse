@@ -54,10 +54,17 @@ struct tag_struct {
   int value;
 };
 
-int        gedcom_parse();
-int        gedcom_lex();
+typedef enum _PARSE_STATE {
+  STATE_NORMAL,
+  STATE_INITIAL,
+  STATE_EXPECT_TAG
+} ParseState;
 
-void       gedcom_mem_error(const char *filename, int line);
+int  gedcom_parse();
+int  gedcom_lex();
+int  gedcom_check_token(const char* str, ParseState state, int check_token);
+
+void gedcom_mem_error(const char *filename, int line);
 
 #define MEMORY_ERROR gedcom_mem_error(__FILE__, __LINE__)
 
