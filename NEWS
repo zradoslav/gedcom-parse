@@ -2,6 +2,9 @@ NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
 release 0.17 (??):
 
+ - New features (see documentation):
+     - function gedcom_get_by_xref
+
  - INTERFACE CHANGE: the callback functions now take an extra argument: the
    record/element identifier (that is also used as first argument in the
    *_subscribe_* functions).  The extra argument is the first argument.
@@ -12,6 +15,11 @@ release 0.17 (??):
    for age values.
    As a quick change, you can use the raw_value instead of the parsed_value
    until you make the real change of using the struct age_value.
+
+ - INTERFACE CHANGE: The type of an xref_value can also be XREF_ANY, if
+   the actual type is not known yet.  This is e.g. used in the case of an
+   association (ASSO): the cross-reference can be any object type, the
+   actual type is given by the TYPE subtag.
 
 release 0.16 (16 August 2002):
 
