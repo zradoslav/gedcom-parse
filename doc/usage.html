@@ -84,7 +84,7 @@ the library calls it makes. &nbsp;Practically, it should e.g. come before
  any calls to any GTK functions, because GTK uses <code>iconv_open</code>
  in its initialization. &nbsp;For the same reason it is also advised to put
 the <code>-lgedcom</code> option on the linking of the program as the last
-option, so that it's initialization code is run first.<br>
+option, so that its initialization code is run first.<br>
           <br>
         The next sections will refine this piece of code to be able to have
  meaningful errors   and the actual data that is in the file.<br>
