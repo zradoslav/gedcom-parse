@@ -22,6 +22,8 @@
 /* $Name$ */
 
 #include "gedcom_internal.h"
+#include "gedcom.h"
+#include "gedcom.tabgen.h"
 #include "xref.h"
 #include "hash.h"
 
@@ -46,6 +48,7 @@ struct xref_node {
   Xref_type used_type;
   int defined_line;
   int used_line;
+  int use_count;
 };
 
 hnode_t *xref_alloc(void *c __attribute__((unused)))
@@ -74,6 +77,7 @@ void clear_xref_node(struct xref_node *xr)
   xr->used_type    = XREF_NONE;
   xr->defined_line = -1;
   xr->used_line    = -1;
+  xr->use_count    = 0;
 }
 
 struct xref_node *make_xref_node()
@@ -86,6 +90,13 @@ struct xref_node *make_xref_node()
   else
     MEMORY_ERROR;
   return xr;
+}
+
+void delete_xref_node(struct xref_node* xr)
+{
+  if (!xr->xref.string)
+    free(xr->xref.string);
+  free(xr);
 }
 
 void cleanup_xrefs()
@@ -133,15 +144,76 @@ int check_xref_table()
   return result;
 }
 
-struct xref_value *gedcom_get_by_xref(const char *key)
+struct xref_node* add_xref(Xref_type xref_type, const char* xrefstr,
+			   Gedcom_ctxt object)
 {
-  hnode_t *node = hash_lookup(xrefs, key);
-  if (node) {
-    struct xref_node *xr = (struct xref_node *)hnode_get(node);
-    return &(xr->xref);
+  struct xref_node *xr = NULL;
+  const char *key = strdup(xrefstr);
+  if (key) {
+    xr = make_xref_node();
+    xr->xref.type = xref_type;
+    xr->xref.object = object;
+    if (xr->xref.string)
+      free(xr->xref.string);
+    xr->xref.string = strdup(xrefstr);
+    if (! xr->xref.string) MEMORY_ERROR;
+    hash_alloc_insert(xrefs, key, xr);
   }
   else
-    return NULL;
+    MEMORY_ERROR;
+  return xr;
+}
+
+void remove_xref(struct xref_node* xr)
+{
+  hnode_t *node = hash_lookup(xrefs, xr->xref.string);
+  hash_delete_free(xrefs, node);
+}
+
+int set_xref_fields(struct xref_node* xr, Xref_ctxt ctxt, Xref_type xref_type)
+{
+  int result = 0;
+
+  if (xr->defined_type != XREF_NONE && xr->defined_type != xref_type &&
+      xr->defined_type != XREF_ANY) {
+    if (xr->defined_line != 0)
+      gedcom_error(_("Cross-reference %s previously defined as pointer to %s, "
+		     "on line %d"),
+		   xr->xref.string, xref_type_str[xr->defined_type],
+		   xr->defined_line);
+    else
+      gedcom_error(_("Cross-reference %s previously defined as pointer to %s"),
+		   xr->xref.string, xref_type_str[xr->defined_type]);
+
+    result = 1;
+  }  
+  else if (xr->used_type != XREF_NONE && xr->used_type != xref_type) {
+    if (xr->used_line != 0)
+      gedcom_error(_("Cross-reference %s previously used as pointer to %s, "
+		     "on line %d"),
+		   xr->xref.string, xref_type_str[xr->used_type],
+		   xr->used_line);
+    else
+      gedcom_error(_("Cross-reference %s previously used as pointer to %s"),
+		   xr->xref.string, xref_type_str[xr->used_type]);
+
+    result = 1;
+  }
+
+  if (result == 0) {
+    if (ctxt == XREF_USED)
+      xr->use_count++;
+    if (ctxt == XREF_DEFINED && xr->defined_type == XREF_NONE) {
+      xr->defined_type = xref_type;
+      xr->defined_line = line_no;
+    }
+    else if (ctxt == XREF_USED && xr->used_type == XREF_NONE) {
+      xr->used_type = xref_type;
+      xr->used_line = line_no;
+    }
+  }
+  
+  return result;
 }
 
 struct xref_value *gedcom_parse_xref(const char *raw_value,
@@ -154,48 +226,133 @@ struct xref_value *gedcom_parse_xref(const char *raw_value,
     xr = (struct xref_node *)hnode_get(node);
   }
   else {
-    const char *key = strdup(raw_value);
-    if (key) {
-      xr = make_xref_node();
-      xr->xref.type = xref_type;
-      if (xr->xref.string)
-	free(xr->xref.string);
-      xr->xref.string = strdup(raw_value);
-      if (! xr->xref.string) MEMORY_ERROR;
-      hash_alloc_insert(xrefs, key, xr);
+    xr = add_xref(xref_type, raw_value, NULL);
+  }
+
+  set_xref_fields(xr, ctxt, xref_type);
+  return &(xr->xref);
+}
+
+/* Functions for retrieving, modifying and deleting cross-references */
+
+struct xref_value* gedcom_get_by_xref(const char *key)
+{
+  if (gedcom_check_token(key, STATE_NORMAL, POINTER) != 0) {
+    gedcom_error(_("String '%s' is not a valid cross-reference key"), key);
+    return NULL;
+  }
+  else {
+    hnode_t *node = hash_lookup(xrefs, key);
+    if (node) {
+      struct xref_node *xr = (struct xref_node *)hnode_get(node);
+      return &(xr->xref);
     }
     else
-      MEMORY_ERROR;
+      return NULL;
   }
-    
-  if (ctxt == XREF_DEFINED && xr->defined_type == XREF_NONE) {
-    xr->defined_type = xref_type;
-    xr->defined_line = line_no;
+}
+
+struct xref_value* gedcom_add_xref(Xref_type type, const char* xrefstr,
+				   Gedcom_ctxt object)
+{
+  struct xref_node *xr = NULL;
+
+  if (gedcom_check_token(xrefstr, STATE_NORMAL, POINTER) != 0) {
+    gedcom_error(_("String '%s' is not a valid cross-reference key"), xrefstr);
   }
-  else if (ctxt == XREF_USED && xr->used_type == XREF_NONE) {
-    xr->used_type = xref_type;
-    xr->used_line = line_no;
+  else {
+    hnode_t *node = hash_lookup(xrefs, xrefstr);
+    if (node) {
+      gedcom_error(_("Cross-reference %s already exists"), xrefstr);
+    }
+    else {
+      xr = add_xref(type, xrefstr, object);    
+      set_xref_fields(xr, XREF_DEFINED, type);
+    }
   }
-  
-  if ((ctxt == XREF_DEFINED && xr->defined_type != xref_type &&
-       xr->defined_type != XREF_ANY)
-      || (ctxt == XREF_USED &&
-	  (xr->defined_type != XREF_NONE && xr->defined_type != xref_type &&
-	   xr->defined_type != XREF_ANY))) {
-    gedcom_error(_("Cross-reference %s previously defined as pointer to %s, "
-		   "on line %d"),
-		 xr->xref.string, xref_type_str[xr->defined_type],
-		 xr->defined_line);
-    clear_xref_node(xr);
-  }  
-  else if ((ctxt == XREF_USED && xr->used_type != xref_type)
-	   || (ctxt == XREF_DEFINED &&
-	       (xr->used_type != XREF_NONE && xr->used_type != xref_type))) {
-    gedcom_error(_("Cross-reference %s previously used as pointer to %s, "
-		   "on line %d"),
-		 xr->xref.string, xref_type_str[xr->used_type], xr->used_line);
-    clear_xref_node(xr);
+  if (xr)
+    return &(xr->xref);
+  else
+    return NULL;
+}
+
+struct xref_value* gedcom_link_xref(Xref_type type, const char* xrefstr)
+{
+  struct xref_node *xr = NULL;
+
+  if (gedcom_check_token(xrefstr, STATE_NORMAL, POINTER) != 0) {
+    gedcom_error(_("String '%s' is not a valid cross-reference key"), xrefstr);
   }
-  
-  return &(xr->xref);
+  else {
+    hnode_t *node = hash_lookup(xrefs, xrefstr);
+    if (!node) {
+      gedcom_error(_("Cross-reference %s not defined"), xrefstr);
+    }
+    else {
+      xr = (struct xref_node *)hnode_get(node);
+      if (set_xref_fields(xr, XREF_USED, type) != 0)
+	xr = NULL;
+    }
+  }
+
+  if (xr)
+    return &(xr->xref);
+  else
+    return NULL;
+}
+
+struct xref_value* gedcom_unlink_xref(Xref_type type, const char* xrefstr)
+{
+  struct xref_node *xr = NULL;
+  if (gedcom_check_token(xrefstr, STATE_NORMAL, POINTER) != 0) {
+    gedcom_error(_("String '%s' is not a valid cross-reference key"), xrefstr);
+  }
+  else {
+    hnode_t *node = hash_lookup(xrefs, xrefstr);
+    if (! node) {
+      gedcom_error(_("Cross-reference %s not defined"), xrefstr);
+    }
+    else {
+      xr = (struct xref_node*) hnode_get(node);
+      if (xr->defined_type != type && xr->defined_type != XREF_ANY) {
+	gedcom_error
+	  (_("Cross-reference %s previously defined as pointer to %s"),
+	   xr->xref.string, xref_type_str[xr->defined_type]);
+	xr = NULL;
+      }
+      else
+	xr->use_count--;
+    }
+  }
+  if (xr)
+    return &(xr->xref);
+  else
+    return NULL;
+}
+
+int gedcom_delete_xref(const char* xrefstr)
+{
+  struct xref_node *xr = NULL;
+  int result = 1;
+
+  if (gedcom_check_token(xrefstr, STATE_NORMAL, POINTER) != 0) {
+    gedcom_error(_("String '%s' is not a valid cross-reference key"), xrefstr);
+  }
+  else {
+    hnode_t *node = hash_lookup(xrefs, xrefstr);
+    if (! node) {
+      gedcom_error(_("Cross-reference %s not defined"), xrefstr);
+    }
+    else {
+      xr = (struct xref_node*) hnode_get(node);
+      if (xr->use_count != 0)  {
+	gedcom_error(_("Cross-reference %s still in use"), xrefstr);
+      }
+      else {
+	remove_xref(xr);
+	result = 0;
+      }
+    }
+  }
+  return result;
 }
