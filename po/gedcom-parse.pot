@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-05 15:07+0100\n"
+"POT-Creation-Date: 2002-01-20 13:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,62 +24,58 @@ msgstr ""
 msgid "No encoding defined for '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:133
-msgid "Failed updating conversion module path"
-msgstr ""
-
-#: gedcom/encoding.c:148
+#: gedcom/encoding.c:153
 #, c-format
 msgid "Could not open encoding configuration file '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:155
+#: gedcom/encoding.c:160
 #, c-format
 msgid "Line too long in encoding configuration file '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:164
+#: gedcom/encoding.c:169
 #, c-format
 msgid "Missing data in encoding configuration file '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:196
+#: gedcom/encoding.c:201
 #, c-format
 msgid "Error opening conversion context for encoding %s: %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:1300 gedcom/gedcom.y:3492
+#: gedcom/gedcom.y:1302 gedcom/gedcom.y:3494
 msgid "Missing value"
 msgstr ""
 
-#: gedcom/gedcom.y:3428 gedcom/gedcom.y:3452
+#: gedcom/gedcom.y:3430 gedcom/gedcom.y:3454
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:3487
+#: gedcom/gedcom.y:3489
 msgid "Missing pointer"
 msgstr ""
 
-#: gedcom/gedcom.y:3565
+#: gedcom/gedcom.y:3567
 msgid "Missing cross-reference"
 msgstr ""
 
-#: gedcom/gedcom.y:3728
+#: gedcom/gedcom.y:3730
 msgid "Internal error: count array overflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3734
+#: gedcom/gedcom.y:3736
 msgid "Internal error: count array calloc error"
 msgstr ""
 
-#: gedcom/gedcom.y:3779
+#: gedcom/gedcom.y:3781
 msgid "Internal error: count array underflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3841
+#: gedcom/gedcom.y:3843
 msgid "Enabling compatibility with 'ftree'"
 msgstr ""
 
@@ -183,22 +179,22 @@ msgstr ""
 msgid "an application-specific record"
 msgstr ""
 
-#: gedcom/xref.c:96
+#: gedcom/xref.c:104
 #, c-format
 msgid "Cross-reference %s used on line %d is not defined"
 msgstr ""
 
-#: gedcom/xref.c:101
+#: gedcom/xref.c:109
 #, c-format
 msgid "Cross-reference %s defined on line %d is never used"
 msgstr ""
 
-#: gedcom/xref.c:139
+#: gedcom/xref.c:148
 #, c-format
 msgid "Cross-reference %s previously defined as pointer to %s, on line %d"
 msgstr ""
 
-#: gedcom/xref.c:149
+#: gedcom/xref.c:157
 #, c-format
 msgid "Cross-reference %s previously used as pointer to %s, on line %d"
 msgstr ""
