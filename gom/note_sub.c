@@ -126,7 +126,7 @@ void sub_note_end(_ELT_END_PARAMS_)
 	else
 	  obj->text = newvalue;
       }
-      destroy_gom_ctxt(ctxt);
+      def_elt_end(elt, parent, self, parsed_value);
     }
   }
 }
