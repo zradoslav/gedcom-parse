@@ -1,0 +1,2109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Libgedcom interface details</title>
+  
+                                         
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head><body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
+           
+<h1 align="center">Libgedcom interface details</h1>
+      <br>
+           
+<h2>Index</h2>
+           
+<ul>
+        <li><a href="#Record_identifiers">Record identifiers</a></li>
+        <li><a href="#Element_identifiers">Element identifiers</a></li>
+                   
+  </ul>
+           
+</ul>
+      <br>
+           
+<hr width="100%" size="2">      
+<h2><a name="Record_identifiers"></a>Record identifiers</h2>
+      The following table describes the identifiers to be used in the record
+  callbacks.  &nbsp;The last columns give the <a href="#Gedcom_val_types"><code>
+    Gedcom_val</code>   type</a> of the <code>xref</code> and&nbsp;<code>
+val</code><code> </code> arguments in the record  start and end callback.<br>
+      <br>
+           
+<table width="100%" border="1" cellspacing="2" cellpadding="2">
+        <tbody>
+          <tr>
+            <td valign="top" align="center"><b>Record</b><br>
+            </td>
+            <td valign="top" align="center"><b>Meaning</b><br>
+            </td>
+            <td valign="top" align="center"><b>Possible<br>
+      &nbsp;<code>xref</code> types</b><br>
+            </td>
+       <td valign="top" align="center"><b>Possible start<br>
+       <code>val</code> types</b><br>
+       </td><td valign="top" align="center"><b>Possible end<br>
+      <code>val</code> types</b><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_HEAD</code><br>
+            </td>
+            <td valign="top">The header of the GEDCOM file<br>
+            </td>
+            <td valign="top"><code>NULL</code><br>
+            </td>
+       <td valign="top"><code>NULL</code><br>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_FAM</code><br>
+            </td>
+            <td valign="top">A record describing a family<br>
+            </td>
+            <td valign="top"><code>XREF_PTR(FAM)</code><br>
+            </td>
+       <td valign="top"><code>NULL</code><br>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_INDI</code><br>
+            </td>
+            <td valign="top">A record describing an individual<br>
+            </td>
+            <td valign="top"><code>XREF_PTR(INDI)</code><br>
+            </td>
+       <td valign="top"><code>NULL</code><br>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_OBJE</code><br>
+            </td>
+            <td valign="top">A record describing a multimedia object<br>
+            </td>
+            <td valign="top"><code>XREF_PTR(OBJE)</code><br>
+            </td>
+       <td valign="top"><code>NULL</code><br>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_NOTE</code><br>
+            </td>
+            <td valign="top">A record describing a note<br>
+            </td>
+            <td valign="top"><code>XREF_PTR(NOTE)</code><br>
+            </td>
+       <td valign="top"><code>STRING</code><br>
+       </td><td valign="top"><code>STRING</code><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_REPO</code><br>
+            </td>
+            <td valign="top">A record describing a source repository<br>
+            </td>
+            <td valign="top"><code>XREF_PTR(REPO)</code><br>
+            </td>
+       <td valign="top"><code>NULL</code><br>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_SOUR</code><br>
+            </td>
+            <td valign="top">A record describing a source<br>
+            </td>
+            <td valign="top"><code>XREF_PTR(SOUR)</code><br>
+            </td>
+       <td valign="top"><code>NULL</code><br>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_SUBN</code><br>
+            </td>
+            <td valign="top">A record describing the submission<br>
+            </td>
+            <td valign="top"><code>XREF_PTR(SUBN)</code><br>
+            </td>
+       <td valign="top"><code>NULL</code><br>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_SUBM</code><br>
+            </td>
+            <td valign="top">A record describing the submitter<br>
+            </td>
+            <td valign="top"><code>XREF_PTR(SUBM</code>)<br>
+            </td>
+       <td valign="top"><code>NULL</code><br>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+          </tr>
+          <tr>
+            <td valign="top"><code>REC_USER</code><br>
+            </td>
+            <td valign="top">An application-specific record (the <code>tag</code>
+       in the start callback contains the actually used tag).<br>
+            </td>
+            <td valign="top"><code>NULL<br>
+ XREF_PTR(USER)<br>
+       </code><br>
+            </td>
+       <td valign="top"><code>NULL<br>
+ STRING<br>
+ XREF_PTR(USER)</code><br>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+          </tr>
+                       
+  </tbody>      
+</table>
+           
+<hr width="100%" size="2">      
+<h2><a name="Element_identifiers"></a>Element identifiers</h2>
+     The following table describes the identifiers to be used in the element
+  callbacks. &nbsp;The last columns give the <a href="file:///home/verthezp/src/external/gedcom-parse/doc/interface.html#Gedcom_val_types"><code>
+     Gedcom_val</code>  type</a> of the <code>val</code> argument in the
+element   start and end callback.<br>
+     <br>
+         
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+       <tbody>
+         <tr>
+           <td valign="top" align="center"><b>Element</b><br>
+           </td>
+           <td valign="top" align="center"><b>Possible<br>
+     tags<br>
+           </b><br>
+           </td>
+           <td valign="top" align="center"><b>Used within</b><br>
+           </td>
+           <td valign="top" align="center"><b>Possible start<br>
+           <code>val</code> types<br>
+           </b><br>
+           </td><td valign="top" align="center"><b>Possible end<br>
+      <code>val</code> types</b><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_SOUR</code><br>
+           </td>
+           <td valign="top"><code>SOUR</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_SOUR_VERS</code><br>
+           </td>
+           <td valign="top"><code>VERS</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_SOUR_NAME</code><br>
+           </td>
+           <td valign="top"><code>NAME</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_SOUR_CORP</code><br>
+           </td>
+           <td valign="top"><code>CORP</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_SOUR_DATA</code><br>
+           </td>
+           <td valign="top"><code>DATA</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_SOUR_DATA_DATE</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_SOUR_DATA</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_SOUR_DATA_COPR</code><br>
+           </td>
+           <td valign="top"><code>COPR</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_SOUR_DATA</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_DEST</code><br>
+           </td>
+           <td valign="top"><code>DEST</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_DATE</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_DATE_TIME</code><br>
+           </td>
+           <td valign="top"><code>TIME</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_DATE</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_SUBM</code><br>
+           </td>
+           <td valign="top"><code>SUBM</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(SUBM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_SUBN</code><br>
+           </td>
+           <td valign="top"><code>SUBN</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(SUBN)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_FILE</code><br>
+           </td>
+           <td valign="top"><code>FILE</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_COPR</code><br>
+           </td>
+           <td valign="top"><code>COPR</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_GEDC</code><br>
+           </td>
+           <td valign="top"><code>GEDC</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_GEDC_VERS</code><br>
+           </td>
+           <td valign="top"><code>VERS</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_GEDC</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_GEDC_FORM</code><br>
+           </td>
+           <td valign="top"><code>FORM</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_GEDC</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_CHAR</code><br>
+           </td>
+           <td valign="top"><code>CHAR</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_CHAR_VERS</code><br>
+           </td>
+           <td valign="top"><code>VERS</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_CHAR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_LANG</code><br>
+           </td>
+           <td valign="top"><code>LANG</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_PLAC</code><br>
+           </td>
+           <td valign="top"><code>PLAC</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_PLAC_FORM</code><br>
+           </td>
+           <td valign="top"><code>FORM</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_PLAC</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_HEAD_NOTE</code><br>
+           </td>
+           <td valign="top"><code>NOTE</code><br>
+           </td>
+           <td valign="top"><code>REC_HEAD</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_FAM_HUSB</code><br>
+           </td>
+           <td valign="top"><code>HUSB</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(INDI)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_FAM_WIFE</code><br>
+           </td>
+           <td valign="top"><code>WIFE</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(INDI)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_FAM_CHIL</code><br>
+           </td>
+           <td valign="top"><code>CHIL</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(INDI)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_FAM_NCHI</code><br>
+           </td>
+           <td valign="top"><code>NCHI</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_FAM_SUBM</code><br>
+           </td>
+           <td valign="top"><code>SUBM</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(SUBM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_INDI_RESN</code><br>
+           </td>
+           <td valign="top"><code>RES</code><code>N</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_INDI_SEX</code><br>
+           </td>
+           <td valign="top"><code>SEX</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_INDI_SUBM</code><br>
+           </td>
+           <td valign="top"><code>SUBM</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(SUBM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_INDI_ALIA</code><br>
+           </td>
+           <td valign="top"><code>ALIA</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(INDI)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_INDI_ANCI</code><br>
+           </td>
+           <td valign="top"><code>ANCI</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(SUBM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_INDI_DESI</code><br>
+           </td>
+           <td valign="top"><code>DESI</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(SUBM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_INDI_RFN</code><br>
+           </td>
+           <td valign="top"><code>RFN</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_INDI_AFN</code><br>
+           </td>
+           <td valign="top"><code>AFN</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_OBJE_FORM</code><br>
+           </td>
+           <td valign="top"><code>FORM</code><br>
+           </td>
+           <td valign="top"><code>REC_OBJE</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_OBJE_TITL</code><br>
+           </td>
+           <td valign="top"><code>TITL</code><br>
+           </td>
+           <td valign="top"><code>REC_OBJE</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_OBJE_BLOB</code><br>
+           </td>
+           <td valign="top"><code>BLOB</code><br>
+           </td>
+           <td valign="top"><code>REC_OBJE</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_OBJE_BLOB_CONT</code><br>
+           </td>
+           <td valign="top"><code>CONT</code><br>
+           </td>
+           <td valign="top"><code>ELT_OBJE_BLOB</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_OBJE_OBJE</code><br>
+           </td>
+           <td valign="top"><code>OBJE</code><br>
+           </td>
+           <td valign="top"><code>REC_OBJE</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(OBJE)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_REPO_NAME</code><br>
+           </td>
+           <td valign="top"><code>NAME</code><br>
+           </td>
+           <td valign="top"><code>REC_REPO</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_DATA</code><br>
+           </td>
+           <td valign="top"><code>DATA</code><br>
+           </td>
+           <td valign="top"><code>REC_SOUR</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_DATA_EVEN</code><br>
+           </td>
+           <td valign="top"><code>EVEN</code><br>
+           </td>
+           <td valign="top"><code>ELT_SOUR_DATA</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_DATA_EVEN_DATE</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SOUR_DATA_EVEN</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_DATA_EVEN_PLAC</code><br>
+           </td>
+           <td valign="top"><code>PLAC</code><br>
+           </td>
+           <td valign="top"><code>ELT_SOUR_DATA_EVEN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_DATA_AGNC</code><br>
+           </td>
+           <td valign="top"><code>AGNC</code><br>
+           </td>
+           <td valign="top"><code>ELT_SOUR_DATA</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_AUTH</code><br>
+           </td>
+           <td valign="top"><code>AUTH</code><br>
+           </td>
+           <td valign="top"><code>REC_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_TITL</code><br>
+           </td>
+           <td valign="top"><code>TITL</code><br>
+           </td>
+           <td valign="top"><code>REC_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_ABBR</code><br>
+           </td>
+           <td valign="top"><code>ABBR</code><br>
+           </td>
+           <td valign="top"><code>REC_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_PUBL</code><br>
+           </td>
+           <td valign="top"><code>PUBL</code><br>
+           </td>
+           <td valign="top"><code>REC_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SOUR_TEXT</code><br>
+           </td>
+           <td valign="top"><code>TEXT</code><br>
+           </td>
+           <td valign="top"><code>REC_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBN_SUBM</code><br>
+           </td>
+           <td valign="top"><code>SUBM</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBN</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(SUBM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBN_FAMF</code><br>
+           </td>
+           <td valign="top"><code>FAMF</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBN_TEMP</code><br>
+           </td>
+           <td valign="top"><code>TEMP</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBN_ANCE</code><br>
+           </td>
+           <td valign="top"><code>ANCE</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBN_DESC</code><br>
+           </td>
+           <td valign="top"><code>DESC</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBN_ORDI</code><br>
+           </td>
+           <td valign="top"><code>ORDI</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBN_RIN</code><br>
+           </td>
+           <td valign="top"><code>RIN</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBM_NAME</code><br>
+           </td>
+           <td valign="top"><nobr><code>NAME</code></nobr><br>
+           </td>
+           <td valign="top"><code>REC_SUBM</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBM_LANG</code><br>
+           </td>
+           <td valign="top"><code>LANG</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBM</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBM_RFN</code><br>
+           </td>
+           <td valign="top"><code>RFN</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBM</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUBM_RIN</code><br>
+           </td>
+           <td valign="top"><code>RIN</code><br>
+           </td>
+           <td valign="top"><code>REC_SUBM</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ADDR</code><br>
+           </td>
+           <td valign="top"><code>ADDR</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_SOUR_CORP,<br>
+    REC_REPO, REC_SUBM,<br>
+          </code><code>ELT_SUB_FAM_EVT</code>,<br>
+          <code>ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI,<br>
+    ELT_SUB_INDIV_BIRT,<br>
+    ELT_SUB_INDIV_GEN,<br>
+    ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ADDR_CONT</code><br>
+           </td>
+           <td valign="top"><code>CONT</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_ADDR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ADDR_ADR1</code><br>
+           </td>
+           <td valign="top"><code>ADR1</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_ADDR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ADDR_ADR2</code><br>
+           </td>
+           <td valign="top"><code>ADR2</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_ADDR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ADDR_CITY</code><br>
+           </td>
+           <td valign="top"><code>CITY</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_ADDR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ADDR_STAE</code><br>
+           </td>
+           <td valign="top"><code>STAE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_ADDR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ADDR_POST</code><br>
+           </td>
+           <td valign="top"><code>POST</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_ADDR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ADDR_CTRY</code><br>
+           </td>
+           <td valign="top"><code>CTRY</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_ADDR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PHON</code><br>
+           </td>
+           <td valign="top"><code>PHON</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_SOUR_CORP,<br>
+    REC_REPO, REC_SUBM,<br>
+          </code><code>ELT_SUB_FAM_EVT,<br>
+          </code><code>ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI,<br>
+    ELT_SUB_INDIV_BIRT,<br>
+    ELT_SUB_INDIV_GEN,<br>
+    ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ASSO</code><br>
+           </td>
+           <td valign="top"><code>ASSO</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(FAM),<br>
+XREF_PTR(INDI),<br>
+XREF_PTR(NOTE),<br>
+XREF_PTR(OBJE),<br>
+XREF_PTR(REPO),<br>
+XREF_PTR(SOUR),<br>
+XREF_PTR(SUBM),<br>
+XREF_PTR(SUBN)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ASSO_TYPE</code><br>
+           </td>
+           <td valign="top"><code>TYPE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_ASSO</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_ASSO_RELA</code><br>
+           </td>
+           <td valign="top"><code>RELA</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_ASSO</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_CHAN</code><br>
+           </td>
+           <td valign="top"><code>CHAN</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM, REC_INDI,<br>
+    REC_OBJE, REC_NOTE,<br>
+    REC_REPO, REC_SOUR,<br>
+    REC_SUBM<br>
+          </code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_CHAN_DATE</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_CHAN</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_CHAN_TIME</code><br>
+           </td>
+           <td valign="top"><code>TIME</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_CHAN_DATE</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_FAMC</code><br>
+           </td>
+           <td valign="top"><code>FAMC</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(FAM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_FAMC_PEDI</code><br>
+           </td>
+           <td valign="top"><code>PEDI</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAMC</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_CONT</code><br>
+           </td>
+           <td valign="top"><code>CONT</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_NOTE, REC_NOTE,<br>
+    ELT_SOUR_AUTH, ELT_SOUR_TITL,<br>
+    ELT_SOUR_PUBL, ELT_SOUR_TEXT,<br>
+    ELT_SUB_NOTE, <br>
+    ELT_SUB_SOUR, ELT_SUB_SOUR_TEXT<br>
+          </code><br>
+           </td>
+           <td valign="top"><code>NULL<br>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_CONC</code><br>
+           </td>
+           <td valign="top"><code>CONC</code><br>
+           </td>
+           <td valign="top"><code>ELT_HEAD_NOTE, REC_NOTE,<br>
+    ELT_SOUR_AUTH, ELT_SOUR_TITL,<br>
+    ELT_SOUR_PUBL, ELT_SOUR_TEXT,<br>
+    ELT_SUB_NOTE, <br>
+    ELT_SUB_SOUR, ELT_SUB_SOUR_TEXT<br>
+          </code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_EVT_TYPE</code><br>
+           </td>
+           <td valign="top"><code>TYPE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAM_EVT,<br>
+          </code><code>ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI,<br>
+    ELT_SUB_INDIV_BIRT,<br>
+    ELT_SUB_INDIV_GEN,<br>
+    ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_EVT_DATE</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAM_EVT</code>,<br>
+          <code>ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR</code><code>,<br>
+     ELT_SUB_INDIV_RESI,<br>
+     ELT_SUB_INDIV_BIRT,<br>
+     ELT_SUB_INDIV_GEN,<br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_EVT_AGE</code><br>
+           </td>
+           <td valign="top"><code>AGE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAM_EVT,<br>
+          </code><code>ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI</code><code>,<br>
+     ELT_SUB_INDIV_BIRT,<br>
+     ELT_SUB_INDIV_GEN,<br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
+           </td>
+           <td valign="top"><code>AGE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_EVT_AGNC</code><br>
+           </td>
+           <td valign="top"><code>AGNC</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAM_EVT,<br>
+          </code><code>ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI</code><code>,<br>
+     ELT_SUB_INDIV_BIRT,<br>
+     ELT_SUB_INDIV_GEN,<br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_EVT_CAUS</code><br>
+           </td>
+           <td valign="top"><code>CAUS</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAM_EVT,<br>
+          </code><code>ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI</code><code>,<br>
+     ELT_SUB_INDIV_BIRT,<br>
+     ELT_SUB_INDIV_GEN,<br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_FAM_EVT</code><br>
+           </td>
+           <td valign="top"><code>ANUL, CENS, DIV,<br>
+     DIVF, ENGA, MARR,<br>
+     MARB, MARC, MARL,<br>
+     MARS</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM</code><br>
+           </td>
+           <td valign="top"><code>NULL<br>
+     STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_FAM_EVT_HUSB</code><br>
+           </td>
+           <td valign="top"><code>HUSB</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAM_EVT</code>,<br>
+          <code>ELT_SUB_FAM_EVT_EVEN</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_FAM_EVT_WIFE</code><br>
+           </td>
+           <td valign="top"><code>WIFE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAM_EVT</code>,<br>
+          <code>ELT_SUB_FAM_EVT_EVEN</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_FAM_EVT_AGE</code><br>
+           </td>
+           <td valign="top"><code>AGE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAM_EVT_HUSB</code>,<br>
+          <code>ELT_SUB_FAM_EVT_WIFE</code><br>
+           </td>
+           <td valign="top"><code>AGE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_FAM_EVT_EVEN</code><br>
+           </td>
+           <td valign="top"><code>EVEN</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_IDENT_REFN</code><br>
+           </td>
+           <td valign="top"><code>REFN</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM, REC_INDI,<br>
+    REC_OBJE, REC_NOTE,<br>
+    REC_REPO, REC_SOUR<br>
+          </code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_IDENT_REFN_TYPE</code><br>
+           </td>
+           <td valign="top"><code>TYPE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_IDENT_REFN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_IDENT_RIN</code><br>
+           </td>
+           <td valign="top"><code>RIN</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM, REC_INDI,<br>
+    REC_OBJE, REC_NOTE,<br>
+    REC_REPO, REC_SOUR<br>
+          </code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_INDIV_ATTR</code><br>
+           </td>
+           <td valign="top"><code>CAST, DSCR, EDUC,<br>
+     IDNO, NATI, NCHR,<br>
+     NMR, OCCU, PROP,<br>
+     RELI, SSN, TITL</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_INDIV_RESI</code><br>
+           </td>
+           <td valign="top"><code>RESI</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_INDIV_BIRT</code><br>
+           </td>
+           <td valign="top"><code>BIRT, CHR</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>NULL<br>
+     STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_INDIV_BIRT_FAMC</code><br>
+           </td>
+           <td valign="top"><code>FAMC</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_INDIV_BIRT</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(FAM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_INDIV_GEN</code><br>
+           </td>
+           <td valign="top"><code>DEAT, BURI, CREM,<br>
+     BAPM, BARM, BASM,<br>
+     BLES, CHRA, CONF,<br>
+     FCOM, ORDN, NATU,<br>
+     EMIG, IMMI, CENS,<br>
+     PROB, WILL, GRAD,<br>
+     RETI</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>NULL<br>
+     STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_INDIV_ADOP</code><br>
+           </td>
+           <td valign="top"><code>ADOP</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>NULL<br>
+     STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_INDIV_ADOP_FAMC</code><br>
+           </td>
+           <td valign="top"><code>FAMC</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_INDIV_ADOP</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(FAM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_INDIV_ADOP_FAMC_ADOP</code><br>
+           </td>
+           <td valign="top"><code>ADOP</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_INDIV_ADOP_FAMC</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_INDIV_EVEN</code><br>
+           </td>
+           <td valign="top"><code>EVEN</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LIO_BAPL</code><br>
+           </td>
+           <td valign="top"><code>BAPL, CONL, ENDL</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LIO_BAPL_STAT</code><br>
+           </td>
+           <td valign="top"><code>STAT</code><br>
+           </td>
+           <td valign="top"><code></code><code>ELT_SUB_LIO_BAPL,<br>
+    ELT_SUB_LIO_SLGC<br>
+          </code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LIO_BAPL_DATE</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_LIO_BAPL</code><code>,<br>
+     ELT_SUB_LIO_SLGC<br>
+          </code><br>
+          <br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LIO_BAPL_TEMP</code><br>
+           </td>
+           <td valign="top"><code>TEMP</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_LIO_BAPL</code><code>,<br>
+     ELT_SUB_LIO_SLGC<br>
+          </code><br>
+          <br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LIO_BAPL_PLAC</code><br>
+           </td>
+           <td valign="top"><code>PLAC</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_LIO_BAPL</code><code>,<br>
+     ELT_SUB_LIO_SLGC<br>
+          </code><br>
+          <br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LIO_SLGC</code><br>
+           </td>
+           <td valign="top"><code>SLGC</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LIO_SLGC_FAMC</code><br>
+           </td>
+           <td valign="top"><code>FAMC</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_LIO_SLGC</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(FAM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
+           </td>
+           <td valign="top"><code>SLGS</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LSS_SLGS_STAT</code><br>
+           </td>
+           <td valign="top"><code>STAT</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LSS_SLGS_DATE</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LSS_SLGS_TEMP</code><br>
+           </td>
+           <td valign="top"><code>TEMP</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_LSS_SLGS_PLAC</code><br>
+           </td>
+           <td valign="top"><code>PLAC</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_MULTIM_OBJE</code><br>
+           </td>
+           <td valign="top"><code>OBJE</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM, REC_INDI,<br>
+    REC_SOUR, REC_SUBM,<br>
+          </code><code>ELT_SUB_FAM_EVT,<br>
+    ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI</code><code>,<br>
+     ELT_SUB_INDIV_BIRT,<br>
+     ELT_SUB_INDIV_GEN,<br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN,<br>
+    ELT_SUB_SOUR</code><br>
+           </td>
+           <td valign="top"><code>NULL<br>
+ XREF_PTR(OBJE)<br>
+       </code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_MULTIM_OBJE_FORM</code><br>
+           </td>
+           <td valign="top"><code>FORM</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_MULTIM_OBJE</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_MULTIM_OBJE_TITL</code><br>
+           </td>
+           <td valign="top"><code>TITL</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_MULTIM_OBJE</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_MULTIM_OBJE_FILE</code><br>
+           </td>
+           <td valign="top"><code>FILE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_MULTIM_OBJE</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_NOTE</code><br>
+           </td>
+           <td valign="top"><code>NOTE</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM, REC_INDI,<br>
+    REC_OBJE, REC_REPO,<br>
+    REC_SOUR, ELT_SOUR_DATA,<br>
+    ELT_SUB_ASSO, ELT_SUB_CHAN,<br>
+    ELT_SUB_FAMC, </code><code>ELT_SUB_FAM_EVT,<br>
+    ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI</code><code>,<br>
+     ELT_SUB_INDIV_BIRT,<br>
+     ELT_SUB_INDIV_GEN,<br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN,<br>
+    ELT_SUB_LIO_BAPL,<br>
+    ELT_SUB_LIO_SLGC,<br>
+    ELT_SUB_LSS_SLGS,<br>
+    ELT_SUB_MULTIM_OBJE,<br>
+    ELT_SUB_PERS_NAME,<br>
+    ELT_SUB_PLAC,<br>
+    ELT_SUB_SOUR,<br>
+    ELT_SUB_REPO,<br>
+    ELT_SUB_FAMS</code><br>
+           </td>
+           <td valign="top"><code>NULL<br>
+     STRING<br>
+ XREF_PTR(NOTE)<br>
+       </code><br>
+           </td><td valign="top"><code>STRING<br>
+      <br>
+NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
+           </td>
+           <td valign="top"><code>NAME</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PERS_NAME_NPFX</code><br>
+           </td>
+           <td valign="top"><code>NPFX</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PERS_NAME_GIVN</code><br>
+           </td>
+           <td valign="top"><code>GIVN</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PERS_NAME_NICK</code><br>
+           </td>
+           <td valign="top"><code>NICK</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PERS_NAME_SPFX</code><br>
+           </td>
+           <td valign="top"><code>SPFX</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PERS_NAME_SURN</code><br>
+           </td>
+           <td valign="top"><code>SURN</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PERS_NAME_NSFX</code><br>
+           </td>
+           <td valign="top"><code>NSFX</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PLAC</code><br>
+           </td>
+           <td valign="top"><code>PLAC</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_FAM_EVT</code>,<br>
+          <code>ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI</code><code>,
+     <br>
+ELT_SUB_INDIV_BIRT,<br>
+     ELT_SUB_INDIV_GEN,<br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_PLAC_FORM</code><br>
+           </td>
+           <td valign="top"><code>FORM</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_PLAC</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_SOUR</code><br>
+           </td>
+           <td valign="top"><code>SOUR</code><br>
+           </td>
+           <td valign="top"><code>REC_FAM, REC_INDI,<br>
+    REC_NOTE, ELT_SUB_ASSO<br>
+          </code><code>ELT_SUB_FAM_EVT,<br>
+          </code><code>ELT_SUB_FAM_EVT_EVEN,<br>
+    ELT_SUB_INDIV_ATTR,<br>
+    ELT_SUB_INDIV_RESI</code><code>,<br>
+     ELT_SUB_INDIV_BIRT,<br>
+     ELT_SUB_INDIV_GEN,<br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN,<br>
+    ELT_SUB_LIO_BAPL,<br>
+    ELT_SUB_LIO_SLGC,<br>
+    ELT_SUB_LSS_SLGS,<br>
+    ELT_SUB_NOTE,<br>
+    ELT_SUB_PERS_NAME,<br>
+    ELT_SUB_PLAC</code><br>
+           </td>
+           <td valign="top"><code>STRING<br>
+ XREF_PTR(SOUR)</code><br>
+           </td><td valign="top"><code>STRING<br>
+NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_SOUR_PAGE</code><br>
+           </td>
+           <td valign="top"><code>PAGE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_SOUR_EVEN</code><br>
+           </td>
+           <td valign="top"><code>EVEN</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_SOUR_EVEN_ROLE</code><br>
+           </td>
+           <td valign="top"><code>ROLE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_SOUR_EVEN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_SOUR_DATA</code><br>
+           </td>
+           <td valign="top"><code>DATA</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_SOUR</code><br>
+           </td>
+           <td valign="top"><code>NULL</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_SOUR_DATA_DATE</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_SOUR_DATA</code><br>
+           </td>
+           <td valign="top"><code>DATE</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_SOUR_TEXT</code><br>
+           </td>
+           <td valign="top"><code>TEXT</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_SOUR<br>
+    ELT_SUB_SOUR_DATA</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_SOUR_QUAY</code><br>
+           </td>
+           <td valign="top"><code>QUAY</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_SOUR</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_REPO</code><br>
+           </td>
+           <td valign="top"><code>REPO</code><br>
+           </td>
+           <td valign="top"><code>REC_SOUR</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(REPO)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_REPO_CALN</code><br>
+           </td>
+           <td valign="top"><code>CALN</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_REPO</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_REPO_CALN_MEDI</code><br>
+           </td>
+           <td valign="top"><code>MEDI</code><br>
+           </td>
+           <td valign="top"><code>ELT_SUB_REPO_CALN</code><br>
+           </td>
+           <td valign="top"><code>STRING</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_SUB_FAMS</code><br>
+           </td>
+           <td valign="top"><code>FAMS</code><br>
+           </td>
+           <td valign="top"><code>REC_INDI</code><br>
+           </td>
+           <td valign="top"><code>XREF_PTR(FAM)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+         <tr>
+           <td valign="top"><code>ELT_USER</code><br>
+           </td>
+           <td valign="top"><code>any tag starting<br>
+     with an underscore</code><br>
+           </td>
+           <td valign="top"><code>anywhere</code><br>
+           </td>
+           <td valign="top"><code>NULL<br>
+     STRING<br>
+ XREF_PTR(USER)</code><br>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
+         </tr>
+                   
+  </tbody>     
+</table>
+              <hr width="100%" size="2">                            
+              <pre>$Id$<br>$Name$<br></pre>
+      <br>
+                                                                        
+              <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body></html>
