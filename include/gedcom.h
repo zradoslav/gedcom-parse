@@ -26,6 +26,8 @@
 
 #include <stdio.h>
 
+__BEGIN_DECLS
+
 typedef enum _REC {
   REC_HEAD,
   REC_FAM,
@@ -119,5 +121,7 @@ void    gedcom_subscribe_to_record(Gedcom_rec rec,
 void    gedcom_subscribe_to_element(Gedcom_elt elt,
 				    Gedcom_elt_start_cb cb_start,
 				    Gedcom_elt_end_cb cb_end);
+
+__END_DECLS
 
 #endif /* __GEDCOM_H */
