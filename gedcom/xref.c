@@ -68,6 +68,7 @@ void clear_xref_node(struct xref_node *xr)
   /* Make sure that the 'string' member always contains a valid string */
   if (!xr->xref.string)
     xr->xref.string  = strdup("");
+  if (!xr->xref.string) MEMORY_ERROR;
   xr->xref.object  = NULL;
   xr->defined_type = XREF_NONE;
   xr->used_type    = XREF_NONE;
@@ -78,8 +79,12 @@ void clear_xref_node(struct xref_node *xr)
 struct xref_node *make_xref_node()
 {
   struct xref_node *xr = (struct xref_node *)malloc(sizeof(struct xref_node));
-  xr->xref.string = NULL;
-  clear_xref_node(xr);
+  if (xr) {
+    xr->xref.string = NULL;
+    clear_xref_node(xr);
+  }
+  else
+    MEMORY_ERROR;
   return xr;
 }
 
@@ -96,7 +101,9 @@ void make_xref_table()
   else
     /* Only register initially (if xrefs is still NULL) */
     /* So that it is only registered once */
-    atexit(cleanup_xrefs);
+    if (atexit(cleanup_xrefs) != 0) {
+      gedcom_warning(_("Could not register xref cleanup function"));
+    }
   xrefs = hash_create(HASHCOUNT_T_MAX, NULL, NULL);
   hash_set_allocator(xrefs, xref_alloc, xref_free, NULL);
 }
@@ -148,11 +155,17 @@ struct xref_value *gedcom_parse_xref(char *raw_value,
   }
   else {
     char *key = strdup(raw_value);
-    xr = make_xref_node();
-    xr->xref.type = xref_type;
-    free(xr->xref.string);
-    xr->xref.string = strdup(raw_value);
-    hash_alloc_insert(xrefs, key, xr);
+    if (key) {
+      xr = make_xref_node();
+      xr->xref.type = xref_type;
+      if (xr->xref.string)
+	free(xr->xref.string);
+      xr->xref.string = strdup(raw_value);
+      if (! xr->xref.string) MEMORY_ERROR;
+      hash_alloc_insert(xrefs, key, xr);
+    }
+    else
+      MEMORY_ERROR;
   }
     
   if (ctxt == XREF_DEFINED && xr->defined_type == XREF_NONE) {

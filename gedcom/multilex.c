@@ -69,17 +69,24 @@ int gedcom_lex()
 int determine_encoding(FILE* f)
 {
   char first[2];
+  int read;
 
-  fread(first, 1, 2, f);
-  if ((first[0] == '0') && (first[1] == ' ')) {
+  read = fread(first, 1, 2, f);
+  if (read != 2) {
+    gedcom_warning(_("Error reading from input file: %s"), strerror(errno));
+    return ONE_BYTE;
+  }
+  else if ((first[0] == '0') && (first[1] == ' ')) {
     gedcom_debug_print(_("One-byte encoding"));
-    fseek(f, 0, 0);
+    if (fseek(f, 0, 0) != 0)
+      gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
     return ONE_BYTE;
   }
   else if ((first[0] == '\0') && (first[1] == '0'))
   {
     gedcom_debug_print(_("Two-byte encoding, high-low"));
-    fseek(f, 0, 0);
+    if (fseek(f, 0, 0) != 0)
+      gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
     return TWO_BYTE_HILO;
   }
   else if ((first[0] == '\xFE') && (first[1] == '\xFF'))
@@ -90,7 +97,8 @@ int determine_encoding(FILE* f)
   else if ((first[0] == '0') && (first[1] == '\0'))
   {
     gedcom_debug_print(_("Two-byte encoding, low-high"));
-    fseek(f, 0, 0);
+    if (fseek(f, 0, 0) != 0)
+      gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
     return TWO_BYTE_LOHI;
   }
   else if ((first[0] == '\xFF') && (first[1] == '\xFE'))
@@ -100,7 +108,8 @@ int determine_encoding(FILE* f)
   }
   else {
     gedcom_warning(_("Unknown encoding, falling back to one-byte"));
-    fseek(f, 0, 0);
+    if (fseek(f, 0, 0) != 0)
+      gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
     return ONE_BYTE;
   }
 }
@@ -118,13 +127,33 @@ int gedcom_parse_file(char* file_name)
   ENCODING enc;
   int result = 1;
   FILE* file;
+  char *locale, *save_locale, *save_textdom;
+
+  locale = setlocale(LC_ALL, NULL);
+  if (! locale) {
+    gedcom_error(_("Could not retrieve locale information"));
+    return result;
+  }
   
-  char *save_locale  = strdup(setlocale(LC_ALL, NULL));
-  char *save_textdom = textdomain(NULL);
-  setlocale(LC_ALL, "");
-  bindtextdomain(PACKAGE, LOCALEDIR);
-  bind_textdomain_codeset(PACKAGE, INTERNAL_ENCODING);
-  textdomain(PACKAGE);
+  save_locale  = strdup(locale);
+  if (! save_locale) {
+    MEMORY_ERROR;
+    return result;
+  }
+  
+  save_textdom = textdomain(NULL);
+  if (!save_textdom) {
+    gedcom_error(_("Could not retrieve locale domain: %s"), strerror(errno));
+    return result;
+  }
+  
+  if (! setlocale(LC_ALL, "")
+      || ! bindtextdomain(PACKAGE, LOCALEDIR)
+      || ! bind_textdomain_codeset(PACKAGE, INTERNAL_ENCODING)
+      || ! textdomain(PACKAGE)) {
+    gedcom_error(_("Could not set locale: %s"), strerror(errno));
+    return result;
+  }
 
   if (!init_called) {
     gedcom_error(_("Internal error: GEDCOM parser not initialized"));
@@ -133,7 +162,8 @@ int gedcom_parse_file(char* file_name)
     line_no = 1;
     file = fopen(file_name, "r");
     if (!file) {
-      gedcom_error(_("Could not open file '%s'"), file_name);
+      gedcom_error(_("Could not open file '%s': %s"),
+		   file_name, strerror(errno));
     }
     else {
       init_encodings();
@@ -151,8 +181,11 @@ int gedcom_parse_file(char* file_name)
     }
   }
 
-  textdomain(save_textdom);
-  setlocale(LC_ALL, save_locale);
+  if (! textdomain(save_textdom)
+      || ! setlocale(LC_ALL, save_locale)) {
+    gedcom_error(_("Could not restore locale: %s"), strerror(errno));
+    return result;
+  }
   free(save_locale);
   return result;
 }
