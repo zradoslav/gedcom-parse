@@ -123,6 +123,7 @@
 %{
 #include "gedcom.h"
 #include "multilex.h"
+#include "encoding.h"
 
 int  count_level    = 0;
 int  fail           = 0;
@@ -568,7 +569,8 @@ head_gedc_form_sect : OPEN DELIM TAG_FORM mand_line_item
 
 /* HEAD.CHAR */
 head_char_sect : OPEN DELIM TAG_CHAR mand_line_item 
-                 { START(CHAR) }
+                 { if (open_conv_to_internal($4) == 0) YYERROR;
+		   START(CHAR) }
                  head_char_subs
 		 { CHECK0 }
                  CLOSE
