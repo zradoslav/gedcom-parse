@@ -404,7 +404,8 @@ typedef enum _DATE_INPUT {
 /***  Use the GEDCOM_STRING/GEDCOM_DATE interface instead of relying    ***/
 /***  on this !!                                                        ***/
 /**************************************************************************/
-									   
+
+/* Update strings in interface.c if this changes */
 typedef enum _GEDCOM_VAL_TYPE {
   GV_NULL       = 0x01,
   GV_CHAR_PTR   = 0x02,
