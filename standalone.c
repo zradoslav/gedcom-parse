@@ -25,6 +25,8 @@ void show_help ()
   printf("  -fn   No fail on errors\n");
   printf("  -dg   Debug setting: only libgedcom debug messages\n");
   printf("  -da   Debug setting: libgedcom + yacc debug messages\n");
+  printf("  -2    Run the test parse 2 times instead of once\n");
+  printf("  -3    Run the test parse 3 times instead of once\n");
 }
 
 int main(int argc, char* argv[])
@@ -32,6 +34,8 @@ int main(int argc, char* argv[])
   MECHANISM mech = IMMED_FAIL;
   int compat_enabled = 1;
   int debug_level = 0;
+  int run_times   = 1;
+  int result      = 0;
   char* file_name = NULL;
 
   if (argc > 1) {
@@ -52,6 +56,12 @@ int main(int argc, char* argv[])
       else if (!strncmp(argv[i], "-h", 3)) {
 	show_help();
 	exit(1);
+      }
+      else if (!strncmp(argv[i], "-2", 3)) {
+	run_times = 2;
+      }
+      else if (!strncmp(argv[i], "-3", 3)) {
+	run_times = 3;
       }
       else if (strncmp(argv[i], "-", 1)) {
 	file_name = argv[i];
@@ -74,8 +84,11 @@ int main(int argc, char* argv[])
   gedcom_set_debug_level(debug_level);
   gedcom_set_compat_handling(compat_enabled);
   gedcom_set_error_handling(mech);
-  
-  if (gedcom_parse_file(file_name) == 0) {
+
+  while (run_times-- > 0) {
+    result |= gedcom_parse_file(file_name);
+  }
+  if (result == 0) {
     printf("Parse succeeded\n");
     return 0;
   }
