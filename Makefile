@@ -40,23 +40,32 @@ clean:
 
 # Lexer test programs
 
-test_1byte:	lex.gedcom_1byte_.test.o message.o encoding.o
+lexer_1byte:	lex.gedcom_1byte_.test.o message.o encoding.o
 	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 lex.gedcom_1byte_.test.o:	lex.gedcom_1byte_.c
 	$(CC) -DLEXER_TEST -c $(CPPFLAGS) $(CFLAGS) $^ -o $@
 
-test_hilo:	lex.gedcom_hilo_.test.o message.o encoding.o
+test_1byte:	lexer_1byte
+	cat t/allged.ged | ./lexer_1byte
+
+lexer_hilo:	lex.gedcom_hilo_.test.o message.o encoding.o
 	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 lex.gedcom_hilo_.test.o:	lex.gedcom_hilo_.c
 	$(CC) -DLEXER_TEST -c $(CPPFLAGS) $(CFLAGS) $^ -o $@
 
-test_lohi:	lex.gedcom_lohi_.test.o message.o encoding.o
+test_hilo:	lexer_hilo
+	cat t/uhlcl.ged | ./lexer_hilo
+
+lexer_lohi:	lex.gedcom_lohi_.test.o message.o encoding.o
 	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 lex.gedcom_lohi_.test.o:	lex.gedcom_lohi_.c
 	$(CC) -DLEXER_TEST -c $(CPPFLAGS) $(CFLAGS) $^ -o $@
+
+test_lohi:	lexer_lohi
+	cat t/ulhcl.ged | ./lexer_lohi
 
 # Test of parser
 
