@@ -91,9 +91,10 @@ int test_loop(ENCODING enc, const char* code)
 /* These are defined as functions here, because xgettext has trouble
    extracting the strings out of long pre-processor defined */
 
-static void error_line_too_long()
+static void error_line_too_long(const char *line)
 {
-  gedcom_error(_("Line too long, max %d characters allowed"), MAXGEDCLINELEN); 
+  gedcom_error(_("Line too long, max %d characters allowed: %s"),
+	       MAXGEDCLINELEN, line); 
 }
 
 static void error_level_leading_zero()
@@ -155,7 +156,7 @@ static int dummy_conv = 0;
   { if (line_len != (size_t)-1) {                                             \
       line_len += strlen(yytext);                                             \
       if (line_len > MAXGEDCLINELEN * encoding_width) {                       \
-        error_line_too_long();                                                \
+        error_line_too_long(yytext);                                          \
         line_len = (size_t)-1;                                                \
         return BADTOKEN;                                                      \
       }                                                                       \
