@@ -26,15 +26,19 @@
 
 #include "gedcom.h"
 
-extern int compat_at;
-
-enum _COMPAT {
-  C_FTREE = 0x01,
-  C_LIFELINES = 0x02
-};
+typedef enum _COMPAT_RULES {
+  C_NO_SUBMITTER,
+  C_INDI_ADDR,
+  C_NOTE_NO_VALUE,
+  C_NO_GEDC,
+  C_NO_CHAR,
+  C_HEAD_TIME,
+  C_NO_DOUBLE_AT,
+  C_NO_REQUIRED_VALUES
+} Compat_rule;
 
 void set_compatibility(const char* program);
-int  compat_mode(int flags); 
+int  compat_mode(Compat_rule rule); 
 void compat_generate_submitter_link(Gedcom_ctxt parent);
 void compat_generate_submitter();
 void compat_generate_gedcom(Gedcom_ctxt parent);

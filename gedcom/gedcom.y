@@ -444,22 +444,24 @@ head_sect    : OPEN DELIM TAG_HEAD
 					 NULL, GEDCOM_MAKE_NULL(val2));
 	         START(HEAD, $1, $<ctxt>$) }
                head_subs
-               { if (compat_mode(C_FTREE)) {
-		   CHECK3(SOUR, GEDC, CHAR);
+               { if (compat_mode(C_NO_SUBMITTER))
 		   compat_generate_submitter_link($<ctxt>4);
-		 }
-	         else if (compat_mode(C_LIFELINES)) {
-		   CHECK1(SOUR);
-		   compat_generate_submitter_link($<ctxt>4);
+	         else CHK(SUBM);
+
+	         if (compat_mode(C_NO_GEDC))
 		   compat_generate_gedcom($<ctxt>4);
+		 else CHK(GEDC);
+
+		 if (compat_mode(C_NO_CHAR)) {
 		   if (compat_generate_char($<ctxt>4)) HANDLE_ERROR;
-	         }
-	         else
-		   CHECK4(SOUR, SUBM, GEDC, CHAR)
+		 }
+		 else CHK(CHAR);
+
+		 CHECK1(SOUR);
 	       }
                CLOSE
                { end_record(REC_HEAD, $<ctxt>4, GEDCOM_MAKE_NULL(val1));
-	         if (compat_mode(C_FTREE | C_LIFELINES))
+	         if (compat_mode(C_NO_SUBMITTER))
 	           compat_generate_submitter();
 	       }
              ;
@@ -471,7 +473,7 @@ head_subs    : /* empty */
 head_sub     : head_sour_sect  { OCCUR2(SOUR, 1, 1) }
              | head_dest_sect  { OCCUR2(DEST, 0, 1) }
              | head_date_sect  { OCCUR2(DATE, 0, 1) }
-             | head_time_sect  { if (!compat_mode(C_LIFELINES))
+             | head_time_sect  { if (!compat_mode(C_HEAD_TIME))
 	                          INVALID_TAG("TIME");
 	                         OCCUR2(TIME, 0, 1) }
              | head_subm_sect  { OCCUR2(SUBM, 1, 1) }
@@ -1074,7 +1076,7 @@ indi_sub    : indi_resn_sect  { OCCUR2(RESN, 0, 1) }
             | indi_afn_sect  /* 0:M */
             | ident_struc_sub  /* 0:1 */
             | change_date_sub  /* 0:1 */
-	    | ftree_addr_sect { if (!compat_mode(C_FTREE))
+	    | indi_addr_sect { if (!compat_mode(C_INDI_ADDR))
 	                          INVALID_TAG("ADDR");
 	                      }
 	    | no_std_sub
@@ -1212,23 +1214,23 @@ indi_afn_sect  : OPEN DELIM TAG_AFN mand_line_item
 		 }
                ;
 
-/* INDI.ADDR (Only for 'ftree' compatibility) */
-ftree_addr_sect : OPEN DELIM TAG_ADDR opt_line_item
-                  { if (compat_mode(C_FTREE)) {
+/* INDI.ADDR (Only for compatibility) */
+indi_addr_sect : OPEN DELIM TAG_ADDR opt_line_item
+                  { if (compat_mode(C_INDI_ADDR)) {
 		      Gedcom_ctxt par = compat_generate_resi_start(PARENT);
 		      START(RESI, $1, par);
 		      $<ctxt>$
 			= start_element(ELT_SUB_ADDR,
 					par, $1 + 1, $3, $4,
 					GEDCOM_MAKE_NULL_OR_STRING(val2, $4));
-		      START(ADDR, $1, $<ctxt>$);
+		      START(ADDR, $1 + 1, $<ctxt>$);
 		    }
 		  else { START(ADDR, $1, NULL) }
 		  }
                   ftree_addr_subs
                   { CHECK0 }
                   CLOSE
-                  { if (compat_mode(C_FTREE)) {
+                  { if (compat_mode(C_INDI_ADDR)) {
 		      Gedcom_ctxt par = PARENT;
 		      end_element(ELT_SUB_ADDR, par, $<ctxt>5,
 				  GEDCOM_MAKE_NULL(val1));
@@ -1403,7 +1405,7 @@ note_rec    : OPEN DELIM POINTER DELIM TAG_NOTE note_line_item
             ;
 
 note_line_item : /* empty */
-                   { if (!compat_mode(C_FTREE)) {
+                   { if (!compat_mode(C_NOTE_NO_VALUE)) {
 		       gedcom_error(_("Missing value")); YYERROR;
 		     }
 		     else {
@@ -3695,7 +3697,7 @@ mand_pointer : /* empty */ { gedcom_error(_("Missing pointer")); YYERROR; }
              ;
 
 mand_line_item : /* empty */
-                 { if (compat_mode(C_LIFELINES)) {
+                 { if (compat_mode(C_NO_REQUIRED_VALUES)) {
                      /* Lifelines tends to not care about mandatory values */
 		     gedcom_debug_print("==Val: ==");
 		     $$ = "";

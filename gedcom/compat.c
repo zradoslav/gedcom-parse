@@ -30,13 +30,17 @@
 
 int compat_enabled = 1;
 int compatibility  = 0; 
-int compat_at = 0;
 const char* default_charset = "";
 
 #define SUBMITTER_LINK         "@__COMPAT__SUBM__@"
 #define DEFAULT_SUBMITTER_NAME "Submitter"
 #define DEFAULT_GEDCOM_VERS    "5.5"
 #define DEFAULT_GEDCOM_FORM    "LINEAGE-LINKED"
+
+enum _COMPAT {
+  C_FTREE = 0x01,
+  C_LIFELINES = 0x02
+};
 
 /* Incompatibility list (with GEDCOM 5.5):
 
@@ -54,6 +58,18 @@ const char* default_charset = "";
 	- lots of missing required values
  */
 
+int compat_matrix[] =
+{
+  /* C_NO_SUBMITTER */        C_FTREE | C_LIFELINES,
+  /* C_INDI_ADDR */           C_FTREE,
+  /* C_NOTE_NO_VALUE */       C_FTREE,
+  /* C_NO_GEDC */             C_LIFELINES,
+  /* C_NO_CHAR */             C_LIFELINES,
+  /* C_HEAD_TIME */           C_LIFELINES,
+  /* C_NO_DOUBLE_AT */        C_LIFELINES,
+  /* C_NO_REQUIRED_VALUES */  C_LIFELINES
+};
+
 /* Compatibility handling */
 
 void gedcom_set_compat_handling(int enable_compat)
@@ -64,7 +80,6 @@ void gedcom_set_compat_handling(int enable_compat)
 void set_compatibility(const char* program)
 {
   /* Reinitialize compatibility */
-  compat_at = 0;
   default_charset = "";
   compatibility = 0;
   
@@ -78,14 +93,13 @@ void set_compatibility(const char* program)
       gedcom_warning(_("Enabling compatibility with 'Lifelines'"));
       compatibility = C_LIFELINES;
       default_charset = "ANSI";
-      compat_at = 1;
     }
   }
 }
 
-int compat_mode(int compat_flags)
+int compat_mode(Compat_rule rule)
 {
-  return (compat_flags & compatibility);
+  return (compat_matrix[rule] & compatibility);
 }
 
 void compat_generate_submitter_link(Gedcom_ctxt parent)

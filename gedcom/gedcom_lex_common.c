@@ -46,7 +46,6 @@ static struct conv_buffer* str_buffer = NULL;
 #ifdef LEXER_TEST 
 YYSTYPE gedcom_lval;
 int line_no = 1;
-int compat_at = 0;
 
 int gedcom_lex();
 
@@ -361,7 +360,7 @@ static int dummy_conv = 0;
   } 
 
 #define ACTION_NORMAL_AT                                                      \
-  { if (compat_at) {                                                          \
+  { if (compat_mode(C_NO_DOUBLE_AT)) {                                        \
       int i, j;                                                               \
       char *yycopy = strdup(yytext);                                          \
       if (yycopy) {                                                           \
