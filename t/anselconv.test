@@ -26,13 +26,13 @@ fi
 echo "======================================================">> $logfile
 echo "Performing test 'anselconv'" >> $logfile
 echo "Testing conversion from ANSEL to UTF-8" >> $logfile
-iconv -f ANSEL -t UTF-8 $srcdir/input/ansel.ged > anselconv_utf8.out
+iconv -f ANSEL -t UTF-8 $srcdir/input/ansel.ged > anselconv_utf8.out 2>>$logfile
 if diff $srcdir/input/anselutf8.ged anselconv_utf8.out >/dev/null 2>> $logfile
 then
   echo "Output agrees with reference output" >> $logfile
   rm anselconv_utf8.out
   echo "Testing conversion from UTF-8 to ANSEL" >> $logfile
-  iconv -f UTF-8 -t ANSEL $srcdir/input/anselutf8.ged > anselconv_ansel.out
+  iconv -f UTF-8 -t ANSEL $srcdir/input/anselutf8.ged > anselconv_ansel.out 2>>$logfile
   if diff $srcdir/input/ansel.ged anselconv_ansel.out >/dev/null 2>> $logfile
   then
     echo "Output agrees with reference output" >> $logfile
