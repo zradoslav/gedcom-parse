@@ -29,9 +29,9 @@
 <hr width="100%" size="2">      
 <h2><a name="Record_identifiers"></a>Record identifiers</h2>
       The following table describes the identifiers to be used in the record
-  callbacks.  &nbsp;The last columns gives the <a href="#Gedcom_val_types"><code>
+  callbacks.  &nbsp;The last columns give the <a href="#Gedcom_val_types"><code>
     Gedcom_val</code>   type</a> of the <code>xref</code> and&nbsp;<code>
-val</code><code> </code> arguments in the header  start callback.<br>
+val</code><code> </code> arguments in the record  start and end callback.<br>
       <br>
            
 <table width="100%" border="1" cellspacing="2" cellpadding="2">
@@ -44,10 +44,12 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top" align="center"><b>Possible<br>
       &nbsp;<code>xref</code> types</b><br>
             </td>
-       <td valign="top" align="center"><b>Possible<br>
-       <code>val</code> types<br>
-       </b><br>
-       </td>
+       <td valign="top" align="center"><b>Possible start<br>
+       <code>val</code> types</b><br>
+       </td><td valign="top" align="center"><b>Possible end<br>
+      <code>val</code> types</b><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_HEAD</code><br>
@@ -57,7 +59,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top"><code>NULL</code><br>
             </td>
        <td valign="top"><code>NULL</code><br>
-       </td>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_FAM</code><br>
@@ -67,7 +71,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top"><code>XREF_PTR(FAM)</code><br>
             </td>
        <td valign="top"><code>NULL</code><br>
-       </td>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_INDI</code><br>
@@ -77,7 +83,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top"><code>XREF_PTR(INDI)</code><br>
             </td>
        <td valign="top"><code>NULL</code><br>
-       </td>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_OBJE</code><br>
@@ -87,7 +95,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top"><code>XREF_PTR(OBJE)</code><br>
             </td>
        <td valign="top"><code>NULL</code><br>
-       </td>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_NOTE</code><br>
@@ -97,7 +107,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top"><code>XREF_PTR(NOTE)</code><br>
             </td>
        <td valign="top"><code>STRING</code><br>
-       </td>
+       </td><td valign="top"><code>STRING</code><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_REPO</code><br>
@@ -107,7 +119,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top"><code>XREF_PTR(REPO)</code><br>
             </td>
        <td valign="top"><code>NULL</code><br>
-       </td>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_SOUR</code><br>
@@ -117,7 +131,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top"><code>XREF_PTR(SOUR)</code><br>
             </td>
        <td valign="top"><code>NULL</code><br>
-       </td>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_SUBN</code><br>
@@ -127,7 +143,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top"><code>XREF_PTR(SUBN)</code><br>
             </td>
        <td valign="top"><code>NULL</code><br>
-       </td>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_SUBM</code><br>
@@ -137,7 +155,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
             <td valign="top"><code>XREF_PTR(SUBM</code>)<br>
             </td>
        <td valign="top"><code>NULL</code><br>
-       </td>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
           </tr>
           <tr>
             <td valign="top"><code>REC_USER</code><br>
@@ -152,7 +172,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
        <td valign="top"><code>NULL<br>
  STRING<br>
  XREF_PTR(USER)</code><br>
-       </td>
+       </td><td valign="top"><code>NULL</code><br>
+      </td>
+
           </tr>
                        
   </tbody>      
@@ -161,9 +183,9 @@ val</code><code> </code> arguments in the header  start callback.<br>
 <hr width="100%" size="2">      
 <h2><a name="Element_identifiers"></a>Element identifiers</h2>
      The following table describes the identifiers to be used in the element
-  callbacks. &nbsp;The last column gives the <a href="file:///home/verthezp/src/external/gedcom-parse/doc/interface.html#Gedcom_val_types"><code>
+  callbacks. &nbsp;The last columns give the <a href="file:///home/verthezp/src/external/gedcom-parse/doc/interface.html#Gedcom_val_types"><code>
      Gedcom_val</code>  type</a> of the <code>val</code> argument in the
-element   start callback.<br>
+element   start and end callback.<br>
      <br>
          
 <table cellpadding="2" cellspacing="2" border="1" width="100%">
@@ -177,10 +199,13 @@ element   start callback.<br>
            </td>
            <td valign="top" align="center"><b>Used within</b><br>
            </td>
-           <td valign="top" align="center"><b>Possible<br>
+           <td valign="top" align="center"><b>Possible start<br>
            <code>val</code> types<br>
            </b><br>
-           </td>
+           </td><td valign="top" align="center"><b>Possible end<br>
+      <code>val</code> types</b><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_SOUR</code><br>
@@ -190,7 +215,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_SOUR_VERS</code><br>
@@ -200,7 +227,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_SOUR_NAME</code><br>
@@ -210,7 +239,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_SOUR_CORP</code><br>
@@ -220,7 +251,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_SOUR_DATA</code><br>
@@ -230,7 +263,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_SOUR_DATA_DATE</code><br>
@@ -240,7 +275,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_SOUR_DATA</code><br>
            </td>
            <td valign="top"><code>DATE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_SOUR_DATA_COPR</code><br>
@@ -250,7 +287,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_SOUR_DATA</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_DEST</code><br>
@@ -260,7 +299,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_DATE</code><br>
@@ -270,7 +311,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>DATE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_DATE_TIME</code><br>
@@ -280,7 +323,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_DATE</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_SUBM</code><br>
@@ -290,7 +335,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(SUBM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_SUBN</code><br>
@@ -300,7 +347,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(SUBN)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_FILE</code><br>
@@ -310,7 +359,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_COPR</code><br>
@@ -320,7 +371,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_GEDC</code><br>
@@ -330,7 +383,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_GEDC_VERS</code><br>
@@ -340,7 +395,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_GEDC</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_GEDC_FORM</code><br>
@@ -350,7 +407,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_GEDC</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_CHAR</code><br>
@@ -360,7 +419,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_CHAR_VERS</code><br>
@@ -370,7 +431,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_CHAR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_LANG</code><br>
@@ -380,7 +443,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_PLAC</code><br>
@@ -390,7 +455,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_PLAC_FORM</code><br>
@@ -400,7 +467,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_HEAD_PLAC</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_HEAD_NOTE</code><br>
@@ -410,7 +479,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_HEAD</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_FAM_HUSB</code><br>
@@ -420,7 +491,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_FAM</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(INDI)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_FAM_WIFE</code><br>
@@ -430,7 +503,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_FAM</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(INDI)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_FAM_CHIL</code><br>
@@ -440,7 +515,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_FAM</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(INDI)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_FAM_NCHI</code><br>
@@ -450,7 +527,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_FAM</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_FAM_SUBM</code><br>
@@ -460,7 +539,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_FAM</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(SUBM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_INDI_RESN</code><br>
@@ -470,7 +551,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_INDI_SEX</code><br>
@@ -480,7 +563,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_INDI_SUBM</code><br>
@@ -490,7 +575,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(SUBM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_INDI_ALIA</code><br>
@@ -500,7 +587,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(INDI)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_INDI_ANCI</code><br>
@@ -510,7 +599,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(SUBM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_INDI_DESI</code><br>
@@ -520,7 +611,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(SUBM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_INDI_RFN</code><br>
@@ -530,7 +623,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_INDI_AFN</code><br>
@@ -540,7 +635,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_OBJE_FORM</code><br>
@@ -550,7 +647,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_OBJE</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_OBJE_TITL</code><br>
@@ -560,7 +659,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_OBJE</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_OBJE_BLOB</code><br>
@@ -570,7 +671,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_OBJE</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_OBJE_BLOB_CONT</code><br>
@@ -580,7 +683,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_OBJE_BLOB</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_OBJE_OBJE</code><br>
@@ -590,7 +695,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_OBJE</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(OBJE)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_REPO_NAME</code><br>
@@ -600,7 +707,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_REPO</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_DATA</code><br>
@@ -610,7 +719,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SOUR</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_DATA_EVEN</code><br>
@@ -620,7 +731,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_SOUR_DATA</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_DATA_EVEN_DATE</code><br>
@@ -630,7 +743,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_SOUR_DATA_EVEN</code><br>
            </td>
            <td valign="top"><code>DATE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_DATA_EVEN_PLAC</code><br>
@@ -640,7 +755,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_SOUR_DATA_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_DATA_AGNC</code><br>
@@ -650,7 +767,9 @@ element   start callback.<br>
            <td valign="top"><code>ELT_SOUR_DATA</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_AUTH</code><br>
@@ -660,7 +779,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_TITL</code><br>
@@ -670,7 +791,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_ABBR</code><br>
@@ -680,7 +803,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_PUBL</code><br>
@@ -690,7 +815,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SOUR_TEXT</code><br>
@@ -700,7 +827,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBN_SUBM</code><br>
@@ -710,7 +839,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBN</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(SUBM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBN_FAMF</code><br>
@@ -720,7 +851,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBN_TEMP</code><br>
@@ -730,7 +863,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBN_ANCE</code><br>
@@ -740,7 +875,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBN_DESC</code><br>
@@ -750,7 +887,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBN_ORDI</code><br>
@@ -760,7 +899,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBN_RIN</code><br>
@@ -770,7 +911,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBM_NAME</code><br>
@@ -780,7 +923,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBM</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBM_LANG</code><br>
@@ -790,7 +935,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBM</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBM_RFN</code><br>
@@ -800,7 +947,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBM</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUBM_RIN</code><br>
@@ -810,7 +959,9 @@ element   start callback.<br>
            <td valign="top"><code>REC_SUBM</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ADDR</code><br>
@@ -829,7 +980,9 @@ element   start callback.<br>
 ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>STRING</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ADDR_CONT</code><br>
@@ -839,7 +992,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_ADDR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ADDR_ADR1</code><br>
@@ -849,7 +1004,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_ADDR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ADDR_ADR2</code><br>
@@ -859,7 +1016,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_ADDR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ADDR_CITY</code><br>
@@ -869,7 +1028,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_ADDR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ADDR_STAE</code><br>
@@ -879,7 +1040,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_ADDR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ADDR_POST</code><br>
@@ -889,7 +1052,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_ADDR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ADDR_CTRY</code><br>
@@ -899,7 +1064,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_ADDR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PHON</code><br>
@@ -918,7 +1085,9 @@ ELT_SUB_INDIV_EVEN</code><br>
 ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ASSO</code><br>
@@ -935,7 +1104,9 @@ XREF_PTR(REPO),<br>
 XREF_PTR(SOUR),<br>
 XREF_PTR(SUBM),<br>
 XREF_PTR(SUBN)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ASSO_TYPE</code><br>
@@ -945,7 +1116,9 @@ XREF_PTR(SUBN)</code><br>
            <td valign="top"><code>ELT_SUB_ASSO</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_ASSO_RELA</code><br>
@@ -955,7 +1128,9 @@ XREF_PTR(SUBN)</code><br>
            <td valign="top"><code>ELT_SUB_ASSO</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_CHAN</code><br>
@@ -969,7 +1144,9 @@ XREF_PTR(SUBN)</code><br>
           </code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_CHAN_DATE</code><br>
@@ -979,7 +1156,9 @@ XREF_PTR(SUBN)</code><br>
            <td valign="top"><code>ELT_SUB_CHAN</code><br>
            </td>
            <td valign="top"><code>DATE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_CHAN_TIME</code><br>
@@ -989,7 +1168,9 @@ XREF_PTR(SUBN)</code><br>
            <td valign="top"><code>ELT_SUB_CHAN_DATE</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_FAMC</code><br>
@@ -999,7 +1180,9 @@ XREF_PTR(SUBN)</code><br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(FAM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_FAMC_PEDI</code><br>
@@ -1009,7 +1192,9 @@ XREF_PTR(SUBN)</code><br>
            <td valign="top"><code>ELT_SUB_FAMC</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_CONT</code><br>
@@ -1024,7 +1209,9 @@ XREF_PTR(SUBN)</code><br>
           </code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_CONC</code><br>
@@ -1039,7 +1226,9 @@ XREF_PTR(SUBN)</code><br>
           </code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_EVT_TYPE</code><br>
@@ -1056,7 +1245,9 @@ XREF_PTR(SUBN)</code><br>
 ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_EVT_DATE</code><br>
@@ -1073,7 +1264,9 @@ ELT_SUB_INDIV_EVEN</code><br>
 ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>DATE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_EVT_AGE</code><br>
@@ -1090,7 +1283,9 @@ ELT_SUB_INDIV_EVEN</code><br>
 ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>AGE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_EVT_AGNC</code><br>
@@ -1107,7 +1302,9 @@ ELT_SUB_INDIV_EVEN</code><br>
 ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_EVT_CAUS</code><br>
@@ -1124,7 +1321,9 @@ ELT_SUB_INDIV_EVEN</code><br>
 ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_FAM_EVT</code><br>
@@ -1138,7 +1337,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>NULL<br>
      STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_FAM_EVT_HUSB</code><br>
@@ -1149,7 +1350,9 @@ ELT_SUB_INDIV_EVEN</code><br>
           <code>ELT_SUB_FAM_EVT_EVEN</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_FAM_EVT_WIFE</code><br>
@@ -1160,7 +1363,9 @@ ELT_SUB_INDIV_EVEN</code><br>
           <code>ELT_SUB_FAM_EVT_EVEN</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_FAM_EVT_AGE</code><br>
@@ -1171,7 +1376,9 @@ ELT_SUB_INDIV_EVEN</code><br>
           <code>ELT_SUB_FAM_EVT_WIFE</code><br>
            </td>
            <td valign="top"><code>AGE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_FAM_EVT_EVEN</code><br>
@@ -1181,7 +1388,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>REC_FAM</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_IDENT_REFN</code><br>
@@ -1194,7 +1403,9 @@ ELT_SUB_INDIV_EVEN</code><br>
           </code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_IDENT_REFN_TYPE</code><br>
@@ -1204,7 +1415,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_IDENT_REFN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_IDENT_RIN</code><br>
@@ -1217,7 +1430,9 @@ ELT_SUB_INDIV_EVEN</code><br>
           </code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_INDIV_ATTR</code><br>
@@ -1230,7 +1445,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_INDIV_RESI</code><br>
@@ -1240,7 +1457,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_INDIV_BIRT</code><br>
@@ -1251,7 +1470,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>NULL<br>
      STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_INDIV_BIRT_FAMC</code><br>
@@ -1261,7 +1482,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_INDIV_BIRT</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(FAM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_INDIV_GEN</code><br>
@@ -1278,7 +1501,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>NULL<br>
      STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_INDIV_ADOP</code><br>
@@ -1289,7 +1514,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>NULL<br>
      STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_INDIV_ADOP_FAMC</code><br>
@@ -1299,7 +1526,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_INDIV_ADOP</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(FAM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_INDIV_ADOP_FAMC_ADOP</code><br>
@@ -1309,7 +1538,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_INDIV_ADOP_FAMC</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_INDIV_EVEN</code><br>
@@ -1319,7 +1550,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LIO_BAPL</code><br>
@@ -1329,7 +1562,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LIO_BAPL_STAT</code><br>
@@ -1341,7 +1576,9 @@ ELT_SUB_INDIV_EVEN</code><br>
           </code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LIO_BAPL_DATE</code><br>
@@ -1354,7 +1591,9 @@ ELT_SUB_INDIV_EVEN</code><br>
           <br>
            </td>
            <td valign="top"><code>DATE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LIO_BAPL_TEMP</code><br>
@@ -1367,7 +1606,9 @@ ELT_SUB_INDIV_EVEN</code><br>
           <br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LIO_BAPL_PLAC</code><br>
@@ -1380,7 +1621,9 @@ ELT_SUB_INDIV_EVEN</code><br>
           <br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LIO_SLGC</code><br>
@@ -1390,7 +1633,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LIO_SLGC_FAMC</code><br>
@@ -1400,7 +1645,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_LIO_SLGC</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(FAM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
@@ -1410,7 +1657,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>REC_FAM</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LSS_SLGS_STAT</code><br>
@@ -1420,7 +1669,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LSS_SLGS_DATE</code><br>
@@ -1430,7 +1681,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
            </td>
            <td valign="top"><code>DATE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LSS_SLGS_TEMP</code><br>
@@ -1440,7 +1693,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_LSS_SLGS_PLAC</code><br>
@@ -1450,7 +1705,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_LSS_SLGS</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_MULTIM_OBJE</code><br>
@@ -1472,7 +1729,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>NULL<br>
  XREF_PTR(OBJE)<br>
        </code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_MULTIM_OBJE_FORM</code><br>
@@ -1482,7 +1741,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_MULTIM_OBJE</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_MULTIM_OBJE_TITL</code><br>
@@ -1492,7 +1753,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_MULTIM_OBJE</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_MULTIM_OBJE_FILE</code><br>
@@ -1502,7 +1765,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_MULTIM_OBJE</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_NOTE</code><br>
@@ -1535,7 +1800,11 @@ ELT_SUB_INDIV_EVEN,<br>
      STRING<br>
  XREF_PTR(NOTE)<br>
        </code><br>
-           </td>
+           </td><td valign="top"><code>STRING<br>
+      <br>
+NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
@@ -1545,7 +1814,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PERS_NAME_NPFX</code><br>
@@ -1555,7 +1826,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PERS_NAME_GIVN</code><br>
@@ -1565,7 +1838,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PERS_NAME_NICK</code><br>
@@ -1575,7 +1850,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PERS_NAME_SPFX</code><br>
@@ -1585,7 +1862,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PERS_NAME_SURN</code><br>
@@ -1595,7 +1874,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PERS_NAME_NSFX</code><br>
@@ -1605,7 +1886,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_PERS_NAME</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PLAC</code><br>
@@ -1623,7 +1906,9 @@ ELT_SUB_INDIV_BIRT,<br>
 ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_PLAC_FORM</code><br>
@@ -1633,7 +1918,9 @@ ELT_SUB_INDIV_EVEN</code><br>
            <td valign="top"><code>ELT_SUB_PLAC</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_SOUR</code><br>
@@ -1659,7 +1946,10 @@ ELT_SUB_INDIV_EVEN,<br>
            </td>
            <td valign="top"><code>STRING<br>
  XREF_PTR(SOUR)</code><br>
-           </td>
+           </td><td valign="top"><code>STRING<br>
+NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_SOUR_PAGE</code><br>
@@ -1669,7 +1959,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_SOUR_EVEN</code><br>
@@ -1679,7 +1971,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_SOUR_EVEN_ROLE</code><br>
@@ -1689,7 +1983,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_SOUR_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_SOUR_DATA</code><br>
@@ -1699,7 +1995,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_SOUR</code><br>
            </td>
            <td valign="top"><code>NULL</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_SOUR_DATA_DATE</code><br>
@@ -1709,7 +2007,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_SOUR_DATA</code><br>
            </td>
            <td valign="top"><code>DATE</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_SOUR_TEXT</code><br>
@@ -1720,7 +2020,9 @@ ELT_SUB_INDIV_EVEN,<br>
     ELT_SUB_SOUR_DATA</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_SOUR_QUAY</code><br>
@@ -1730,7 +2032,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_SOUR</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_REPO</code><br>
@@ -1740,7 +2044,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>REC_SOUR</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(REPO)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_REPO_CALN</code><br>
@@ -1750,7 +2056,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_REPO</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_REPO_CALN_MEDI</code><br>
@@ -1760,7 +2068,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>ELT_SUB_REPO_CALN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_SUB_FAMS</code><br>
@@ -1770,7 +2080,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
            <td valign="top"><code>XREF_PTR(FAM)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
          <tr>
            <td valign="top"><code>ELT_USER</code><br>
@@ -1783,7 +2095,9 @@ ELT_SUB_INDIV_EVEN,<br>
            <td valign="top"><code>NULL<br>
      STRING<br>
  XREF_PTR(USER)</code><br>
-           </td>
+           </td><td valign="top"><code>NULL</code><br>
+      </td>
+
          </tr>
                    
   </tbody>     
@@ -2257,9 +2571,11 @@ The following functions are available to manipulate xref_value objects:<br>
   </blockquote>
   <code>struct xref_value* <b>gedcom_link_xref</b> (Xref_type type, const char* key)<br>
 struct xref_value* <b>gedcom_unlink_xref</b> (Xref_type type, const char* key)</code><br>
-  <blockquote>Declare the xref_value corresponding to the given key as being
-used/no longer used (linked to or unlinked) as the given type. &nbsp;The
-use of these functions is not mandatory, but it can aid in spotting places in the code where xref_value objects are deleted while they are still referenced.<br>
+  <blockquote>Declare
+the xref_value corresponding to the given key as being used/no longer used
+(linked to or unlinked) as the given type. &nbsp;The use of these functions
+is not mandatory, but it can aid in spotting places in the code where xref_value
+objects are deleted while they are still referenced.<br>
     <br>
 Returns the xref_value object if success, and its use count is incremented/decremented. &nbsp;Returns <code>NULL</code> in one of the following cases:<br>
     <ul>
@@ -2288,6 +2604,7 @@ An example would thus be: "@This is an xref_val@".<br>
       <br>
                                                                         
               <br>
+<br>
 <br>
 <br>
 <br>
