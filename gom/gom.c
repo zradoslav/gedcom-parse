@@ -111,10 +111,10 @@ int gom_parse_file(const char* file_name)
     gom_cleanup();
   }
   else {
+    gedcom_set_compat_options(COMPAT_ALLOW_OUT_OF_CONTEXT);
     subscribe_all();
   }
   gom_active = 1;
-  gedcom_set_compat_options(0);
   return gedcom_parse_file(file_name);
 }
 
