@@ -168,15 +168,24 @@ int compat_generate_char(Gedcom_ctxt parent)
 {
   struct tag_struct ts;
   Gedcom_ctxt self1;
+  char* charset;
   
   /* first generate "1 CHAR <DEFAULT_CHAR>" */
   ts.string = "CHAR";
   ts.value  = TAG_CHAR;
-  self1 = start_element(ELT_HEAD_CHAR, parent, 1, ts, (char*)default_charset,
-			GEDCOM_MAKE_STRING(val1, (char*)default_charset));
-  
-  /* close "1 CHAR" */
-  end_element(ELT_HEAD_CHAR, parent, self1, NULL);
+
+  /* Must strdup, because default_charset is const char */
+  charset   = strdup(default_charset);
+  if (! charset)
+    MEMORY_ERROR;
+  else {
+    self1 = start_element(ELT_HEAD_CHAR, parent, 1, ts, charset,
+			  GEDCOM_MAKE_STRING(val1, charset));
+    free(charset);
+    
+    /* close "1 CHAR" */
+    end_element(ELT_HEAD_CHAR, parent, self1, NULL);
+  }
   if (open_conv_to_internal(default_charset) == 0)
     return 1;
   else
