@@ -75,6 +75,7 @@ void CLEANFUNC(submission)()
     SAFE_FREE(gom_submission->record_id);
     DESTROY_CHAIN_ELTS(user_data, gom_submission->extra);
   }
+  SAFE_FREE(gom_submission);
 }
 
 struct submission* gom_get_submission()
