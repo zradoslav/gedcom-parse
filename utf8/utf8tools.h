@@ -20,8 +20,8 @@
 /* $Id$ */
 /* $Name$ */
 
-#ifndef __UTF8_H
-#define __UTF8_H
+#ifndef __UTF8TOOLS_H
+#define __UTF8TOOLS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -68,4 +68,4 @@ char* convert_locale_to_utf8(const char* input);
 }
 #endif
 
-#endif /* __UTF8_H */
+#endif /* __UTF8TOOLS_H */
