@@ -442,6 +442,13 @@ struct submitter*  gom_get_submitter_by_xref(const char *xref);
 struct user_rec*   gom_get_first_user_rec();
 struct user_rec*   gom_get_user_rec_by_xref(const char *xref);
 
+char* gom_get_string(char* data);
+char* gom_set_string(char** data, const char* utf8_value);
+
+char* gom_get_string_locale(char* data, int* conversion_failures);
+char* gom_set_string_locale(char** data, const char* locale_value);
+void  gom_set_unknown(const char* unknown);
+
 __END_DECLS
 
 #endif /* __GEDCOM_GOM_H */
