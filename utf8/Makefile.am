@@ -8,6 +8,6 @@ INCLUDES = @LCS_INCLUDES@
 CFLAGS   = -g -O2 -W -Wall -pedantic -Wno-long-long
 
 noinst_LTLIBRARIES = libutf8.la
-libutf8_la_SOURCES = utf8-locale.c utf8.c
+libutf8_la_SOURCES = utf8-locale.c utf8.c utf8-convert.c
 libutf8_la_LIBADD  = @LCS_LIBADD@ $(LIBICONV)
 noinst_HEADERS = utf8.h
