@@ -56,6 +56,8 @@ EXTRA_DIST = gedcom.y \
 	     gedcom_date.lex \
 	     gedcom_lex_common.c
 
+include $(top_srcdir)/Makefile.inc
+
 gedcom.tab.c gedcom.tab.h:	gedcom.y
 	$(YACC) $(YFLAGS) --name-prefix=gedcom_ $<
 
@@ -98,14 +100,3 @@ lex.gedcom_lohi_.test.o:	lex.gedcom_lohi_.c
 
 clean-local:
 	rm -f $(EXTRA_PROGRAMS)
-
-%.tabgen.h:	%.tab.h
-	if [ ! -r $(srcdir)/$@ ] ; \
-	then \
-	  touch $(srcdir)/$@; \
-	fi
-	if ! diff -q $< $(srcdir)/$@ > /dev/null; \
-	then \
-	  rm $(srcdir)/$@; \
-	  cp $(srcdir)/$< $(srcdir)/$@; \
-	fi
