@@ -2,7 +2,9 @@
 # $Id$
 # $Name$
 
-INCLUDES = -I $(srcdir)/../include -DPKGDATADIR=\"$(pkgdatadir)\"
+localedir = $(datadir)/locale
+INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include \
+           -DPKGDATADIR=\"$(pkgdatadir)\" -DLOCALEDIR=\"$(localedir)\"
 YFLAGS   = --debug --defines --name-prefix=gedcom_
 LFLAGS   = -8
 CFLAGS   = -g -O2 -W -Wall -pedantic
@@ -17,6 +19,7 @@ libgedcom_la_SOURCES = lex.gedcom_1byte_.c \
                        encoding.c \
                        interface.c
 libgedcom_la_LDFLAGS = -version-info $(LIBVERSION)
+libgedcom_la_LIBADD  = @INTLLIBS@
 BUILT_SOURCES = lex.gedcom_1byte_.c \
 	 	lex.gedcom_hilo_.c \
 		lex.gedcom_lohi_.c \
