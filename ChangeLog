@@ -1,3 +1,8 @@
+2002-12-08  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom.y, gedcom/buffer.*: Use safe buffer mechanism for
+	storing gedcom value (to avoid fixed buffer size).
+
 2002-12-07  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gedcom/gedcom.y: Pass complete concatenated text in end callback
