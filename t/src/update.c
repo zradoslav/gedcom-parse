@@ -22,25 +22,9 @@
 /* $Name$ */
 
 #include "gedcom.h"
+#include "output.h"
 #include <locale.h>
 #include <stdio.h>
-
-#define OUTFILE "testgedcom.out"
-FILE* outfile = NULL;
-int quiet = 0;
-
-void output(int to_stdout_too, char* format, ...)
-{
-  va_list ap;
-  va_start(ap, format);
-  if (outfile) {
-    vfprintf(outfile, format, ap);
-  }
-  if (to_stdout_too && !quiet) {
-    vprintf(format, ap);
-  }
-  va_end(ap);
-}
 
 void gedcom_message_handler(Gedcom_msg_type type, char *msg)
 {
@@ -160,7 +144,7 @@ int main(int argc, char* argv[])
 	exit(1);
       }
       else if (!strncmp(argv[i], "-q", 3)) {
-	quiet = 1;
+	output_set_quiet(1);
       }
       else {
 	printf ("Unrecognized option: %s\n", argv[i]);
@@ -173,11 +157,8 @@ int main(int argc, char* argv[])
   gedcom_init();
   setlocale(LC_ALL, "");
   gedcom_set_message_handler(gedcom_message_handler);
-  
-  outfile = fopen(OUTFILE, "a");
-  if (!outfile) {
-    printf("Could not open %s for appending\n", OUTFILE);
-  }
+
+  output_open();
   
   result = gedcom_new_model();
   result |= test_xref_functions();
@@ -187,7 +168,7 @@ int main(int argc, char* argv[])
   else {
     output(1, "Test failed: %d\n", result);
   }
-  
-  fclose(outfile);
+
+  output_close();
   return result;
 }

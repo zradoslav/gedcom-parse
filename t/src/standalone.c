@@ -22,32 +22,16 @@
 /* $Name$ */
 
 #include "gedcom.h"
+#include "output.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdarg.h>
 #include <locale.h>
 #include <errno.h>
 #include <iconv.h>
 #include "utf8-locale.h"
 
-#define OUTFILE "testgedcom.out"
 #define BOGUS_FILE_NAME "Makefile.am"
-FILE* outfile = NULL;
-int quiet = 0;
-
-void output(int to_stdout_too, char* format, ...)
-{
-  va_list ap;
-  va_start(ap, format);
-  if (outfile) {
-    vfprintf(outfile, format, ap);
-  }
-  if (to_stdout_too && !quiet) {
-    vprintf(format, ap);
-  }
-  va_end(ap);
-}
 
 void show_help ()
 {
@@ -272,7 +256,7 @@ int main(int argc, char* argv[])
 	bogus = 1;
       }
       else if (!strncmp(argv[i], "-q", 3)) {
-	quiet = 1;
+	output_set_quiet(1);
       }
       else if (strncmp(argv[i], "-", 1)) {
 	file_name = argv[i];
@@ -301,10 +285,7 @@ int main(int argc, char* argv[])
   gedcom_set_default_callback(default_cb);
   
   subscribe_callbacks();
-  outfile = fopen(OUTFILE, "a");
-  if (!outfile) {
-    printf("Could not open %s for appending\n", OUTFILE);
-  }
+  output_open();
   if (bogus) {
     output(0, "\n=== Parsing bogus file %s\n", BOGUS_FILE_NAME);
     gedcom_parse_file(BOGUS_FILE_NAME);
@@ -319,6 +300,6 @@ int main(int argc, char* argv[])
   else {
     output(1, "Parse failed\n");
   }
-  fclose(outfile);
+  output_close();
   return result;
 }
