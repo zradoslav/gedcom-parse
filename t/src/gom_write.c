@@ -73,13 +73,12 @@ int update_header(char* encoding)
   if (head == NULL)
     return 1;
   else {
-    /*
-    value = gom_set_string(&head->charset.name, encoding);
-    if (value == NULL || strcmp(value, encoding))
-      return 1;
-    else
-      return 0;
-    */
+    /* force warning for anything except UNICODE */
+    if (!strcmp(encoding, "UNICODE")) {
+      value = gom_set_string(&head->charset.name, encoding);
+      if (value == NULL || strcmp(value, encoding))
+	return 1;
+    }
     value = gom_set_string(&head->note, long_note);
     if (value == NULL || strcmp(value, long_note))
       return 1;
