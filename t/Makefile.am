@@ -23,3 +23,11 @@ EXTRA_DIST=$(TEST_SCRIPT) $(TESTS)
 
 all-local:
 	rm -f ../testgedcom.out
+
+check-% :	%.test
+	@srcdir=$(srcdir); export srcdir; \
+        if $(TESTS_ENVIRONMENT) ./$<; then \
+	  echo "Test succeeded"; \
+	else \
+	  echo "Test failed"; \
+	fi
