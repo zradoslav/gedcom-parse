@@ -78,7 +78,6 @@ Gedcom_ctxt family_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
   struct xref_value *xr = GEDCOM_XREF_PTR(xref);
   output(1, "Family start, xref is %s\n", xr->string);
   if (family_nr < MAXFAMILY) {
-    printf("%d\n", family_nr);
     strcpy(family_xreftags[family_nr], xr->string);
   }
   xr->object = (Gedcom_ctxt)int_to_void_ptr(family_nr);
