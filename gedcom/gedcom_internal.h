@@ -31,6 +31,7 @@
 #ifdef WITH_DMALLOC
 #include <dmalloc.h>
 #endif
+#include "config.h"
 
 #define MAXGEDCLEVEL    99
 #define MAXGEDCLINELEN  255
