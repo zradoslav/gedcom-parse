@@ -41,11 +41,8 @@ Gedcom_ctxt sub_place_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct place *place = (struct place *)malloc(sizeof(struct place));
-    if (! place)
-      MEMORY_ERROR;
-    else {
-      memset (place, 0, sizeof(struct place));
+    struct place *place = SUB_MAKEFUNC(place)();
+    if (place) {
       place->value = strdup(GEDCOM_STRING(parsed_value));
       
       if (!place->value) {
@@ -74,6 +71,10 @@ Gedcom_ctxt sub_place_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(place)
+DEFINE_SUB_ADDFUNC(place)
+DEFINE_SUB_DELETEFUNC(place)
+     
 DEFINE_STRING_CB(place, sub_place_form_start, place_hierarchy)
 
 DEFINE_ADDFUNC2(place, source_citation, citation)

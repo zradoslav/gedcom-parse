@@ -46,13 +46,8 @@ Gedcom_ctxt sub_chan_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct change_date *chan
-      = (struct change_date *)malloc(sizeof(struct change_date));
-    if (! chan)
-      MEMORY_ERROR;
-    else {
-      memset (chan, 0, sizeof(struct change_date));
-      
+    struct change_date *chan = SUB_MAKEFUNC(change_date)();
+    if (chan) {
       switch (ctxt->ctxt_type) {
 	case REC_FAM:
 	  ADDFUNC2_NOLIST(family,change_date)(ctxt, chan); break;
@@ -78,6 +73,10 @@ Gedcom_ctxt sub_chan_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(change_date)
+DEFINE_SUB_ADDFUNC(change_date)
+DEFINE_SUB_DELETEFUNC(change_date)
+
 DEFINE_DATE_CB(change_date, sub_chan_date_start, date)
 DEFINE_STRING_CB(change_date, sub_chan_time_start, time)
 
@@ -102,33 +101,6 @@ void CLEANFUNC(change_date)(struct change_date *chan)
     DESTROY_CHAIN_ELTS(user_data, chan->extra);
   }
   SAFE_FREE(chan);
-}
-
-struct change_date* gom_add_change_date(struct change_date** chan)
-{
-  struct change_date *obj = NULL;
-  if (chan && ! *chan) {
-    obj = (struct change_date*) malloc(sizeof(struct change_date));
-    if (! obj)
-      MEMORY_ERROR;
-    else {
-      memset(obj, 0, sizeof(struct change_date));
-      *chan = obj;
-    }
-  }
-  return obj;
-}
-
-int gom_delete_change_date(struct change_date** chan)
-{
-  int result = 1;
-  if (chan && *chan) {
-    CLEANFUNC(change_date)(*chan);
-    free(*chan);
-    *chan = NULL;
-    result = 0;
-  }
-  return result;
 }
 
 int update_date(struct date_value** dv, struct tm* tm_ptr)

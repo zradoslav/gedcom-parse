@@ -41,11 +41,8 @@ Gedcom_ctxt sub_addr_start(_ELT_PARAMS_)
   if (!ctxt)
     NO_CONTEXT;
   else {
-    struct address *addr = (struct address *)malloc(sizeof(struct address));
-    if (!addr)
-      MEMORY_ERROR;
-    else {
-      memset (addr, 0, sizeof(struct address));
+    struct address *addr = SUB_MAKEFUNC(address)();
+    if (addr) {
       switch (ctxt->ctxt_type) {
 	case ELT_HEAD_SOUR_CORP:
 	  ADDFUNC2_NOLIST(header,address)(ctxt, addr); break;
@@ -83,6 +80,10 @@ Gedcom_ctxt sub_addr_cont_start(_ELT_PARAMS_)
   }
   return (Gedcom_ctxt)result;
 }
+
+DEFINE_SUB_MAKEFUNC(address)
+DEFINE_SUB_ADDFUNC(address)
+DEFINE_SUB_DELETEFUNC(address)
 
 DEFINE_STRING_END_CB(address, sub_addr_end, full_label)
 DEFINE_STRING_CB(address, sub_addr_adr1_start, line1)
