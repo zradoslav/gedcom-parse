@@ -23,6 +23,7 @@
 
 #include "gedcom.h"
 #include <locale.h>
+#include <libintl.h>
 #include <stdio.h>
 
 #define MYTEXTDOMAIN "TESTINTL"
