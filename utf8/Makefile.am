@@ -5,7 +5,7 @@
 SUBDIRS = @LCS_SUBDIRS@ .
 
 INCLUDES = @LCS_INCLUDES@
-CFLAGS   = -g -O2 -W -Wall -pedantic -Wno-long-long
+CFLAGS   = -O2 -W -Wall -pedantic -Wno-long-long @EXTRA_CFLAGS@
 
 noinst_LTLIBRARIES = libutf8.la
 libutf8_la_SOURCES = utf8-locale.c utf8.c utf8-convert.c

@@ -3,7 +3,7 @@
 # $Name$
 
 INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include -I $(srcdir)/../utf8
-CFLAGS   = -g -O2 -W -Wall -pedantic -Wno-long-long @EXTRA_CFLAGS@
+CFLAGS   = -O2 -W -Wall -pedantic -Wno-long-long @EXTRA_CFLAGS@
 
 lib_LTLIBRARIES = libgedcom_gom.la
 libgedcom_gom_la_SOURCES = gom.c \

@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 # $Id$
 # $Name$
-CFLAGS  = -g -O2
+CFLAGS  = -O2 @EXTRA_CFLAGS@
 INCLUDES = -I$(srcdir)/..
 libdir  = $(pkgdatadir)
 
