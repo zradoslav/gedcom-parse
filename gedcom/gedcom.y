@@ -3288,7 +3288,7 @@ user_rec    : OPEN DELIM opt_xref USERTAG
 	      }
               opt_value
               { $<ctxt>$ = start_record(REC_USER,
-					$1, GEDCOM_MAKE_STRING($3), $4);
+					$1, GEDCOM_MAKE_NULL_OR_STRING($3), $4);
 	        START($4, $<ctxt>$)
 	      }
 	      user_sects
