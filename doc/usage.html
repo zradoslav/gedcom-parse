@@ -25,7 +25,9 @@
         <li><a href="#Error_treatment">Error treatment</a></li>
         <li><a href="#Compatibility_mode">Compatibility mode</a></li>
                
-  </ul>
+  </ul><li><a href="#Converting_character_sets">Converting character sets</a><br>
+  </li>
+
       <li><a href="interface.html">Interface details</a><br>
          </li>
          
@@ -99,7 +101,7 @@ actual   callback mechanism, although it also uses a callback...<br>
     <blockquote><code>Error on line</code> <i>&lt;lineno&gt;</i>: <i>&lt;actual_message&gt;</i><br>
            </blockquote>
      Note that the entire string will be properly internationalized, and
-encoded   in UTF-8 (see "Why UTF-8?" &nbsp;<i>LINK TBD</i>). &nbsp;Also,
+encoded   in UTF-8 (<a href="encoding.html">Why UTF-8?</a>). &nbsp;Also,
 no newline   is appended, so that the application program can use it in any
 way it wants.   &nbsp;Warnings are similar, but use "Warning" instead of
 "Error". &nbsp;Messages   are plain text, without any prefix.<br>
@@ -443,9 +445,115 @@ enabled   and disabled via the following function:<br>
                     </ul>
     Note that, currently, no actual compatibility code is present, but this 
  is on the to-do list.<br>
+                    <hr width="100%" size="2">
+                    <h2><a name="Converting_character_sets"></a>Converting character sets</h2>
+All strings passed by the GEDCOM parser to the application are in UTF-8 encoding.
+&nbsp;Typically, an application needs to convert this to something else to
+be able to display it.<br>
+                    <br>
+The most common case is that the output character set is controlled by the <code>locale</code> mechanism (i.e. via the <code>LANG</code>, <code>LC_ALL</code> or <code>LC_CTYPE</code> environment variables), which also controls the <code>gettext</code>
+ mechanism in the application. &nbsp;For this, the following steps need to
+be taken by the application (more detailed info can be found in the info
+file of the GNU libc library in the "Generic Charset Conversion" section
+under "Character Set Handling" or online <a href="http://www.gnu.org/manual/glibc-2.2.3/html_chapter/libc_6.html#SEC99">here</a>):<br>
+                    <ul>
+                      <li>inclusion of some headers:</li>
+                    </ul>
+                    <blockquote>
+                      <blockquote>
+                        <pre><code>#include &lt;locale.h&gt;    /* for setlocale */<br>#include &lt;langinfo.h&gt;  /* for nl_langinfo */<br>#include &lt;iconv.h&gt;     /* for iconv_* functions */<br></code></pre>
+                        </blockquote>
+                        </blockquote>
+                        <ul>
+                          <li>set the program's current locale to what the user configured in the environment:</li>
+                        </ul>
+                        <blockquote>
+                          <blockquote>
+                            <pre><code>setlocale(LC_ALL, "");</code><br></pre>
+                            </blockquote>
+                            </blockquote>
+                            <ul>
+                              <li>open a conversion handle for conversion from UTF-8 to the character set of the current locale (once for the entire program):</li>
+                            </ul>
+                            <blockquote>
+                              <blockquote>
+                                <pre><code>iconv_t iconv_handle;<br>...<br>iconv_handle = iconv_open(nl_langinfo(CODESET), "UTF-8");</code><br>if (iconv_handle == (iconv_t) -1)<br>  /* signal an error */<br></pre>
+                                </blockquote>
+                                </blockquote>
+                                <ul>
+                                  <li>then, every string can be converted using the following:</li>
+                                </ul>
+                                <blockquote>
+                                  <blockquote>
+                                    <pre><code>/* char* in_buf is the input buffer,    size_t in_len is its length */<br>/* char* out_buf is the output buffer,  size_t out_len is its length */<br><br>size_t nconv;<br>char *in_ptr = in_buf;<br>char *out_ptr = out_buf;<br>nconv = iconv(iconv_handle, &amp;in_ptr, &amp;in_len,&nbsp;&amp;out_ptr, &amp;out_len);</code></pre>
+                                    </blockquote>
+                                    </blockquote>
+                                    <blockquote>If the output buffer is not big enough, <code>iconv</code> will return -1 and set <code>errno</code> to <code>E2BIG</code>. &nbsp;Also, the <code>in_ptr</code> and <code>out_ptr</code> will point just after the last successfully converted character in the respective buffers, and the <code>in_len</code> and <code>out_len</code> will be updated to show the remaining lengths. &nbsp;There can be two strategies here:<br>
+                                      <ul>
+                                        <li>Make sure from the beginning
+that the output buffer is big enough. &nbsp;However, it's difficult to find
+an absolute maximum length in advance, even given the length of the input
+string.<br>
+                                          <br>
+                                        </li>
+                                        <li>Do the conversion in several steps, growing the output buffer each time to make more space, and calling <code>iconv</code>
+ consecutively until the conversion is complete. &nbsp;This is the preferred
+way (a function could be written to encapsulate all this).</li>
+                                      </ul>
+Another error case is when the conversion was unsuccessful (if one of the
+characters can't be represented in the target character set). &nbsp;The <code>iconv</code> function will then also return -1 and set <code>errno</code> to <code>EILSEQ</code>; the <code>in_ptr</code> will point to the character that couldn't be converted. &nbsp;In that case, again two strategies are possible:<br>
+                                      <ul>
+                                        <li>Just fail the conversion, and show an error. &nbsp;This is not very user friendly, of course.<br>
+                                          <br>
+                                        </li>
+                                        <li>Skip over the character that can't be converted and append a "?" to the output buffer, then call <code>iconv</code> again. &nbsp;Skipping over a UTF-8 character is fairly simple, as follows from the <a href="http://www.cl.cam.ac.uk/%7Emgk25/unicode.html#utf-8">encoding rules</a>:</li>
+                                      </ul>
+                                      <ol>
+                                        <ol>
+                                          <li>if the first byte is in binary 0xxxxxxx, then the character is only one byte long, just skip over that byte<br>
+                                            <br>
+                                          </li>
+                                          <li>if the first byte is in binary 11xxxxxx, then skip over that byte and all bytes 10xxxxxx that follow.<br>
+                                          </li>
+                                        </ol>
+                                      </ol>
+                                      </blockquote>
+                                      <ul>
+                                        <li>eventually, the conversion handle needs to be closed (when the program exits):<br>
+                                        </li>
+                                      </ul>
+                                      <blockquote>
+                                        <blockquote>
+                                          <pre><code>iconv_close(iconv_handle);<br></code></pre>
+                                          </blockquote>
+                                          </blockquote>
+
                                                                         
               
-                    <hr width="100%" size="2">                           
+                    The source distribution of <code>gedcom-parse</code> contains an example implementation (<code>utf8-locale.c</code> and <code>utf8-locale.h</code>
+ in the top directory) that grows the output buffer dynamically and outputs
+"?" for characters that can't be converted. &nbsp;Feel free to use it in
+your source code (it is not part of the library, and it isn't installed anywhere,
+so you need to take over the source and header file in your application).
+&nbsp;<br>
+                                          <br>
+Its interface is:<br>
+                                          <blockquote>
+                                            <pre><code>char *<b>convert_utf8_to_locale</b> (char *input);<br>char *<b>convert_locale_to_utf8</b> (char *input);<br></code></pre>
+                                            </blockquote>
+Both functions return a pointer to a static buffer that is overwritten on
+each call. &nbsp;To function properly, the application must first set the
+locale using the <code>setlocale</code> function (the second step above).
+&nbsp;All other steps, including setting up and closing down the conversion
+handles, are transparantly handled by the two functions.<br>
+                                            <br>
+You can change the "?" that is output for characters that can't be converted
+to any string you want, using the following function before the conversion
+calls:<br>
+                                            <blockquote>
+                                              <pre><code>void <b>convert_set_unknown</b> (const char *unknown);</code></pre>
+                                              </blockquote>
+                                              <hr width="100%" size="2">                           
                                    
                     <pre><font size="-1">$Id$<br>$Name$</font><br></pre>
                                                                  
