@@ -25,19 +25,22 @@ libgedcom.so:	lex.gedcom_1byte_.lo lex.gedcom_hilo_.lo lex.gedcom_lohi_.lo \
 %.lo:	%.c
 	$(LIBTOOL) $(CC) -c $(CPPFLAGS) $(CFLAGS) $^
 
-lex.gedcom_1byte_.c:	gedcom_1byte.lex gedcom.tab.h gedcom_internal.h multilex.h \
+lex.gedcom_1byte_.c:	gedcom_1byte.lex gedcom.tab.h gedcom_internal.h \
+			multilex.h gedcom.h \
 			gedcom_lex_common.c encoding.h
 	$(LEX) $(LFLAGS) -Pgedcom_1byte_ gedcom_1byte.lex
 
-lex.gedcom_hilo_.c:	gedcom_hilo.lex gedcom.tab.h gedcom_internal.h multilex.h \
+lex.gedcom_hilo_.c:	gedcom_hilo.lex gedcom.tab.h gedcom_internal.h \
+			multilex.h gedcom.h \
 			gedcom_lex_common.c encoding.h
 	$(LEX) $(LFLAGS) -Pgedcom_hilo_ gedcom_hilo.lex
 
-lex.gedcom_lohi_.c:	gedcom_lohi.lex gedcom.tab.h gedcom_internal.h multilex.h \
+lex.gedcom_lohi_.c:	gedcom_lohi.lex gedcom.tab.h gedcom_internal.h \
+			multilex.h gedcom.h \
 			gedcom_lex_common.c encoding.h
 	$(LEX) $(LFLAGS) -Pgedcom_lohi_ gedcom_lohi.lex
 
-gedcom.tab.c gedcom.tab.h:	gedcom.y gedcom_internal.h
+gedcom.tab.c gedcom.tab.h:	gedcom.y gedcom_internal.h gedcom.h
 	$(YACC) $(YFLAGS) --name-prefix=gedcom_ gedcom.y
 .PHONY:	clean
 clean:
