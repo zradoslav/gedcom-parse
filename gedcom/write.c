@@ -127,13 +127,14 @@ int supports_continuation(int elt_or_rec, int which_continuation)
 int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
 	       int level, char* xref, char* tag, char* value)
 {
-  int prefix_len, value_len, term_len;
-  char* nl_pos = strchr(value, '\n');
+  int prefix_len, value_len = 0, term_len;
+  char* nl_pos = NULL;
+  if (value) nl_pos = strchr(value, '\n');
 
   prefix_len = utf8_strlen(tag) + 3;  /* for e.g. "0 INDI " */
   if (level > 9) prefix_len++;
   if (xref)      prefix_len += utf8_strlen(xref) + 1;
-  value_len  = utf8_strlen(value);
+  if (value)     value_len  = utf8_strlen(value);
   term_len   = strlen(hndl->term);
 
   if (!nl_pos && prefix_len + value_len + term_len <= MAXWRITELEN)
