@@ -13,6 +13,7 @@ Source context 1001 in parent 1
 == 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
 == 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
 == 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 11: Adding link to submitter record with xref '@__COMPAT__SUBM__@'
 == 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
 Header end, context is 1
 Submitter, xref is @__COMPAT__SUBM__@
@@ -1072,6 +1073,7 @@ Source context 1001 in parent 1
 == 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
 == 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
 == 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 11: Adding link to submitter record with xref '@__COMPAT__SUBM__@'
 == 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
 Header end, context is 1
 Submitter, xref is @__COMPAT__SUBM__@
