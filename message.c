@@ -13,7 +13,7 @@
 #include "gedcom.h"
 #include "external.h"
 
-#define INITIAL_BUF_SIZE 5
+#define INITIAL_BUF_SIZE 256
 char *mess_buffer = NULL;
 size_t bufsize;
 
