@@ -2,10 +2,12 @@
 # $Id$
 # $Name$
 
+SUBDIRS = calendar .
+
 localedir = $(datadir)/locale
-INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include \
+INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include -I $(srcdir)/calendar \
            -DPKGDATADIR=\"$(pkgdatadir)\" -DLOCALEDIR=\"$(localedir)\"
-YFLAGS   = --debug --defines --name-prefix=gedcom_
+YFLAGS   = --debug --defines
 LFLAGS   = -8
 CFLAGS   = -g -O2 -W -Wall -pedantic
 
@@ -13,29 +15,42 @@ lib_LTLIBRARIES = libgedcom.la
 libgedcom_la_SOURCES = lex.gedcom_1byte_.c \
 		       lex.gedcom_hilo_.c \
 		       lex.gedcom_lohi_.c \
+		       lex.gedcom_date_.c \
 		       gedcom.tab.c \
+		       gedcom_date.tab.c \
                        message.c \
                        multilex.c \
                        encoding.c \
-                       interface.c
+                       interface.c \
+		       date.c
 libgedcom_la_LDFLAGS = -version-info $(LIBVERSION)
+libgedcom_la_LIBADD  = calendar/libcalendar.la
 BUILT_SOURCES = lex.gedcom_1byte_.c \
 	 	lex.gedcom_hilo_.c \
 		lex.gedcom_lohi_.c \
+		lex.gedcom_date_.c \
 		gedcom.tab.c \
-		gedcom.tab.h
+		gedcom.tab.h \
+		gedcom_date.tab.c \
+		gedcom_date.tab.h
 noinst_HEADERS = encoding.h \
 		 gedcom_internal.h \
 		 interface.h \
-		 multilex.h
+		 multilex.h \
+		 date.h
 EXTRA_DIST = gedcom.y \
+	     gedcom_date.y \
 	     gedcom_1byte.lex \
 	     gedcom_hilo.lex \
 	     gedcom_lohi.lex \
+	     gedcom_date.lex \
 	     gedcom_lex_common.c
 
 gedcom.tab.c gedcom.tab.h:	gedcom.y
 	$(YACC) $(YFLAGS) --name-prefix=gedcom_ $<
+
+gedcom_date.tab.c gedcom_date.tab.h:	gedcom_date.y
+	$(YACC) $(YFLAGS) --name-prefix=gedcom_date_ $<
 
 lex.gedcom_1byte_.c:	gedcom_1byte.lex
 	$(LEX) $(LFLAGS) -Pgedcom_1byte_ $<
@@ -46,9 +61,13 @@ lex.gedcom_hilo_.c:	gedcom_hilo.lex
 lex.gedcom_lohi_.c:	gedcom_lohi.lex
 	$(LEX) $(LFLAGS) -Pgedcom_lohi_ $<
 
+lex.gedcom_date_.c:	gedcom_date.lex
+	$(LEX) $(LFLAGS) -Pgedcom_date_ $<
+
 lex.gedcom_1byte_.c:	gedcom.tab.h gedcom_lex_common.c
 lex.gedcom_hilo_.c:	gedcom.tab.h gedcom_lex_common.c
 lex.gedcom_lohi_.c:	gedcom.tab.h gedcom_lex_common.c
+lex.gedcom_date_.c:	gedcom_date.tab.h
 
 # Lexer test programs
 

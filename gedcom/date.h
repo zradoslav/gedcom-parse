@@ -1,4 +1,4 @@
-/* Header for interface.c
+/* Header for date manipulation routines.
    Copyright (C) 2001 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
@@ -21,30 +21,29 @@
 /* $Id$ */
 /* $Name$ */
 
-#ifndef __INTERFACE_H
-#define __INTERFACE_H
+#ifndef __DATE_H
+#define __DATE_H
 
+#include <stdlib.h>
+#include "gedcom_internal.h"
 #include "gedcom.h"
 
-Gedcom_ctxt start_record(Gedcom_rec rec, int level, char *xref, char *tag);
-void        end_record(Gedcom_rec rec, Gedcom_ctxt self);
+#define gedcom_date_error gedcom_error
+#define MAX_DATE_TOKEN 10
 
-Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent,
-			  int level, char *tag, char *raw_value,
-			  Gedcom_val parsed_value);
-void        end_element(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
-			Gedcom_val parsed_value);
+extern struct date_value dv_s;
+extern struct date date_s;
+extern struct date def_date;
 
-extern Gedcom_val_struct val;
+int               gedcom_date_parse();
+int               gedcom_date_lex();
 
-#define GEDCOM_MAKE(VALUE, TYPE, MEMBER) \
-   (val.type = TYPE, val.value.MEMBER = VALUE, &val)
+/* These are defined in gedcom_date.lex */
+void              init_gedcom_date_lex(char* string);
+void              close_gedcom_date_lex();
 
-#define GEDCOM_MAKE_STRING(STRING) \
-   GEDCOM_MAKE(STRING, GV_CHAR_PTR, string_val)
+struct date_value make_date_value(Date_value_type t, struct date d1,
+				  struct date d2, char* p);
+void              copy_date(struct date *to, struct date from);
 
-#define GEDCOM_MAKE_DATE(DATE) \
-   GEDCOM_MAKE(DATE, GV_DATE_VALUE, date_val)
-
-
-#endif /* __INTERFACE_H */
+#endif /* __DATE_H */

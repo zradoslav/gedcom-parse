@@ -145,6 +145,7 @@
 #include "multilex.h"
 #include "encoding.h"
 #include "interface.h"
+#include "date.h"
 
 int  count_level    = 0;
 int  fail           = 0;
@@ -152,6 +153,7 @@ int  compat_enabled = 1;
 int  gedcom_high_level_debug = 0; 
 int  compatibility  = 0; 
 Gedcom_err_mech error_mechanism = IMMED_FAIL;
+Gedcom_val_struct val; 
  
 char line_item_buf[MAXGEDCLINELEN * UTF_FACTOR + 1];
 char *line_item_buf_ptr;
@@ -457,7 +459,8 @@ head_sub     : head_sour_sect  { OCCUR2(SOUR, 1, 1) }
 head_sour_sect : OPEN DELIM TAG_SOUR mand_line_item 
                  { set_compatibility($4);
 		   $<ctxt>$ = start_element(ELT_HEAD_SOUR, PARENT,
-					    $1, $3, $4, $4);
+					    $1, $3, $4,
+					    GEDCOM_MAKE_STRING($4));
 		   START(SOUR, $<ctxt>$)
 		 }
                  head_sour_subs
@@ -479,7 +482,8 @@ head_sour_sub : head_sour_vers_sect  { OCCUR2(VERS, 0, 1) }
 
 head_sour_vers_sect : OPEN DELIM TAG_VERS mand_line_item
                       { $<ctxt>$ = start_element(ELT_HEAD_SOUR_VERS, PARENT,
-						 $1, $3, $4, $4);
+						 $1, $3, $4,
+						 GEDCOM_MAKE_STRING($4));
 		        START(VERS, $<ctxt>$)
 		      }
                       no_std_subs
@@ -491,7 +495,8 @@ head_sour_vers_sect : OPEN DELIM TAG_VERS mand_line_item
                     ;
 head_sour_name_sect : OPEN DELIM TAG_NAME mand_line_item
                       { $<ctxt>$ = start_element(ELT_HEAD_SOUR_NAME, PARENT,
-						 $1, $3, $4, $4);
+						 $1, $3, $4,
+						 GEDCOM_MAKE_STRING($4));
 			START(NAME, $<ctxt>$)
 		      }
                       no_std_subs
@@ -503,7 +508,8 @@ head_sour_name_sect : OPEN DELIM TAG_NAME mand_line_item
                     ;
 head_sour_corp_sect : OPEN DELIM TAG_CORP mand_line_item 
                       { $<ctxt>$ = start_element(ELT_HEAD_SOUR_CORP, PARENT,
-						 $1, $3, $4, $4);
+						 $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
 			START(CORP, $<ctxt>$)
 		      }
                       head_sour_corp_subs
@@ -524,7 +530,8 @@ head_sour_corp_sub : addr_struc_sub  /* 0:1 */
 
 head_sour_data_sect : OPEN DELIM TAG_DATA mand_line_item 
                       { $<ctxt>$ = start_element(ELT_HEAD_SOUR_DATA, PARENT,
-						 $1, $3, $4, $4);
+						 $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
 			START(DATA, $<ctxt>$)
 		      }
                       head_sour_data_subs
@@ -545,8 +552,10 @@ head_sour_data_sub : head_sour_data_date_sect  { OCCUR2(DATE, 0, 1) }
                    ;
 
 head_sour_data_date_sect : OPEN DELIM TAG_DATE mand_line_item
-                           { $<ctxt>$ = start_element(ELT_HEAD_SOUR_DATA_DATE,
-						      PARENT, $1, $3, $4, $4);
+                           { struct date_value dv = gedcom_parse_date($4);
+			     $<ctxt>$ = start_element(ELT_HEAD_SOUR_DATA_DATE,
+						      PARENT, $1, $3, $4, 
+						      GEDCOM_MAKE_DATE(dv));
 			     START(DATE, $<ctxt>$)
 			   }
                            no_std_subs
@@ -558,7 +567,8 @@ head_sour_data_date_sect : OPEN DELIM TAG_DATE mand_line_item
                          ;
 head_sour_data_copr_sect : OPEN DELIM TAG_COPR mand_line_item
                            { $<ctxt>$ = start_element(ELT_HEAD_SOUR_DATA_COPR,
-						      PARENT, $1, $3, $4, $4);
+						      PARENT, $1, $3, $4, 
+						      GEDCOM_MAKE_STRING($4));
 			     START(COPR, $<ctxt>$)
 			   }
                            no_std_subs
@@ -572,7 +582,8 @@ head_sour_data_copr_sect : OPEN DELIM TAG_COPR mand_line_item
 /* HEAD.DEST */
 head_dest_sect : OPEN DELIM TAG_DEST mand_line_item
                  { $<ctxt>$ = start_element(ELT_HEAD_DEST,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(DEST, $<ctxt>$)
 		 }
                  no_std_subs
@@ -585,8 +596,10 @@ head_dest_sect : OPEN DELIM TAG_DEST mand_line_item
 
 /* HEAD.DATE */
 head_date_sect : OPEN DELIM TAG_DATE mand_line_item 
-                 { $<ctxt>$ = start_element(ELT_HEAD_DATE,
-					    PARENT, $1, $3, $4, $4);
+                 { struct date_value dv = gedcom_parse_date($4);
+		   $<ctxt>$ = start_element(ELT_HEAD_DATE,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_DATE(dv));
 		   START(DATE, $<ctxt>$)
 		 }
                  head_date_subs
@@ -607,7 +620,8 @@ head_date_sub  : head_date_time_sect  { OCCUR2(TIME, 0, 1) }
 
 head_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
                       { $<ctxt>$ = start_element(ELT_HEAD_DATE_TIME,
-						 PARENT, $1, $3, $4, $4);
+						 PARENT, $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
 		        START(TIME, $<ctxt>$)
 		      }
                       no_std_subs
@@ -621,7 +635,8 @@ head_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
 /* HEAD.SUBM */
 head_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
                  { $<ctxt>$ = start_element(ELT_HEAD_SUBM,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(SUBM, $<ctxt>$)
 		 }
                  no_std_subs
@@ -634,7 +649,8 @@ head_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
 /* HEAD.SUBN */
 head_subn_sect : OPEN DELIM TAG_SUBN mand_pointer 
                  { $<ctxt>$ = start_element(ELT_HEAD_SUBN,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(SUBN, $<ctxt>$)
 		 }
                  no_std_subs
@@ -647,7 +663,8 @@ head_subn_sect : OPEN DELIM TAG_SUBN mand_pointer
 /* HEAD.FILE */
 head_file_sect : OPEN DELIM TAG_FILE mand_line_item 
                  { $<ctxt>$ = start_element(ELT_HEAD_FILE,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(FILE, $<ctxt>$)
 		 }
                  no_std_subs
@@ -659,7 +676,8 @@ head_file_sect : OPEN DELIM TAG_FILE mand_line_item
 /* HEAD.COPR */
 head_copr_sect : OPEN DELIM TAG_COPR mand_line_item 
                  { $<ctxt>$ = start_element(ELT_HEAD_COPR,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(COPR, $<ctxt>$)
 		 }
                  no_std_subs
@@ -691,7 +709,8 @@ head_gedc_sub  : head_gedc_vers_sect  { OCCUR2(VERS, 1, 1) }
                ;
 head_gedc_vers_sect : OPEN DELIM TAG_VERS mand_line_item  
                       { $<ctxt>$ = start_element(ELT_HEAD_GEDC_VERS,
-						 PARENT, $1, $3, $4, $4);
+						 PARENT, $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
 		        START(VERS, $<ctxt>$)
 		      }
                       no_std_subs
@@ -703,7 +722,8 @@ head_gedc_vers_sect : OPEN DELIM TAG_VERS mand_line_item
                     ;
 head_gedc_form_sect : OPEN DELIM TAG_FORM mand_line_item   
                       { $<ctxt>$ = start_element(ELT_HEAD_GEDC_FORM,
-						 PARENT, $1, $3, $4, $4);
+						 PARENT, $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
 		        START(FORM, $<ctxt>$)
 		      }
                       no_std_subs
@@ -718,7 +738,8 @@ head_gedc_form_sect : OPEN DELIM TAG_FORM mand_line_item
 head_char_sect : OPEN DELIM TAG_CHAR mand_line_item 
                  { if (open_conv_to_internal($4) == 0) YYERROR;
 		   $<ctxt>$ = start_element(ELT_HEAD_CHAR,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(CHAR, $<ctxt>$)
 		 }
                  head_char_subs
@@ -737,7 +758,8 @@ head_char_sub  : head_char_vers_sect  { OCCUR2(VERS, 0, 1) }
                ;
 head_char_vers_sect : OPEN DELIM TAG_VERS mand_line_item   
                       { $<ctxt>$ = start_element(ELT_HEAD_CHAR_VERS,
-						 PARENT, $1, $3, $4, $4);
+						 PARENT, $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
 		        START(VERS, $<ctxt>$)
 		      }
                       no_std_subs
@@ -751,7 +773,8 @@ head_char_vers_sect : OPEN DELIM TAG_VERS mand_line_item
 /* HEAD.LANG */
 head_lang_sect : OPEN DELIM TAG_LANG mand_line_item   
                  { $<ctxt>$ = start_element(ELT_HEAD_LANG,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(LANG, $<ctxt>$)
 		 }
                  no_std_subs
@@ -782,7 +805,8 @@ head_plac_sub  : head_plac_form_sect  { OCCUR2(FORM, 1, 1) }
                ;
 head_plac_form_sect : OPEN DELIM TAG_FORM mand_line_item   
                       { $<ctxt>$ = start_element(ELT_HEAD_PLAC_FORM,
-						 PARENT, $1, $3, $4, $4);
+						 PARENT, $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
 		        START(FORM, $<ctxt>$)
 		      }
                       no_std_subs
@@ -796,7 +820,8 @@ head_plac_form_sect : OPEN DELIM TAG_FORM mand_line_item
 /* HEAD.NOTE */
 head_note_sect : OPEN DELIM TAG_NOTE mand_line_item 
                  { $<ctxt>$ = start_element(ELT_HEAD_NOTE,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(NOTE, $<ctxt>$)
 		 }
                  head_note_subs
@@ -855,7 +880,8 @@ fam_sub      : fam_event_struc_sub  /* 0:M */
 /* FAM.HUSB */
 fam_husb_sect : OPEN DELIM TAG_HUSB mand_pointer    
                 { $<ctxt>$ = start_element(ELT_FAM_HUSB,
-					   PARENT, $1, $3, $4, $4);
+					   PARENT, $1, $3, $4, 
+					   GEDCOM_MAKE_STRING($4));
 		  START(HUSB, $<ctxt>$)
 		}
                 no_std_subs
@@ -868,7 +894,8 @@ fam_husb_sect : OPEN DELIM TAG_HUSB mand_pointer
 /* FAM.WIFE */
 fam_wife_sect : OPEN DELIM TAG_WIFE mand_pointer 
                 { $<ctxt>$ = start_element(ELT_FAM_WIFE,
-					   PARENT, $1, $3, $4, $4);
+					   PARENT, $1, $3, $4, 
+					   GEDCOM_MAKE_STRING($4));
 		  START(WIFE, $<ctxt>$)
 		}
                 no_std_subs
@@ -881,7 +908,8 @@ fam_wife_sect : OPEN DELIM TAG_WIFE mand_pointer
 /* FAM.CHIL */
 fam_chil_sect : OPEN DELIM TAG_CHIL mand_pointer
                 { $<ctxt>$ = start_element(ELT_FAM_CHIL,
-					   PARENT, $1, $3, $4, $4);
+					   PARENT, $1, $3, $4, 
+					   GEDCOM_MAKE_STRING($4));
 		  START(CHIL, $<ctxt>$) 
 		} 
 		no_std_subs 
@@ -894,7 +922,8 @@ fam_chil_sect : OPEN DELIM TAG_CHIL mand_pointer
 /* FAM.NCHI */
 fam_nchi_sect : OPEN DELIM TAG_NCHI mand_line_item    
                 { $<ctxt>$ = start_element(ELT_FAM_NCHI,
-					   PARENT, $1, $3, $4, $4);
+					   PARENT, $1, $3, $4, 
+					   GEDCOM_MAKE_STRING($4));
 		  START(NCHI, $<ctxt>$)  
 		}  
 		no_std_subs  
@@ -907,7 +936,8 @@ fam_nchi_sect : OPEN DELIM TAG_NCHI mand_line_item
 /* FAM.SUBM */
 fam_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
                 { $<ctxt>$ = start_element(ELT_FAM_SUBM,
-					   PARENT, $1, $3, $4, $4);
+					   PARENT, $1, $3, $4, 
+					   GEDCOM_MAKE_STRING($4));
 		  START(SUBM, $<ctxt>$)   
 		}   
 		no_std_subs   
@@ -962,7 +992,8 @@ indi_sub    : indi_resn_sect  { OCCUR2(RESN, 0, 1) }
 /* INDI.RESN */
 indi_resn_sect : OPEN DELIM TAG_RESN mand_line_item     
                  { $<ctxt>$ = start_element(ELT_INDI_RESN,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(RESN, $<ctxt>$)    
 		 }    
 		 no_std_subs     
@@ -975,7 +1006,8 @@ indi_resn_sect : OPEN DELIM TAG_RESN mand_line_item
 /* INDI.SEX */
 indi_sex_sect  : OPEN DELIM TAG_SEX mand_line_item     
                  { $<ctxt>$ = start_element(ELT_INDI_SEX,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(SEX, $<ctxt>$)     
 		 }     
 		 no_std_subs     
@@ -988,7 +1020,8 @@ indi_sex_sect  : OPEN DELIM TAG_SEX mand_line_item
 /* INDI.SUBM */
 indi_subm_sect : OPEN DELIM TAG_SUBM mand_pointer 
                  { $<ctxt>$ = start_element(ELT_INDI_SUBM,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(SUBM, $<ctxt>$)      
 		 }      
 		 no_std_subs      
@@ -1001,7 +1034,8 @@ indi_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
 /* INDI.ALIA */
 indi_alia_sect : OPEN DELIM TAG_ALIA mand_pointer
                  { $<ctxt>$ = start_element(ELT_INDI_ALIA,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(ALIA, $<ctxt>$)       
 		 }       
 		 no_std_subs       
@@ -1014,7 +1048,8 @@ indi_alia_sect : OPEN DELIM TAG_ALIA mand_pointer
 /* INDI.ANCI */
 indi_anci_sect : OPEN DELIM TAG_ANCI mand_pointer
                  { $<ctxt>$ = start_element(ELT_INDI_ANCI,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(ANCI, $<ctxt>$)        
 		 }        
 		 no_std_subs        
@@ -1027,7 +1062,8 @@ indi_anci_sect : OPEN DELIM TAG_ANCI mand_pointer
 /* INDI.DESI */
 indi_desi_sect : OPEN DELIM TAG_DESI mand_pointer
                  { $<ctxt>$ = start_element(ELT_INDI_DESI,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(DESI, $<ctxt>$)         
 		 }         
 		 no_std_subs         
@@ -1040,7 +1076,8 @@ indi_desi_sect : OPEN DELIM TAG_DESI mand_pointer
 /* INDI.RFN */
 indi_rfn_sect  : OPEN DELIM TAG_RFN mand_line_item     
                  { $<ctxt>$ = start_element(ELT_INDI_RFN,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(RFN, $<ctxt>$)          
 		 }          
 		 no_std_subs          
@@ -1053,7 +1090,8 @@ indi_rfn_sect  : OPEN DELIM TAG_RFN mand_line_item
 /* INDI.AFN */
 indi_afn_sect  : OPEN DELIM TAG_AFN mand_line_item      
                  { $<ctxt>$ = start_element(ELT_INDI_AFN,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(AFN, $<ctxt>$)           
 		 }           
 		 no_std_subs           
@@ -1096,7 +1134,8 @@ obje_sub    : obje_form_sect  { OCCUR2(FORM, 1, 1) }
 /* OBJE.FORM */
 obje_form_sect : OPEN DELIM TAG_FORM mand_line_item       
                  { $<ctxt>$ = start_element(ELT_OBJE_FORM,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(FORM, $<ctxt>$)            
 		 }            
 		 no_std_subs            
@@ -1109,7 +1148,8 @@ obje_form_sect : OPEN DELIM TAG_FORM mand_line_item
 /* OBJE.TITL */
 obje_titl_sect : OPEN DELIM TAG_TITL mand_line_item       
                  { $<ctxt>$ = start_element(ELT_OBJE_TITL,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(TITL, $<ctxt>$)             
 		 }             
 		 no_std_subs             
@@ -1142,7 +1182,8 @@ obje_blob_sub  : obje_blob_cont_sect  { OCCUR1(CONT, 1) }
 
 obje_blob_cont_sect : OPEN DELIM TAG_CONT mand_line_item        
                       { $<ctxt>$ = start_element(ELT_OBJE_BLOB_CONT,
-					         PARENT, $1, $3, $4, $4);
+					         PARENT, $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
 		        START(CONT, $<ctxt>$)               
 		      }                
 		      no_std_subs                
@@ -1156,7 +1197,8 @@ obje_blob_cont_sect : OPEN DELIM TAG_CONT mand_line_item
 /* OBJE.OBJE */
 obje_obje_sect : OPEN DELIM TAG_OBJE mand_pointer 
                  { $<ctxt>$ = start_element(ELT_OBJE_OBJE,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(OBJE, $<ctxt>$)  
                  }  
                  no_std_subs  
@@ -1226,7 +1268,8 @@ repo_sub    : repo_name_sect  { OCCUR2(NAME, 0, 1) }
 /* REPO.NAME */
 repo_name_sect : OPEN DELIM TAG_NAME mand_line_item         
                  { $<ctxt>$ = start_element(ELT_REPO_NAME,
-					    PARENT, $1, $3, $4, $4);
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
 		   START(NAME, $<ctxt>$)          
                  }          
                  no_std_subs          
@@ -1268,10 +1311,15 @@ sour_sub    : sour_data_sect  { OCCUR2(DATA, 0, 1) }
 
 /* SOUR.DATA */
 sour_data_sect : OPEN DELIM TAG_DATA
-                 { START(DATA, NULL) }
+                 { $<ctxt>$ = start_element(ELT_SOUR_DATA,
+					    PARENT, $1, $3, NULL, NULL);
+		   START(DATA, $<ctxt>$) 
+                 }
                  sour_data_subs
 		 { CHECK0 }
-                 CLOSE { }
+                 CLOSE 
+                 { end_element(ELT_SOUR_DATA, PARENT, $<ctxt>4, NULL);
+		 }
                ;
 
 sour_data_subs : /* empty */
@@ -1285,10 +1333,17 @@ sour_data_sub  : sour_data_even_sect  /* 0:M */
                ;
 
 sour_data_even_sect : OPEN DELIM TAG_EVEN mand_line_item 
-                      { START(EVEN, NULL) }
+                      { $<ctxt>$ = start_element(ELT_SOUR_DATA_EVEN,
+						 PARENT, $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
+		        START(EVEN, $<ctxt>$)  
+                      }
                       sour_data_even_subs
 		      { CHECK0 }
-                      CLOSE { }
+                      CLOSE  
+                      { end_element(ELT_SOUR_DATA_EVEN, PARENT,
+				    $<ctxt>5, NULL);
+		      }
                     ;
 
 sour_data_even_subs : /* empty */
@@ -1301,23 +1356,60 @@ sour_data_even_sub  : sour_data_even_date_sect { OCCUR2(DATE, 0, 1) }
                     ;
 
 sour_data_even_date_sect : OPEN DELIM TAG_DATE mand_line_item          
-                           { START(DATE, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                           { struct date_value dv = gedcom_parse_date($4);
+			     $<ctxt>$ = start_element(ELT_SOUR_DATA_EVEN_DATE,
+						      PARENT, $1, $3, $4, 
+						      GEDCOM_MAKE_DATE(dv));
+		             START(DATE, $<ctxt>$)           
+                           }           
+                           no_std_subs           
+                           { CHECK0 }           
+                           CLOSE           
+                           { end_element(ELT_SOUR_DATA_EVEN_DATE, PARENT,
+					 $<ctxt>5, NULL);
+		           }
                          ;
 
 sour_data_even_plac_sect : OPEN DELIM TAG_PLAC mand_line_item          
-                           { START(PLAC, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                           { $<ctxt>$ = start_element(ELT_SOUR_DATA_EVEN_PLAC,
+						      PARENT, $1, $3, $4, 
+						      GEDCOM_MAKE_STRING($4));
+		             START(PLAC, $<ctxt>$)           
+                           }           
+                           no_std_subs           
+                           { CHECK0 }           
+                           CLOSE           
+                           { end_element(ELT_SOUR_DATA_EVEN_PLAC, PARENT,
+					 $<ctxt>5, NULL);
+		           }
                          ;
 
 sour_data_agnc_sect : OPEN DELIM TAG_AGNC mand_line_item          
-                      { START(AGNC, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                      { $<ctxt>$ = start_element(ELT_SOUR_DATA_AGNC,
+						 PARENT, $1, $3, $4, 
+						 GEDCOM_MAKE_STRING($4));
+		        START(AGNC, $<ctxt>$)           
+                      }           
+                      no_std_subs           
+                      { CHECK0 }           
+                      CLOSE           
+                      { end_element(ELT_SOUR_DATA_AGNC, PARENT,
+				    $<ctxt>5, NULL);
+		      }
                     ;
 
 /* SOUR.AUTH */
 sour_auth_sect : OPEN DELIM TAG_AUTH mand_line_item
-                 { START(AUTH, NULL) }
+                 { $<ctxt>$ = start_element(ELT_SOUR_AUTH,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(AUTH, $<ctxt>$) 
+                 }
                  sour_auth_subs
 		 { CHECK0 }
-                 CLOSE { }
+                 CLOSE 
+                 { end_element(ELT_SOUR_AUTH, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 sour_auth_subs : /* empty */
@@ -1330,10 +1422,16 @@ sour_auth_sub  : continuation_sub  /* 0:M */
 
 /* SOUR.TITL */
 sour_titl_sect : OPEN DELIM TAG_TITL mand_line_item  
-                 { START(TITL, NULL) }
+                 { $<ctxt>$ = start_element(ELT_SOUR_TITL,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(TITL, $<ctxt>$)   
+                 }
                  sour_titl_subs 
 		 { CHECK0 }
-                 CLOSE { }
+                 CLOSE   
+                 { end_element(ELT_SOUR_TITL, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 sour_titl_subs : /* empty */
@@ -1346,15 +1444,30 @@ sour_titl_sub  : continuation_sub  /* 0:M */
 
 /* SOUR.ABBR */
 sour_abbr_sect : OPEN DELIM TAG_ABBR mand_line_item           
-                 { START(ABBR, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SOUR_ABBR,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(ABBR, $<ctxt>$)            
+                 }            
+                 no_std_subs            
+                 { CHECK0 }            
+                 CLOSE            
+                 { end_element(ELT_SOUR_ABBR, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SOUR.PUBL */
 sour_publ_sect : OPEN DELIM TAG_PUBL mand_line_item  
-                 { START(PUBL, NULL) }
+                 { $<ctxt>$ = start_element(ELT_SOUR_PUBL,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(PUBL, $<ctxt>$)            
+                 }
                  sour_publ_subs  
 		 { CHECK0 }
-                 CLOSE { }
+                 CLOSE            
+                 { end_element(ELT_SOUR_PUBL, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 sour_publ_subs : /* empty */
@@ -1367,10 +1480,16 @@ sour_publ_sub  : continuation_sub  /* 0:M */
 
 /* SOUR.TEXT */
 sour_text_sect : OPEN DELIM TAG_TEXT mand_line_item   
-                 { START(TEXT, NULL) }
+                 { $<ctxt>$ = start_element(ELT_SOUR_TEXT,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(TEXT, $<ctxt>$)    
+                 }
                  sour_text_subs  
 		 { CHECK0 }
-                 CLOSE { }
+                 CLOSE    
+                 { end_element(ELT_SOUR_TEXT, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 sour_text_subs : /* empty */
@@ -1409,37 +1528,100 @@ subn_sub    : subn_subm_sect  { OCCUR2(SUBM, 0, 1) }
 
 /* SUBN.SUBM */
 subn_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
-                 { START(SUBM, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBN_SUBM,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(SUBM, $<ctxt>$) 
+                 } 
+                 no_std_subs 
+                 { CHECK0 } 
+                 CLOSE 
+                 { end_element(ELT_SUBN_SUBM, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SUBN.FAMF */
 subn_famf_sect : OPEN DELIM TAG_FAMF mand_line_item            
-                 { START(FAMF, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBN_FAMF,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(FAMF, $<ctxt>$)             
+                 }             
+                 no_std_subs             
+                 { CHECK0 }             
+                 CLOSE             
+                 { end_element(ELT_SUBN_FAMF, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SUBN.TEMP */
 subn_temp_sect : OPEN DELIM TAG_TEMP mand_line_item            
-                 { START(TEMP, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBN_TEMP,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(TEMP, $<ctxt>$)             
+                 }             
+                 no_std_subs             
+                 { CHECK0 }             
+                 CLOSE             
+                 { end_element(ELT_SUBN_TEMP, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SUBN.ANCE */
 subn_ance_sect : OPEN DELIM TAG_ANCE mand_line_item            
-                 { START(ANCE, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBN_ANCE,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(ANCE, $<ctxt>$)             
+                 }             
+                 no_std_subs             
+                 { CHECK0 }             
+                 CLOSE             
+                 { end_element(ELT_SUBN_ANCE, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SUBN.DESC */
 subn_desc_sect : OPEN DELIM TAG_DESC mand_line_item            
-                 { START(DESC, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBN_DESC,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(DESC, $<ctxt>$)             
+                 }             
+                 no_std_subs             
+                 { CHECK0 }             
+                 CLOSE             
+                 { end_element(ELT_SUBN_DESC, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SUBN.ORDI */
 subn_ordi_sect : OPEN DELIM TAG_ORDI mand_line_item            
-                 { START(ORDI, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBN_ORDI,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(ORDI, $<ctxt>$)             
+                 }             
+                 no_std_subs             
+                 { CHECK0 }             
+                 CLOSE             
+                 { end_element(ELT_SUBN_ORDI, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SUBN.RIN */
 subn_rin_sect  : OPEN DELIM TAG_RIN mand_line_item            
-                 { START(RIN, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBN_RIN,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(RIN, $<ctxt>$)             
+                 }             
+                 no_std_subs             
+                 { CHECK0 }             
+                 CLOSE             
+                 { end_element(ELT_SUBN_RIN, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /*********************************************************************/
@@ -1470,22 +1652,58 @@ subm_sub   : subm_name_sect  { OCCUR2(NAME, 0, 1) }
 
 /* SUBM.NAME */
 subm_name_sect : OPEN DELIM TAG_NAME mand_line_item             
-                 { START(NAME, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBM_NAME,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(NAME, $<ctxt>$)              
+                 }              
+                 no_std_subs              
+                 { CHECK0 }              
+                 CLOSE              
+                 { end_element(ELT_SUBM_NAME, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SUBM.LANG */
 subm_lang_sect : OPEN DELIM TAG_LANG mand_line_item             
-                 { START(LANG, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBM_LANG,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(LANG, $<ctxt>$)              
+                 }              
+                 no_std_subs              
+                 { CHECK0 }              
+                 CLOSE              
+                 { end_element(ELT_SUBM_LANG, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SUBM.RFN */
 subm_rfn_sect  : OPEN DELIM TAG_RFN mand_line_item             
-                 { START(RFN, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBM_RFN,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(RFN, $<ctxt>$)              
+                 }              
+                 no_std_subs              
+                 { CHECK0 }              
+                 CLOSE              
+                 { end_element(ELT_SUBM_RFN, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /* SUBM.RIN */
 subm_rin_sect  : OPEN DELIM TAG_RIN mand_line_item             
-                 { START(RIN, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUBM_RIN,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(RIN, $<ctxt>$)              
+                 }              
+                 no_std_subs              
+                 { CHECK0 }              
+                 CLOSE              
+                 { end_element(ELT_SUBM_RIN, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 /*********************************************************************/
@@ -1498,10 +1716,16 @@ addr_struc_sub : addr_sect { OCCUR2(ADDR, 0, 1) }
                ;
 
 addr_sect   : OPEN DELIM TAG_ADDR mand_line_item 
-              { START(ADDR, NULL) }
+              { $<ctxt>$ = start_element(ELT_SUB_ADDR,
+					 PARENT, $1, $3, $4, 
+					 GEDCOM_MAKE_STRING($4));
+	        START(ADDR, $<ctxt>$)  
+              }
               addr_subs
 	      { CHECK0 }
-              CLOSE { }
+              CLOSE  
+              { end_element(ELT_SUB_ADDR, PARENT, $<ctxt>5, NULL);
+	      }
             ;
 
 addr_subs   : /* empty */
@@ -1519,29 +1743,101 @@ addr_sub    : addr_cont_sect  /* 0:M */
             ;
 
 addr_cont_sect : OPEN DELIM TAG_CONT mand_line_item              
-                 { START(CONT, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUB_ADDR_CONT,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(CONT, $<ctxt>$)               
+                 }               
+                 no_std_subs               
+                 { CHECK0 }               
+                 CLOSE               
+                 { end_element(ELT_SUB_ADDR_CONT, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 addr_adr1_sect : OPEN DELIM TAG_ADR1 mand_line_item              
-                 { START(ADR1, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUB_ADDR_ADR1,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(ADR1, $<ctxt>$)               
+                 }               
+                 no_std_subs               
+                 { CHECK0 }               
+                 CLOSE               
+                 { end_element(ELT_SUB_ADDR_ADR1, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 addr_adr2_sect : OPEN DELIM TAG_ADR2 mand_line_item              
-                 { START(ADR2, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUB_ADDR_ADR2,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(ADR2, $<ctxt>$)               
+                 }               
+                 no_std_subs               
+                 { CHECK0 }               
+                 CLOSE               
+                 { end_element(ELT_SUB_ADDR_ADR2, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 addr_city_sect : OPEN DELIM TAG_CITY mand_line_item              
-                 { START(CITY, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUB_ADDR_CITY,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(CITY, $<ctxt>$)               
+                 }               
+                 no_std_subs               
+                 { CHECK0 }               
+                 CLOSE               
+                 { end_element(ELT_SUB_ADDR_CITY, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 addr_stae_sect : OPEN DELIM TAG_STAE mand_line_item              
-                 { START(STAE, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUB_ADDR_STAE,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(STAE, $<ctxt>$)               
+                 }               
+                 no_std_subs               
+                 { CHECK0 }               
+                 CLOSE               
+                 { end_element(ELT_SUB_ADDR_STAE, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 addr_post_sect : OPEN DELIM TAG_POST mand_line_item              
-                 { START(POST, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUB_ADDR_POST,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(POST, $<ctxt>$)               
+                 }               
+                 no_std_subs               
+                 { CHECK0 }               
+                 CLOSE               
+                 { end_element(ELT_SUB_ADDR_POST, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 addr_ctry_sect : OPEN DELIM TAG_CTRY mand_line_item              
-                 { START(CTRY, NULL) } no_std_subs { CHECK0 } CLOSE { }
+                 { $<ctxt>$ = start_element(ELT_SUB_ADDR_CTRY,
+					    PARENT, $1, $3, $4, 
+					    GEDCOM_MAKE_STRING($4));
+		   START(CTRY, $<ctxt>$)               
+                 }               
+                 no_std_subs               
+                 { CHECK0 }               
+                 CLOSE               
+                 { end_element(ELT_SUB_ADDR_CTRY, PARENT, $<ctxt>5, NULL);
+		 }
                ;
 
 phon_sect   : OPEN DELIM TAG_PHON mand_line_item              
-              { START(PHON, NULL) } no_std_subs { CHECK0 } CLOSE { }
+              { $<ctxt>$ = start_element(ELT_SUB_PHON,
+					 PARENT, $1, $3, $4, 
+					 GEDCOM_MAKE_STRING($4));
+	        START(PHON, $<ctxt>$)               
+              }               
+              no_std_subs               
+              { CHECK0 }               
+              CLOSE               
+              { end_element(ELT_SUB_PHON, PARENT, $<ctxt>5, NULL);
+	      }
             ;
 
 /* ASSOCIATION STRUCTURE */
@@ -2435,7 +2731,8 @@ user_sect   : OPEN DELIM opt_xref USERTAG
 	        }
 	      }
               opt_value
-              { $<ctxt>$ = start_element(ELT_USER, PARENT, $1, $4, $6, $6);
+              { $<ctxt>$ = start_element(ELT_USER, PARENT, $1, $4, $6,  
+					 GEDCOM_MAKE_STRING($6));
 		START($4, $<ctxt>$);
 	      }
 	      user_sects
