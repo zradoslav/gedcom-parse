@@ -49,9 +49,10 @@ typedef enum _COMPAT_RULES {
   C_NOTE_TOO_LONG,
   C_NOTE_CONC_SOUR,
   C_NONSTD_SOUR_TAGS,
-  C_PAF_DATES,
   C_NR_OF_RULES
 } Compat_rule;
+
+extern struct safe_buffer compat_buffer;
 
 void set_compatibility_program(const char* program);
 void set_compatibility_version(const char* version);
@@ -101,6 +102,12 @@ void compat_close_subm_comm();
 int  compat_check_subm_comm_cont(const char* tag);
 Gedcom_ctxt compat_subm_comm_cont_start(Gedcom_ctxt parent, char* str);
 void compat_subm_comm_cont_end(Gedcom_ctxt parent, Gedcom_ctxt self);
+
+/* C_DOUBLE_DATES_4 */
+void compat_date_start();
+int compat_date_check(struct date_value* dv, const char** curr_line);
+
+int compat_double_date_check(char* year2);
 
 /* C_NOTE_TOO_LONG */
 int  compat_long_line(int level, int tag);

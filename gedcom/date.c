@@ -416,9 +416,15 @@ struct date_value gedcom_parse_date(const char* line_value)
     result = 1;
   }
   else {
+    compat_date_start();
     init_gedcom_date_lex(line_value);
     gedcom_date_parse();
     close_gedcom_date_lex();
+    if (compat_date_check(&dv_s, &curr_line_value)) {
+      init_gedcom_date_lex(curr_line_value);
+      gedcom_date_parse();
+      close_gedcom_date_lex();
+    }
     if (dv_s.date1.cal != CAL_UNKNOWN)
       result |= numbers_to_sdn(&dv_s.date1);
     if (dv_s.date2.cal != CAL_UNKNOWN)

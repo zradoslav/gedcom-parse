@@ -324,24 +324,32 @@ year_greg    : NUMBER
 		   else YYERROR;
 		 }
              | NUMBER SLASH NUMBER
-                 { int y = _get_year_num(YEAR_DOUBLE, $1, $3);
-		   if (y != -1) {
-		     sprintf(date_s.year_str, "%d/%02d", y-1, y%100);
-		     date_s.year = y;
-		     date_s.year_type = YEAR_DOUBLE;
+                 { if (compat_double_date_check($3)) {
+		     safe_buf_append(&compat_buffer, "BET %s AND %s",
+				     $1, $3);
 		   }
-		   else YYERROR;
+		   else {
+		     int y = _get_year_num(YEAR_DOUBLE, $1, $3);
+		     if (y != -1) {
+		       sprintf(date_s.year_str, "%d/%02d", y-1, y%100);
+		       date_s.year = y;
+		       date_s.year_type = YEAR_DOUBLE;
+		     }
+		     else YYERROR;
+		   }
 		 }
              ;
 
 %%
 
-void error_missing_year() {
+void error_missing_year()
+{
   gedcom_date_error(_("Year is missing: '%s'"),
 		    curr_line_value);
 }
 
-void error_missing_month() {
+void error_missing_month()
+{
   gedcom_date_error(_("Month is missing: '%s'"),
 		    curr_line_value);
 }
@@ -406,14 +414,9 @@ int _get_year_num(Year_type ytype, const char* input1, const char* input2)
   }
   else {
     if (strlen(input2) != 2) {
-      if (compat_mode(C_DOUBLE_DATES_4) && strlen(input2) == 4) {
-	input2 += 2;
-      }
-      else {
-	gedcom_date_error(_("Year after slash should be two digits: '%s/%s'"),
-			  input1, input2);
-	return -1;
-      }
+      gedcom_date_error(_("Year after slash should be two digits: '%s/%s'"),
+			input1, input2);
+      return -1;
     }
     if (strlen(input1) <= MAX_YEAR_LEN - 3) {
       int year1 = atoi(input1) + 1;

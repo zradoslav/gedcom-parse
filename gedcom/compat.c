@@ -36,6 +36,14 @@ int compatibility_program = 0;
 int compatibility_version = 0;
 const char* default_charset = "";
 
+void cleanup_compat_buffer();
+struct safe_buffer compat_buffer = { NULL, 0, NULL, 0, cleanup_compat_buffer };
+
+void cleanup_compat_buffer()
+{
+  cleanup_buffer(&compat_buffer);
+}
+
 #define SUBMITTER_LINK         "@__COMPAT__SUBM__@"
 #define SLGC_FAMC_LINK         "@__COMPAT__FAM_SLGC__@"
 #define DEFAULT_SUBMITTER_NAME "Submitter"
@@ -96,13 +104,12 @@ struct program_data data[] = {
 	- no FAMC field in SLGC
 	- uses tab character (will be converted to 8 spaces here)
 	- lines too long
-	- non-standard date formats
+	- double dates written as e.g. '1815/1816'
 
     - Personal Ancestral File 2:
         - '@' not written as '@@' in values
 	- COMM tag in submitter record
-	- double dates written as e.g. '1815/1816' instead of '1815/16'
-	- non-standard date formats
+	- double dates written as e.g. '1815/1816'
 
     - Family Origins:
         - '@' not written as '@@' in values
@@ -120,7 +127,7 @@ struct program_data data[] = {
         - '@' not written as '@@' in values
 	- SUBM.CTRY instead of SUBM.ADDR.CTRY
 	- lines too long
-	- non-standard date formats
+	- double dates written as e.g. '1815/1816'
  */
 
 int compat_matrix[] =
@@ -146,7 +153,6 @@ int compat_matrix[] =
   /* C_NOTE_TOO_LONG */       C_PAF4 | C_PAF5,
   /* C_NOTE_CONC_SOUR */      C_EASYTREE,
   /* C_NONSTD_SOUR_TAGS */    C_EASYTREE,
-  /* C_PAF_DATES */           C_PAF2 | C_PAF4 | C_PAF5
 };
 
 union _COMPAT_STATE {
@@ -642,6 +648,51 @@ void compat_subm_comm_cont_end(Gedcom_ctxt parent, Gedcom_ctxt self)
   if (compat_state[C_SUBM_COMM].i == 2) {
     end_element(ELT_USER, parent, self, NULL);
     compat_state[C_SUBM_COMM].i = 1;
+  }
+}
+
+/********************************************************************/
+/*  C_DOUBLE_DATES_4                                                */
+/********************************************************************/
+
+void compat_date_start()
+{
+  if (compat_mode(C_DOUBLE_DATES_4)) {
+    reset_buffer(&compat_buffer);
+    compat_state[C_DOUBLE_DATES_4].i = 0;
+  }
+}
+
+int compat_double_date_check(char* year2)
+{
+  return (compat_mode(C_DOUBLE_DATES_4)
+	  && !compat_state[C_DOUBLE_DATES_4].i
+	  && strlen(year2) == 4);
+}
+
+int compat_double_date_final(struct date_value* dv, const char** curr_line)
+{
+  char* compat_line_value = get_buf_string(&compat_buffer);
+  compat_state[C_DOUBLE_DATES_4].i = 1;
+  if (compat_line_value && compat_line_value[0]
+      && (dv->type == DV_NO_MODIFIER || dv->type == DV_ABOUT)
+      && dv->date1.day == -1
+      && dv->date1.month == -1) {
+    gedcom_warning(_("Converting '%s' to standard '%s'"),
+		   *curr_line, compat_line_value);
+    *curr_line = compat_line_value;
+  }
+  return 1;
+}
+
+int compat_date_check(struct date_value* dv, const char** curr_line)
+{
+  if (compat_mode(C_DOUBLE_DATES_4)
+      && compat_double_date_final(dv, curr_line)) {
+    return 1;
+  }
+  else {
+    return 0;
   }
 }
 
