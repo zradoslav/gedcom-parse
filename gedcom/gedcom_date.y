@@ -126,7 +126,7 @@ date_value   : date           { make_date_value(DV_NO_MODIFIER,
 	       }
              | error { /* On error: put entire string in 'phrase' member
 			  as fallback */
-	               gedcom_date_error(_("Putting date in 'phrase' member"));
+	               gedcom_date_error(_("Putting date '%s' in 'phrase' member"), curr_line_value);
 	               make_date_value(DV_PHRASE,
 				       &def_date, &def_date, curr_line_value);
 		       YYABORT;

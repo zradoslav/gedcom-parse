@@ -2,13 +2,13 @@ WARNING: Warning on line 2: Enabling compatibility with 'Personal Ancestral File
 WARNING: Warning on line 6: Adding link to submitter record with xref '@__COMPAT__SUBM__@'
 WARNING: Warning on line 13: Converting non-standard tag 'COMM' to user tag '_COMM'
 WARNING: Warning on line 6436: Year is missing: '10 JAN'
-WARNING: Warning on line 6436: Putting date in 'phrase' member
+WARNING: Warning on line 6436: Putting date '10 JAN' in 'phrase' member
 WARNING: Warning on line 12060: Year after slash should be following year: '1056/60'
-WARNING: Warning on line 12060: Putting date in 'phrase' member
+WARNING: Warning on line 12060: Putting date '       1056/1060' in 'phrase' member
 WARNING: Warning on line 12199: Year after slash should be following year: '1103/05'
-WARNING: Warning on line 12199: Putting date in 'phrase' member
+WARNING: Warning on line 12199: Putting date 'ABT    1103/1105' in 'phrase' member
 WARNING: Warning on line 27126: Year is missing: '20 JUL'
-WARNING: Warning on line 27126: Putting date in 'phrase' member
+WARNING: Warning on line 27126: Putting date '20 JUL' in 'phrase' member
 WARNING: Warning: Cross-reference @I359@ defined on line 3543 is never used
 WARNING: Warning: Cross-reference @S1@ defined on line 7 is never used
 WARNING: Warning: Cross-reference @I970@ defined on line 8497 is never used

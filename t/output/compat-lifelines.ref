@@ -20,7 +20,7 @@ Family start, xref is @F1@
 == 1 HUSB (330) @I7@ (ctxt is 1, conversion failures: 0)
 == 1 MARR (339) (null) (ctxt is 1, conversion failures: 0)
 WARNING: Warning on line 9: Empty value changed to '-'
-WARNING: Warning on line 9: Putting date in 'phrase' member
+WARNING: Warning on line 9: Putting date '-' in 'phrase' member
 Contents of the date_value:
   raw value: -
   type: 11
@@ -73,7 +73,7 @@ Contents of the date_value:
 == 2 SOUR (377) ongeveer 1360 (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
 WARNING: Warning on line 21: Empty value changed to '-'
-WARNING: Warning on line 21: Putting date in 'phrase' member
+WARNING: Warning on line 21: Putting date '-' in 'phrase' member
 Contents of the date_value:
   raw value: -
   type: 11
@@ -123,7 +123,7 @@ Family start, xref is @F1@
 == 1 HUSB (330) @I7@ (ctxt is 2, conversion failures: 0)
 == 1 MARR (339) (null) (ctxt is 2, conversion failures: 0)
 WARNING: Warning on line 9: Empty value changed to '-'
-WARNING: Warning on line 9: Putting date in 'phrase' member
+WARNING: Warning on line 9: Putting date '-' in 'phrase' member
 Contents of the date_value:
   raw value: -
   type: 11
@@ -176,7 +176,7 @@ Contents of the date_value:
 == 2 SOUR (377) ongeveer 1360 (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
 WARNING: Warning on line 21: Empty value changed to '-'
-WARNING: Warning on line 21: Putting date in 'phrase' member
+WARNING: Warning on line 21: Putting date '-' in 'phrase' member
 Contents of the date_value:
   raw value: -
   type: 11

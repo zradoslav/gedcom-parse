@@ -154,7 +154,7 @@ Rec INDI start, xref is @PERS06@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 WARNING: Warning on line 37: Unknown calendar type
 WARNING: Warning on line 37: parse error
-WARNING: Warning on line 37: Putting date in 'phrase' member
+WARNING: Warning on line 37: Putting date '@#DFRENCH@ 03 BRUM 4' in 'phrase' member
 Contents of the date_value:
   raw value: @#DFRENCH@ 03 BRUM 4
   type: 11
@@ -271,7 +271,7 @@ Rec INDI start, xref is @PERS11@
 == 1 NAME (342) /Invalid date/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 WARNING: Warning on line 57: Error converting date: year 1739, month 2, day 29
-WARNING: Warning on line 57: Putting date in 'phrase' member
+WARNING: Warning on line 57: Putting date '29 FEB 1739' in 'phrase' member
 Contents of the date_value:
   raw value: 29 FEB 1739
   type: 11
@@ -462,7 +462,7 @@ Rec INDI start, xref is @PERS06@
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 WARNING: Warning on line 37: Unknown calendar type
 WARNING: Warning on line 37: parse error
-WARNING: Warning on line 37: Putting date in 'phrase' member
+WARNING: Warning on line 37: Putting date '@#DFRENCH@ 03 BRUM 4' in 'phrase' member
 Contents of the date_value:
   raw value: @#DFRENCH@ 03 BRUM 4
   type: 11
@@ -579,7 +579,7 @@ Rec INDI start, xref is @PERS11@
 == 1 NAME (342) /Invalid date/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 WARNING: Warning on line 57: Error converting date: year 1739, month 2, day 29
-WARNING: Warning on line 57: Putting date in 'phrase' member
+WARNING: Warning on line 57: Putting date '29 FEB 1739' in 'phrase' member
 Contents of the date_value:
   raw value: 29 FEB 1739
   type: 11

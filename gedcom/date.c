@@ -425,7 +425,8 @@ struct date_value gedcom_parse_date(const char* line_value)
       result |= numbers_to_sdn(&dv_s.date2);
   }
   if (result != 0) {
-    gedcom_date_error(_("Putting date in 'phrase' member"));
+    gedcom_date_error(_("Putting date '%s' in 'phrase' member"),
+		      curr_line_value);
     make_date_value(DV_PHRASE, &dv_s.date1, &dv_s.date2, curr_line_value);
   }
   return dv_s;

@@ -1,6 +1,6 @@
 WARNING: Warning on line 5: Enabling compatibility with 'Family Origins'
 WARNING: Warning on line 97: Error converting date: year 1739, month 2, day 29
-WARNING: Warning on line 97: Putting date in 'phrase' member
+WARNING: Warning on line 97: Putting date '29 FEB 1739' in 'phrase' member
 WARNING: Warning: Cross-reference @I1@ defined on line 22 is never used
 Writing file...
 Re-parsing file...

@@ -1,8 +1,8 @@
 WARNING: Warning on line 37: Unknown calendar type
 WARNING: Warning on line 37: parse error
-WARNING: Warning on line 37: Putting date in 'phrase' member
+WARNING: Warning on line 37: Putting date '@#DFRENCH@ 03 BRUM 4' in 'phrase' member
 WARNING: Warning on line 57: Error converting date: year 1739, month 2, day 29
-WARNING: Warning on line 57: Putting date in 'phrase' member
+WARNING: Warning on line 57: Putting date '29 FEB 1739' in 'phrase' member
 WARNING: Warning: Cross-reference @PERS07@ defined on line 38 is never used
 WARNING: Warning: Cross-reference @PERS02@ defined on line 18 is never used
 WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used

@@ -141,7 +141,7 @@ Rec INDI start, xref is @I71@
 == 1 NOTE (348) twin, probably unmarried. (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 WARNING: Warning on line 97: Error converting date: year 1739, month 2, day 29
-WARNING: Warning on line 97: Putting date in 'phrase' member
+WARNING: Warning on line 97: Putting date '29 FEB 1739' in 'phrase' member
 Contents of the date_value:
   raw value: 29 FEB 1739
   type: 11
@@ -355,7 +355,7 @@ Rec INDI start, xref is @I71@
 == 1 NOTE (348) twin, probably unmarried. (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
 WARNING: Warning on line 97: Error converting date: year 1739, month 2, day 29
-WARNING: Warning on line 97: Putting date in 'phrase' member
+WARNING: Warning on line 97: Putting date '29 FEB 1739' in 'phrase' member
 Contents of the date_value:
   raw value: 29 FEB 1739
   type: 11
