@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$srcdir/test_script -2 -fn encoding_error.ged 1
