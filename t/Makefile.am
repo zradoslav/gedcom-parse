@@ -11,7 +11,7 @@ EXTRA_DIST=$(TESTS)
 TESTS_ENVIRONMENT=ICONV_PATH=@ICONV_PATH@
 
 all-local:
-	@rm -f *.out $(DMALLOC_LOG)
+	@rm -f *.out
 
 check-% :	%.test all-local
 	@srcdir=$(srcdir); export srcdir; \
