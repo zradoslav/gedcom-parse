@@ -77,3 +77,30 @@ char* gom_set_string_for_locale(char** data, const char* locale_str)
 
   return result;
 }
+
+struct xref_value* gom_set_xref_value(struct xref_value** data,
+				      struct xref_value* newval)
+{
+  struct xref_value* result = NULL;
+  if (data) {
+    /* Unreference the old value if not NULL */
+    if (*data)
+      result = gedcom_unlink_xref((*data)->type, (*data)->string);
+    else
+      result = newval;
+
+    /* Reference the new value if not NULL */
+    if (result != NULL && newval) {
+      result = gedcom_link_xref(newval->type, newval->string);
+      /* On error, perform rollback to old value (guaranteed to work) */
+      if (result == NULL)
+	gedcom_link_xref((*data)->type, (*data)->string);
+    }
+    
+    if (result != NULL) {
+      *data = newval;
+      result = newval;
+    }
+  }
+  return result;
+}
