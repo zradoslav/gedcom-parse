@@ -32,6 +32,7 @@
 #include "utf8-locale.h"
 
 #define BOGUS_FILE_NAME "Makefile.am"
+int total_conv_fails = 0;
 
 void show_help ()
 {
@@ -185,6 +186,7 @@ void default_cb(Gedcom_elt elt, Gedcom_ctxt ctxt, int level, char *tag,
     converted = convert_utf8_to_locale(raw_value, &conv_fails);
   output(0, "== %d %s (%d) %s (ctxt is %d, conversion failures: %d)\n",
 	 level, tag, tag_value, converted, (int)ctxt, conv_fails);
+  total_conv_fails += conv_fails;
 }
 
 void subscribe_callbacks()
@@ -293,6 +295,7 @@ int main(int argc, char* argv[])
   while (run_times-- > 0) {
     output(0, "\n=== Parsing file %s\n", file_name);
     result |= gedcom_parse_file(file_name);
+    output(0, "\n=== Total conversion failures: %d\n", total_conv_fails);
   }
   if (result == 0) {
     output(1, "Parse succeeded\n");
