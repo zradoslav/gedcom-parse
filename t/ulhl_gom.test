@@ -1,3 +1,3 @@
 #!/bin/sh
 
-$srcdir/src/test_gom ulhl.ged 0
+$srcdir/src/test_gom ulhl.ged ulhl_gom 0

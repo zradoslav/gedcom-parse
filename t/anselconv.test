@@ -1,5 +1,7 @@
 #!/bin/sh
 
+logfile=check.out
+
 # For use outside Makefile
 if [ -z "$srcdir" ]
 then
@@ -21,19 +23,26 @@ then
   export PATH
 fi
 
-echo "Testing conversion from ANSEL to UTF-8" >> testgedcom.out
-iconv -f ANSEL -t UTF-8 $srcdir/input/ansel.ged > anselutf8.out
-if diff $srcdir/input/anselutf8.ged anselutf8.out >> testgedcom.out
+echo "======================================================">> $logfile
+echo "Performing test 'anselconv'" >> $logfile
+echo "Testing conversion from ANSEL to UTF-8" >> $logfile
+iconv -f ANSEL -t UTF-8 $srcdir/input/ansel.ged > anselconv_utf8.out
+if diff $srcdir/input/anselutf8.ged anselconv_utf8.out >/dev/null 2>> $logfile
 then
-  echo "Testing conversion from UTF-8 to ANSEL" >> testgedcom.out
-  iconv -f UTF-8 -t ANSEL $srcdir/input/anselutf8.ged > ansel.out
-  if diff $srcdir/input/ansel.ged ansel.out >> testgedcom.out
+  echo "Output agrees with reference output" >> $logfile
+  rm anselconv_utf8.out
+  echo "Testing conversion from UTF-8 to ANSEL" >> $logfile
+  iconv -f UTF-8 -t ANSEL $srcdir/input/anselutf8.ged > anselconv_ansel.out
+  if diff $srcdir/input/ansel.ged anselconv_ansel.out >dev/null 2>> $logfile
   then
-    :
+    echo "Output agrees with reference output" >> $logfile
+    rm anselconv_ansel.out
   else
+    echo "Difference with reference output detected!" >> $logfile
     retval=1
   fi
 else
+  echo "Difference with reference output detected!" >> $logfile
   retval=1
 fi
 
