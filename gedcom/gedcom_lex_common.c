@@ -336,6 +336,8 @@ static int dummy_conv = 0;
 #define ACTION_TERMINATOR                                                     \
   { CHECK_LINE_LEN;                                                           \
     INIT_LINE_LEN;                                                            \
+    if (line_no == 1)                                                         \
+      set_encoding_terminator(TO_INTERNAL(yytext, str_buffer));               \
     BEGIN(INITIAL);                                                           \
   }
 
