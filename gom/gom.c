@@ -221,31 +221,6 @@ void set_xref_type(struct xref_value* xr, const char *str)
     xr->type = XREF_ANY;
 }
 
-char* concat_strings(NL_TYPE type, char *str1, const char *str2)
-{
-  if (str1 != NULL && str2 != NULL) {
-    char *newp;
-    char *wp;
-    size_t len1 = strlen(str1);
-    size_t len2 = strlen(str2);
-    size_t len  = len1 + len2 + 1;
-    if (type == WITH_NL)
-      len++;
-    newp = (char*) realloc(str1, len);
-    if (newp == NULL)
-      return NULL;
-    wp   = newp + len1;
-    str1 = newp;
-    if (type == WITH_NL)
-      *wp++ = '\n';
-    wp = memcpy (wp, str2, len2);
-    wp += len2;
-    *wp++ = '\0';
-  }
-
-  return str1;
-}
-
 struct date_value* dup_date(struct date_value dv)
 {
   struct date_value* dv_ptr;

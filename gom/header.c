@@ -60,8 +60,27 @@ STRING_CB(header, head_char_vers_start, charset.version)
 STRING_CB(header, head_lang_start, language)
 NULL_CB(header, head_plac_start)
 STRING_CB(header, head_plac_form_start, place_hierarchy)
-STRING_CB(header, head_note_start, note)
+NULL_CB(header, head_note_start) /* the end callback will fill the value */
      
+void head_note_end(_ELT_END_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)self;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct header *head = SAFE_CTXT_CAST(header, ctxt);
+    if (head) {
+      char *str = GEDCOM_STRING(parsed_value);
+      char *newvalue = strdup(str);
+      if (! newvalue)
+	MEMORY_ERROR;
+      else
+	head->note = newvalue;
+    }
+  }
+}
+
 void header_add_address(Gom_ctxt ctxt, struct address* addr)
 {
   struct header *head = SAFE_CTXT_CAST(header, ctxt);
@@ -80,18 +99,6 @@ void header_add_phone(Gom_ctxt ctxt, const char* phone)
       corp->phone[i] = strdup(phone);
       if (! corp->phone[i]) MEMORY_ERROR;
     }
-  }
-}
-
-void header_add_to_note(NL_TYPE type, Gom_ctxt ctxt, const char* str)
-{
-  struct header *head = SAFE_CTXT_CAST(header, ctxt);
-  if (head) {
-    char *newvalue = concat_strings(type, head->note, str);
-    if (newvalue)
-      head->note = newvalue;
-    else
-      MEMORY_ERROR;
   }
 }
 
@@ -138,7 +145,7 @@ void header_subscribe()
   gedcom_subscribe_to_element(ELT_HEAD_PLAC, head_plac_start, def_elt_end);
   gedcom_subscribe_to_element(ELT_HEAD_PLAC_FORM,
 			      head_plac_form_start, def_elt_end);
-  gedcom_subscribe_to_element(ELT_HEAD_NOTE, head_note_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_HEAD_NOTE, head_note_start, head_note_end);
 }
 
 void header_cleanup()

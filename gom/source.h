@@ -32,7 +32,6 @@ void sources_cleanup();
 struct source* make_source_record(const char* xref);
 void source_add_event(Gom_ctxt ctxt, struct source_event* evt);
 void source_add_note_to_data(Gom_ctxt ctxt, struct note_sub* note);
-void source_add_to_value(NL_TYPE type, Gom_ctxt ctxt, const char* str);
 void source_add_note_to_repo(Gom_ctxt ctxt, struct note_sub* note);
 void source_add_description(Gom_ctxt ctxt, struct source_description* desc);
 void source_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link);

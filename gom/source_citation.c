@@ -53,57 +53,67 @@ Gedcom_ctxt sub_citation_start(_ELT_PARAMS_)
     if (! cit)
       MEMORY_ERROR;
     else {
-      int err = 0;
       memset (cit, 0, sizeof(struct source_citation));
-      if (GEDCOM_IS_STRING(parsed_value)) {
-	cit->description = strdup(GEDCOM_STRING(parsed_value));
-	if (! cit->description) {
-	  MEMORY_ERROR;
-	  free(cit);
-	  err = 1;
-	}
-      }
-      else if (GEDCOM_IS_XREF_PTR(parsed_value))
+      if (GEDCOM_IS_XREF_PTR(parsed_value))
 	cit->reference = GEDCOM_XREF_PTR(parsed_value);
 
-      if (! err) {
-	switch (ctxt->ctxt_type) {
-	  case ELT_SUB_PLAC:
-	    place_add_citation(ctxt, cit); break;
-	  case ELT_SUB_FAM_EVT:
-	  case ELT_SUB_FAM_EVT_EVEN:
-	  case ELT_SUB_INDIV_ATTR:
-	  case ELT_SUB_INDIV_RESI:
-	  case ELT_SUB_INDIV_BIRT:
-	  case ELT_SUB_INDIV_GEN:
-	  case ELT_SUB_INDIV_ADOP:
-	  case ELT_SUB_INDIV_EVEN:
-	    event_add_citation(ctxt, cit); break;
-	  case ELT_SUB_NOTE:
-	    note_sub_add_citation(ctxt, cit); break;
-	  case ELT_SUB_LSS_SLGS:
-	  case ELT_SUB_LIO_BAPL:
-	  case ELT_SUB_LIO_SLGC:
-	    lds_event_add_citation(ctxt, cit); break;
-	  case REC_FAM:
-	    family_add_citation(ctxt, cit); break;
-	  case ELT_SUB_PERS_NAME:
-	    name_add_citation(ctxt, cit); break;
-	  case REC_INDI:
-	    individual_add_citation(ctxt, cit); break;
-	  case ELT_SUB_ASSO:
-	    association_add_citation(ctxt, cit); break;
-	  case REC_NOTE:
-	    note_add_citation(ctxt, cit); break;
-	  default:
-	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
-	}
-	result = MAKE_GOM_CTXT(elt, source_citation, cit);
+      switch (ctxt->ctxt_type) {
+	case ELT_SUB_PLAC:
+	  place_add_citation(ctxt, cit); break;
+	case ELT_SUB_FAM_EVT:
+	case ELT_SUB_FAM_EVT_EVEN:
+	case ELT_SUB_INDIV_ATTR:
+	case ELT_SUB_INDIV_RESI:
+	case ELT_SUB_INDIV_BIRT:
+	case ELT_SUB_INDIV_GEN:
+	case ELT_SUB_INDIV_ADOP:
+	case ELT_SUB_INDIV_EVEN:
+	  event_add_citation(ctxt, cit); break;
+	case ELT_SUB_NOTE:
+	  note_sub_add_citation(ctxt, cit); break;
+	case ELT_SUB_LSS_SLGS:
+	case ELT_SUB_LIO_BAPL:
+	case ELT_SUB_LIO_SLGC:
+	  lds_event_add_citation(ctxt, cit); break;
+	case REC_FAM:
+	  family_add_citation(ctxt, cit); break;
+	case ELT_SUB_PERS_NAME:
+	  name_add_citation(ctxt, cit); break;
+	case REC_INDI:
+	  individual_add_citation(ctxt, cit); break;
+	case ELT_SUB_ASSO:
+	  association_add_citation(ctxt, cit); break;
+	case REC_NOTE:
+	  note_add_citation(ctxt, cit); break;
+	default:
+	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
       }
+      result = MAKE_GOM_CTXT(elt, source_citation, cit);
     }
   }
 
   return (Gedcom_ctxt)result;
+}
+
+void sub_citation_end(_ELT_END_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)self;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    if (GEDCOM_IS_STRING(parsed_value)) {
+      struct source_citation *cit = SAFE_CTXT_CAST(source_citation, ctxt);
+      if (cit) {
+	char *str = GEDCOM_STRING(parsed_value);
+	char *newvalue = strdup(str);
+	if (! newvalue)
+	  MEMORY_ERROR;
+	else
+	  cit->description = newvalue;
+      }
+    }
+  }
 }
 
 Gedcom_ctxt sub_cit_text_start(_ELT_PARAMS_)
@@ -118,19 +128,33 @@ Gedcom_ctxt sub_cit_text_start(_ELT_PARAMS_)
     if (cit) {
       struct text *t = NULL;
       MAKE_CHAIN_ELT(text, cit->text, t);
-      if (t) {
-	t->text = strdup(GEDCOM_STRING(parsed_value));
-	if (! t->text) {
-	  MEMORY_ERROR;
-	  free(t);
-	}
-	else
-	  result = MAKE_GOM_CTXT(elt, text, t);
-      }
+      if (t)
+	result = MAKE_GOM_CTXT(elt, text, t);
     }
   }
   
   return (Gedcom_ctxt)result;
+}
+
+void sub_cit_text_end(_ELT_END_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)self;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    if (GEDCOM_IS_STRING(parsed_value)) {
+      struct text *t = SAFE_CTXT_CAST(text, ctxt);
+      if (t) {
+	char *str = GEDCOM_STRING(parsed_value);
+	char *newvalue = strdup(str);
+	if (! newvalue)
+	  MEMORY_ERROR;
+	else
+	  t->text = newvalue;
+      }
+    }
+  }
 }
 
 STRING_CB(source_citation, sub_cit_page_start, page)
@@ -142,7 +166,8 @@ STRING_CB(source_citation, sub_cit_quay_start, quality)
      
 void citation_subscribe()
 {
-  gedcom_subscribe_to_element(ELT_SUB_SOUR, sub_citation_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SUB_SOUR, sub_citation_start,
+			      sub_citation_end);
   gedcom_subscribe_to_element(ELT_SUB_SOUR_PAGE, sub_cit_page_start,
 			      def_elt_end);
   gedcom_subscribe_to_element(ELT_SUB_SOUR_EVEN, sub_cit_even_start,
@@ -154,7 +179,7 @@ void citation_subscribe()
   gedcom_subscribe_to_element(ELT_SUB_SOUR_DATA_DATE, sub_cit_data_date_start,
 			      def_elt_end);
   gedcom_subscribe_to_element(ELT_SUB_SOUR_TEXT, sub_cit_text_start,
-			      def_elt_end);
+			      sub_cit_text_end);
   gedcom_subscribe_to_element(ELT_SUB_SOUR_QUAY, sub_cit_quay_start,
 			      def_elt_end);
 }
@@ -171,30 +196,6 @@ void citation_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm)
   struct source_citation *cit = SAFE_CTXT_CAST(source_citation, ctxt);
   if (cit)
     LINK_CHAIN_ELT(multimedia_link, cit->mm_link, mm);    
-}
-
-void citation_add_to_desc(NL_TYPE type, Gom_ctxt ctxt, const char* str)
-{
-  struct source_citation *cit = SAFE_CTXT_CAST(source_citation, ctxt);
-  if (cit) {
-    char *newvalue = concat_strings (type, cit->description, str);
-    if (newvalue)
-      cit->description = newvalue;
-    else
-      MEMORY_ERROR;
-  }
-}
-
-void citation_add_to_text(NL_TYPE type, Gom_ctxt ctxt, const char* str)
-{
-  struct text *t = SAFE_CTXT_CAST(text, ctxt);
-  if (t) {
-    char *newvalue = concat_strings (type, t->text, str);
-    if (newvalue)
-      t->text = newvalue;
-    else
-      MEMORY_ERROR;
-  }
 }
 
 void citation_add_user_data(Gom_ctxt ctxt, struct user_data* data)

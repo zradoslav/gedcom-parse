@@ -105,12 +105,6 @@ void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent,
 		 Gedcom_ctxt self, Gedcom_val parsed_value);
 void set_xref_type(struct xref_value *xr, const char* str);
 
-typedef enum {
-  WITHOUT_NL,
-  WITH_NL
-} NL_TYPE;
-
-char* concat_strings(NL_TYPE type, char *str1, const char *str2);
 struct date_value* dup_date(struct date_value dv);
 struct age_value*  dup_age(struct age_value age);
 
@@ -163,10 +157,17 @@ void NULL_DESTROY(void* anything);
                      char *raw_value UNUSED, int parsed_tag UNUSED,           \
                      Gedcom_val parsed_value UNUSED
 
+#define _REC_END_PARAMS_ Gedcom_rec rec UNUSED, Gedcom_ctxt self UNUSED,      \
+                         Gedcom_val parsed_value UNUSED
+
 #define _ELT_PARAMS_ Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,        \
                      int level UNUSED, char *tag UNUSED,                      \
                      char *raw_value UNUSED, int parsed_tag UNUSED,           \
                      Gedcom_val parsed_value UNUSED
+
+#define _ELT_END_PARAMS_ Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,    \
+                         Gedcom_ctxt self UNUSED,                             \
+                         Gedcom_val parsed_value UNUSED
 
 #define REC_CB(STRUCTTYPE,CB_NAME,FUNC)                                       \
   Gedcom_ctxt CB_NAME(_REC_PARAMS_)                                           \

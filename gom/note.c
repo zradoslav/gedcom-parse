@@ -56,6 +56,25 @@ Gedcom_ctxt note_start(_REC_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+void note_end(_REC_END_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)self;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct note *note = SAFE_CTXT_CAST(note, ctxt);
+    if (note) {
+      char *str = GEDCOM_STRING(parsed_value);
+      char *newvalue = strdup(str);
+      if (! newvalue)
+	MEMORY_ERROR;
+      else
+	note->text = newvalue;
+    }
+  }
+}
+
 GET_REC_BY_XREF(note, XREF_NOTE, gom_get_note_by_xref)
      
 Gedcom_ctxt sub_cont_conc_start(_ELT_PARAMS_)
@@ -65,50 +84,17 @@ Gedcom_ctxt sub_cont_conc_start(_ELT_PARAMS_)
 
   if (! ctxt)
     NO_CONTEXT;
-  else {
-    char *str = GEDCOM_STRING(parsed_value);
-    NL_TYPE type = (elt == ELT_SUB_CONT ? WITH_NL : WITHOUT_NL);
-    switch (ctxt->ctxt_type) {
-      case ELT_HEAD_NOTE:
-	header_add_to_note(type, ctxt, str); break;
-      case ELT_SUB_SOUR:
-	citation_add_to_desc(type, ctxt, str); break;
-      case ELT_SUB_SOUR_TEXT:
-	citation_add_to_text(type, ctxt, str); break;
-      case ELT_SUB_NOTE:
-	note_sub_add_to_note(type, ctxt, str); break;
-      case REC_NOTE:
-	note_add_to_note(type, ctxt, str); break;
-      case ELT_SOUR_AUTH:
-      case ELT_SOUR_TITL:
-      case ELT_SOUR_PUBL:
-      case ELT_SOUR_TEXT:
-	source_add_to_value(type, ctxt, str); break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
-    }
+  else
     result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
-  }
+  
   return (Gedcom_ctxt)result;
 }
 
 void note_subscribe()
 {
-  gedcom_subscribe_to_record(REC_NOTE, note_start, def_rec_end);
+  gedcom_subscribe_to_record(REC_NOTE, note_start, note_end);
   gedcom_subscribe_to_element(ELT_SUB_CONT, sub_cont_conc_start, def_elt_end);
   gedcom_subscribe_to_element(ELT_SUB_CONC, sub_cont_conc_start, def_elt_end);
-}
-
-void note_add_to_note(NL_TYPE type, Gom_ctxt ctxt, const char* str)
-{
-  struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  if (note) {
-    char *newvalue = concat_strings (type, note->text, str);
-    if (newvalue)
-      note->text = newvalue;
-    else
-      MEMORY_ERROR;
-  }
 }
 
 void note_add_citation(Gom_ctxt ctxt, struct source_citation* cit)

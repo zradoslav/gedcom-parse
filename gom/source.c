@@ -42,12 +42,88 @@ REC_CB(source, sour_start, make_source_record)
 GET_REC_BY_XREF(source, XREF_SOUR, gom_get_source_by_xref)
 NULL_CB(source, sour_data_start)
 STRING_CB(source, sour_data_agnc_start, data.agency)
-STRING_CB(source, sour_auth_start, author)
-STRING_CB(source, sour_titl_start, title)
+NULL_CB(source, sour_auth_start)  /* value set by end callback */
+NULL_CB(source, sour_titl_start)  /* value set by end callback */
 STRING_CB(source, sour_abbr_start, abbreviation)
-STRING_CB(source, sour_publ_start, publication)
-STRING_CB(source, sour_text_start, text)
+NULL_CB(source, sour_publ_start)  /* value set by end callback */
+NULL_CB(source, sour_text_start)  /* value set by end callback */
 XREF_CB(source, sour_repo_start, repository.link, make_repository_record)
+
+void sour_auth_end(_ELT_END_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)self;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+    if (sour) {
+      char *str = GEDCOM_STRING(parsed_value);
+      char *newvalue = strdup(str);
+      if (! newvalue)
+	MEMORY_ERROR;
+      else
+	sour->author = newvalue;
+    }
+  }
+}
+
+void sour_titl_end(_ELT_END_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)self;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+    if (sour) {
+      char *str = GEDCOM_STRING(parsed_value);
+      char *newvalue = strdup(str);
+      if (! newvalue)
+	MEMORY_ERROR;
+      else
+	sour->title = newvalue;
+    }
+  }
+}
+
+void sour_publ_end(_ELT_END_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)self;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+    if (sour) {
+      char *str = GEDCOM_STRING(parsed_value);
+      char *newvalue = strdup(str);
+      if (! newvalue)
+	MEMORY_ERROR;
+      else
+	sour->publication = newvalue;
+    }
+  }
+}
+
+void sour_text_end(_ELT_END_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)self;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+    if (sour) {
+      char *str = GEDCOM_STRING(parsed_value);
+      char *newvalue = strdup(str);
+      if (! newvalue)
+	MEMORY_ERROR;
+      else
+	sour->text = newvalue;
+    }
+  }
+}
 
 void source_subscribe()
 {
@@ -55,11 +131,11 @@ void source_subscribe()
   gedcom_subscribe_to_element(ELT_SOUR_DATA, sour_data_start, def_elt_end);
   gedcom_subscribe_to_element(ELT_SOUR_DATA_AGNC, sour_data_agnc_start,
 			      def_elt_end);
-  gedcom_subscribe_to_element(ELT_SOUR_AUTH, sour_auth_start, def_elt_end);
-  gedcom_subscribe_to_element(ELT_SOUR_TITL, sour_titl_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SOUR_AUTH, sour_auth_start, sour_auth_end);
+  gedcom_subscribe_to_element(ELT_SOUR_TITL, sour_titl_start, sour_titl_end);
   gedcom_subscribe_to_element(ELT_SOUR_ABBR, sour_abbr_start, def_elt_end);
-  gedcom_subscribe_to_element(ELT_SOUR_PUBL, sour_publ_start, def_elt_end);
-  gedcom_subscribe_to_element(ELT_SOUR_TEXT, sour_text_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SOUR_PUBL, sour_publ_start, sour_publ_end);
+  gedcom_subscribe_to_element(ELT_SOUR_TEXT, sour_text_start, sour_text_end);
   gedcom_subscribe_to_element(ELT_SUB_REPO, sour_repo_start, def_elt_end);
 }
 
@@ -89,46 +165,6 @@ void source_add_description(Gom_ctxt ctxt, struct source_description* desc)
   struct source *sour = SAFE_CTXT_CAST(source, ctxt);
   if (sour)
     LINK_CHAIN_ELT(source_description, sour->repository.description, desc);  
-}
-
-void source_add_to_value(NL_TYPE type, Gom_ctxt ctxt, const char* str)
-{
-  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-  if (sour) {
-    switch (ctxt->ctxt_type) {
-      char *newvalue;
-      case ELT_SOUR_AUTH:
-	newvalue = concat_strings (type, sour->author, str);
-	if (newvalue)
-	  sour->author = newvalue;
-	else
-	  MEMORY_ERROR;
-	break;
-      case ELT_SOUR_TITL:
-	newvalue = concat_strings (type, sour->title, str);
-	if (newvalue)
-	  sour->title = newvalue;
-	else
-	  MEMORY_ERROR;
-	break;
-      case ELT_SOUR_PUBL:
-	newvalue = concat_strings (type, sour->publication, str);
-	if (newvalue)
-	  sour->publication = newvalue;
-	else
-	  MEMORY_ERROR;
-	break;
-      case ELT_SOUR_TEXT:
-	newvalue = concat_strings (type, sour->text, str);
-	if (newvalue)
-	  sour->text = newvalue;
-	else
-	  MEMORY_ERROR;
-	break;
-      default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
-    }
-  }
 }
 
 void source_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link)

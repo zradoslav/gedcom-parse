@@ -45,40 +45,50 @@ Gedcom_ctxt sub_addr_start(_ELT_PARAMS_)
     if (!addr)
       MEMORY_ERROR;
     else {
-      char *str = GEDCOM_STRING(parsed_value);
       memset (addr, 0, sizeof(struct address));
-      addr->full_label = strdup(str);
-      
-      if (! addr->full_label) {
-	MEMORY_ERROR;
-	free(addr);
+      switch (ctxt->ctxt_type) {
+	case ELT_HEAD_SOUR_CORP:
+	  header_add_address(ctxt, addr); break;
+	case ELT_SUB_FAM_EVT:
+	case ELT_SUB_FAM_EVT_EVEN:
+	case ELT_SUB_INDIV_ATTR:
+	case ELT_SUB_INDIV_RESI:
+	case ELT_SUB_INDIV_BIRT:
+	case ELT_SUB_INDIV_GEN:
+	case ELT_SUB_INDIV_ADOP:
+	case ELT_SUB_INDIV_EVEN:
+	  event_add_address(ctxt, addr); break;
+	case REC_REPO:
+	  repository_add_address(ctxt, addr); break;
+	case REC_SUBM:
+	  submitter_add_address(ctxt, addr); break;
+	default:
+	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
       }
-      else {
-	switch (ctxt->ctxt_type) {
-	  case ELT_HEAD_SOUR_CORP:
-	    header_add_address(ctxt, addr); break;
-	  case ELT_SUB_FAM_EVT:
-	  case ELT_SUB_FAM_EVT_EVEN:
-	  case ELT_SUB_INDIV_ATTR:
-	  case ELT_SUB_INDIV_RESI:
-	  case ELT_SUB_INDIV_BIRT:
-	  case ELT_SUB_INDIV_GEN:
-	  case ELT_SUB_INDIV_ADOP:
-	  case ELT_SUB_INDIV_EVEN:
-	    event_add_address(ctxt, addr); break;
-	  case REC_REPO:
-	    repository_add_address(ctxt, addr); break;
-	  case REC_SUBM:
-	    submitter_add_address(ctxt, addr); break;
-	  default:
-	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
-	}
-	result = MAKE_GOM_CTXT(elt, address, addr);
-      }
+      result = MAKE_GOM_CTXT(elt, address, addr);
     }
   }
   
   return (Gedcom_ctxt)result;
+}
+
+void sub_addr_end(_ELT_END_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)self;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else {
+    struct address *addr = SAFE_CTXT_CAST(address, ctxt);
+    if (addr) {
+      char *str = GEDCOM_STRING(parsed_value);
+      char *newvalue = strdup(str);
+      if (! newvalue)
+	MEMORY_ERROR;
+      else
+	addr->full_label = newvalue;
+    }
+  }
 }
 
 Gedcom_ctxt sub_addr_cont_start(_ELT_PARAMS_)
@@ -88,17 +98,7 @@ Gedcom_ctxt sub_addr_cont_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct address *addr = SAFE_CTXT_CAST(address, ctxt);
-    if (addr) {
-      char *str = GEDCOM_STRING(parsed_value);
-      char *newvalue = concat_strings (WITH_NL, addr->full_label, str);
-      if (! newvalue)
-	MEMORY_ERROR;
-      else {
-	addr->full_label = newvalue;
-	result = MAKE_GOM_CTXT(elt, address, addr);
-      }
-    }
+    result = make_gom_ctxt(elt, ctxt->ctxt_type, ctxt->ctxt_ptr);
   }
   return (Gedcom_ctxt)result;
 }
@@ -144,7 +144,7 @@ Gedcom_ctxt sub_phon_start(_ELT_PARAMS_)
 
 void address_subscribe()
 {
-  gedcom_subscribe_to_element(ELT_SUB_ADDR, sub_addr_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SUB_ADDR, sub_addr_start, sub_addr_end);
   gedcom_subscribe_to_element(ELT_SUB_ADDR_CONT,
 			      sub_addr_cont_start, def_elt_end);
   gedcom_subscribe_to_element(ELT_SUB_ADDR_ADR1,

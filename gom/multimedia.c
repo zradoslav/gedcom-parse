@@ -41,10 +41,9 @@ STRING_CB(multimedia, obje_titl_start, title)
 NULL_CB(multimedia, obje_blob_start)     
 XREF_CB(multimedia, obje_obje_start, continued, make_multimedia_record)
 
-Gedcom_ctxt obje_blob_cont_start(_ELT_PARAMS_)
+void obje_blob_end(_ELT_END_PARAMS_)
 {
-  Gom_ctxt ctxt = (Gom_ctxt)parent;
-  Gom_ctxt result = NULL;
+  Gom_ctxt ctxt = (Gom_ctxt)self;
 
   if (! ctxt)
     NO_CONTEXT;
@@ -52,26 +51,25 @@ Gedcom_ctxt obje_blob_cont_start(_ELT_PARAMS_)
     struct multimedia *obj = SAFE_CTXT_CAST(multimedia, ctxt);
     if (obj) {
       char *str = GEDCOM_STRING(parsed_value);
-      if (obj->data) {
-	char *newvalue = concat_strings (WITHOUT_NL, obj->data, str);
-	if (newvalue)
-	  obj->data = newvalue;
-	else {
-	  free(obj->data);
-	  obj->data = NULL;
-	}
-      }
-      else
-	obj->data = strdup(str);
-      
-      if (! obj->data) {
+      char *newvalue = strdup(str);
+      if (! newvalue)
 	MEMORY_ERROR;
-	free(obj);
-      }
       else
-	result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+	obj->data = newvalue;
     }
   }
+}
+
+Gedcom_ctxt obje_blob_cont_start(_ELT_PARAMS_)
+{
+  Gom_ctxt ctxt = (Gom_ctxt)parent;
+  Gom_ctxt result = NULL;
+
+  if (! ctxt)
+    NO_CONTEXT;
+  else
+    result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+  
   return (Gedcom_ctxt)result;
 }
 
@@ -80,7 +78,7 @@ void multimedia_subscribe()
   gedcom_subscribe_to_record(REC_OBJE, obje_start, def_rec_end);
   gedcom_subscribe_to_element(ELT_OBJE_FORM, obje_form_start, def_elt_end);
   gedcom_subscribe_to_element(ELT_OBJE_TITL, obje_titl_start, def_elt_end);
-  gedcom_subscribe_to_element(ELT_OBJE_BLOB, obje_blob_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_OBJE_BLOB, obje_blob_start, obje_blob_end);
   gedcom_subscribe_to_element(ELT_OBJE_BLOB_CONT, obje_blob_cont_start,
 			      def_elt_end);
   gedcom_subscribe_to_element(ELT_OBJE_OBJE, obje_obje_start, def_elt_end);
