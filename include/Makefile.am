@@ -9,5 +9,6 @@ BUILT_SOURCES = gedcom.h \
 EXTRA_DIST = gedcom.h.in
 
 gedcom-tags.h:	$(srcdir)/../gedcom/gedcom.tabgen.h
-	grep "TAG_\|USERTAG" $< > $@
+	grep "TAG_" $< > $@
+	grep "USERTAG" $< >> $@
 
