@@ -1,5 +1,8 @@
 2002-12-15  Peter Verthez  <Peter.Verthez@advalvas.be>
 
+	* gom/*.c, gedcom/write.c, gedcom/date.c, gedcom/age.c: Support for
+	writing age values and data values (rudimentary).
+
 	* gom/*.c, gedcom/write.c: Completed writing of strings and xrefs.
 
 2002-12-08  Peter Verthez  <Peter.Verthez@advalvas.be>
