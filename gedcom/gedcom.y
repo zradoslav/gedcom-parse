@@ -460,7 +460,7 @@ head_sect    : OPEN DELIM TAG_HEAD
 		   CHECK4(SOUR, SUBM, GEDC, CHAR)
 	       }
                CLOSE
-               { end_record(REC_HEAD, $<ctxt>4, NULL);
+               { end_record(REC_HEAD, $<ctxt>4, GEDCOM_MAKE_NULL(val1));
 	         if (compat_mode(C_FTREE | C_LIFELINES))
 	           compat_generate_submitter();
 	       }
@@ -499,7 +499,8 @@ head_sour_sect : OPEN DELIM TAG_SOUR mand_line_item
                  head_sour_subs
                  { CHECK0 }
 		 CLOSE
-                 { end_element(ELT_HEAD_SOUR, PARENT, $<ctxt>5, NULL); }
+                 { end_element(ELT_HEAD_SOUR, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1)); }
                ;
 
 head_sour_subs : /* empty */
@@ -523,7 +524,7 @@ head_sour_vers_sect : OPEN DELIM TAG_VERS mand_line_item
                       { CHECK0 }
                       CLOSE
                       { end_element(ELT_HEAD_SOUR_VERS,
-				    PARENT, $<ctxt>5, NULL);
+				    PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 head_sour_name_sect : OPEN DELIM TAG_NAME mand_line_item
@@ -536,7 +537,7 @@ head_sour_name_sect : OPEN DELIM TAG_NAME mand_line_item
                       { CHECK0 }
                       CLOSE
                       { end_element(ELT_HEAD_SOUR_NAME,
-				    PARENT, $<ctxt>5, NULL);
+				    PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 head_sour_corp_sect : OPEN DELIM TAG_CORP mand_line_item 
@@ -549,7 +550,7 @@ head_sour_corp_sect : OPEN DELIM TAG_CORP mand_line_item
 		      { CHECK0 }
                       CLOSE
                       { end_element(ELT_HEAD_SOUR_CORP,
-				    PARENT, $<ctxt>5, NULL);
+				    PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -571,7 +572,7 @@ head_sour_data_sect : OPEN DELIM TAG_DATA mand_line_item
                       { CHECK0 }
 		      CLOSE
                       { end_element(ELT_HEAD_SOUR_DATA,
-				    PARENT, $<ctxt>5, NULL);
+				    PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -596,7 +597,8 @@ head_sour_data_date_sect : OPEN DELIM TAG_DATE mand_line_item
                            { CHECK0 }
                            CLOSE
                            { end_element(ELT_HEAD_SOUR_DATA_DATE,
-					 PARENT, $<ctxt>5, NULL);
+					 PARENT, $<ctxt>5,
+					 GEDCOM_MAKE_NULL(val1));
 			   }
                          ;
 head_sour_data_copr_sect : OPEN DELIM TAG_COPR mand_line_item
@@ -610,7 +612,8 @@ head_sour_data_copr_sect : OPEN DELIM TAG_COPR mand_line_item
                            { CHECK0 }
                            CLOSE
                            { end_element(ELT_HEAD_SOUR_DATA_COPR,
-					 PARENT, $<ctxt>5, NULL);
+					 PARENT, $<ctxt>5,
+					 GEDCOM_MAKE_NULL(val1));
 			   }
                          ;
 
@@ -625,7 +628,7 @@ head_dest_sect : OPEN DELIM TAG_DEST mand_line_item
                  { CHECK0 }
                  CLOSE
                  { end_element(ELT_HEAD_DEST,
-			       PARENT, $<ctxt>5, NULL);
+			       PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -641,7 +644,7 @@ head_date_sect : OPEN DELIM TAG_DATE mand_line_item
 		 { CHECK0 }
                  CLOSE
                  { end_element(ELT_HEAD_DATE,
-			       PARENT, $<ctxt>5, NULL);
+			       PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -663,7 +666,7 @@ head_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
                       { CHECK0 }
                       CLOSE
                       { end_element(ELT_HEAD_DATE_TIME,
-				    PARENT, $<ctxt>5, NULL);
+				    PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -688,7 +691,7 @@ head_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
                  { CHECK0 }
                  CLOSE
                  { end_element(ELT_HEAD_SUBM,
-			       PARENT, $<ctxt>5, NULL);
+			       PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 /* HEAD.SUBN */
@@ -705,7 +708,7 @@ head_subn_sect : OPEN DELIM TAG_SUBN mand_pointer
                  { CHECK0 }
                  CLOSE
                  { end_element(ELT_HEAD_SUBN,
-			       PARENT, $<ctxt>5, NULL);
+			       PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 /* HEAD.FILE */
@@ -718,7 +721,8 @@ head_file_sect : OPEN DELIM TAG_FILE mand_line_item
                  no_std_subs
                  { CHECK0 }
                  CLOSE
-                 { end_element(ELT_HEAD_FILE, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_HEAD_FILE, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 /* HEAD.COPR */
@@ -731,7 +735,8 @@ head_copr_sect : OPEN DELIM TAG_COPR mand_line_item
                  no_std_subs
                  { CHECK0 }
                  CLOSE
-                 { end_element(ELT_HEAD_COPR, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_HEAD_COPR, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 /* HEAD.GEDC */
@@ -744,7 +749,8 @@ head_gedc_sect : OPEN DELIM TAG_GEDC
                  head_gedc_subs
 		 { CHECK2(VERS, FORM) }
                  CLOSE
-                 { end_element(ELT_HEAD_GEDC, PARENT, $<ctxt>4, NULL);
+                 { end_element(ELT_HEAD_GEDC, PARENT, $<ctxt>4,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -766,7 +772,7 @@ head_gedc_vers_sect : OPEN DELIM TAG_VERS mand_line_item
                       { CHECK0 }
                       CLOSE
                       { end_element(ELT_HEAD_GEDC_VERS,
-				    PARENT, $<ctxt>5, NULL);
+				    PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 head_gedc_form_sect : OPEN DELIM TAG_FORM mand_line_item   
@@ -779,7 +785,7 @@ head_gedc_form_sect : OPEN DELIM TAG_FORM mand_line_item
                       { CHECK0 }
                       CLOSE
                       { end_element(ELT_HEAD_GEDC_FORM,
-				    PARENT, $<ctxt>5, NULL);
+				    PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -796,7 +802,8 @@ head_char_sect : OPEN DELIM TAG_CHAR mand_line_item
                  head_char_subs
 		 { CHECK0 }
                  CLOSE
-                 { end_element(ELT_HEAD_CHAR, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_HEAD_CHAR, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -817,7 +824,7 @@ head_char_vers_sect : OPEN DELIM TAG_VERS mand_line_item
                       { CHECK0 }
                       CLOSE
                       { end_element(ELT_HEAD_CHAR_VERS,
-				    PARENT, $<ctxt>5, NULL);
+				    PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -831,7 +838,8 @@ head_lang_sect : OPEN DELIM TAG_LANG mand_line_item
                  no_std_subs
                  { CHECK0 }
                  CLOSE
-                 { end_element(ELT_HEAD_LANG, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_HEAD_LANG, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 /* HEAD.PLAC */
@@ -844,7 +852,8 @@ head_plac_sect : OPEN DELIM TAG_PLAC
                  head_plac_subs
 		 { CHECK1(FORM) }
                  CLOSE
-                 { end_element(ELT_HEAD_PLAC, PARENT, $<ctxt>4, NULL);
+                 { end_element(ELT_HEAD_PLAC, PARENT, $<ctxt>4,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -865,7 +874,7 @@ head_plac_form_sect : OPEN DELIM TAG_FORM mand_line_item
                       { CHECK0 }
                       CLOSE
                       { end_element(ELT_HEAD_PLAC_FORM,
-				    PARENT, $<ctxt>5, NULL);
+				    PARENT, $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -917,7 +926,7 @@ fam_rec      : OPEN DELIM POINTER DELIM TAG_FAM
                fam_subs
 	       { CHECK0 }
                CLOSE
-               { end_record(REC_FAM, $<ctxt>6, NULL); }
+               { end_record(REC_FAM, $<ctxt>6, GEDCOM_MAKE_NULL(val1)); }
              ;
 
 fam_subs     : /* empty */
@@ -952,7 +961,8 @@ fam_husb_sect : OPEN DELIM TAG_HUSB mand_pointer
                 no_std_subs
                 { CHECK0 }
                 CLOSE
-                { end_element(ELT_FAM_HUSB, PARENT, $<ctxt>5, NULL);
+                { end_element(ELT_FAM_HUSB, PARENT, $<ctxt>5,
+			      GEDCOM_MAKE_NULL(val1));
 		}
               ;
 
@@ -969,7 +979,8 @@ fam_wife_sect : OPEN DELIM TAG_WIFE mand_pointer
                 no_std_subs
                 { CHECK0 }
                 CLOSE
-                { end_element(ELT_FAM_WIFE, PARENT, $<ctxt>5, NULL);
+                { end_element(ELT_FAM_WIFE, PARENT, $<ctxt>5,
+			      GEDCOM_MAKE_NULL(val1));
 		}
               ;
 
@@ -986,7 +997,8 @@ fam_chil_sect : OPEN DELIM TAG_CHIL mand_pointer
 		no_std_subs 
 		{ CHECK0 } 
 		CLOSE
-                { end_element(ELT_FAM_CHIL, PARENT, $<ctxt>5, NULL);
+                { end_element(ELT_FAM_CHIL, PARENT, $<ctxt>5,
+			      GEDCOM_MAKE_NULL(val1));
 		}
               ;
 
@@ -1000,7 +1012,8 @@ fam_nchi_sect : OPEN DELIM TAG_NCHI mand_line_item
 		no_std_subs  
 		{ CHECK0 }  
 		CLOSE
-                { end_element(ELT_FAM_NCHI, PARENT, $<ctxt>5, NULL);
+                { end_element(ELT_FAM_NCHI, PARENT, $<ctxt>5,
+			      GEDCOM_MAKE_NULL(val1));
 		}
               ;
 
@@ -1017,7 +1030,8 @@ fam_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
 		no_std_subs   
 		{ CHECK0 }   
 		CLOSE
-                { end_element(ELT_FAM_SUBM, PARENT, $<ctxt>5, NULL);
+                { end_element(ELT_FAM_SUBM, PARENT, $<ctxt>5,
+			      GEDCOM_MAKE_NULL(val1));
 		}
               ;
 
@@ -1035,7 +1049,7 @@ indiv_rec   : OPEN DELIM POINTER DELIM TAG_INDI
               indi_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_INDI, $<ctxt>6, NULL); }
+              { end_record(REC_INDI, $<ctxt>6, GEDCOM_MAKE_NULL(val1)); }
             ;
 
 indi_subs   : /* empty */
@@ -1078,7 +1092,8 @@ indi_resn_sect : OPEN DELIM TAG_RESN mand_line_item
 		 no_std_subs     
 		 { CHECK0 }     
 		 CLOSE     
-		 { end_element(ELT_INDI_RESN, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_INDI_RESN, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1092,7 +1107,8 @@ indi_sex_sect  : OPEN DELIM TAG_SEX mand_line_item
 		 no_std_subs     
 		 { CHECK0 }     
 		 CLOSE     
-		 { end_element(ELT_INDI_SEX, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_INDI_SEX, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1109,7 +1125,8 @@ indi_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
 		 no_std_subs      
 		 { CHECK0 }      
 		 CLOSE      
-		 { end_element(ELT_INDI_SUBM, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_INDI_SUBM, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1126,7 +1143,8 @@ indi_alia_sect : OPEN DELIM TAG_ALIA mand_pointer
 		 no_std_subs       
 		 { CHECK0 }       
 		 CLOSE       
-		 { end_element(ELT_INDI_ALIA, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_INDI_ALIA, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1143,7 +1161,8 @@ indi_anci_sect : OPEN DELIM TAG_ANCI mand_pointer
 		 no_std_subs        
 		 { CHECK0 }        
 		 CLOSE        
-		 { end_element(ELT_INDI_ANCI, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_INDI_ANCI, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1160,7 +1179,8 @@ indi_desi_sect : OPEN DELIM TAG_DESI mand_pointer
 		 no_std_subs         
 		 { CHECK0 }         
 		 CLOSE         
-		 { end_element(ELT_INDI_DESI, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_INDI_DESI, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1174,7 +1194,8 @@ indi_rfn_sect  : OPEN DELIM TAG_RFN mand_line_item
 		 no_std_subs          
 		 { CHECK0 }          
 		 CLOSE          
-		 { end_element(ELT_INDI_RFN, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_INDI_RFN, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1188,7 +1209,8 @@ indi_afn_sect  : OPEN DELIM TAG_AFN mand_line_item
 		 no_std_subs           
 		 { CHECK0 }           
 		 CLOSE           
-		 { end_element(ELT_INDI_AFN, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_INDI_AFN, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1210,7 +1232,8 @@ ftree_addr_sect : OPEN DELIM TAG_ADDR opt_line_item
                   CLOSE
                   { if (compat_mode(C_FTREE)) {
 		      Gedcom_ctxt par = PARENT;
-		      end_element(ELT_SUB_ADDR, par, $<ctxt>5, NULL);
+		      end_element(ELT_SUB_ADDR, par, $<ctxt>5,
+				  GEDCOM_MAKE_NULL(val1));
 		      CHECK0;
 		      compat_generate_resi_end(PARENT, par);
 		    } 
@@ -1237,7 +1260,7 @@ ftree_addr_phon_sect : OPEN DELIM TAG_PHON mand_line_item
                        { CHECK0 }               
                        CLOSE               
                        { end_element(ELT_SUB_PHON, GRANDPARENT(1),
-				     $<ctxt>5, NULL);
+				     $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 	               }
             ;
 
@@ -1255,7 +1278,7 @@ multim_rec  : OPEN DELIM POINTER DELIM TAG_OBJE
               obje_subs
 	      { CHECK2(FORM, BLOB) }
               CLOSE
-              { end_record(REC_OBJE, $<ctxt>6, NULL); }
+              { end_record(REC_OBJE, $<ctxt>6, GEDCOM_MAKE_NULL(val1)); }
             ;
 
 obje_subs   : /* empty */
@@ -1282,7 +1305,8 @@ obje_form_sect : OPEN DELIM TAG_FORM mand_line_item
 		 no_std_subs            
 		 { CHECK0 }            
 		 CLOSE            
-		 { end_element(ELT_OBJE_FORM, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_OBJE_FORM, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1296,7 +1320,8 @@ obje_titl_sect : OPEN DELIM TAG_TITL mand_line_item
 		 no_std_subs             
 		 { CHECK0 }             
 		 CLOSE             
-		 { end_element(ELT_OBJE_TITL, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_OBJE_TITL, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1337,7 +1362,7 @@ obje_blob_cont_sect : OPEN DELIM TAG_CONT mand_line_item
 		      { CHECK0 }                
 		      CLOSE                
 		      { end_element(ELT_OBJE_BLOB_CONT, PARENT,
-				    $<ctxt>5, NULL);
+				    $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -1354,7 +1379,8 @@ obje_obje_sect : OPEN DELIM TAG_OBJE mand_pointer
                  no_std_subs  
                  { CHECK0 }  
                  CLOSE  
-                 { end_element(ELT_OBJE_OBJE, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_OBJE_OBJE, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1417,7 +1443,7 @@ repos_rec   : OPEN DELIM POINTER DELIM TAG_REPO
               repo_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_REPO, $<ctxt>6, NULL); }
+              { end_record(REC_REPO, $<ctxt>6, GEDCOM_MAKE_NULL(val1)); }
             ;
 
 repo_subs   : /* empty */
@@ -1442,7 +1468,8 @@ repo_name_sect : OPEN DELIM TAG_NAME mand_line_item
                  no_std_subs          
                  { CHECK0 }          
                  CLOSE          
-                 { end_element(ELT_REPO_NAME, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_REPO_NAME, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1460,7 +1487,7 @@ source_rec  : OPEN DELIM POINTER DELIM TAG_SOUR
               sour_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_SOUR, $<ctxt>6, NULL); }
+              { end_record(REC_SOUR, $<ctxt>6, GEDCOM_MAKE_NULL(val1)); }
             ;
 
 sour_subs   : /* empty */
@@ -1491,7 +1518,8 @@ sour_data_sect : OPEN DELIM TAG_DATA
                  sour_data_subs
 		 { CHECK0 }
                  CLOSE 
-                 { end_element(ELT_SOUR_DATA, PARENT, $<ctxt>4, NULL);
+                 { end_element(ELT_SOUR_DATA, PARENT, $<ctxt>4,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1515,7 +1543,7 @@ sour_data_even_sect : OPEN DELIM TAG_EVEN mand_line_item
 		      { CHECK0 }
                       CLOSE  
                       { end_element(ELT_SOUR_DATA_EVEN, PARENT,
-				    $<ctxt>5, NULL);
+				    $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -1540,7 +1568,7 @@ sour_data_even_date_sect : OPEN DELIM TAG_DATE mand_line_item
                            { CHECK0 }           
                            CLOSE           
                            { end_element(ELT_SOUR_DATA_EVEN_DATE, PARENT,
-					 $<ctxt>5, NULL);
+					 $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		           }
                          ;
 
@@ -1555,7 +1583,7 @@ sour_data_even_plac_sect : OPEN DELIM TAG_PLAC mand_line_item
                            { CHECK0 }           
                            CLOSE           
                            { end_element(ELT_SOUR_DATA_EVEN_PLAC, PARENT,
-					 $<ctxt>5, NULL);
+					 $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		           }
                          ;
 
@@ -1569,7 +1597,7 @@ sour_data_agnc_sect : OPEN DELIM TAG_AGNC mand_line_item
                       { CHECK0 }           
                       CLOSE           
                       { end_element(ELT_SOUR_DATA_AGNC, PARENT,
-				    $<ctxt>5, NULL);
+				    $<ctxt>5, GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -1635,7 +1663,8 @@ sour_abbr_sect : OPEN DELIM TAG_ABBR mand_line_item
                  no_std_subs            
                  { CHECK0 }            
                  CLOSE            
-                 { end_element(ELT_SOUR_ABBR, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SOUR_ABBR, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1705,7 +1734,7 @@ submis_rec  : OPEN DELIM POINTER DELIM TAG_SUBN
               subn_subs
 	      { CHECK0 }
               CLOSE
-              { end_record(REC_SUBN, $<ctxt>6, NULL); }
+              { end_record(REC_SUBN, $<ctxt>6, GEDCOM_MAKE_NULL(val1)); }
             ;
 
 subn_subs   : /* empty */
@@ -1735,7 +1764,8 @@ subn_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
                  no_std_subs 
                  { CHECK0 } 
                  CLOSE 
-                 { end_element(ELT_SUBN_SUBM, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBN_SUBM, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1749,7 +1779,8 @@ subn_famf_sect : OPEN DELIM TAG_FAMF mand_line_item
                  no_std_subs             
                  { CHECK0 }             
                  CLOSE             
-                 { end_element(ELT_SUBN_FAMF, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBN_FAMF, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1763,7 +1794,8 @@ subn_temp_sect : OPEN DELIM TAG_TEMP mand_line_item
                  no_std_subs             
                  { CHECK0 }             
                  CLOSE             
-                 { end_element(ELT_SUBN_TEMP, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBN_TEMP, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1777,7 +1809,8 @@ subn_ance_sect : OPEN DELIM TAG_ANCE mand_line_item
                  no_std_subs             
                  { CHECK0 }             
                  CLOSE             
-                 { end_element(ELT_SUBN_ANCE, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBN_ANCE, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1791,7 +1824,8 @@ subn_desc_sect : OPEN DELIM TAG_DESC mand_line_item
                  no_std_subs             
                  { CHECK0 }             
                  CLOSE             
-                 { end_element(ELT_SUBN_DESC, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBN_DESC, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1805,7 +1839,8 @@ subn_ordi_sect : OPEN DELIM TAG_ORDI mand_line_item
                  no_std_subs             
                  { CHECK0 }             
                  CLOSE             
-                 { end_element(ELT_SUBN_ORDI, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBN_ORDI, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1819,7 +1854,8 @@ subn_rin_sect  : OPEN DELIM TAG_RIN mand_line_item
                  no_std_subs             
                  { CHECK0 }             
                  CLOSE             
-                 { end_element(ELT_SUBN_RIN, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBN_RIN, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1837,7 +1873,7 @@ submit_rec : OPEN DELIM POINTER DELIM TAG_SUBM
              subm_subs
 	     { CHECK1(NAME) }
              CLOSE
-             { end_record(REC_SUBM, $<ctxt>6, NULL); }
+             { end_record(REC_SUBM, $<ctxt>6, GEDCOM_MAKE_NULL(val1)); }
            ;
 
 subm_subs  : /* empty */
@@ -1864,7 +1900,8 @@ subm_name_sect : OPEN DELIM TAG_NAME mand_line_item
                  no_std_subs              
                  { CHECK0 }              
                  CLOSE              
-                 { end_element(ELT_SUBM_NAME, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBM_NAME, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1878,7 +1915,8 @@ subm_lang_sect : OPEN DELIM TAG_LANG mand_line_item
                  no_std_subs              
                  { CHECK0 }              
                  CLOSE              
-                 { end_element(ELT_SUBM_LANG, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBM_LANG, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1892,7 +1930,8 @@ subm_rfn_sect  : OPEN DELIM TAG_RFN mand_line_item
                  no_std_subs              
                  { CHECK0 }              
                  CLOSE              
-                 { end_element(ELT_SUBM_RFN, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBM_RFN, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1906,7 +1945,8 @@ subm_rin_sect  : OPEN DELIM TAG_RIN mand_line_item
                  no_std_subs              
                  { CHECK0 }              
                  CLOSE              
-                 { end_element(ELT_SUBM_RIN, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUBM_RIN, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -1961,7 +2001,8 @@ addr_cont_sect : OPEN DELIM TAG_CONT mand_line_item
                  no_std_subs               
                  { CHECK0 }               
                  CLOSE               
-                 { end_element(ELT_SUB_ADDR_CONT, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_ADDR_CONT, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 addr_adr1_sect : OPEN DELIM TAG_ADR1 mand_line_item              
@@ -1973,7 +2014,8 @@ addr_adr1_sect : OPEN DELIM TAG_ADR1 mand_line_item
                  no_std_subs               
                  { CHECK0 }               
                  CLOSE               
-                 { end_element(ELT_SUB_ADDR_ADR1, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_ADDR_ADR1, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 addr_adr2_sect : OPEN DELIM TAG_ADR2 mand_line_item              
@@ -1985,7 +2027,8 @@ addr_adr2_sect : OPEN DELIM TAG_ADR2 mand_line_item
                  no_std_subs               
                  { CHECK0 }               
                  CLOSE               
-                 { end_element(ELT_SUB_ADDR_ADR2, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_ADDR_ADR2, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 addr_city_sect : OPEN DELIM TAG_CITY mand_line_item              
@@ -1997,7 +2040,8 @@ addr_city_sect : OPEN DELIM TAG_CITY mand_line_item
                  no_std_subs               
                  { CHECK0 }               
                  CLOSE               
-                 { end_element(ELT_SUB_ADDR_CITY, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_ADDR_CITY, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 addr_stae_sect : OPEN DELIM TAG_STAE mand_line_item              
@@ -2009,7 +2053,8 @@ addr_stae_sect : OPEN DELIM TAG_STAE mand_line_item
                  no_std_subs               
                  { CHECK0 }               
                  CLOSE               
-                 { end_element(ELT_SUB_ADDR_STAE, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_ADDR_STAE, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 addr_post_sect : OPEN DELIM TAG_POST mand_line_item              
@@ -2021,7 +2066,8 @@ addr_post_sect : OPEN DELIM TAG_POST mand_line_item
                  no_std_subs               
                  { CHECK0 }               
                  CLOSE               
-                 { end_element(ELT_SUB_ADDR_POST, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_ADDR_POST, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 addr_ctry_sect : OPEN DELIM TAG_CTRY mand_line_item              
@@ -2033,7 +2079,8 @@ addr_ctry_sect : OPEN DELIM TAG_CTRY mand_line_item
                  no_std_subs               
                  { CHECK0 }               
                  CLOSE               
-                 { end_element(ELT_SUB_ADDR_CTRY, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_ADDR_CTRY, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -2046,7 +2093,8 @@ phon_sect   : OPEN DELIM TAG_PHON mand_line_item
               no_std_subs               
               { CHECK0 }               
               CLOSE               
-              { end_element(ELT_SUB_PHON, PARENT, $<ctxt>5, NULL);
+              { end_element(ELT_SUB_PHON, PARENT, $<ctxt>5,
+			    GEDCOM_MAKE_NULL(val1));
 	      }
             ;
 
@@ -2066,7 +2114,8 @@ asso_sect : OPEN DELIM TAG_ASSO mand_pointer
             asso_subs
 	    { CHECK2(TYPE,RELA) }
             CLOSE 
-            { end_element(ELT_SUB_ASSO, PARENT, $<ctxt>5, NULL);
+            { end_element(ELT_SUB_ASSO, PARENT, $<ctxt>5,
+			  GEDCOM_MAKE_NULL(val1));
 	    }
           ;
 
@@ -2087,7 +2136,8 @@ asso_type_sect : OPEN DELIM TAG_TYPE mand_line_item
                  no_std_subs                
                  { CHECK0 }                
                  CLOSE                
-                 { end_element(ELT_SUB_ASSO_TYPE, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_ASSO_TYPE, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -2100,7 +2150,8 @@ asso_rela_sect : OPEN DELIM TAG_RELA mand_line_item
                  no_std_subs                
                  { CHECK0 }                
                  CLOSE                
-                 { end_element(ELT_SUB_ASSO_RELA, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_ASSO_RELA, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -2117,7 +2168,8 @@ change_date_chan_sect : OPEN DELIM TAG_CHAN
                         change_date_chan_subs
 			{ CHECK1(DATE) }
                         CLOSE 
-                        { end_element(ELT_SUB_CHAN, PARENT, $<ctxt>4, NULL);
+                        { end_element(ELT_SUB_CHAN, PARENT, $<ctxt>4,
+				      GEDCOM_MAKE_NULL(val1));
 			}
                       ;
 
@@ -2140,7 +2192,7 @@ change_date_date_sect : OPEN DELIM TAG_DATE mand_line_item
 			{ CHECK0 }
                         CLOSE 
 			{ end_element(ELT_SUB_CHAN_DATE, PARENT, $<ctxt>5,
-				      NULL);
+				      GEDCOM_MAKE_NULL(val1));
 			}
                       ;
 
@@ -2163,7 +2215,7 @@ change_date_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
                              { CHECK0 } 
                              CLOSE 
                              { end_element(ELT_SUB_CHAN_TIME, PARENT, $<ctxt>5,
-					   NULL);
+					   GEDCOM_MAKE_NULL(val1));
 			     }
                            ;
 
@@ -2183,7 +2235,8 @@ famc_sect : OPEN DELIM TAG_FAMC mand_pointer
             famc_subs
 	    { CHECK0 }
             CLOSE 
-            { end_element(ELT_SUB_FAMC, PARENT, $<ctxt>5, NULL);
+            { end_element(ELT_SUB_FAMC, PARENT, $<ctxt>5,
+			  GEDCOM_MAKE_NULL(val1));
 	    }
           ;
 
@@ -2205,7 +2258,8 @@ famc_pedi_sect : OPEN DELIM TAG_PEDI mand_line_item
                  no_std_subs  
                  { CHECK0 }  
                  CLOSE  
-                 { end_element(ELT_SUB_FAMC_PEDI, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_FAMC_PEDI, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -2225,7 +2279,8 @@ cont_sect : OPEN DELIM TAG_CONT mand_line_item
             no_std_subs  
             { CHECK0 }  
             CLOSE  
-            { end_element(ELT_SUB_CONT, PARENT, $<ctxt>5, NULL);
+            { end_element(ELT_SUB_CONT, PARENT, $<ctxt>5,
+			  GEDCOM_MAKE_NULL(val1));
 	    }
           ;
 
@@ -2239,7 +2294,8 @@ conc_sect : OPEN DELIM TAG_CONC mand_line_item
             no_std_subs  
             { CHECK0 }  
             CLOSE  
-            { end_element(ELT_SUB_CONC, PARENT, $<ctxt>5, NULL);
+            { end_element(ELT_SUB_CONC, PARENT, $<ctxt>5,
+			  GEDCOM_MAKE_NULL(val1));
 	    }
           ; 
 
@@ -2267,7 +2323,7 @@ event_detail_type_sect : OPEN DELIM TAG_TYPE mand_line_item
                          { CHECK0 }  
                          CLOSE  
                          { end_element(ELT_SUB_EVT_TYPE, PARENT, $<ctxt>5,
-				       NULL);
+				       GEDCOM_MAKE_NULL(val1));
 			 }
                        ;
 event_detail_date_sect : OPEN DELIM TAG_DATE mand_line_item 
@@ -2282,7 +2338,7 @@ event_detail_date_sect : OPEN DELIM TAG_DATE mand_line_item
                          { CHECK0 }  
                          CLOSE  
                          { end_element(ELT_SUB_EVT_DATE, PARENT, $<ctxt>5,
-				       NULL);
+				       GEDCOM_MAKE_NULL(val1));
 			 }
                        ;
 event_detail_age_sect  : OPEN DELIM TAG_AGE mand_line_item 
@@ -2297,7 +2353,7 @@ event_detail_age_sect  : OPEN DELIM TAG_AGE mand_line_item
                          { CHECK0 }  
                          CLOSE  
                          { end_element(ELT_SUB_EVT_AGE, PARENT, $<ctxt>5,
-				       NULL);
+				       GEDCOM_MAKE_NULL(val1));
 			 }
                        ;
 event_detail_agnc_sect : OPEN DELIM TAG_AGNC mand_line_item 
@@ -2311,7 +2367,7 @@ event_detail_agnc_sect : OPEN DELIM TAG_AGNC mand_line_item
                          { CHECK0 }  
                          CLOSE  
                          { end_element(ELT_SUB_EVT_AGNC, PARENT, $<ctxt>5,
-				       NULL);
+				       GEDCOM_MAKE_NULL(val1));
 			 }
                        ;
 event_detail_caus_sect : OPEN DELIM TAG_CAUS mand_line_item 
@@ -2325,7 +2381,7 @@ event_detail_caus_sect : OPEN DELIM TAG_CAUS mand_line_item
                          { CHECK0 }  
                          CLOSE  
                          { end_element(ELT_SUB_EVT_CAUS, PARENT, $<ctxt>5,
-				       NULL);
+				       GEDCOM_MAKE_NULL(val1));
 			 }
                        ;
 
@@ -2344,7 +2400,8 @@ fam_event_sect : OPEN DELIM fam_event_tag opt_value
                  fam_event_subs
                  { CHECK0 }
                  CLOSE 
-                 { end_element(ELT_SUB_FAM_EVT, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_FAM_EVT, PARENT, $<ctxt>5,
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -2380,7 +2437,7 @@ fam_even_husb_sect : OPEN DELIM TAG_HUSB
 		     { CHECK1(AGE) }
                      CLOSE 
                      { end_element(ELT_SUB_FAM_EVT_HUSB, PARENT, $<ctxt>4,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 
@@ -2403,7 +2460,7 @@ fam_even_age_sect : OPEN DELIM TAG_AGE mand_line_item
                     { CHECK0 }   
                     CLOSE   
                     { end_element(ELT_SUB_FAM_EVT_AGE, PARENT, $<ctxt>5,
-				  NULL);
+				  GEDCOM_MAKE_NULL(val1));
 		    }
                   ;
 
@@ -2417,7 +2474,7 @@ fam_even_wife_sect : OPEN DELIM TAG_WIFE
 		     { CHECK1(AGE) }
                      CLOSE 
                      { end_element(ELT_SUB_FAM_EVT_WIFE, PARENT, $<ctxt>4,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 
@@ -2431,7 +2488,7 @@ fam_gen_even_sect : OPEN DELIM TAG_EVEN
 		    { CHECK0 }
                     CLOSE 
                     { end_element(ELT_SUB_FAM_EVT_EVEN, PARENT, $<ctxt>4,
-				  NULL);
+				  GEDCOM_MAKE_NULL(val1));
 		    }
                   ;
 
@@ -2460,7 +2517,7 @@ ident_refn_sect : OPEN DELIM TAG_REFN mand_line_item
 		  { CHECK0 }
                   CLOSE  
                   { end_element(ELT_SUB_IDENT_REFN, PARENT, $<ctxt>5,
-				NULL);
+				GEDCOM_MAKE_NULL(val1));
 		  }
                 ;
 
@@ -2483,7 +2540,7 @@ ident_refn_type_sect : OPEN DELIM TAG_TYPE mand_line_item
                        { CHECK0 }    
                        CLOSE    
                        { end_element(ELT_SUB_IDENT_REFN_TYPE, PARENT, $<ctxt>5,
-				     NULL);
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -2497,7 +2554,7 @@ ident_rin_sect  : OPEN DELIM TAG_RIN mand_line_item
                   { CHECK0 }    
                   CLOSE    
                   { end_element(ELT_SUB_IDENT_RIN, PARENT, $<ctxt>5,
-				NULL);
+				GEDCOM_MAKE_NULL(val1));
 		  }
                 ;
 
@@ -2515,7 +2572,8 @@ indiv_attr_sect : OPEN DELIM indiv_attr_tag mand_line_item
                   indiv_attr_event_subs
                   { CHECK0 }
                   CLOSE
-                  { end_element(ELT_SUB_INDIV_ATTR, PARENT, $<ctxt>5, NULL);
+                  { end_element(ELT_SUB_INDIV_ATTR, PARENT, $<ctxt>5,
+				GEDCOM_MAKE_NULL(val1));
 		  }
                 ;
 
@@ -2542,7 +2600,8 @@ indiv_resi_sect : OPEN DELIM TAG_RESI
                   indiv_attr_event_subs 
 		  { CHECK0 }
                   CLOSE  
-                  { end_element(ELT_SUB_INDIV_RESI, PARENT, $<ctxt>4, NULL);
+                  { end_element(ELT_SUB_INDIV_RESI, PARENT, $<ctxt>4,
+				GEDCOM_MAKE_NULL(val1));
 		  }
                 ;
 
@@ -2571,7 +2630,8 @@ indiv_birt_sect : OPEN DELIM indiv_birt_tag opt_value
                   indiv_birt_subs
                   { CHECK0 }
                   CLOSE 
-                  { end_element(ELT_SUB_INDIV_BIRT, PARENT, $<ctxt>5, NULL);
+                  { end_element(ELT_SUB_INDIV_BIRT, PARENT, $<ctxt>5,
+				GEDCOM_MAKE_NULL(val1));
 		  }
                 ;
 
@@ -2603,7 +2663,7 @@ indiv_birt_famc_sect : OPEN DELIM TAG_FAMC mand_pointer
                        { CHECK0 } 
                        CLOSE 
                        { end_element(ELT_SUB_INDIV_BIRT_FAMC, PARENT, $<ctxt>5,
-				     NULL);
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -2617,7 +2677,8 @@ indiv_gen_sect  : OPEN DELIM indiv_gen_tag opt_value
                   indiv_gen_subs
                   { CHECK0 }
                   CLOSE 
-                  { end_element(ELT_SUB_INDIV_GEN, PARENT, $<ctxt>5, NULL);
+                  { end_element(ELT_SUB_INDIV_GEN, PARENT, $<ctxt>5, 
+				GEDCOM_MAKE_NULL(val1));
 		  }
                 ;
 
@@ -2659,7 +2720,8 @@ indiv_adop_sect : OPEN DELIM TAG_ADOP opt_value
                   indiv_adop_subs
 		  { CHECK0 }
                   CLOSE 
-                  { end_element(ELT_SUB_INDIV_ADOP, PARENT, $<ctxt>5, NULL);
+                  { end_element(ELT_SUB_INDIV_ADOP, PARENT, $<ctxt>5, 
+				GEDCOM_MAKE_NULL(val1));
 		  }
                 ;
 
@@ -2686,7 +2748,7 @@ indiv_adop_famc_sect : OPEN DELIM TAG_FAMC mand_pointer
 		       { CHECK0 }
                        CLOSE 
 		       { end_element(ELT_SUB_INDIV_ADOP_FAMC, PARENT, $<ctxt>5,
-				     NULL);
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -2708,7 +2770,8 @@ indiv_adop_famc_adop_sect : OPEN DELIM TAG_ADOP mand_line_item
                             { CHECK0 }    
                             CLOSE    
                             { end_element(ELT_SUB_INDIV_ADOP_FAMC_ADOP,
-					  PARENT, $<ctxt>5, NULL);
+					  PARENT, $<ctxt>5, 
+					  GEDCOM_MAKE_NULL(val1));
 			    }
                           ;
 
@@ -2720,7 +2783,8 @@ indiv_even_sect : OPEN DELIM TAG_EVEN
                   indiv_gen_subs
 		  { CHECK0 }
                   CLOSE    
-                  { end_element(ELT_SUB_INDIV_EVEN, PARENT, $<ctxt>4, NULL);
+                  { end_element(ELT_SUB_INDIV_EVEN, PARENT, $<ctxt>4, 
+				GEDCOM_MAKE_NULL(val1));
 		  }
                 ;
 
@@ -2738,7 +2802,8 @@ lio_bapl_sect : OPEN DELIM lio_bapl_tag
                 lio_bapl_subs
                 { CHECK0 }
                 CLOSE 
-                { end_element(ELT_SUB_LIO_BAPL, PARENT, $<ctxt>4, NULL);
+                { end_element(ELT_SUB_LIO_BAPL, PARENT, $<ctxt>4, 
+			      GEDCOM_MAKE_NULL(val1));
 		}
               ;
 
@@ -2770,7 +2835,7 @@ lio_bapl_stat_sect : OPEN DELIM TAG_STAT mand_line_item
                      { CHECK0 }    
                      CLOSE    
                      { end_element(ELT_SUB_LIO_BAPL_STAT, PARENT, $<ctxt>5,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 lio_bapl_date_sect : OPEN DELIM TAG_DATE mand_line_item   
@@ -2784,7 +2849,7 @@ lio_bapl_date_sect : OPEN DELIM TAG_DATE mand_line_item
                      { CHECK0 }    
                      CLOSE    
                      { end_element(ELT_SUB_LIO_BAPL_DATE, PARENT, $<ctxt>5,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 lio_bapl_temp_sect : OPEN DELIM TAG_TEMP mand_line_item   
@@ -2797,7 +2862,7 @@ lio_bapl_temp_sect : OPEN DELIM TAG_TEMP mand_line_item
                      { CHECK0 }    
                      CLOSE    
                      { end_element(ELT_SUB_LIO_BAPL_TEMP, PARENT, $<ctxt>5,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 lio_bapl_plac_sect : OPEN DELIM TAG_PLAC mand_line_item   
@@ -2810,7 +2875,7 @@ lio_bapl_plac_sect : OPEN DELIM TAG_PLAC mand_line_item
                      { CHECK0 }    
                      CLOSE    
                      { end_element(ELT_SUB_LIO_BAPL_PLAC, PARENT, $<ctxt>5,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 
@@ -2823,7 +2888,8 @@ lio_slgc_sect : OPEN DELIM TAG_SLGC
                 lio_slgc_subs
 		{ CHECK1(FAMC) }
                 CLOSE 
-                { end_element(ELT_SUB_LIO_SLGC, PARENT, $<ctxt>4, NULL);
+                { end_element(ELT_SUB_LIO_SLGC, PARENT, $<ctxt>4, 
+			      GEDCOM_MAKE_NULL(val1));
 		}
               ;
 
@@ -2849,7 +2915,7 @@ lio_slgc_famc_sect : OPEN DELIM TAG_FAMC mand_pointer
                      { CHECK0 } 
                      CLOSE 
                      { end_element(ELT_SUB_LIO_SLGC_FAMC, PARENT, $<ctxt>5,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 
@@ -2865,7 +2931,8 @@ lss_slgs_sect : OPEN DELIM TAG_SLGS
                 lss_slgs_subs
 		{ CHECK0 }
                 CLOSE 
-                { end_element(ELT_SUB_LIO_SLGC, PARENT, $<ctxt>4, NULL);
+                { end_element(ELT_SUB_LIO_SLGC, PARENT, $<ctxt>4, 
+			      GEDCOM_MAKE_NULL(val1));
 		}
               ;
 
@@ -2892,7 +2959,7 @@ lss_slgs_stat_sect : OPEN DELIM TAG_STAT mand_line_item
                      { CHECK0 }    
                      CLOSE    
                      { end_element(ELT_SUB_LSS_SLGS_STAT, PARENT, $<ctxt>5,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 lss_slgs_date_sect : OPEN DELIM TAG_DATE mand_line_item   
@@ -2906,7 +2973,7 @@ lss_slgs_date_sect : OPEN DELIM TAG_DATE mand_line_item
                      { CHECK0 }    
                      CLOSE    
                      { end_element(ELT_SUB_LSS_SLGS_DATE, PARENT, $<ctxt>5,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 lss_slgs_temp_sect : OPEN DELIM TAG_TEMP mand_line_item   
@@ -2919,7 +2986,7 @@ lss_slgs_temp_sect : OPEN DELIM TAG_TEMP mand_line_item
                      { CHECK0 }    
                      CLOSE    
                      { end_element(ELT_SUB_LSS_SLGS_TEMP, PARENT, $<ctxt>5,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 lss_slgs_plac_sect : OPEN DELIM TAG_PLAC mand_line_item   
@@ -2932,7 +2999,7 @@ lss_slgs_plac_sect : OPEN DELIM TAG_PLAC mand_line_item
                      { CHECK0 }    
                      CLOSE    
                      { end_element(ELT_SUB_LSS_SLGS_PLAC, PARENT, $<ctxt>5,
-				   NULL);
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 
@@ -2956,7 +3023,7 @@ multim_obje_link_sect : OPEN DELIM TAG_OBJE DELIM POINTER
                         { CHECK0 }     
                         CLOSE     
                         { end_element(ELT_SUB_MULTIM_OBJE, PARENT, $<ctxt>6,
-				      NULL);
+				      GEDCOM_MAKE_NULL(val1));
 			}
                       ;
 
@@ -2970,7 +3037,7 @@ multim_obje_emb_sect : OPEN DELIM TAG_OBJE
 		       { CHECK2(FORM,FILE) }
                        CLOSE 
                        { end_element(ELT_SUB_MULTIM_OBJE, PARENT, $<ctxt>4,
-				     NULL);
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -2996,7 +3063,8 @@ multim_obje_form_sect : OPEN DELIM TAG_FORM mand_line_item
                         { CHECK0 }     
                         CLOSE     
                         { end_element(ELT_SUB_MULTIM_OBJE_FORM,
-				      PARENT, $<ctxt>5, NULL);
+				      PARENT, $<ctxt>5, 
+				      GEDCOM_MAKE_NULL(val1));
 			}
                       ;
 multim_obje_titl_sect : OPEN DELIM TAG_TITL mand_line_item    
@@ -3010,7 +3078,8 @@ multim_obje_titl_sect : OPEN DELIM TAG_TITL mand_line_item
                         { CHECK0 }     
                         CLOSE     
                         { end_element(ELT_SUB_MULTIM_OBJE_TITL,
-				      PARENT, $<ctxt>5, NULL);
+				      PARENT, $<ctxt>5, 
+				      GEDCOM_MAKE_NULL(val1));
 			}
                       ;
 multim_obje_file_sect : OPEN DELIM TAG_FILE mand_line_item    
@@ -3024,7 +3093,8 @@ multim_obje_file_sect : OPEN DELIM TAG_FILE mand_line_item
                         { CHECK0 }     
                         CLOSE     
                         { end_element(ELT_SUB_MULTIM_OBJE_FILE,
-				      PARENT, $<ctxt>5, NULL);
+				      PARENT, $<ctxt>5, 
+				      GEDCOM_MAKE_NULL(val1));
 			}
                       ;
 
@@ -3047,7 +3117,8 @@ note_struc_link_sect : OPEN DELIM TAG_NOTE DELIM POINTER
                        note_struc_link_subs
 		       { CHECK0 }
                        CLOSE 
-                       { end_element(ELT_SUB_NOTE, PARENT, $<ctxt>6, NULL);
+                       { end_element(ELT_SUB_NOTE, PARENT, $<ctxt>6, 
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -3100,7 +3171,8 @@ pers_name_sect : OPEN DELIM TAG_NAME mand_line_item
                  pers_name_subs
 		 { CHECK0 }
                  CLOSE  
-                 { end_element(ELT_SUB_PERS_NAME, PARENT, $<ctxt>5, NULL);
+                 { end_element(ELT_SUB_PERS_NAME, PARENT, $<ctxt>5, 
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
 
@@ -3129,7 +3201,7 @@ pers_name_npfx_sect : OPEN DELIM TAG_NPFX mand_line_item
                       { CHECK0 }     
                       CLOSE     
                       { end_element(ELT_SUB_PERS_NAME_NPFX, PARENT, $<ctxt>5,
-				    NULL);
+				    GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 pers_name_givn_sect : OPEN DELIM TAG_GIVN mand_line_item    
@@ -3142,7 +3214,7 @@ pers_name_givn_sect : OPEN DELIM TAG_GIVN mand_line_item
                       { CHECK0 }     
                       CLOSE     
                       { end_element(ELT_SUB_PERS_NAME_GIVN, PARENT, $<ctxt>5,
-				    NULL);
+				    GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 pers_name_nick_sect : OPEN DELIM TAG_NICK mand_line_item    
@@ -3155,7 +3227,7 @@ pers_name_nick_sect : OPEN DELIM TAG_NICK mand_line_item
                       { CHECK0 }     
                       CLOSE     
                       { end_element(ELT_SUB_PERS_NAME_NICK, PARENT, $<ctxt>5,
-				    NULL);
+				    GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 pers_name_spfx_sect : OPEN DELIM TAG_SPFX mand_line_item    
@@ -3168,7 +3240,7 @@ pers_name_spfx_sect : OPEN DELIM TAG_SPFX mand_line_item
                       { CHECK0 }     
                       CLOSE     
                       { end_element(ELT_SUB_PERS_NAME_SPFX, PARENT, $<ctxt>5,
-				    NULL);
+				    GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 pers_name_surn_sect : OPEN DELIM TAG_SURN mand_line_item    
@@ -3181,7 +3253,7 @@ pers_name_surn_sect : OPEN DELIM TAG_SURN mand_line_item
                       { CHECK0 }     
                       CLOSE     
                       { end_element(ELT_SUB_PERS_NAME_SURN, PARENT, $<ctxt>5,
-				    NULL);
+				    GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 pers_name_nsfx_sect : OPEN DELIM TAG_NSFX mand_line_item    
@@ -3194,7 +3266,7 @@ pers_name_nsfx_sect : OPEN DELIM TAG_NSFX mand_line_item
                       { CHECK0 }     
                       CLOSE     
                       { end_element(ELT_SUB_PERS_NAME_NSFX, PARENT, $<ctxt>5,
-				    NULL);
+				    GEDCOM_MAKE_NULL(val1));
 		      }
                     ;
 
@@ -3212,7 +3284,8 @@ place_struc_plac_sect : OPEN DELIM TAG_PLAC mand_line_item
                         place_struc_plac_subs
 			{ CHECK0 }
                         CLOSE  
-                        { end_element(ELT_SUB_PLAC, PARENT, $<ctxt>5, NULL);
+                        { end_element(ELT_SUB_PLAC, PARENT, $<ctxt>5, 
+				      GEDCOM_MAKE_NULL(val1));
 			}
                       ;
 
@@ -3237,7 +3310,7 @@ place_plac_form_sect : OPEN DELIM TAG_FORM mand_line_item
                        { CHECK0 }     
                        CLOSE     
                        { end_element(ELT_SUB_PLAC_FORM, PARENT, $<ctxt>5,
-				     NULL);
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -3260,7 +3333,8 @@ source_cit_link_sect : OPEN DELIM TAG_SOUR DELIM POINTER
                        source_cit_link_subs
 		       { CHECK0 }
                        CLOSE 
-                       { end_element(ELT_SUB_SOUR, PARENT, $<ctxt>6, NULL);
+                       { end_element(ELT_SUB_SOUR, PARENT, $<ctxt>6, 
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -3288,7 +3362,7 @@ source_cit_page_sect : OPEN DELIM TAG_PAGE mand_line_item
                        { CHECK0 }     
                        CLOSE     
                        { end_element(ELT_SUB_SOUR_PAGE, PARENT, $<ctxt>5,
-				     NULL);
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -3303,7 +3377,7 @@ source_cit_even_sect : OPEN DELIM TAG_EVEN mand_line_item
 		       { CHECK0 }
                        CLOSE     
                        { end_element(ELT_SUB_SOUR_EVEN, PARENT, $<ctxt>5,
-				     NULL);
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -3326,7 +3400,8 @@ source_cit_even_role_sect : OPEN DELIM TAG_ROLE mand_line_item
                           { CHECK0 }     
                           CLOSE     
                           { end_element(ELT_SUB_SOUR_EVEN_ROLE,
-					PARENT, $<ctxt>5, NULL);
+					PARENT, $<ctxt>5, 
+					GEDCOM_MAKE_NULL(val1));
 			  }
                           ;
 
@@ -3340,7 +3415,7 @@ source_cit_data_sect : OPEN DELIM TAG_DATA
 		       { CHECK0 }
                        CLOSE 
                        { end_element(ELT_SUB_SOUR_DATA, PARENT, $<ctxt>4,
-				     NULL);
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -3365,7 +3440,8 @@ source_cit_data_date_sect : OPEN DELIM TAG_DATE mand_line_item
                             { CHECK0 }     
                             CLOSE     
                             { end_element(ELT_SUB_SOUR_DATA_DATE,
-					  PARENT, $<ctxt>5, NULL);
+					  PARENT, $<ctxt>5, 
+					  GEDCOM_MAKE_NULL(val1));
 			    }
                           ;
 
@@ -3406,7 +3482,7 @@ source_cit_quay_sect : OPEN DELIM TAG_QUAY mand_line_item
                        { CHECK0 }     
                        CLOSE     
                        { end_element(ELT_SUB_SOUR_QUAY, PARENT, $<ctxt>5,
-				     NULL);
+				     GEDCOM_MAKE_NULL(val1));
 		       }
                      ;
 
@@ -3454,7 +3530,8 @@ source_repos_repo_sect : OPEN DELIM TAG_REPO mand_pointer
                          source_repos_repo_subs
 			 { CHECK0 }
                          CLOSE 
-                         { end_element(ELT_SUB_REPO, PARENT, $<ctxt>5, NULL);
+                         { end_element(ELT_SUB_REPO, PARENT, $<ctxt>5, 
+				       GEDCOM_MAKE_NULL(val1));
 			 }
                        ;
 
@@ -3476,7 +3553,8 @@ caln_sect : OPEN DELIM TAG_CALN mand_line_item
             caln_subs
 	    { CHECK0 }
             CLOSE  
-	    { end_element(ELT_SUB_REPO_CALN, PARENT, $<ctxt>5, NULL);
+	    { end_element(ELT_SUB_REPO_CALN, PARENT, $<ctxt>5, 
+			  GEDCOM_MAKE_NULL(val1));
 	    }
           ;
 
@@ -3497,7 +3575,8 @@ caln_medi_sect : OPEN DELIM TAG_MEDI mand_line_item
 		 no_std_subs   
 		 { CHECK0 }   
 		 CLOSE   
-		 { end_element(ELT_SUB_REPO_CALN_MEDI, PARENT, $<ctxt>5, NULL);
+		 { end_element(ELT_SUB_REPO_CALN_MEDI, PARENT, $<ctxt>5, 
+			       GEDCOM_MAKE_NULL(val1));
 		 }
                ;
  
@@ -3518,7 +3597,8 @@ spou_fam_fams_sect : OPEN DELIM TAG_FAMS mand_pointer
                      spou_fam_fams_subs
 		     { CHECK0 }
                      CLOSE 
-                     { end_element(ELT_SUB_FAMS, PARENT, $<ctxt>5, NULL);
+                     { end_element(ELT_SUB_FAMS, PARENT, $<ctxt>5, 
+				   GEDCOM_MAKE_NULL(val1));
 		     }
                    ;
 
@@ -3572,7 +3652,7 @@ user_rec    : OPEN DELIM opt_xref USERTAG
 	      user_sects
               { CHECK0 }
 	      CLOSE
-              { end_record(REC_USER, $<ctxt>7, NULL); }
+              { end_record(REC_USER, $<ctxt>7, GEDCOM_MAKE_NULL(val1)); }
             ;
 user_sect   : OPEN DELIM opt_xref USERTAG
               { if ($4.string[0] != '_') {
@@ -3588,7 +3668,8 @@ user_sect   : OPEN DELIM opt_xref USERTAG
 	      user_sects
               { CHECK0 }
 	      CLOSE
-              { end_element(ELT_USER, PARENT, $<ctxt>7, NULL);
+              { end_element(ELT_USER, PARENT, $<ctxt>7, 
+			    GEDCOM_MAKE_NULL(val1));
 	      }
             ;
 
