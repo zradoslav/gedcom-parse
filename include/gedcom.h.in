@@ -37,8 +37,11 @@ extern "C" {
 
 #define GEDCOM_PARSE_VERSION_MAJOR @VERSION_MAJOR@
 #define GEDCOM_PARSE_VERSION_MINOR @VERSION_MINOR@
+#define GEDCOM_PARSE_VERSION_PATCH 0
 #define GEDCOM_PARSE_VERSION \
   (GEDCOM_PARSE_VERSION_MAJOR * 1000 + GEDCOM_PARSE_VERSION_MINOR)
+
+int gedcom_check_version(int major, int minor, int patch);
 
 /**************************************************************************/
 /***  First the records and elements to subscribe upon                  ***/
