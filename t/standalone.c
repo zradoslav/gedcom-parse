@@ -32,6 +32,7 @@
 #include "utf8-locale.h"
 
 #define OUTFILE "testgedcom.out"
+#define BOGUS_FILE_NAME "Makefile.am"
 FILE* outfile = NULL;
 int quiet = 0;
 
@@ -265,8 +266,8 @@ int main(int argc, char* argv[])
     exit(1);
   }
 
-  setlocale(LC_ALL, "");
   gedcom_init();
+  setlocale(LC_ALL, "");
   gedcom_set_debug_level(debug_level, NULL);
   gedcom_set_compat_handling(compat_enabled);
   gedcom_set_error_handling(mech);
@@ -278,6 +279,8 @@ int main(int argc, char* argv[])
   if (!outfile) {
     printf("Could not open %s for appending\n", OUTFILE);
   }
+  output(0, "\n=== Parsing bogus file %s\n", BOGUS_FILE_NAME);
+  gedcom_parse_file(BOGUS_FILE_NAME);
   while (run_times-- > 0) {
     output(0, "\n=== Parsing file %s\n", file_name);
     result |= gedcom_parse_file(file_name);
