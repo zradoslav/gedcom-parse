@@ -13,7 +13,7 @@ do
   shift
 done
 
-test_name=$1
+test_name=`echo $1 | sed "s:.*/::" | sed "s:.test::"`
 shift
 expected_result=$1
 shift

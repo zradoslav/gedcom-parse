@@ -1,3 +1,3 @@
 #!/bin/sh
 
-$srcdir/src/test_gom ansel_gom 0 ansel.ged
+$srcdir/src/test_gom $0 0 ansel.ged

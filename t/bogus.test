@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cp $srcdir/input/bogus.ged bogus.ged
-$srcdir/src/test_script -2 -b bogus 0 minimal.ged
+$srcdir/src/test_script -2 -b $0 0 minimal.ged
 result=$?
 rm bogus.ged
 exit $result

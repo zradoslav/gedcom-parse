@@ -1,3 +1,3 @@
 #!/bin/sh
 
-$srcdir/src/test_script -2 -fn encoding_error 0 encoding_error.ged
+$srcdir/src/test_script -2 -fn $0 0 encoding_error.ged
