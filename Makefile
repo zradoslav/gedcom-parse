@@ -4,7 +4,7 @@
 YACC=bison
 LEX=flex
 
-CFLAGS=-g -Wall -pedantic
+CFLAGS=-g -W -Wall -pedantic
 YFLAGS=--debug --defines
 LFLAGS=-8
 
@@ -12,6 +12,8 @@ gedcom_parse:	standalone.o lex.gedcom_1byte_.o lex.gedcom_hilo_.o \
                 lex.gedcom_lohi_.o gedcom.tab.o message.o multilex.o \
 		encoding.o
 	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+libgedcom.so:
 
 lex.gedcom_1byte_.c:	gedcom_1byte.lex gedcom.tab.h gedcom.h multilex.h
 	$(LEX) $(LFLAGS) -Pgedcom_1byte_ gedcom_1byte.lex
@@ -29,7 +31,7 @@ clean:
 	rm -f core gedcom_parse test_* *.o lex.gedcom_* \
         gedcom.tab.* gedcom.output
 
-# Test programs
+# Lexer test programs
 
 test_1byte:	lex.gedcom_1byte_.test.o message.o encoding.o
 	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
@@ -48,3 +50,11 @@ test_lohi:	lex.gedcom_lohi_.test.o message.o encoding.o
 
 lex.gedcom_lohi_.test.o:	lex.gedcom_lohi_.c
 	$(CC) -DLEXER_TEST -c $(CPPFLAGS) $(CFLAGS) $^ -o $@
+
+# Test of parser
+
+test:	gedcom_parse
+	@for file in t/*.ged; do \
+	  echo "=== testing $$file"; \
+	  ./gedcom_parse $$file; \
+	done

@@ -9,6 +9,8 @@
 #include "gedcom.h"
 #include "multilex.h"
 #include "encoding.h"
+
+#define YY_NO_UNPUT
 %}
 
 %s NORMAL
@@ -328,8 +330,9 @@ int yywrap()
 
 int main()
 {
-  int tok;
-  int res = open_conv_to_internal("UTF16LE");
+  int tok, res;
+  init_encodings();
+  res = open_conv_to_internal("UNICODE(LOHI)");
   if (!res) {
     gedcom_error("Unable to open conversion context: %s",
 		 strerror(errno));

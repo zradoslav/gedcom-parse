@@ -1,0 +1,8 @@
+# Mapping of charsets for gedcom parsing
+# Each line contains the gedcom name, appended with (LOHI) or (HILO)
+# for 2 byte encodings, and the iconv name of the charset, separated
+# by whitespace
+UNICODE(LOHI)	UTF16LE
+UNICODE(HILO)	UTF16BE
+ASCII		ASCII
+ANSI		CP1252

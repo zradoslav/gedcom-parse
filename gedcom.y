@@ -2110,7 +2110,7 @@ opt_line_item : /* empty */ { }
               | DELIM line_item { }
               ;
 
-line_item   : anychar  { int i;
+line_item   : anychar  { size_t i;
 		         CLEAR_BUFFER(string_buf);
                          string_buf_ptr = string_buf;
 			 /* The following also takes care of '@@' */
@@ -2132,7 +2132,7 @@ line_item   : anychar  { int i;
 		      YYERROR;
 		    }
 		    else {
-		      int i;
+		      size_t i;
 		      /* The following also takes care of '@@' */
 		      if (!strncmp($2, "@@", 3))
 			*string_buf_ptr++ = '@';

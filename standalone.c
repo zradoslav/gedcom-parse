@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
   gedcom_set_compat_handling(compat_enabled);
   gedcom_set_error_handling(mech);
   
-  if (gedcom_xxx_parse(file_name) == 0) {
+  if (gedcom_parse_file(file_name) == 0) {
     printf("Parse succeeded\n");
     return 0;
   }
