@@ -32,6 +32,8 @@ void lds_event_subscribe();
 int write_lds_events(Gedcom_write_hndl hndl, int parent,
 		     struct lds_event *lds);
 
+DECLARE_SUB_MAKEFUNC(lds_event);
+
 DECLARE_CLEANFUNC(lds_event);
 DECLARE_ADDFUNC2(lds_event, note_sub);
 DECLARE_ADDFUNC2(lds_event, source_citation);

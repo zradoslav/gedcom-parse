@@ -32,6 +32,8 @@ void source_description_subscribe();
 int write_source_descriptions(Gedcom_write_hndl hndl, int parent,
 			      struct source_description *desc);
 
+DECLARE_SUB_MAKEFUNC(source_description);
+
 DECLARE_CLEANFUNC(source_description);
 DECLARE_ADDFUNC2(source_description, user_data);
 

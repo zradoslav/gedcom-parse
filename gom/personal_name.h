@@ -31,6 +31,7 @@ void name_subscribe();
 int write_names(Gedcom_write_hndl hndl, int parent,
 		struct personal_name *name);
 
+DECLARE_SUB_MAKEFUNC(personal_name);
 DECLARE_CLEANFUNC(personal_name);
 DECLARE_ADDFUNC2(personal_name, source_citation);
 DECLARE_ADDFUNC2(personal_name, note_sub);

@@ -36,6 +36,8 @@ void family_link_subscribe();
 int write_family_links(Gedcom_write_hndl hndl, int parent, LinkType type,
 		       struct family_link *link);
 
+DECLARE_SUB_MAKEFUNC(family_link);
+
 DECLARE_CLEANFUNC(family_link);
 DECLARE_ADDFUNC2(family_link, note_sub);
 DECLARE_ADDFUNC2(family_link, user_data);

@@ -31,6 +31,8 @@ void association_subscribe();
 int write_associations(Gedcom_write_hndl hndl, int parent,
 		       struct association *assoc);
 
+DECLARE_SUB_MAKEFUNC(association);
+
 DECLARE_CLEANFUNC(association);
 DECLARE_ADDFUNC2(association, note_sub);
 DECLARE_ADDFUNC2(association, source_citation);

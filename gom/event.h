@@ -37,6 +37,8 @@ void event_subscribe();
 int write_events(Gedcom_write_hndl hndl, int parent, EventType evt_type,
 		 struct event* evt);
 
+DECLARE_SUB_MAKEFUNC(event);
+
 DECLARE_CLEANFUNC(event);
 DECLARE_ADDFUNC2(event, source_citation);
 DECLARE_ADDFUNC2(event, multimedia_link);
