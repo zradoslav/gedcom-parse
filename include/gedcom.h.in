@@ -435,12 +435,12 @@ extern struct age_value  def_age_val;
 extern struct xref_value def_xref_val;
 
 #define GV_CHECK_CAST(VAL, TYPE, MEMBER, DEFVAL)                              \
-   ((VAL->type == TYPE) ?                                                     \
-    VAL->value.MEMBER :                                                       \
-    (gedcom_cast_error(__FILE__,__LINE__, TYPE, VAL->type), DEFVAL))
+   (((VAL)->type == TYPE) ?                                                   \
+    (VAL)->value.MEMBER :                                                     \
+    (gedcom_cast_error(__FILE__,__LINE__, TYPE, (VAL)->type), DEFVAL))
 
 #define GV_IS_TYPE(VAL, TYPE)                                                 \
-   (VAL->type == TYPE)
+   ((VAL)->type == TYPE)
 
 /**************************************************************************/
 /***  Function interface                                                ***/
