@@ -73,23 +73,60 @@ yes
   fi
 ])
 
+dnl gedcom_ICONV_HAS_CONV()
+dnl Checks whether iconv has support to convert $1 to $2
+dnl The variable $iconv_has_conv contains yes or no afterwards
+dnl (overwritten on subsequent calls)
+AC_DEFUN(gedcom_ICONV_HAS_CONV, [
+  my_save_LIBS="$LIBS"
+  LIBS="$LIBS $LIBICONV"
+  AC_TRY_RUN([
+#include <iconv.h>
+int main() {
+  iconv_t cd = iconv_open("$2","$1");
+  return (cd == (iconv_t)-1);
+}
+    ],
+    iconv_has_conv=yes,
+    iconv_has_conv=no,
+    iconv_has_conv=no)
+    LIBS="$my_save_LIBS"
+  ])
+])
+
+dnl gedcom_SANE_ICONV()
+dnl Checks whether the iconv implementation has the basic functionality
+dnl that we need
+dnl The variable $is_iconv_sane contains yes or no
+AC_DEFUN(gedcom_SANE_ICONV, [
+  AC_CACHE_CHECK(whether iconv has the needed functionality, is_iconv_sane, [
+    is_iconv_sane=yes
+    gedcom_ICONV_HAS_CONV(ASCII, UTF-8)
+    if test "$iconv_has_conv" = "no"; then
+      is_iconv_sane=no
+    else
+      gedcom_ICONV_HAS_CONV(UCS-2LE, UTF-8)
+      if test "$iconv_has_conv" = "no"; then
+        is_iconv_sane=no
+      else
+        gedcom_ICONV_HAS_CONV(UCS-2BE, UTF-8)
+        if test "$iconv_has_conv" = "no"; then
+          is_iconv_sane=no
+        fi
+      fi
+    fi
+  ])
+])
+
 dnl gedcom_LIBICONV_HAS_ANSEL()
 dnl Checks whether libiconv has ANSEL support
 dnl The variable $is_ansel_supported contains yes or no
 AC_DEFUN(gedcom_LIBICONV_HAS_ANSEL, [
   AC_CACHE_CHECK(for ANSEL support in libiconv, is_ansel_supported, [
-    my_save_LIBS="$LIBS"
-    LIBS="$LIBS $LIBICONV"
-    AC_TRY_RUN([
-#include <iconv.h>
-int main() {
-  iconv_t cd = iconv_open("UTF-8","ANSEL");
-  return (cd == (iconv_t)-1);
-}
-    ],
-    is_ansel_supported=yes,
-    is_ansel_supported=no,
-    is_ansel_supported=no)
-    LIBS="$my_save_LIBS"
+    is_ansel_supported=no
+    gedcom_ICONV_HAS_CONV(ANSEL, UTF-8)
+    if test "$iconv_has_conv" = yes; then
+      is_ansel_supported=yes
+    fi
   ])
 ])
