@@ -32,6 +32,8 @@ static Gedcom_def_cb       default_cb                         = NULL;
 
 void gedcom_set_default_callback(Gedcom_def_cb func)
 {
+  if (default_cb)
+    gedcom_error(_("Internal error: Duplicate registration for default callback"));
   default_cb = func;
 }
 
@@ -39,6 +41,8 @@ void gedcom_subscribe_to_record(Gedcom_rec rec,
 				Gedcom_rec_start_cb cb_start,
 				Gedcom_rec_end_cb cb_end)
 {
+  if (record_start_callback[rec] || record_end_callback[rec])
+    gedcom_error(_("Internal error: Duplicate registration for record type %d\n"), rec);
   if (cb_start) {
     record_start_callback[rec] = cb_start;
     record_end_callback[rec]   = cb_end;
@@ -49,6 +53,8 @@ void gedcom_subscribe_to_element(Gedcom_elt elt,
 				 Gedcom_elt_start_cb cb_start,
 				 Gedcom_elt_end_cb cb_end)
 {
+  if (element_start_callback[elt] || element_end_callback[elt])
+    gedcom_error(_("Internal error: Duplicate registration for element type %d\n"), elt);
   if (cb_start) {
     element_start_callback[elt] = cb_start;
     element_end_callback[elt]   = cb_end;
