@@ -90,10 +90,16 @@ fi
 AC_MSG_CHECKING(for location of iconv)
 if test "$am_cv_lib_iconv" = yes; then
   AC_MSG_RESULT(libiconv)
-  AC_LIBICONV_HAS_ANSEL
+  gedcom_LIBICONV_HAS_ANSEL
 else
   AC_MSG_RESULT(libc)
-  AC_GLIBC_ICONV
+  LCS_SUBDIRS=libcharset
+  LCS_INCLUDES='-I $(srcdir)/libcharset'
+  LCS_LIBADD=libcharset/libcharset.la
+  AC_SUBST(LCS_SUBDIRS)
+  AC_SUBST(LCS_INCLUDES)
+  AC_SUBST(LCS_LIBADD)
+  gedcom_GLIBC_ICONV
   if test "$is_glibc_iconv" = yes; then
     DIRS="glibc"
     is_ansel_supported=yes
