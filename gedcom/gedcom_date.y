@@ -109,6 +109,10 @@ date_value   : date           { make_date_value(DV_NO_MODIFIER,
              | date_interpr
              | date_phrase    { make_date_value(DV_PHRASE,
 					        def_date, def_date, $1); }
+             | error { /* On error: put entire string in 'phrase' member
+			  as fallback */
+	               make_date_value(DV_PHRASE,
+				       def_date, def_date, curr_line_value); }
              ;
 
 date         : ESC_DATE_GREG date_greg { copy_date(&$$, date_s);

@@ -32,6 +32,8 @@ struct date date_s;
 struct date_value def_date_val;
 struct date def_date;
 
+char* curr_line_value;
+
 int max_month[] = { 12,  /* CAL_GREGORIAN */
 		    12,  /* CAL_JULIAN */
 		    13,  /* CAL_HEBREW */
@@ -118,6 +120,7 @@ struct date_value gedcom_parse_date(char* line_value)
 {
   init_date(&date_s);
   init_date(&def_date);
+  curr_line_value = line_value;
   init_gedcom_date_lex(line_value);
   gedcom_date_parse();
   close_gedcom_date_lex();

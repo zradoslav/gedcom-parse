@@ -34,6 +34,7 @@
 extern struct date_value dv_s;
 extern struct date date_s;
 extern struct date def_date;
+extern char* curr_line_value;
 
 int               gedcom_date_parse();
 int               gedcom_date_lex();
