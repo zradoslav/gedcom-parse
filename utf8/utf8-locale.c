@@ -13,6 +13,7 @@
 #include <iconv.h>
 #include <assert.h>
 #include <errno.h>
+#include <string.h>
 #include "config.h"
 #include "libcharset.h"
 #include "utf8-locale.h"
