@@ -223,13 +223,14 @@ int  compat_mode(int flags);
 
 %union {
   char *string;
+  int  number;
 }
 
 %token_table
 %expect 300
 
 %token <string> BADTOKEN
-%token <string> OPEN
+%token <number> OPEN
 %token <string> CLOSE
 %token <string> ESCAPE
 %token <string> DELIM

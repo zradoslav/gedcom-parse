@@ -99,6 +99,7 @@ if (level_diff < 1) {
 }
 else if (level_diff == 1) {
   level_diff++;
+  gedcom_lval.number = current_level;
   return OPEN;
 }
 else {
@@ -135,6 +136,7 @@ else {
 		    }
 		    else if (level_diff == 1) {
 		      level_diff++;
+		      gedcom_lval.number = current_level;
 		      return OPEN;
 		    }
 		    else {
@@ -352,7 +354,7 @@ int main()
   while (tok) {
     switch(tok) {
       case BADTOKEN: printf("BADTOKEN "); break;
-      case OPEN: printf("OPEN "); break;
+      case OPEN: printf("OPEN(%d) ", gedcom_lval.number); break;
       case CLOSE: printf("CLOSE "); break;
       case ESCAPE: printf("ESCAPE(%s) ", gedcom_lval.string); break;
       case DELIM: printf("DELIM "); break;
