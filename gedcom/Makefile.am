@@ -6,6 +6,7 @@ SUBDIRS = calendar .
 
 localedir = $(datadir)/locale
 INCLUDES = -I $(srcdir)/../intl -I $(srcdir)/../include -I $(srcdir)/calendar \
+           -I $(srcdir)/../utf8 \
            -DPKGDATADIR=\"$(pkgdatadir)\" -DLOCALEDIR=\"$(localedir)\"
 YFLAGS   = --debug --defines
 LFLAGS   = -8
@@ -29,7 +30,7 @@ libgedcom_la_SOURCES = lex.gedcom_1byte_.c \
 		       compat.c \
 		       buffer.c
 libgedcom_la_LDFLAGS = -export-dynamic -version-info $(LIBVERSION) $(LIBICONV)
-libgedcom_la_LIBADD  = calendar/libcalendar.la @INTLLIBS@
+libgedcom_la_LIBADD  = calendar/libcalendar.la ../utf8/libutf8.la @INTLLIBS@
 BUILT_SOURCES = lex.gedcom_1byte_.c \
 	 	lex.gedcom_hilo_.c \
 		lex.gedcom_lohi_.c \
