@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 # $Id$
 # $Name$
-SUBDIRS = ansel gedcom . t doc include
+SUBDIRS = ansel gedcom . t doc include po intl
 INCLUDES = -I $(srcdir)/include
 
 pkgdata_DATA = gedcom.enc
