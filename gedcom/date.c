@@ -106,9 +106,9 @@ int checkedSdnToCal(Calendar_type cal, long int sdn,
     return 0;
 }
 
-void copy_date(struct date *to, struct date from)
+void copy_date(struct date *to, struct date *from)
 {
-  memcpy(to, &from, sizeof(struct date));
+  memcpy(to, from, sizeof(struct date));
 }
 
 void init_date(struct date *d)
@@ -126,14 +126,14 @@ void init_date(struct date *d)
   d->sdn2 = -1;
 }
 
-struct date_value make_date_value(Date_value_type t, struct date d1,
-				  struct date d2, const char* p)
+struct date_value* make_date_value(Date_value_type t, struct date *d1,
+				  struct date *d2, const char* p)
 {
   dv_s.type = t;
   copy_date(&dv_s.date1, d1);
   copy_date(&dv_s.date2, d2);
   strncpy(dv_s.phrase, p, MAX_PHRASE_LEN + 1);
-  return dv_s;
+  return &dv_s;
 }
 
 /* PRE:     d->cal != CAL_UNKNOWN
@@ -151,10 +151,10 @@ int numbers_to_sdn(struct date *d)
   else {
     struct date begin_date;
     struct date end_date;
-    copy_date(&begin_date, *d);
+    copy_date(&begin_date, d);
     if (d->day == -1 || d->month == -1 || d->year == -1) {
       d->type = DATE_BOUNDED;
-      copy_date(&end_date, *d);
+      copy_date(&end_date, d);
       if (begin_date.month == -1) {
 	begin_date.month = 1; end_date.month = 1;
 	begin_date.day   = 1; end_date.day   = 1;
@@ -180,7 +180,8 @@ int numbers_to_sdn(struct date *d)
     d->sdn1 = checkedCalToSdn(d->cal, begin_date.year, begin_date.month,
 			      begin_date.day);
     if (d->sdn1 == -1) {
-      gedcom_error(_("Error converting date"));
+      gedcom_error(_("Error converting date: year %d, month %d, day %d"),
+		   begin_date.year, begin_date.month, begin_date.day);
       result = 1;
     }
     else
@@ -188,7 +189,8 @@ int numbers_to_sdn(struct date *d)
 	d->sdn2 = checkedCalToSdn(d->cal, end_date.year, end_date.month,
 				  end_date.day);
 	if (d->sdn2 == -1) {
-	  gedcom_error(_("Error converting date"));
+	  gedcom_error(_("Error converting date: year %d, month %d, day %d"),
+		       end_date.year, end_date.month, end_date.day);
 	  result = 1;
 	}
 	else
@@ -218,7 +220,7 @@ int sdn_to_numbers(struct date *d)
       result = 1;
     }
     else {
-      copy_date(&begin_date, *d);
+      copy_date(&begin_date, d);
       if (!checkedSdnToCal(d->cal, d->sdn1, &begin_date.year,
 			   &begin_date.month, &begin_date.day)) {
 	gedcom_error(_("SDN 1 isn't a valid date in the given calendar"));
@@ -242,7 +244,7 @@ int sdn_to_numbers(struct date *d)
 	      result = 1;
 	    }
 	    else {
-	      copy_date(&end_date, *d);
+	      copy_date(&end_date, d);
 	      if (!checkedSdnToCal(d->cal, d->sdn2, &end_date.year,
 				   &end_date.month, &end_date.day)) {
 		gedcom_error(_("SDN 2 isn't a valid date in the given calendar"));

@@ -29,6 +29,7 @@
 #include "gedcom.h"
 
 #define gedcom_date_error gedcom_error
+#define gedcom_date_warning gedcom_warning
 #define MAX_DATE_TOKEN 10
 
 extern struct date_value dv_s;
@@ -50,9 +51,9 @@ int get_year_num(const char* input, Year_type* ytype);
 void              init_gedcom_date_lex(const char* string);
 void              close_gedcom_date_lex();
 
-struct date_value make_date_value(Date_value_type t, struct date d1,
-				  struct date d2, const char* p);
-void              copy_date(struct date *to, struct date from);
+struct date_value* make_date_value(Date_value_type t, struct date *d1,
+				   struct date *d2, const char* p);
+void               copy_date(struct date *to, struct date *from);
 
 #define GEDCOM_MAKE_DATE(VAR, DATE) \
    GEDCOM_MAKE(VAR, DATE, GV_DATE_VALUE, date_val)
