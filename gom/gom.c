@@ -266,6 +266,7 @@ void def_rec_end(Gedcom_rec rec UNUSED, Gedcom_ctxt self,
   destroy_gom_ctxt(ctxt);
 }
 
+/* TODO: do this in a way so that elements out of context can be handled */
 void def_elt_end(Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,
 		 Gedcom_ctxt self, Gedcom_val parsed_value UNUSED)
 {
