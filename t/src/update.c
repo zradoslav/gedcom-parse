@@ -41,7 +41,7 @@ void gedcom_message_handler(Gedcom_msg_type type, char *msg)
 void show_help ()
 {
   printf("gedcom-parse test program for libgedcom\n\n");
-  printf("Usage:  updatetest [options] file\n");
+  printf("Usage:  updatetest [options]\n");
   printf("Options:\n");
   printf("  -h    Show this help text\n");
   printf("  -q    No output to standard output\n");
