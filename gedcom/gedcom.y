@@ -2623,7 +2623,7 @@ void gedcom_set_debug_level(int level, FILE* f)
 
 int gedcom_debug_print(char* s, ...)
 {
-  int res;
+  int res = 0;
   if (gedcom_high_level_debug) {
     va_list ap;
     va_start(ap, s);
