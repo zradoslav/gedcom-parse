@@ -1,5 +1,25 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
+release 0.13 (5 January 2002):
+
+ - Cross-references are now parsed and checked.  For this, an extra type is
+   added to the types possible in a Gedcom_val: an xref pointer. This means
+   that GEDCOM_XREF_PTR has to be used now in some places instead of
+   GEDCOM_STRING.
+   A quick change is to replace
+     GEDCOM_STRING(val)
+   by
+     GEDCOM_XREF_PTR(val)->string
+   where applicable.  But you can also store an object in the 'object' member
+   of the struct returned by GEDCOM_XREF_PTR (see documentation).
+
+ - Other interface changes in the callbacks:
+    - parsed tag value (integer) is passed next to the string value
+    - the start record callbacks now also contain a Gedcom_val (the NOTE can
+      have a value)
+
+ - Further, various bugfixes have been made.
+
 release 0.12 (31 December 2001):
 
  - The calling of callbacks is now completed.

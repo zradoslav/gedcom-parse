@@ -1,4 +1,19 @@
+2002-01-05  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.13
+
+	* xref.*, gedcom.y, gedcom.h: Parse and process cross-references.
+
+	* encoding.c: Bugfixes in using the hash implementation of kazlib.
+
+	* interface.h: Add a variable to the GEDCOM_MAKE_* macros, to be able
+	to have two of these macros in one statement.  Move GEDCOM_MAKE_DATE
+	to date.h.
+
 2002-01-03  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom.y: Bugfix for context handling of tags that are grouped in
+	the yacc file.
 
 	* gedcom.y, gedcom.h, standalone.c, interface.*: Record can also
 	have a value (e.g. the NOTE record), so extra value necessary on
