@@ -33,7 +33,7 @@ then
   rm anselconv_utf8.out
   echo "Testing conversion from UTF-8 to ANSEL" >> $logfile
   iconv -f UTF-8 -t ANSEL $srcdir/input/anselutf8.ged > anselconv_ansel.out
-  if diff $srcdir/input/ansel.ged anselconv_ansel.out >dev/null 2>> $logfile
+  if diff $srcdir/input/ansel.ged anselconv_ansel.out >/dev/null 2>> $logfile
   then
     echo "Output agrees with reference output" >> $logfile
     rm anselconv_ansel.out
