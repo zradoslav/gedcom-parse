@@ -1,129 +1,125 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-                   
+                       
   <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  <title>Gedcom parser in Genes</title>
+  <title>The Gedcom parser library</title>
 </head>
   <body>
-       
-<div align="Center">    
-<h1>Gedcom parser in Genes</h1>
-       
-<div align="Left">The intention of this page is to provide some explanation 
-  of the gedcom parser, to aid development on and with it. &nbsp;Currently, 
-  the parser is in a state that it works, but some parts are still missing, 
-  notably the interface towards applications. &nbsp;First, some practical 
-issues  of testing with the parser will be explained.<br>
-    <br>
-       
+         
+<div align="center">     
+<h1>The Gedcom parser library</h1>
+         
+<div align="left">The intention of this page is to provide some explanation
+   of the gedcom parser, to aid development on and with it. &nbsp;First,
+some practical  issues  of testing with the parser will be explained.<br>
+     <br>
+         
 <h2>Basic testing<br>
-    </h2>
-     The parser is located in the "gedcom" subdirectory of the Genes source 
- code.  &nbsp;You should be able to perform a basic test using the commands:<br>
-       
-<blockquote><code>make clean<br>
-    make<br>
-     make test</code><br>
-      </blockquote>
-     If everything goes OK, you'll see that some gedcom files are parsed, 
-and   that each parse is successful. &nbsp;Note that the used gedcom files 
-are  made by <a href="http://heiner-eichmann.de/gedcom/gedcom.htm">Heiner 
-Eichmann</a>
-      and are an excellent way to test gedcom parsers thoroughly.<br>
-      <br>
-               
+     </h2>
+You should be able to perform a basic test using the commands:<br>
+         
+<blockquote><code>./configure<br>
+     make<br>
+      make check</code><br>
+       </blockquote>
+      If everything goes OK, you'll see that some gedcom files are parsed,
+ and   that each parse is successful. &nbsp;Note that the used gedcom files
+ are  made by <a href="http://heiner-eichmann.de/gedcom/gedcom.htm">Heiner
+ Eichmann</a>       and are an excellent way to test gedcom parsers thoroughly.<br>
+       <br>
+                   
   <h2>Preparing for further testing</h2>
-     The basic testing described above doesn't show anything else than "Parse 
-  succeeded", which is nice, but not very interesting. &nbsp;Some more detailed 
-  tests are possible, via the <code>gedcom-parse</code> program that is generated 
-  by <code>make test</code>. &nbsp;<br>
-      <br>
-     However, since the output that <code>gedcom-parse</code> generates is
- in  UTF-8 format (more on this later), some preparation is necessary to
-have  a full view on it. &nbsp;Basically, you need a terminal that understands 
-and can display UTF-8 encoded characters, and you need to proper fonts installed 
-  to display them. &nbsp;I'll give some advice on this here, based on the 
-Red  Hat 7.1 distribution that I use, with glibc 2.2 and XFree86 4.0.x. &nbsp;Any 
-  other distribution that has the same or newer versions for these components 
-  should give the same results.<br>
-      <br>
-     For the first issue, the UTF-8 capable terminal, the safest bet is to
- use    <code>xterm</code> in its unicode mode (which is supported by the
-  <code>   xterm</code> coming with XFree86 4.0.x). &nbsp;UTF-8 capabilities
- have only  recently been added to <code>gnome-terminal</code>, so probably
+      The basic testing described above doesn't show anything else than "Parse
+   succeeded", which is nice, but not very interesting. &nbsp;Some more detailed
+   tests are possible, via the <code>testgedcom</code> program that is generated
+   by <code>make test</code>. &nbsp;<br>
+       <br>
+      However, since the output that <code>testgedcom</code> generates is 
+ in  UTF-8 format (more on this later), some preparation is necessary to have
+ a full view on it. &nbsp;Basically, you need a terminal that understands
+ and can display UTF-8 encoded characters, and you need to proper fonts installed
+   to display them. &nbsp;I'll give some advice on this here, based on the
+ Red  Hat 7.1 distribution that I use, with glibc 2.2 and XFree86 4.0.x.
+&nbsp;Any    other distribution that has the same or newer versions for these
+components    should give the same results.<br>
+       <br>
+      For the first issue, the UTF-8 capable terminal, the safest bet is
+to  use    <code>xterm</code> in its unicode mode (which is supported by
+the   <code>   xterm</code> coming with XFree86 4.0.x). &nbsp;UTF-8 capabilities 
+ have only  recently been added to <code>gnome-terminal</code>, so probably 
  that is not  in your distribution yet (it certainly isn't in Red Hat 7.1).<br>
-      <br>
-     For the second issue, you'll need the ISO 10646-1 fonts. &nbsp;These 
-come   also with XFree86 4.0.x.<br>
-      <br>
-     The way to start <code>xterm</code> in unicode mode is then e.g. (put
+       <br>
+      For the second issue, you'll need the ISO 10646-1 fonts. &nbsp;These
+ come   also with XFree86 4.0.x.<br>
+       <br>
+      The way to start <code>xterm</code> in unicode mode is then e.g. (put 
  everything  on 1 line !):<br>
-               
-  <blockquote><code>LANG=en_GB.UTF-8 xterm -bg 'black' -fg 'DarkGrey' -cm 
-  -fn '-Misc-Fixed-Medium-R-SemiCondensed--13-120-75-75-C-60-ISO10646-1'</code><br>
-        </blockquote>
-          This first sets the <code>LANG</code> variable to a locale that 
-uses  UTF-8, and then starts <code>xterm</code> with a proper Unicode font. 
-&nbsp;Some  sample UTF-8 plain text files can be found <a href="http://www.cl.cam.ac.uk/%7Emgk25/ucs/examples">
-    here</a>
-    . &nbsp;Just <code>cat</code> them on the command line and see the result.<br>
-        <br>
-                       
+                   
+  <blockquote><code>LANG=en_GB.UTF-8 xterm -bg 'black' -fg 'DarkGrey' -cm
+   -fn '-Misc-Fixed-Medium-R-SemiCondensed--13-120-75-75-C-60-ISO10646-1'</code><br>
+         </blockquote>
+           This first sets the <code>LANG</code> variable to a locale that
+ uses  UTF-8, and then starts <code>xterm</code> with a proper Unicode font.
+ &nbsp;Some  sample UTF-8 plain text files can be found <a href="http://www.cl.cam.ac.uk/%7Emgk25/ucs/examples">
+     here</a>     . &nbsp;Just <code>cat</code> them on the command line
+and see the result.<br>
+         <br>
+                             
     <h2>Testing the parser with debugging</h2>
-    Given the UTF-8 capable terminal, you can now let the <code>gedcom-parse</code>
-     program print the values that it parses. &nbsp;An example of a command 
- line is (in the <code>gedcom</code> directory):<br>
-                       
-    <blockquote><code>./gedcom_parse -dg t/ulhc.ged</code><br>
-          </blockquote>
-    The <code>-dg</code> option instructs the parser to show its own debug
- messages  &nbsp;(see <code>./gedcom_parse -h</code> for the full set of
-options).  &nbsp;If  everything is OK, you'll see the values from the gedcom
-file, containing  a lot of special characters.<br>
-          <br>
-    For the ANSEL test file (<code>t/ansel.ged</code>), you have to set the 
- environment variable <code>GCONV_PATH</code> to the <code>ansel</code> subdirectory 
- of the gedcom directory:<br>
-                               
+     Given the UTF-8 capable terminal, you can now let the <code>testgedcom</code>
+      program print the values that it parses. &nbsp;An example of a command
+  line is (in the <code>gedcom</code> directory):<br>
+                             
+    <blockquote><code>./testgedcom -dg t/ulhc.ged</code><br>
+           </blockquote>
+     The <code>-dg</code> option instructs the parser to show its own debug 
+ messages  &nbsp;(see <code>./testgedcom -h</code> for the full set of options).
+ &nbsp;If  everything is OK, you'll see the values from the gedcom file,
+containing  a lot of special characters.<br>
+           <br>
+     For the ANSEL test file (<code>t/ansel.ged</code>), you have to set
+the   environment variable <code>GCONV_PATH</code> to the <code>ansel</code>
+ subdirectory   of the gedcom directory:<br>
+                                       
       <blockquote><code>export GCONV_PATH=./ansel<br>
-    ./gedcom_parse -dg t/ansel.ged<br>
-            </code></blockquote>
-    This is because for the ANSEL character set an extra module is needed 
-for  the iconv library (more on this later). &nbsp;But again, this should 
-show  a lot of special characters.<br>
-            <br>
-                                       
+     ./testgedcom -dg t/ansel.ged<br>
+             </code></blockquote>
+     This is because for the ANSEL character set an extra module is needed
+ for  the iconv library (more on this later). &nbsp;But again, this should
+ show  a lot of special characters.<br>
+             <br>
+                                                 
         <h2>Testing the lexers separately</h2>
-    The lexers themselves can be tested separately. &nbsp;For the 1-byte
-lexer   (i.e. supporting the encodings with 1 byte per characters, such as
+     The lexers themselves can be tested separately. &nbsp;For the 1-byte 
+lexer   (i.e. supporting the encodings with 1 byte per characters, such as 
 ASCII,   ANSI and ANSEL), the sequence of commands would be:<br>
-                                       
+                                                 
         <blockquote><code>make clean<br>
-    make test_1byte<br>
-          </code></blockquote>
-This will show all tokens in the <code>t/allged.ged</code> test file. &nbsp;Similar
+     make test_1byte<br>
+           </code></blockquote>
+ This will show all tokens in the <code>t/allged.ged</code> test file. &nbsp;Similar 
 tests can be done using <code>make test_hilo</code> and <code>make test_lohi</code>
- (for the unicode lexers).<br>
-              <br>
-    This concludes the testing setup. &nbsp;Now for some explanations...<br>
-              <br>
-                                               
+  (for the unicode lexers).<br>
+               <br>
+     This concludes the testing setup. &nbsp;Now for some explanations...<br>
+               <br>
+                                                           
           <h2>Structure of the parser</h2>
-    I see the structure of a program using the gedcom parser as follows:<br>
-              <br>
-              <img src="images/schema.png" alt="Gedcom parsing scheme">
-              <br>
-              <br>
-              <br>
-    TO BE COMPLETED...<br>
-           
-          <hr width="100%" size="2">$Id: parser.html,v 1.2 2001/12/01 15:29:00
+     I see the structure of a program using the gedcom parser as follows:<br>
+               <br>
+               <img src="images/schema.png" alt="Gedcom parsing scheme">
+               <br>
+               <br>
+               <br>
+     TO BE COMPLETED...<br>
+                       
+          <hr width="100%" size="2">$Id: parser.html,v 1.2 2001/12/01 15:29:00 
 verthezp Exp $<br>
- $Name$<br>
-            <br>
-              </div>
-              </div>
-                                               
+  $Name$<br>
+             <br>
+               </div>
+               </div>
+                                                           
           </body>
           </html>

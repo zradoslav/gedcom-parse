@@ -1,2 +1,19 @@
+NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
+
+release 0.12 ():
+
+ - The calling of callbacks is now completed.
+
+ - The parsed value that is returned in callbacks can now be:
+     - a null value
+     - a string
+     - a date (struct date_value)
+   See the documentation for more info.  Parsing and checking of cross-
+   references will be added next.
+
+release 0.11 (15 December 2001):
+
+ - Initial release from Sourceforge.net (developers only !)
+  
 # $Id$
 # $Name$

@@ -1,3 +1,14 @@
+2001-12-30  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* all: Added some initial documentation.
+
+	* gedcom/gedcom.y: Completed the calling of callbacks.
+
+2001-12-29  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom_date.y: Added graceful fallback for date parse errors:
+	put everything as a 'date phrase'.
+
 2001-12-28  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gedcom_date.*, date.*: Parsing dates via a separate yacc parser.

@@ -1,2 +1,17 @@
+Authors of gedcom-parse:
+
+Design and implementation:
+  Peter Verthez <Peter.Verthez@advalvas.be>
+
+Thanks for contributing ideas:
+  Geert Vantienen <Geert.Vantienen@advalvas.be>
+  Perry Rapp <prapp@erols.com>
+
+Integrated external code and data:
+  - Date calculation code: Scott E. Lee (http://www.genealogy.org/~scottlee/)
+  - Skeleton for gconv   : Ulrich Drepper <drepper@cygnus.com>
+  - Gedcom test files    : Heiner Eichmann
+                           (http://heiner-eichmann.de/gedcom/gedcom.htm)
+
 # $Id$
 # $Name$

@@ -2,9 +2,15 @@
 # $Id$
 # $Name$
 
-EXTRA_DIST=parser.html
+EXTRA_DIST = index.html usage.html parser.html
+VERSIONED_FILES = index.html
 
 dist-hook:
-	mkdir $(distdir)/images
-	cp -p $(srcdir)/images/schema.obj $(srcdir)/images/schema.png \
-	      $(distdir)/images
+	@cd $(distdir); \
+	mkdir images
+	cp -p $(srcdir)/images/schema.obj $(srcdir)/images/schema.png images \
+	for file in $(VERSIONED_FILES); do \
+          sed 's/\@VERSION\@/${VERSION}/' $$file > $$file.new; \
+	  rm $$file; \
+	  mv $$file.new $$file; \
+	done
