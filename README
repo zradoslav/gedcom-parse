@@ -25,6 +25,7 @@ Its main features are:
  - "compatibility-mode" parsing, to allow for not-exactly-standard syntaxes
    used by other genealogy programs; currently, compatibility is added for:
      - ftree
+     - Lifelines 3.0.2 (not complete)
 
 NOTE:
  - NO BACKWARD COMPATIBILITY is guaranteed for 0.x releases !
