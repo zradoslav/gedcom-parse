@@ -266,6 +266,7 @@ int main(int argc, char* argv[])
   }
 
   setlocale(LC_ALL, "");
+  gedcom_init();
   gedcom_set_debug_level(debug_level, NULL);
   gedcom_set_compat_handling(compat_enabled);
   gedcom_set_error_handling(mech);
