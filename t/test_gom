@@ -43,12 +43,12 @@ ln -s $srcdir/../ansel/gconv-modules .
 rm -f core
 if [ "$GOM_DMALLOC_TEST" = "" ]
 then
-  $builddir/gomtest $options $testfile
+  $GEDCOM_TESTENV $builddir/gomtest $options $testfile
 else
   $dmalloc -b -l $GOM_DMALLOC_TEST -i 100 low > $dmalloc_tmp
   . $dmalloc_tmp
   rm $dmalloc_tmp
-  $builddir/gomtest_static $options $testfile
+  $GEDCOM_TESTENV $builddir/gomtest_static $options $testfile
 fi
 result=$?
 rm gedcom.enc

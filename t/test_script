@@ -39,7 +39,7 @@ ln -s $srcdir/../data/gedcom.enc .
 ln -s $builddir/../ansel/.libs/ANSI_Z39.47.so .
 ln -s $srcdir/../ansel/gconv-modules .
 rm -f core
-$builddir/testgedcom $options $testfile
+$GEDCOM_TESTENV $builddir/testgedcom $options $testfile
 result=$?
 rm gedcom.enc
 rm ANSI_Z39.47.so
