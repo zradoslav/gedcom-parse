@@ -9,8 +9,7 @@ cd $srcdir/..
 export GCONV_PATH=$GCONV_PATH:./ansel
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$builddir/../gedcom/.libs
 cp $builddir/../ansel/.libs/ANSI_Z39.47.so ansel
-echo "=== testing $file"
-$builddir/../testgedcom -2 t/$file
+$builddir/../testgedcom -2 -q t/$file
 result=$?
 rm ansel/ANSI_Z39.47.so
 exit $result

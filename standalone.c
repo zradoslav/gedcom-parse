@@ -32,6 +32,7 @@
 
 #define OUTFILE "testgedcom.out"
 FILE* outfile = NULL;
+int quiet = 0;
 
 void output(int to_stdout_too, char* format, ...)
 {
@@ -40,7 +41,7 @@ void output(int to_stdout_too, char* format, ...)
   if (outfile) {
     vfprintf(outfile, format, ap);
   }
-  if (to_stdout_too) {
+  if (to_stdout_too && !quiet) {
     vprintf(format, ap);
   }
   va_end(ap);
@@ -60,6 +61,7 @@ void show_help ()
   printf("  -da   Debug setting: libgedcom + yacc debug messages\n");
   printf("  -2    Run the test parse 2 times instead of once\n");
   printf("  -3    Run the test parse 3 times instead of once\n");
+  printf("  -q    No output to standard output\n");
 }
 
 Gedcom_ctxt header_start(int level, Gedcom_val xref, char *tag,
@@ -241,6 +243,9 @@ int main(int argc, char* argv[])
       else if (!strncmp(argv[i], "-3", 3)) {
 	run_times = 3;
       }
+      else if (!strncmp(argv[i], "-q", 3)) {
+	quiet = 1;
+      }
       else if (strncmp(argv[i], "-", 1)) {
 	file_name = argv[i];
 	break;
@@ -277,11 +282,11 @@ int main(int argc, char* argv[])
   }
   fclose(outfile);
   if (result == 0) {
-    printf("Parse succeeded\n");
+    output(1, "Parse succeeded\n");
     return 0;
   }
   else {
-    printf("Parse failed\n");
+    output(1, "Parse failed\n");
     return 1;
   }  
 }
