@@ -1,7 +1,7 @@
 # Process this file with autoconf to produce a configure script.
 # $Id$
 # $Name$
-AC_INIT(standalone.c)
+AC_INIT(gedcom.enc)
 
 dnl =============================================================
 dnl Global variables
