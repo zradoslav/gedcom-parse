@@ -1,5 +1,6 @@
-ERROR: Error on line 37: Unknown calendar type
-ERROR: Error on line 37: parse error
+WARNING: Warning on line 37: Unknown calendar type
+WARNING: Warning on line 37: parse error
+WARNING: Warning on line 37: Putting date in 'phrase' member
 WARNING: Warning: Cross-reference @PERS07@ defined on line 38 is never used
 WARNING: Warning: Cross-reference @PERS02@ defined on line 18 is never used
 WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used

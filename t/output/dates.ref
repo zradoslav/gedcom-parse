@@ -152,8 +152,9 @@ Contents of the date_value:
 Rec INDI start, xref is @PERS06@
 == 1 NAME (342) /Unexpected calendar type/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-ERROR: Error on line 37: Unknown calendar type
-ERROR: Error on line 37: parse error
+WARNING: Warning on line 37: Unknown calendar type
+WARNING: Warning on line 37: parse error
+WARNING: Warning on line 37: Putting date in 'phrase' member
 Contents of the date_value:
   raw value: @#DFRENCH@ 03 BRUM 4
   type: 11
@@ -433,8 +434,9 @@ Contents of the date_value:
 Rec INDI start, xref is @PERS06@
 == 1 NAME (342) /Unexpected calendar type/ (ctxt is 333, conversion failures: 0)
 == 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
-ERROR: Error on line 37: Unknown calendar type
-ERROR: Error on line 37: parse error
+WARNING: Warning on line 37: Unknown calendar type
+WARNING: Warning on line 37: parse error
+WARNING: Warning on line 37: Putting date in 'phrase' member
 Contents of the date_value:
   raw value: @#DFRENCH@ 03 BRUM 4
   type: 11
