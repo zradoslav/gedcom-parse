@@ -530,13 +530,13 @@ void    gedcom_subscribe_to_element(Gedcom_elt elt,
 
 /* Separate value parsing functions */
 struct date_value  gedcom_parse_date(const char* line_value);
-char*              gedcom_date_to_string(struct date_value* val);
-struct date_value* gedcom_new_date_value(struct date_value* copy_from);
+char*              gedcom_date_to_string(const struct date_value* val);
+struct date_value* gedcom_new_date_value(const struct date_value* copy_from);
 int   gedcom_normalize_date(Date_input compute_from, struct date_value *val);
 
 struct age_value  gedcom_parse_age(const char* line_value);
-struct age_value* gedcom_new_age_value(struct age_value* copy_from);
-char*             gedcom_age_to_string(struct age_value* val);
+struct age_value* gedcom_new_age_value(const struct age_value* copy_from);
+char*             gedcom_age_to_string(const struct age_value* val);
 
 /* Handling cross-references */
 struct xref_value *gedcom_get_by_xref(const char *key);
@@ -555,26 +555,27 @@ int  gedcom_write_set_encoding(Enc_from from,
 int  gedcom_write_set_line_terminator(Enc_from from, Enc_line_end end);
 
 int  gedcom_write_record_str(Gedcom_write_hndl hndl,
-			     Gedcom_rec rec, char* xrefstr, char* val);
+			     Gedcom_rec rec, const char* xrefstr,
+                             const char* val);
   
 int gedcom_write_element_str(Gedcom_write_hndl hndl, Gedcom_elt elt,
 			     int parsed_tag, int parent_rec_or_elt,
-			     char* val);
+			     const char* val);
 int gedcom_write_element_xref(Gedcom_write_hndl hndl, Gedcom_elt elt,
                               int parsed_tag, int parent_rec_or_elt,
-			      struct xref_value* val);
+			      const struct xref_value* val);
 
 int gedcom_write_element_date(Gedcom_write_hndl hndl,
 			      Gedcom_elt elt, int tag, int parent_rec_or_elt,
-			      struct date_value* val);
+			      const struct date_value* val);
 int gedcom_write_element_age(Gedcom_write_hndl hndl,
 			     Gedcom_elt elt, int tag, int parent_rec_or_elt,
-			     struct age_value* val);
+			     const struct age_value* val);
 
-int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, char* tag,
-			  char* xrefstr, char* value);
-int gedcom_write_user_xref(Gedcom_write_hndl hndl, int level, char* tag,
-			   char* xrefstr, struct xref_value* val);
+int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, const char* tag,
+			  const char* xrefstr, const char* value);
+int gedcom_write_user_xref(Gedcom_write_hndl hndl, int level, const char* tag,
+			   const char* xrefstr, const struct xref_value* val);
 
 /* For use in gom */
 int        gedcom_error(const char* s, ...);

@@ -104,7 +104,8 @@ int write_simple(Gedcom_write_hndl hndl,
 }
 
 int write_encoding_value(Gedcom_write_hndl hndl,
-			 int level, char* xref, char* tag, char* value)
+			 int level, const char* xref, const char* tag,
+			 const char* value)
 {
   if (strcmp(value, write_encoding.charset))
     gedcom_warning(_("Forcing HEAD.CHAR value to '%s'"),
@@ -321,7 +322,7 @@ char* convert_at(const char* input)
 
 int _gedcom_write_val(Gedcom_write_hndl hndl,
 		      int rec_or_elt, int tag, int parent_rec_or_elt,
-		      char* xrefstr, char* val)
+		      const char* xrefstr, const char* val)
 {
   int result = 1;
   int level = 0;
@@ -342,7 +343,8 @@ int _gedcom_write_val(Gedcom_write_hndl hndl,
 }
 
 int gedcom_write_record_str(Gedcom_write_hndl hndl,
-			    Gedcom_rec rec, char* xrefstr, char* val)
+			    Gedcom_rec rec, const char* xrefstr,
+			    const char* val)
 {
   int result = 1;
   if (check_type(rec, (val ? GV_CHAR_PTR : GV_NULL)))
@@ -352,7 +354,7 @@ int gedcom_write_record_str(Gedcom_write_hndl hndl,
 
 int gedcom_write_element_str(Gedcom_write_hndl hndl,
 			     Gedcom_elt elt, int tag, int parent_rec_or_elt,
-			     char* val)
+			     const char* val)
 {
   int result = 1;
   if (check_type(elt, (val ? GV_CHAR_PTR : GV_NULL)))
@@ -363,7 +365,7 @@ int gedcom_write_element_str(Gedcom_write_hndl hndl,
 
 int gedcom_write_element_xref(Gedcom_write_hndl hndl,
 			      Gedcom_elt elt, int tag, int parent_rec_or_elt,
-			      struct xref_value* val)
+			      const struct xref_value* val)
 {
   int result = 1;
   if (check_type(elt, (val ? GV_XREF_PTR : GV_NULL)))
@@ -374,7 +376,7 @@ int gedcom_write_element_xref(Gedcom_write_hndl hndl,
 
 int gedcom_write_element_date(Gedcom_write_hndl hndl,
 			      Gedcom_elt elt, int tag, int parent_rec_or_elt,
-			      struct date_value* val)
+			      const struct date_value* val)
 {
   int result = 1;
   if (check_type(elt, (val ? GV_DATE_VALUE : GV_NULL)))
@@ -385,7 +387,7 @@ int gedcom_write_element_date(Gedcom_write_hndl hndl,
 
 int gedcom_write_element_age(Gedcom_write_hndl hndl,
 			     Gedcom_elt elt, int tag, int parent_rec_or_elt,
-			     struct age_value* val)
+			     const struct age_value* val)
 {
   int result = 1;
   if (check_type(elt, (val ? GV_AGE_VALUE : GV_NULL)))
@@ -394,8 +396,8 @@ int gedcom_write_element_age(Gedcom_write_hndl hndl,
   return result;
 }
 
-int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, char* tag,
-			  char* xrefstr, char* value)
+int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, const char* tag,
+			  const char* xrefstr, const char* value)
 {
   int result = 1;
   if (tag && tag[0] == '_')
@@ -403,8 +405,8 @@ int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, char* tag,
   return result;
 }
 
-int gedcom_write_user_xref(Gedcom_write_hndl hndl, int level, char* tag,
-			   char* xrefstr, struct xref_value* val)
+int gedcom_write_user_xref(Gedcom_write_hndl hndl, int level, const char* tag,
+			   const char* xrefstr, const struct xref_value* val)
 {
   int result = 1;
   if (tag && tag[0] == '_')

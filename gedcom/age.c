@@ -103,7 +103,7 @@ int parse_numeric_age(struct age_value *age, const char *ptr)
   return 0;
 }
 
-struct age_value* gedcom_new_age_value(struct age_value* copy_from)
+struct age_value* gedcom_new_age_value(const struct age_value* copy_from)
 {
   struct age_value* age_ptr;
   age_ptr = (struct age_value*) malloc(sizeof(struct age_value));
@@ -154,7 +154,7 @@ struct age_value gedcom_parse_age(const char* line_value)
   return age_s;
 }
 
-char* gedcom_age_to_string(struct age_value* val)
+char* gedcom_age_to_string(const struct age_value* val)
 {
   int num = 0;
   reset_buffer(&age_buffer);

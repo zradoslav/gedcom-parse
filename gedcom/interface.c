@@ -32,8 +32,9 @@ static Gedcom_def_cb       default_cb                         = NULL;
 
 void gedcom_set_default_callback(Gedcom_def_cb func)
 {
-  if (default_cb)
+  if (default_cb) {
     gedcom_error(_("Internal error: Duplicate registration for default callback"));
+  }
   default_cb = func;
 }
 

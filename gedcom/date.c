@@ -383,7 +383,7 @@ int gedcom_normalize_date(Date_input input, struct date_value *val)
   return result;
 }
 
-struct date_value* gedcom_new_date_value(struct date_value* copy_from)
+struct date_value* gedcom_new_date_value(const struct date_value* copy_from)
 {
   struct date_value* dv_ptr;
   dv_ptr = (struct date_value*) malloc(sizeof(struct date_value));
@@ -429,7 +429,7 @@ struct date_value gedcom_parse_date(const char* line_value)
   return dv_s;
 }
 
-void write_date(struct date* d)
+void write_date(const struct date* d)
 {
   if (! d->year_str[0] || d->year <= 0 || d->sdn1 <= 0)
     gedcom_error(_("Date is not normalized: some fields are invalid"));
@@ -455,7 +455,7 @@ void write_date(struct date* d)
   }
 }
 
-char* gedcom_date_to_string(struct date_value* val)
+char* gedcom_date_to_string(const struct date_value* val)
 {
   init_buffer(&date_buffer);
   reset_buffer(&date_buffer);
