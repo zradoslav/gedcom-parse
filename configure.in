@@ -1,0 +1,37 @@
+# Process this file with autoconf to produce a configure script.
+# $Id$
+# $Name$
+AC_INIT(standalone.c)
+
+dnl =============================================================
+dnl Global variables
+NAME=gedcom-parse
+VERSION=0.10
+LIBVERSION=0:1
+SHELL=/bin/sh
+AC_SUBST(NAME)
+AC_SUBST(VERSION)
+AC_SUBST(SHELL)
+AC_SUBST(LIBVERSION)
+
+dnl =============================================================
+AM_INIT_AUTOMAKE(${NAME},${VERSION})
+
+AC_PROG_CC
+AM_PROG_LIBTOOL
+AM_PROG_LEX
+AC_PROG_YACC
+if test "$YACC" = "bison -y"; then
+  AC_MSG_WARN([We'll remove the -y option here])
+  YACC=bison
+else
+  AC_MSG_ERROR([Sorry, bison is needed])
+fi
+AM_WITH_DMALLOC
+
+AC_OUTPUT(Makefile
+	  gedcom/Makefile
+	  ansel/Makefile
+	  t/Makefile
+	  doc/Makefile
+	  include/Makefile)
