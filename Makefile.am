@@ -13,7 +13,7 @@ noinst_HEADERS     = utf8-locale.h
 testgedcom_LDFLAGS = -L gedcom/.libs -lgedcom
 testgedcom_LDADD  = @INTLLIBS@
 
-EXTRA_DIST = $(pkgdata_DATA)
+EXTRA_DIST = $(pkgdata_DATA) Makefile.inc
 VERSIONED_FILES = README
 
 include $(top_srcdir)/Makefile.inc
