@@ -12,4 +12,15 @@ WARNING: Warning: Cross-reference @PERS08@ defined on line 42 is never used
 WARNING: Warning: Cross-reference @PERS06@ defined on line 34 is never used
 WARNING: Warning: Cross-reference @PERS05@ defined on line 30 is never used
 WARNING: Warning: Cross-reference @PERS03@ defined on line 22 is never used
+WARNING: Warning: Cross-reference @PERS07@ defined on line 43 is never used
+WARNING: Warning: Cross-reference @PERS02@ defined on line 23 is never used
+WARNING: Warning: Cross-reference @PERS00@ defined on line 15 is never used
+WARNING: Warning: Cross-reference @PERS10@ defined on line 55 is never used
+WARNING: Warning: Cross-reference @PERS01@ defined on line 19 is never used
+WARNING: Warning: Cross-reference @PERS04@ defined on line 31 is never used
+WARNING: Warning: Cross-reference @PERS09@ defined on line 51 is never used
+WARNING: Warning: Cross-reference @PERS08@ defined on line 47 is never used
+WARNING: Warning: Cross-reference @PERS06@ defined on line 39 is never used
+WARNING: Warning: Cross-reference @PERS05@ defined on line 35 is never used
+WARNING: Warning: Cross-reference @PERS03@ defined on line 27 is never used
 Test succeeded
