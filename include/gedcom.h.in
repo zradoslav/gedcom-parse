@@ -32,6 +32,11 @@ __BEGIN_DECLS
 #include <gedcom-tags.h>
 #endif
 
+#define GEDCOM_PARSE_VERSION_MAJOR @VERSION_MAJOR@
+#define GEDCOM_PARSE_VERSION_MINOR @VERSION_MINOR@
+#define GEDCOM_PARSE_VERSION \
+  (GEDCOM_PARSE_VERSION_MAJOR * 1000 + GEDCOM_PARSE_VERSION_MINOR)
+
 /**************************************************************************/
 /***  First the records and elements to subscribe upon                  ***/
 /**************************************************************************/

@@ -3,8 +3,10 @@
 # $Name$
 include_HEADERS = gedcom.h \
 		  gedcom-tags.h
-BUILT_SOURCES = gedcom-tags.h
+BUILT_SOURCES = gedcom.h \
+		gedcom-tags.h
+EXTRA_DIST = gedcom.h.in
 
 gedcom-tags.h:	$(srcdir)/../gedcom/gedcom.tab.h
-	grep "TAG_\|USERTAG" $(srcdir)/../gedcom/gedcom.tab.h > gedcom-tags.h
+	grep "TAG_\|USERTAG" $< > $@
 

@@ -6,13 +6,22 @@ AC_INIT(standalone.c)
 dnl =============================================================
 dnl Global variables
 NAME=gedcom-parse
-VERSION=0.13
-LIBVERSION=0:3
-SHELL=/bin/sh
 AC_SUBST(NAME)
+
+VERSION=0.13
+VERSION_MAJOR=`echo $VERSION | sed 's/\..*$//'`
+changequote(<<,>>)
+VERSION_MINOR=`echo $VERSION | sed 's/^[^\.]*\.//'`
+changequote([,])
+AC_SUBST(VERSION_MAJOR)
+AC_SUBST(VERSION_MINOR)
 AC_SUBST(VERSION)
-AC_SUBST(SHELL)
+
+LIBVERSION=0:3
 AC_SUBST(LIBVERSION)
+
+SHELL=/bin/sh
+AC_SUBST(SHELL)
 
 dnl =============================================================
 AM_INIT_AUTOMAKE(${NAME},${VERSION})
@@ -40,5 +49,6 @@ AC_OUTPUT(Makefile
 	  doc/Makefile
 	  doc/images/Makefile
 	  include/Makefile
+	  include/gedcom.h
           intl/Makefile
           po/Makefile.in)
