@@ -31,7 +31,7 @@ void show_help ()
   printf("  -3    Run the test parse 3 times instead of once\n");
 }
 
-Gedcom_ctxt header_start(char *xreftag __attribute__ ((unused)))
+Gedcom_ctxt header_start(int level, char *xref, char *tag)
 {
   printf("Header start\n");
   return (Gedcom_ctxt)0;
@@ -45,22 +45,49 @@ void header_end(Gedcom_ctxt self)
 char family_xreftags[100][255];
 int  family_nr = 0;
 
-Gedcom_ctxt family_start(char *xreftag)
+Gedcom_ctxt family_start(int level, char *xref, char *tag)
 {
-  printf("Family start, xreftag is %s\n", xreftag);
-  strcpy(family_xreftags[family_nr], xreftag);
+  printf("Family start, xref is %s\n", xref);
+  strcpy(family_xreftags[family_nr], xref);
   return (Gedcom_ctxt)(family_nr++);
 }
 
 void family_end(Gedcom_ctxt self)
 {
-  printf("Family end, xreftag is %s\n", family_xreftags[(int)self]);
+  printf("Family end, xref is %s\n", family_xreftags[(int)self]);
+}
+
+Gedcom_ctxt submit_start(int level, char *xref, char *tag)
+{
+  printf("Submitter, xref is %s\n", xref);
+  return (Gedcom_ctxt)10000;
+}
+
+Gedcom_ctxt source_start(Gedcom_ctxt parent, int level, char *tag,
+			 char* raw_value, Gedcom_val parsed_value)
+{
+  Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
+  printf("Source is %s (ctxt is %d, parent is %d)\n",
+	 (char*)parsed_value, (int) self, (int) parent);
+  return self;
+}
+
+void source_end(Gedcom_ctxt parent, Gedcom_ctxt self, Gedcom_val parsed_value)
+{
+  printf("Source context %d in parent %d\n", (int)self, (int)parent);
+}
+
+void default_cb(Gedcom_ctxt ctxt, int level, char *tag, char *raw_value)
+{
+  printf("== %d %s %s (ctxt is %d)\n", level, tag, raw_value, (int)ctxt);
 }
 
 void subscribe_callbacks()
 {
-  subscribe_to_record(REC_HEAD, header_start, header_end);
-  subscribe_to_record(REC_FAM,  family_start, family_end);
+  gedcom_subscribe_to_record(REC_HEAD, header_start, header_end);
+  gedcom_subscribe_to_record(REC_FAM,  family_start, family_end);
+  gedcom_subscribe_to_record(REC_SUBM, submit_start, NULL);
+  gedcom_subscribe_to_element(ELT_HEAD_SOUR, source_start, source_end);
 }
 
 void gedcom_message_handler(Gedcom_msg_type type, char *msg)
@@ -130,6 +157,7 @@ int main(int argc, char* argv[])
   gedcom_set_compat_handling(compat_enabled);
   gedcom_set_error_handling(mech);
   gedcom_set_message_handler(gedcom_message_handler);
+  gedcom_set_default_callback(default_cb);
   
   subscribe_callbacks();
   while (run_times-- > 0) {
