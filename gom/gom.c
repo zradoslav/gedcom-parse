@@ -105,6 +105,14 @@ void subscribe_all()
 
 int gom_active = 0;
 
+/** This function initializes the object model by parsing the given GEDCOM
+    file.
+
+    \param file_name  The input file
+
+    \retval 0 on success
+    \retval 1 on failure
+*/
 int gom_parse_file(const char* file_name)
 {
   if (gom_active) {
@@ -118,6 +126,16 @@ int gom_parse_file(const char* file_name)
   return gedcom_parse_file(file_name);
 }
 
+/** This function starts an empty model.  It does this by parsing the
+    \c new.ged
+    file in the data directory of the library (\c $PREFIX/share/gedcom-parse).
+    This can be used to start from an empty model, and to build up the model
+    by adding new records yourself.
+
+    \retval 0 on success
+    \retval nonzero on errors (mainly the errors from
+            \ref gedcom_parse_file()).
+*/
 int gom_new_model()
 {
   if (gom_active) {
@@ -130,6 +148,16 @@ int gom_new_model()
   return gedcom_new_model();
 }
 
+/** This function writes the current Gedcom model to a file.
+
+    \param file_name  The name of the file to write to
+    \param total_conv_fails Pass a pointer to an integer if you want to know
+    the number of conversion failures (filled in on return).  You can pass
+    \c NULL if you're not interested.
+
+    \retval 0 on success
+    \retval nonzero on errors
+*/
 int gom_write_file(const char* file_name, int *total_conv_fails)
 {
   Gedcom_write_hndl hndl;

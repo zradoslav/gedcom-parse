@@ -418,185 +418,397 @@ struct user_rec {
 
 /* Functions */
 
+  /** \addtogroup gommain */
+  /** @{ */
+  /** \brief Parses an existing Gedcom file */
 int  gom_parse_file(const char *file_name);
+  /** \brief Starts a new Gedcom model */
 int  gom_new_model();
-int  gom_write_file(const char* file_name, int *total_conv_fails);
+  /** @} */
 
-struct header*     gom_get_header();
-int                gom_header_update_timestamp(time_t t);
+  /** \addtogroup gom_write */
+  /** @{ */
+  /** \brief Write a Gedcom file */
+int  gom_write_file(const char* file_name, int *total_conv_fails);
+  /** \brief Update the timestamp in a Gedcom model */
+int  gom_header_update_timestamp(time_t t);
+  /** @} */
   
+  /** \addtogroup gomget */
+  /** @{ */
+  /** \brief Retrieve header object
+      \return The header object */
+struct header*     gom_get_header();
+  /** \brief Retrieve submission object
+      \return The submission object, or \c NULL if there is none */
 struct submission* gom_get_submission();
+  /** \brief Retrieve first family object
+      \return The first family object, or \c NULL if there is none */
+struct family*     gom_get_first_family();
+  /** \brief Retrieve family object by cross-reference
+      \param xref The cross-reference key of the object to retrieve
+      \return The object referenced by \c xref, \c NULL if it doesn't exist
+              or is not a family object */
+struct family*     gom_get_family_by_xref(const char *xref);
+  /** \brief Retrieve first individual object
+      \return The first individual object, or \c NULL if there is none */
+struct individual* gom_get_first_individual();
+  /** \brief Retrieve individual object by cross-reference
+      \param xref The cross-reference key of the object to retrieve
+      \return The object referenced by \c xref, \c NULL if it doesn't exist
+              or is not an individual object */
+struct individual* gom_get_individual_by_xref(const char *xref);
+  /** \brief Retrieve first multimedia object
+      \return The first multimedia object, or \c NULL if there is none */
+struct multimedia* gom_get_first_multimedia();
+  /** \brief Retrieve multimedia object by cross-reference
+      \param xref The cross-reference key of the object to retrieve
+      \return The object referenced by \c xref, \c NULL if it doesn't exist
+              or is not a multimedia object */
+struct multimedia* gom_get_multimedia_by_xref(const char *xref);
+  /** \brief Retrieve first note object
+      \return The first note object, or \c NULL if there is none */
+struct note*       gom_get_first_note();
+  /** \brief Retrieve note object by cross-reference
+      \param xref The cross-reference key of the object to retrieve
+      \return The object referenced by \c xref, \c NULL if it doesn't exist
+              or is not a note object */
+struct note*       gom_get_note_by_xref(const char *xref);
+  /** \brief Retrieve first repository object
+      \return The first repository object, or \c NULL if there is none */
+struct repository* gom_get_first_repository();
+  /** \brief Retrieve repository object by cross-reference
+      \param xref The cross-reference key of the object to retrieve
+      \return The object referenced by \c xref, \c NULL if it doesn't exist
+              or is not a repository object */
+struct repository* gom_get_repository_by_xref(const char *xref);
+  /** \brief Retrieve first source object
+      \return The first source object, or \c NULL if there is none */
+struct source*     gom_get_first_source();
+  /** \brief Retrieve source object by cross-reference
+      \param xref The cross-reference key of the object to retrieve
+      \return The object referenced by \c xref, \c NULL if it doesn't exist
+              or is not a source object */
+struct source*     gom_get_source_by_xref(const char *xref);
+  /** \brief Retrieve first submitter object
+      \return The first submitter object, or \c NULL if there is none */
+struct submitter*  gom_get_first_submitter();
+  /** \brief Retrieve submitter object by cross-reference
+      \param xref The cross-reference key of the object to retrieve
+      \return The object referenced by \c xref, \c NULL if it doesn't exist
+              or is not a submitter object */
+struct submitter*  gom_get_submitter_by_xref(const char *xref);
+  /** \brief Retrieve first user record object
+      \return The first user record object, or \c NULL if there is none */
+struct user_rec*   gom_get_first_user_rec();
+  /** \brief Retrieve user record object by cross-reference
+      \param xref The cross-reference key of the object to retrieve
+      \return The object referenced by \c xref, \c NULL if it doesn't exist
+              or is not a user record object */
+struct user_rec*   gom_get_user_rec_by_xref(const char *xref);
+  /** @} */
+
+  /** \addtogroup gom_add_rec */
+  /** @{ */
+  /** \brief Add a submission record
+      \param xrefstr The cross-reference key for the new object
+      \return The new object if successful, \c NULL if an error happened (e.g.
+      the cross-reference is already in use */
 struct submission* gom_new_submission(const char* xrefstr);
+  /** \brief Delete the submission record
+      \retval 0 if successful
+      \retval 1 if error */
 int                gom_delete_submission();
 
-struct family*     gom_get_first_family();
-struct family*     gom_get_family_by_xref(const char *xref);
+  /** \brief Add a new family record
+      \param xrefstr The cross-reference key for the new object
+      \return The new object if successful, \c NULL if an error happened (e.g.
+      the cross-reference is already in use */
 struct family*     gom_new_family(const char* xrefstr);
+  /** \brief Delete an existing family record
+      \param obj The object to be deleted
+      \retval 0 if successful
+      \retval 1 if error */
 int                gom_delete_family(struct family* obj);
 
-struct individual* gom_get_first_individual();
-struct individual* gom_get_individual_by_xref(const char *xref);
+  /** \brief Add a new individual record
+      \param xrefstr The cross-reference key for the new object
+      \return The new object if successful, \c NULL if an error happened (e.g.
+      the cross-reference is already in use */
 struct individual* gom_new_individual(const char* xrefstr);
+  /** \brief Delete an existing individual record
+      \param obj The object to be deleted
+      \retval 0 if successful
+      \retval 1 if error */
 int                gom_delete_individual(struct individual* obj);
 
-struct multimedia* gom_get_first_multimedia();
-struct multimedia* gom_get_multimedia_by_xref(const char *xref);
+  /** \brief Add a new multimedia record
+      \param xrefstr The cross-reference key for the new object
+      \return The new object if successful, \c NULL if an error happened (e.g.
+      the cross-reference is already in use */
 struct multimedia* gom_new_multimedia(const char* xrefstr);
+  /** \brief Delete an existing multimedia record
+      \param obj The object to be deleted
+      \retval 0 if successful
+      \retval 1 if error */
 int                gom_delete_multimedia(struct multimedia* obj);
 
-struct note*       gom_get_first_note();
-struct note*       gom_get_note_by_xref(const char *xref);
+  /** \brief Add a new note record
+      \param xrefstr The cross-reference key for the new object
+      \return The new object if successful, \c NULL if an error happened (e.g.
+      the cross-reference is already in use */
 struct note*       gom_new_note(const char* xrefstr);
+  /** \brief Delete an existing note record
+      \param obj The object to be deleted
+      \retval 0 if successful
+      \retval 1 if error */
 int                gom_delete_note(struct note* obj);
 
-struct repository* gom_get_first_repository();
-struct repository* gom_get_repository_by_xref(const char *xref);
+  /** \brief Add a new repository record
+      \param xrefstr The cross-reference key for the new object
+      \return The new object if successful, \c NULL if an error happened (e.g.
+      the cross-reference is already in use */
 struct repository* gom_new_repository(const char* xrefstr);
+  /** \brief Delete an existing repository record
+      \param obj The object to be deleted
+      \retval 0 if successful
+      \retval 1 if error */
 int                gom_delete_repository(struct repository* obj);
 
-struct source*     gom_get_first_source();
-struct source*     gom_get_source_by_xref(const char *xref);
+  /** \brief Add a new source record
+      \param xrefstr The cross-reference key for the new object
+      \return The new object if successful, \c NULL if an error happened (e.g.
+      the cross-reference is already in use */
 struct source*     gom_new_source(const char* xrefstr);
+  /** \brief Delete an existing source record
+      \param obj The object to be deleted
+      \retval 0 if successful
+      \retval 1 if error */
 int                gom_delete_source(struct source* obj);
 
-struct submitter*  gom_get_first_submitter();
-struct submitter*  gom_get_submitter_by_xref(const char *xref);
+  /** \brief Add a new submitter record
+      \param xrefstr The cross-reference key for the new object
+      \return The new object if successful, \c NULL if an error happened (e.g.
+      the cross-reference is already in use */
 struct submitter*  gom_new_submitter(const char* xrefstr);
+  /** \brief Delete an existing submitter record
+      \param obj The object to be deleted
+      \retval 0 if successful
+      \retval 1 if error */
 int                gom_delete_submitter(struct submitter* obj);
 
-struct user_rec*   gom_get_first_user_rec();
-struct user_rec*   gom_get_user_rec_by_xref(const char *xref);
+  /** \brief Add a new user record
+      \param xrefstr The cross-reference key for the new object
+      \param tag The tag for the new object
+      \return The new object if successful, \c NULL if an error happened (e.g.
+      the cross-reference is already in use */
 struct user_rec*   gom_new_user_rec(const char* xrefstr, const char* tag);
+  /** \brief Delete an existing user record
+      \param obj The object to be deleted
+      \retval 0 if successful
+      \retval 1 if error */
 int                gom_delete_user_rec(struct user_rec* obj);
+  /** @} */
 
+  /** \addtogroup gom_mod_string */
+  /** @{ */
+  /** \brief Get string in UTF-8 encoding */
 char* gom_get_string(char* data);
+  /** \brief Modify string using UTF-8 encoding */
 char* gom_set_string(char** data, const char* utf8_str);
 
+  /** \brief Get string in encoding defined by current locale */
 char* gom_get_string_for_locale(char* data, int* conversion_failures);
+  /** \brief Modify string using encoding defined by current locale */
 char* gom_set_string_for_locale(char** data, const char* locale_str);
+  /** \brief Set the replacement string for conversion failures */
 void  gom_set_unknown(const char* unknown);
+  /** @} */
 
-typedef enum _DIR {
-  MOVE_UP,
-  MOVE_DOWN
-} Gom_direction;
-  
+  /** \addtogroup gom_add_xref */
+  /** @{ */
+  /** \brief Direction of moving cross-references or sub-structures. */
+enum _DIR {
+  MOVE_UP,    /**< Move up */
+  MOVE_DOWN   /**< Move down */
+};
+
+  /** \brief Direction of moving cross-references or sub-structures. */
+  typedef enum _DIR Gom_direction;
+
+  /** \brief Modify a cross-reference */
 struct xref_value* gom_set_xref(struct xref_value** data, const char* xref);
   
+  /** \brief Add a cross-reference in a cross-reference list */
 struct xref_list*  gom_add_xref(struct xref_list** data, const char* xref);
+  /** \brief Remove a cross-reference from a cross-reference list */
 int                gom_remove_xref(struct xref_list** data, const char* xref);
+  /** \brief Move a cross-reference up or down in a cross-reference list */
 int                gom_move_xref(Gom_direction dir, struct xref_list** data,
 				 const char* xref);
+  /** @} */
 
+  /** \addtogroup gom_add_sub */
+  /** @{ */
+  /** \brief Create new address substructure */
 struct address*    gom_set_new_address(struct address** obj);
+  /** \brief Delete an address substructure */
 int                gom_delete_address(struct address** obj);
 
+  /** \brief Add new association substructure to the list */
 struct association* gom_add_new_association(struct association** data);
+  /** \brief Remove an association substructure to the list */
 int                gom_remove_association(struct association** data,
 					  struct association* obj);
+  /** \brief Move an association substructure up or down in the list */
 int                gom_move_association(Gom_direction dir,
 					struct association** data,
 					struct association* obj);
   
+  /** \brief Create new change_date substructure */
 struct change_date* gom_set_new_change_date(struct change_date** obj);
+  /** \brief Delete a change_date substructure */
 int                 gom_delete_change_date(struct change_date** obj);
+  /** \brief Update the timestamp in a change_date substructure */
 int                 gom_update_timestamp(struct change_date** obj, time_t t);
 
+  /** \brief Add new event substructure to the list */
 struct event*      gom_add_new_event(struct event** data);
+  /** \brief Remove an event substructure to the list */
 int                gom_remove_event(struct event** data, struct event* obj);
+  /** \brief Move an event substructure up or down in the list */
 int                gom_move_event(Gom_direction dir, struct event** data,
 				  struct event* obj);
   
+  /** \brief Add new family_link substructure to the list */
 struct family_link* gom_add_new_family_link(struct family_link** data);
+  /** \brief Remove a family_link substructure to the list */
 int                gom_remove_family_link(struct family_link** data,
 					  struct family_link* obj);
+  /** \brief Move a family_link substructure up or down in the list */
 int                gom_move_family_link(Gom_direction dir,
 					struct family_link** data,
 					struct family_link* obj);
   
+  /** \brief Add new lds_event substructure to the list */
 struct lds_event*  gom_add_new_lds_event(struct lds_event** data);
+  /** \brief Remove an lds_event substructure to the list */
 int                gom_remove_lds_event(struct lds_event** data,
 					struct lds_event* obj);
+  /** \brief Move an lds_event substructure up or down in the list */
 int                gom_move_lds_event(Gom_direction dir,
 				      struct lds_event** data,
 				      struct lds_event* obj);
   
+  /** \brief Add new multimedia_link substructure to the list */
 struct multimedia_link*
                    gom_add_new_multimedia_link(struct multimedia_link** data);
+  /** \brief Remove a multimedia_link substructure to the list */
 int                gom_remove_multimedia_link(struct multimedia_link** data,
 					      struct multimedia_link* obj);
+  /** \brief Move a multimedia_link substructure up or down in the list */
 int                gom_move_multimedia_link(Gom_direction dir,
 					    struct multimedia_link** data,
 					    struct multimedia_link* obj);
   
+  /** \brief Add new note substructure to the list */
 struct note_sub*   gom_add_new_note_sub(struct note_sub** data);
+  /** \brief Remove a note substructure to the list */
 int                gom_remove_note_sub(struct note_sub** data,
 				       struct note_sub* obj);
+  /** \brief Move a note substructure up or down in the list */
 int                gom_move_note_sub(Gom_direction dir,
 				     struct note_sub** data,
 				     struct note_sub* obj);
   
+  /** \brief Add new pedigree substructure to the list */
 struct pedigree*   gom_add_new_pedigree(struct pedigree** data);
+  /** \brief Remove a pedigree substructure to the list */
 int                gom_remove_pedigree(struct pedigree** data,
 				       struct pedigree* obj);
+  /** \brief Move a pedigree substructure up or down in the list */
 int                gom_move_pedigree(Gom_direction dir,
 				     struct pedigree** data,
 				     struct pedigree* obj);
   
+  /** \brief Add new personal_name substructure to the list */
 struct personal_name* gom_add_new_personal_name(struct personal_name** data);
+  /** \brief Remove a personal_name substructure to the list */
 int                gom_remove_personal_name(struct personal_name** data,
 					    struct personal_name* obj);
+  /** \brief Move a personal_name substructure up or down in the list */
 int                gom_move_personal_name(Gom_direction dir,
 					  struct personal_name** data,
 					  struct personal_name* obj);
   
+  /** \brief Create new place substructure */
 struct place*      gom_set_new_place(struct place** obj);
+  /** \brief Delete a place substructure */
 int                gom_delete_place(struct place** obj);
 
+  /** \brief Add new source_citation substructure to the list */
 struct source_citation*
                    gom_add_new_source_citation(struct source_citation** data);
+  /** \brief Remove a source_citation substructure to the list */
 int                gom_remove_source_citation(struct source_citation** data,
 					      struct source_citation* obj);
+  /** \brief Move a source_citation substructure up or down in the list */
 int                gom_move_source_citation(Gom_direction dir,
 					    struct source_citation** data,
 					    struct source_citation* obj);
   
+  /** \brief Add new source_description substructure to the list */
 struct source_description*
               gom_add_new_source_description(struct source_description** data);
+  /** \brief Remove a source_description substructure to the list */
 int           gom_remove_source_description(struct source_description** data,
 					    struct source_description* obj);
+  /** \brief Move a source_description substructure up or down in the list */
 int           gom_move_source_description(Gom_direction dir,
 					  struct source_description** data,
 					  struct source_description* obj);
   
+  /** \brief Add new source_event substructure to the list */
 struct source_event* gom_add_new_source_event(struct source_event** data);
+  /** \brief Remove a source_event substructure to the list */
 int                gom_remove_source_event(struct source_event** data,
 					   struct source_event* obj);
+  /** \brief Move a source_event substructure up or down in the list */
 int                gom_move_source_event(Gom_direction dir,
 					 struct source_event** data,
 					 struct source_event* obj);
   
+  /** \brief Add new text substructure to the list */
 struct text*       gom_add_new_text(struct text** data);
+  /** \brief Remove a text substructure to the list */
 int                gom_remove_text(struct text** data,
 				   struct text* obj);
+  /** \brief Move a text substructure up or down in the list */
 int                gom_move_text(Gom_direction dir,
 				 struct text** data,
 				 struct text* obj);
   
+  /** \brief Add new user_data substructure to the list */
 struct user_data*  gom_add_new_user_data(struct user_data** data);
+  /** \brief Remove a user_data substructure to the list */
 int                gom_remove_user_data(struct user_data** data,
 					struct user_data* obj);
+  /** \brief Move a user_data substructure up or down in the list */
 int                gom_move_user_data(Gom_direction dir,
 				      struct user_data** data,
 				      struct user_data* obj);
   
+  /** \brief Add new user_ref_number substructure to the list */
 struct user_ref_number*
                    gom_add_new_user_ref_number(struct user_ref_number** data);
+  /** \brief Remove a user_ref_number substructure to the list */
 int                gom_remove_user_ref_number(struct user_ref_number** data,
 					      struct user_ref_number* obj);
+  /** \brief Move a user_ref_number substructure up or down in the list */
 int                gom_move_user_ref_number(Gom_direction dir,
 					    struct user_ref_number** data,
 					    struct user_ref_number* obj);
+  /** @} */
   
 #ifdef __cplusplus
 }

@@ -906,7 +906,7 @@ typedef void
         (Gedcom_elt elt, Gedcom_ctxt parent, int level, char *tag,
          char *raw_value, int tag_value);
 
-  /** \addtogroup main */
+  /** \addtogroup maingedcom */
   /** @{ */
   /** \brief Initializes the Gedcom parser library */
 int     gedcom_init();

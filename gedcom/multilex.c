@@ -232,7 +232,8 @@ int gedcom_parse_file(const char* file_name)
     by adding new records yourself.
 
     \retval 0 on success
-    \retval nonzero on errors (mainly the errors from \ref gedcom_parse_file()).
+    \retval nonzero on errors (mainly the errors from
+            \ref gedcom_parse_file()).
  */
 
 int gedcom_new_model()

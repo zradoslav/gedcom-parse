@@ -39,6 +39,22 @@ Gedcom_ctxt head_start(_REC_PARAMS_)
   return (Gedcom_ctxt) MAKE_GOM_CTXT(rec, header, &gom_header);
 }
 
+/** This function updates the timestamp of the header.
+
+    \param t  The time_t value giving the wanted timestamp
+
+    \retval 0 on success
+    \retval nonzero on errors
+*/
+int gom_header_update_timestamp(time_t t)
+{
+  int result = 0;
+  struct tm *tm_ptr = localtime(&t);
+  result |= update_date(&gom_header.date, tm_ptr);
+  result |= update_time(&gom_header.time, tm_ptr);
+  return result;
+}
+
 DEFINE_STRING_CB(header, head_sour_start, source.id)
 DEFINE_STRING_CB(header, head_sour_name_start, source.name)
 DEFINE_STRING_CB(header, head_sour_vers_start, source.version)
@@ -151,15 +167,6 @@ void header_cleanup()
 struct header* gom_get_header()
 {
   return &gom_header;
-}
-
-int gom_header_update_timestamp(time_t t)
-{
-  int result = 0;
-  struct tm *tm_ptr = localtime(&t);
-  result |= update_date(&gom_header.date, tm_ptr);
-  result |= update_time(&gom_header.time, tm_ptr);
-  return result;
 }
 
 int write_header(Gedcom_write_hndl hndl)
