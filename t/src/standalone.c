@@ -310,7 +310,7 @@ int main(int argc, char* argv[])
     gedcom_parse_file(BOGUS_FILE_NAME);
   }
   while (run_times-- > 0) {
-    output(0, "\n=== Parsing file %s\n", file_name);
+    output(0, "\n=== Parsing file %s\n", simple_base_name(file_name));
     result |= gedcom_parse_file(file_name);
     output(0, "\n=== Total conversion failures: %d\n", total_conv_fails);
   }

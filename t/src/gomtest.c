@@ -24,6 +24,7 @@
 #include "gom.h"
 #include "output.h"
 #include "dump_gom.h"
+#include "portability.h"
 #include <stdio.h>
 #include <locale.h>
 #include "gedcom.h"
@@ -117,7 +118,7 @@ int main(int argc, char* argv[])
   gedcom_set_message_handler(gedcom_message_handler);
 
   output_open(outfilename);
-  output(0, "\n=== Parsing file %s\n", file_name);
+  output(0, "\n=== Parsing file %s\n", simple_base_name(file_name));
   result = gom_parse_file(file_name);
   if (result == 0) {
     output(1, "Parse succeeded\n");
