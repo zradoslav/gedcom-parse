@@ -1,3 +1,8 @@
+2001-12-22  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* Makefile.am, gedcom/Makefile.am: Don't link libgedcom with libintl:
+	leave that to the applications.
+
 2001-12-15  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* release 0.11
