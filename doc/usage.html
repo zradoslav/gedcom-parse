@@ -681,37 +681,30 @@ handle needs to be closed (when the program exits):<br>
                          
 <hr width="100%" size="2">                                              
  
-<h2><a name="Support_for_configure.in"></a>Support for configure.in</h2>
-   Programs using the GEDCOM parser library and using autoconf to configure 
- their sources can use the following statements in configure.in (the example 
- is checking for gedcom-parse, version 1.34):<br>
-                                                   
-<blockquote><code>AC_CHECK_LIB(gedcom, gedcom_parse_file,,<br>
-   &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;AC_MSG_ERROR(Cannot
- find libgedcom: Please install gedcom-parse))<br>
-   AC_MSG_CHECKING(for libgedcom version)<br>
-   AC_TRY_RUN([<br>
-   #include &lt;stdio.h&gt;<br>
-   #include &lt;stdlib.h&gt;<br>
-   #include &lt;gedcom.h&gt;<br>
-   int<br>
-   main()<br>
-   {<br>
-   if (GEDCOM_PARSE_VERSION &gt;= 1034) exit(0);<br>
-   exit(1);<br>
-   }],<br>
-   ac_gedcom_version_ok='yes',<br>
-   ac_gedcom_version_ok='no',<br>
-   ac_gedcom_version_ok='no')<br>
-   if test "$ac_gedcom_version_ok" = 'yes' ; then<br>
-   &nbsp; AC_MSG_RESULT(ok)<br>
-   else<br>
-   &nbsp; AC_MSG_RESULT(not ok)<br>
-   &nbsp; AC_MSG_ERROR(You need at least version 1.34 of gedcom-parse)<br>
-   fi</code><br>
-                                                   </blockquote>
-    There are three preprocessor symbols defined for version checks in the
- header:<br>
+<h2><a name="Support_for_configure.in"></a>Support for configure.in</h2>There
+is a macro available for use in configure.in for applications that are using
+autoconf to configure their sources. &nbsp;The following macro checks whether
+the Gedcom parser library is available and whether its version is high enough:<br>
+<blockquote><code>AM_LIB_GEDCOM_PARSER([<i>major</i>,[<i>minor</i>,[<i>patch</i>]]])</code><br>
+</blockquote>
+All the arguments are optional and default to 0. &nbsp;E.g. to check for
+version 1.34, you would put in configure.in the following statement:<br>
+<blockquote><code>AM_LIB_GEDCOM_PARSER(1,34)</code><br>
+</blockquote>
+To be able to use this macro in the sources of your application, you have three options:<br>
+<ul>
+  <li>Put the file <code>m4/gedcom.m4</code> in your autoconf data directory (i.e. the path given by '<code>aclocal --print-ac-dir</code>', usually <code>/usr/share/aclocal</code>). &nbsp;You can do this automatically by going into the m4 subdirectory and typing '<code>make install-m4</code>'.<br>
+    <br>
+  </li>
+  <li>If you're using autoconf, but not automake, copy the contents of <code>m4/gedcom.m4</code> in the <code>aclocal.m4</code> file in your sources.<br>
+    <br>
+  </li>
+  <li>If you're using automake, copy the contents of <code>m4/gedcom.m4</code> in the <code>acinclude.m4</code> file in your sources.<br>
+  </li>
+</ul>
+<br>
+There are three preprocessor symbols defined for version checks in the
+ header (but their direct use is deprecated: please use the macro above):<br>
                                                      
 <ul>
                                                      <li><code>GEDCOM_PARSE_VERSION_MAJOR</code></li>
@@ -721,6 +714,7 @@ handle needs to be closed (when the program exits):<br>
                                                      
 </ul>
    The last one is equal to <code>(GEDCOM_PARSE_VERSION_MAJOR * 1000) + GEDCOM_PARSE_VERSION_MINOR.</code><br>
+
      
 <hr width="100%" size="2">                                              
                                        
@@ -730,6 +724,7 @@ handle needs to be closed (when the program exits):<br>
 <pre>                    </pre>
                                                                         
                                                         
+<br>
 <br>
 <br>
 <br>
