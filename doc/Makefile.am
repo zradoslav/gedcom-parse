@@ -4,7 +4,7 @@
 
 SUBDIRS = images .
 DOC_FILES = index.html usage.html parser.html interface.html links.html \
-	    encoding.html
+	    encoding.html gomxref.html
 VERSIONED_FILES = index.html
 EXTRA_DIST = $(DOC_FILES)
 docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
@@ -15,3 +15,6 @@ doc_DATA = $(DOC_FILES)
 
 dist-hook:
 	$(replace-VERSION)
+
+gomxref.html:	$(srcdir)/../include/gom.h
+	./make_xref
