@@ -67,7 +67,7 @@ int  compat_check_subm_comm(const char* tag, const char* parent_tag,
 			    struct safe_buffer* b);
 void compat_close_subm_comm();
 int  compat_check_subm_comm_cont(const char* tag);
-Gedcom_ctxt compat_subm_comm_cont_start(Gedcom_ctxt parent, const char* str);
+Gedcom_ctxt compat_subm_comm_cont_start(Gedcom_ctxt parent, char* str);
 void compat_subm_comm_cont_end(Gedcom_ctxt parent, Gedcom_ctxt self);
 
 #endif /* __COMPAT_H */

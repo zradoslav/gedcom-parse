@@ -142,7 +142,7 @@ void set_compatibility_version(const char* version)
     
     result = sscanf(version, " %u.%u.%u", &major, &minor, &patch);
     if (result > 0) {
-      gedcom_debug_print(_("Setting compat version to %u.%u.%u"),
+      gedcom_debug_print("Setting compat version to %u.%u.%u",
 			 major, minor, patch);
       compatibility_version = major * 10000 + minor * 100 + patch;
     }
@@ -438,7 +438,7 @@ int compat_check_subm_comm_cont(const char* tag)
     return 0;
 }
 
-Gedcom_ctxt compat_subm_comm_cont_start(Gedcom_ctxt parent, const char* str)
+Gedcom_ctxt compat_subm_comm_cont_start(Gedcom_ctxt parent, char* str)
 {
   Gedcom_ctxt self = NULL;
   struct tag_struct ts;
