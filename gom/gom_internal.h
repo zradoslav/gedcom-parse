@@ -36,6 +36,8 @@
 #define _(string) gettext(string)
 #define N_(string) (string)
 
+#define UNUSED __attribute__((unused))
+
 typedef enum {
   T_NULL,
   
@@ -95,8 +97,8 @@ void gom_mem_error(const char *filename, int line);
 #define MEMORY_ERROR gom_mem_error(__FILE__, __LINE__)
 
 void def_rec_end(Gedcom_rec rec, Gedcom_ctxt self);
-void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
-		 Gedcom_val parsed_value);
+void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent,
+		 Gedcom_ctxt self, Gedcom_val parsed_value);
 void set_xref_type(struct xref_value *xr, const char* str);
 
 typedef enum {
@@ -152,11 +154,15 @@ void NULL_DESTROY(void* anything);
     }                                                                         \
   }
 
-#define _REC_PARAMS_ Gedcom_rec rec, int level, Gedcom_val xref, char *tag,   \
-                     char *raw_value, int parsed_tag, Gedcom_val parsed_value
+#define _REC_PARAMS_ Gedcom_rec rec UNUSED, int level UNUSED,                 \
+                     Gedcom_val xref UNUSED, char *tag UNUSED,                \
+                     char *raw_value UNUSED, int parsed_tag UNUSED,           \
+                     Gedcom_val parsed_value UNUSED
 
-#define _ELT_PARAMS_ Gedcom_elt elt, Gedcom_ctxt parent, int level, char *tag,\
-                     char *raw_value, int parsed_tag, Gedcom_val parsed_value
+#define _ELT_PARAMS_ Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,        \
+                     int level UNUSED, char *tag UNUSED,                      \
+                     char *raw_value UNUSED, int parsed_tag UNUSED,           \
+                     Gedcom_val parsed_value UNUSED
 
 #define REC_CB(STRUCTTYPE,CB_NAME,FUNC)                                       \
   Gedcom_ctxt CB_NAME(_REC_PARAMS_)                                           \
