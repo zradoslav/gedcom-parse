@@ -3548,7 +3548,7 @@ error_subs  : /* empty */
 error_sect  : OPEN DELIM opt_xref anytag opt_value error_subs CLOSE { }
 
 gen_sect    : OPEN DELIM opt_xref anystdtag
-              { INVALID_TAG($4); }
+              { INVALID_TAG($4.string); }
               opt_value opt_sects CLOSE
               { }
             ;
@@ -3558,7 +3558,7 @@ gen_rec : gen_rec_top
         ;
 
 gen_rec_norm : OPEN DELIM opt_xref anystdtag
-               { INVALID_TOP_TAG($4) }
+               { INVALID_TOP_TAG($4.string) }
                opt_value opt_sects CLOSE
                { }
              ;
