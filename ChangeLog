@@ -1,3 +1,18 @@
+2002-12-30  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/write.c: Give warning if character set in HEAD.CHAR is not
+	the same as current character set (and force value).
+
+	* gom/header.c, gom/gom_modify.c: Added function
+	gom_header_update_timestamp and supporting functions.
+
+2002-12-29  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* configure.in, include/gedcom.h.in: Move to three-part version
+	numbers.
+
+	* m4/gedcom.m4: Major changes.
+
 2002-12-22  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gedcom-config.in: New file.
