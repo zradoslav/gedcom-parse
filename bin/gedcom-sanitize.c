@@ -90,9 +90,11 @@ int update_header()
     if (value != NULL)
       return 1;
 
-    result = gom_delete_address(&head->source.corporation.address);
-    if (result != 0)
-      return 1;
+    if (head->source.corporation.address) {
+      result = gom_delete_address(&head->source.corporation.address);
+      if (result != 0)
+	return 1;
+    }
 
     for (i=0; i<3; i++) {
       if (head->source.corporation.phone[i]) {
