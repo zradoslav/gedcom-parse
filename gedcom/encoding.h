@@ -25,6 +25,8 @@
 #ifndef __ENCODING_H
 #define __ENCODING_H
 
+#include "utf8.h"
+
 typedef enum _ENC {
   ONE_BYTE = 0,
   TWO_BYTE_HILO = 1,
@@ -33,8 +35,7 @@ typedef enum _ENC {
 
 int open_conv_to_internal(const char* fromcode);
 void close_conv_to_internal();
-char* to_internal(const char* str, size_t len,
-		  char* output_buffer, size_t out_len);
+char* to_internal(const char* str, size_t len, struct conv_buffer *output_buf);
 void init_encodings();
 void set_encoding_width(ENCODING enc);
 void update_gconv_search_path();

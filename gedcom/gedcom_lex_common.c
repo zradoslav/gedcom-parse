@@ -29,15 +29,20 @@
 #include "gedcom.h"
 #include "gedcom.tabgen.h"
 #include "compat.h"
+#include "utf8.h"
 
 static size_t encoding_width;
 static int current_level = -1;
 static int level_diff=MAXGEDCLEVEL;
 static size_t line_len = 0;
 
-static char ptr_buf[MAXGEDCPTRLEN * UTF_FACTOR + 1];
-static char tag_buf[MAXGEDCTAGLEN * UTF_FACTOR + 1];
-static char str_buf[MAXGEDCLINELEN * UTF_FACTOR + 1];
+static struct conv_buffer* ptr_buffer = NULL;
+static struct conv_buffer* tag_buffer = NULL;
+static struct conv_buffer* str_buffer = NULL;
+
+#define INITIAL_PTR_BUFFER_LEN MAXGEDCPTRLEN * UTF_FACTOR + 1
+#define INITIAL_TAG_BUFFER_LEN MAXGEDCTAGLEN * UTF_FACTOR + 1
+#define INITIAL_STR_BUFFER_LEN MAXGEDCLINELEN * UTF_FACTOR + 1
 
 #ifdef LEXER_TEST 
 YYSTYPE gedcom_lval;
@@ -143,7 +148,7 @@ static int dummy_conv = 0;
 #elif LEX_SECTION == 2
 
 #define TO_INTERNAL(STR,OUTBUF) \
-  (dummy_conv ? STR : to_internal(STR, yyleng, OUTBUF, sizeof(OUTBUF)))
+  (dummy_conv ? STR : to_internal(STR, yyleng, OUTBUF))
 
 #define INIT_LINE_LEN \
   line_len = 0;
@@ -161,7 +166,7 @@ static int dummy_conv = 0;
 
 #define MKTAGACTION(THETAG)                                                  \
   { CHECK_LINE_LEN;                                                          \
-    gedcom_lval.tag.string = TO_INTERNAL(yytext, tag_buf);                   \
+    gedcom_lval.tag.string = TO_INTERNAL(yytext, tag_buffer);                \
     gedcom_lval.tag.value  = TAG_##THETAG;                                   \
     BEGIN(NORMAL);                                                           \
     line_no++;                                                               \
@@ -232,7 +237,7 @@ static int dummy_conv = 0;
 
 
 #define ACTION_DIGITS                                                         \
-   { int level = atoi(TO_INTERNAL(yytext, str_buf));                          \
+   { int level = atoi(TO_INTERNAL(yytext, str_buffer));                       \
      CHECK_LINE_LEN;                                                          \
      if ((level < 0) || (level > MAXGEDCLEVEL)) {                             \
        error_level_out_of_range();                                            \
@@ -267,7 +272,7 @@ static int dummy_conv = 0;
        return BADTOKEN;                                                       \
      }                                                                        \
      CHECK_LINE_LEN;                                                          \
-     gedcom_lval.tag.string = TO_INTERNAL(yytext, tag_buf);                   \
+     gedcom_lval.tag.string = TO_INTERNAL(yytext, tag_buffer);                \
      gedcom_lval.tag.value  = USERTAG;                                        \
      BEGIN(NORMAL);                                                           \
      line_no++;                                                               \
@@ -277,7 +282,7 @@ static int dummy_conv = 0;
 
 #define ACTION_DELIM                                                          \
   { CHECK_LINE_LEN;                                                           \
-    gedcom_lval.string = TO_INTERNAL(yytext, str_buf);                        \
+    gedcom_lval.string = TO_INTERNAL(yytext, str_buffer);                     \
     return DELIM;                                                             \
   }
 
@@ -285,7 +290,7 @@ static int dummy_conv = 0;
 #define ACTION_ANY                                                            \
   { char* tmp;                                                                \
     CHECK_LINE_LEN;                                                           \
-    tmp = TO_INTERNAL(yytext, str_buf);                                       \
+    tmp = TO_INTERNAL(yytext, str_buffer);                                    \
     if (!tmp) {                                                               \
       /* Something went wrong during conversion... */                         \
           error_invalid_character(yytext, yytext[0]);                         \
@@ -307,7 +312,7 @@ static int dummy_conv = 0;
 
 #define ACTION_ESCAPE                                                         \
   { CHECK_LINE_LEN;                                                           \
-    gedcom_lval.string = TO_INTERNAL(yytext, str_buf);                        \
+    gedcom_lval.string = TO_INTERNAL(yytext, str_buffer);                     \
     return ESCAPE;                                                            \
   }
 
@@ -318,7 +323,7 @@ static int dummy_conv = 0;
       error_pointer_too_long(yytext);                                         \
       return BADTOKEN;                                                        \
     }                                                                         \
-    gedcom_lval.string = TO_INTERNAL(yytext, ptr_buf);                        \
+    gedcom_lval.string = TO_INTERNAL(yytext, ptr_buffer);                     \
     return POINTER;                                                           \
   }
 
@@ -388,11 +393,28 @@ int yywrap()
   return 1;
 }
 
+static void free_conv_buffers()
+{
+  free_conv_buffer(ptr_buffer);
+  free_conv_buffer(tag_buffer);
+  free_conv_buffer(str_buffer);
+}
+
 static void yylex_cleanup()
 {
   /* fix memory leak in lex */
   yy_delete_buffer(yy_current_buffer);
   yy_current_buffer = NULL;
+  free_conv_buffers();
+}
+
+static void init_conv_buffers()
+{
+  if (!ptr_buffer) {
+    ptr_buffer = create_conv_buffer(INITIAL_PTR_BUFFER_LEN);
+    tag_buffer = create_conv_buffer(INITIAL_TAG_BUFFER_LEN);
+    str_buffer = create_conv_buffer(INITIAL_STR_BUFFER_LEN);
+  }
 }
 
 static int exitfuncregistered = 0;
@@ -401,6 +423,7 @@ void yymyinit(FILE *f)
 {
   if (! exitfuncregistered && atexit(yylex_cleanup) == 0)
     exitfuncregistered = 1;
+  init_conv_buffers();
   yyin = f;
   yyrestart(f);
   /* Reset our state */
