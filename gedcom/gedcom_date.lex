@@ -23,7 +23,7 @@
 
 %{
 #include "date.h"
-#include "gedcom_date.tab.h"
+#include "gedcom_date.tabgen.h"
   
 #define YY_NO_UNPUT
 
@@ -48,6 +48,16 @@ static int token_nr = 0;
     gedcom_date_lval.string = buf[token_nr++]; \
     return TOKEN; \
   }
+
+#define ACTION_UNEXPECTED \
+  { gedcom_date_error(_("Unexpected input")); \
+    return BADTOKEN; \
+  }
+
+#define UNKNOWN_CALENDAR_TYPE \
+  { gedcom_date_error(_("Unknown calendar type")); \
+    return BADTOKEN; \
+  }
 %}
 
 [ \t]+          /* ignore whitespace between tokens */
@@ -56,6 +66,7 @@ static int token_nr = 0;
 @#DJULIAN@      SIMPLE_RETURN(ESC_DATE_JULN)
 @#DHEBREW@      SIMPLE_RETURN(ESC_DATE_HEBR)
 "@#DFRENCH R@"  SIMPLE_RETURN(ESC_DATE_FREN)
+@#.+@           UNKNOWN_CALENDAR_TYPE
      
 FROM            SIMPLE_RETURN(MOD_FROM)
 TO              SIMPLE_RETURN(MOD_TO)  
@@ -117,6 +128,8 @@ COMP            SIMPLE_RETURN(MON_COMP)
      
 "/"             SIMPLE_RETURN(SLASH)
 [0-9]+          SIMPLE_RETURN(NUMBER)
+
+.               ACTION_UNEXPECTED
 
 %%
 
