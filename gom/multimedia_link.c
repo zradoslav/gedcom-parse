@@ -80,6 +80,10 @@ Gedcom_ctxt sub_obje_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(multimedia_link)
+DEFINE_SUB_ADDFUNC(multimedia_link)
+DEFINE_SUB_FINDFUNC(multimedia_link)
+DEFINE_SUB_REMOVEFUNC(multimedia_link)
+DEFINE_SUB_MOVEFUNC(multimedia_link)
      
 DEFINE_STRING_CB(multimedia_link, sub_obje_form_start, form)
 DEFINE_STRING_CB(multimedia_link, sub_obje_titl_start, title)

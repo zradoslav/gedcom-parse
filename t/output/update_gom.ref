@@ -283,7 +283,18 @@ change date: 0x<null>
 User data: 0x<null>
 === INDIVIDUAL (@IND2@) ===
 Restriction notice: '(null)'
-names: 0x<null>
+names: 
+  Name: 
+    Name: 'Testname'
+    Prefix: '(null)'
+    Given: '(null)'
+    Nickname: '(null)'
+    Surname prefix: '(null)'
+    Surname: '(null)'
+    Suffix: '(null)'
+    citations: 0x<null>
+    notes: 0x<null>
+    User data: 0x<null>
 Sex: '(null)'
 Individual events: 0x<null>
 Individual attributes: 0x<null>

@@ -132,6 +132,10 @@ void sub_note_end(_ELT_END_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(note_sub)
+DEFINE_SUB_ADDFUNC(note_sub)
+DEFINE_SUB_FINDFUNC(note_sub)
+DEFINE_SUB_REMOVEFUNC(note_sub)
+DEFINE_SUB_MOVEFUNC(note_sub)
      
 DEFINE_ADDFUNC2(note_sub, source_citation, citation)
 DEFINE_ADDFUNC2(note_sub, user_data, extra)

@@ -62,6 +62,10 @@ Gedcom_ctxt sub_sour_even_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(source_event)
+DEFINE_SUB_ADDFUNC(source_event)
+DEFINE_SUB_FINDFUNC(source_event)
+DEFINE_SUB_REMOVEFUNC(source_event)
+DEFINE_SUB_MOVEFUNC(source_event)
      
 DEFINE_DATE_CB(source_event, sub_sour_even_date_start, date_period)
 DEFINE_STRING_CB(source_event, sub_sour_even_plac_start, jurisdiction)

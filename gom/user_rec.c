@@ -241,6 +241,12 @@ Gedcom_ctxt user_elt_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(user_data)
+DEFINE_SUB_ADDFUNC(user_data)
+DEFINE_SUB_FINDFUNC(user_data)
+DEFINE_SUB_REMOVEFUNC(user_data)
+DEFINE_SUB_MOVEFUNC(user_data)
+     
 void user_rec_subscribe()
 {
   gedcom_subscribe_to_record(REC_USER, user_rec_start, def_rec_end);

@@ -62,6 +62,10 @@ Gedcom_ctxt sub_name_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(personal_name)
+DEFINE_SUB_ADDFUNC(personal_name)
+DEFINE_SUB_FINDFUNC(personal_name)
+DEFINE_SUB_REMOVEFUNC(personal_name)
+DEFINE_SUB_MOVEFUNC(personal_name)
      
 DEFINE_STRING_CB(personal_name, sub_name_npfx_start, prefix)
 DEFINE_STRING_CB(personal_name, sub_name_givn_start, given)

@@ -62,6 +62,10 @@ Gedcom_ctxt sub_sour_caln_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(source_description)
+DEFINE_SUB_ADDFUNC(source_description)
+DEFINE_SUB_FINDFUNC(source_description)
+DEFINE_SUB_REMOVEFUNC(source_description)
+DEFINE_SUB_MOVEFUNC(source_description)
      
 DEFINE_STRING_CB(source_description, sub_sour_caln_medi_start, media)
 

@@ -58,6 +58,10 @@ Gedcom_ctxt sub_assoc_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(association)
+DEFINE_SUB_ADDFUNC(association)
+DEFINE_SUB_FINDFUNC(association)
+DEFINE_SUB_REMOVEFUNC(association)
+DEFINE_SUB_MOVEFUNC(association)
      
 DEFINE_STRING_CB(association, sub_assoc_rela_start, relation)
 

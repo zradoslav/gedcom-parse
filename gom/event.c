@@ -126,6 +126,10 @@ Gedcom_ctxt sub_attr_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(event)
+DEFINE_SUB_ADDFUNC(event)
+DEFINE_SUB_FINDFUNC(event)
+DEFINE_SUB_REMOVEFUNC(event)
+DEFINE_SUB_MOVEFUNC(event)
      
 DEFINE_STRING_CB(event, sub_evt_type_start, type)
 DEFINE_DATE_CB(event, sub_evt_date_start, date)

@@ -213,7 +213,7 @@ int test_date_functions()
   return 0;
 }
 
-int test_record_add_delete_functions()
+int test_add_delete_functions()
 {
   struct family* fam1;
   struct individual *ind1, *ind2, *ind3, *ind4;
@@ -226,6 +226,7 @@ int test_record_add_delete_functions()
   struct user_rec* user1;
   struct xref_value* xr;
   struct xref_list* xrl;
+  struct personal_name* name;
   int result;
   char* value;
   const char* new_nr_of_children = "3";
@@ -301,22 +302,40 @@ int test_record_add_delete_functions()
   if (!xrl) return 124;
 
   result = gom_move_xref(MOVE_UP, &(fam1->children), ind4->xrefstr);
-  if (result != 0) return 127;
-
-  result = gom_move_xref(MOVE_UP, &(fam1->children), ind4->xrefstr);
-  if (result != 0) return 128;
-
-  result = gom_move_xref(MOVE_UP, &(fam1->children), ind4->xrefstr);
-  if (result != 0) return 129;
-
-  result = gom_move_xref(MOVE_DOWN, &(fam1->children), ind4->xrefstr);
-  if (result != 0) return 130;
-
-  result = gom_remove_xref(&(fam1->children), ind3->xrefstr);
   if (result != 0) return 125;
 
-  result = gom_remove_xref(&(fam1->children), ind4->xrefstr);
+  result = gom_move_xref(MOVE_UP, &(fam1->children), ind4->xrefstr);
   if (result != 0) return 126;
+
+  result = gom_move_xref(MOVE_UP, &(fam1->children), ind4->xrefstr);
+  if (result != 0) return 127;
+
+  result = gom_move_xref(MOVE_DOWN, &(fam1->children), ind4->xrefstr);
+  if (result != 0) return 128;
+
+  result = gom_remove_xref(&(fam1->children), ind3->xrefstr);
+  if (result != 0) return 129;
+
+  result = gom_remove_xref(&(fam1->children), ind4->xrefstr);
+  if (result != 0) return 130;
+
+  name = gom_add_new_personal_name(&(ind2->name));
+  if (name == NULL) return 131;
+
+  value = gom_set_string(&(name->name), "Testname");
+  if (value == NULL) return 132;
+
+  name = gom_add_new_personal_name(&(ind2->name));
+  if (name == NULL) return 133;
+
+  value = gom_set_string(&(name->name), "Testname 2");
+  if (value == NULL) return 134;
+
+  result = gom_move_personal_name(MOVE_UP, &(ind2->name), name);
+  if (result != 0) return 135;
+
+  result = gom_remove_personal_name(&(ind2->name), name);
+  if (result != 0) return 136;
 
   output(1, "Intermediate output:\n");
   show_data();
@@ -406,7 +425,7 @@ int main(int argc, char* argv[])
   if (result == 0)
     result |= test_date_functions();
   if (result == 0)
-    result |= test_record_add_delete_functions();
+    result |= test_add_delete_functions();
   if (result == 0) {
     output(1, "Test succeeded\n");
   }

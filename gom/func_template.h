@@ -31,9 +31,13 @@
 #define CLEANFUNC(STRUCTTYPE)    STRUCTTYPE ## _cleanup
 #define ADDFUNC(STRUCTTYPE)      gom_new_ ## STRUCTTYPE
 #define SUB_SETFUNC(STRUCTTYPE)  gom_set_new_ ## STRUCTTYPE
+#define SUB_ADDFUNC(STRUCTTYPE)  gom_add_new_ ## STRUCTTYPE
 #define UNREFALLFUNC(STRUCTTYPE) STRUCTTYPE ## _unref_all
 #define DELETEFUNC(STRUCTTYPE)   gom_delete_ ## STRUCTTYPE
 #define SUB_DELETEFUNC(STRUCTTYPE) gom_delete_ ## STRUCTTYPE
+#define SUB_FINDFUNC(STRUCTTYPE) find_ ## STRUCTTYPE
+#define SUB_REMOVEFUNC(STRUCTTYPE) gom_remove_ ## STRUCTTYPE
+#define SUB_MOVEFUNC(STRUCTTYPE) gom_move_ ## STRUCTTYPE
 #define ADDFUNC2(T1,T2)          T1 ## _add_ ## T2
 #define ADDFUNC2_TOVAR(T1,T2,F)  T1 ## _add_ ## T2 ## _to_ ## F
 #define ADDFUNC2_NOLIST(T1,T2)   ADDFUNC2(T1,T2)
@@ -232,6 +236,16 @@
     return obj;                                                               \
   }
 
+#define DEFINE_SUB_ADDFUNC(STRUCTTYPE)                                        \
+  struct STRUCTTYPE *SUB_ADDFUNC(STRUCTTYPE)(struct STRUCTTYPE** addto)       \
+  {                                                                           \
+    struct STRUCTTYPE *obj = NULL;                                            \
+    if (addto) {                                                              \
+      MAKE_CHAIN_ELT(STRUCTTYPE, *addto, obj);                                \
+    }                                                                         \
+    return obj;                                                               \
+  }
+
 #define DEFINE_DELETEFUNC(STRUCTTYPE)                                         \
   DECLARE_UNREFALLFUNC(STRUCTTYPE);                                           \
   int DELETEFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj)                          \
@@ -256,6 +270,55 @@
       CLEANFUNC(STRUCTTYPE)(*obj);                                            \
       SAFE_FREE(*obj);                                                        \
       result = 0;                                                             \
+    }                                                                         \
+    return result;                                                            \
+  }
+
+#define DEFINE_SUB_FINDFUNC(STRUCTTYPE)                                       \
+  struct STRUCTTYPE* SUB_FINDFUNC(STRUCTTYPE)(struct STRUCTTYPE** data,       \
+			                      struct STRUCTTYPE* obj)         \
+  {                                                                           \
+    struct STRUCTTYPE* result = NULL;                                         \
+    struct STRUCTTYPE* runner;                                                \
+    for (runner = *data ; runner ; runner = runner->next) {                   \
+      if (runner == obj) {                                                    \
+	result = runner;                                                      \
+	break;                                                                \
+      }                                                                       \
+    }                                                                         \
+    if (! result)                                                             \
+      gom_find_error(#STRUCTTYPE);                                            \
+    return result;                                                            \
+  }
+
+#define DEFINE_SUB_REMOVEFUNC(STRUCTTYPE)                                     \
+  int SUB_REMOVEFUNC(STRUCTTYPE) (struct STRUCTTYPE** data,                   \
+				  struct STRUCTTYPE* obj)                     \
+  {                                                                           \
+    int result = 1;                                                           \
+    if (data && obj) {                                                        \
+      struct STRUCTTYPE* toremove = SUB_FINDFUNC(STRUCTTYPE)(data, obj);      \
+      if (toremove) {                                                         \
+	UNLINK_CHAIN_ELT(STRUCTTYPE, *data, toremove);                        \
+	CLEANFUNC(STRUCTTYPE)(toremove);                                      \
+	SAFE_FREE(toremove);                                                  \
+	result = 0;                                                           \
+      }                                                                       \
+    }                                                                         \
+    return result;                                                            \
+  }
+
+#define DEFINE_SUB_MOVEFUNC(STRUCTTYPE)                                       \
+  int SUB_MOVEFUNC(STRUCTTYPE)(Gom_direction dir, struct STRUCTTYPE** data,   \
+			       struct STRUCTTYPE* obj)                        \
+  {                                                                           \
+    int result = 1;                                                           \
+    if (data && obj) {                                                        \
+      struct STRUCTTYPE* tomove = SUB_FINDFUNC(STRUCTTYPE)(data, obj);        \
+      if (tomove) {                                                           \
+	MOVE_CHAIN_ELT(STRUCTTYPE, dir, *data, tomove);                       \
+	result = 0;                                                           \
+      }                                                                       \
     }                                                                         \
     return result;                                                            \
   }

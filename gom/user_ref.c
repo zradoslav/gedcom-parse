@@ -77,6 +77,10 @@ Gedcom_ctxt sub_user_ref_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(user_ref_number)
+DEFINE_SUB_ADDFUNC(user_ref_number)
+DEFINE_SUB_FINDFUNC(user_ref_number)
+DEFINE_SUB_REMOVEFUNC(user_ref_number)
+DEFINE_SUB_MOVEFUNC(user_ref_number)
      
 DEFINE_STRING_CB(user_ref_number, sub_user_ref_type_start, type)
 

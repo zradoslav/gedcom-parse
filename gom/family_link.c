@@ -84,6 +84,10 @@ Gedcom_ctxt sub_fam_link_pedi_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(family_link)
+DEFINE_SUB_ADDFUNC(family_link)
+DEFINE_SUB_FINDFUNC(family_link)
+DEFINE_SUB_REMOVEFUNC(family_link)
+DEFINE_SUB_MOVEFUNC(family_link)
      
 DEFINE_ADDFUNC2(family_link, note_sub, note)
 DEFINE_ADDFUNC2(family_link, user_data, extra)
@@ -115,6 +119,12 @@ void CLEANFUNC(pedigree)(struct pedigree* ped)
   }
 }
 
+DEFINE_SUB_MAKEFUNC(pedigree)
+DEFINE_SUB_ADDFUNC(pedigree)
+DEFINE_SUB_FINDFUNC(pedigree)
+DEFINE_SUB_REMOVEFUNC(pedigree)
+DEFINE_SUB_MOVEFUNC(pedigree)
+     
 void UNREFALLFUNC(family_link)(struct family_link* obj)
 {
   if (obj) {

@@ -482,6 +482,7 @@ typedef enum _DIR {
 } Gom_direction;
   
 struct xref_value* gom_set_xref(struct xref_value** data, const char* xref);
+  
 struct xref_list*  gom_add_xref(struct xref_list** data, const char* xref);
 int                gom_remove_xref(struct xref_list** data, const char* xref);
 int                gom_move_xref(Gom_direction dir, struct xref_list** data,
@@ -490,12 +491,112 @@ int                gom_move_xref(Gom_direction dir, struct xref_list** data,
 struct address*    gom_set_new_address(struct address** obj);
 int                gom_delete_address(struct address** obj);
 
-struct place*      gom_set_new_place(struct place** obj);
-int                gom_delete_place(struct place** obj);
-
+struct association* gom_add_new_association(struct association** data);
+int                gom_remove_association(struct association** data,
+					  struct association* obj);
+int                gom_move_association(Gom_direction dir,
+					struct association** data,
+					struct association* obj);
+  
 struct change_date* gom_set_new_change_date(struct change_date** obj);
 int                 gom_delete_change_date(struct change_date** obj);
 int                 gom_update_timestamp(struct change_date** obj, time_t t);
+
+struct event*      gom_add_new_event(struct event** data);
+int                gom_remove_event(struct event** data, struct event* obj);
+int                gom_move_event(Gom_direction dir, struct event** data,
+				  struct event* obj);
+  
+struct family_link* gom_add_new_family_link(struct family_link** data);
+int                gom_remove_family_link(struct family_link** data,
+					  struct family_link* obj);
+int                gom_move_family_link(Gom_direction dir,
+					struct family_link** data,
+					struct family_link* obj);
+  
+struct lds_event*  gom_add_new_lds_event(struct lds_event** data);
+int                gom_remove_lds_event(struct lds_event** data,
+					struct lds_event* obj);
+int                gom_move_lds_event(Gom_direction dir,
+				      struct lds_event** data,
+				      struct lds_event* obj);
+  
+struct multimedia_link*
+                   gom_add_new_multimedia_link(struct multimedia_link** data);
+int                gom_remove_multimedia_link(struct multimedia_link** data,
+					      struct multimedia_link* obj);
+int                gom_move_multimedia_link(Gom_direction dir,
+					    struct multimedia_link** data,
+					    struct multimedia_link* obj);
+  
+struct note_sub*   gom_add_new_note_sub(struct note_sub** data);
+int                gom_remove_note_sub(struct note_sub** data,
+				       struct note_sub* obj);
+int                gom_move_note_sub(Gom_direction dir,
+				     struct note_sub** data,
+				     struct note_sub* obj);
+  
+struct pedigree*   gom_add_new_pedigree(struct pedigree** data);
+int                gom_remove_pedigree(struct pedigree** data,
+				       struct pedigree* obj);
+int                gom_move_pedigree(Gom_direction dir,
+				     struct pedigree** data,
+				     struct pedigree* obj);
+  
+struct personal_name* gom_add_new_personal_name(struct personal_name** data);
+int                gom_remove_personal_name(struct personal_name** data,
+					    struct personal_name* obj);
+int                gom_move_personal_name(Gom_direction dir,
+					  struct personal_name** data,
+					  struct personal_name* obj);
+  
+struct place*      gom_set_new_place(struct place** obj);
+int                gom_delete_place(struct place** obj);
+
+struct source_citation*
+                   gom_add_new_source_citation(struct source_citation** data);
+int                gom_remove_source_citation(struct source_citation** data,
+					      struct source_citation* obj);
+int                gom_move_source_citation(Gom_direction dir,
+					    struct source_citation** data,
+					    struct source_citation* obj);
+  
+struct source_description*
+              gom_add_new_source_description(struct source_description** data);
+int           gom_remove_source_description(struct source_description** data,
+					    struct source_description* obj);
+int           gom_move_source_description(Gom_direction dir,
+					  struct source_description** data,
+					  struct source_description* obj);
+  
+struct source_event* gom_add_new_source_event(struct source_event** data);
+int                gom_remove_source_event(struct source_event** data,
+					   struct source_event* obj);
+int                gom_move_source_event(Gom_direction dir,
+					 struct source_event** data,
+					 struct source_event* obj);
+  
+struct text*       gom_add_new_text(struct text** data);
+int                gom_remove_text(struct text** data,
+				   struct text* obj);
+int                gom_move_text(Gom_direction dir,
+				 struct text** data,
+				 struct text* obj);
+  
+struct user_data*  gom_add_new_user_data(struct user_data** data);
+int                gom_remove_user_data(struct user_data** data,
+					struct user_data* obj);
+int                gom_move_user_data(Gom_direction dir,
+				      struct user_data** data,
+				      struct user_data* obj);
+  
+struct user_ref_number*
+                   gom_add_new_user_ref_number(struct user_ref_number** data);
+int                gom_remove_user_ref_number(struct user_ref_number** data,
+					      struct user_ref_number* obj);
+int                gom_move_user_ref_number(Gom_direction dir,
+					    struct user_ref_number** data,
+					    struct user_ref_number* obj);
   
 #ifdef __cplusplus
 }

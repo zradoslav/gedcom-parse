@@ -67,6 +67,10 @@ Gedcom_ctxt sub_lds_event_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(lds_event)
+DEFINE_SUB_ADDFUNC(lds_event)
+DEFINE_SUB_FINDFUNC(lds_event)
+DEFINE_SUB_REMOVEFUNC(lds_event)
+DEFINE_SUB_MOVEFUNC(lds_event)
      
 DEFINE_STRING_CB(lds_event, sub_lds_event_stat_start, date_status)
 DEFINE_DATE_CB(lds_event, sub_lds_event_date_start, date)

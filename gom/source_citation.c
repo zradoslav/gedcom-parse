@@ -133,6 +133,10 @@ Gedcom_ctxt sub_cit_text_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(source_citation)
+DEFINE_SUB_ADDFUNC(source_citation)
+DEFINE_SUB_FINDFUNC(source_citation)
+DEFINE_SUB_REMOVEFUNC(source_citation)
+DEFINE_SUB_MOVEFUNC(source_citation)
      
 DEFINE_STRING_CB(source_citation, sub_cit_page_start, page)
 DEFINE_STRING_CB(source_citation, sub_cit_even_start, event)
@@ -182,6 +186,12 @@ void CLEANFUNC(text)(struct text* t)
   }
 }
 
+DEFINE_SUB_MAKEFUNC(text)
+DEFINE_SUB_ADDFUNC(text)
+DEFINE_SUB_FINDFUNC(text)
+DEFINE_SUB_REMOVEFUNC(text)
+DEFINE_SUB_MOVEFUNC(text)
+     
 void UNREFALLFUNC(source_citation)(struct source_citation* obj)
 {
   if (obj) {
