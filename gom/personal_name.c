@@ -132,22 +132,23 @@ int write_names(Gedcom_write_hndl hndl, int parent,
 				       parent, obj->name);
     if (obj->prefix)
       result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_NPFX, 0,
-					 parent, obj->prefix);
+					 ELT_SUB_PERS_NAME, obj->prefix);
     if (obj->given)
       result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_GIVN, 0,
-					 parent, obj->given);
+					 ELT_SUB_PERS_NAME, obj->given);
     if (obj->nickname)
       result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_NICK, 0,
-					 parent, obj->nickname);
+					 ELT_SUB_PERS_NAME, obj->nickname);
     if (obj->surname_prefix)
       result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_SPFX, 0,
-					 parent, obj->surname_prefix);
+					 ELT_SUB_PERS_NAME,
+					 obj->surname_prefix);
     if (obj->surname)
       result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_SURN, 0,
-					 parent, obj->surname);
+					 ELT_SUB_PERS_NAME, obj->surname);
     if (obj->suffix)
       result |= gedcom_write_element_str(hndl, ELT_SUB_PERS_NAME_NSFX, 0,
-					 parent, obj->suffix);
+					 ELT_SUB_PERS_NAME, obj->suffix);
     if (obj->citation)
       result |= write_citations(hndl, ELT_SUB_PERS_NAME, obj->citation);
     if (obj->note)
