@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gedcom-parse 0.11\n"
-"POT-Creation-Date: 2001-12-30 14:17+0100\n"
+"POT-Creation-Date: 2001-12-31 17:01+0100\n"
 "PO-Revision-Date: 2001-12-15 14:23+0100\n"
 "Last-Translator: Peter Verthez <Peter.Verthez@advalvas.be>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -49,37 +49,37 @@ msgid "Error opening conversion context for encoding %s: %s"
 msgstr "Fout bij het openen van een conversiecontext voor de codering %s: %s"
 
 #. empty
-#: gedcom/gedcom.y:1234 gedcom/gedcom.y:3330
+#: gedcom/gedcom.y:1238 gedcom/gedcom.y:3339
 msgid "Missing value"
 msgstr "Waarde ontbreekt"
 
-#: gedcom/gedcom.y:3276 gedcom/gedcom.y:3292
+#: gedcom/gedcom.y:3284 gedcom/gedcom.y:3301
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr "Ongedefieerde tag (en geen geldige gebruikerstag): %s"
 
 #. empty
-#: gedcom/gedcom.y:3325
+#: gedcom/gedcom.y:3334
 msgid "Missing pointer"
 msgstr "Verwijzing ontbreekt"
 
-#: gedcom/gedcom.y:3402
+#: gedcom/gedcom.y:3411
 msgid "Missing cross-reference"
 msgstr "Naam voor verwijzingen ontbreekt"
 
-#: gedcom/gedcom.y:3565
+#: gedcom/gedcom.y:3574
 msgid "Internal error: count array overflow"
 msgstr "Interne fout: overloop van de telrij"
 
-#: gedcom/gedcom.y:3571
+#: gedcom/gedcom.y:3580
 msgid "Internal error: count array calloc error"
 msgstr "Interne fout: allocatiefout op de telrij"
 
-#: gedcom/gedcom.y:3616
+#: gedcom/gedcom.y:3625
 msgid "Internal error: count array underflow"
 msgstr "Interne fout: underflow van de telrij"
 
-#: gedcom/gedcom.y:3678
+#: gedcom/gedcom.y:3687
 msgid "Enabling compatibility with 'ftree'"
 msgstr "Compatibiliteit met 'ftree' wordt aangezet"
 
@@ -112,29 +112,29 @@ msgstr "Ongekende codering, valt terug op één-byte"
 msgid "Could not open file '%s'"
 msgstr "Kon file '%s' niet openen"
 
-#: gedcom/message.c:109
+#: gedcom/message.c:108
 #, c-format
 msgid "Warning on line %d: "
 msgstr "Waarschuwing op lijn %d: "
 
-#: gedcom/message.c:126
+#: gedcom/message.c:124
 #, c-format
 msgid "Error on line %d: "
 msgstr "Fout op lijn %d: "
 
-#: gedcom/interface.c:92
+#: gedcom/interface.c:96
 msgid "null value"
 msgstr "geen waarde"
 
-#: gedcom/interface.c:93
+#: gedcom/interface.c:97
 msgid "character string"
 msgstr "karakterrij"
 
-#: gedcom/interface.c:94
+#: gedcom/interface.c:98
 msgid "date"
 msgstr "datum"
 
-#: gedcom/interface.c:101
+#: gedcom/interface.c:105
 #, c-format
 msgid "Wrong cast of value in file %s, at line %d: %s instead of %s"
 msgstr ""

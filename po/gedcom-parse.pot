@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2001-12-30 22:48+0100\n"
+"POT-Creation-Date: 2001-12-31 17:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,19 +122,19 @@ msgstr ""
 msgid "Error on line %d: "
 msgstr ""
 
-#: gedcom/interface.c:92
+#: gedcom/interface.c:96
 msgid "null value"
 msgstr ""
 
-#: gedcom/interface.c:93
+#: gedcom/interface.c:97
 msgid "character string"
 msgstr ""
 
-#: gedcom/interface.c:94
+#: gedcom/interface.c:98
 msgid "date"
 msgstr ""
 
-#: gedcom/interface.c:101
+#: gedcom/interface.c:105
 #, c-format
 msgid "Wrong cast of value in file %s, at line %d: %s instead of %s"
 msgstr ""
