@@ -6,6 +6,13 @@ release 0.17 (??):
    record/element identifier (that is also used as first argument in the
    *_subscribe_* functions).  The extra argument is the first argument.
 
+ - INTERFACE CHANGE: Age values are now parsed: an extra type is added to
+   the types possible in a Gedcom_val: an age_value (see documentation for
+   details).  So, instead of GEDCOM_STRING, you now need to use GEDCOM_AGE
+   for age values.
+   As a quick change, you can use the raw_value instead of the parsed_value
+   until you make the real change of using the struct age_value.
+
 release 0.16 (16 August 2002):
 
  - Another bugfixing release.

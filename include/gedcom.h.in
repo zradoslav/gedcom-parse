@@ -337,6 +337,29 @@ struct xref_value {
   Gedcom_ctxt object;
 };
 
+typedef enum _AGE_TYPE {
+  AGE_UNRECOGNIZED,
+  AGE_CHILD,
+  AGE_INFANT,
+  AGE_STILLBORN,
+  AGE_NUMERIC
+} Age_type;
+
+typedef enum _AGE_MODIFIER {
+  AGE_NO_MODIFIER,
+  AGE_LESS_THAN,
+  AGE_GREATER_THAN
+} Age_modifier;
+
+struct age_value {
+  Age_type type;
+  Age_modifier mod;
+  int years;
+  int months;
+  int days;
+  char phrase[MAX_PHRASE_LEN + 1];
+};
+
 /**************************************************************************/
 /***  Things meant to be internal, susceptible to changes               ***/
 /***  Use the GEDCOM_STRING/GEDCOM_DATE interface instead of relying    ***/
@@ -347,12 +370,14 @@ typedef enum _GEDCOM_VAL_TYPE {
   GV_NULL,
   GV_CHAR_PTR,
   GV_DATE_VALUE,
+  GV_AGE_VALUE,
   GV_XREF_PTR
 } Gedcom_val_type;
 
 union _Gedcom_val_union {
   char* string_val;
   struct date_value date_val;
+  struct age_value age_val;
   struct xref_value *xref_val;
 };
 
@@ -366,6 +391,7 @@ void gedcom_cast_error(char* file, int line,
 		       Gedcom_val_type real_type);
 
 extern struct date_value def_date_val;
+extern struct age_value  def_age_val;
 extern struct xref_value def_xref_val;
 
 #define GV_CHECK_CAST(VAL, TYPE, MEMBER, DEFVAL)                              \
@@ -400,6 +426,13 @@ typedef Gedcom_val_struct* Gedcom_val;
    GV_CHECK_CAST(VAL, GV_DATE_VALUE, date_val, def_date_val)
 #define GEDCOM_IS_DATE(VAL) \
    GV_IS_TYPE(VAL, GV_DATE_VALUE)
+
+/* This returns the struct age_value from a Gedcom_val, if appropriate  */
+/* It gives a gedcom_warning if the cast is not correct                 */
+#define GEDCOM_AGE(VAL) \
+   GV_CHECK_CAST(VAL, GV_AGE_VALUE, age_val, def_age_val)
+#define GEDCOM_IS_AGE(VAL) \
+   GV_IS_TYPE(VAL, GV_AGE_VALUE)
 
 /* This returns the (struct xref_value *) from a Gedcom_val, if appropriate */
 /* It gives a gedcom_warning if the cast is not correct                     */
@@ -452,6 +485,7 @@ void    gedcom_subscribe_to_element(Gedcom_elt elt,
 
 /* Separate value parsing functions */
 struct date_value gedcom_parse_date(char* line_value);
+struct age_value  gedcom_parse_age(char* line_value);
 
 __END_DECLS
 
