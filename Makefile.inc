@@ -1,4 +1,4 @@
-## File to include in other Makefile's, defining common commands
+## File to include in other Makefile's, defining common commands and rules
 # $Id$
 # $Name$
 
@@ -10,3 +10,14 @@ define replace-VERSION
   mv $$file.new $$file; \
   done
 endef
+
+%.tabgen.h:	%.tab.h
+	if [ ! -r $@ ] ; \
+	then \
+	  touch $@; \
+	fi
+	if ! diff -q $< $@ > /dev/null; \
+	then \
+	  rm $@; \
+	  cp $< $@; \
+	fi
