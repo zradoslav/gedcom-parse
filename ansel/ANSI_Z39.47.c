@@ -35,25 +35,9 @@
 #include <stdint.h>
 #include <string.h>
 
-static const uint32_t to_ucs4[256] =
+/* Omit first half of table: assume identity mapping (ASCII) */
+static const uint32_t to_ucs4[128] =
 {
-  /* 0x00 */ 0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0005, 0x0006, 0x0007,
-  /* 0x08 */ 0x0008, 0x0009, 0x000a, 0x000b, 0x000c, 0x000d, 0x000e, 0x000f,
-  /* 0x10 */ 0x0010, 0x0011, 0x0012, 0x0013, 0x0014, 0x0015, 0x0016, 0x0017,
-  /* 0x18 */ 0x0018, 0x0019, 0x001a, 0x001b, 0x001c, 0x001d, 0x001e, 0x001f,
-  /* 0x20 */ 0x0020, 0x0021, 0x0022, 0x0023, 0x0024, 0x0025, 0x0026, 0x0027,
-  /* 0x28 */ 0x0028, 0x0029, 0x002a, 0x002b, 0x002c, 0x002d, 0x002e, 0x002f,
-  /* 0x30 */ 0x0030, 0x0031, 0x0032, 0x0033, 0x0034, 0x0035, 0x0036, 0x0037,
-  /* 0x38 */ 0x0038, 0x0039, 0x003a, 0x003b, 0x003c, 0x003d, 0x003e, 0x003f,
-  /* 0x40 */ 0x0040, 0x0041, 0x0042, 0x0043, 0x0044, 0x0045, 0x0046, 0x0047,
-  /* 0x48 */ 0x0048, 0x0049, 0x004a, 0x004b, 0x004c, 0x004d, 0x004e, 0x004f,
-  /* 0x50 */ 0x0050, 0x0051, 0x0052, 0x0053, 0x0054, 0x0055, 0x0056, 0x0057,
-  /* 0x58 */ 0x0058, 0x0059, 0x005a, 0x005b, 0x005c, 0x005d, 0x005e, 0x005f,
-  /* 0x60 */ 0x0060, 0x0061, 0x0062, 0x0063, 0x0064, 0x0065, 0x0066, 0x0067,
-  /* 0x68 */ 0x0068, 0x0069, 0x006a, 0x006b, 0x006c, 0x006d, 0x006e, 0x006f,
-  /* 0x70 */ 0x0070, 0x0071, 0x0072, 0x0073, 0x0074, 0x0075, 0x0076, 0x0077,
-  /* 0x78 */ 0x0078, 0x0079, 0x007a, 0x007b, 0x007c, 0x007d, 0x007e, 0x007f,
-  
   /* 0x80 */ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
   /* 0x88 */ 0x0088, 0x0089, 0x0000, 0x0000, 0x0000, 0x200d, 0x200c, 0x0000,
   /* 0x90 */ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
@@ -401,9 +385,9 @@ static const char from_ucs4[][2] =
   /* 0x00c3 */ "\xe4\x41", "\xe8\x41", "\xea\x41", "\xa5\x00", "\xf0\x43",
   /* 0x00c8 */ "\xe1\x45", "\xe2\x45", "\xe3\x45", "\xe8\x45", "\xe1\x49",
   /* 0x00cd */ "\xe2\x49", "\xe3\x49", "\xe8\x49", "\xa3\x00", "\xe4\x4e",
-  /* 0x00d2 */ "\xe1\x4f", "\xe2\x4f", "\xce\x4f", "\xe4\x4f", "\xe8\x4f",
+  /* 0x00d2 */ "\xe1\x4f", "\xe2\x4f", "\xe3\x4f", "\xe4\x4f", "\xe8\x4f",
   /* 0x00d7 */ "\x00\x00", "\xa2\x00", "\xe1\x55", "\xe2\x55", "\xe3\x55",
-  /* 0x00dc */ "\xe8\x55", "\xe2\x59", "\xa4\x00", "\xc8\x00", "\xe1\x61",
+  /* 0x00dc */ "\xe8\x55", "\xe2\x59", "\xa4\x00", "\xcf\x00", "\xe1\x61",
   /* 0x00e1 */ "\xe2\x61", "\xe3\x61", "\xe4\x61", "\xe8\x61", "\xea\x61",
   /* 0x00e6 */ "\xb5\x00", "\xf0\x63", "\xe1\x65", "\xe2\x65", "\xe3\x65",
   /* 0x00eb */ "\xe8\x65", "\xe1\x69", "\xe2\x69", "\xe3\x69", "\xe8\x69",
@@ -411,13 +395,13 @@ static const char from_ucs4[][2] =
   /* 0x00f5 */ "\xe4\x6f", "\xe8\x6f", "\x00\x00", "\xb2\x00", "\xe1\x75",
   /* 0x00fa */ "\xe2\x75", "\xe3\x75", "\xe8\x75", "\xe2\x79", "\xb4\x00",
   /* 0x00ff */ "\xe8\x79", "\xe5\x41", "\xe5\x61", "\xe6\x41", "\xe6\x61",
-  /* 0x0104 */ "\xe1\x41", "\xe1\x61", "\xe2\x43", "\xe2\x63", "\xe3\x43",
+  /* 0x0104 */ "\xf1\x41", "\xf1\x61", "\xe2\x43", "\xe2\x63", "\xe3\x43",
   /* 0x0109 */ "\xe3\x63", "\xe7\x43", "\xe7\x63", "\xe9\x43", "\xe9\x63",
   /* 0x010e */ "\xe9\x44", "\xe9\x64", "\xa3\x00", "\xb3\x00", "\xe5\x45",
   /* 0x0113 */ "\xe5\x65", "\xe6\x65", "\xe6\x65", "\xe7\x45", "\xe7\x65",
   /* 0x0118 */ "\xf1\x45", "\xf1\x65", "\xe9\x45", "\xe9\x65", "\xe3\x47",
   /* 0x011d */ "\xe3\x67", "\xe6\x47", "\xe6\x67", "\xe7\x47", "\xe7\x67",
-  /* 0x0122 */ "\xf0\x47", "\xf0\x67", "\xe3\x48", "\x00\x00", "\x00\x00",
+  /* 0x0122 */ "\xf0\x47", "\xf0\x67", "\xe3\x48", "\xe3\x68", "\x00\x00",
   /* 0x0127 */ "\xe5\x68", "\xe4\x49", "\xe4\x69", "\xe5\x49", "\xe5\x69",
   /* 0x012c */ "\xe6\x49", "\xe6\x69", "\xf1\x49", "\xf1\x69", "\xe7\x49",
   /* 0x0131 */ "\xb8\x00", "\x00\x00", "\x00\x00", "\xe3\x4a", "\xe3\x6a",
@@ -436,39 +420,99 @@ static const char from_ucs4[][2] =
   /* 0x0172 */ "\xf1\x55", "\xf1\x75", "\xe3\x57", "\xe3\x77", "\xe3\x59",
   /* 0x0177 */ "\xe3\x79", "\xe8\x59", "\xe2\x5a", "\xe2\x7a", "\xe7\x5a",
   /* 0x017c */ "\xe7\x7a", "\xe9\x5a", "\xe9\x7a"
-/*
-   This table does not cover the following positions:
+};
 
-     0x01a0    "\xac\x00", "\xbc\x00"
-     ...
-     0x01af    "\xad\x00", "\xbd\x00"
-     ...
-     0x0226    "\xe7\x41", "\xe7\x61"
-     ...
-     0x022e    "\xe7\x4f", "\xe7\x6f"
-     ...
-     0x02ba    "\xb7\x00"
-     ...
-     0x02be    "\xae\x00", "\xb0\x00"
-     ...
-     0x02c7    "\xe9\x20",
-     ...
-     0x02d8    "\xe6\x20", "\xe7\x20", "\xea\x20", "\xf1\x20", "\xe4\x20",
-     0x02dd    "\xee\x20",
-     ...
-     0x200C    "\x8e\x00", "\x8d\x00"
-     ...
-     0x2113    "\xc1\x00"
-     ...
-     0x2117    "\xc2\x00"
-     ...
-     0x266d    "\xa9\x00", "\x00\x00", "\xc4\x00"
-     ...
-     0xfe20    "\xeb\x00", "\xec\x00", "\xfa\x00", "\xfb\x00"
+static const char from_ucs4_p01a[][2] =
+{
+  /* 0x01a0 */ "\xac\x00", "\xbc\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x01a5 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x01aa */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x01af */ "\xad\x00", "\xbd\x00", "\x00\x00", "\x00\x00", "\x00\x00"
+};
 
-   These would blow up the table and are therefore handled specially in
-   the code.
-*/
+static const char from_ucs4_p022[][2] =
+{
+  /* 0x0220 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x0225 */ "\x00\x00", "\xe7\x41", "\xe7\x61", "\x00\x00", "\x00\x00",
+  /* 0x022a */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\xe7\x4f",
+  /* 0x022f */ "\xe7\x6f", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00"
+};
+
+static const char from_ucs4_p02b[][2] =
+{
+  /* 0x02b0 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x02b5 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\xa7\x00",
+  /* 0x02ba */ "\xb7\x00", "\xb0\x00", "\x00\x00", "\x00\x00", "\xae\x00",
+  /* 0x02bf */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x02c4 */ "\x00\x00", "\x00\x00", "\x00\x00", "\xe9\x20", "\x00\x00",
+  /* 0x02c9 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x02ce */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x02d3 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x02d8 */ "\xe6\x20", "\xe7\x20", "\xea\x20", "\xf1\x20", "\xe4\x20",
+  /* 0x02dd */ "\xee\x20", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00"
+};
+
+static const char from_ucs4_p030[][2] =
+{
+  /* 0x0300 */ "\xe1\x00", "\xe2\x00", "\xe3\x00", "\xe4\x00", "\xe5\x00",
+  /* 0x0305 */ "\x00\x00", "\xe6\x00", "\xe7\x00", "\xe8\x00", "\xe0\x00",
+  /* 0x030a */ "\xea\x00", "\xee\x00", "\xe9\x00", "\x00\x00", "\x00\x00",
+  /* 0x030f */ "\x00\x00", "\xef\x00", "\x00\x00", "\x00\x00", "\xfe\x00",
+  /* 0x0314 */ "\x00\x00", "\xed\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x0319 */ "\x00\x00", "\x00\x00", "\x00\x00", "\xf8\x00", "\x00\x00",
+  /* 0x031e */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x0323 */ "\xf2\x00", "\xf3\x00", "\xf4\x00", "\xf7\x00", "\xf0\x00",
+  /* 0x0328 */ "\xf1\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x032d */ "\x00\x00", "\xf9\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x0332 */ "\xf6\x00", "\xf5\x00", "\x00\x00", "\x00\x00", "\x00\x00"
+};
+
+static const char from_ucs4_p1ea[][2] =
+{
+  /* 0x1ea0 */ "\x00\x00", "\x00\x00", "\xe0\x41", "\xe0\x61", "\x00\x00",
+  /* 0x1ea5 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1eaa */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1eaf */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1eb4 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1eb9 */ "\x00\x00", "\xe0\x45", "\xe0\x65", "\x00\x00", "\x00\x00",
+  /* 0x1ebe */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1ec3 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1ec8 */ "\xe0\x49", "\xe0\x69", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1ecd */ "\x00\x00", "\xe0\x4f", "\xe0\x6f", "\x00\x00", "\x00\x00",
+  /* 0x1ed2 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1ed7 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1edc */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1ee1 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1ee6 */ "\xe0\x55", "\xe0\x75", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1eeb */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1ef0 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x1ef5 */ "\x00\x00", "\xe0\x59", "\xe0\x79", "\x00\x00", "\x00\x00"
+};
+
+static const char from_ucs4_p200[][2] =
+{
+  /* 0x2000 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x2005 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x200a */ "\x00\x00", "\x00\x00", "\x8e\x00", "\x8d\x00", "\x00\x00"
+};
+
+static const char from_ucs4_p211[][2] =
+{
+  /* 0x2110 */ "\x00\x00", "\x00\x00", "\x00\x00", "\xc1\x00", "\x00\x00",
+  /* 0x2115 */ "\x00\x00", "\x00\x00", "\xc2\x00", "\x00\x00", "\x00\x00"
+};
+
+static const char from_ucs4_p266[][2] =
+{
+  /* 0x2660 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x2665 */ "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00",
+  /* 0x266a */ "\x00\x00", "\x00\x00", "\x00\x00", "\xa9\x00", "\x00\x00",
+  /* 0x266f */ "\xc4\x00", "\x00\x00", "\x00\x00", "\x00\x00", "\x00\x00"
+};
+
+static const char from_ucs4_pfe2[][2] =
+{
+  /* 0xfe20 */ "\xeb\x00", "\xec\x00", "\xfa\x00", "\xfb\x00", "\x00\x00"
 };
 
 
@@ -528,17 +572,18 @@ static const char from_ucs4[][2] =
 	      incr = 2;                                                       \
 	    }                                                                 \
 	    else {                                                            \
-              ch2 = to_ucs4[ch2];                                             \
+              /* mapping for ch2 is an identity, because is ASCII here */     \
               put32 (outptr, ch2);                                            \
               outptr += 4;                                                    \
-              ch = to_ucs4[ch];                                               \
+              ch = to_ucs4[ch - 0x80];                                        \
 	      incr = 2;                                                       \
 	    }                                                                 \
 	  }								      \
       }									      \
     else								      \
       {									      \
-	ch = to_ucs4[ch];						      \
+        if (__builtin_expect (ch >= 0x80, 0))                                 \
+	  ch = to_ucs4[ch - 0x80];					      \
 	incr = 1;							      \
       }									      \
 									      \
@@ -573,77 +618,27 @@ static const char from_ucs4[][2] =
     char tmp[2];							      \
     uint32_t ch = get32 (inptr);					      \
     const char *cp;							      \
-									      \
-    if (__builtin_expect (ch >= sizeof (from_ucs4) / sizeof (from_ucs4[0]),   \
-	0))								      \
+        								      \
+    if (__builtin_expect (ch > 0x017e, 0))				      \
       {									      \
-	if (ch >= 0x1a0 && ch <= 0x1a1)		       			      \
-          {                                                                   \
-	    static const char map[2] = "\xac\xbc";                            \
-	    tmp[0] = map[ch - 0x1a0];                                         \
-	    tmp[1] = '\0';                                                    \
-	    cp = tmp;                                                         \
-	  }                                                                   \
-	else if (ch >= 0x1af && ch <= 0x1b0)   	       			      \
-          {                                                                   \
-	    static const char map[2] = "\xad\xbd";                            \
-	    tmp[0] = map[ch - 0x1af];                                         \
-	    tmp[1] = '\0';                                                    \
-	    cp = tmp;                                                         \
-	  }                                                                   \
-	else if (ch >= 0x226 && ch <= 0x227)   	       			      \
-          {                                                                   \
-	    static const char map[2] = "\x41\x61";                            \
-	    tmp[0] = '\xe7';                                                  \
-	    tmp[1] = map[ch - 0x226];                                         \
-	    cp = tmp;                                                         \
-	  }                                                                   \
-	else if (ch >= 0x22e && ch <= 0x22f)   	       			      \
-          {                                                                   \
-	    static const char map[2] = "\x4f\x6f";                            \
-	    tmp[0] = '\xe7';                                                  \
-	    tmp[1] = map[ch - 0x22e];                                         \
-	    cp = tmp;                                                         \
-	  }                                                                   \
-	else if (ch = 0x2ba)            	       			      \
-            cp = "\xb7";                                                      \
-	else if (ch >= 0x2be && ch <= 0x2bf)   	       			      \
-          {                                                                   \
-	    static const char map[2] = "\xae\xb0";                            \
-	    tmp[0] = map[ch - 0x2be];                                         \
-	    tmp[1] = '\0';                                                    \
-	    cp = tmp;                                                         \
-	  }                                                                   \
-	else if (ch = 0x2c7)            	       			      \
-            cp = "\xe9 ";                                                     \
-	else if (ch >= 0x2d8 && ch <= 0x2dd && ch != 0x2dc)		      \
-	  {								      \
-	    static const char map[6] = "\xe6\xe7\xea\xf1\xe4\xee";	      \
-									      \
-	    tmp[0] = map[ch - 0x2d8];					      \
-	    tmp[1] = ' ';						      \
-	    cp = tmp;							      \
-	  }								      \
-	else if (ch = 0x200c)            	       			      \
-            cp = "\x8e";                                                      \
-	else if (ch = 0x200d)            	       			      \
-            cp = "\x8d";                                                      \
-	else if (ch = 0x2113)            	       			      \
-            cp = "\xc1";                                                      \
-	else if (ch = 0x2117)            	       			      \
-            cp = "\xc2";                                                      \
-	else if (ch = 0x266d)            	       			      \
-            cp = "\xa9";                                                      \
-	else if (ch = 0x266f)            	       			      \
-            cp = "\xc4";                                                      \
-	else if (ch >= 0xfe20 && ch <= 0xfe23)				      \
-	  {								      \
-	    static const char map[4] = "\xeb\xec\xfa\xfb";		      \
-									      \
-	    tmp[0] = map[ch - 0xfe20];					      \
-	    tmp[1] = '\0';						      \
-	    cp = tmp;							      \
-	  }								      \
+	if (ch >= 0x1a0 && ch < 0x1b4)		       			      \
+          cp = from_ucs4_p01a[ch - 0x1a0];                                    \
+	else if (ch >= 0x220 && ch < 0x234)   	       			      \
+          cp = from_ucs4_p022[ch - 0x220];                                    \
+	else if (ch >= 0x2b0 && ch < 0x2e2)   	       			      \
+          cp = from_ucs4_p02b[ch - 0x2b0];                                    \
+	else if (ch >= 0x300 && ch < 0x337)          			      \
+          cp = from_ucs4_p030[ch - 0x300];                                    \
+	else if (ch >= 0x1ea0 && ch < 0x1efa)          			      \
+          cp = from_ucs4_p1ea[ch - 0x1ea0];                                   \
+	else if (ch >= 0x2000 && ch < 0x200f)          			      \
+          cp = from_ucs4_p200[ch - 0x2000];                                   \
+	else if (ch >= 0x2110 && ch < 0x211a)          			      \
+          cp = from_ucs4_p211[ch - 0x2110];                                   \
+	else if (ch >= 0x2660 && ch < 0x2674)          			      \
+          cp = from_ucs4_p266[ch - 0x2660];                                   \
+	else if (ch >= 0xfe20 && ch < 0xfe25)          			      \
+          cp = from_ucs4_pfe2[ch - 0xfe20];                                   \
 	else								      \
 	  {								      \
 	    UNICODE_TAG_HANDLER (ch, 4);				      \
@@ -654,14 +649,41 @@ static const char from_ucs4[][2] =
       }									      \
     else								      \
       {									      \
-	cp = from_ucs4[ch];						      \
-									      \
-	if (__builtin_expect (cp[0], '\1') == '\0' && ch != 0)		      \
-	  {								      \
-	    /* Illegal characters.  */					      \
-	    STANDARD_ERR_HANDLER (4);					      \
-	  }								      \
-      }									      \
+        cp = from_ucs4[ch];						      \
+        if (__builtin_expect (ch >= 0x20, 1)                                  \
+	    && __builtin_expect (ch < 0x80, 1))                               \
+        {                                                                     \
+	  /* Check whether the next character is an accent, if so, then */    \
+	  /* output it first */                                               \
+	  uint32_t ch2;                                                       \
+          inptr += 4;                                                         \
+          ch2 = get32 (inptr);                                                \
+	  if (ch2 >= 0x300 && ch2 < 0x337) {                                  \
+	    const char* cp2 = from_ucs4_p030[ch2 - 0x300];                    \
+	    if (cp2[0] != '\0') {                                             \
+	      *outptr++ = cp2[0];                                             \
+	    }                                                                 \
+            else                                                              \
+              inptr -= 4;                                                     \
+	  }                                                                   \
+          else if (ch2 >= 0xfe20 && ch2 < 0xfe25) {                           \
+	    const char* cp2 = from_ucs4_pfe2[ch2 - 0xfe20];                   \
+	    if (cp2[0] != '\0') {                                             \
+	      *outptr++ = cp2[0];                                             \
+	    }                                                                 \
+	    else                                                              \
+	      inptr -= 4;                                                     \
+	  }                                                                   \
+          else                                                                \
+            inptr -= 4;                                                       \
+	}                                                                     \
+      }         							      \
+                                                                              \
+    if (__builtin_expect (cp[0], '\1') == '\0' && ch != 0)		      \
+      {								              \
+        /* Illegal characters.  */					      \
+	STANDARD_ERR_HANDLER (4);					      \
+      }								              \
 									      \
     *outptr++ = cp[0];							      \
     /* Now test for a possible second byte and write this if possible.  */    \
