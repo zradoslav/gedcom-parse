@@ -26,7 +26,9 @@
 
 #include "gedcom.h"
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* Sub-structures */
 
@@ -414,6 +416,7 @@ struct user_rec {
 /* Functions */
 
 int  gom_parse_file(const char *file_name);
+int  gom_new_model();
 
 struct header*     gom_get_header();
 struct submission* gom_get_submission();
@@ -449,6 +452,8 @@ char* gom_get_string_locale(char* data, int* conversion_failures);
 char* gom_set_string_locale(char** data, const char* locale_value);
 void  gom_set_unknown(const char* unknown);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __GEDCOM_GOM_H */

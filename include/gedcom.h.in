@@ -27,7 +27,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef GEDCOM_INTERNAL
 #include <gedcom-tags.h>
@@ -504,6 +506,8 @@ int        gedcom_warning(const char* s, ...);
 int        gedcom_message(const char* s, ...);
 int        gedcom_debug_print(const char* s, ...);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __GEDCOM_H */
