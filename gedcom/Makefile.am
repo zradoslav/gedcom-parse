@@ -63,6 +63,7 @@ EXTRA_DIST = gedcom.y \
 	     gedcom_lex_common.c \
 	     gedcom.tabgen.h \
 	     gedcom_date.tabgen.h \
+	     tag_names.h \
 	     process_tags
 	     $(BUILT_SOURCES)
 
