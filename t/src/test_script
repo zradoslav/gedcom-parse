@@ -33,7 +33,10 @@ then
   srcdir=.
   options=$extra_options
 else
-  testfile=$srcdir/input/$file
+  case $file in
+    ./*) testfile=$file ;;
+    *)   testfile=$srcdir/input/$file ;;
+  esac
   options="$options $extra_options"
 fi
 
