@@ -1,0 +1,19 @@
+# $Id$
+# $Name$
+
+# Mapping of charsets for gedcom parsing
+# Each line contains (separated by whitespace):
+#   - the gedcom name
+#   - a token identifying the width of characters and the ordering;
+#     currently supported values: 1, 2_LOHI, 2_HILO
+#   - the iconv name of the charset
+
+# First the encodings supported by the GEDCOM standard
+UNICODE		2_LOHI	UNICODELITTLE
+UNICODE		2_HILO	UNICODEBIG
+ASCII		1	ASCII
+ANSEL		1	ANSEL
+
+# Then some very frequently used non-standard encodings:
+# Note that CP1252 is a superset of ISO-8859-1, so that is covered too
+ANSI		1	CP1252
