@@ -1,3 +1,13 @@
+2002-12-01  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/encoding.c (to_internal): Use the conv_buffer interface
+	from utf8/utf8-convert.c.
+
+2002-11-30  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* utf8/utf8-convert.c: More general conversion interface (extracted
+	from utf8-locale.c and gedcom/encoding.c).
+
 2002-11-24  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gedcom/message.c: Extracted safe buffer mechanism to message.c
