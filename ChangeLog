@@ -1,3 +1,42 @@
+2002-11-22  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gom/gom_modify.c: Check whether given strings are valid.
+
+	* utf8/utf8.c: Functions for checking UTF-8 strings and computing
+	length.
+
+2002-11-04  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/multilex.c, all: Use dgettext instead of gettext => no more
+	need of textdomain().
+
+2002-11-03  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/multilex.c (gedcom_parse_file): Move setlocale call to
+	gedcom_init, make strdup of saved textdomain (to avoid corruption).
+
+	* all: Removed support for dmalloc (valgrind is much better and doesn't
+	require changing the sources).
+
+	* m4/gedcom.m4: Added m4 macro for configure.in support.
+
+2002-11-01  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom_*.lex: A pointer with only one character between the
+	at signs is also valid.
+
+	* gedcom/xref.c (is_valid_pointer): New function (also checks for
+	maximum size).
+
+	* include/gom.h: Added links to the definitions in the Gedcom standard.
+
+	* all: update of documentation
+
+2002-10-30  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom_lex_common.c, gedcom/multilex.c: Fix for line numbering
+	bug (bug 613480).
+
 2002-10-28  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* release 0.17.2
