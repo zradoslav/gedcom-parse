@@ -1,5 +1,5 @@
 /* Date manipulation routines.
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001,2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -21,7 +21,6 @@
 /* $Id$ */
 /* $Name$ */
 
-#include <stdio.h>
 #include "gedcom_internal.h"
 #include "sdncal.h"
 #include "date.h"
