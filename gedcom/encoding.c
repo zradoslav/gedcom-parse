@@ -99,6 +99,35 @@ void cleanup_encodings()
   hash_free(encodings);
 }
 
+/* Let function be called before main() */
+void update_gconv_search_path() __attribute__ ((constructor));
+
+void update_gconv_search_path()
+{
+  char *gconv_path;
+  /* Add gedcom data directory to gconv search path */
+  gconv_path = getenv(GCONV_SEARCH_PATH);
+  if (gconv_path == NULL || strstr(gconv_path, PKGDATADIR) == NULL) {
+    char *new_gconv_path;
+    if (gconv_path == NULL) {
+      new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
+				      + strlen(PKGDATADIR)
+				      + 2);
+      sprintf(new_gconv_path, "%s=%s", GCONV_SEARCH_PATH, PKGDATADIR);
+    }
+    else {
+      new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
+				      + strlen(gconv_path)
+				      + strlen(PKGDATADIR)
+				      + 3);
+      sprintf(new_gconv_path, "%s=%s:%s",
+	      GCONV_SEARCH_PATH, gconv_path, PKGDATADIR);
+    }
+    /* Ignore failures of putenv (can't do anything about it anyway) */
+    putenv(new_gconv_path);
+  }
+}
+
 void init_encodings()
 {
   if (encodings == NULL) {
@@ -107,33 +136,9 @@ void init_encodings()
     char gedcom_n[MAXBUF + 1];
     char charwidth[MAXBUF + 1];
     char iconv_n[MAXBUF + 1];
-    char *gconv_path;
 
     atexit(cleanup_encodings);
     
-    /* Add gedcom data directory to gconv search path */
-    gconv_path = getenv(GCONV_SEARCH_PATH);
-    if (gconv_path == NULL || strstr(gconv_path, PKGDATADIR) == NULL) {
-      char *new_gconv_path;
-      if (gconv_path == NULL) {
-	new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
-					+ strlen(PKGDATADIR)
-					+ 2);
-	sprintf(new_gconv_path, "%s=%s", GCONV_SEARCH_PATH, PKGDATADIR);
-      }
-      else {
-	new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
-					+ strlen(gconv_path)
-					+ strlen(PKGDATADIR)
-					+ 3);
-	sprintf(new_gconv_path, "%s=%s:%s",
-		GCONV_SEARCH_PATH, gconv_path, PKGDATADIR);
-      }
-      if (putenv(new_gconv_path) != 0) {
-	gedcom_warning(_("Failed updating conversion module path"));
-      }
-    }
-
     encodings = hash_create(HASHCOUNT_T_MAX, NULL, NULL);
     hash_set_allocator(encodings, node_alloc, node_free, NULL);
     
