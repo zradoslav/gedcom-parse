@@ -33,13 +33,13 @@ else
 fi
 
 builddir=`pwd`
+ltcmd="$srcdir/../libtool --mode=execute -dlopen $builddir/../gedcom/libgedcom.la"
 export GCONV_PATH=.:$GCONV_PATH
-export LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$LD_LIBRARY_PATH
 ln -s $srcdir/../data/gedcom.enc .
 ln -s $builddir/../ansel/.libs/ANSI_Z39.47.so .
 ln -s $srcdir/../ansel/gconv-modules .
 rm -f core
-$GEDCOM_TESTENV $builddir/src/testgedcom $options $testfile
+$ltcmd $GEDCOM_TESTENV $builddir/src/testgedcom $options $testfile
 result=$?
 rm gedcom.enc
 rm ANSI_Z39.47.so
