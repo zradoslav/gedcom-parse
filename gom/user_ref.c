@@ -43,13 +43,8 @@ Gedcom_ctxt sub_user_ref_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct user_ref_number *refn
-      = (struct user_ref_number *)malloc(sizeof(struct user_ref_number));
-
-    if (! refn)
-      MEMORY_ERROR;
-    else {
-      memset (refn, 0, sizeof(struct user_ref_number));
+    struct user_ref_number *refn = SUB_MAKEFUNC(user_ref_number)();
+    if (refn) {
       refn->value = strdup(GEDCOM_STRING(parsed_value));
       if (! refn->value) {
 	MEMORY_ERROR;
@@ -81,6 +76,8 @@ Gedcom_ctxt sub_user_ref_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(user_ref_number)
+     
 DEFINE_STRING_CB(user_ref_number, sub_user_ref_type_start, type)
 
 DEFINE_ADDFUNC2(user_ref_number, user_data, extra)

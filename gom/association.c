@@ -40,12 +40,8 @@ Gedcom_ctxt sub_assoc_start(_ELT_PARAMS_)
   if (!ctxt)
     NO_CONTEXT;
   else {
-    struct association *assoc;
-    assoc = (struct association *)malloc(sizeof(struct association));
-    if (! assoc)
-      MEMORY_ERROR;
-    else {
-      memset (assoc, 0, sizeof(struct association));
+    struct association *assoc = SUB_MAKEFUNC(association)();
+    if (assoc) {
       assoc->to = GEDCOM_XREF_PTR(parsed_value);
       
       switch (ctxt->ctxt_type) {
@@ -61,6 +57,8 @@ Gedcom_ctxt sub_assoc_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(association)
+     
 DEFINE_STRING_CB(association, sub_assoc_rela_start, relation)
 
 DEFINE_ADDFUNC2(association, note_sub, note)

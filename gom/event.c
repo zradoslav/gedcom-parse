@@ -44,11 +44,8 @@ Gedcom_ctxt sub_evt_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct event *evt = (struct event *)malloc(sizeof(struct event));
-    if (! evt)
-      MEMORY_ERROR;
-    else {
-      memset (evt, 0, sizeof(struct event));
+    struct event *evt = SUB_MAKEFUNC(event)();
+    if (evt) {
       evt->event = parsed_tag;
       evt->event_name = strdup(tag);
       if (! evt->event_name) {
@@ -93,11 +90,8 @@ Gedcom_ctxt sub_attr_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct event *evt = (struct event *)malloc(sizeof(struct event));
-    if (! evt)
-      MEMORY_ERROR;
-    else {
-      memset (evt, 0, sizeof(struct event));
+    struct event *evt = SUB_MAKEFUNC(event)();
+    if (evt) {
       evt->event = parsed_tag;
       evt->event_name = strdup(tag);
       if (! evt->event_name) {
@@ -131,6 +125,8 @@ Gedcom_ctxt sub_attr_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(event)
+     
 DEFINE_STRING_CB(event, sub_evt_type_start, type)
 DEFINE_DATE_CB(event, sub_evt_date_start, date)
 DEFINE_AGE_CB(event, sub_evt_age_start, age)

@@ -38,12 +38,8 @@ Gedcom_ctxt sub_sour_even_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct source_event *evt
-      = (struct source_event *)malloc(sizeof(struct source_event));
-    if (! evt)
-      MEMORY_ERROR;
-    else {
-      memset (evt, 0, sizeof(struct source_event));
+    struct source_event *evt = SUB_MAKEFUNC(source_event)();
+    if (evt) {
       evt->recorded_events = strdup(GEDCOM_STRING(parsed_value));
 
       if (! evt->recorded_events) {
@@ -65,6 +61,8 @@ Gedcom_ctxt sub_sour_even_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(source_event)
+     
 DEFINE_DATE_CB(source_event, sub_sour_even_date_start, date_period)
 DEFINE_STRING_CB(source_event, sub_sour_even_plac_start, jurisdiction)
 

@@ -47,13 +47,8 @@ Gedcom_ctxt sub_citation_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct source_citation *cit
-      = (struct source_citation *)malloc(sizeof(struct source_citation));
-
-    if (! cit)
-      MEMORY_ERROR;
-    else {
-      memset (cit, 0, sizeof(struct source_citation));
+    struct source_citation *cit = SUB_MAKEFUNC(source_citation)();
+    if (cit) {
       if (GEDCOM_IS_XREF_PTR(parsed_value))
 	cit->reference = GEDCOM_XREF_PTR(parsed_value);
 
@@ -137,6 +132,8 @@ Gedcom_ctxt sub_cit_text_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(source_citation)
+     
 DEFINE_STRING_CB(source_citation, sub_cit_page_start, page)
 DEFINE_STRING_CB(source_citation, sub_cit_even_start, event)
 DEFINE_STRING_CB(source_citation, sub_cit_even_role_start, role)

@@ -41,12 +41,8 @@ Gedcom_ctxt sub_lds_event_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct lds_event *lds_evt
-      = (struct lds_event*)malloc(sizeof(struct lds_event));
-    if (! lds_evt)
-      MEMORY_ERROR;
-    else {
-      memset (lds_evt, 0, sizeof(struct lds_event));
+    struct lds_event *lds_evt = SUB_MAKEFUNC(lds_event)();
+    if (lds_evt) {
       lds_evt->event = parsed_tag;
       lds_evt->event_name = strdup(tag);
       if (! lds_evt->event_name) {
@@ -70,6 +66,8 @@ Gedcom_ctxt sub_lds_event_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(lds_event)
+     
 DEFINE_STRING_CB(lds_event, sub_lds_event_stat_start, date_status)
 DEFINE_DATE_CB(lds_event, sub_lds_event_date_start, date)
 DEFINE_STRING_CB(lds_event, sub_lds_event_temp_start, temple_code)

@@ -39,12 +39,8 @@ Gedcom_ctxt sub_fam_link_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct family_link *link
-      = (struct family_link *)malloc(sizeof(struct family_link));
-    if (! link)
-      MEMORY_ERROR;
-    else {
-      memset (link, 0, sizeof(struct family_link));
+    struct family_link *link = SUB_MAKEFUNC(family_link)();
+    if (link) {
       link->family = GEDCOM_XREF_PTR(parsed_value);
       
       switch (ctxt->ctxt_type) {
@@ -87,6 +83,8 @@ Gedcom_ctxt sub_fam_link_pedi_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(family_link)
+     
 DEFINE_ADDFUNC2(family_link, note_sub, note)
 DEFINE_ADDFUNC2(family_link, user_data, extra)
 

@@ -52,11 +52,8 @@ Gedcom_ctxt sub_note_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct note_sub *note = (struct note_sub *)malloc(sizeof(struct note_sub));
-    if (! note)
-      MEMORY_ERROR;
-    else {
-      memset (note, 0, sizeof(struct note_sub));
+    struct note_sub *note = SUB_MAKEFUNC(note_sub)();
+    if (note) {
       if (GEDCOM_IS_XREF_PTR(parsed_value))
 	note->reference = GEDCOM_XREF_PTR(parsed_value);
 
@@ -113,6 +110,8 @@ Gedcom_ctxt sub_note_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(note_sub)
+     
 DEFINE_STRING_END_CB(note_sub, sub_note_end, text)
 
 DEFINE_ADDFUNC2(note_sub, source_citation, citation)

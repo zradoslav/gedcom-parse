@@ -38,12 +38,8 @@ Gedcom_ctxt sub_name_start(_ELT_PARAMS_)
   Gom_ctxt result = NULL;
 
   if (ctxt) {
-    struct personal_name *name
-      = (struct personal_name *)malloc(sizeof(struct personal_name));
-    if (! name)
-      MEMORY_ERROR;
-    else {
-      memset (name, 0, sizeof(struct personal_name));
+    struct personal_name *name = SUB_MAKEFUNC(personal_name)();
+    if (name) {
       name->name = strdup(GEDCOM_STRING(parsed_value));
 
       if (! name->name) {
@@ -65,6 +61,8 @@ Gedcom_ctxt sub_name_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(personal_name)
+     
 DEFINE_STRING_CB(personal_name, sub_name_npfx_start, prefix)
 DEFINE_STRING_CB(personal_name, sub_name_givn_start, given)
 DEFINE_STRING_CB(personal_name, sub_name_nick_start, nickname)

@@ -44,12 +44,8 @@ Gedcom_ctxt sub_obje_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct multimedia_link *mm
-      = (struct multimedia_link *)malloc(sizeof(struct multimedia_link));
-    if (! mm)
-      MEMORY_ERROR;
-    else {
-      memset (mm, 0, sizeof(struct multimedia_link));
+    struct multimedia_link *mm = SUB_MAKEFUNC(multimedia_link)();
+    if (mm) {
       if (GEDCOM_IS_XREF_PTR(parsed_value))
 	mm->reference = GEDCOM_XREF_PTR(parsed_value);
       
@@ -83,6 +79,8 @@ Gedcom_ctxt sub_obje_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(multimedia_link)
+     
 DEFINE_STRING_CB(multimedia_link, sub_obje_form_start, form)
 DEFINE_STRING_CB(multimedia_link, sub_obje_titl_start, title)
 DEFINE_STRING_CB(multimedia_link, sub_obje_file_start, file)

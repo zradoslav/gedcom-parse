@@ -38,12 +38,8 @@ Gedcom_ctxt sub_sour_caln_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    struct source_description *desc
-      = (struct source_description *)malloc(sizeof(struct source_description));
-    if (! desc)
-      MEMORY_ERROR;
-    else {
-      memset (desc, 0, sizeof(struct source_description));
+    struct source_description *desc = SUB_MAKEFUNC(source_description)();
+    if (desc) {
       desc->call_number = strdup(GEDCOM_STRING(parsed_value));
 
       if (! desc->call_number) {
@@ -65,6 +61,8 @@ Gedcom_ctxt sub_sour_caln_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
+DEFINE_SUB_MAKEFUNC(source_description)
+     
 DEFINE_STRING_CB(source_description, sub_sour_caln_medi_start, media)
 
 DEFINE_ADDFUNC2(source_description, user_data, extra)
