@@ -313,6 +313,25 @@ struct date_value {
 /* Type for context handling, meant to be opaque */
 typedef void* Gedcom_ctxt;
 
+typedef enum _XREF_TYPE {
+  XREF_NONE,
+  XREF_FAM,
+  XREF_INDI,
+  XREF_NOTE,
+  XREF_OBJE,
+  XREF_REPO,
+  XREF_SOUR,
+  XREF_SUBM,
+  XREF_SUBN,
+  XREF_USER
+} Xref_type;
+
+struct xref_value {
+  Xref_type type;
+  char *string;
+  Gedcom_ctxt object;
+};
+
 /**************************************************************************/
 /***  Things meant to be internal, susceptible to changes               ***/
 /***  Use the GEDCOM_STRING/GEDCOM_DATE interface instead of relying    ***/
@@ -322,12 +341,14 @@ typedef void* Gedcom_ctxt;
 typedef enum _GEDCOM_VAL_TYPE {
   GV_NULL,
   GV_CHAR_PTR,
-  GV_DATE_VALUE
+  GV_DATE_VALUE,
+  GV_XREF_PTR
 } Gedcom_val_type;
 
 union _Gedcom_val_union {
   char* string_val;
   struct date_value date_val;
+  struct xref_value *xref_val;
 };
 
 typedef struct _Gedcom_val_struct {
@@ -340,6 +361,7 @@ void gedcom_cast_error(char* file, int line,
 		       Gedcom_val_type real_type);
 
 extern struct date_value def_date_val;
+extern struct xref_value def_xref_val;
 
 #define GV_CHECK_CAST(VAL, TYPE, MEMBER, DEFVAL)                              \
    ((VAL->type == TYPE) ?                                                     \
@@ -373,6 +395,13 @@ typedef Gedcom_val_struct* Gedcom_val;
    GV_CHECK_CAST(VAL, GV_DATE_VALUE, date_val, def_date_val)
 #define GEDCOM_IS_DATE(VAL) \
    GV_IS_TYPE(VAL, GV_DATE_VALUE)
+
+/* This returns the (struct xref_value *) from a Gedcom_val, if appropriate */
+/* It gives a gedcom_warning if the cast is not correct                     */
+#define GEDCOM_XREF_PTR(VAL) \
+   GV_CHECK_CAST(VAL, GV_XREF_PTR, xref_val, &def_xref_val)
+#define GEDCOM_IS_XREF_PTR(VAL) \
+   GV_IS_TYPE(VAL, GV_XREF_PTR)
 
 typedef void
         (*Gedcom_msg_handler)

@@ -79,8 +79,10 @@ Gedcom_ctxt family_start(int level, Gedcom_val xref, char *tag,
 			 char *raw_value, int tag_value,
 			 Gedcom_val parsed_value)
 {
-  output(1, "Family start, xref is %s\n", GEDCOM_STRING(xref));
-  strcpy(family_xreftags[family_nr], GEDCOM_STRING(xref));
+  struct xref_value *xr = GEDCOM_XREF_PTR(xref);
+  output(1, "Family start, xref is %s\n", xr->string);
+  strcpy(family_xreftags[family_nr], xr->string);
+  xr->object = (Gedcom_ctxt)family_nr;
   return (Gedcom_ctxt)(family_nr++);
 }
 
@@ -88,9 +90,9 @@ Gedcom_ctxt rec_start(int level, Gedcom_val xref, char *tag,
 		      char *raw_value, int tag_value,
 		      Gedcom_val parsed_value)
 {
-  char *xref_str = NULL;
+  char* xref_str = NULL;
   if (! GEDCOM_IS_NULL(xref))
-    xref_str = GEDCOM_STRING(xref);
+    xref_str = GEDCOM_XREF_PTR(xref)->string;
   output(1, "Rec %s start, xref is %s\n", tag, xref_str);
   return (Gedcom_ctxt)tag_value;
 }
@@ -99,9 +101,9 @@ Gedcom_ctxt note_start(int level, Gedcom_val xref, char *tag,
 		       char *raw_value, int tag_value,
 		       Gedcom_val parsed_value)
 {
-  output(0, "== %d %s (%d) %s (xref is %s)\n",
+  output(1, "== %d %s (%d) %s (xref is %s)\n",
 	 level, tag, tag_value, GEDCOM_STRING(parsed_value),
-	 GEDCOM_STRING(xref));
+	 GEDCOM_XREF_PTR(xref)->string);
   return (Gedcom_ctxt)tag_value;
 }
 
@@ -114,7 +116,7 @@ Gedcom_ctxt submit_start(int level, Gedcom_val xref, char *tag,
 			 char *raw_value, int tag_value,
 			 Gedcom_val parsed_value)
 {
-  output(1, "Submitter, xref is %s\n", GEDCOM_STRING(xref));
+  output(1, "Submitter, xref is %s\n", GEDCOM_XREF_PTR(xref)->string);
   return (Gedcom_ctxt)10000;
 }
 

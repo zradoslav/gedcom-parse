@@ -1,5 +1,5 @@
 /* The lexer multiplexer for Gedcom.
-   Copyright (C) 2001 The Genes Development Team
+   Copyright (C) 2001,2002 The Genes Development Team
    This file is part of the Gedcom parser library.
    Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2001.
 
@@ -24,6 +24,7 @@
 #include "gedcom_internal.h"
 #include "multilex.h"
 #include "encoding.h"
+#include "xref.h"
 
 int line_no;
 
@@ -128,7 +129,10 @@ int gedcom_parse_file(char* file_name)
     
     if (lexer_init(enc, file)) {
       line_no = 1;
+      make_xref_table();
       result = gedcom_parse();
+      if (result == 0)
+	result = check_xref_table();
     }
     lexer_close();
     fclose(file);
