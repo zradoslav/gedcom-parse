@@ -46,11 +46,17 @@ int line_no = 1;
 
 int gedcom_lex();
 
+void message_handler(Gedcom_msg_type type, char *msg)
+{
+  fprintf(stderr, msg);
+}
+
 int test_loop(ENCODING enc, char* code)
 {
   int tok, res;
   init_encodings();
   set_encoding_width(enc);
+  gedcom_set_message_handler(message_handler);
   res = open_conv_to_internal(code);
   if (!res) {
     gedcom_error("Unable to open conversion context: %s",
