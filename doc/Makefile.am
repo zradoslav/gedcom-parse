@@ -4,7 +4,7 @@
 
 SUBDIRS = images .
 DOC_FILES = index.html usage.html parser.html interface.html links.html \
-	    encoding.html 
+	    encoding.html gom.html
 GENERATED_DOC_FILES = gomxref.html
 DOC_GEN = make_gom_xref
 EXTRA_DIST = $(DOC_FILES) $(DOC_GEN) index.html.in $(GENERATED_DOC_FILES)
