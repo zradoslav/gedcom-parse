@@ -29,7 +29,8 @@ libgedcom_la_SOURCES = lex.gedcom_1byte_.c \
 		       age.c \
 		       compat.c \
 		       buffer.c \
-		       write.c
+		       write.c \
+		       encoding_state.c
 libgedcom_la_LDFLAGS = -export-dynamic -version-info $(LIBVERSION)
 libgedcom_la_LIBADD  = calendar/libcalendar.la @INTLLIBS@
 BUILT_SOURCES = lex.gedcom_1byte_.c \
@@ -53,7 +54,8 @@ noinst_HEADERS = encoding.h \
 		 age.h \
 		 compat.h \
 		 buffer.h \
-		 tag_data.h
+		 tag_data.h \
+		 encoding_state.h
 EXTRA_DIST = gedcom.y \
 	     gedcom_date.y \
 	     gedcom_1byte.lex \

@@ -28,14 +28,13 @@
 #include "gedcom_internal.h"
 #include "gedcom.h"
 #include "encoding.h"
+#include "encoding_state.h"
 #include "hash.h"
 #include "utf8tools.h"
 
 #define ENCODING_CONF_FILE "gedcom.enc"
 #define GCONV_SEARCH_PATH "GCONV_PATH"
 #define MAXBUF 255
-
-struct encoding_state read_encoding;
 
 static hash_t *encodings = NULL;
 
@@ -245,21 +244,6 @@ void init_encodings()
   }
 }
 
-void set_encoding_width(Encoding enc)
-{
-  read_encoding.width = enc;
-}
-
-void set_encoding_bom(Enc_bom bom)
-{
-  read_encoding.bom = bom;
-}
-
-void set_encoding_terminator(char* term)
-{
-  strncpy(read_encoding.terminator, term, MAX_TERMINATOR_LEN);
-}
-
 static convert_t to_int = NULL;
 static char* error_value = "<error>";
 
@@ -280,16 +264,7 @@ int open_conv_to_internal(const char* fromcode)
     if (to_int != NULL)
       cleanup_utf8_conversion(to_int);
     to_int = new_to_int;
-    strncpy(read_encoding.charset, fromcode, MAX_CHARSET_LEN);
-    read_encoding.encoding = encoding;
-    gedcom_debug_print("Encoding state is now: ");
-    gedcom_debug_print("  charset   : %s", read_encoding.charset);
-    gedcom_debug_print("  encoding  : %s", read_encoding.encoding);
-    gedcom_debug_print("  width     : %d", read_encoding.width);
-    gedcom_debug_print("  BOM       : %d", read_encoding.bom);
-    gedcom_debug_print("  terminator: 0x%02x 0x%02x",
-		       read_encoding.terminator[0],
-		       read_encoding.terminator[1]);
+    set_read_encoding(fromcode, encoding);
   }
 
   return (new_to_int != NULL);

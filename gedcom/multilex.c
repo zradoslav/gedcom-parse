@@ -24,6 +24,7 @@
 #include "gedcom_internal.h"
 #include "multilex.h"
 #include "encoding.h"
+#include "encoding_state.h"
 #include "xref.h"
 
 int line_no = 0;
@@ -38,19 +39,19 @@ int lexer_init(Encoding enc, FILE* f)
   if (enc == ONE_BYTE) {
     lf  = &gedcom_1byte_lex;
     gedcom_1byte_myinit(f);
-    set_encoding_width(enc);
+    set_read_encoding_width(enc);
     return open_conv_to_internal("ASCII");
   }
   else if (enc == TWO_BYTE_HILO) {
     lf  = &gedcom_hilo_lex;
     gedcom_hilo_myinit(f);
-    set_encoding_width(enc);
+    set_read_encoding_width(enc);
     return open_conv_to_internal("UNICODE");
   }
   else if (enc == TWO_BYTE_LOHI) {
     lf  = &gedcom_lohi_lex;
     gedcom_lohi_myinit(f);
-    set_encoding_width(enc);
+    set_read_encoding_width(enc);
     return open_conv_to_internal("UNICODE");
   }
   else {
@@ -79,7 +80,7 @@ int determine_encoding(FILE* f)
   char first[2];
   int read;
 
-  set_encoding_bom(WITHOUT_BOM);
+  set_read_encoding_bom(WITHOUT_BOM);
   read = fread(first, 1, 2, f);
   if (read != 2) {
     gedcom_warning(_("Error reading from input file: %s"), strerror(errno));
@@ -98,7 +99,7 @@ int determine_encoding(FILE* f)
   }
   else if ((first[0] == '\xFE') && (first[1] == '\xFF')) {
     gedcom_debug_print("Two-byte encoding, high-low, with BOM");
-    set_encoding_bom(WITH_BOM);
+    set_read_encoding_bom(WITH_BOM);
     return TWO_BYTE_HILO;
   }
   else if ((first[0] == '0') && (first[1] == '\0')) {
@@ -108,7 +109,7 @@ int determine_encoding(FILE* f)
   }
   else if ((first[0] == '\xFF') && (first[1] == '\xFE')) {
     gedcom_debug_print("Two-byte encoding, low-high, with BOM");
-    set_encoding_bom(WITH_BOM);
+    set_read_encoding_bom(WITH_BOM);
     return TWO_BYTE_LOHI;
   }
   else if ((first[0] == '\xEF') && (first[1] == '\xBB')) {
@@ -118,7 +119,7 @@ int determine_encoding(FILE* f)
       rewind_file(f);
     }
     else if (first[0] == '\xBF') {
-      set_encoding_bom(WITH_BOM);
+      set_read_encoding_bom(WITH_BOM);
       gedcom_debug_print("UTF-8 encoding, with BOM");
     }
     else {

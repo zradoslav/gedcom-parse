@@ -26,6 +26,7 @@
 #include "gedcom_internal.h"
 #include "multilex.h"
 #include "encoding.h"
+#include "encoding_state.h"
 #include "gedcom.h"
 #include "gedcom.tabgen.h"
 #include "compat.h"
@@ -337,7 +338,7 @@ static int dummy_conv = 0;
   { CHECK_LINE_LEN;                                                           \
     INIT_LINE_LEN;                                                            \
     if (line_no == 1)                                                         \
-      set_encoding_terminator(TO_INTERNAL(yytext, str_buffer));               \
+      set_read_encoding_terminator(TO_INTERNAL(yytext, str_buffer));          \
     BEGIN(INITIAL);                                                           \
   }
 

@@ -21,19 +21,31 @@
 /* $Id$ */
 /* $Name$ */
 
-/* Basic file encoding */
-#ifndef __ENCODING_H
-#define __ENCODING_H
+#ifndef __ENCODING_STATE_H
+#define __ENCODING_STATE_H
 
 #include "gedcom.h"
-#include "utf8tools.h"
 
-void init_encodings();
-char* get_encoding(const char* gedcom_n, Encoding enc);
-void update_gconv_search_path();
+#define MAX_CHARSET_LEN 32
+#define MAX_TERMINATOR_LEN 2
 
-int open_conv_to_internal(const char* fromcode);
-void close_conv_to_internal();
-char* to_internal(const char* str, size_t len, struct conv_buffer *output_buf);
+struct encoding_state {
+  char         charset[MAX_CHARSET_LEN + 1];
+  const char*  encoding;
+  Encoding     width;
+  Enc_bom      bom;
+  char         terminator[MAX_TERMINATOR_LEN + 1];
+};
 
-#endif /* __ENCODING_H */
+struct encoding_state read_encoding;
+struct encoding_state write_encoding;
+
+void set_read_encoding(const char* charset, const char* encoding);
+void set_read_encoding_width(Encoding enc);
+void set_read_encoding_bom(Enc_bom bom);
+void set_read_encoding_terminator(char* term);
+
+void init_write_encoding();
+void init_write_terminator();
+
+#endif /* __ENCODING_STATE_H */

@@ -24,6 +24,7 @@
 #include "gedcom_internal.h"
 #include "gedcom.h"
 #include "encoding.h"
+#include "encoding_state.h"
 #include "tag_data.h"
 #include "buffer.h"
 #include "utf8tools.h"
@@ -34,12 +35,6 @@
 
 #define MAXWRITELEN MAXGEDCLINELEN
 
-/* SYS_NEWLINE is defined in config.h */
-struct encoding_state write_encoding =
-{ "ASCII", "ASCII", ONE_BYTE, WITHOUT_BOM, SYS_NEWLINE };
-Enc_from write_encoding_from   = ENC_FROM_FILE;
-Enc_from write_terminator_from = ENC_FROM_SYS;
-
 struct Gedcom_write_struct {
   int       filedesc;
   convert_t conv;
@@ -47,19 +42,6 @@ struct Gedcom_write_struct {
   const char* term;
   int       ctxt_stack[MAXGEDCLEVEL+1];
   int       ctxt_level;
-};
-
-const char* default_encoding[] = {
-  /* ONE_BYTE */      "ASCII",
-  /* TWO_BYTE_HILO */ "UCS-2BE",
-  /* TWO_BYTE_LOHI */ "UCS-2LE"
-};
-
-const char* terminator[] = {
-  /* END_CR */     "\x0D",
-  /* END_LF */     "\x0A",
-  /* END_CR_LF */  "\x0D\x0A",
-  /* END_LF_CR */  "\x0A\x0D"
 };
 
 void cleanup_write_buffer();
@@ -201,80 +183,6 @@ int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
   return 0;
 }
 
-int gedcom_write_set_encoding(Enc_from from, const char* new_charset,
-			      Encoding width, Enc_bom bom)
-{
-  char* new_encoding = NULL;
-  if (from == ENC_FROM_SYS) {
-    return 1;
-  }
-  write_encoding_from = from;
-  if (from == ENC_MANUAL) {
-    if (!strcmp(new_charset, "UNICODE")) {
-      if (width == ONE_BYTE) {
-	gedcom_error(_("Unicode cannot be encoded into one byte"));
-	return 1;
-      }
-      else {
-	new_encoding = get_encoding(new_charset, width);
-	if (new_encoding) {
-	  write_encoding.encoding = new_encoding;
-	  write_encoding.width = width;
-	  write_encoding.bom   = bom;
-	  strncpy(write_encoding.charset, new_charset, MAX_CHARSET_LEN);
-	}
-	else
-	  return 1;
-      }
-    }
-    else {
-      new_encoding = get_encoding(new_charset, ONE_BYTE);
-      if (new_encoding) {
-	write_encoding.encoding = new_encoding;
-	write_encoding.width = ONE_BYTE;
-	write_encoding.bom   = bom;
-	strncpy(write_encoding.charset, new_charset, MAX_CHARSET_LEN);
-      }
-      else
-	return 1;
-    }
-  }
-  return 0;
-}
-
-void copy_write_encoding_from_file()
-{
-  if (read_encoding.charset[0] != '\0') {
-    strncpy(write_encoding.charset, read_encoding.charset, MAX_CHARSET_LEN);
-    write_encoding.encoding = read_encoding.encoding;
-    write_encoding.width    = read_encoding.width;
-    write_encoding.bom      = read_encoding.bom;
-  }
-}
-
-int gedcom_write_set_line_terminator(Enc_from from, Enc_line_end end)
-{
-  const char* new_term = NULL;
-  write_terminator_from = from;
-  if (from == ENC_FROM_SYS) {
-    new_term = SYS_NEWLINE;
-  }
-  else if (from == ENC_MANUAL) {
-    new_term = terminator[end];
-  }
-  if (new_term)
-    strncpy(write_encoding.terminator, new_term, MAX_TERMINATOR_LEN);
-  return 0;
-}
-
-void copy_write_terminator_from_file()
-{
-  if (read_encoding.terminator[0] != '\0') {
-    strncpy(write_encoding.terminator, read_encoding.terminator,
-	    MAX_TERMINATOR_LEN);
-  }
-}
-
 Gedcom_write_hndl gedcom_write_open(const char *filename)
 {
   Gedcom_write_hndl hndl;
@@ -284,10 +192,8 @@ Gedcom_write_hndl gedcom_write_open(const char *filename)
   if (!hndl)
     MEMORY_ERROR;
   else {
-    if (write_encoding_from == ENC_FROM_FILE)
-      copy_write_encoding_from_file();
-    if (write_terminator_from == ENC_FROM_FILE)
-      copy_write_terminator_from_file();
+    init_write_encoding();
+    init_write_terminator();
     hndl->total_conv_fails = 0;
     hndl->conv = initialize_utf8_conversion(write_encoding.encoding, 0);
     if (!hndl->conv) {
