@@ -70,9 +70,9 @@ Gedcom_ctxt sub_evt_start(_ELT_PARAMS_)
 	if (! err) {
 	  switch (ctxt->ctxt_type) {
 	    case REC_FAM:
-	      family_add_event(ctxt, evt); break;
+	      ADDFUNC2(family,event)(ctxt, evt); break;
 	    case REC_INDI:
-	      individual_add_event(ctxt, evt); break;
+	      ADDFUNC2(individual,event)(ctxt, evt); break;
 	    default:
 	      UNEXPECTED_CONTEXT(ctxt->ctxt_type);
 	  }
@@ -119,7 +119,7 @@ Gedcom_ctxt sub_attr_start(_ELT_PARAMS_)
 	if (! err) {
 	  switch (ctxt->ctxt_type) {
 	    case REC_INDI:
-	      individual_add_attribute(ctxt, evt); break;
+	      ADDFUNC2_TOVAR(individual,event,attribute)(ctxt, evt); break;
 	    default:
 	      UNEXPECTED_CONTEXT(ctxt->ctxt_type);
 	  }
@@ -131,15 +131,23 @@ Gedcom_ctxt sub_attr_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_CB(event, sub_evt_type_start, type)
-DATE_CB(event, sub_evt_date_start, date)
-AGE_CB(event, sub_evt_age_start, age)
-STRING_CB(event, sub_evt_agnc_start, agency)
-STRING_CB(event, sub_evt_caus_start, cause)
-NULL_CB(event, sub_fam_evt_husb_wife_start)
-XREF_CB(event, sub_evt_famc_start, family, make_family_record)
-STRING_CB(event, sub_evt_famc_adop_start, adoption_parent)
+DEFINE_STRING_CB(event, sub_evt_type_start, type)
+DEFINE_DATE_CB(event, sub_evt_date_start, date)
+DEFINE_AGE_CB(event, sub_evt_age_start, age)
+DEFINE_STRING_CB(event, sub_evt_agnc_start, agency)
+DEFINE_STRING_CB(event, sub_evt_caus_start, cause)
+DEFINE_NULL_CB(event, sub_fam_evt_husb_wife_start)
+DEFINE_XREF_CB(event, sub_evt_famc_start, family, family)
+DEFINE_STRING_CB(event, sub_evt_famc_adop_start, adoption_parent)
      
+DEFINE_ADDFUNC2(event, source_citation, citation)
+DEFINE_ADDFUNC2(event, multimedia_link, mm_link)
+DEFINE_ADDFUNC2(event, note_sub, note)
+DEFINE_ADDFUNC2(event, user_data, extra)
+DEFINE_ADDFUNC2_NOLIST(event, place, place)
+DEFINE_ADDFUNC2_NOLIST(event, address, address)
+DEFINE_ADDFUNC2_STRN(event, phone, 3)
+
 Gedcom_ctxt sub_fam_evt_age_start(_ELT_PARAMS_)
 {
   Gom_ctxt ctxt = (Gom_ctxt)parent;
@@ -175,61 +183,6 @@ Gedcom_ctxt sub_fam_evt_age_start(_ELT_PARAMS_)
     }
   }
   return (Gedcom_ctxt)result;
-}
-
-void event_add_place(Gom_ctxt ctxt, struct place* place)
-{
-  struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  if (evt)
-    evt->place = place;
-}
-
-void event_add_address(Gom_ctxt ctxt, struct address* address)
-{
-  struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  if (evt)
-    evt->address = address;
-}
-
-void event_add_phone(Gom_ctxt ctxt, char *phone)
-{
-  struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  if (evt) {
-    int i = 0;
-    while (i<2 && evt->phone[i]) i++;
-    if (! evt->phone[i]) {
-      evt->phone[i] = strdup(phone);
-      if (! evt->phone[i]) MEMORY_ERROR;
-    }
-  }
-}
-
-void event_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
-{
-  struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  if (evt)
-    LINK_CHAIN_ELT(source_citation, evt->citation, cit);  
-}
-
-void event_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm)
-{
-  struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  if (evt)
-    LINK_CHAIN_ELT(multimedia_link, evt->mm_link, mm);
-}
-
-void event_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct event *evt = SAFE_CTXT_CAST(event, ctxt);
-  if (evt)
-    LINK_CHAIN_ELT(note_sub, evt->note, note);
-}
-
-void event_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct event *obj = SAFE_CTXT_CAST(event, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
 }
 
 void event_subscribe()
@@ -273,28 +226,28 @@ void event_subscribe()
 			      sub_evt_caus_start, def_elt_end);
 }
 
-void event_cleanup(struct event* evt)
+void CLEANFUNC(event)(struct event* evt)
 {
   if (evt) {
     SAFE_FREE(evt->event_name);
     SAFE_FREE(evt->val);
     SAFE_FREE(evt->type);
     SAFE_FREE(evt->date);
-    place_cleanup(evt->place);
-    address_cleanup(evt->address);
+    CLEANFUNC(place)(evt->place);
+    CLEANFUNC(address)(evt->address);
     SAFE_FREE(evt->phone[0]);
     SAFE_FREE(evt->phone[1]);
     SAFE_FREE(evt->phone[2]);
     SAFE_FREE(evt->age);
     SAFE_FREE(evt->agency);
     SAFE_FREE(evt->cause);
-    DESTROY_CHAIN_ELTS(source_citation, evt->citation, citation_cleanup);
-    DESTROY_CHAIN_ELTS(multimedia_link, evt->mm_link, multimedia_link_cleanup);
-    DESTROY_CHAIN_ELTS(note_sub, evt->note, note_sub_cleanup);
+    DESTROY_CHAIN_ELTS(source_citation, evt->citation);
+    DESTROY_CHAIN_ELTS(multimedia_link, evt->mm_link);
+    DESTROY_CHAIN_ELTS(note_sub, evt->note);
     SAFE_FREE(evt->husband_age);
     SAFE_FREE(evt->wife_age);
     SAFE_FREE(evt->adoption_parent);
-    DESTROY_CHAIN_ELTS(user_data, evt->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, evt->extra);
   }
 }
 

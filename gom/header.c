@@ -39,38 +39,34 @@ Gedcom_ctxt head_start(_REC_PARAMS_)
   return (Gedcom_ctxt) MAKE_GOM_CTXT(rec, header, &gom_header);
 }
 
-STRING_CB(header, head_sour_start, source.id)
-STRING_CB(header, head_sour_name_start, source.name)
-STRING_CB(header, head_sour_vers_start, source.version)
-STRING_CB(header, head_sour_corp_start, source.corporation.name)
-STRING_CB(header, head_sour_data_start, source.data.name)
-DATE_CB(header, head_sour_data_date_start, source.data.date)
-STRING_CB(header, head_sour_data_copr_start, source.data.copyright)
-STRING_CB(header, head_dest_start, destination)
-XREF_CB(header, head_subm_start, submitter, make_submitter_record)
-XREF_CB(header, head_subn_start, submission, make_submission_record)
-DATE_CB(header, head_date_start, date)
-STRING_CB(header, head_date_time_start, time)
-STRING_CB(header, head_file_start, filename)
-STRING_CB(header, head_copr_start, copyright)
-NULL_CB(header, head_gedc_start)
-STRING_CB(header, head_gedc_vers_start, gedcom.version)
-STRING_CB(header, head_gedc_form_start, gedcom.form)
-STRING_CB(header, head_char_start, charset.name)
-STRING_CB(header, head_char_vers_start, charset.version)
-STRING_CB(header, head_lang_start, language)
-NULL_CB(header, head_plac_start)
-STRING_CB(header, head_plac_form_start, place_hierarchy)
-NULL_CB(header, head_note_start) /* the end callback will fill the value */
-STRING_END_CB(header, head_note_end, note)
-     
-void header_add_address(Gom_ctxt ctxt, struct address* addr)
-{
-  struct header *head = SAFE_CTXT_CAST(header, ctxt);
-  if (head)
-    head->source.corporation.address = addr;
-}
+DEFINE_STRING_CB(header, head_sour_start, source.id)
+DEFINE_STRING_CB(header, head_sour_name_start, source.name)
+DEFINE_STRING_CB(header, head_sour_vers_start, source.version)
+DEFINE_STRING_CB(header, head_sour_corp_start, source.corporation.name)
+DEFINE_STRING_CB(header, head_sour_data_start, source.data.name)
+DEFINE_DATE_CB(header, head_sour_data_date_start, source.data.date)
+DEFINE_STRING_CB(header, head_sour_data_copr_start, source.data.copyright)
+DEFINE_STRING_CB(header, head_dest_start, destination)
+DEFINE_XREF_CB(header, head_subm_start, submitter, submitter)
+DEFINE_XREF_CB(header, head_subn_start, submission, submission)
+DEFINE_DATE_CB(header, head_date_start, date)
+DEFINE_STRING_CB(header, head_date_time_start, time)
+DEFINE_STRING_CB(header, head_file_start, filename)
+DEFINE_STRING_CB(header, head_copr_start, copyright)
+DEFINE_NULL_CB(header, head_gedc_start)
+DEFINE_STRING_CB(header, head_gedc_vers_start, gedcom.version)
+DEFINE_STRING_CB(header, head_gedc_form_start, gedcom.form)
+DEFINE_STRING_CB(header, head_char_start, charset.name)
+DEFINE_STRING_CB(header, head_char_vers_start, charset.version)
+DEFINE_STRING_CB(header, head_lang_start, language)
+DEFINE_NULL_CB(header, head_plac_start)
+DEFINE_STRING_CB(header, head_plac_form_start, place_hierarchy)
+DEFINE_NULL_CB(header, head_note_start) /* the end cb will fill the value */
+DEFINE_STRING_END_CB(header, head_note_end, note)
 
+DEFINE_ADDFUNC2_NOLIST(header, address, source.corporation.address)
+DEFINE_ADDFUNC2(header, user_data, extra)
+     
 void header_add_phone(Gom_ctxt ctxt, const char* phone)
 {
   struct header *head = SAFE_CTXT_CAST(header, ctxt);
@@ -83,13 +79,6 @@ void header_add_phone(Gom_ctxt ctxt, const char* phone)
       if (! corp->phone[i]) MEMORY_ERROR;
     }
   }
-}
-
-void header_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct header *head = SAFE_CTXT_CAST(header, ctxt);
-  if (head)
-    LINK_CHAIN_ELT(user_data, head->extra, data);
 }
 
 void header_subscribe()
@@ -137,7 +126,7 @@ void header_cleanup()
   SAFE_FREE(gom_header.source.name);
   SAFE_FREE(gom_header.source.version);
   SAFE_FREE(gom_header.source.corporation.name);
-  address_cleanup(gom_header.source.corporation.address);
+  CLEANFUNC(address)(gom_header.source.corporation.address);
   SAFE_FREE(gom_header.source.corporation.phone[0]);
   SAFE_FREE(gom_header.source.corporation.phone[1]);
   SAFE_FREE(gom_header.source.corporation.phone[2]);
@@ -156,7 +145,7 @@ void header_cleanup()
   SAFE_FREE(gom_header.language);
   SAFE_FREE(gom_header.place_hierarchy);
   SAFE_FREE(gom_header.note);
-  DESTROY_CHAIN_ELTS(user_data, gom_header.extra, user_data_cleanup);
+  DESTROY_CHAIN_ELTS(user_data, gom_header.extra);
 }
 
 struct header* gom_get_header()

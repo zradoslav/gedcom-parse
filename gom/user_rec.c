@@ -65,7 +65,7 @@ Gedcom_ctxt user_rec_start(_REC_PARAMS_)
     xr = GEDCOM_XREF_PTR(xref);
   if (xr) {
     if (! xr->object) {
-      user = make_user_record(xr->string);
+      user = MAKEFUNC(user_rec)(xr->string);
       xr->object = (Gedcom_ctxt) user;
     }
     ctxt = xr->object;
@@ -74,7 +74,7 @@ Gedcom_ctxt user_rec_start(_REC_PARAMS_)
     }
   }
   else {
-    user = make_user_record(NULL);
+    user = MAKEFUNC(user_rec)(NULL);
     ctxt = (Gedcom_ctxt) user;
   }
 
@@ -101,7 +101,48 @@ Gedcom_ctxt user_rec_start(_REC_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-GET_REC_BY_XREF(user_rec, XREF_USER, gom_get_user_rec_by_xref)
+DEFINE_DESTROYFUNC(user_rec, gom_first_user_rec)
+DEFINE_DELETEFUNC(user_rec)
+DEFINE_GETXREFFUNC(user_rec, XREF_USER)
+
+DEFINE_ADDFUNC2(user_rec, user_data, extra)
+
+/* Specific function, because xrefstr not mandatory here */
+struct user_rec* MAKEFUNC(user_rec)(const char* xrefstr)
+{
+  struct user_rec* rec = NULL;
+  MAKE_CHAIN_ELT(user_rec, gom_first_user_rec, rec);
+  if (rec && xrefstr) {
+    rec->xrefstr = strdup(xrefstr);
+    if (! rec->xrefstr) MEMORY_ERROR;
+  }
+  return rec;
+}
+
+struct user_rec* ADDFUNC(user_rec)(const char* xrefstr, const char* tag)
+{
+  struct user_rec *obj = NULL;
+  struct xref_value* xrv = gedcom_get_by_xref(xrefstr);
+  if (tag && tag[0] == '_') {
+    if (xrv)
+      gom_xref_already_in_use(xrefstr);
+    else {
+      obj = MAKEFUNC(user_rec)(xrefstr);
+      if (obj) {
+	obj->tag = strdup(tag);
+	if (! obj->tag)
+	  MEMORY_ERROR;
+	else
+	  xrv = gedcom_add_xref(XREF_USER, xrefstr, (Gedcom_ctxt)obj);
+	if (!xrv) {
+	  DESTROYFUNC(user_rec)(obj);
+	  obj = NULL;
+	}
+      }
+    }
+  }
+  return obj;
+}
 
 Gedcom_ctxt user_elt_start(_ELT_PARAMS_)
 {
@@ -142,53 +183,53 @@ Gedcom_ctxt user_elt_start(_ELT_PARAMS_)
       if (! err) {
 	switch (ctxt->obj_type) {
 	  case T_header:
-	    header_add_user_data(ctxt, data); break;
+	    ADDFUNC2(header,user_data)(ctxt, data); break;
 	  case T_submission:
-	    submission_add_user_data(ctxt, data); break;
+	    ADDFUNC2(submission,user_data)(ctxt, data); break;
 	  case T_submitter:
-	    submitter_add_user_data(ctxt, data); break;
+	    ADDFUNC2(submitter,user_data)(ctxt, data); break;
 	  case T_family:
-	    family_add_user_data(ctxt, data); break;
+	    ADDFUNC2(family,user_data)(ctxt, data); break;
 	  case T_individual:
-	    individual_add_user_data(ctxt, data); break;
+	    ADDFUNC2(individual,user_data)(ctxt, data); break;
 	  case T_multimedia:
-	    multimedia_add_user_data(ctxt, data); break;
+	    ADDFUNC2(multimedia,user_data)(ctxt, data); break;
 	  case T_note:
-	    note_add_user_data(ctxt, data); break;
+	    ADDFUNC2(note,user_data)(ctxt, data); break;
 	  case T_repository:
-	    repository_add_user_data(ctxt, data); break;
+	    ADDFUNC2(repository,user_data)(ctxt, data); break;
 	  case T_source:
-	    source_add_user_data(ctxt, data); break;
+	    ADDFUNC2(source,user_data)(ctxt, data); break;
 	  case T_user_rec:
-	    user_rec_add_user_data(ctxt, data); break;
+	    ADDFUNC2(user_rec,user_data)(ctxt, data); break;
 	  case T_address:
-	    address_add_user_data(ctxt, data); break;
+	    ADDFUNC2(address,user_data)(ctxt, data); break;
 	  case T_event:
-	    event_add_user_data(ctxt, data); break;
+	    ADDFUNC2(event,user_data)(ctxt, data); break;
 	  case T_place:
-	    place_add_user_data(ctxt, data); break;
+	    ADDFUNC2(place,user_data)(ctxt, data); break;
 	  case T_source_citation:
-	    citation_add_user_data(ctxt, data); break;
+	    ADDFUNC2(source_citation,user_data)(ctxt, data); break;
 	  case T_note_sub:
-	    note_sub_add_user_data(ctxt, data); break;
+	    ADDFUNC2(note_sub,user_data)(ctxt, data); break;
 	  case T_multimedia_link:
-	    multimedia_link_add_user_data(ctxt, data); break;
+	    ADDFUNC2(multimedia_link,user_data)(ctxt, data); break;
 	  case T_lds_event:
-	    lds_event_add_user_data(ctxt, data); break;
+	    ADDFUNC2(lds_event,user_data)(ctxt, data); break;
 	  case T_user_ref_number:
-	    user_ref_add_user_data(ctxt, data); break;
+	    ADDFUNC2(user_ref_number,user_data)(ctxt, data); break;
 	  case T_change_date:
-	    change_date_add_user_data(ctxt, data); break;
+	    ADDFUNC2(change_date,user_data)(ctxt, data); break;
 	  case T_personal_name:
-	    name_add_user_data(ctxt, data); break;
+	    ADDFUNC2(personal_name,user_data)(ctxt, data); break;
 	  case T_family_link:
-	    family_link_add_user_data(ctxt, data); break;
+	    ADDFUNC2(family_link,user_data)(ctxt, data); break;
 	  case T_association:
-	    association_add_user_data(ctxt, data); break;
+	    ADDFUNC2(association,user_data)(ctxt, data); break;
 	  case T_source_event:
-	    source_event_add_user_data(ctxt, data); break;
+	    ADDFUNC2(source_event,user_data)(ctxt, data); break;
 	  case T_source_description:
-	    source_description_add_user_data(ctxt, data); break;
+	    ADDFUNC2(source_description,user_data)(ctxt, data); break;
 	  default:
 	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
 	}
@@ -206,14 +247,7 @@ void user_rec_subscribe()
   gedcom_subscribe_to_element(ELT_USER, user_elt_start, def_elt_end);
 }
 
-void user_rec_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct user_rec *obj = SAFE_CTXT_CAST(user_rec, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void user_data_cleanup(struct user_data* data)
+void CLEANFUNC(user_data)(struct user_data* data)
 {
   if (data) {
     SAFE_FREE(data->tag);
@@ -221,35 +255,24 @@ void user_data_cleanup(struct user_data* data)
   }
 }
 
-void user_rec_cleanup(struct user_rec* rec)
+void CLEANFUNC(user_rec)(struct user_rec* rec)
 {
   if (rec) {
     SAFE_FREE(rec->xrefstr);
     SAFE_FREE(rec->tag);
     SAFE_FREE(rec->str_value);
-    DESTROY_CHAIN_ELTS(user_data, rec->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, rec->extra);
   }
 }
 
 void user_recs_cleanup()
 {
-  DESTROY_CHAIN_ELTS(user_rec, gom_first_user_rec, user_rec_cleanup);
+  DESTROY_CHAIN_ELTS(user_rec, gom_first_user_rec);
 }
 
 struct user_rec* gom_get_first_user_rec()
 {
   return gom_first_user_rec;
-}
-
-struct user_rec* make_user_record(const char* xrefstr)
-{
-  struct user_rec* rec = NULL;
-  MAKE_CHAIN_ELT(user_rec, gom_first_user_rec, rec);
-  if (rec && xrefstr) {
-    rec->xrefstr = strdup(xrefstr);
-    if (! rec->xrefstr) MEMORY_ERROR;
-  }
-  return rec;
 }
 
 int write_user_recs(Gedcom_write_hndl hndl)

@@ -34,15 +34,16 @@ typedef enum _EVT_TYPE {
 } EventType;
 
 void event_subscribe();
-void event_cleanup(struct event* evt);
-void event_add_place(Gom_ctxt ctxt, struct place* place);
-void event_add_address(Gom_ctxt ctxt, struct address* address);
-void event_add_phone(Gom_ctxt ctxt, char *phone);
-void event_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
-void event_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm);
-void event_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void event_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_events(Gedcom_write_hndl hndl, int parent, EventType evt_type,
 		 struct event* evt);
+
+DECLARE_CLEANFUNC(event);
+DECLARE_ADDFUNC2(event, source_citation);
+DECLARE_ADDFUNC2(event, multimedia_link);
+DECLARE_ADDFUNC2(event, note_sub);
+DECLARE_ADDFUNC2(event, user_data);
+DECLARE_ADDFUNC2_NOLIST(event, place);
+DECLARE_ADDFUNC2_NOLIST(event, address);
+DECLARE_ADDFUNC2_STRN(event, phone);
 
 #endif /* __EVENT_H */

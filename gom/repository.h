@@ -29,14 +29,15 @@
 
 void repository_subscribe();
 void repositories_cleanup();
-struct repository* make_repository_record(const char* xref);
-void repository_add_address(Gom_ctxt ctxt, struct address* address);
-void repository_add_phone(Gom_ctxt ctxt, const char *phone);
-void repository_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void repository_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void repository_set_record_id(Gom_ctxt ctxt, const char *rin);
-void repository_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
-void repository_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_repositories(Gedcom_write_hndl hndl);
+
+DECLARE_MAKEFUNC(repository);
+DECLARE_ADDFUNC2(repository, note_sub);
+DECLARE_ADDFUNC2(repository, user_ref_number);
+DECLARE_ADDFUNC2(repository, user_data);
+DECLARE_ADDFUNC2_NOLIST(repository, address);
+DECLARE_ADDFUNC2_NOLIST(repository, change_date);
+DECLARE_ADDFUNC2_STRN(repository, phone);
+DECLARE_ADDFUNC2_STR(repository, record_id);
 
 #endif /* __REPOSITORY_H */

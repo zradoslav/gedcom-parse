@@ -62,7 +62,7 @@ Gedcom_ctxt sub_place_start(_ELT_PARAMS_)
 	  case ELT_SUB_INDIV_GEN:
 	  case ELT_SUB_INDIV_ADOP:
 	  case ELT_SUB_INDIV_EVEN:
-	    event_add_place(ctxt, place); break;
+	    ADDFUNC2_NOLIST(event,place)(ctxt, place); break;
 	  default:
 	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
 	}
@@ -74,28 +74,11 @@ Gedcom_ctxt sub_place_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_CB(place, sub_place_form_start, place_hierarchy)
+DEFINE_STRING_CB(place, sub_place_form_start, place_hierarchy)
 
-void place_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
-{
-  struct place *place = SAFE_CTXT_CAST(place, ctxt);
-  if (place)
-    LINK_CHAIN_ELT(source_citation, place->citation, cit);  
-}
-
-void place_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct place *place = SAFE_CTXT_CAST(place, ctxt);
-  if (place)
-    LINK_CHAIN_ELT(note_sub, place->note, note);  
-}
-
-void place_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct place *obj = SAFE_CTXT_CAST(place, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
+DEFINE_ADDFUNC2(place, source_citation, citation)
+DEFINE_ADDFUNC2(place, note_sub, note)
+DEFINE_ADDFUNC2(place, user_data, extra)
 
 void place_subscribe()
 {
@@ -104,14 +87,14 @@ void place_subscribe()
 			      sub_place_form_start, def_elt_end);
 }
 
-void place_cleanup(struct place* place)
+void CLEANFUNC(place)(struct place* place)
 {
   if (place) {
     SAFE_FREE(place->value);
     SAFE_FREE(place->place_hierarchy);
-    DESTROY_CHAIN_ELTS(source_citation, place->citation, citation_cleanup);  
-    DESTROY_CHAIN_ELTS(note_sub, place->note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(user_data, place->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(source_citation, place->citation);  
+    DESTROY_CHAIN_ELTS(note_sub, place->note);
+    DESTROY_CHAIN_ELTS(user_data, place->extra);
   }
   SAFE_FREE(place);
 }

@@ -29,11 +29,12 @@
 #include "gom_internal.h"
 
 void lds_event_subscribe();
-void lds_event_cleanup(struct lds_event* mm);
-void lds_event_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void lds_event_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
-void lds_event_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_lds_events(Gedcom_write_hndl hndl, int parent,
 		     struct lds_event *lds);
+
+DECLARE_CLEANFUNC(lds_event);
+DECLARE_ADDFUNC2(lds_event, note_sub);
+DECLARE_ADDFUNC2(lds_event, source_citation);
+DECLARE_ADDFUNC2(lds_event, user_data);
 
 #endif /* __LDS_EVENT_H */

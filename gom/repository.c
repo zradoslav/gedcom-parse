@@ -35,9 +35,22 @@
 
 struct repository* gom_first_repository = NULL;
 
-REC_CB(repository, repo_start, make_repository_record)
-GET_REC_BY_XREF(repository, XREF_REPO, gom_get_repository_by_xref)
-STRING_CB(repository, repo_name_start, name)
+DEFINE_MAKEFUNC(repository, gom_first_repository)
+DEFINE_DESTROYFUNC(repository, gom_first_repository)
+DEFINE_ADDFUNC(repository, XREF_REPO)
+DEFINE_DELETEFUNC(repository)
+DEFINE_GETXREFFUNC(repository, XREF_REPO)
+     
+DEFINE_REC_CB(repository, repo_start)
+DEFINE_STRING_CB(repository, repo_name_start, name)
+
+DEFINE_ADDFUNC2(repository, note_sub, note)
+DEFINE_ADDFUNC2(repository, user_ref_number, ref)
+DEFINE_ADDFUNC2(repository, user_data, extra)
+DEFINE_ADDFUNC2_NOLIST(repository, address, address)
+DEFINE_ADDFUNC2_NOLIST(repository, change_date, change_date)
+DEFINE_ADDFUNC2_STRN(repository, phone, 3)
+DEFINE_ADDFUNC2_STR(repository, record_id)
 
 void repository_subscribe()
 {
@@ -45,99 +58,31 @@ void repository_subscribe()
   gedcom_subscribe_to_element(ELT_REPO_NAME, repo_name_start, def_elt_end);
 }
 
-void repository_add_address(Gom_ctxt ctxt, struct address* address)
-{
-  struct repository *repo = SAFE_CTXT_CAST(repository, ctxt);
-  if (repo)
-    repo->address = address;
-}
-
-void repository_add_phone(Gom_ctxt ctxt, const char *phone)
-{
-  struct repository *repo = SAFE_CTXT_CAST(repository, ctxt);
-  if (repo) {
-    int i = 0;
-    while (i<2 && repo->phone[i]) i++;
-    if (! repo->phone[i]) {
-      repo->phone[i] = strdup(phone);
-      if (! repo->phone[i]) MEMORY_ERROR;
-    }
-  }
-}
-
-void repository_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct repository *repo = SAFE_CTXT_CAST(repository, ctxt);
-  if (repo)
-    LINK_CHAIN_ELT(note_sub, repo->note, note);
-}
-
-void repository_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
-{
-  struct repository *repo = SAFE_CTXT_CAST(repository, ctxt);
-  if (repo)
-    LINK_CHAIN_ELT(user_ref_number, repo->ref, ref);
-}
-
-void repository_set_record_id(Gom_ctxt ctxt, const char *rin)
-{
-  struct repository *repo = SAFE_CTXT_CAST(repository, ctxt);
-  if (repo) {
-    repo->record_id = strdup(rin);
-    if (! repo->record_id) MEMORY_ERROR;
-  }
-}
-
-void repository_set_change_date(Gom_ctxt ctxt, struct change_date* chan)
-{
-  struct repository *repo = SAFE_CTXT_CAST(repository, ctxt);
-  if (repo)
-    repo->change_date = chan;
-}
-
-void repository_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct repository *obj = SAFE_CTXT_CAST(repository, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void repository_cleanup(struct repository* repo)
+void CLEANFUNC(repository)(struct repository* repo)
 {
   if (repo) {
     SAFE_FREE(repo->xrefstr);
     SAFE_FREE(repo->name);
-    address_cleanup(repo->address);
+    CLEANFUNC(address)(repo->address);
     SAFE_FREE(repo->phone[0]);
     SAFE_FREE(repo->phone[1]);
     SAFE_FREE(repo->phone[2]);
-    DESTROY_CHAIN_ELTS(note_sub, repo->note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(user_ref_number, repo->ref, user_ref_cleanup);
+    DESTROY_CHAIN_ELTS(note_sub, repo->note);
+    DESTROY_CHAIN_ELTS(user_ref_number, repo->ref);
     SAFE_FREE(repo->record_id);
-    change_date_cleanup(repo->change_date);
-    DESTROY_CHAIN_ELTS(user_data, repo->extra, user_data_cleanup);
+    CLEANFUNC(change_date)(repo->change_date);
+    DESTROY_CHAIN_ELTS(user_data, repo->extra);
   }
 }
 
 void repositories_cleanup()
 {
-  DESTROY_CHAIN_ELTS(repository, gom_first_repository, repository_cleanup);
+  DESTROY_CHAIN_ELTS(repository, gom_first_repository);
 }
 
 struct repository* gom_get_first_repository()
 {
   return gom_first_repository;
-}
-
-struct repository* make_repository_record(const char* xrefstr)
-{
-  struct repository* repo = NULL;
-  MAKE_CHAIN_ELT(repository, gom_first_repository, repo);
-  if (repo) {
-    repo->xrefstr = strdup(xrefstr);
-    if (! repo->xrefstr) MEMORY_ERROR;
-  }
-  return repo;
 }
 
 int write_repositories(Gedcom_write_hndl hndl)

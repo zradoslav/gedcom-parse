@@ -28,11 +28,12 @@
 #include "gom_internal.h"
 
 void association_subscribe();
-void association_cleanup(struct association* assoc);
-void association_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void association_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
-void association_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_associations(Gedcom_write_hndl hndl, int parent,
 		       struct association *assoc);
+
+DECLARE_CLEANFUNC(association);
+DECLARE_ADDFUNC2(association, note_sub);
+DECLARE_ADDFUNC2(association, source_citation);
+DECLARE_ADDFUNC2(association, user_data);
 
 #endif /* __ASSOCIATION_H */

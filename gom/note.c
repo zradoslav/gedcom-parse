@@ -43,7 +43,7 @@ Gedcom_ctxt note_start(_REC_PARAMS_)
   struct xref_value* xr = GEDCOM_XREF_PTR(xref);
   struct note* note = (struct note*) xr->object;
   if (! note) {
-    note = make_note_record(xr->string);
+    note = MAKEFUNC(note)(xr->string);
     xr->object = (Gedcom_ctxt) note;
   }
   if (note)
@@ -51,8 +51,19 @@ Gedcom_ctxt note_start(_REC_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_END_REC_CB(note, note_end, text)
-GET_REC_BY_XREF(note, XREF_NOTE, gom_get_note_by_xref)
+DEFINE_MAKEFUNC(note, gom_first_note)
+DEFINE_DESTROYFUNC(note, gom_first_note)
+DEFINE_ADDFUNC(note, XREF_NOTE)
+DEFINE_DELETEFUNC(note)
+DEFINE_GETXREFFUNC(note, XREF_NOTE)
+     
+DEFINE_STRING_END_REC_CB(note, note_end, text)
+
+DEFINE_ADDFUNC2(note, source_citation, citation)
+DEFINE_ADDFUNC2(note, user_ref_number, ref)
+DEFINE_ADDFUNC2(note, user_data, extra)
+DEFINE_ADDFUNC2_NOLIST(note, change_date, change_date)
+DEFINE_ADDFUNC2_STR(note, record_id)
      
 Gedcom_ctxt sub_cont_conc_start(_ELT_PARAMS_)
 {
@@ -74,75 +85,27 @@ void note_subscribe()
   gedcom_subscribe_to_element(ELT_SUB_CONC, sub_cont_conc_start, def_elt_end);
 }
 
-void note_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
-{
-  struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  if (note)
-    LINK_CHAIN_ELT(source_citation, note->citation, cit);    
-}
-
-void note_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
-{
-  struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  if (note)
-    LINK_CHAIN_ELT(user_ref_number, note->ref, ref);
-}
-
-void note_set_record_id(Gom_ctxt ctxt, const char *rin)
-{
-  struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  if (note) {
-    note->record_id = strdup(rin);
-    if (! note->record_id) MEMORY_ERROR;
-  }
-}
-
-void note_set_change_date(Gom_ctxt ctxt, struct change_date* chan)
-{
-  struct note *note = SAFE_CTXT_CAST(note, ctxt);
-  if (note)
-    note->change_date = chan;
-}
-
-void note_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct note *obj = SAFE_CTXT_CAST(note, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void note_cleanup(struct note* note)
+void CLEANFUNC(note)(struct note* note)
 {
   if (note) {
     SAFE_FREE(note->xrefstr);
     SAFE_FREE(note->text);
-    DESTROY_CHAIN_ELTS(source_citation, note->citation, citation_cleanup);
-    DESTROY_CHAIN_ELTS(user_ref_number, note->ref, user_ref_cleanup);
+    DESTROY_CHAIN_ELTS(source_citation, note->citation);
+    DESTROY_CHAIN_ELTS(user_ref_number, note->ref);
     SAFE_FREE(note->record_id);
-    change_date_cleanup(note->change_date);
-    DESTROY_CHAIN_ELTS(user_data, note->extra, user_data_cleanup);
+    CLEANFUNC(change_date)(note->change_date);
+    DESTROY_CHAIN_ELTS(user_data, note->extra);
   }
 }
 
 void notes_cleanup()
 {
-  DESTROY_CHAIN_ELTS(note, gom_first_note, note_cleanup);
+  DESTROY_CHAIN_ELTS(note, gom_first_note);
 }
 
 struct note* gom_get_first_note()
 {
   return gom_first_note;
-}
-
-struct note* make_note_record(const char* xrefstr)
-{
-  struct note* note = NULL;
-  MAKE_CHAIN_ELT(note, gom_first_note, note);
-  if (note) {
-    note->xrefstr = strdup(xrefstr);
-    if (! note->xrefstr) MEMORY_ERROR;
-  }
-  return note;
 }
 
 int write_notes(Gedcom_write_hndl hndl)

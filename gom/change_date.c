@@ -54,19 +54,19 @@ Gedcom_ctxt sub_chan_start(_ELT_PARAMS_)
       
       switch (ctxt->ctxt_type) {
 	case REC_FAM:
-	  family_set_change_date(ctxt, chan); break;
+	  ADDFUNC2_NOLIST(family,change_date)(ctxt, chan); break;
 	case REC_INDI:
-	  individual_set_change_date(ctxt, chan); break;
+	  ADDFUNC2_NOLIST(individual,change_date)(ctxt, chan); break;
 	case REC_OBJE:
-	  multimedia_set_change_date(ctxt, chan); break;
+	  ADDFUNC2_NOLIST(multimedia,change_date)(ctxt, chan); break;
 	case REC_NOTE:
-	  note_set_change_date(ctxt, chan); break;
+	  ADDFUNC2_NOLIST(note,change_date)(ctxt, chan); break;
 	case REC_REPO:
-	  repository_set_change_date(ctxt, chan); break;
+	  ADDFUNC2_NOLIST(repository,change_date)(ctxt, chan); break;
 	case REC_SOUR:
-	  source_set_change_date(ctxt, chan); break;
+	  ADDFUNC2_NOLIST(source,change_date)(ctxt, chan); break;
 	case REC_SUBM:
-	  submitter_set_change_date(ctxt, chan); break;
+	  ADDFUNC2_NOLIST(submitter,change_date)(ctxt, chan); break;
 	default:
 	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
       }
@@ -77,8 +77,11 @@ Gedcom_ctxt sub_chan_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-DATE_CB(change_date, sub_chan_date_start, date)
-STRING_CB(change_date, sub_chan_time_start, time)
+DEFINE_DATE_CB(change_date, sub_chan_date_start, date)
+DEFINE_STRING_CB(change_date, sub_chan_time_start, time)
+
+DEFINE_ADDFUNC2(change_date, note_sub, note)
+DEFINE_ADDFUNC2(change_date, user_data, extra)
 
 void change_date_subscribe()
 {
@@ -89,27 +92,13 @@ void change_date_subscribe()
 			      def_elt_end);
 }
 
-void change_date_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct change_date *chan = SAFE_CTXT_CAST(change_date, ctxt);
-  if (chan)
-    LINK_CHAIN_ELT(note_sub, chan->note, note);
-}
-
-void change_date_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct change_date *obj = SAFE_CTXT_CAST(change_date, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void change_date_cleanup(struct change_date *chan)
+void CLEANFUNC(change_date)(struct change_date *chan)
 {
   if (chan) {
     SAFE_FREE(chan->date);
     SAFE_FREE(chan->time);
-    DESTROY_CHAIN_ELTS(note_sub, chan->note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(user_data, chan->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(note_sub, chan->note);
+    DESTROY_CHAIN_ELTS(user_data, chan->extra);
   }
   SAFE_FREE(chan);
 }

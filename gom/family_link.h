@@ -33,10 +33,11 @@ typedef enum _LINK_TYPE {
 } LinkType;
 
 void family_link_subscribe();
-void family_link_cleanup(struct family_link* link);
-void family_link_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void family_link_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_family_links(Gedcom_write_hndl hndl, int parent, LinkType type,
 		       struct family_link *link);
+
+DECLARE_CLEANFUNC(family_link);
+DECLARE_ADDFUNC2(family_link, note_sub);
+DECLARE_ADDFUNC2(family_link, user_data);
 
 #endif /* __FAMILY_LINK_H */

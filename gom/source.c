@@ -38,20 +38,34 @@
 
 struct source* gom_first_source = NULL;
 
-REC_CB(source, sour_start, make_source_record)
-GET_REC_BY_XREF(source, XREF_SOUR, gom_get_source_by_xref)
-NULL_CB(source, sour_data_start)
-STRING_CB(source, sour_data_agnc_start, data.agency)
-NULL_CB(source, sour_auth_start)  /* value set by end callback */
-STRING_END_CB(source, sour_auth_end, author)
-NULL_CB(source, sour_titl_start)  /* value set by end callback */
-STRING_END_CB(source, sour_titl_end, title)
-STRING_CB(source, sour_abbr_start, abbreviation)
-NULL_CB(source, sour_publ_start)  /* value set by end callback */
-STRING_END_CB(source, sour_publ_end, publication)
-NULL_CB(source, sour_text_start)  /* value set by end callback */
-STRING_END_CB(source, sour_text_end, text)
-XREF_CB(source, sour_repo_start, repository.link, make_repository_record)
+DEFINE_MAKEFUNC(source, gom_first_source)
+DEFINE_DESTROYFUNC(source, gom_first_source)
+DEFINE_ADDFUNC(source, XREF_SOUR)
+DEFINE_DELETEFUNC(source)
+DEFINE_GETXREFFUNC(source, XREF_SOUR)
+     
+DEFINE_REC_CB(source, sour_start)
+DEFINE_NULL_CB(source, sour_data_start)
+DEFINE_STRING_CB(source, sour_data_agnc_start, data.agency)
+DEFINE_NULL_CB(source, sour_auth_start)  /* value set by end callback */
+DEFINE_STRING_END_CB(source, sour_auth_end, author)
+DEFINE_NULL_CB(source, sour_titl_start)  /* value set by end callback */
+DEFINE_STRING_END_CB(source, sour_titl_end, title)
+DEFINE_STRING_CB(source, sour_abbr_start, abbreviation)
+DEFINE_NULL_CB(source, sour_publ_start)  /* value set by end callback */
+DEFINE_STRING_END_CB(source, sour_publ_end, publication)
+DEFINE_NULL_CB(source, sour_text_start)  /* value set by end callback */
+DEFINE_STRING_END_CB(source, sour_text_end, text)
+DEFINE_XREF_CB(source, sour_repo_start, repository.link, repository)
+
+DEFINE_ADDFUNC2(source, source_event, data.event)
+DEFINE_ADDFUNC2(source, source_description, repository.description)
+DEFINE_ADDFUNC2(source, multimedia_link, mm_link)
+DEFINE_ADDFUNC2(source, note_sub, note)
+DEFINE_ADDFUNC2(source, user_ref_number, ref)
+DEFINE_ADDFUNC2(source, user_data, extra)
+DEFINE_ADDFUNC2_NOLIST(source, change_date, change_date)
+DEFINE_ADDFUNC2_STR(source, record_id)
 
 void source_subscribe()
 {
@@ -65,13 +79,6 @@ void source_subscribe()
   gedcom_subscribe_to_element(ELT_SOUR_PUBL, sour_publ_start, sour_publ_end);
   gedcom_subscribe_to_element(ELT_SOUR_TEXT, sour_text_start, sour_text_end);
   gedcom_subscribe_to_element(ELT_SUB_REPO, sour_repo_start, def_elt_end);
-}
-
-void source_add_event(Gom_ctxt ctxt, struct source_event* evt)
-{
-  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-  if (sour)
-    LINK_CHAIN_ELT(source_event, sour->data.event, evt);  
 }
 
 void source_add_note_to_data(Gom_ctxt ctxt, struct note_sub* note)
@@ -88,100 +95,37 @@ void source_add_note_to_repo(Gom_ctxt ctxt, struct note_sub* note)
     LINK_CHAIN_ELT(note_sub, sour->repository.note, note);  
 }
 
-void source_add_description(Gom_ctxt ctxt, struct source_description* desc)
-{
-  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-  if (sour)
-    LINK_CHAIN_ELT(source_description, sour->repository.description, desc);  
-}
-
-void source_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link)
-{
-  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-  if (sour)
-    LINK_CHAIN_ELT(multimedia_link, sour->mm_link, link);
-}
-
-void source_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-  if (sour)
-    LINK_CHAIN_ELT(note_sub, sour->note, note);
-}
-
-void source_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
-{
-  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-  if (sour)
-    LINK_CHAIN_ELT(user_ref_number, sour->ref, ref);
-}
-
-void source_set_record_id(Gom_ctxt ctxt, const char *rin)
-{
-  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-  if (sour) {
-    sour->record_id = strdup(rin);
-    if (! sour->record_id) MEMORY_ERROR;
-  }
-}
-
-void source_set_change_date(Gom_ctxt ctxt, struct change_date* chan)
-{
-  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
-  if (sour)
-    sour->change_date = chan;
-}
-
-void source_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct source *obj = SAFE_CTXT_CAST(source, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void source_cleanup(struct source* sour)
+void CLEANFUNC(source)(struct source* sour)
 {
   if (sour) {
     SAFE_FREE(sour->xrefstr);
-    DESTROY_CHAIN_ELTS(source_event, sour->data.event, source_event_cleanup);
+    DESTROY_CHAIN_ELTS(source_event, sour->data.event);
     SAFE_FREE(sour->data.agency)
-    DESTROY_CHAIN_ELTS(note_sub, sour->data.note, note_sub_cleanup);
+    DESTROY_CHAIN_ELTS(note_sub, sour->data.note);
     SAFE_FREE(sour->author);
     SAFE_FREE(sour->title);
     SAFE_FREE(sour->abbreviation);
     SAFE_FREE(sour->publication);
     SAFE_FREE(sour->text);
-    DESTROY_CHAIN_ELTS(note_sub, sour->repository.note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(source_description, sour->repository.description,
-		       source_description_cleanup);
-    DESTROY_CHAIN_ELTS(multimedia_link, sour->mm_link,multimedia_link_cleanup);
-    DESTROY_CHAIN_ELTS(note_sub, sour->note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(user_ref_number, sour->ref, user_ref_cleanup);
+    DESTROY_CHAIN_ELTS(note_sub, sour->repository.note);
+    DESTROY_CHAIN_ELTS(source_description, sour->repository.description);
+    DESTROY_CHAIN_ELTS(multimedia_link, sour->mm_link);
+    DESTROY_CHAIN_ELTS(note_sub, sour->note);
+    DESTROY_CHAIN_ELTS(user_ref_number, sour->ref);
     SAFE_FREE(sour->record_id);
-    change_date_cleanup(sour->change_date);
-    DESTROY_CHAIN_ELTS(user_data, sour->extra, user_data_cleanup);
+    CLEANFUNC(change_date)(sour->change_date);
+    DESTROY_CHAIN_ELTS(user_data, sour->extra);
   }
 }
 
 void sources_cleanup()
 {
-  DESTROY_CHAIN_ELTS(source, gom_first_source, source_cleanup);
+  DESTROY_CHAIN_ELTS(source, gom_first_source);
 }
 
 struct source* gom_get_first_source()
 {
   return gom_first_source;
-}
-
-struct source* make_source_record(const char* xrefstr)
-{
-  struct source* src = NULL;
-  MAKE_CHAIN_ELT(source, gom_first_source, src);
-  if (src) {
-    src->xrefstr = strdup(xrefstr);
-    if (! src->xrefstr) MEMORY_ERROR;
-  }
-  return src;
 }
 
 int write_sources(Gedcom_write_hndl hndl)

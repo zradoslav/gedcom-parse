@@ -29,9 +29,10 @@
 #include "gom_internal.h"
 
 void source_description_subscribe();
-void source_description_cleanup(struct source_description* desc);
-void source_description_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_source_descriptions(Gedcom_write_hndl hndl, int parent,
 			      struct source_description *desc);
+
+DECLARE_CLEANFUNC(source_description);
+DECLARE_ADDFUNC2(source_description, user_data);
 
 #endif /* __SOURCE_DESCRIPTION_H */

@@ -28,9 +28,10 @@
 #include "gom_internal.h"
 
 void note_sub_subscribe();
-void note_sub_cleanup(struct note_sub* note);
-void note_sub_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
-void note_sub_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_note_subs(Gedcom_write_hndl hndl, int parent, struct note_sub* note);
+
+DECLARE_CLEANFUNC(note_sub);
+DECLARE_ADDFUNC2(note_sub, source_citation);
+DECLARE_ADDFUNC2(note_sub, user_data);
 
 #endif /* __NOTE_SUB_H */

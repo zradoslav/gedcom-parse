@@ -29,12 +29,13 @@
 
 void multimedia_subscribe();
 void multimedias_cleanup();
-struct multimedia* make_multimedia_record(const char* xref);
-void multimedia_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void multimedia_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void multimedia_set_record_id(Gom_ctxt ctxt, const char *rin);
-void multimedia_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
-void multimedia_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_multimedia_recs(Gedcom_write_hndl hndl);
+
+DECLARE_MAKEFUNC(multimedia);
+DECLARE_ADDFUNC2(multimedia, note_sub);
+DECLARE_ADDFUNC2(multimedia, user_ref_number);
+DECLARE_ADDFUNC2(multimedia, user_data);
+DECLARE_ADDFUNC2_NOLIST(multimedia, change_date);
+DECLARE_ADDFUNC2_STR(multimedia, record_id);
 
 #endif /* __MULTIMEDIA_H */

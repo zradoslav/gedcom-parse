@@ -62,17 +62,17 @@ Gedcom_ctxt sub_obje_start(_ELT_PARAMS_)
 	case ELT_SUB_INDIV_GEN:
 	case ELT_SUB_INDIV_ADOP:
 	case ELT_SUB_INDIV_EVEN:
-	  event_add_mm_link(ctxt, mm); break;
+	  ADDFUNC2(event,multimedia_link)(ctxt, mm); break;
 	case ELT_SUB_SOUR:
-	  citation_add_mm_link(ctxt, mm); break;
+	  ADDFUNC2(source_citation,multimedia_link)(ctxt, mm); break;
 	case REC_FAM:
-	  family_add_mm_link(ctxt, mm); break;
+	  ADDFUNC2(family,multimedia_link)(ctxt, mm); break;
 	case REC_INDI:
-	  individual_add_mm_link(ctxt, mm); break;
+	  ADDFUNC2(individual,multimedia_link)(ctxt, mm); break;
 	case REC_SOUR:
-	  source_add_mm_link(ctxt, mm); break;
+	  ADDFUNC2(source,multimedia_link)(ctxt, mm); break;
 	case REC_SUBM:
-	  submitter_add_mm_link(ctxt, mm); break;
+	  ADDFUNC2(submitter,multimedia_link)(ctxt, mm); break;
 	default:
 	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
       }
@@ -83,9 +83,12 @@ Gedcom_ctxt sub_obje_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_CB(multimedia_link, sub_obje_form_start, form)
-STRING_CB(multimedia_link, sub_obje_titl_start, title)
-STRING_CB(multimedia_link, sub_obje_file_start, file)
+DEFINE_STRING_CB(multimedia_link, sub_obje_form_start, form)
+DEFINE_STRING_CB(multimedia_link, sub_obje_titl_start, title)
+DEFINE_STRING_CB(multimedia_link, sub_obje_file_start, file)
+
+DEFINE_ADDFUNC2(multimedia_link, note_sub, note)
+DEFINE_ADDFUNC2(multimedia_link, user_data, extra)
      
 void multimedia_link_subscribe()
 {
@@ -99,28 +102,14 @@ void multimedia_link_subscribe()
 			      sub_obje_file_start, def_elt_end);
 }
 
-void multimedia_link_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct multimedia_link *mm = SAFE_CTXT_CAST(multimedia_link, ctxt);
-  if (mm)
-    LINK_CHAIN_ELT(note_sub, mm->note, note);    
-}
-
-void multimedia_link_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct multimedia_link *obj = SAFE_CTXT_CAST(multimedia_link, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void multimedia_link_cleanup(struct multimedia_link* mm)
+void CLEANFUNC(multimedia_link)(struct multimedia_link* mm)
 {
   if (mm) {
     SAFE_FREE(mm->form);
     SAFE_FREE(mm->title);
     SAFE_FREE(mm->file);
-    DESTROY_CHAIN_ELTS(note_sub, mm->note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(user_data, mm->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(note_sub, mm->note);
+    DESTROY_CHAIN_ELTS(user_data, mm->extra);
   }
 }
 

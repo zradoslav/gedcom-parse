@@ -50,7 +50,7 @@ Gedcom_ctxt sub_assoc_start(_ELT_PARAMS_)
       
       switch (ctxt->ctxt_type) {
 	case REC_INDI:
-	  individual_add_association(ctxt, assoc);
+	  ADDFUNC2(individual,association)(ctxt, assoc);
 	default:
 	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
       }
@@ -61,7 +61,11 @@ Gedcom_ctxt sub_assoc_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_CB(association, sub_assoc_rela_start, relation)
+DEFINE_STRING_CB(association, sub_assoc_rela_start, relation)
+
+DEFINE_ADDFUNC2(association, note_sub, note)
+DEFINE_ADDFUNC2(association, source_citation, citation)
+DEFINE_ADDFUNC2(association, user_data, extra)
      
 Gedcom_ctxt sub_assoc_type_start(_ELT_PARAMS_)
 {
@@ -95,35 +99,14 @@ void association_subscribe()
 			      def_elt_end);
 }
 
-void association_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct association *assoc = SAFE_CTXT_CAST(association, ctxt);
-  if (assoc)
-    LINK_CHAIN_ELT(note_sub, assoc->note, note);
-}
-
-void association_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
-{
-  struct association *assoc = SAFE_CTXT_CAST(association, ctxt);
-  if (assoc)
-    LINK_CHAIN_ELT(source_citation, assoc->citation, cit);
-}
-
-void association_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct association *obj = SAFE_CTXT_CAST(association, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void association_cleanup(struct association* assoc)
+void CLEANFUNC(association)(struct association* assoc)
 {
   if (assoc) {
     SAFE_FREE(assoc->type);
     SAFE_FREE(assoc->relation);
-    DESTROY_CHAIN_ELTS(note_sub, assoc->note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(source_citation, assoc->citation, citation_cleanup);
-    DESTROY_CHAIN_ELTS(user_data, assoc->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(note_sub, assoc->note);
+    DESTROY_CHAIN_ELTS(source_citation, assoc->citation);
+    DESTROY_CHAIN_ELTS(user_data, assoc->extra);
   }
 }
 

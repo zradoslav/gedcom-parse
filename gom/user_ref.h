@@ -28,9 +28,10 @@
 #include "gom_internal.h"
 
 void user_ref_subscribe();
-void user_ref_cleanup(struct user_ref_number* refn);
-void user_ref_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_user_refs(Gedcom_write_hndl hndl, int parent,
 		    struct user_ref_number *refn);
+
+DECLARE_CLEANFUNC(user_ref_number);
+DECLARE_ADDFUNC2(user_ref_number, user_data);
 
 #endif /* __USER_REF_H */

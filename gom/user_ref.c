@@ -58,17 +58,17 @@ Gedcom_ctxt sub_user_ref_start(_ELT_PARAMS_)
       else {
 	switch (ctxt->ctxt_type) {
 	  case REC_FAM:
-	    family_add_user_ref(ctxt, refn); break;
+	    ADDFUNC2(family,user_ref_number)(ctxt, refn); break;
 	  case REC_INDI:
-	    individual_add_user_ref(ctxt, refn); break;
+	    ADDFUNC2(individual,user_ref_number)(ctxt, refn); break;
 	  case REC_OBJE:
-	    multimedia_add_user_ref(ctxt, refn); break;
+	    ADDFUNC2(multimedia,user_ref_number)(ctxt, refn); break;
 	  case REC_NOTE:
-	    note_add_user_ref(ctxt, refn); break;
+	    ADDFUNC2(note,user_ref_number)(ctxt, refn); break;
 	  case REC_REPO:
-	    repository_add_user_ref(ctxt, refn); break;
+	    ADDFUNC2(repository,user_ref_number)(ctxt, refn); break;
 	  case REC_SOUR:
-	    source_add_user_ref(ctxt, refn); break;
+	    ADDFUNC2(source,user_ref_number)(ctxt, refn); break;
 	  default:
 	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
 	}
@@ -81,7 +81,9 @@ Gedcom_ctxt sub_user_ref_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_CB(user_ref_number, sub_user_ref_type_start, type)
+DEFINE_STRING_CB(user_ref_number, sub_user_ref_type_start, type)
+
+DEFINE_ADDFUNC2(user_ref_number, user_data, extra)
      
 Gedcom_ctxt sub_user_rin_start(_ELT_PARAMS_)
 {
@@ -95,17 +97,17 @@ Gedcom_ctxt sub_user_rin_start(_ELT_PARAMS_)
 
     switch (ctxt->ctxt_type) {
       case REC_FAM:
-	family_set_record_id(ctxt, str); break;
+	ADDFUNC2_STR(family,record_id)(ctxt, str); break;
       case REC_INDI:
-	individual_set_record_id(ctxt, str); break;
+	ADDFUNC2_STR(individual,record_id)(ctxt, str); break;
       case REC_OBJE:
-	multimedia_set_record_id(ctxt, str); break;
+	ADDFUNC2_STR(multimedia,record_id)(ctxt, str); break;
       case REC_NOTE:
-	note_set_record_id(ctxt, str); break;
+	ADDFUNC2_STR(note,record_id)(ctxt, str); break;
       case REC_REPO:
-	repository_set_record_id(ctxt, str); break;
+	ADDFUNC2_STR(repository,record_id)(ctxt, str); break;
       case REC_SOUR:
-	source_set_record_id(ctxt, str); break;
+	ADDFUNC2_STR(source,record_id)(ctxt, str); break;
       default:
 	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
     }
@@ -124,19 +126,12 @@ void user_ref_subscribe()
 			      def_elt_end);
 }
 
-void user_ref_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct user_ref_number *obj = SAFE_CTXT_CAST(user_ref_number, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void user_ref_cleanup(struct user_ref_number* refn)
+void CLEANFUNC(user_ref_number)(struct user_ref_number* refn)
 {
   if (refn) {
     SAFE_FREE(refn->value);
     SAFE_FREE(refn->type);
-    DESTROY_CHAIN_ELTS(user_data, refn->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, refn->extra);
   }
 }
 

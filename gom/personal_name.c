@@ -53,7 +53,7 @@ Gedcom_ctxt sub_name_start(_ELT_PARAMS_)
       else {
 	switch (ctxt->ctxt_type) {
 	  case REC_INDI:
-	    individual_add_name(ctxt, name); break;
+	    ADDFUNC2(individual,personal_name)(ctxt, name); break;
 	  default:
 	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
 	}
@@ -65,33 +65,16 @@ Gedcom_ctxt sub_name_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_CB(personal_name, sub_name_npfx_start, prefix)
-STRING_CB(personal_name, sub_name_givn_start, given)
-STRING_CB(personal_name, sub_name_nick_start, nickname)
-STRING_CB(personal_name, sub_name_spfx_start, surname_prefix)
-STRING_CB(personal_name, sub_name_surn_start, surname)
-STRING_CB(personal_name, sub_name_nsfx_start, suffix)
+DEFINE_STRING_CB(personal_name, sub_name_npfx_start, prefix)
+DEFINE_STRING_CB(personal_name, sub_name_givn_start, given)
+DEFINE_STRING_CB(personal_name, sub_name_nick_start, nickname)
+DEFINE_STRING_CB(personal_name, sub_name_spfx_start, surname_prefix)
+DEFINE_STRING_CB(personal_name, sub_name_surn_start, surname)
+DEFINE_STRING_CB(personal_name, sub_name_nsfx_start, suffix)
 
-void name_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
-{
-  struct personal_name *name = SAFE_CTXT_CAST(personal_name, ctxt);
-  if (name)
-    LINK_CHAIN_ELT(source_citation, name->citation, cit);  
-}
-
-void name_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct personal_name *name = SAFE_CTXT_CAST(personal_name, ctxt);
-  if (name)
-    LINK_CHAIN_ELT(note_sub, name->note, note);  
-}
-
-void name_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct personal_name *obj = SAFE_CTXT_CAST(personal_name, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
+DEFINE_ADDFUNC2(personal_name, source_citation, citation)
+DEFINE_ADDFUNC2(personal_name, note_sub, note)
+DEFINE_ADDFUNC2(personal_name, user_data, extra)
 
 void name_subscribe()
 {
@@ -110,7 +93,7 @@ void name_subscribe()
 			      def_elt_end);
 }
 
-void name_cleanup(struct personal_name* name)
+void CLEANFUNC(personal_name)(struct personal_name* name)
 {
   if (name) {
     SAFE_FREE(name->name);
@@ -120,9 +103,9 @@ void name_cleanup(struct personal_name* name)
     SAFE_FREE(name->surname_prefix);
     SAFE_FREE(name->surname);
     SAFE_FREE(name->suffix);
-    DESTROY_CHAIN_ELTS(source_citation, name->citation, citation_cleanup);
-    DESTROY_CHAIN_ELTS(note_sub, name->note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(user_data, name->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(source_citation, name->citation);
+    DESTROY_CHAIN_ELTS(note_sub, name->note);
+    DESTROY_CHAIN_ELTS(user_data, name->extra);
   }
 }
 

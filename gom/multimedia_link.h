@@ -29,10 +29,11 @@
 #include "gom_internal.h"
 
 void multimedia_link_subscribe();
-void multimedia_link_cleanup(struct multimedia_link* mm);
-void multimedia_link_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void multimedia_link_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_multimedia_links(Gedcom_write_hndl hndl, int parent,
 			   struct multimedia_link* mm);
+
+DECLARE_CLEANFUNC(multimedia_link);
+DECLARE_ADDFUNC2(multimedia_link, note_sub);
+DECLARE_ADDFUNC2(multimedia_link, user_data);
 
 #endif /* __MULTIMEDIA_LINK_H */

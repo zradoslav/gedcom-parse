@@ -56,9 +56,9 @@ Gedcom_ctxt sub_lds_event_start(_ELT_PARAMS_)
       else {
 	switch (ctxt->ctxt_type) {
 	  case REC_FAM:
-	    family_add_lss(ctxt, lds_evt); break;
+	    ADDFUNC2(family,lds_event)(ctxt, lds_evt); break;
 	  case REC_INDI:
-	    individual_add_lio(ctxt, lds_evt); break;
+	    ADDFUNC2(individual,lds_event)(ctxt, lds_evt); break;
 	  default:
 	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
 	}
@@ -70,11 +70,15 @@ Gedcom_ctxt sub_lds_event_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_CB(lds_event, sub_lds_event_stat_start, date_status)
-DATE_CB(lds_event, sub_lds_event_date_start, date)
-STRING_CB(lds_event, sub_lds_event_temp_start, temple_code)
-STRING_CB(lds_event, sub_lds_event_plac_start, place_living_ordinance)
-XREF_CB(lds_event, sub_lds_event_famc_start, family, make_family_record)
+DEFINE_STRING_CB(lds_event, sub_lds_event_stat_start, date_status)
+DEFINE_DATE_CB(lds_event, sub_lds_event_date_start, date)
+DEFINE_STRING_CB(lds_event, sub_lds_event_temp_start, temple_code)
+DEFINE_STRING_CB(lds_event, sub_lds_event_plac_start, place_living_ordinance)
+DEFINE_XREF_CB(lds_event, sub_lds_event_famc_start, family, family)
+
+DEFINE_ADDFUNC2(lds_event, note_sub, note)
+DEFINE_ADDFUNC2(lds_event, source_citation, citation)
+DEFINE_ADDFUNC2(lds_event, user_data, extra)
      
 void lds_event_subscribe()
 {
@@ -104,28 +108,7 @@ void lds_event_subscribe()
 			      sub_lds_event_famc_start, def_elt_end);
 }
 
-void lds_event_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct lds_event *lds = SAFE_CTXT_CAST(lds_event, ctxt);
-  if (lds)
-    LINK_CHAIN_ELT(note_sub, lds->note, note);    
-}
-
-void lds_event_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
-{
-  struct lds_event *lds = SAFE_CTXT_CAST(lds_event, ctxt);
-  if (lds)
-    LINK_CHAIN_ELT(source_citation, lds->citation, cit);    
-}
-
-void lds_event_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct lds_event *obj = SAFE_CTXT_CAST(lds_event, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void lds_event_cleanup(struct lds_event* lds)
+void CLEANFUNC(lds_event)(struct lds_event* lds)
 {
   if (lds) {
     SAFE_FREE(lds->event_name);
@@ -133,9 +116,9 @@ void lds_event_cleanup(struct lds_event* lds)
     SAFE_FREE(lds->date);
     SAFE_FREE(lds->temple_code);
     SAFE_FREE(lds->place_living_ordinance);
-    DESTROY_CHAIN_ELTS(source_citation, lds->citation, citation_cleanup);  
-    DESTROY_CHAIN_ELTS(note_sub, lds->note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(user_data, lds->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(source_citation, lds->citation);  
+    DESTROY_CHAIN_ELTS(note_sub, lds->note);
+    DESTROY_CHAIN_ELTS(user_data, lds->extra);
   }
 }
 

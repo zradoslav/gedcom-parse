@@ -29,9 +29,11 @@
 
 void header_subscribe();
 void header_cleanup();
-void header_add_address(Gom_ctxt header, struct address* addr);
-void header_add_phone  (Gom_ctxt header, const char* phone);
-void header_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int  write_header(Gedcom_write_hndl hndl);
+
+DECLARE_ADDFUNC2(header, user_data);
+DECLARE_ADDFUNC2_NOLIST(header, address);
+
+void header_add_phone  (Gom_ctxt header, const char* phone);
 
 #endif /* __HEADER_H */

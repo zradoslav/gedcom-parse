@@ -29,17 +29,19 @@
 
 void source_subscribe();
 void sources_cleanup();
-struct source* make_source_record(const char* xref);
-void source_add_event(Gom_ctxt ctxt, struct source_event* evt);
+int write_sources(Gedcom_write_hndl hndl);
+
+DECLARE_MAKEFUNC(source);
+DECLARE_ADDFUNC2(source, source_event);
+DECLARE_ADDFUNC2(source, source_description);
+DECLARE_ADDFUNC2(source, multimedia_link);
+DECLARE_ADDFUNC2(source, note_sub);
+DECLARE_ADDFUNC2(source, user_ref_number);
+DECLARE_ADDFUNC2(source, user_data);
+DECLARE_ADDFUNC2_NOLIST(source, change_date);
+DECLARE_ADDFUNC2_STR(source, record_id);
+
 void source_add_note_to_data(Gom_ctxt ctxt, struct note_sub* note);
 void source_add_note_to_repo(Gom_ctxt ctxt, struct note_sub* note);
-void source_add_description(Gom_ctxt ctxt, struct source_description* desc);
-void source_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link);
-void source_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void source_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void source_set_record_id(Gom_ctxt ctxt, const char *rin);
-void source_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
-void source_add_user_data(Gom_ctxt ctxt, struct user_data* data);
-int write_sources(Gedcom_write_hndl hndl);
 
 #endif /* __SOURCE_H */

@@ -29,11 +29,12 @@
 #include "gom_internal.h"
 
 void citation_subscribe();
-void citation_cleanup(struct source_citation* cit);
-void citation_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void citation_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* mm);
-void citation_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_citations(Gedcom_write_hndl hndl, int parent,
 		    struct source_citation* cit);
+
+DECLARE_CLEANFUNC(source_citation);
+DECLARE_ADDFUNC2(source_citation, note_sub);
+DECLARE_ADDFUNC2(source_citation, multimedia_link);
+DECLARE_ADDFUNC2(source_citation, user_data);
 
 #endif /* __SOURCE_CITATION_H */

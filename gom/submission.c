@@ -32,14 +32,16 @@
 
 struct submission* gom_submission = NULL;
 
-REC_CB(submission, subn_start, make_submission_record)
-XREF_CB(submission, subn_subm_start, submitter, make_submitter_record)
-STRING_CB(submission, subn_famf_start, family_file)
-STRING_CB(submission, subn_temp_start, temple_code)
-STRING_CB(submission, subn_ance_start, nr_of_ancestor_gens)
-STRING_CB(submission, subn_desc_start, nr_of_descendant_gens)
-STRING_CB(submission, subn_ordi_start, ordinance_process_flag)
-STRING_CB(submission, subn_rin_start, record_id)
+DEFINE_REC_CB(submission, subn_start)
+DEFINE_XREF_CB(submission, subn_subm_start, submitter, submitter)
+DEFINE_STRING_CB(submission, subn_famf_start, family_file)
+DEFINE_STRING_CB(submission, subn_temp_start, temple_code)
+DEFINE_STRING_CB(submission, subn_ance_start, nr_of_ancestor_gens)
+DEFINE_STRING_CB(submission, subn_desc_start, nr_of_descendant_gens)
+DEFINE_STRING_CB(submission, subn_ordi_start, ordinance_process_flag)
+DEFINE_STRING_CB(submission, subn_rin_start, record_id)
+
+DEFINE_ADDFUNC2(submission, user_data, extra)
      
 void submission_subscribe()
 {
@@ -53,13 +55,6 @@ void submission_subscribe()
   gedcom_subscribe_to_element(ELT_SUBN_RIN, subn_rin_start, def_elt_end);  
 }
 
-void submission_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct submission *obj = SAFE_CTXT_CAST(submission, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
 void submission_cleanup()
 {
   if (gom_submission) {
@@ -70,7 +65,7 @@ void submission_cleanup()
     SAFE_FREE(gom_submission->nr_of_descendant_gens);
     SAFE_FREE(gom_submission->ordinance_process_flag);
     SAFE_FREE(gom_submission->record_id);
-    DESTROY_CHAIN_ELTS(user_data, gom_submission->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, gom_submission->extra);
     SAFE_FREE(gom_submission);
   }
 }
@@ -80,7 +75,7 @@ struct submission* gom_get_submission()
   return gom_submission;
 }
 
-struct submission* make_submission_record(const char* xref)
+struct submission* MAKEFUNC(submission)(const char* xref)
 {
   if (! gom_submission) {
     gom_submission = (struct submission*)malloc(sizeof(struct submission));
@@ -94,6 +89,48 @@ struct submission* make_submission_record(const char* xref)
   }
   
   return gom_submission;
+}
+
+void DESTROYFUNC(submission)()
+{
+  if (gom_submission) {
+    submission_cleanup();
+    free(gom_submission);
+    gom_submission = NULL;
+  }
+}
+
+struct submission* ADDFUNC(submission)(const char* xrefstr)
+{
+  if (!gom_submission) {
+    struct xref_value* xrv = gedcom_get_by_xref(xrefstr);
+    if (xrv)
+      gom_xref_already_in_use(xrefstr);
+    else {
+      gom_submission = MAKEFUNC(submission)(xrefstr);
+      if (gom_submission) {
+	xrv = gedcom_add_xref(XREF_SUBN, xrefstr, gom_submission);
+	if (!xrv) {
+	  DESTROYFUNC(submission)(gom_submission);
+	  gom_submission = NULL;
+	}
+      }
+    }
+    return gom_submission;
+  }
+  else
+    return NULL;
+}
+
+int DELETEFUNC(submission)()
+{
+  int result = 1;
+  if (gom_submission) {
+    result = gedcom_delete_xref(gom_submission->xrefstr);
+    if (result == 0)
+      DESTROYFUNC(submission)();
+  }
+  return result;
 }
 
 int write_submission(Gedcom_write_hndl hndl)

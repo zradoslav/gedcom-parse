@@ -62,7 +62,7 @@ Gedcom_ctxt sub_note_start(_ELT_PARAMS_)
 
       switch (ctxt->ctxt_type) {
 	case ELT_SUB_PLAC:
-	  place_add_note(ctxt, note); break;
+	  ADDFUNC2(place,note_sub)(ctxt, note); break;
 	case ELT_SUB_FAM_EVT:
 	case ELT_SUB_FAM_EVT_EVEN:
 	case ELT_SUB_INDIV_ATTR:
@@ -71,38 +71,38 @@ Gedcom_ctxt sub_note_start(_ELT_PARAMS_)
 	case ELT_SUB_INDIV_GEN:
 	case ELT_SUB_INDIV_ADOP:
 	case ELT_SUB_INDIV_EVEN:
-	  event_add_note(ctxt, note); break;
+	  ADDFUNC2(event,note_sub)(ctxt, note); break;
 	case ELT_SUB_SOUR:
-	  citation_add_note(ctxt, note); break;
+	  ADDFUNC2(source_citation,note_sub)(ctxt, note); break;
 	case ELT_SUB_MULTIM_OBJE:
-	  multimedia_link_add_note(ctxt, note); break;
+	  ADDFUNC2(multimedia_link,note_sub)(ctxt, note); break;
 	case ELT_SUB_LSS_SLGS:
 	case ELT_SUB_LIO_BAPL:
 	case ELT_SUB_LIO_SLGC:
-	  lds_event_add_note(ctxt, note); break;
+	  ADDFUNC2(lds_event,note_sub)(ctxt, note); break;
 	case REC_FAM:
-	  family_add_note(ctxt, note); break;
+	  ADDFUNC2(family,note_sub)(ctxt, note); break;
 	case ELT_SUB_CHAN:
-	  change_date_add_note(ctxt, note); break;
+	  ADDFUNC2(change_date,note_sub)(ctxt, note); break;
 	case ELT_SUB_PERS_NAME:
-	  name_add_note(ctxt, note); break;
+	  ADDFUNC2(personal_name,note_sub)(ctxt, note); break;
 	case ELT_SUB_FAMC: 
 	case ELT_SUB_FAMS:
-	  family_link_add_note(ctxt, note); break;
+	  ADDFUNC2(family_link,note_sub)(ctxt, note); break;
 	case ELT_SUB_ASSO:
-	  association_add_note(ctxt, note); break;
+	  ADDFUNC2(association,note_sub)(ctxt, note); break;
 	case REC_INDI:
-	  individual_add_note(ctxt, note); break;
+	  ADDFUNC2(individual,note_sub)(ctxt, note); break;
 	case REC_OBJE:
-	  multimedia_add_note(ctxt, note); break;
+	  ADDFUNC2(multimedia,note_sub)(ctxt, note); break;
 	case REC_REPO:
-	  repository_add_note(ctxt, note); break;
+	  ADDFUNC2(repository,note_sub)(ctxt, note); break;
 	case ELT_SOUR_DATA:
 	  source_add_note_to_data(ctxt, note); break;
 	case ELT_SUB_REPO:
 	  source_add_note_to_repo(ctxt, note); break;
 	case REC_SOUR:
-	  source_add_note(ctxt, note); break;
+	  ADDFUNC2(source,note_sub)(ctxt, note); break;
 	default:
 	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
       }
@@ -113,33 +113,22 @@ Gedcom_ctxt sub_note_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_END_CB(note_sub, sub_note_end, text)
+DEFINE_STRING_END_CB(note_sub, sub_note_end, text)
+
+DEFINE_ADDFUNC2(note_sub, source_citation, citation)
+DEFINE_ADDFUNC2(note_sub, user_data, extra)
      
 void note_sub_subscribe()
 {
   gedcom_subscribe_to_element(ELT_SUB_NOTE, sub_note_start, sub_note_end);
 }
 
-void note_sub_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
-{
-  struct note_sub *note = SAFE_CTXT_CAST(note_sub, ctxt);
-  if (note)
-    LINK_CHAIN_ELT(source_citation, note->citation, cit);    
-}
-
-void note_sub_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct note_sub *obj = SAFE_CTXT_CAST(note_sub, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);;
-}
-
-void note_sub_cleanup(struct note_sub* note)
+void CLEANFUNC(note_sub)(struct note_sub* note)
 {
   if (note) {
     SAFE_FREE(note->text);
-    DESTROY_CHAIN_ELTS(source_citation, note->citation, citation_cleanup);
-    DESTROY_CHAIN_ELTS(user_data, note->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(source_citation, note->citation);
+    DESTROY_CHAIN_ELTS(user_data, note->extra);
   }
 }
 

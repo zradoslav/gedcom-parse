@@ -48,7 +48,7 @@ Gedcom_ctxt sub_addr_start(_ELT_PARAMS_)
       memset (addr, 0, sizeof(struct address));
       switch (ctxt->ctxt_type) {
 	case ELT_HEAD_SOUR_CORP:
-	  header_add_address(ctxt, addr); break;
+	  ADDFUNC2_NOLIST(header,address)(ctxt, addr); break;
 	case ELT_SUB_FAM_EVT:
 	case ELT_SUB_FAM_EVT_EVEN:
 	case ELT_SUB_INDIV_ATTR:
@@ -57,11 +57,11 @@ Gedcom_ctxt sub_addr_start(_ELT_PARAMS_)
 	case ELT_SUB_INDIV_GEN:
 	case ELT_SUB_INDIV_ADOP:
 	case ELT_SUB_INDIV_EVEN:
-	  event_add_address(ctxt, addr); break;
+	  ADDFUNC2_NOLIST(event,address)(ctxt, addr); break;
 	case REC_REPO:
-	  repository_add_address(ctxt, addr); break;
+	  ADDFUNC2_NOLIST(repository,address)(ctxt, addr); break;
 	case REC_SUBM:
-	  submitter_add_address(ctxt, addr); break;
+	  ADDFUNC2_NOLIST(submitter,address)(ctxt, addr); break;
 	default:
 	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
       }
@@ -84,13 +84,15 @@ Gedcom_ctxt sub_addr_cont_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_END_CB(address, sub_addr_end, full_label)
-STRING_CB(address, sub_addr_adr1_start, line1)
-STRING_CB(address, sub_addr_adr2_start, line2)
-STRING_CB(address, sub_addr_city_start, city)
-STRING_CB(address, sub_addr_stae_start, state)
-STRING_CB(address, sub_addr_post_start, postal)
-STRING_CB(address, sub_addr_ctry_start, country)
+DEFINE_STRING_END_CB(address, sub_addr_end, full_label)
+DEFINE_STRING_CB(address, sub_addr_adr1_start, line1)
+DEFINE_STRING_CB(address, sub_addr_adr2_start, line2)
+DEFINE_STRING_CB(address, sub_addr_city_start, city)
+DEFINE_STRING_CB(address, sub_addr_stae_start, state)
+DEFINE_STRING_CB(address, sub_addr_post_start, postal)
+DEFINE_STRING_CB(address, sub_addr_ctry_start, country)
+
+DEFINE_ADDFUNC2(address, user_data, extra)
 
 Gedcom_ctxt sub_phon_start(_ELT_PARAMS_)
 {
@@ -144,14 +146,7 @@ void address_subscribe()
   gedcom_subscribe_to_element(ELT_SUB_PHON, sub_phon_start, def_elt_end);
 }
 
-void address_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct address *obj = SAFE_CTXT_CAST(address, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void address_cleanup(struct address *address)
+void CLEANFUNC(address)(struct address *address)
 {
   if (address) {
     SAFE_FREE(address->full_label);
@@ -161,7 +156,7 @@ void address_cleanup(struct address *address)
     SAFE_FREE(address->state);
     SAFE_FREE(address->postal);
     SAFE_FREE(address->country);
-    DESTROY_CHAIN_ELTS(user_data, address->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, address->extra);
   }
   SAFE_FREE(address);
 }

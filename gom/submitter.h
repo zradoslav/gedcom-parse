@@ -29,12 +29,13 @@
 
 void submitter_subscribe();
 void submitters_cleanup();
-struct submitter* make_submitter_record(const char* xref);
-void submitter_add_address(Gom_ctxt ctxt, struct address* address);
-void submitter_add_phone(Gom_ctxt ctxt, const char *phone);
-void submitter_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link);
-void submitter_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
-void submitter_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_submitters(Gedcom_write_hndl hndl);
+
+DECLARE_MAKEFUNC(submitter);
+DECLARE_ADDFUNC2(submitter, multimedia_link);
+DECLARE_ADDFUNC2(submitter, user_data);
+DECLARE_ADDFUNC2_NOLIST(submitter, address);
+DECLARE_ADDFUNC2_NOLIST(submitter, change_date);
+DECLARE_ADDFUNC2_STRN(submitter, phone);
 
 #endif /* __SUBMITTER_H */

@@ -29,12 +29,13 @@
 
 void note_subscribe();
 void notes_cleanup();
-struct note* make_note_record(const char* xref);
-void note_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
-void note_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void note_set_record_id(Gom_ctxt ctxt, const char *rin);
-void note_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
-void note_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_notes(Gedcom_write_hndl hndl);
+
+DECLARE_MAKEFUNC(note);
+DECLARE_ADDFUNC2(note, source_citation);
+DECLARE_ADDFUNC2(note, user_ref_number);
+DECLARE_ADDFUNC2(note, user_data);
+DECLARE_ADDFUNC2_NOLIST(note, change_date);
+DECLARE_ADDFUNC2_STR(note, record_id);
 
 #endif /* __NOTE_H */

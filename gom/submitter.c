@@ -34,11 +34,22 @@
 
 struct submitter* gom_first_submitter = NULL;
 
-REC_CB(submitter, subm_start, make_submitter_record)
-GET_REC_BY_XREF(submitter, XREF_SUBM, gom_get_submitter_by_xref)
-STRING_CB(submitter, subm_name_start, name)
-STRING_CB(submitter, subm_rfn_start, record_file_nr)
-STRING_CB(submitter, subm_rin_start, record_id)
+DEFINE_MAKEFUNC(submitter, gom_first_submitter)
+DEFINE_DESTROYFUNC(submitter, gom_first_submitter)
+DEFINE_ADDFUNC(submitter, XREF_SUBM)
+DEFINE_DELETEFUNC(submitter)
+DEFINE_GETXREFFUNC(submitter, XREF_SUBM)
+     
+DEFINE_REC_CB(submitter, subm_start)
+DEFINE_STRING_CB(submitter, subm_name_start, name)
+DEFINE_STRING_CB(submitter, subm_rfn_start, record_file_nr)
+DEFINE_STRING_CB(submitter, subm_rin_start, record_id)
+
+DEFINE_ADDFUNC2(submitter, multimedia_link, mm_link)
+DEFINE_ADDFUNC2(submitter, user_data, extra)
+DEFINE_ADDFUNC2_NOLIST(submitter, address, address)
+DEFINE_ADDFUNC2_NOLIST(submitter, change_date, change_date)
+DEFINE_ADDFUNC2_STRN(submitter, phone, 3)
 
 Gedcom_ctxt subm_lang_start(_ELT_PARAMS_)
 {
@@ -80,86 +91,34 @@ void submitter_subscribe()
   gedcom_subscribe_to_element(ELT_SUBM_RIN, subm_rin_start, def_elt_end);
 }
 
-void submitter_add_address(Gom_ctxt ctxt, struct address* address)
-{
-  struct submitter *subm = SAFE_CTXT_CAST(submitter, ctxt);
-  if (subm)
-    subm->address = address;
-}
-
-void submitter_add_phone(Gom_ctxt ctxt, const char *phone)
-{
-  struct submitter *subm = SAFE_CTXT_CAST(submitter, ctxt);
-  if (subm) {
-    int i = 0;
-    while (i<2 && subm->phone[i]) i++;
-    if (! subm->phone[i]) {
-      subm->phone[i] = strdup(phone);
-      if (! subm->phone[i]) MEMORY_ERROR;
-    }
-  }
-}
-
-void submitter_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link)
-{
-  struct submitter *subm = SAFE_CTXT_CAST(submitter, ctxt);
-  if (subm)
-    LINK_CHAIN_ELT(multimedia_link, subm->mm_link, link);
-}
-
-void submitter_set_change_date(Gom_ctxt ctxt, struct change_date* chan)
-{
-  struct submitter *subm = SAFE_CTXT_CAST(submitter, ctxt);
-  if (subm)
-    subm->change_date = chan;
-}
-
-void submitter_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct submitter *obj = SAFE_CTXT_CAST(submitter, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void submitter_cleanup(struct submitter* rec)
+void CLEANFUNC(submitter)(struct submitter* rec)
 {
   if (rec) {
     SAFE_FREE(rec->xrefstr);
     SAFE_FREE(rec->name);
-    address_cleanup(rec->address);
+    CLEANFUNC(address)(rec->address);
     SAFE_FREE(rec->phone[0]);
     SAFE_FREE(rec->phone[1]);
     SAFE_FREE(rec->phone[2]);
-    DESTROY_CHAIN_ELTS(multimedia_link, rec->mm_link, multimedia_link_cleanup);
+    DESTROY_CHAIN_ELTS(multimedia_link, rec->mm_link);
     SAFE_FREE(rec->language[0]);
     SAFE_FREE(rec->language[1]);
     SAFE_FREE(rec->language[2]);
     SAFE_FREE(rec->record_file_nr);
     SAFE_FREE(rec->record_id);
-    change_date_cleanup(rec->change_date);
-    DESTROY_CHAIN_ELTS(user_data, rec->extra, user_data_cleanup);
+    CLEANFUNC(change_date)(rec->change_date);
+    DESTROY_CHAIN_ELTS(user_data, rec->extra);
   }
 }
 
 void submitters_cleanup()
 {
-  DESTROY_CHAIN_ELTS(submitter, gom_first_submitter, submitter_cleanup);
+  DESTROY_CHAIN_ELTS(submitter, gom_first_submitter);
 }
 
 struct submitter* gom_get_first_submitter()
 {
   return gom_first_submitter;
-}
-
-struct submitter* make_submitter_record(const char* xrefstr)
-{
-  struct submitter* subm = NULL;
-  MAKE_CHAIN_ELT(submitter, gom_first_submitter, subm);
-  if (subm) {
-    subm->xrefstr = strdup(xrefstr);
-    if (!subm->xrefstr) MEMORY_ERROR;
-  }
-  return subm;
 }
 
 int write_submitters(Gedcom_write_hndl hndl)

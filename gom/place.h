@@ -28,10 +28,11 @@
 #include "gom_internal.h"
 
 void place_subscribe();
-void place_cleanup(struct place* place);
-void place_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
-void place_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void place_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_place(Gedcom_write_hndl hndl, int parent, struct place* place);
+
+DECLARE_CLEANFUNC(place);
+DECLARE_ADDFUNC2(place, source_citation);
+DECLARE_ADDFUNC2(place, note_sub);
+DECLARE_ADDFUNC2(place, user_data);
 
 #endif /* __PLACE_H */

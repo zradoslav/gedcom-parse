@@ -187,6 +187,11 @@ void gom_mem_error(const char *filename, int line)
   gedcom_error(_("Could not allocate memory at %s, %d"), filename, line);
 }
 
+void gom_xref_already_in_use(const char *xrefstr)
+{
+  gedcom_error(_("Cross-reference key '%s' is already in use"), xrefstr);
+}
+
 void gom_unexpected_context(const char* file, int line, OBJ_TYPE found)
 {
   gedcom_warning(_("Internal error: Unexpected context at %s, line %d: %d"),

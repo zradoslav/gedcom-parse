@@ -28,9 +28,10 @@
 #include "gom_internal.h"
 
 void source_event_subscribe();
-void source_event_cleanup(struct source_event* evt);
-void source_event_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_source_events(Gedcom_write_hndl hndl, int parent,
 			struct source_event *evt);
+
+DECLARE_CLEANFUNC(source_event);
+DECLARE_ADDFUNC2(source_event, user_data);
 
 #endif /* __SOURCE_EVENT_H */

@@ -29,21 +29,23 @@
 
 void individual_subscribe();
 void individuals_cleanup();
-struct individual* make_individual_record(const char* xref);
-void individual_add_event(Gom_ctxt ctxt, struct event* evt);
-void individual_add_attribute(Gom_ctxt ctxt, struct event* evt);
-void individual_add_name(Gom_ctxt ctxt, struct personal_name* name);
-void individual_add_lio(Gom_ctxt ctxt, struct lds_event* evt);
+int write_individuals(Gedcom_write_hndl hndl);
+
+DECLARE_MAKEFUNC(individual);
+DECLARE_ADDFUNC2(individual, event);
+DECLARE_ADDFUNC2(individual, personal_name);
+DECLARE_ADDFUNC2(individual, lds_event);
+DECLARE_ADDFUNC2(individual, association);
+DECLARE_ADDFUNC2(individual, source_citation);
+DECLARE_ADDFUNC2(individual, multimedia_link);
+DECLARE_ADDFUNC2(individual, note_sub);
+DECLARE_ADDFUNC2(individual, user_ref_number);
+DECLARE_ADDFUNC2(individual, user_data);
+DECLARE_ADDFUNC2_TOVAR(individual, event, attribute);
+DECLARE_ADDFUNC2_NOLIST(individual, change_date);
+DECLARE_ADDFUNC2_STR(individual, record_id);
+
 void individual_add_family_link(Gom_ctxt ctxt, int ctxt_type,
 				struct family_link* link);
-void individual_add_association(Gom_ctxt ctxt, struct association* assoc);
-void individual_add_citation(Gom_ctxt ctxt, struct source_citation* cit);
-void individual_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link);
-void individual_add_note(Gom_ctxt ctxt, struct note_sub* note);
-void individual_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref);
-void individual_set_record_id(Gom_ctxt ctxt, const char *rin);
-void individual_set_change_date(Gom_ctxt ctxt, struct change_date* chan);
-void individual_add_user_data(Gom_ctxt ctxt, struct user_data* data);
-int write_individuals(Gedcom_write_hndl hndl);
 
 #endif /* __INDIVIDUAL_H */

@@ -40,13 +40,28 @@
 
 struct family* gom_first_family = NULL;
 
-REC_CB(family, fam_start, make_family_record)
-GET_REC_BY_XREF(family, XREF_FAM, gom_get_family_by_xref)
-XREF_CB(family, fam_husb_start, husband, make_individual_record)
-XREF_CB(family, fam_wife_start, wife, make_individual_record)
-STRING_CB(family, fam_nchi_start, nr_of_children)
-XREF_LIST_CB(family, fam_chil_start, children, make_individual_record)
-XREF_LIST_CB(family, fam_subm_start, submitters, make_submitter_record)
+DEFINE_MAKEFUNC(family, gom_first_family)
+DEFINE_DESTROYFUNC(family, gom_first_family)
+DEFINE_ADDFUNC(family, XREF_FAM)
+DEFINE_DELETEFUNC(family)
+DEFINE_GETXREFFUNC(family, XREF_FAM)
+     
+DEFINE_REC_CB(family, fam_start)
+DEFINE_XREF_CB(family, fam_husb_start, husband, individual)
+DEFINE_XREF_CB(family, fam_wife_start, wife, individual)
+DEFINE_STRING_CB(family, fam_nchi_start, nr_of_children)
+DEFINE_XREF_LIST_CB(family, fam_chil_start, children, individual)
+DEFINE_XREF_LIST_CB(family, fam_subm_start, submitters, submitter)
+
+DEFINE_ADDFUNC2(family, event, event)
+DEFINE_ADDFUNC2(family, lds_event, lds_spouse_sealing)
+DEFINE_ADDFUNC2(family, source_citation, citation)
+DEFINE_ADDFUNC2(family, multimedia_link, mm_link)
+DEFINE_ADDFUNC2(family, note_sub, note)
+DEFINE_ADDFUNC2(family, user_ref_number, ref)
+DEFINE_ADDFUNC2(family, user_data, extra)
+DEFINE_ADDFUNC2_NOLIST(family, change_date, change_date)
+DEFINE_ADDFUNC2_STR(family, record_id)
 
 void family_subscribe()
 {
@@ -58,109 +73,33 @@ void family_subscribe()
   gedcom_subscribe_to_element(ELT_FAM_SUBM, fam_subm_start, def_elt_end);
 }
 
-void family_add_event(Gom_ctxt ctxt, struct event* evt)
-{
-  struct family *fam = SAFE_CTXT_CAST(family, ctxt);
-  if (fam)
-    LINK_CHAIN_ELT(event, fam->event, evt);
-}
-
-void family_add_lss(Gom_ctxt ctxt, struct lds_event* lss)
-{
-  struct family *fam = SAFE_CTXT_CAST(family, ctxt);
-  if (fam)
-    LINK_CHAIN_ELT(lds_event, fam->lds_spouse_sealing, lss);
-}
-
-void family_add_citation(Gom_ctxt ctxt, struct source_citation* cit)
-{
-  struct family *fam = SAFE_CTXT_CAST(family, ctxt);
-  if (fam)
-    LINK_CHAIN_ELT(source_citation, fam->citation, cit);
-}
-
-void family_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link)
-{
-  struct family *fam = SAFE_CTXT_CAST(family, ctxt);
-  if (fam)
-    LINK_CHAIN_ELT(multimedia_link, fam->mm_link, link);
-}
-
-void family_add_note(Gom_ctxt ctxt, struct note_sub* note)
-{
-  struct family *fam = SAFE_CTXT_CAST(family, ctxt);
-  if (fam)
-    LINK_CHAIN_ELT(note_sub, fam->note, note);
-}
-
-void family_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
-{
-  struct family *fam = SAFE_CTXT_CAST(family, ctxt);
-  if (fam)
-    LINK_CHAIN_ELT(user_ref_number, fam->ref, ref);
-}
-
-void family_set_record_id(Gom_ctxt ctxt, const char *rin)
-{
-  struct family *fam = SAFE_CTXT_CAST(family, ctxt);
-  if (fam) {
-    fam->record_id = strdup(rin);
-    if (! fam->record_id) MEMORY_ERROR;
-  }
-}
-
-void family_set_change_date(Gom_ctxt ctxt, struct change_date* chan)
-{
-  struct family *fam = SAFE_CTXT_CAST(family, ctxt);
-  if (fam)
-    fam->change_date = chan;
-}
-
-void family_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct family *obj = SAFE_CTXT_CAST(family, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void family_cleanup(struct family* fam)
+void CLEANFUNC(family)(struct family* fam)
 {
   if (fam) {
     SAFE_FREE(fam->xrefstr);
-    DESTROY_CHAIN_ELTS(event, fam->event, event_cleanup); 
-    DESTROY_CHAIN_ELTS(xref_list, fam->children, NULL_DESTROY);
+    DESTROY_CHAIN_ELTS(event, fam->event); 
+    DESTROY_CHAIN_ELTS(xref_list, fam->children);
     SAFE_FREE(fam->nr_of_children);
-    DESTROY_CHAIN_ELTS(xref_list, fam->submitters, NULL_DESTROY);
-    DESTROY_CHAIN_ELTS(lds_event, fam->lds_spouse_sealing, lds_event_cleanup);
-    DESTROY_CHAIN_ELTS(source_citation, fam->citation, citation_cleanup);
-    DESTROY_CHAIN_ELTS(multimedia_link, fam->mm_link, multimedia_link_cleanup);
-    DESTROY_CHAIN_ELTS(note_sub, fam->note, note_sub_cleanup);
-    DESTROY_CHAIN_ELTS(user_ref_number, fam->ref, user_ref_cleanup);
+    DESTROY_CHAIN_ELTS(xref_list, fam->submitters);
+    DESTROY_CHAIN_ELTS(lds_event, fam->lds_spouse_sealing);
+    DESTROY_CHAIN_ELTS(source_citation, fam->citation);
+    DESTROY_CHAIN_ELTS(multimedia_link, fam->mm_link);
+    DESTROY_CHAIN_ELTS(note_sub, fam->note);
+    DESTROY_CHAIN_ELTS(user_ref_number, fam->ref);
     SAFE_FREE(fam->record_id);
-    change_date_cleanup(fam->change_date);
-    DESTROY_CHAIN_ELTS(user_data, fam->extra, user_data_cleanup);
+    CLEANFUNC(change_date)(fam->change_date);
+    DESTROY_CHAIN_ELTS(user_data, fam->extra);
   }
 }
 
 void families_cleanup()
 {
-  DESTROY_CHAIN_ELTS(family, gom_first_family, family_cleanup);
+  DESTROY_CHAIN_ELTS(family, gom_first_family);
 }
 
 struct family* gom_get_first_family()
 {
   return gom_first_family;
-}
-
-struct family* make_family_record(const char* xrefstr)
-{
-  struct family* fam = NULL;
-  MAKE_CHAIN_ELT(family, gom_first_family, fam);
-  if (fam) {
-    fam->xrefstr = strdup(xrefstr);
-    if (! fam->xrefstr) MEMORY_ERROR;
-  }
-  return fam;
 }
 
 int write_families(Gedcom_write_hndl hndl)

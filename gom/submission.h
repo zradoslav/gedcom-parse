@@ -29,8 +29,9 @@
 
 void submission_subscribe();
 void submission_cleanup();
-struct submission* make_submission_record(const char* xref);
-void submission_add_user_data(Gom_ctxt ctxt, struct user_data* data);
 int write_submission(Gedcom_write_hndl hndl);
+
+DECLARE_MAKEFUNC(submission);
+DECLARE_ADDFUNC2(submission, user_data);
 
 #endif /* __SUBMISSION_H */

@@ -53,7 +53,7 @@ Gedcom_ctxt sub_sour_even_start(_ELT_PARAMS_)
       else {
 	switch (ctxt->ctxt_type) {
 	  case ELT_SOUR_DATA:
-	    source_add_event(ctxt, evt); break;
+	    ADDFUNC2(source,source_event)(ctxt, evt); break;
 	  default:
 	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
 	}
@@ -65,8 +65,10 @@ Gedcom_ctxt sub_sour_even_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-DATE_CB(source_event, sub_sour_even_date_start, date_period)
-STRING_CB(source_event, sub_sour_even_plac_start, jurisdiction)
+DEFINE_DATE_CB(source_event, sub_sour_even_date_start, date_period)
+DEFINE_STRING_CB(source_event, sub_sour_even_plac_start, jurisdiction)
+
+DEFINE_ADDFUNC2(source_event, user_data, extra)
      
 void source_event_subscribe()
 {
@@ -78,20 +80,13 @@ void source_event_subscribe()
 			      sub_sour_even_plac_start, def_elt_end);
 }
 
-void source_event_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct source_event *obj = SAFE_CTXT_CAST(source_event, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void source_event_cleanup(struct source_event* evt)
+void CLEANFUNC(source_event)(struct source_event* evt)
 {
   if (evt) {
     SAFE_FREE(evt->recorded_events);
     SAFE_FREE(evt->date_period);
     SAFE_FREE(evt->jurisdiction);
-    DESTROY_CHAIN_ELTS(user_data, evt->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, evt->extra);
   }
 }
 

@@ -53,7 +53,7 @@ Gedcom_ctxt sub_sour_caln_start(_ELT_PARAMS_)
       else {
 	switch (ctxt->ctxt_type) {
 	  case ELT_SUB_REPO:
-	    source_add_description(ctxt, desc); break;
+	    ADDFUNC2(source,source_description)(ctxt, desc); break;
 	  default:
 	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
 	}
@@ -65,7 +65,9 @@ Gedcom_ctxt sub_sour_caln_start(_ELT_PARAMS_)
   return (Gedcom_ctxt)result;
 }
 
-STRING_CB(source_description, sub_sour_caln_medi_start, media)
+DEFINE_STRING_CB(source_description, sub_sour_caln_medi_start, media)
+
+DEFINE_ADDFUNC2(source_description, user_data, extra)
      
 void source_description_subscribe()
 {
@@ -75,19 +77,12 @@ void source_description_subscribe()
 			      sub_sour_caln_medi_start, def_elt_end);
 }
 
-void source_description_add_user_data(Gom_ctxt ctxt, struct user_data* data)
-{
-  struct source_description *obj = SAFE_CTXT_CAST(source_description, ctxt);
-  if (obj)
-    LINK_CHAIN_ELT(user_data, obj->extra, data);
-}
-
-void source_description_cleanup(struct source_description* desc)
+void CLEANFUNC(source_description)(struct source_description* desc)
 {
   if (desc) {
     SAFE_FREE(desc->call_number);
     SAFE_FREE(desc->media);
-    DESTROY_CHAIN_ELTS(user_data, desc->extra, user_data_cleanup);
+    DESTROY_CHAIN_ELTS(user_data, desc->extra);
   }
 }
 
