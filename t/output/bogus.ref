@@ -1,5 +1,5 @@
 
-=== Parsing bogus file Makefile.am
+=== Parsing bogus file bogus.ged
 WARNING: Warning on line 1: Unknown encoding, falling back to one-byte
 ERROR: Error on line 1: parse error
 ERROR: Error on line 2: GEDCOM level number is 2 higher than previous

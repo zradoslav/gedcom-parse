@@ -1,6 +1,6 @@
 
 === Parsing file file_not_exist.ged
-ERROR: Error: Could not open file './input/file_not_exist.ged': No such file or directory
+ERROR: Error: Could not open file './file_not_exist.ged': No such file or directory
 
 === Total conversion failures: 0
 Parse failed
