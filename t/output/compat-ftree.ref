@@ -1,0 +1,2119 @@
+
+=== Parsing file compat-ftree.ged
+Header start
+WARNING: Warning on line 2: Enabling compatibility with 'ftree'
+Source is ftree (ctxt is 1001, parent is 1)
+== 2 VERS (391) 1.5 (ctxt is 1001, conversion failures: 0)
+== 2 NAME (342) Ftree for Linux (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 DATE (306) 28 Aug 2000 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 23:38 (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) ANSI (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) /usr2/cas/src/ftree/real_data/royal.ged (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @__COMPAT__SUBM__@
+== 1 NAME (342) Submitter (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I0001@
+== 1 NAME (342) Elizabeth Alexandra Mary /Windsor/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 21 Apr 1926
+  type: 0
+  date1:
+    calendar type: 0
+    day: 21
+    month: Apr
+    year: 1926
+    date type: 1
+    sdn1: 2424627
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) 17 Bruton Street, London, W1 (ctxt is 333, conversion failures: 0)
+== 1 RESI (368) (null) (ctxt is 333, conversion failures: 0)
+== 2 ADDR (266) Buckingham Palace (ctxt is 333, conversion failures: 0)
+== 1 OCCU (352) Queen (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0003@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0001@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0002@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0002@
+== 1 NAME (342) Philip /Mountbatten/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1921
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1921
+    date type: 2
+    sdn1: 2422691
+    sdn2: 2423055
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0002@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0001@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0001@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0003@
+== 1 NAME (342) Andrew (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0002@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0004@
+== 1 NAME (342) Alice (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0002@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0005@
+== 1 NAME (342) George VI (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1895
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1895
+    date type: 2
+    sdn1: 2413195
+    sdn2: 2413559
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1952
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1952
+    date type: 2
+    sdn1: 2434013
+    sdn2: 2434378
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0005@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0003@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0006@
+== 1 NAME (342) Charles Philip Arthur George /Windsor/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 14 Nov 1948
+  type: 0
+  date1:
+    calendar type: 0
+    day: 14
+    month: Nov
+    year: 1948
+    date type: 1
+    sdn1: 2432870
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0001@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0007@
+== 1 NAME (342) Anne Elizabeth Alice Louise (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 15 Aug 1950
+  type: 0
+  date1:
+    calendar type: 0
+    day: 15
+    month: Aug
+    year: 1950
+    date type: 1
+    sdn1: 2433509
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0001@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0008@
+== 1 NAME (342) Andrew Albert Christian Edward (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 19 Feb 1960
+  type: 0
+  date1:
+    calendar type: 0
+    day: 19
+    month: Feb
+    year: 1960
+    date type: 1
+    sdn1: 2436984
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0001@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0009@
+== 1 NAME (342) Edward Antony Richard Louis (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 10 Mar 1964
+  type: 0
+  date1:
+    calendar type: 0
+    day: 10
+    month: Mar
+    year: 1964
+    date type: 1
+    sdn1: 2438465
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0001@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0010@
+== 1 NAME (342) Diana /Spencer/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: Jul 1961
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: Jul
+    year: 1961
+    date type: 2
+    sdn1: 2437482
+    sdn2: 2437512
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 Aug 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: Aug
+    year: 1997
+    date type: 1
+    sdn1: 2450692
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMS (322) @F0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0011@
+== 1 NAME (342) William (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0012@
+== 1 NAME (342) Harry (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0013@
+== 1 NAME (342) George V (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1865
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1865
+    date type: 2
+    sdn1: 2402238
+    sdn2: 2402602
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1936
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1936
+    date type: 2
+    sdn1: 2428169
+    sdn2: 2428534
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0006@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0005@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0003@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0014@
+== 1 NAME (342) Elizabeth /Bowes-Lyon/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0003@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0015@
+== 1 NAME (342) Margaret Rose (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1930
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1930
+    date type: 2
+    sdn1: 2425978
+    sdn2: 2426342
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0003@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0016@
+== 1 NAME (342) Edward VII // (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1841
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1841
+    date type: 2
+    sdn1: 2393472
+    sdn2: 2393836
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Buckinham Palace, London (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1910
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1910
+    date type: 2
+    sdn1: 2418673
+    sdn2: 2419037
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0006@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0017@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0006@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0018@
+== 1 NAME (342) Alexandra of Denmark (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0006@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0019@
+== 1 NAME (342) May of Teck (Queen Mary) (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0005@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0020@
+== 1 NAME (342) Victoria (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 24 May 1819
+  type: 0
+  date1:
+    calendar type: 0
+    day: 24
+    month: May
+    year: 1819
+    date type: 1
+    sdn1: 2385579
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Kengsington Palace (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) @N0012@ (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 22 Jan 1901
+  type: 0
+  date1:
+    calendar type: 0
+    day: 22
+    month: Jan
+    year: 1901
+    date type: 1
+    sdn1: 2415407
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Osborne House, I of W (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0007@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0009@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0021@
+== 1 NAME (342) Albert /Saxe-Coburg-Gotha/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1819
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1819
+    date type: 2
+    sdn1: 2385436
+    sdn2: 2385800
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1861
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1861
+    date type: 2
+    sdn1: 2400777
+    sdn2: 2401141
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Windsor (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) @N0011@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0022@
+== 1 NAME (342) Edward VIII (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0005@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0008@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0008@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0023@
+== 1 NAME (342)  /Simpson/ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0008@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0024@
+== 1 NAME (342) Victoria (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1840
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1840
+    date type: 2
+    sdn1: 2393106
+    sdn2: 2393471
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1901
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1901
+    date type: 2
+    sdn1: 2415386
+    sdn2: 2415750
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0009@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0025@
+== 1 NAME (342) Frederick III (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0009@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0026@
+== 1 NAME (342) Alice (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0027@
+== 1 NAME (342) Alfred (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0028@
+== 1 NAME (342) Helena (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0029@
+== 1 NAME (342) Louise (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0030@
+== 1 NAME (342) Arthur (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0031@
+== 1 NAME (342) Leopold (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0032@
+== 1 NAME (342) Beatrice (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0033@
+== 1 NAME (342) mark /Phillips/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0034@
+== 1 NAME (342) Zara (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0035@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0036@
+== 1 NAME (342) Claude (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1855
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1855
+    date type: 2
+    sdn1: 2398585
+    sdn2: 2398949
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1944
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1944
+    date type: 2
+    sdn1: 2431091
+    sdn2: 2431456
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 TITL (388) 14th Earl of Strathmore (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0012@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 SOUR (377) @S0001@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0037@
+== 1 NAME (342) Nina Cecilia Cavendish /Bentinck/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 SOUR (377) @S0001@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0038@
+== 1 NAME (342) Patrick (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1884
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1884
+    date type: 2
+    sdn1: 2409177
+    sdn2: 2409542
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1949
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1949
+    date type: 2
+    sdn1: 2432918
+    sdn2: 2433282
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 TITL (388) 15th Earl of Strathmore (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0039@
+== 1 NAME (342) Micheal (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0040@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0041@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0042@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0043@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0044@
+== 1 NAME (342) (female) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0045@
+== 1 NAME (342) (female) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0046@
+== 1 NAME (342) (female) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0047@
+== 1 NAME (342) Claude (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 TITL (388) 13th Earl of Strathmore (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0013@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0012@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0048@
+== 1 NAME (342) Thomas (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 TITL (388) Lord Glamis (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0014@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0013@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0049@
+== 1 NAME (342) Thomas (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1773
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1773
+    date type: 2
+    sdn1: 2368636
+    sdn2: 2369000
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1846
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1846
+    date type: 2
+    sdn1: 2395298
+    sdn2: 2395662
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 TITL (388) 11th Earl of Strathmore (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0014@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Family start, xref is @F0001@
+== 1 HUSB (330) @I0002@ (ctxt is 1, conversion failures: 0)
+== 1 WIFE (392) @I0001@ (ctxt is 1, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 20 Nov 1947
+  type: 0
+  date1:
+    calendar type: 0
+    day: 20
+    month: Nov
+    year: 1947
+    date type: 1
+    sdn1: 2432510
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Westminster Abbey, London (ctxt is 1, conversion failures: 0)
+== 1 CHIL (293) @I0006@ (ctxt is 1, conversion failures: 0)
+== 1 CHIL (293) @I0007@ (ctxt is 1, conversion failures: 0)
+== 1 CHIL (293) @I0008@ (ctxt is 1, conversion failures: 0)
+== 1 CHIL (293) @I0009@ (ctxt is 1, conversion failures: 0)
+Family end, xref is @F0001@
+Family start, xref is @F0002@
+== 1 HUSB (330) @I0003@ (ctxt is 2, conversion failures: 0)
+== 1 WIFE (392) @I0004@ (ctxt is 2, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 2, conversion failures: 0)
+== 1 CHIL (293) @I0002@ (ctxt is 2, conversion failures: 0)
+Family end, xref is @F0002@
+Family start, xref is @F0003@
+== 1 HUSB (330) @I0005@ (ctxt is 3, conversion failures: 0)
+== 1 WIFE (392) @I0014@ (ctxt is 3, conversion failures: 0)
+== 1 CHIL (293) @I0001@ (ctxt is 3, conversion failures: 0)
+== 1 CHIL (293) @I0015@ (ctxt is 3, conversion failures: 0)
+Family end, xref is @F0003@
+Family start, xref is @F0004@
+== 1 HUSB (330) @I0006@ (ctxt is 4, conversion failures: 0)
+== 1 WIFE (392) @I0010@ (ctxt is 4, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 4, conversion failures: 0)
+Contents of the date_value:
+  raw value: 28 Jul 1981
+  type: 0
+  date1:
+    calendar type: 0
+    day: 28
+    month: Jul
+    year: 1981
+    date type: 1
+    sdn1: 2444814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 CHIL (293) @I0011@ (ctxt is 4, conversion failures: 0)
+== 1 CHIL (293) @I0012@ (ctxt is 4, conversion failures: 0)
+Family end, xref is @F0004@
+Family start, xref is @F0005@
+== 1 HUSB (330) @I0013@ (ctxt is 5, conversion failures: 0)
+== 1 WIFE (392) @I0019@ (ctxt is 5, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 5, conversion failures: 0)
+== 1 CHIL (293) @I0022@ (ctxt is 5, conversion failures: 0)
+== 1 CHIL (293) @I0005@ (ctxt is 5, conversion failures: 0)
+== 1 NOTE (348) @N0005@ (ctxt is 5, conversion failures: 0)
+Family end, xref is @F0005@
+Family start, xref is @F0006@
+== 1 HUSB (330) @I0016@ (ctxt is 6, conversion failures: 0)
+== 1 WIFE (392) @I0018@ (ctxt is 6, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 6, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1863
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1863
+    date type: 2
+    sdn1: 2401507
+    sdn2: 2401871
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 CHIL (293) @I0017@ (ctxt is 6, conversion failures: 0)
+== 1 CHIL (293) @I0013@ (ctxt is 6, conversion failures: 0)
+== 1 NOTE (348) @N0006@ (ctxt is 6, conversion failures: 0)
+Family end, xref is @F0006@
+Family start, xref is @F0007@
+== 1 HUSB (330) @I0021@ (ctxt is 7, conversion failures: 0)
+== 1 WIFE (392) @I0020@ (ctxt is 7, conversion failures: 0)
+== 1 CHIL (293) @I0024@ (ctxt is 7, conversion failures: 0)
+== 1 CHIL (293) @I0016@ (ctxt is 7, conversion failures: 0)
+== 1 CHIL (293) @I0026@ (ctxt is 7, conversion failures: 0)
+== 1 CHIL (293) @I0027@ (ctxt is 7, conversion failures: 0)
+== 1 CHIL (293) @I0028@ (ctxt is 7, conversion failures: 0)
+== 1 CHIL (293) @I0029@ (ctxt is 7, conversion failures: 0)
+== 1 CHIL (293) @I0030@ (ctxt is 7, conversion failures: 0)
+== 1 CHIL (293) @I0031@ (ctxt is 7, conversion failures: 0)
+== 1 CHIL (293) @I0032@ (ctxt is 7, conversion failures: 0)
+Family end, xref is @F0007@
+Family start, xref is @F0008@
+== 1 HUSB (330) @I0022@ (ctxt is 8, conversion failures: 0)
+== 1 WIFE (392) @I0023@ (ctxt is 8, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 8, conversion failures: 0)
+Contents of the date_value:
+  raw value:  3 Jun 1937
+  type: 0
+  date1:
+    calendar type: 0
+    day: 3
+    month: Jun
+    year: 1937
+    date type: 1
+    sdn1: 2428688
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Chateau de Cande, Tours, France (ctxt is 8, conversion failures: 0)
+Family end, xref is @F0008@
+Family start, xref is @F0009@
+== 1 HUSB (330) @I0025@ (ctxt is 9, conversion failures: 0)
+== 1 WIFE (392) @I0024@ (ctxt is 9, conversion failures: 0)
+Family end, xref is @F0009@
+Family start, xref is @F0010@
+== 1 HUSB (330) @I0033@ (ctxt is 10, conversion failures: 0)
+== 1 WIFE (392) @I0007@ (ctxt is 10, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 10, conversion failures: 0)
+== 1 CHIL (293) @I0034@ (ctxt is 10, conversion failures: 0)
+== 1 CHIL (293) @I0035@ (ctxt is 10, conversion failures: 0)
+Family end, xref is @F0010@
+Family start, xref is @F0011@
+== 1 HUSB (330) @I0036@ (ctxt is 11, conversion failures: 0)
+== 1 WIFE (392) @I0037@ (ctxt is 11, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0038@ (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0039@ (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0040@ (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0041@ (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0042@ (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0043@ (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0044@ (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0045@ (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0046@ (ctxt is 11, conversion failures: 0)
+== 1 CHIL (293) @I0014@ (ctxt is 11, conversion failures: 0)
+Family end, xref is @F0011@
+Family start, xref is @F0012@
+== 1 HUSB (330) @I0047@ (ctxt is 12, conversion failures: 0)
+== 1 CHIL (293) @I0036@ (ctxt is 12, conversion failures: 0)
+Family end, xref is @F0012@
+Family start, xref is @F0013@
+== 1 HUSB (330) @I0048@ (ctxt is 13, conversion failures: 0)
+== 1 CHIL (293) @I0047@ (ctxt is 13, conversion failures: 0)
+Family end, xref is @F0013@
+Family start, xref is @F0014@
+== 1 HUSB (330) @I0049@ (ctxt is 14, conversion failures: 0)
+== 1 CHIL (293) @I0048@ (ctxt is 14, conversion failures: 0)
+Family end, xref is @F0014@
+== 0 NOTE (348)  (xref is @N0001@)
+== 1 CONT (300) Took surname Mountbatten in March 1947 (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Known as "Phil the Greek" (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0002@)
+== 1 CONT (300) Born at home of Maternal grandparents (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Educated privately (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Coronation in 1953 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0003@)
+== 1 CONT (300) Succeeded father in 1910, crowned 1911 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0004@)
+== 1 CONT (300) Created Duke of York 1920 (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Succeeded to throne on Edward VIII's abdication in 1936, crowned 1937 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0005@)
+== 1 CONT (300) 5 sons and 1 dau (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0006@)
+== 1 CONT (300) Total of 6 children (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0007@)
+== 1 CONT (300) Succeeded to throne in 1901, crowned 1902 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0008@)
+== 1 CONT (300) Created Prince of Wales in 1910 (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Succeeded to throne on 20 Jan 1936 - Abdicated 11 Dec 1936 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0009@)
+== 1 CONT (300) Became Queen in 1837 on death of uncle Willian IV (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0010@)
+== 1 CONT (300) German Emperor (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0011@)
+== 1 CONT (300) Died of Typhoid (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0012@)
+== 1 CONT (300) Note on victoria birth date (ctxt is 348, conversion failures: 0)
+Rec SOUR start, xref is @S0001@
+== 1 AUTH (278) glamis family (ctxt is 377, conversion failures: 0)
+== 1 PUBL (362) Glamis Guide (ctxt is 377, conversion failures: 0)
+
+=== Total conversion failures: 0
+
+=== Parsing file compat-ftree.ged
+Header start
+WARNING: Warning on line 2: Enabling compatibility with 'ftree'
+Source is ftree (ctxt is 1001, parent is 1)
+== 2 VERS (391) 1.5 (ctxt is 1001, conversion failures: 0)
+== 2 NAME (342) Ftree for Linux (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 DATE (306) 28 Aug 2000 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 23:38 (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) ANSI (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) /usr2/cas/src/ftree/real_data/royal.ged (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @__COMPAT__SUBM__@
+== 1 NAME (342) Submitter (ctxt is 10000, conversion failures: 0)
+Rec INDI start, xref is @I0001@
+== 1 NAME (342) Elizabeth Alexandra Mary /Windsor/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 21 Apr 1926
+  type: 0
+  date1:
+    calendar type: 0
+    day: 21
+    month: Apr
+    year: 1926
+    date type: 1
+    sdn1: 2424627
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) 17 Bruton Street, London, W1 (ctxt is 333, conversion failures: 0)
+== 1 RESI (368) (null) (ctxt is 333, conversion failures: 0)
+== 2 ADDR (266) Buckingham Palace (ctxt is 333, conversion failures: 0)
+== 1 OCCU (352) Queen (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0003@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0001@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0002@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0002@
+== 1 NAME (342) Philip /Mountbatten/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1921
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1921
+    date type: 2
+    sdn1: 2422691
+    sdn2: 2423055
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0002@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0001@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0001@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0003@
+== 1 NAME (342) Andrew (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0002@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0004@
+== 1 NAME (342) Alice (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0002@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0005@
+== 1 NAME (342) George VI (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1895
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1895
+    date type: 2
+    sdn1: 2413195
+    sdn2: 2413559
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1952
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1952
+    date type: 2
+    sdn1: 2434013
+    sdn2: 2434378
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0005@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0003@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0006@
+== 1 NAME (342) Charles Philip Arthur George /Windsor/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 14 Nov 1948
+  type: 0
+  date1:
+    calendar type: 0
+    day: 14
+    month: Nov
+    year: 1948
+    date type: 1
+    sdn1: 2432870
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0001@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0007@
+== 1 NAME (342) Anne Elizabeth Alice Louise (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 15 Aug 1950
+  type: 0
+  date1:
+    calendar type: 0
+    day: 15
+    month: Aug
+    year: 1950
+    date type: 1
+    sdn1: 2433509
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0001@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0008@
+== 1 NAME (342) Andrew Albert Christian Edward (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 19 Feb 1960
+  type: 0
+  date1:
+    calendar type: 0
+    day: 19
+    month: Feb
+    year: 1960
+    date type: 1
+    sdn1: 2436984
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0001@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0009@
+== 1 NAME (342) Edward Antony Richard Louis (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 10 Mar 1964
+  type: 0
+  date1:
+    calendar type: 0
+    day: 10
+    month: Mar
+    year: 1964
+    date type: 1
+    sdn1: 2438465
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0001@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0010@
+== 1 NAME (342) Diana /Spencer/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: Jul 1961
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: Jul
+    year: 1961
+    date type: 2
+    sdn1: 2437482
+    sdn2: 2437512
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 31 Aug 1997
+  type: 0
+  date1:
+    calendar type: 0
+    day: 31
+    month: Aug
+    year: 1997
+    date type: 1
+    sdn1: 2450692
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMS (322) @F0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0011@
+== 1 NAME (342) William (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0012@
+== 1 NAME (342) Harry (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0004@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0013@
+== 1 NAME (342) George V (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1865
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1865
+    date type: 2
+    sdn1: 2402238
+    sdn2: 2402602
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1936
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1936
+    date type: 2
+    sdn1: 2428169
+    sdn2: 2428534
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0006@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0005@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0003@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0014@
+== 1 NAME (342) Elizabeth /Bowes-Lyon/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0003@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0015@
+== 1 NAME (342) Margaret Rose (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1930
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1930
+    date type: 2
+    sdn1: 2425978
+    sdn2: 2426342
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0003@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0016@
+== 1 NAME (342) Edward VII // (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1841
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1841
+    date type: 2
+    sdn1: 2393472
+    sdn2: 2393836
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Buckinham Palace, London (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1910
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1910
+    date type: 2
+    sdn1: 2418673
+    sdn2: 2419037
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0006@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0017@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0006@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0018@
+== 1 NAME (342) Alexandra of Denmark (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0006@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0019@
+== 1 NAME (342) May of Teck (Queen Mary) (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0005@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0020@
+== 1 NAME (342) Victoria (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 24 May 1819
+  type: 0
+  date1:
+    calendar type: 0
+    day: 24
+    month: May
+    year: 1819
+    date type: 1
+    sdn1: 2385579
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Kengsington Palace (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) @N0012@ (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 22 Jan 1901
+  type: 0
+  date1:
+    calendar type: 0
+    day: 22
+    month: Jan
+    year: 1901
+    date type: 1
+    sdn1: 2415407
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Osborne House, I of W (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0007@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0009@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0021@
+== 1 NAME (342) Albert /Saxe-Coburg-Gotha/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1819
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1819
+    date type: 2
+    sdn1: 2385436
+    sdn2: 2385800
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1861
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1861
+    date type: 2
+    sdn1: 2400777
+    sdn2: 2401141
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Windsor (ctxt is 333, conversion failures: 0)
+== 2 NOTE (348) @N0011@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0022@
+== 1 NAME (342) Edward VIII (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0005@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0008@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0008@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0023@
+== 1 NAME (342)  /Simpson/ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0008@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0024@
+== 1 NAME (342) Victoria (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1840
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1840
+    date type: 2
+    sdn1: 2393106
+    sdn2: 2393471
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1901
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1901
+    date type: 2
+    sdn1: 2415386
+    sdn2: 2415750
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0009@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0025@
+== 1 NAME (342) Frederick III (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0009@ (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) @N0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0026@
+== 1 NAME (342) Alice (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0027@
+== 1 NAME (342) Alfred (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0028@
+== 1 NAME (342) Helena (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0029@
+== 1 NAME (342) Louise (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0030@
+== 1 NAME (342) Arthur (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0031@
+== 1 NAME (342) Leopold (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0032@
+== 1 NAME (342) Beatrice (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0007@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0033@
+== 1 NAME (342) mark /Phillips/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0034@
+== 1 NAME (342) Zara (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0035@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0010@ (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0036@
+== 1 NAME (342) Claude (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1855
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1855
+    date type: 2
+    sdn1: 2398585
+    sdn2: 2398949
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1944
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1944
+    date type: 2
+    sdn1: 2431091
+    sdn2: 2431456
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 TITL (388) 14th Earl of Strathmore (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0012@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 SOUR (377) @S0001@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0037@
+== 1 NAME (342) Nina Cecilia Cavendish /Bentinck/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 SOUR (377) @S0001@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0038@
+== 1 NAME (342) Patrick (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1884
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1884
+    date type: 2
+    sdn1: 2409177
+    sdn2: 2409542
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1949
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1949
+    date type: 2
+    sdn1: 2432918
+    sdn2: 2433282
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 TITL (388) 15th Earl of Strathmore (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0039@
+== 1 NAME (342) Micheal (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0040@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0041@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0042@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0043@
+== 1 NAME (342) (male) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0044@
+== 1 NAME (342) (female) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0045@
+== 1 NAME (342) (female) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0046@
+== 1 NAME (342) (female) (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) F (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0011@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0047@
+== 1 NAME (342) Claude (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 TITL (388) 13th Earl of Strathmore (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0013@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0012@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0048@
+== 1 NAME (342) Thomas (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 TITL (388) Lord Glamis (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F0014@ (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0013@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Rec INDI start, xref is @I0049@
+== 1 NAME (342) Thomas (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1773
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1773
+    date type: 2
+    sdn1: 2368636
+    sdn2: 2369000
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1846
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1846
+    date type: 2
+    sdn1: 2395298
+    sdn2: 2395662
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 TITL (388) 11th Earl of Strathmore (ctxt is 333, conversion failures: 0)
+== 1 FAMS (322) @F0014@ (ctxt is 333, conversion failures: 0)
+== 1 CHAN (291) (null) (ctxt is 333, conversion failures: 0)
+== 2 DATE (306)  2 Jun 2000 (ctxt is 333, conversion failures: 0)
+Family start, xref is @F0001@
+== 1 HUSB (330) @I0002@ (ctxt is 15, conversion failures: 0)
+== 1 WIFE (392) @I0001@ (ctxt is 15, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 15, conversion failures: 0)
+Contents of the date_value:
+  raw value: 20 Nov 1947
+  type: 0
+  date1:
+    calendar type: 0
+    day: 20
+    month: Nov
+    year: 1947
+    date type: 1
+    sdn1: 2432510
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Westminster Abbey, London (ctxt is 15, conversion failures: 0)
+== 1 CHIL (293) @I0006@ (ctxt is 15, conversion failures: 0)
+== 1 CHIL (293) @I0007@ (ctxt is 15, conversion failures: 0)
+== 1 CHIL (293) @I0008@ (ctxt is 15, conversion failures: 0)
+== 1 CHIL (293) @I0009@ (ctxt is 15, conversion failures: 0)
+Family end, xref is @F0001@
+Family start, xref is @F0002@
+== 1 HUSB (330) @I0003@ (ctxt is 16, conversion failures: 0)
+== 1 WIFE (392) @I0004@ (ctxt is 16, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 16, conversion failures: 0)
+== 1 CHIL (293) @I0002@ (ctxt is 16, conversion failures: 0)
+Family end, xref is @F0002@
+Family start, xref is @F0003@
+== 1 HUSB (330) @I0005@ (ctxt is 17, conversion failures: 0)
+== 1 WIFE (392) @I0014@ (ctxt is 17, conversion failures: 0)
+== 1 CHIL (293) @I0001@ (ctxt is 17, conversion failures: 0)
+== 1 CHIL (293) @I0015@ (ctxt is 17, conversion failures: 0)
+Family end, xref is @F0003@
+Family start, xref is @F0004@
+== 1 HUSB (330) @I0006@ (ctxt is 18, conversion failures: 0)
+== 1 WIFE (392) @I0010@ (ctxt is 18, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 18, conversion failures: 0)
+Contents of the date_value:
+  raw value: 28 Jul 1981
+  type: 0
+  date1:
+    calendar type: 0
+    day: 28
+    month: Jul
+    year: 1981
+    date type: 1
+    sdn1: 2444814
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 CHIL (293) @I0011@ (ctxt is 18, conversion failures: 0)
+== 1 CHIL (293) @I0012@ (ctxt is 18, conversion failures: 0)
+Family end, xref is @F0004@
+Family start, xref is @F0005@
+== 1 HUSB (330) @I0013@ (ctxt is 19, conversion failures: 0)
+== 1 WIFE (392) @I0019@ (ctxt is 19, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 19, conversion failures: 0)
+== 1 CHIL (293) @I0022@ (ctxt is 19, conversion failures: 0)
+== 1 CHIL (293) @I0005@ (ctxt is 19, conversion failures: 0)
+== 1 NOTE (348) @N0005@ (ctxt is 19, conversion failures: 0)
+Family end, xref is @F0005@
+Family start, xref is @F0006@
+== 1 HUSB (330) @I0016@ (ctxt is 20, conversion failures: 0)
+== 1 WIFE (392) @I0018@ (ctxt is 20, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 20, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1863
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1863
+    date type: 2
+    sdn1: 2401507
+    sdn2: 2401871
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 1 CHIL (293) @I0017@ (ctxt is 20, conversion failures: 0)
+== 1 CHIL (293) @I0013@ (ctxt is 20, conversion failures: 0)
+== 1 NOTE (348) @N0006@ (ctxt is 20, conversion failures: 0)
+Family end, xref is @F0006@
+Family start, xref is @F0007@
+== 1 HUSB (330) @I0021@ (ctxt is 21, conversion failures: 0)
+== 1 WIFE (392) @I0020@ (ctxt is 21, conversion failures: 0)
+== 1 CHIL (293) @I0024@ (ctxt is 21, conversion failures: 0)
+== 1 CHIL (293) @I0016@ (ctxt is 21, conversion failures: 0)
+== 1 CHIL (293) @I0026@ (ctxt is 21, conversion failures: 0)
+== 1 CHIL (293) @I0027@ (ctxt is 21, conversion failures: 0)
+== 1 CHIL (293) @I0028@ (ctxt is 21, conversion failures: 0)
+== 1 CHIL (293) @I0029@ (ctxt is 21, conversion failures: 0)
+== 1 CHIL (293) @I0030@ (ctxt is 21, conversion failures: 0)
+== 1 CHIL (293) @I0031@ (ctxt is 21, conversion failures: 0)
+== 1 CHIL (293) @I0032@ (ctxt is 21, conversion failures: 0)
+Family end, xref is @F0007@
+Family start, xref is @F0008@
+== 1 HUSB (330) @I0022@ (ctxt is 22, conversion failures: 0)
+== 1 WIFE (392) @I0023@ (ctxt is 22, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 22, conversion failures: 0)
+Contents of the date_value:
+  raw value:  3 Jun 1937
+  type: 0
+  date1:
+    calendar type: 0
+    day: 3
+    month: Jun
+    year: 1937
+    date type: 1
+    sdn1: 2428688
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358) Chateau de Cande, Tours, France (ctxt is 22, conversion failures: 0)
+Family end, xref is @F0008@
+Family start, xref is @F0009@
+== 1 HUSB (330) @I0025@ (ctxt is 23, conversion failures: 0)
+== 1 WIFE (392) @I0024@ (ctxt is 23, conversion failures: 0)
+Family end, xref is @F0009@
+Family start, xref is @F0010@
+== 1 HUSB (330) @I0033@ (ctxt is 24, conversion failures: 0)
+== 1 WIFE (392) @I0007@ (ctxt is 24, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 24, conversion failures: 0)
+== 1 CHIL (293) @I0034@ (ctxt is 24, conversion failures: 0)
+== 1 CHIL (293) @I0035@ (ctxt is 24, conversion failures: 0)
+Family end, xref is @F0010@
+Family start, xref is @F0011@
+== 1 HUSB (330) @I0036@ (ctxt is 25, conversion failures: 0)
+== 1 WIFE (392) @I0037@ (ctxt is 25, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0038@ (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0039@ (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0040@ (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0041@ (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0042@ (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0043@ (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0044@ (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0045@ (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0046@ (ctxt is 25, conversion failures: 0)
+== 1 CHIL (293) @I0014@ (ctxt is 25, conversion failures: 0)
+Family end, xref is @F0011@
+Family start, xref is @F0012@
+== 1 HUSB (330) @I0047@ (ctxt is 26, conversion failures: 0)
+== 1 CHIL (293) @I0036@ (ctxt is 26, conversion failures: 0)
+Family end, xref is @F0012@
+Family start, xref is @F0013@
+== 1 HUSB (330) @I0048@ (ctxt is 27, conversion failures: 0)
+== 1 CHIL (293) @I0047@ (ctxt is 27, conversion failures: 0)
+Family end, xref is @F0013@
+Family start, xref is @F0014@
+== 1 HUSB (330) @I0049@ (ctxt is 28, conversion failures: 0)
+== 1 CHIL (293) @I0048@ (ctxt is 28, conversion failures: 0)
+Family end, xref is @F0014@
+== 0 NOTE (348)  (xref is @N0001@)
+== 1 CONT (300) Took surname Mountbatten in March 1947 (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Known as "Phil the Greek" (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0002@)
+== 1 CONT (300) Born at home of Maternal grandparents (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Educated privately (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Coronation in 1953 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0003@)
+== 1 CONT (300) Succeeded father in 1910, crowned 1911 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0004@)
+== 1 CONT (300) Created Duke of York 1920 (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Succeeded to throne on Edward VIII's abdication in 1936, crowned 1937 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0005@)
+== 1 CONT (300) 5 sons and 1 dau (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0006@)
+== 1 CONT (300) Total of 6 children (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0007@)
+== 1 CONT (300) Succeeded to throne in 1901, crowned 1902 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0008@)
+== 1 CONT (300) Created Prince of Wales in 1910 (ctxt is 348, conversion failures: 0)
+== 1 CONT (300) Succeeded to throne on 20 Jan 1936 - Abdicated 11 Dec 1936 (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0009@)
+== 1 CONT (300) Became Queen in 1837 on death of uncle Willian IV (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0010@)
+== 1 CONT (300) German Emperor (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0011@)
+== 1 CONT (300) Died of Typhoid (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348)  (xref is @N0012@)
+== 1 CONT (300) Note on victoria birth date (ctxt is 348, conversion failures: 0)
+Rec SOUR start, xref is @S0001@
+== 1 AUTH (278) glamis family (ctxt is 377, conversion failures: 0)
+== 1 PUBL (362) Glamis Guide (ctxt is 377, conversion failures: 0)
+
+=== Total conversion failures: 0
+Parse succeeded

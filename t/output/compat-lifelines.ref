@@ -1,0 +1,197 @@
+
+=== Parsing file compat-lifelines.ged
+Header start
+WARNING: Warning on line 2: Enabling compatibility with 'Lifelines'
+Source is LIFELINES 3.0.2 (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+== 1 DEST (310) ANY (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 1 JUL 1997 (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 5: Header change time lost in the compatibility
+== 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) ANSI (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @__COMPAT__SUBM__@
+== 1 NAME (342) Submitter (ctxt is 10000, conversion failures: 0)
+Family start, xref is @F1@
+== 1 HUSB (330) @I7@ (ctxt is 1, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 1, conversion failures: 0)
+Contents of the date_value:
+  raw value: 
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358)  (ctxt is 1, conversion failures: 0)
+== 2 SOUR (377) name@domain.be (reclame voor genealogie boeken) (ctxt is 1, conversion failures: 0)
+Family end, xref is @F1@
+Rec INDI start, xref is @I7@
+== 1 NAME (342) Jacob (Jacques) /Blablabla/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F1@ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1360
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1360
+    date type: 2
+    sdn1: 2217790
+    sdn2: 2218155
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358)  (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) ongeveer 1360 (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358)  (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377)  (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) Hij bouwde het Brusselse stadhuis in 1402. Hij bouwde ook kerken in (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) Belgi? en Nederland. Misschien is hij wel het ontstaan van de (ctxt is 333, conversion failures: 1)
+== 1 NOTE (348) Nederlandse tak ? in 1405 was de oudste vleugen klaar (ctxt is 333, conversion failures: 0)
+
+=== Total conversion failures: 1
+
+=== Parsing file compat-lifelines.ged
+Header start
+WARNING: Warning on line 2: Enabling compatibility with 'Lifelines'
+Source is LIFELINES 3.0.2 (ctxt is 1001, parent is 1)
+Source context 1001 in parent 1
+== 1 DEST (310) ANY (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 1 JUL 1997 (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 5: Header change time lost in the compatibility
+== 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) ANSI (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @__COMPAT__SUBM__@
+== 1 NAME (342) Submitter (ctxt is 10000, conversion failures: 0)
+Family start, xref is @F1@
+== 1 HUSB (330) @I7@ (ctxt is 2, conversion failures: 0)
+== 1 MARR (339) (null) (ctxt is 2, conversion failures: 0)
+Contents of the date_value:
+  raw value: 
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358)  (ctxt is 2, conversion failures: 0)
+== 2 SOUR (377) name@domain.be (reclame voor genealogie boeken) (ctxt is 2, conversion failures: 0)
+Family end, xref is @F1@
+Rec INDI start, xref is @I7@
+== 1 NAME (342) Jacob (Jacques) /Blablabla/ (ctxt is 333, conversion failures: 0)
+== 1 SEX (374) M (ctxt is 333, conversion failures: 0)
+== 1 FAMC (320) @F1@ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 1360
+  type: 0
+  date1:
+    calendar type: 0
+    day: 
+    month: 
+    year: 1360
+    date type: 2
+    sdn1: 2217790
+    sdn2: 2218155
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358)  (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) ongeveer 1360 (ctxt is 333, conversion failures: 0)
+== 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 
+  type: 11
+  date1:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
+== 2 PLAC (358)  (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377)  (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) Hij bouwde het Brusselse stadhuis in 1402. Hij bouwde ook kerken in (ctxt is 333, conversion failures: 0)
+== 1 NOTE (348) Belgi? en Nederland. Misschien is hij wel het ontstaan van de (ctxt is 333, conversion failures: 1)
+== 1 NOTE (348) Nederlandse tak ? in 1405 was de oudste vleugen klaar (ctxt is 333, conversion failures: 0)
+
+=== Total conversion failures: 2
+Parse succeeded
