@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 # $Id$
 # $Name$
-SUBDIRS = intl @DIRS@ utf8 gedcom gom include . t doc data po
+SUBDIRS = intl iconv utf8 gedcom gom include . t doc data po
 
 EXTRA_DIST = Makefile.inc
 VERSIONED_FILES = README
