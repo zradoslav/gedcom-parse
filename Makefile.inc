@@ -14,12 +14,14 @@ endef
 %.tabgen.h:	%.tab.h
 	if [ ! -r $(srcdir)/$@ ] ; \
 	then \
+          echo "Creating empty file for $@"; \
 	  touch $(srcdir)/$@; \
 	fi
 	if diff $< $(srcdir)/$@ > /dev/null 2>&1; \
 	then \
 	  : ; \
 	else \
+	  echo "Updating $@"; \
 	  rm $(srcdir)/$@; \
 	  cp $(srcdir)/$< $(srcdir)/$@; \
 	fi
