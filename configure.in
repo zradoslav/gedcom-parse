@@ -50,7 +50,7 @@ fi
 
 dnl =============================================================
 dnl Checks for libraries.
-AM_GNU_GETTEXT
+AM_GNU_GETTEXT([use-libtool])
 AM_WITH_DMALLOC
 
 dnl == Make statically linked test program for dmalloc tests
@@ -112,8 +112,7 @@ README).
 fi
 
 AC_OUTPUT(GNUmakefile
-	  Makefile
-	  README
+          Makefile
 	  gedcom/Makefile
 	  gedcom/calendar/Makefile
 	  gom/Makefile
