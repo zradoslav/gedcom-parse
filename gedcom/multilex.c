@@ -26,28 +26,30 @@
 #include "encoding.h"
 #include "xref.h"
 
-int line_no;
+int line_no = 0;
 
 typedef int (*lex_func)(void);
 lex_func lf;
 
+#define NEW_MODEL_FILE "new.ged"
+
 int lexer_init(ENCODING enc, FILE* f)
 {
   if (enc == ONE_BYTE) {
-    gedcom_1byte_in = f;
-    lf = &gedcom_1byte_lex;
+    lf  = &gedcom_1byte_lex;
+    gedcom_1byte_myinit(f);
     set_encoding_width(enc);
     return open_conv_to_internal("ASCII");
   }
   else if (enc == TWO_BYTE_HILO) {
-    gedcom_hilo_in = f;
-    lf = &gedcom_hilo_lex;
+    lf  = &gedcom_hilo_lex;
+    gedcom_hilo_myinit(f);
     set_encoding_width(enc);
     return open_conv_to_internal("UNICODE");
   }
   else if (enc == TWO_BYTE_LOHI) {
-    gedcom_lohi_in = f;
-    lf = &gedcom_lohi_lex;
+    lf  = &gedcom_lohi_lex;
+    gedcom_lohi_myinit(f);
     set_encoding_width(enc);
     return open_conv_to_internal("UNICODE");
   }
@@ -159,7 +161,6 @@ int gedcom_parse_file(const char* file_name)
     gedcom_error(_("Internal error: GEDCOM parser not initialized"));
   }
   else {
-    line_no = 1;
     file = fopen(file_name, "r");
     if (!file) {
       gedcom_error(_("Could not open file '%s': %s"),
@@ -173,6 +174,7 @@ int gedcom_parse_file(const char* file_name)
 	line_no = 1;
 	make_xref_table();
 	result = gedcom_parse();
+	line_no = 0;
 	if (result == 0)
 	  result = check_xref_table();
       }
@@ -190,3 +192,17 @@ int gedcom_parse_file(const char* file_name)
   return result;
 }
 
+int gedcom_new_model()
+{
+  int result = 1;
+  char* filename = (char*) malloc(strlen(PKGDATADIR) + strlen(NEW_MODEL_FILE)
+				  + 2);
+  if (!filename)
+    MEMORY_ERROR;
+  else {
+    sprintf(filename, "%s/%s", PKGDATADIR, NEW_MODEL_FILE);
+    result = gedcom_parse(filename);
+    free(filename);
+  }
+  return result;
+}
