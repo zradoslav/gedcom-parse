@@ -27,10 +27,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <libintl.h>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 #include "gom.h"
 #include "gedcom.h"
       
-#define _(string) gettext(string)
+#define _(string) dgettext(PACKAGE, string)
 #define N_(string) (string)
 
 #ifdef __GNUC__

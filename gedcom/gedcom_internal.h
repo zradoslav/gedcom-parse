@@ -33,7 +33,7 @@
 #endif
 #include <libintl.h>
 
-#define _(string) gettext(string)
+#define _(string) dgettext(PACKAGE, string)
 #define N_(string) (string)
 
 #define MAXGEDCLEVEL    99
