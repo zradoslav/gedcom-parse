@@ -110,6 +110,7 @@ int main(int argc, char* argv[])
   setlocale(LC_ALL, "");
   gedcom_set_debug_level(debug_level, NULL);
   gedcom_set_compat_handling(compat_enabled);
+  gedcom_set_compat_options(COMPAT_ALLOW_OUT_OF_CONTEXT);
   gedcom_set_error_handling(mech);
   gedcom_set_message_handler(gedcom_message_handler);
   gedcom_set_default_callback(default_cb);
