@@ -38,7 +38,7 @@ char* default_charset;
 #define DEFAULT_GEDCOM_VERS    "5.5"
 #define DEFAULT_GEDCOM_FORM    "LINEAGE-LINKED"
 
-/* Incompatibily list (with GEDCOM 5.5):
+/* Incompatibility list (with GEDCOM 5.5):
 
     - ftree:
         - no submitter record, no submitter link in the header
@@ -49,8 +49,9 @@ char* default_charset;
         - no submitter record, no submitter link in the header
 	- no GEDC field in the header
 	- no CHAR field in the header
-	- TIME field outside of DATE field in the header (will be ignored here)
+	- HEAD.TIME instead of HEAD.DATE.TIME (will be ignored here)
 	- '@' not written as '@@' in values
+	- lots of missing required values
  */
 
 /* Compatibility handling */
