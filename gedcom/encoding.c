@@ -33,7 +33,6 @@
 #define ENCODING_CONF_FILE "gedcom.enc"
 #define GCONV_SEARCH_PATH "GCONV_PATH"
 #define MAXBUF 255
-#define INIT_NR_ENCODINGS 10
 
 static iconv_t cd_to_internal = (iconv_t) -1;
 static ENCODING the_enc = ONE_BYTE;
@@ -67,6 +66,8 @@ void add_encoding(char *gedcom_n, char* charwidth, char *iconv_n)
   if (hash_lookup(encodings, key)) {
     gedcom_warning(_("Duplicate entry found for encoding '%s', ignoring"),
 		   gedcom_n);
+    free(key);
+    free(val);
   }
   else {
     hash_alloc_insert(encodings, key, val);
@@ -133,7 +134,7 @@ void init_encodings()
       }
     }
 
-    encodings = hash_create(INIT_NR_ENCODINGS, NULL, NULL);
+    encodings = hash_create(HASHCOUNT_T_MAX, NULL, NULL);
     hash_set_allocator(encodings, node_alloc, node_free, NULL);
     
     /* Open gedcom configuration file and read */
