@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# For use outside Makefile
+if [ -z "$srcdir" ]
+then
+  srcdir=.
+fi
+builddir=`pwd`
+
+export GCONV_PATH=.:$GCONV_PATH
+ln -s $srcdir/../data/gedcom.enc .
+ln -s $builddir/../ansel/.libs/ANSI_Z39.47.so .
+ln -s $srcdir/../ansel/gconv-modules .
+
+retval=0
+
+if [ "$ICONV_PATH" ]
+then
+  export PATH=$ICONV_PATH:$PATH
+fi
+
+iconv --from-code=ANSEL --to-code=UTF-8 input/ansel.ged -o anselutf8.out
+if ! diff input/anselutf8.ged anselutf8.out
+then
+  retval=1
+else
+  iconv --to-code=ANSEL --from-code=UTF-8 input/anselutf8.ged -o ansel.out
+  if ! diff input/ansel.ged ansel.out
+  then
+    retval=1
+  fi
+fi
+
+rm gedcom.enc
+rm ANSI_Z39.47.so
+rm gconv-modules
+exit $retval
