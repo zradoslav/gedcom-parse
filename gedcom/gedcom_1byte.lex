@@ -216,8 +216,12 @@ ACTION_BEFORE_REGEXPS
 
 %%
 
+static int exitfuncregistered = 0;
+
 int yywrap()
 {
+  if (! exitfuncregistered && atexit(yylex_cleanup) == 0)
+    exitfuncregistered = 1;
   return 1;
 }
 

@@ -136,6 +136,13 @@ static void error_unexpected_character(const char* str, char ch)
   gedcom_error(_("Unexpected character: '%s' (0x%02x)"), str, ch);
 }
 
+static void yylex_cleanup()
+{
+  /* fix memory leak in lex */
+  yy_delete_buffer(yy_current_buffer);
+  yy_current_buffer = NULL;
+}
+
 #else  /* of #ifndef IN_LEX */
 
 #define TO_INTERNAL(STR,OUTBUF) \
