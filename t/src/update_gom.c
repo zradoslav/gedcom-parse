@@ -231,7 +231,7 @@ int test_record_add_delete_functions()
   const char* new_nr_of_children = "3";
   const char* note_text = "This is some text";
 
-  fam1 = gom_add_family("@FAM1@");
+  fam1 = gom_new_family("@FAM1@");
   if (!fam1) return 101;
   
   value = gom_set_string(&fam1->nr_of_children, new_nr_of_children);
@@ -240,16 +240,16 @@ int test_record_add_delete_functions()
   if (strcmp(value, new_nr_of_children))
     return 103;
 
-  ind1 = gom_add_individual("@FAM1@");
+  ind1 = gom_new_individual("@FAM1@");
   if (ind1) return 104;
 
-  ind1 = gom_add_individual("@IND1@");
+  ind1 = gom_new_individual("@IND1@");
   if (!ind1) return 105;
 
-  mm1 = gom_add_multimedia("@OBJ1@");
+  mm1 = gom_new_multimedia("@OBJ1@");
   if (!mm1) return 106;
 
-  note1 = gom_add_note("@NOTE1@");
+  note1 = gom_new_note("@NOTE1@");
   if (!note1) return 107;
   
   value = gom_set_string(&note1->text, note_text);
@@ -258,37 +258,37 @@ int test_record_add_delete_functions()
   if (strcmp(value, note_text))
     return 109;
 
-  repo1 = gom_add_repository("@REPO1@");
+  repo1 = gom_new_repository("@REPO1@");
   if (!repo1) return 110;
 
-  sour1 = gom_add_source("@SOUR1@");
+  sour1 = gom_new_source("@SOUR1@");
   if (!sour1) return 111;
 
-  subm2 = gom_add_submitter("@SUBMITTER@");
+  subm2 = gom_new_submitter("@SUBMITTER@");
   if (subm2) return 112;
 
-  subm2 = gom_add_submitter("@SUBM2@");
+  subm2 = gom_new_submitter("@SUBM2@");
   if (!subm2) return 113;
 
-  subn1 = gom_add_submission("@SUBMISSION@");
+  subn1 = gom_new_submission("@SUBMISSION@");
   if (!subn1) return 114;
 
-  user1 = gom_add_user_rec("@USER1@", "WRTAG");
+  user1 = gom_new_user_rec("@USER1@", "WRTAG");
   if (user1) return 115;
 
-  user1 = gom_add_user_rec("@USER1@", "_TAG");
+  user1 = gom_new_user_rec("@USER1@", "_TAG");
   if (!user1) return 116;
 
   xr = gom_set_xref(&(fam1->husband), ind1->xrefstr);
   if (!xr) return 118;
 
-  ind2 = gom_add_individual("@IND2@");
+  ind2 = gom_new_individual("@IND2@");
   if (!ind2) return 119;
 
-  ind3 = gom_add_individual("@IND3@");
+  ind3 = gom_new_individual("@IND3@");
   if (!ind3) return 120;
 
-  ind4 = gom_add_individual("@IND4@");
+  ind4 = gom_new_individual("@IND4@");
   if (!ind4) return 121;
 
   xrl = gom_add_xref(&(fam1->children), ind2->xrefstr);
