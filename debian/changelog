@@ -1,0 +1,5 @@
+gedcom-parse (0.90.0) unstable; urgency=low
+
+  * First debian package:
+
+ -- Geert Vantienen <Geert.Vantienen@advalvas.be>  Mon,  8 Nov 2004 21:49:59 +0100

@@ -1,0 +1,16 @@
+Source: gedcom-parse
+Section: devel
+Priority: optional
+Maintainer: Geert Vantienen <Geert.Vantienen@advalvas.be>
+Standards-Version: 3.5.8
+Build-Depends: debmake
+
+Package: gedcom-parse-dev
+Architecture: any
+Depends: libc6-dev
+Description: The GEDCOM parser library
+ Missing
+ The GEDCOM parser library is a C library that provides an API to 
+ applications to parse, process and write arbitrary genealogy files in 
+ the standard GEDCOM format.
+ Homepage: http://gedcom-parse.sourceforge.net/
