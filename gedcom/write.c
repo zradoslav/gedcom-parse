@@ -33,7 +33,9 @@
 #include <fcntl.h>
 
 #define MAXWRITELEN MAXGEDCLINELEN
+#define MAXCHARSETLEN 32
 
+char charset[MAXCHARSETLEN+1]  = "ASCII";
 const char* encoding = "ASCII";
 int write_encoding_details = ONE_BYTE;
 /* SYS_NEWLINE is defined in config.h */
@@ -79,7 +81,8 @@ void cleanup_convert_at_buffer()
 }
 
 int write_simple(Gedcom_write_hndl hndl,
-		 int level, char* xref, char* tag, char* value)
+		 int level, const char* xref, const char* tag,
+		 const char* value)
 {
   int res;
   
@@ -119,13 +122,21 @@ int write_simple(Gedcom_write_hndl hndl,
   return 0;
 }
 
+int write_encoding(Gedcom_write_hndl hndl,
+		   int level, char* xref, char* tag, char* value)
+{
+  if (strcmp(value, charset))
+    gedcom_warning(_("Forcing HEAD.CHAR value to '%s'"), charset);
+  return write_simple(hndl, level, xref, tag, charset);
+}
+
 int supports_continuation(int elt_or_rec, int which_continuation)
 {
   return tag_data[elt_or_rec].options & which_continuation;
 }
 
 int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
-	       int level, char* xref, char* tag, char* value)
+	       int level, const char* xref, const char* tag, const char* value)
 {
   int prefix_len, value_len = 0, term_len;
   char* nl_pos = NULL;
@@ -140,7 +151,7 @@ int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
   if (!nl_pos && prefix_len + value_len + term_len <= MAXWRITELEN)
     write_simple(hndl, level, xref, tag, value);
   else {
-    char* value_ptr = value;
+    const char* value_ptr = value;
     int cont_supported = supports_continuation(elt_or_rec, OPT_CONT);
     int cont_as_conc   = supports_continuation(elt_or_rec, OPT_CONT_AS_CONC);
     if (nl_pos && !cont_supported) {
@@ -190,30 +201,32 @@ int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
   return 0;
 }
 
-int gedcom_write_set_encoding(const char* charset,
+int gedcom_write_set_encoding(const char* new_charset,
 			      Encoding width, Enc_bom bom)
 {
   char* new_encoding = NULL;
-  if (!strcmp(charset, "UNICODE")) {
+  if (!strcmp(new_charset, "UNICODE")) {
     if (width == ONE_BYTE) {
       gedcom_error(_("Unicode cannot be encoded into one byte"));
       return 1;
     }
     else {
-      new_encoding = get_encoding(charset, width);
+      new_encoding = get_encoding(new_charset, width);
       if (new_encoding) {
 	encoding = new_encoding;
 	write_encoding_details = width | bom;
+	strncpy(charset, new_charset, MAXCHARSETLEN);
       }
       else
 	return 1;
     }
   }
   else {
-    new_encoding = get_encoding(charset, ONE_BYTE);
+    new_encoding = get_encoding(new_charset, ONE_BYTE);
     if (new_encoding) {
       encoding = new_encoding;
       write_encoding_details = ONE_BYTE;
+      strncpy(charset, new_charset, MAXCHARSETLEN);
     }
     else
       return 1;
@@ -370,7 +383,9 @@ int _gedcom_write_val(Gedcom_write_hndl hndl,
   tag_str = get_tag_string(rec_or_elt, tag);
   level   = get_level(hndl, rec_or_elt, parent_rec_or_elt);
   if (tag_str && (level != -1)) {
-    if (supports_continuation(rec_or_elt, OPT_CONT|OPT_CONC|OPT_CONT_AS_CONC))
+    if (rec_or_elt == ELT_HEAD_CHAR)
+      result = write_encoding(hndl, level, xrefstr, tag_str, val);
+    else if (supports_continuation(rec_or_elt, OPT_CONT|OPT_CONC))
       result = write_long(hndl, rec_or_elt, level, xrefstr, tag_str, val);
     else
       result = write_simple(hndl, level, xrefstr, tag_str, val);
