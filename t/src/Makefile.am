@@ -12,23 +12,23 @@ noinst_HEADERS = output.h dump_gom.h
 
 testgedcom_SOURCES = standalone.c output.c
 testgedcom_LDFLAGS = -L../../gedcom/.libs
-testgedcom_LDADD  = -lgedcom ../../utf8/libutf8.la
+testgedcom_LDADD  = -lgedcom ../../utf8/libutf8.la $(LIBICONV)
 
 pathtest_SOURCES = pathtest.c
 pathtest_LDFLAGS = -L../../gedcom/.libs
-pathtest_LDADD = -lgedcom ../../utf8/libutf8.la
+pathtest_LDADD = -lgedcom $(LIBICONV)
 
 gomtest_SOURCES = gomtest.c output.c dump_gom.c
 gomtest_LDFLAGS = -L../../gedcom/.libs -L../../gom/.libs
-gomtest_LDADD = -lgedcom_gom -lgedcom ../../utf8/libutf8.la
+gomtest_LDADD = -lgedcom_gom -lgedcom $(LIBICONV)
 
 gomtest_static_SOURCES = gomtest.c output.c
 gomtest_static_LDADD = ../../gedcom/.libs/libgedcom.a \
-		       ../../gom/.libs/libgedcom_gom.a ../../utf8/libutf8.la
+		       ../../gom/.libs/libgedcom_gom.a
 
 updatetest_SOURCES = update.c output.c
 updatetest_LDFLAGS = -L../../gedcom/.libs
-updatetest_LDADD = -lgedcom ../../utf8/libutf8.la
+updatetest_LDADD = -lgedcom $(LIBICONV)
 
 TEST_SCRIPT=test_script test_gom test_update
 
