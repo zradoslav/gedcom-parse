@@ -1,5 +1,169 @@
 ERROR: Error: The input 'België' is not a valid UTF-8 string
 ERROR: Error: The input 'België' is not a valid string for the locale
+
+Initial date value:
+  type: 0
+  date1:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: ''
+ERROR: Error: Date is not normalized: some fields are invalid
+String: ''
+
+Setting only year string:
+  type: 0
+  date1:
+    calendar type: 0
+    day: '', -1
+    month: '', -1
+    year: '1990', 1990
+    year type: 0
+    date type: 2
+    sdn1: 2447893
+    sdn2: 2448257
+  date2:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: ''
+String: '1990'
+
+Setting only year number:
+  type: 0
+  date1:
+    calendar type: 0
+    day: '', -1
+    month: '', -1
+    year: '1989', 1989
+    year type: 0
+    date type: 2
+    sdn1: 2447528
+    sdn2: 2447892
+  date2:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: ''
+String: '1989'
+
+Setting only SDN 1:
+  type: 0
+  date1:
+    calendar type: 0
+    day: '31', 31
+    month: 'AUG', 8
+    year: '2132', 2132
+    year type: 0
+    date type: 1
+    sdn1: 2500000
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: ''
+String: '31 AUG 2132'
+
+Same date in Hebrew calendar:
+  type: 0
+  date1:
+    calendar type: 2
+    day: '19', 19
+    month: 'ELL', 13
+    year: '5892', 5892
+    year type: 0
+    date type: 1
+    sdn1: 2500000
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: ''
+String: '@#DHEBREW@ 19 ELL 5892'
+ERROR: Error: SDN 1 isn't a valid date in the given calendar
+
+Same date in French revolution calendar:
+  type: 0
+  date1:
+    calendar type: 3
+    day: '0', 0
+    month: 'ELL', 0
+    year: '0', 0
+    year type: 0
+    date type: 1
+    sdn1: 2500000
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: ''
+ERROR: Error: Date is not normalized: some fields are invalid
+String: ''
+
+Valid French revolution date:
+  type: 0
+  date1:
+    calendar type: 3
+    day: '16', 16
+    month: 'PLUV', 5
+    year: '7', 7
+    year type: 0
+    date type: 1
+    sdn1: 2378166
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: ''
+String: '@#DFRENCH R@ 16 PLUV 7'
 Test succeeded
 === HEADER ===
 Source:
@@ -17,7 +181,27 @@ Source:
     Date: 0x<null>
     Copyright: '(null)'
 Destination: '(null)'
-Date: 0x<null>
+Date: 
+  type: 0
+  date1:
+    calendar type: 3
+    day: '16', 16
+    month: 'PLUV', 5
+    year: '7', 7
+    year type: 0
+    date type: 1
+    sdn1: 2378166
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: ''
 Time: '(null)'
 Submitter: 
   type: 7

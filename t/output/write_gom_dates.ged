@@ -47,4 +47,8 @@
 1 NAME /Julian calendar/
 1 BIRT
 2 DATE @#DJULIAN@ 12 APR 1302
+0 @PERS10@ INDI
+1 NAME /Annunciation style/
+1 BIRT
+2 DATE 20 MAR 1677/78
 0 TRLR

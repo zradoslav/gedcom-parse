@@ -21,17 +21,19 @@ Date:
   type: 0
   date1:
     calendar type: 0
-    day: '20'
-    month: 'JAN'
-    year: '1998'
+    day: '20', 20
+    month: 'JAN', 1
+    year: '1998', 1998
+    year type: 0
     date type: 1
     sdn1: 2450834
     sdn2: -1
   date2:
     calendar type: 4
-    day: ''
-    month: ''
-    year: ''
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
     date type: 0
     sdn1: -1
     sdn2: -1

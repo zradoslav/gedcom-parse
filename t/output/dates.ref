@@ -243,9 +243,33 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
+Rec INDI start, xref is @PERS10@
+== 1 NAME (342) /Annunciation style/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 20 MAR 1677/78
+  type: 0
+  date1:
+    calendar type: 0
+    day: 20
+    month: MAR
+    year: 1677/78
+    date type: 1
+    sdn1: 2334016
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
 WARNING: Warning: Cross-reference @PERS07@ defined on line 38 is never used
 WARNING: Warning: Cross-reference @PERS02@ defined on line 18 is never used
 WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used
+WARNING: Warning: Cross-reference @PERS10@ defined on line 50 is never used
 WARNING: Warning: Cross-reference @PERS01@ defined on line 14 is never used
 WARNING: Warning: Cross-reference @PERS04@ defined on line 26 is never used
 WARNING: Warning: Cross-reference @PERS09@ defined on line 46 is never used
@@ -500,9 +524,33 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
+Rec INDI start, xref is @PERS10@
+== 1 NAME (342) /Annunciation style/ (ctxt is 333, conversion failures: 0)
+== 1 BIRT (283) (null) (ctxt is 333, conversion failures: 0)
+Contents of the date_value:
+  raw value: 20 MAR 1677/78
+  type: 0
+  date1:
+    calendar type: 0
+    day: 20
+    month: MAR
+    year: 1677/78
+    date type: 1
+    sdn1: 2334016
+    sdn2: -1
+  date2:
+    calendar type: 4
+    day: 
+    month: 
+    year: 
+    date type: 0
+    sdn1: -1
+    sdn2: -1
+  phrase: 
 WARNING: Warning: Cross-reference @PERS07@ defined on line 38 is never used
 WARNING: Warning: Cross-reference @PERS02@ defined on line 18 is never used
 WARNING: Warning: Cross-reference @PERS00@ defined on line 10 is never used
+WARNING: Warning: Cross-reference @PERS10@ defined on line 50 is never used
 WARNING: Warning: Cross-reference @PERS01@ defined on line 14 is never used
 WARNING: Warning: Cross-reference @PERS04@ defined on line 26 is never used
 WARNING: Warning: Cross-reference @PERS09@ defined on line 46 is never used

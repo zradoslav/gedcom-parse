@@ -29,17 +29,19 @@ Corporation address line 4'
       type: 0
       date1:
         calendar type: 0
-        day: '1'
-        month: 'JAN'
-        year: '1998'
+        day: '1', 1
+        month: 'JAN', 1
+        year: '1998', 1998
+        year type: 0
         date type: 1
         sdn1: 2450815
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -50,17 +52,19 @@ Date:
   type: 0
   date1:
     calendar type: 0
-    day: '1'
-    month: 'JAN'
-    year: '1998'
+    day: '1', 1
+    month: 'JAN', 1
+    year: '1998', 1998
+    year type: 0
     date type: 1
     sdn1: 2450815
     sdn2: -1
   date2:
     calendar type: 4
-    day: ''
-    month: ''
-    year: ''
+    day: '', -1
+    month: '', -1
+    year: '', -1
+    year type: 0
     date type: 0
     sdn1: -1
     sdn2: -1
@@ -177,17 +181,19 @@ Family events:
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -219,17 +225,19 @@ Family events:
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -280,17 +288,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -322,17 +332,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -383,17 +395,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -425,17 +439,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -486,17 +502,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -528,17 +546,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -589,17 +609,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -631,17 +653,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -692,17 +716,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -734,17 +760,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -795,17 +823,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -837,17 +867,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -898,17 +930,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -940,17 +974,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1001,17 +1037,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -1043,17 +1081,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1104,17 +1144,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -1146,17 +1188,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1207,17 +1251,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -1249,17 +1295,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1339,17 +1387,19 @@ citations:
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1900'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1900', 1900
+        year type: 0
         date type: 1
         sdn1: 2415385
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -1396,17 +1446,19 @@ change date:
     type: 0
     date1:
       calendar type: 0
-      day: '1'
-      month: 'APR'
-      year: '1998'
+      day: '1', 1
+      month: 'APR', 4
+      year: '1998', 1998
+      year type: 0
       date type: 1
       sdn1: 2450905
       sdn2: -1
     date2:
       calendar type: 4
-      day: ''
-      month: ''
-      year: ''
+      day: '', -1
+      month: '', -1
+      year: '', -1
+      year type: 0
       date type: 0
       sdn1: -1
       sdn2: -1
@@ -1475,17 +1527,19 @@ names:
           type: 1
           date1:
             calendar type: 0
-            day: '1'
-            month: 'JAN'
-            year: '1900'
+            day: '1', 1
+            month: 'JAN', 1
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415021
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1534,17 +1588,19 @@ Note continued here. The word TEST should not be broken!'
           type: 2
           date1:
             calendar type: 0
-            day: '1'
-            month: 'JAN'
-            year: '1900'
+            day: '1', 1
+            month: 'JAN', 1
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415021
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1580,17 +1636,19 @@ Individual events:
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -1622,17 +1680,19 @@ Individual events:
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1674,17 +1734,19 @@ Note continued here. The word TEST should not be broken!'
       type: 1
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -1716,17 +1778,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1765,17 +1829,19 @@ Note continued here. The word TEST should not be broken!'
       type: 2
       date1:
         calendar type: 0
-        day: '30'
-        month: 'DEC'
-        year: '1997'
+        day: '30', 30
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450813
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -1807,17 +1873,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1856,17 +1924,19 @@ Note continued here. The word TEST should not be broken!'
       type: 3
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 0
-        day: '1'
-        month: 'JAN'
-        year: '1998'
+        day: '1', 1
+        month: 'JAN', 1
+        year: '1998', 1998
+        year type: 0
         date type: 1
         sdn1: 2450815
         sdn2: -1
@@ -1898,17 +1968,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -1947,17 +2019,19 @@ Note continued here. The word TEST should not be broken!'
       type: 7
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -1989,17 +2063,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2057,17 +2133,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2106,17 +2184,19 @@ Note continued here. The word TEST should not be broken!'
       type: 8
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -2148,17 +2228,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2200,17 +2282,19 @@ Note continued here. The word TEST should not be broken!'
       type: 9
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -2242,17 +2326,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2291,17 +2377,19 @@ Note continued here. The word TEST should not be broken!'
       type: 10
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -2333,17 +2421,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2382,17 +2472,19 @@ Note continued here. The word TEST should not be broken!'
       type: 4
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -2424,17 +2516,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2473,17 +2567,19 @@ Note continued here. The word TEST should not be broken!'
       type: 5
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -2515,17 +2611,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2564,17 +2662,19 @@ Note continued here. The word TEST should not be broken!'
       type: 6
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 0
-        day: '1'
-        month: 'FEB'
-        year: '1998'
+        day: '1', 1
+        month: 'FEB', 2
+        year: '1998', 1998
+        year type: 0
         date type: 1
         sdn1: 2450846
         sdn2: -1
@@ -2606,17 +2706,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2655,17 +2757,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -2697,17 +2801,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2746,17 +2852,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -2788,17 +2896,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2837,17 +2947,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -2879,17 +2991,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -2928,17 +3042,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -2970,17 +3086,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3019,17 +3137,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3061,17 +3181,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3110,17 +3232,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3152,17 +3276,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3201,17 +3327,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3243,17 +3371,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3292,17 +3422,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3334,17 +3466,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3383,17 +3517,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3425,17 +3561,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3474,17 +3612,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3516,17 +3656,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3565,17 +3707,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3607,17 +3751,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3656,17 +3802,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3698,17 +3846,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3748,17 +3898,19 @@ Individual attributes:
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3790,17 +3942,19 @@ Individual attributes:
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3839,17 +3993,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3881,17 +4037,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -3930,17 +4088,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -3972,17 +4132,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4021,17 +4183,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4063,17 +4227,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4112,17 +4278,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4154,17 +4322,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4203,17 +4373,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4245,17 +4417,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4294,17 +4468,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4336,17 +4512,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4385,17 +4563,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4427,17 +4607,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4476,17 +4658,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1998'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1998', 1998
+        year type: 0
         date type: 1
         sdn1: 2451179
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4518,17 +4702,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4567,17 +4753,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4609,17 +4797,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4658,17 +4848,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4700,17 +4892,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4749,17 +4943,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4791,17 +4987,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4840,17 +5038,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4882,17 +5082,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -4931,17 +5133,19 @@ Note continued here. The word TEST should not be broken!'
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1997'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1997', 1997
+        year type: 0
         date type: 1
         sdn1: 2450814
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -4973,17 +5177,19 @@ Note continued here. The word TEST should not be broken!'
           type: 0
           date1:
             calendar type: 0
-            day: '31'
-            month: 'DEC'
-            year: '1900'
+            day: '31', 31
+            month: 'DEC', 12
+            year: '1900', 1900
+            year type: 0
             date type: 1
             sdn1: 2415385
             sdn2: -1
           date2:
             calendar type: 4
-            day: ''
-            month: ''
-            year: ''
+            day: '', -1
+            month: '', -1
+            year: '', -1
+            year type: 0
             date type: 0
             sdn1: -1
             sdn2: -1
@@ -5104,17 +5310,19 @@ citations:
       type: 0
       date1:
         calendar type: 0
-        day: '31'
-        month: 'DEC'
-        year: '1900'
+        day: '31', 31
+        month: 'DEC', 12
+        year: '1900', 1900
+        year type: 0
         date type: 1
         sdn1: 2415385
         sdn2: -1
       date2:
         calendar type: 4
-        day: ''
-        month: ''
-        year: ''
+        day: '', -1
+        month: '', -1
+        year: '', -1
+        year type: 0
         date type: 0
         sdn1: -1
         sdn2: -1
@@ -5163,17 +5371,19 @@ change date:
     type: 0
     date1:
       calendar type: 0
-      day: '1'
-      month: 'APR'
-      year: '1998'
+      day: '1', 1
+      month: 'APR', 4
+      year: '1998', 1998
+      year type: 0
       date type: 1
       sdn1: 2450905
       sdn2: -1
     date2:
       calendar type: 4
-      day: ''
-      month: ''
-      year: ''
+      day: '', -1
+      month: '', -1
+      year: '', -1
+      year type: 0
       date type: 0
       sdn1: -1
       sdn2: -1
@@ -5494,17 +5704,19 @@ Data:
         type: 6
         date1:
           calendar type: 0
-          day: '1'
-          month: 'JAN'
-          year: '1980'
+          day: '1', 1
+          month: 'JAN', 1
+          year: '1980', 1980
+          year type: 0
           date type: 1
           sdn1: 2444240
           sdn2: -1
         date2:
           calendar type: 0
-          day: '1'
-          month: 'FEB'
-          year: '1982'
+          day: '1', 1
+          month: 'FEB', 2
+          year: '1982', 1982
+          year type: 0
           date type: 1
           sdn1: 2445002
           sdn2: -1
@@ -5517,17 +5729,19 @@ Data:
         type: 6
         date1:
           calendar type: 0
-          day: '1'
-          month: 'JAN'
-          year: '1980'
+          day: '1', 1
+          month: 'JAN', 1
+          year: '1980', 1980
+          year type: 0
           date type: 1
           sdn1: 2444240
           sdn2: -1
         date2:
           calendar type: 0
-          day: '1'
-          month: 'FEB'
-          year: '1982'
+          day: '1', 1
+          month: 'FEB', 2
+          year: '1982', 1982
+          year type: 0
           date type: 1
           sdn1: 2445002
           sdn2: -1
@@ -5583,17 +5797,19 @@ change date:
     type: 0
     date1:
       calendar type: 0
-      day: '1'
-      month: 'APR'
-      year: '1998'
+      day: '1', 1
+      month: 'APR', 4
+      year: '1998', 1998
+      year type: 0
       date type: 1
       sdn1: 2450905
       sdn2: -1
     date2:
       calendar type: 4
-      day: ''
-      month: ''
-      year: ''
+      day: '', -1
+      month: '', -1
+      year: '', -1
+      year type: 0
       date type: 0
       sdn1: -1
       sdn2: -1
@@ -5639,17 +5855,19 @@ change date:
     type: 0
     date1:
       calendar type: 0
-      day: '19'
-      month: 'JUN'
-      year: '2000'
+      day: '19', 19
+      month: 'JUN', 6
+      year: '2000', 2000
+      year type: 0
       date type: 1
       sdn1: 2451715
       sdn2: -1
     date2:
       calendar type: 4
-      day: ''
-      month: ''
-      year: ''
+      day: '', -1
+      month: '', -1
+      year: '', -1
+      year type: 0
       date type: 0
       sdn1: -1
       sdn2: -1
