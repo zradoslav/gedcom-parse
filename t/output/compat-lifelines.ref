@@ -6,7 +6,7 @@ WARNING: Warning on line 2: Enabling compatibility with 'Lifelines'
 Source context 1001 in parent 1
 == 1 DEST (310) ANY (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 1 JUL 1997 (ctxt is 1, conversion failures: 0)
-WARNING: Warning on line 5: Header change time lost in the compatibility
+== 1 TIME (387) 17:43 (ctxt is 1, conversion failures: 0)
 WARNING: Warning on line 5: Adding link to submitter record with xref '@__COMPAT__SUBM__@'
 == 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
 == 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
@@ -109,7 +109,7 @@ WARNING: Warning on line 2: Enabling compatibility with 'Lifelines'
 Source context 1001 in parent 1
 == 1 DEST (310) ANY (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 1 JUL 1997 (ctxt is 1, conversion failures: 0)
-WARNING: Warning on line 5: Header change time lost in the compatibility
+== 1 TIME (387) 17:43 (ctxt is 1, conversion failures: 0)
 WARNING: Warning on line 5: Adding link to submitter record with xref '@__COMPAT__SUBM__@'
 == 1 SUBM (382) @__COMPAT__SUBM__@ (ctxt is 1, conversion failures: 0)
 == 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
