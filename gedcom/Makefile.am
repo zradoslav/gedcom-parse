@@ -31,7 +31,7 @@ libgedcom_la_SOURCES = lex.gedcom_1byte_.c \
 		       buffer.c \
 		       write.c
 libgedcom_la_LDFLAGS = -export-dynamic -version-info $(LIBVERSION)
-libgedcom_la_LIBADD  = calendar/libcalendar.la ../utf8/libutf8.la @INTLLIBS@
+libgedcom_la_LIBADD  = calendar/libcalendar.la @INTLLIBS@
 BUILT_SOURCES = lex.gedcom_1byte_.c \
 	 	lex.gedcom_hilo_.c \
 		lex.gedcom_lohi_.c \
@@ -61,6 +61,8 @@ EXTRA_DIST = gedcom.y \
 	     gedcom_lohi.lex \
 	     gedcom_date.lex \
 	     gedcom_lex_common.c \
+	     gedcom.tabgen.h \
+	     gedcom_date.tabgen.h \
 	     process_tags
 	     $(BUILT_SOURCES)
 
