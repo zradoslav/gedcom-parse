@@ -45,6 +45,7 @@ void add_encoding(char *gedcom_n, char* charwidth, char *iconv_n)
   nodeptr->gedcom_name = (char *) malloc(strlen(gedcom_n)
 					 + strlen(charwidth) + 3);
   nodeptr->iconv_name  = (char *) malloc(strlen(iconv_n) + 1);
+  /* sprintf is safe here (malloc'ed before) */
   sprintf(nodeptr->gedcom_name, "%s(%s)", gedcom_n, charwidth);
   strcpy(nodeptr->iconv_name, iconv_n);
   datum = tsearch(nodeptr, &encoding_mapping, node_compare);
@@ -58,10 +59,13 @@ char* get_encoding(char* gedcom_n, ENCODING enc)
 {
   void **datum;
   struct node search_node;
-  char buffer[MAXBUF + 1];
+  char *buffer;
+  buffer = (char*)malloc(strlen(gedcom_n) + strlen(charwidth_string[enc]) + 3);
+  /* sprintf is safe here (malloc'ed before) */
   sprintf(buffer, "%s(%s)", gedcom_n, charwidth_string[enc]);
   search_node.gedcom_name = buffer;
   datum = tfind(&search_node, &encoding_mapping, node_compare);
+  free(buffer);
   if (datum == NULL) {
     gedcom_error("No encoding found for '%s'", gedcom_n);
     return NULL;
