@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gedcom-parse 0.13\n"
-"POT-Creation-Date: 2002-01-05 15:07+0100\n"
-"PO-Revision-Date: 2002-01-05 15:09+0100\n"
+"Project-Id-Version: gedcom-parse 0.14\n"
+"POT-Creation-Date: 2002-01-20 13:38+0100\n"
+"PO-Revision-Date: 2002-01-20 15:09+0100\n"
 "Last-Translator: Peter Verthez <Peter.Verthez@advalvas.be>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,62 +24,58 @@ msgstr "Dubbele definitie gevonden voor de codering '%s', wordt genegeerd"
 msgid "No encoding defined for '%s'"
 msgstr "Geen codering gedefinieerd voor '%s'"
 
-#: gedcom/encoding.c:133
-msgid "Failed updating conversion module path"
-msgstr "Aanpassing van het conversie-module pad is mislukt"
-
-#: gedcom/encoding.c:148
+#: gedcom/encoding.c:153
 #, c-format
 msgid "Could not open encoding configuration file '%s'"
 msgstr "Kon configuratie bestand voor coderingen '%s' niet openen"
 
-#: gedcom/encoding.c:155
+#: gedcom/encoding.c:160
 #, c-format
 msgid "Line too long in encoding configuration file '%s'"
 msgstr "Lijn te lang in configuratie bestand voor coderingen '%s'"
 
-#: gedcom/encoding.c:164
+#: gedcom/encoding.c:169
 #, c-format
 msgid "Missing data in encoding configuration file '%s'"
 msgstr "Ontbrekende gegevens in configuratie bestand voor coderingen '%s'"
 
-#: gedcom/encoding.c:196
+#: gedcom/encoding.c:201
 #, c-format
 msgid "Error opening conversion context for encoding %s: %s"
 msgstr "Fout bij het openen van een conversiecontext voor de codering %s: %s"
 
 #. empty
-#: gedcom/gedcom.y:1300 gedcom/gedcom.y:3492
+#: gedcom/gedcom.y:1302 gedcom/gedcom.y:3494
 msgid "Missing value"
 msgstr "Waarde ontbreekt"
 
-#: gedcom/gedcom.y:3428 gedcom/gedcom.y:3452
+#: gedcom/gedcom.y:3430 gedcom/gedcom.y:3454
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr "Ongedefieerde tag (en geen geldige gebruikerstag): %s"
 
 #. empty
-#: gedcom/gedcom.y:3487
+#: gedcom/gedcom.y:3489
 msgid "Missing pointer"
 msgstr "Verwijzing ontbreekt"
 
-#: gedcom/gedcom.y:3565
+#: gedcom/gedcom.y:3567
 msgid "Missing cross-reference"
 msgstr "Naam voor verwijzingen ontbreekt"
 
-#: gedcom/gedcom.y:3728
+#: gedcom/gedcom.y:3730
 msgid "Internal error: count array overflow"
 msgstr "Interne fout: overloop van de telrij"
 
-#: gedcom/gedcom.y:3734
+#: gedcom/gedcom.y:3736
 msgid "Internal error: count array calloc error"
 msgstr "Interne fout: allocatiefout op de telrij"
 
-#: gedcom/gedcom.y:3779
+#: gedcom/gedcom.y:3781
 msgid "Internal error: count array underflow"
 msgstr "Interne fout: underflow van de telrij"
 
-#: gedcom/gedcom.y:3841
+#: gedcom/gedcom.y:3843
 msgid "Enabling compatibility with 'ftree'"
 msgstr "Compatibiliteit met 'ftree' wordt aangezet"
 
@@ -185,23 +181,23 @@ msgstr "een indieningsbeschrijving"
 msgid "an application-specific record"
 msgstr "een toepassingsafhankelijk gegeven"
 
-#: gedcom/xref.c:96
+#: gedcom/xref.c:104
 #, c-format
 msgid "Cross-reference %s used on line %d is not defined"
 msgstr "Verwijzing %s gebruikt op lijn %d is niet gedefinieerd"
 
-#: gedcom/xref.c:101
+#: gedcom/xref.c:109
 #, c-format
 msgid "Cross-reference %s defined on line %d is never used"
 msgstr "Verwijzing %s gedefinieerd op lijn %d is nergens gebruikt"
 
-#: gedcom/xref.c:139
+#: gedcom/xref.c:148
 #, c-format
 msgid "Cross-reference %s previously defined as pointer to %s, on line %d"
 msgstr ""
 "Verwijzing %s is voorheen gedefinieerd als een verwijzing naar %s, op lijn %d"
 
-#: gedcom/xref.c:149
+#: gedcom/xref.c:157
 #, c-format
 msgid "Cross-reference %s previously used as pointer to %s, on line %d"
 msgstr ""
