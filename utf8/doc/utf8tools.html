@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Using the GEDCOM parser library</title>
+  
+                                                              
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head><body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
+                 
+<h1 align="center">UTF-8 tools library</h1>
+         <br>
+                 
+<h2>Index</h2>
+               
+<ul>
+          <li><a href="#Introduction">Introduction</a></li><li><a href="#UTF-8_string_functions">UTF-8 string functions</a><br>
+  </li>
+  <li><a href="#Converting_character_sets">Converting character sets</a></li>
+  <ul>
+    <li><a href="#Generic_interface">Generic interface</a></li>
+    <li><a href="#Specific_locale_conversion">Specific locale conversion</a><br>
+    </li>
+  </ul>
+
+    
+
+               
+</ul>
+               
+<hr width="100%" size="2"><br>
+<h2><a name="Introduction"></a>Introduction</h2>
+The library <code>libutf8tools</code> is part of the GEDCOM parser library,
+but it can be used in unrelated programs too. &nbsp;It provides some help
+functions for handling UTF-8 encoding. &nbsp;It comes with the following
+installed:<br>
+<ul>
+  <li>a library '<code>libutf8tools.so</code>', which should be linked in in your program</li>
+  <li>a header '<code>utf8tools.h</code>', which should be included in the source code of your program</li>
+</ul>
+The following sections describe the features of the library.<br>
+<hr width="100%" size="2">
+<h2><a name="UTF-8_string_functions"></a>UTF-8 string functions</h2>
+The following simple functions are available to handle UTF-8 strings in general:<br>
+
+                         
+<blockquote>      
+  <pre><code>int   <b>is_utf8_string</b> (char *input);<br>int   <b>utf8_strlen</b> (char *input);<br></code></pre></blockquote>
+The
+first one returns 1 if the given input is a valid UTF-8 string, it returns
+0 otherwise, the second gives the number of UTF-8 characters in the given
+input. &nbsp;Note that the second function assumes that the input is valid
+UTF-8, and gives unpredictable results if it isn't.<br>
+<hr width="100%" size="2">         
+                       
+<h2><a name="Converting_character_sets"></a>Converting character sets</h2>
+For conversion from and to UTF-8 there is a generic interface which gives
+all the necessary flexibility, and a specific interface for conversion to
+and from the locale, which is less flexible, but more straightforward.<br>
+<h3><a name="Generic_interface"></a>Generic interface</h3>
+<h4>Conversion handle</h4>
+In general, the program needs to initialize a conversion handle before some
+actual text can be converted to and from UTF-8. &nbsp;This initialization
+(and the cleanup at the end) is performed via the following functions:
+<blockquote>      
+  <pre><code>convert_t   <b>initialize_utf8_conversion</b> (const char *charset, int ext_outbuf);<br>void   <b>     cleanup_utf8_conversion</b> (convert_t conv);<br></code></pre></blockquote>
+The first function returns a conversion handle, which needs to be passed
+to all generic conversion functions. &nbsp;Through this handle, bidirectional
+conversion can take place between UTF-8 and the given character set <code>'charset'</code>.
+&nbsp;The implementation of this handle is not visible to the program that
+uses it. &nbsp;In case of an error, the returned value is NULL and <code>errno</code> gives the error that occurred.<br>
+<br>
+The second parameter <code>ext_outbuf </code>should be non-zero if you want
+to control the output buffer yourself (see below). &nbsp;For normal circumstances,
+you should pass 0 for this parameter.<br>
+<br>
+To avoid memory leaks, it is advised that conversion handles are cleaned up when not needed anymore, using the <code>cleanup_utf8_conversion</code> function. &nbsp;Note that after using this function, any access to the handle will result in undefined behaviour.<br>
+<h4>Conversion functions</h4>
+Once a conversion handle is initialized, it can be used to convert text between
+UTF-8 and the given character set. &nbsp;There are three functions available
+to do so:
+<blockquote>      
+  <pre><code>char* <b>convert_from_utf8</b> (convert_t conv, const char* input, int* conv_fails, size_t* output_len);<br><br>char* <b>convert_to_utf8</b> (convert_t conv, const char* input, size_t input_len);<br>char* <b>convert_to_utf8_incremental</b> (convert_t conv, const char* input, size_t input_len);<br></code></pre></blockquote>
+All three functions take the conversion handle as first parameter, and the
+text to convert as second parameter. &nbsp;They return a pointer to an output
+buffer, which is overwritten at each call of the functions (unless you control
+your own output buffers, see below). &nbsp;<br>
+<br>
+The difference between the last two functions is that <code>convert_to_utf8</code> converts only entire strings (i.e. it resets the conversion state each time), whereas <code>convert_to_utf8_incremental</code>
+takes previous conversions into account for the current conversion (left
+over input characters from the previous conversion can then be combined with
+the current input characters). &nbsp;If you pass <code>NULL</code> as input to <code>convert_to_utf8_incremental</code>, the conversion restarts from a clean state.<br>
+<br>
+Since conversion from UTF-8 to another character set can fail (it's possible
+that some characters cannot be encoded in the target character set), the
+function <code>convert_from_utf8</code> has a third parameter, <code>conv_fails</code>,
+which can return the number of conversion failures in the input. &nbsp;Pass
+a pointer to an integer if you're interested, or pass NULL otherwise. &nbsp;Note
+that for conversion failures the string '?' will be put in the output instead
+of the character that could not be converted. &nbsp;This string can be changed
+using:<br>
+<blockquote>      
+  <pre><code>int <b>conversion_set_unknown</b> (convert_t conv, const char *unknown);</code><br></pre>
+  </blockquote>
+Some character sets use wide characters to encode text. &nbsp;But since the
+conversion functions above for simplicity all need and return normal <code>char</code>
+strings, it is necessary to know in some cases how long the strings are (if
+the string is actually using wide characters, then it cannot be considered
+a null-terminated string, so <code>strlen</code> cannot work on it). &nbsp;<br>
+<br>
+For this reason, the function <code>convert_from_utf8</code> has a fourth
+parameter which can return the length of the output string (pass NULL if
+you know you don't need it), and the other functions have an <code>input_len</code> parameter, which should always be the string length of the <code>input</code> string, even if it could also be retrieved via strlen.<br>
+<h4>Controlling the output buffer<br>
+</h4>
+In some cases, you'd like to control the output buffer yourself, e.g. when
+you want to have multiple output buffers for the efficiency of not having
+to copy the strings. &nbsp;This can be done by declaring your intention at
+the initialization of the conversion handle (see above). &nbsp;In that case,
+the initialization doesn't allocate an output buffer itself, and you have
+to control it via the following functions, before you can do any conversion:
+<blockquote>      
+  <pre><code>conv_buffer_t <b>create_conv_buffer</b> (int initial_size);<br>void          <b>free_conv_buffer</b> (conv_buffer_t buf);<br><br>int           <b>conversion_set_output_buffer</b> (convert_t conv, conv_buffer_t buf);<br></code></pre></blockquote>
+The first function returns a handle to a new conversion buffer with given
+initial size (the buffer is expanded dynamically when necessary). &nbsp;The
+second function frees the buffer: all further access to the buffer handle
+will result in undefined behaviour.<br>
+<br>
+The third function allows to set the current output buffer for the given
+conversion handle. &nbsp;This allows to switch between output buffers. &nbsp;The
+function returns 1 on success, 0 on failure.<br>
+<h3><a name="Specific_locale_conversion"></a>Specific locale conversion<br>
+</h3>
+For conversion to the current locale, there is a simpler interface available,
+which takes care of the conversion handle implicitly. &nbsp;The following
+functions are available:<br>
+<blockquote>
+  <pre><code></code><code>char *<b>convert_utf8_to_locale</b> (char *input, int *conv_failures);<br>char *<b>convert_locale_to_utf8</b> (char *input);<br></code></pre>
+</blockquote>
+<blockquote>
+  </blockquote>
+
+    Both functions return a pointer to a static buffer that is overwritten
+ on each call. &nbsp;To function properly, the application must first set
+the locale using the <code>setlocale</code> function.
+ &nbsp;<br>
+                         <br>
+   If you pass a pointer to an integer to the first function, it will be
+set  to the number of conversion failures, i.e. characters that couldn't
+be converted;  you can also just pass <code>NULL</code> if you are not interested
+(note  that usually, the interesting information is just whether there <i>
+were</i>    conversion failures or not, which is then given by the integer
+being bigger  than zero or not). &nbsp;The second function doesn't need this,
+because any  locale can be converted to UTF-8.<br>
+                         <br>
+    You can change the "?" that is output for characters that can't be converted 
+ to any string you want, using the following function before the conversion 
+ calls:<br>
+                           
+<blockquote>      
+  <pre><code>void <b>convert_set_unknown</b> (const char *unknown);</code><br></pre>
+  </blockquote>
+                                                                        
+                         
+<hr width="100%" size="2">                                              
+                                       
+<pre><font size="-1">$Id$<br>$Name$</font><br></pre>
+                                                                        
+                  
+<pre>                    </pre>
+                                                                        
+                                                        
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body></html>

@@ -89,4 +89,5 @@ else
 fi
 
 AC_OUTPUT(Makefile
+	  doc/Makefile
 	  libcharset/Makefile)

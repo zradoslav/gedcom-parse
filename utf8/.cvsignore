@@ -3,4 +3,3 @@ configure
 config.h.in
 Makefile.in
 stamp-h.in
-README
