@@ -1,9 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Using the GEDCOM parser library</title>
   
                                                               
-  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head>
-
-<body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head><body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
                  
 <h1 align="center">Using the GEDCOM parser library</h1>
          <br>
@@ -19,7 +17,14 @@
             <li><a href="#Start_and_end_callbacks">Start and end callbacks</a></li>
             <li><a href="#Default_callbacks">Default callbacks</a></li>
                                
+  </ul><li><a href="#C_object_model">C object model</a></li>
+  <ul>
+    <li><a href="#Main_functions">Main functions</a></li>
+    <li><a href="#Object_model_structure">Object model structure</a></li>
+    <li><a href="#User_data">User data</a><br>
+    </li>
   </ul>
+
          <li><a href="#Other_API_functions">Other API functions</a></li>
                            
   <ul>
@@ -30,35 +35,45 @@
   </ul>
     <li><a href="#Converting_character_sets">Converting character sets</a></li>
     <li><a href="#Support_for_configure.in">Support for configure.in</a><br>
+<br>
      </li>
-           <li><a href="interface.html">Interface details</a><br>
+           <li><a href="interface.html">Interface details of the callback parser</a></li><li><a href="gomxref.html">C object model details</a><br>
             </li>
+
                
 </ul>
                
 <hr width="100%" size="2">         
 <h2><a name="Overview"></a>Overview<br>
-         </h2>
-         The GEDCOM parser library is built as a callback-based parser (comparable 
-    to the SAX interface of XML). &nbsp;It comes with:<br>
+         </h2>          The GEDCOM
+parser library provides two interfaces. &nbsp;At the one hand, it can be
+used as a callback-based parser (comparable      to the SAX interface of
+XML); at the other hand, the parser can be used to convert the GEDCOM file
+into an object model (comparable to the DOM interface of XML). &nbsp;It comes
+with:<br>
                  
 <ul>
            <li>a library (<code>libgedcom.so</code>), to be linked in the 
-application     program</li>
+application     program, which implements the callback parser</li>
            <li>a header file (<code>gedcom.h</code>), to be used in the sources 
    of  the application program</li>
        <li>a header file (<code>gedcom-tags.h</code>) that is also installed, 
-  but that is automatically included via <code>gedcom.h</code><br>
-       </li>
+  but that is automatically included via <code>gedcom.h</code></li></ul>Additionally, if you want to use the GEDCOM C object model, the following should be used (note that <code>libgedcom.so</code> is also needed in this case, because the object model uses the callback parser internally):<br>
+<ul>
+  <li>a library (<code>libgedcom_gom.so</code>), to be linked in the application program, which implements the C object model</li>
+  <li>a header file (<code>gom.h</code>), to be used in the sources of the application program<br>
+  </li>
+
                  
 </ul>
+
          Next to these, there is also a data directory in <code>$PREFIX/share/gedcom-parse</code>
           that contains some additional stuff, but which is not immediately 
  important    at first. &nbsp;I'll leave the description of the data directory 
  for later.<br>
          <br>
-         The very simplest call of the gedcom parser is simply the following
-  piece   of code (include of the gedcom header is assumed, as everywhere
+         The very simplest call of the gedcom callback parser is simply the following
+  piece   of code (include of the <code>gedcom.h</code> header is assumed, as everywhere
 in  this manual):<br>
                  
 <blockquote><code>int result;<br>
@@ -71,32 +86,42 @@ in  this manual):<br>
  is  parse  the entire file and return the result. &nbsp;The function returns
   0 on success  and 1 on failure. &nbsp;No other information is available
 using   this function  only.<br>
-  <br>
-  The call to <code>gedcom_init</code>() should be one of the first calls 
+<br>
+Alternatively, programs using the C object model should use the following (in this case, the inclusion of both <code>gedcom.h</code> and <code>gom.h</code> is required):<br>
+  
+<blockquote><code>int result;<br>
+  ...<br>
+    <b>gedcom_init</b>();<br>
+         ...<br>
+         result = <b>gom_parse_file</b>("myfamily.ged");<br>
+           </code>   </blockquote>
+The call to <code>gom_parse_file</code> will build the C object model, which is then a complete representation of the GEDCOM file.<br>
+<br>
+No matter which of the interfaces you use, the call to <code>gedcom_init</code>() should be one of the first calls 
 in your program. &nbsp;The requirement is that it should come before the first
 call to <code>iconv_open</code> (part of the generic character set conversion
 feature) in the program, either by your program itself, or indirectly by
 the library calls it makes. &nbsp;Practically, it should e.g. come before
  any calls to any GTK functions, because GTK uses <code>iconv_open</code>
- in its initialization. &nbsp;For the same reason it is also advised to put
-the <code>-lgedcom</code> option on the linking of the program as the last
-option, so that its initialization code is run first.<br>
+ in its initialization.<br>
+&nbsp; <br>
+For the same reason it is also advised to put
+the <code>-lgedcom</code> option
+on the linking of the program as the last option, so that its initialization
+code is run first. &nbsp;In the case of using the C object model, the linking
+options should be: <code>-lgedcom_gom -lgedcom</code><br>
           <br>
         The next sections will refine this piece of code to be able to have
  meaningful errors   and the actual data that is in the file.<br>
                            
 <hr width="100%" size="2">                       
-<h2><a name="Error_handling"></a>Error handling</h2>
-        Since this is a relatively simple topic, it is discussed before the 
- actual   callback mechanism, although it also uses a callback...<br>
-          <br>
-        The library can be used in several different circumstances, both
+<h2><a name="Error_handling"></a>Error handling</h2>The library can be used in several different circumstances, both
 terminal-based     as GUI-based. &nbsp;Therefore, it leaves the actual display
 of the error    message up to the application. &nbsp;For this, the application
 needs to  register  a callback before parsing the GEDCOM file, which will
 be called  by the library   on errors, warnings and messages.<br>
           <br>
-        A typical piece of code would be:<br>
+        A typical piece of code would be (<code>gom_parse_file</code> would be called in case the C object model is used):<br>
                            
 <blockquote><code>void <b>my_message_handler</b> (Gedcom_msg_type type,  
  char *msg)<br>
@@ -129,8 +154,7 @@ way it wants.   &nbsp;Warnings are similar, but use "Warning" instead of "Error"
 <hr width="100%" size="2">                                            
 <h2><a name="Data_callback_mechanism"></a>Data callback mechanism</h2>
         The most important use of the parser is of course to get the data 
-out   of  the GEDCOM file. &nbsp;As already mentioned, the parser uses a callback
-  mechanism  for that. &nbsp;In fact, the mechanism involves two levels.<br>
+out   of  the GEDCOM file. &nbsp;This section focuses on the callback mechanism (see the <a href="#C_object_model">next section</a> for the C object model). &nbsp;In fact, the mechanism involves two levels.<br>
               <br>
         The primary level is that each of the sections in a GEDCOM file is
  notified    to the application code via a "start element" callback and an
@@ -395,11 +419,78 @@ raw_value,   int parsed_tag)<br>
  of the "upper" tags has been subscribed upon.<br>
                                                                         
           
+<hr width="100%" size="2"><br>
+<h2><a name="C_object_model"></a>C object model</h2>
+In the GEDCOM object model, all the data is immediately available after calling <code>gom_parse_file()</code>. &nbsp;For this, an entire model based on C structs is used. &nbsp;These structs are documented <a href="gomxref.html">here</a>,
+and follow the GEDCOM syntax quite closely. &nbsp;Each of the records in
+a GEDCOM file are modelled by a separate struct, and some common sub-structures
+have their own struct definition.<br>
+<br>
+<h3><a name="Main_functions"></a>Main functions<br>
+</h3>
+The following functions are available to get at these structs:<br>
+<ul>
+  <li>First, there are two functions to get the header record and the submission
+record (there can be only one of them in a GEDCOM file):<br>
+    <blockquote><code>struct header* &nbsp; &nbsp; &nbsp;gom_get_header();<br>
+struct submission* &nbsp;gom_get_submission();<br>
+      </code></blockquote>
+  </li>
+  <li>Further, for each of the other records, there are two functions, one
+to get the first of such records, and one to get a record via its cross-reference
+tag in the GEDCOM file:<br>
+    <blockquote><code>struct XXX* &nbsp; gom_get_first_XXX();<br>
+struct XXX* &nbsp; gom_get_XXX_by_xref(char* xref);</code><br>
+    </blockquote>
+  </li>
+</ul>
+<blockquote>The XXX stands for one of the following: <code>family, </code><code>individual, multimedia, note, repository, source, submitter, user_rec</code>.<br>
+</blockquote>
+<h3><a name="Object_model_structure"></a>Object model structure<br>
+</h3>
+All records of a certain type are linked together in a linked list. &nbsp;The
+above functions only give access to the first record of each linked list.
+&nbsp;The others can be accessed by traversing the linked list via the <code>next</code> member of the structs. &nbsp;This means that e.g. the following piece of code will traverse the linked list of family records:<br>
+<blockquote><code>struct family* fam;<br>
+  <br>
+for (fam = gom_get_first_family() ; fam ; fam = fam-&gt;next) {<br>
+&nbsp; ...<br>
+}</code><br>
+</blockquote>
+The <code>next</code> member of the last element in the list is guaranteed to have the <code>NULL</code> value.<br>
+<br>
+Actually, the linked list is a doubly-linked list: each record also has a <code>previous</code> member. &nbsp;But for implementation reasons the behaviour of this <code>previous</code> member on the edges of the linked list will not be guaranteed, i.e. it can be circular or terminated with <code>NULL</code>, no assumptions can be made in the application code.<br>
+<br>
+This linked-list model applies also to all sub-structures of the main record structs, i.e. each struct that has a <code>next </code>and <code>previous</code>
+member following the above conventions. &nbsp;This means that the following
+piece of code traverses all children of a family (see the details of the
+different structs <a href="gomxref.html">here</a>):<br>
+<blockquote><code>struct family* fam = ...;<br>
+  <br>
+struct xref_list* xrl;<br>
+for (xrl = fam-&gt;children ; xrl ; xrl = xrl-&gt;next) {<br>
+&nbsp; ...<br>
+}</code> <br>
+</blockquote>
+Note that all character strings in the object model are encoded in UTF-8 (<a href="file:///home/verthezp/src/external/gedcom-parse/doc/encoding.html">Why UTF-8?</a>).<br>
+<h3><a name="User_data"></a>User data</h3>
+Each of the structs has an extra member called <code>extra</code> (of type <code>struct user_data*</code>).
+&nbsp;This gathers all non-standard GEDCOM tags within the scope of the struct
+in a flat linked list, no matter what the internal structure of the non-standard
+tags is. &nbsp;Each element of the linked list has:<br>
+<ul>
+  <li>a level: the level number in the GEDCOM file</li>
+  <li>a tag: the tag given in the GEDCOM file</li>
+  <li>a value: the value, which can be a string value or a cross-reference value (one of the two will be non-NULL)<br>
+  </li>
+</ul>
+This way, none of the information in the GEDCOM file is lost, even the non-standard information.<br>
 <hr width="100%" size="2">                                              
                               
 <h2><a name="Other_API_functions"></a>Other API functions<br>
                      </h2>
-       Although the above describes the basic interface of libgedcom, there 
+
+       Although the above describes the basic interface of the gedcom parser, there 
  are   some other functions that allow to customize the behaviour of the library.
    &nbsp;These will be explained in the current section.<br>
                                                                         
@@ -713,5 +804,6 @@ handle needs to be closed (when the program exits):<br>
 <pre>                    </pre>
                                                                         
                                                         
+<br>
 <br>
 </body></html>
