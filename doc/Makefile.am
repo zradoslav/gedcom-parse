@@ -20,4 +20,4 @@ dist-hook:
 
 gomxref.html:	$(srcdir)/../include/gom.h
 	srcdir=$(srcdir); export srcdir; \
-        $(srcdir)/make_gom_xref
+        perl $(srcdir)/make_gom_xref
