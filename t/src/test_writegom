@@ -17,7 +17,22 @@ gedcom_out=1
 terminator=$1
 encoding=$2
 unicode_details=$3
+infile=$4
 options="$options -t $terminator -e $encoding"
+
+if [ "$infile" ]
+then
+  if [ -z "$srcdir" ]
+  then
+    testfile=$infile
+  else
+    case $file in
+      ./*) testfile=$infile ;;
+      *)   testfile=$srcdir/input/$infile ;;
+    esac
+  fi
+  options="$options -i $testfile"
+fi
 
 if [ "$encoding" == "UNICODE" ]
 then

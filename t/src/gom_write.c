@@ -51,6 +51,7 @@ void show_help ()
   printf("  -h    Show this help text\n");
   printf("  -q    No output to standard output\n");
   printf("  -o <outfile>  File to generate errors to (def. testgedcom.out)\n");
+  printf("  -i <gedfile>  File to read gedcom from (default: new file)\n");
   printf("  -w <gedfile>  File to write gedcom to (def. %s)\n", WRITE_GEDCOM);
   printf("  -e <encoding> Encoding (UNICODE, ASCII, ANSEL, ...: see gedcom.enc)\n");
   printf("  -u <unicode_enc> Encoding details for Unicode\n");
@@ -91,6 +92,7 @@ int main(int argc, char* argv[])
   int result;
   int total_conv_fails = 0;
   char* outfilename = NULL;
+  char* infilename  = NULL;
   char* gedfilename = WRITE_GEDCOM;
   char* encoding    = "ASCII";
   Encoding enc      = ONE_BYTE;
@@ -125,6 +127,17 @@ int main(int argc, char* argv[])
 	}
 	else {
 	  printf ("Missing output file name\n");
+	  show_help();
+	  exit(1);
+	}
+      }
+      else if (!strncmp(argv[i], "-i", 3)) {
+	i++;
+	if (i < argc) {
+	  infilename = argv[i];
+	}
+	else {
+	  printf ("Missing input file name\n");
 	  show_help();
 	  exit(1);
 	}
@@ -201,10 +214,15 @@ int main(int argc, char* argv[])
   gedcom_write_set_line_terminator(end);
 
   output_open(outfilename);
-  
-  result = gom_new_model();
-  if (result == 0)
-    result |= update_header(encoding);
+
+  if (infilename) {
+    result = gom_parse_file(infilename);
+  }
+  else {
+    result = gom_new_model();
+    if (result == 0)
+      result |= update_header(encoding);
+  }
   if (result == 0)
     result |= gom_write_file(gedfilename, &total_conv_fails);
   if (result == 0 && total_conv_fails == 0) {
