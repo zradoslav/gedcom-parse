@@ -52,6 +52,19 @@
 #include "gom.h"
 #include "gom_internal.h"
 
+const char* ctxt_names[] =
+{
+  "NULL",
+  
+  "header", "submission", "submitter", "family", "individual",
+  "multimedia", "note", "repository", "source", "user_rec",
+  
+  "address", "event", "place", "source_citation", "text",
+  "note_sub", "multimedia_link", "lds_event", "user_ref_number",
+  "change_date", "personal_name", "family_link", "pedigree",
+  "association", "source_event", "source_description"
+};
+
 void gom_default_callback (Gedcom_elt elt, Gedcom_ctxt parent, int level,
 			   char* tag, char* raw_value, int parsed_tag);
 
@@ -114,6 +127,7 @@ int gom_parse_file(const char* file_name)
     subscribe_all();
   }
   gom_active = 1;
+  gedcom_set_compat_options(0);
   return gedcom_parse_file(file_name);
 }
 
@@ -190,9 +204,15 @@ void destroy_gom_ctxt(Gom_ctxt ctxt)
 void gom_cast_error(const char* file, int line,
 		    OBJ_TYPE expected, OBJ_TYPE found)
 {
+  const char* expected_name = "<out-of-bounds>";
+  const char* found_name    = "<out-of-bounds>";
+  if (expected < T_LAST)
+    expected_name = ctxt_names[expected];
+  if (found < T_LAST)
+    found_name = ctxt_names[found];
   fprintf(stderr,
-	  "Wrong gom ctxt cast at %s, line %d: expected %d, found %d\n",
-	  file, line, expected, found);
+	  "Wrong gom ctxt cast at %s, line %d: expected %s, found %s\n",
+	  file, line, expected_name, found_name);
   abort();
 }
 
@@ -208,8 +228,11 @@ void gom_xref_already_in_use(const char *xrefstr)
 
 void gom_unexpected_context(const char* file, int line, OBJ_TYPE found)
 {
-  gedcom_warning(_("Internal error: Unexpected context at %s, line %d: %d"),
-		 file, line, found);
+  const char* found_name    = "<out-of-bounds>";
+  if (found < T_LAST)
+    found_name = ctxt_names[found];
+  gedcom_warning(_("Internal error: Unexpected context at %s, line %d: %s"),
+		 file, line, found_name);
 }
 
 void gom_no_context(const char* file, int line)

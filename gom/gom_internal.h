@@ -52,7 +52,9 @@ typedef enum {
   T_address, T_event, T_place, T_source_citation, T_text,
   T_note_sub, T_multimedia_link, T_lds_event, T_user_ref_number,
   T_change_date, T_personal_name, T_family_link, T_pedigree,
-  T_association, T_source_event, T_source_description
+  T_association, T_source_event, T_source_description,
+
+  T_LAST
 } OBJ_TYPE;
 
 /* Assumptions for context:
