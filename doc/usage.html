@@ -2,434 +2,450 @@
 <html>
 <head>
   <title>Using the GEDCOM parser library</title>
-                           
+                                  
   <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 </head>
   <body>
-       
+         
 <h1 align="center">Using the GEDCOM parser library</h1>
-    <br>
-       
+     <br>
+         
 <h2>Index</h2>
-     
+       
 <ul>
-     <li><a href="#anchor">Overview</a></li>
-     <li><a href="#Error_handling">Error handling</a></li>
-     <li><a href="#Data_callback_mechanism">Data callback mechanism</a></li>
+      <li><a href="#anchor">Overview</a></li>
+      <li><a href="#Error_handling">Error handling</a></li>
+      <li><a href="#Data_callback_mechanism">Data callback mechanism</a></li>
+               
+  <ul>
+        <li><a href="#Start_and_end_callbacks">Start and end callbacks</a></li>
+        <li><a href="#Default_callbacks">Default callbacks</a></li>
+               
+  </ul>
+     <li><a href="#Other_API_functions">Other API functions</a></li>
            
   <ul>
-       <li><a href="#Start_and_end_callbacks">Start and end callbacks</a></li>
-       <li><a href="#Default_callbacks">Default callbacks</a></li>
+       <li><a href="#Debugging">Debugging</a></li>
+       <li><a href="#Error_treatment">Error treatment</a></li>
+       <li><a href="#Compatibility_mode">Compatibility mode</a></li>
            
   </ul>
-    <li><a href="#Other_API_functions">Other API functions</a></li>
+     <li><a href="interface.html">Interface details</a><br>
+        </li>
        
-  <ul>
-      <li><a href="#Debugging">Debugging</a></li>
-      <li><a href="#Error_treatment">Error treatment</a></li>
-      <li><a href="#Compatibility_mode">Compatibility mode</a></li>
-       
-  </ul>
-    <li><a href="interface.html">Interface details</a><br>
-       </li>
-     
 </ul>
-     
-<hr width="100%" size="2">    
+       
+<hr width="100%" size="2">     
 <h2><a name="Overview"></a>Overview<br>
-    </h2>
-    The GEDCOM parser library is built as a callback-based parser (comparable
+     </h2>
+     The GEDCOM parser library is built as a callback-based parser (comparable 
   to the SAX interface of XML). &nbsp;It comes with:<br>
-       
+         
 <ul>
-      <li>a library (<code>libgedcom.so</code>), to be linked in the application
+       <li>a library (<code>libgedcom.so</code>), to be linked in the application 
   program</li>
-      <li>a header file (<code>gedcom.h</code>), to be used in the sources
+       <li>a header file (<code>gedcom.h</code>), to be used in the sources 
  of  the application program</li>
-  <li>a header file (<code>gedcom-tags.h</code>) that is also installed,
+   <li>a header file (<code>gedcom-tags.h</code>) that is also installed, 
 but that is automatically included via <code>gedcom.h</code><br>
-  </li>
-       
+   </li>
+         
 </ul>
-    Next to these, there is also a data directory in <code>$PREFIX/share/gedcom-parse</code>
-     that contains some additional stuff, but which is not immediately important
+     Next to these, there is also a data directory in <code>$PREFIX/share/gedcom-parse</code>
+      that contains some additional stuff, but which is not immediately important 
   at first. &nbsp;I'll leave the description of the data directory for later.<br>
-    <br>
-    The very simplest call of the gedcom parser is simply the following piece
-  of code (include of the gedcom header is assumed, as everywhere in this
-manual):<br>
-       
+     <br>
+     The very simplest call of the gedcom parser is simply the following
+piece   of code (include of the gedcom header is assumed, as everywhere in
+this manual):<br>
+         
 <blockquote><code>int result;<br>
-    ...<br>
-    result = <b>gedcom_parse_file</b>("myfamily.ged");<br>
-      </code>   </blockquote>
-    Although this will not provide much information, one thing it does is 
-parse  the entire file and return the result. &nbsp;The function returns 0
-on success  and 1 on failure. &nbsp;No other information is available using 
-this function  only.<br>
-     <br>
-   The next sections will refine this to be able to have meaningful errors
+     ...<br>
+     result = <b>gedcom_parse_file</b>("myfamily.ged");<br>
+       </code>   </blockquote>
+     Although this will not provide much information, one thing it does is
+ parse  the entire file and return the result. &nbsp;The function returns
+0 on success  and 1 on failure. &nbsp;No other information is available using
+ this function  only.<br>
+      <br>
+    The next sections will refine this to be able to have meaningful errors 
  and the actual data that is in the file.<br>
-           
-  <hr width="100%" size="2">            
+               
+  <hr width="100%" size="2">               
   <h2><a name="Error_handling"></a>Error handling</h2>
-   Since this is a relatively simple topic, it is discussed before the actual 
- callback mechanism, although it also uses a callback...<br>
-     <br>
-   The library can be used in several different circumstances, both terminal-based 
- as GUI-based. &nbsp;Therefore, it leaves the actual display of the error 
-message up to the application. &nbsp;For this, the application needs to register 
-a callback before parsing the GEDCOM file, which will be called by the library 
- on errors, warnings and messages.<br>
-     <br>
-   A typical piece of code would be:<br>
-           
-  <blockquote><code>void <b>my_message_handler</b> (Gedcom_msg_type type, 
- char *msg)<br>
+    Since this is a relatively simple topic, it is discussed before the actual
+  callback mechanism, although it also uses a callback...<br>
+      <br>
+    The library can be used in several different circumstances, both terminal-based
+  as GUI-based. &nbsp;Therefore, it leaves the actual display of the error
+ message up to the application. &nbsp;For this, the application needs to
+register  a callback before parsing the GEDCOM file, which will be called
+by the library   on errors, warnings and messages.<br>
+      <br>
+    A typical piece of code would be:<br>
+               
+  <blockquote><code>void <b>my_message_handler</b> (Gedcom_msg_type type,
+  char *msg)<br>
+    {<br>
+    &nbsp; ...<br>
+    }<br>
+    ...<br>
+        <b>gedcom_set_message_handler</b>(my_message_handler);<br>
+    ...<br>
+    result = <b>gedcom_parse_file</b>("myfamily.ged");</code><br>
+        </blockquote>
+    In the above piece of code, <code>my_message_handler</code> is the callback
+  that will be called for errors (<code>type=ERROR</code>), warnings (<code>
+   type=WARNING</code>) and messages (<code>type=MESSAGE</code>). &nbsp;The
+ callback must have the signature as in the example. &nbsp;For errors, the
+     <code> msg</code> passed to the callback will have the format:<br>
+                       
+    <blockquote><code>Error on line</code> <i>&lt;lineno&gt;</i>: <i>&lt;actual_message&gt;</i><br>
+          </blockquote>
+    Note that the entire string will be properly internationalized, and encoded
+  in UTF-8 (see "Why UTF-8?" &nbsp;<i>LINK TBD</i>). &nbsp;Also, no newline
+  is appended, so that the application program can use it in any way it wants.
+  &nbsp;Warnings are similar, but use "Warning" instead of "Error". &nbsp;Messages
+  are plain text, without any prefix.<br>
+          <br>
+    With this in place, the resulting code will already show errors and warnings
+  produced by the parser, e.g. on the terminal if a simple <code>printf</code>
+     is used in the message handler.<br>
+                               
+      <hr width="100%" size="2">                            
+      <h2><a name="Data_callback_mechanism"></a>Data callback mechanism</h2>
+    The most important use of the parser is of course to get the data out 
+of  the GEDCOM file. &nbsp;As already mentioned, the parser uses a callback
+ mechanism  for that. &nbsp;In fact, the mechanism involves two levels.<br>
+          <br>
+    The primary level is that each of the sections in a GEDCOM file is notified
+  to the application code via a "start element" callback and an "end element"
+  callback (much like in a SAX interface for XML), i.e. when a line containing
+  a certain tag is parsed, the "start element" callback is called for that
+ tag, and when all its subordinate lines with their tags have been processed,
+ the "end element" callback is called for the original tag. &nbsp;Since GEDCOM
+  is hierarchical, this results in properly nested calls to appropriate "start
+  element" and "end element" callbacks.<br>
+          <br>
+    However, it would be typical for a genealogy program to support only
+a  subset  of the GEDCOM standard, certainly a program that is still under
+development.   &nbsp;Moreover, under GEDCOM it is allowed for an application
+to define its  own tags, which will typically not &nbsp;be supported by another
+application.   &nbsp;Still, in that case, data preservation is important;
+it would hardly   be accepted that information that is not understood by
+a certain program  is just removed.<br>
+          <br>
+    Therefore, the second level of callbacks involves a "default callback". 
+ &nbsp;An application needs to subscribe to callbacks for tags it does support, 
+ and need to provide a "default callback" which will be called for tags it 
+ doesn't support. &nbsp;The application can then choose to just store the 
+information that comes via the default callback in plain textual format.<br>
+          <br>
+    After this introduction, let's see what the API looks like...<br>
+          <br>
+                               
+      <h3><a name="Start_and_end_callbacks"></a>Start and end callbacks</h3>
+                               
+      <h4><i>Callbacks for records</i> <br>
+          </h4>
+    As a simple example, we will get some information from the header of
+a  GEDCOM  file. &nbsp;First, have a look at the following piece of code:<br>
+                               
+      <blockquote><code>Gedcom_ctxt <b>my_header_start_cb</b> (int level,
+  <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gedcom_val xref, <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; char *tag, <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; char *raw_value,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int parsed_tag, <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gedcom_val parsed_value)<br>
+    {<br>
+    &nbsp; printf("The header starts\n");<br>
+    &nbsp; return (Gedcom_ctxt)1;<br>
+    }<br>
+            <br>
+    void <b>my_header_end_cb</b> (Gedcom_ctxt self)<br>
+    {<br>
+    &nbsp; printf("The header ends, context is %d\n", self); &nbsp; /* context
+  will print as "1" */<br>
+    }<br>
+            <br>
+    ...<br>
+            <b>gedcom_subscribe_to_record</b>(REC_HEAD, my_header_start_cb, 
+ my_header_end_cb);<br>
+    ...<br>
+    result = <b>gedcom_parse_file</b>("myfamily.ged");</code><br>
+            </blockquote>
+       Using the <code>gedcom_subscribe_to_record</code> function, the application
+  requests to use the specified callbacks as start and end callback. The
+end   callback is optional: you can pass <code>NULL</code> if you are not
+interested   in the end callback. &nbsp;The identifiers to use as first argument
+to the   function (here <code>REC_HEAD</code>) are described in the <a href="interface.html#Record_identifiers">
+   interface details</a>.<br>
+            <br>
+    From the name of the function it becomes clear that this function is
+specific   to complete records. &nbsp;For the separate elements in records
+there is  another function, which we'll see shortly. &nbsp;Again, the callbacks
+need  to have the signatures as shown in the example.<br>
+            <br>
+    The <code>Gedcom_ctxt</code> type that is used as a result of the start 
+ callback and as an argument to the end callback is vital for passing context 
+ necessary for the application. &nbsp;This type is meant to be opaque; in 
+fact, it's a void pointer, so you can pass anything via it. &nbsp;The important 
+ thing to know is that the context that the application returns in the start 
+ callback will be passed in the end callback as an argument, and as we will 
+ see shortly, also to all the directly subordinate elements of the record.<br>
+         <br>
+ The <code>tag</code> is the GEDCOM tag in string format, the <code>parsed_tag</code>
+  is an integer, for which symbolic values are defined as <code>TAG_HEAD,</code>
+  <code>TAG_SOUR,</code> <code>TAG_DATA,</code> ... and <code>USERTAG </code><code></code>
+ for the application-specific tags. &nbsp;These values are defined in the 
+header <code>gedcom-tags.h</code> that is installed, and included via <code>
+ gedcom.h</code> (so no need to include <code>gedcom-tags.h</code> yourself).<br>
+            <br>
+    The example passes a simple integer as context, but an application could
+  e.g. pass a <code>struct</code> that will contain the information for the
+  header. &nbsp;In the end callback, the application could then e.g. do some
+  finalizing operations on the <code>struct</code> to put it in its database.<br>
+            <br>
+    (Note that the <code>Gedcom_val</code> type for the <code>xref</code>
+ and <code>parsed_value</code> arguments  was not discussed, see further
+for this)<br>
+            <br>
+                                       
+        <h4><i>Callbacks for elements</i></h4>
+    We will now retrieve the SOUR field (the name of the program that wrote 
+ the file) from the header:<br>
+                                       
+        <blockquote><code>Gedcom_ctxt <b>my_header_source_start_cb</b>(Gedcom_ctxt
+  parent,<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int &nbsp; 
+&nbsp;  &nbsp; &nbsp; level,<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; char* &nbsp; 
+&nbsp;  &nbsp; tag,<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; char* &nbsp; 
+&nbsp;  &nbsp; raw_value,<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int &nbsp; &nbsp; 
+&nbsp; &nbsp; parsed_tag,<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gedcom_val 
+&nbsp;parsed_value)<br>
+    {<br>
+    &nbsp; char *source = GEDCOM_STRING(parsed_value);<br>
+    &nbsp; printf("This file was written by %s\n", source);<br>
+    &nbsp; return parent;<br>
+    }<br>
+              <br>
+    void <b>my_header_source_end_cb</b>(Gedcom_ctxt parent,<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;Gedcom_ctxt self,<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;Gedcom_val &nbsp;parsed_value)<br>
+    {<br>
+    &nbsp; printf("End of the source description\n");<br>
+    }<br>
+              <br>
+    ...<br>
+              <b>gedcom_subscribe_to_element</b>(ELT_HEAD_SOUR,<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;  &nbsp; &nbsp; &nbsp; my_header_source_start_cb,<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;  &nbsp; &nbsp; &nbsp; my_header_source_end_cb);<br>
+    ...<br>
+    result = <b>gedcom_parse_file</b>("myfamily.ged");</code><br>
+              </blockquote>
+    The subscription mechanism for elements is similar, only the signatures 
+ of the callbacks differ. &nbsp;The signature for the start callback shows 
+ that the context of the parent line (e.g. the <code>struct</code> that describes
+  the header) is passed to this start callback. &nbsp;The callback itself
+returns  here the same context, but this can be its own context object of
+course. &nbsp;The end callback is called with both the context of the parent
+and the context of itself, which will be the same in the example. &nbsp;Again,
+ the list of identifiers to use as a first argument for the subscription
+function  are detailed in the <a href="interface.html#Element_identifiers">
+interface  details</a> .<br>
+              <br>
+    If we look at the other arguments of the start callback, we see the level
+  number (the initial number of the line in the GEDCOM file), the tag (e.g.
+  "SOUR"), and then a raw value, a parsed tag and a parsed value. &nbsp;The 
+raw value is just the raw string that occurs as value on the line next to 
+the tag (in UTF-8 encoding). &nbsp;The parsed value is the meaningful value 
+that is parsed from that raw string. &nbsp;The parsed tag is described in 
+the section for record callbacks.<br>
+              <br>
+    The <code>Gedcom_val</code> type is meant to be an opaque type. &nbsp;The
+  only thing that needs to be known about it is that it can contain specific
+  data types, which have to be retrieved from it using pre-defined macros.
+ &nbsp;These data types are described in the <a href="interface.html#Gedcom_val_types">
+   interface details</a>.           <br>
+             <br>
+    Some extra notes:<br>
+                                               
+          <ul>
+                <li>The <code>Gedcom_val</code> argument of the end callback
+  is currently not used. &nbsp;It is there for future enhancements.</li>
+                <li>There is also a <code>Gedcom_val</code> argument in the 
+ start callback for records. &nbsp;This argument is currently a string value 
+ giving the pointer in string form.</li>
+                                               
+          </ul>
+                                               
+          <h3><a name="Default_callbacks"></a>Default callbacks<br>
+              </h3>
+    As described above, an application doesn't always implement the entire
+ GEDCOM spec, and application-specific tags may have been added by other
+applications.  &nbsp;To preserve this extra data anyway, a default callback
+can be registered  by the application, as in the following example:<br>
+                                   
+          <blockquote><code>void <b>my_default_cb</b> (Gedcom_ctxt parent, 
+ int level, char* tag, char* raw_value, int parsed_tag)<br>
    {<br>
    &nbsp; ...<br>
    }<br>
+               <br>
    ...<br>
-       <b>gedcom_set_message_handler</b>(my_message_handler);<br>
-   ...<br>
-   result = <b>gedcom_parse_file</b>("myfamily.ged");</code><br>
-       </blockquote>
-   In the above piece of code, <code>my_message_handler</code> is the callback 
- that will be called for errors (<code>type=ERROR</code>), warnings (<code>
-  type=WARNING</code>) and messages (<code>type=MESSAGE</code>). &nbsp;The 
-callback must have the signature as in the example. &nbsp;For errors, the 
-    <code> msg</code> passed to the callback will have the format:<br>
-                 
-    <blockquote><code>Error on line</code> <i>&lt;lineno&gt;</i>: <i>&lt;actual_message&gt;</i><br>
-         </blockquote>
-   Note that the entire string will be properly internationalized, and encoded 
- in UTF-8 (see "Why UTF-8?" &nbsp;<i>LINK TBD</i>). &nbsp;Also, no newline 
- is appended, so that the application program can use it in any way it wants. 
- &nbsp;Warnings are similar, but use "Warning" instead of "Error". &nbsp;Messages 
- are plain text, without any prefix.<br>
-         <br>
-   With this in place, the resulting code will already show errors and warnings 
- produced by the parser, e.g. on the terminal if a simple <code>printf</code>
-    is used in the message handler.<br>
-                       
-      <hr width="100%" size="2">                     
-      <h2><a name="Data_callback_mechanism"></a>Data callback mechanism</h2>
-   The most important use of the parser is of course to get the data out
-of  the GEDCOM file. &nbsp;As already mentioned, the parser uses a callback 
-mechanism  for that. &nbsp;In fact, the mechanism involves two levels.<br>
-         <br>
-   The primary level is that each of the sections in a GEDCOM file is notified 
- to the application code via a "start element" callback and an "end element" 
- callback (much like in a SAX interface for XML), i.e. when a line containing 
- a certain tag is parsed, the "start element" callback is called for that 
-tag, and when all its subordinate lines with their tags have been processed, 
-the "end element" callback is called for the original tag. &nbsp;Since GEDCOM 
- is hierarchical, this results in properly nested calls to appropriate "start 
- element" and "end element" callbacks.<br>
-         <br>
-   However, it would be typical for a genealogy program to support only a 
-subset  of the GEDCOM standard, certainly a program that is still under development. 
- &nbsp;Moreover, under GEDCOM it is allowed for an application to define its
- own tags, which will typically not &nbsp;be supported by another application. 
- &nbsp;Still, in that case, data preservation is important; it would hardly 
- be accepted that information that is not understood by a certain program 
-is just removed.<br>
-         <br>
-   Therefore, the second level of callbacks involves a "default callback".
- &nbsp;An application needs to subscribe to callbacks for tags it does support,
- and need to provide a "default callback" which will be called for tags it
- doesn't support. &nbsp;The application can then choose to just store the
-information that comes via the default callback in plain textual format.<br>
-         <br>
-   After this introduction, let's see what the API looks like...<br>
-         <br>
-                       
-      <h3><a name="Start_and_end_callbacks"></a>Start and end callbacks</h3>
-                       
-      <h4><i>Callbacks for records</i> <br>
-         </h4>
-   As a simple example, we will get some information from the header of a 
-GEDCOM  file. &nbsp;First, have a look at the following piece of code:<br>
-                       
-      <blockquote><code>Gedcom_ctxt <b>my_header_start_cb</b> (int level, 
- Gedcom_val xref, char *tag, int parsed_tag)<br>
-   {<br>
-   &nbsp; printf("The header starts\n");<br>
-   &nbsp; return (Gedcom_ctxt)1;<br>
-   }<br>
-           <br>
-   void <b>my_header_end_cb</b> (Gedcom_ctxt self)<br>
-   {<br>
-   &nbsp; printf("The header ends, context is %d\n", self); &nbsp; /* context 
- will print as "1" */<br>
-   }<br>
-           <br>
-   ...<br>
-           <b>gedcom_subscribe_to_record</b>(REC_HEAD, my_header_start_cb,
- my_header_end_cb);<br>
+               <b>gedcom_set_default_callback</b>(my_default_cb);<br>
    ...<br>
    result = <b>gedcom_parse_file</b>("myfamily.ged");</code><br>
-           </blockquote>
-      Using the <code>gedcom_subscribe_to_record</code> function, the application 
- requests to use the specified callbacks as start and end callback. The end 
- callback is optional: you can pass <code>NULL</code> if you are not interested 
- in the end callback. &nbsp;The identifiers to use as first argument to the 
- function (here <code>REC_HEAD</code>) are described in the <a href="interface.html#Record_identifiers">
-  interface details</a>.<br>
-           <br>
-   From the name of the function it becomes clear that this function is specific 
- to complete records. &nbsp;For the separate elements in records there is 
-another function, which we'll see shortly. &nbsp;Again, the callbacks need 
-to have the signatures as shown in the example.<br>
-           <br>
-   The <code>Gedcom_ctxt</code> type that is used as a result of the start
- callback and as an argument to the end callback is vital for passing context
- necessary for the application. &nbsp;This type is meant to be opaque; in
-fact, it's a void pointer, so you can pass anything via it. &nbsp;The important
- thing to know is that the context that the application returns in the start
- callback will be passed in the end callback as an argument, and as we will
- see shortly, also to all the directly subordinate elements of the record.<br>
-        <br>
-The <code>tag</code> is the GEDCOM tag in string format, the <code>parsed_tag</code>
- is an integer, for which symbolic values are defined as <code>TAG_HEAD,</code>
- <code>TAG_SOUR,</code> <code>TAG_DATA,</code> ... and <code>USERTAG </code><code></code>
-for the application-specific tags. &nbsp;These values are defined in the
-header <code>gedcom-tags.h</code> that is installed, and included via <code>
-gedcom.h</code> (so no need to include <code>gedcom-tags.h</code> yourself).<br>
-           <br>
-   The example passes a simple integer as context, but an application could 
- e.g. pass a <code>struct</code> that will contain the information for the 
- header. &nbsp;In the end callback, the application could then e.g. do some 
- finalizing operations on the <code>struct</code> to put it in its database.<br>
-           <br>
-   (Note that the <code>Gedcom_val</code> type for the <code>xref</code>
-argument  was not discussed, see further for this)<br>
-           <br>
-                             
-        <h4><i>Callbacks for elements</i></h4>
-   We will now retrieve the SOUR field (the name of the program that wrote
- the file) from the header:<br>
-                             
-        <blockquote><code>Gedcom_ctxt <b>my_header_source_start_cb</b>(Gedcom_ctxt 
- parent,<br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int &nbsp;
-&nbsp;  &nbsp; &nbsp; level,<br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; char* &nbsp;
-&nbsp;  &nbsp; tag,<br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; char* &nbsp;
-&nbsp;  &nbsp; raw_value,<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int &nbsp; &nbsp;
-&nbsp; &nbsp; parsed_tag,<br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gedcom_val
-&nbsp;parsed_value)<br>
-   {<br>
-   &nbsp; char *source = GEDCOM_STRING(parsed_value);<br>
-   &nbsp; printf("This file was written by %s\n", source);<br>
-   &nbsp; return parent;<br>
-   }<br>
-             <br>
-   void <b>my_header_source_end_cb</b>(Gedcom_ctxt parent,<br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;Gedcom_ctxt self,<br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;Gedcom_val &nbsp;parsed_value)<br>
-   {<br>
-   &nbsp; printf("End of the source description\n");<br>
-   }<br>
-             <br>
-   ...<br>
-             <b>gedcom_subscribe_to_element</b>(ELT_HEAD_SOUR,<br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;  &nbsp; &nbsp; &nbsp; my_header_source_start_cb,<br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;  &nbsp; &nbsp; &nbsp; my_header_source_end_cb);<br>
-   ...<br>
-   result = <b>gedcom_parse_file</b>("myfamily.ged");</code><br>
-             </blockquote>
-   The subscription mechanism for elements is similar, only the signatures
- of the callbacks differ. &nbsp;The signature for the start callback shows
- that the context of the parent line (e.g. the <code>struct</code> that describes 
- the header) is passed to this start callback. &nbsp;The callback itself returns
- here the same context, but this can be its own context object of course.
-&nbsp;The end callback is called with both the context of the parent and
-the context of itself, which will be the same in the example. &nbsp;Again, 
-the list of identifiers to use as a first argument for the subscription function 
-are detailed in the <a href="interface.html#Element_identifiers">interface 
-details</a> .<br>
-             <br>
-   If we look at the other arguments of the start callback, we see the level 
- number (the initial number of the line in the GEDCOM file), the tag (e.g. 
- "SOUR"), and then a raw value, a parsed tag and a parsed value. &nbsp;The
-raw value is just the raw string that occurs as value on the line next to
-the tag (in UTF-8 encoding). &nbsp;The parsed value is the meaningful value
-that is parsed from that raw string. &nbsp;The parsed tag is described in
-the section for record callbacks.<br>
-             <br>
-   The <code>Gedcom_val</code> type is meant to be an opaque type. &nbsp;The 
- only thing that needs to be known about it is that it can contain specific 
- data types, which have to be retrieved from it using pre-defined macros. 
-&nbsp;These data types are described in the <a href="interface.html#Gedcom_val_types">
-  interface details</a>.           <br>
-            <br>
-   Some extra notes:<br>
-                                   
-          <ul>
-               <li>The <code>Gedcom_val</code> argument of the end callback 
- is currently not used. &nbsp;It is there for future enhancements.</li>
-               <li>There is also a <code>Gedcom_val</code> argument in the
- start callback for records. &nbsp;This argument is currently a string value
- giving the pointer in string form.</li>
-                                   
-          </ul>
-                                   
-          <h3><a name="Default_callbacks"></a>Default callbacks<br>
-             </h3>
-   As described above, an application doesn't always implement the entire 
-GEDCOM spec, and application-specific tags may have been added by other applications.
- &nbsp;To preserve this extra data anyway, a default callback can be registered
- by the application, as in the following example:<br>
-                       
-          <blockquote><code>void <b>my_default_cb</b> (Gedcom_ctxt parent,
- int level, char* tag, char* raw_value, int parsed_tag)<br>
-  {<br>
-  &nbsp; ...<br>
-  }<br>
-              <br>
-  ...<br>
-              <b>gedcom_set_default_callback</b>(my_default_cb);<br>
-  ...<br>
-  result = <b>gedcom_parse_file</b>("myfamily.ged");</code><br>
-              </blockquote>
-             This callback has a similar signature as the previous ones,
-but  it doesn't contain a parsed value. &nbsp;However, it does contain the
-parent  context, that was returned by the application for the most specific
+               </blockquote>
+              This callback has a similar signature as the previous ones, 
+but  it doesn't contain a parsed value. &nbsp;However, it does contain the 
+parent  context, that was returned by the application for the most specific 
 containing  tag that the application supported.<br>
-              <br>
-  Suppose e.g. that this callback is called for some tags in the header that
- are specific to some other application, then our application could make
-sure  that the parent context contains the struct or object that represents
-the  header, and use the default callback here to add the level, tag and
-raw_value  as plain text in a member of that struct or object, thus preserving
-the information.  &nbsp;The application can then write this out when the
-data is saved again  in a GEDCOM file. &nbsp;To make it more specific, consider
+               <br>
+   Suppose e.g. that this callback is called for some tags in the header
+that  are specific to some other application, then our application could
+make sure  that the parent context contains the struct or object that represents 
+the  header, and use the default callback here to add the level, tag and raw_value
+ as plain text in a member of that struct or object, thus preserving the
+information.  &nbsp;The application can then write this out when the data
+is saved again  in a GEDCOM file. &nbsp;To make it more specific, consider 
 the following example:<br>
-                           
+                                         
             <blockquote><code>struct header {<br>
-  &nbsp; char* source;<br>
-  &nbsp; ...<br>
-  &nbsp; char* extra_text;<br>
-  };<br>
-                <br>
-  Gedcom_ctxt my_header_start_cb(int level, Gedcom_val xref, char* tag, int
-parsed_tag)<br>
-  {<br>
-  &nbsp; struct header head = my_make_header_struct();<br>
-  &nbsp; return (Gedcom_ctxt)head;<br>
-  }<br>
-                <br>
-  void my_default_cb(Gedcom_ctxt parent, int level, char* tag, char* raw_value,
+   &nbsp; char* source;<br>
+   &nbsp; ...<br>
+   &nbsp; char* extra_text;<br>
+   };<br>
+                 <br>
+   Gedcom_ctxt my_header_start_cb(int level, Gedcom_val xref, char* tag,
+char *raw_value,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parsed_tag, Gedcom_val parsed_value)<br>
+   {<br>
+   &nbsp; struct header head = my_make_header_struct();<br>
+   &nbsp; return (Gedcom_ctxt)head;<br>
+   }<br>
+                 <br>
+   void my_default_cb(Gedcom_ctxt parent, int level, char* tag, char* raw_value, 
 int parsed_tag)<br>
-  {<br>
-  &nbsp; struct header head = (struct header)parent;<br>
-  &nbsp; my_header_add_to_extra_text(head, level, tag, raw_value);<br>
-  }<br>
-                <br>
-  gedcom_set_default_callback(my_default_cb);<br>
-  gedcom_subscribe_to_record(REC_HEAD, my_header_start, NULL);<br>
-  ...<br>
-  result = gedcom_parse_file(filename);</code><br>
-                </blockquote>
-  Note that the default callback will be called for any tag that isn't specifically
- subscribed upon by the application, and can thus be called in various contexts.
- &nbsp;For simplicity, the example above doesn't take this into account (the
-               <code>parent</code> could be of different types, depending
+   {<br>
+   &nbsp; struct header head = (struct header)parent;<br>
+   &nbsp; my_header_add_to_extra_text(head, level, tag, raw_value);<br>
+   }<br>
+                 <br>
+   gedcom_set_default_callback(my_default_cb);<br>
+   gedcom_subscribe_to_record(REC_HEAD, my_header_start, NULL);<br>
+   ...<br>
+   result = gedcom_parse_file(filename);</code><br>
+                 </blockquote>
+   Note that the default callback will be called for any tag that isn't specifically 
+ subscribed upon by the application, and can thus be called in various contexts. 
+ &nbsp;For simplicity, the example above doesn't take this into account (the 
+               <code>parent</code> could be of different types, depending 
 on the context).<br>
-                               
-              <hr width="100%" size="2">                              
+                                               
+              <hr width="100%" size="2">                                
+            
               <h2><a name="Other_API_functions"></a>Other API functions<br>
-                </h2>
-  Although the above describes the basic interface of libgedcom, there are
- some other functions that allow to customize the behaviour of the library.
+                 </h2>
+   Although the above describes the basic interface of libgedcom, there are 
+ some other functions that allow to customize the behaviour of the library. 
  &nbsp;These will be explained in the current section.<br>
-                               
+                                               
               <h3><a name="Debugging"></a>Debugging</h3>
-  The library can generate various debugging output, not only from itself,
- but also the debugging output generated by the yacc parser. &nbsp;By default,
- no debugging output is generated, but this can be customized using the following
+   The library can generate various debugging output, not only from itself, 
+ but also the debugging output generated by the yacc parser. &nbsp;By default, 
+ no debugging output is generated, but this can be customized using the following 
  function:<br>
-                               
-              <blockquote><code>void <b>gedcom_set_debug_level</b> (int level,
+                                               
+              <blockquote><code>void <b>gedcom_set_debug_level</b> (int level, 
  FILE* trace_output)</code><br>
-                  </blockquote>
-  The <code>level</code> can be one of the following values:<br>
-                                   
+                   </blockquote>
+   The <code>level</code> can be one of the following values:<br>
+                                                     
                 <ul>
-                    <li>0: &nbsp;no debugging information (this is the default)</li>
-                    <li>1: &nbsp;only debugging information from libgedcom
+                     <li>0: &nbsp;no debugging information (this is the default)</li>
+                     <li>1: &nbsp;only debugging information from libgedcom 
  itself</li>
-                    <li>2: &nbsp;debugging information from libgedcom and 
-yacc</li>
-                                   
+                     <li>2: &nbsp;debugging information from libgedcom and
+ yacc</li>
+                                                     
                 </ul>
-  If the <code>trace_output</code> is <code>NULL</code>, debugging information
- will be written to <code>stderr</code>, otherwise the given file handle
-is  used (which must be open).<br>
-                  <br>
-                                   
+   If the <code>trace_output</code> is <code>NULL</code>, debugging information 
+ will be written to <code>stderr</code>, otherwise the given file handle is
+ used (which must be open).<br>
+                   <br>
+                                                     
                 <h3><a name="Error_treatment"></a>Error treatment</h3>
-  One of the previous sections already described the callback to be registered
- to get error messages. &nbsp;The library also allows to customize what happens
+   One of the previous sections already described the callback to be registered 
+ to get error messages. &nbsp;The library also allows to customize what happens 
  on an error, using the following function:<br>
-                                   
-                <blockquote><code>void <b>gedcom_set_error_handling</b> (Gedcom_err_mech
+                                                     
+                <blockquote><code>void <b>gedcom_set_error_handling</b> (Gedcom_err_mech 
  mechanism)</code><br>
-                    </blockquote>
-  The <code>mechanism</code> can be one of:<br>
-                                       
-                  <ul>
-                      <li><code>IMMED_FAIL</code>: immediately fail the parsing
- on an error (this is the default)</li>
-                      <li><code>DEFER_FAIL</code>: continue parsing after 
-an error, but return a failure code eventually</li>
-                      <li><code>IGNORE_ERRORS</code>: continue parsing after
- an error, return success always</li>
-                                       
-                  </ul>
-  This doesn't influence the generation of error or warning messages, only
- the behaviour of the parser and its return code.<br>
-                    <br>
-                                       
-                  <h3><a name="Compatibility_mode"></a>Compatibility mode<br>
-                    </h3>
-  Applications are not necessarily true to the GEDCOM spec (or use a different
- version than 5.5). &nbsp;The intention is that the library is resilient
-to  this, and goes in compatibility mode for files written by specific programs
- (detected via the HEAD.SOUR tag). &nbsp;This compatibility mode can be enabled
- and disabled via the following function:<br>
-                                       
-                  <blockquote><code>void <b>gedcom_set_compat_handling</b>
-   (int enable_compat)</code><br>
-                      </blockquote>
-  The argument can be:<br>
-                                           
-                    <ul>
-                        <li>0: disable compatibility mode</li>
-                        <li>1: allow compatibility mode (this is the default)<br>
-                        </li>
-                                           
-                    </ul>
-  Note that, currently, no actual compatibility code is present, but this 
-is on the to-do list.<br>
-                                           
-                    <hr width="100%" size="2">                     
-                    <pre>$Id$<br>$Name$<br></pre>
-                     
-                    <pre>                    </pre>
+                     </blockquote>
+   The <code>mechanism</code> can be one of:<br>
                                                            
+                  <ul>
+                       <li><code>IMMED_FAIL</code>: immediately fail the
+parsing  on an error (this is the default)</li>
+                       <li><code>DEFER_FAIL</code>: continue parsing after
+ an error, but return a failure code eventually</li>
+                       <li><code>IGNORE_ERRORS</code>: continue parsing after 
+ an error, return success always</li>
+                                                           
+                  </ul>
+   This doesn't influence the generation of error or warning messages, only 
+ the behaviour of the parser and its return code.<br>
+                     <br>
+                                                           
+                  <h3><a name="Compatibility_mode"></a>Compatibility mode<br>
+                     </h3>
+   Applications are not necessarily true to the GEDCOM spec (or use a different 
+ version than 5.5). &nbsp;The intention is that the library is resilient to
+ this, and goes in compatibility mode for files written by specific programs 
+ (detected via the HEAD.SOUR tag). &nbsp;This compatibility mode can be enabled 
+ and disabled via the following function:<br>
+                                                           
+                  <blockquote><code>void <b>gedcom_set_compat_handling</b>
+    (int enable_compat)</code><br>
+                       </blockquote>
+   The argument can be:<br>
+                                                                 
+                    <ul>
+                         <li>0: disable compatibility mode</li>
+                         <li>1: allow compatibility mode (this is the default)<br>
+                         </li>
+                                                                 
+                    </ul>
+   Note that, currently, no actual compatibility code is present, but this
+ is on the to-do list.<br>
+                                                                 
+                    <hr width="100%" size="2">                          
+               
+                    <pre>$Id$<br>$Name$<br></pre>
+                                           
+                    <pre>                    </pre>
+                                                                        
+        
                     </body>
                     </html>

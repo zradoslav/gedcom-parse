@@ -27,7 +27,8 @@
 #include "gedcom.h"
 
 Gedcom_ctxt start_record(Gedcom_rec rec,
-			 int level, Gedcom_val xref, struct tag_struct tag);
+			 int level, Gedcom_val xref, struct tag_struct tag,
+			 char *raw_value, Gedcom_val parsed_value);
 void        end_record(Gedcom_rec rec, Gedcom_ctxt self);
 
 Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent,

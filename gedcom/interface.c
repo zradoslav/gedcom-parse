@@ -56,11 +56,12 @@ void gedcom_subscribe_to_element(Gedcom_elt elt,
 }
 
 Gedcom_ctxt start_record(Gedcom_rec rec,
-			 int level, Gedcom_val xref, struct tag_struct tag)
+			 int level, Gedcom_val xref, struct tag_struct tag,
+			 char *raw_value, Gedcom_val parsed_value)
 {
   Gedcom_rec_start_cb cb = record_start_callback[rec];
   if (cb != NULL)
-    return (*cb)(level, xref, tag.string, tag.value);
+    return (*cb)(level, xref, tag.string, raw_value, tag.value, parsed_value);
   else
     return NULL;
 }
@@ -81,7 +82,7 @@ Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent,
   if (cb != NULL)
     ctxt = (*cb)(parent, level, tag.string, raw_value,
 		 tag.value, parsed_value);
-  else if (default_cb != NULL)
+  else if (default_cb != NULL && parent != NULL)
     (*default_cb)(parent, level, tag.string, raw_value, tag.value);
   return ctxt;
 }

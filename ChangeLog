@@ -1,4 +1,17 @@
+2002-01-03  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom.y, gedcom.h, standalone.c, interface.*: Record can also
+	have a value (e.g. the NOTE record), so extra value necessary on
+	start record callback.
+
+	* gedcom.y: Correct value of NOTE element (opt_line_item was missing
+	an action).
+
 2002-01-02  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* lots of files: Pass the parsed tag value (integer) together with
+	the string value in the callbacks.  For this, a separate header is
+	auto-generated, containing the #defines from bison.
 
 	* t/test_script: Return exit code from testgedcom.
 

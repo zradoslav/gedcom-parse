@@ -363,7 +363,7 @@ typedef Gedcom_val_struct* Gedcom_val;
 /* This returns the char* from a Gedcom_val, if appropriate */
 /* It gives a gedcom_warning if the cast is not correct     */
 #define GEDCOM_STRING(VAL) \
-   GV_CHECK_CAST(VAL, GV_CHAR_PTR, string_val, "")
+   GV_CHECK_CAST(VAL, GV_CHAR_PTR, string_val, "<error>")
 #define GEDCOM_IS_STRING(VAL) \
    GV_IS_TYPE(VAL, GV_CHAR_PTR)
 
@@ -380,7 +380,8 @@ typedef void
 
 typedef Gedcom_ctxt
         (*Gedcom_rec_start_cb)
-        (int level, Gedcom_val xref, char *tag, int tag_value);
+        (int level, Gedcom_val xref, char *tag, char *raw_value,
+	 int tag_value, Gedcom_val parsed_value);
 typedef void
         (*Gedcom_rec_end_cb)
         (Gedcom_ctxt self);

@@ -59,7 +59,9 @@ void show_help ()
   printf("  -3    Run the test parse 3 times instead of once\n");
 }
 
-Gedcom_ctxt header_start(int level, Gedcom_val xref, char *tag, int tag_value)
+Gedcom_ctxt header_start(int level, Gedcom_val xref, char *tag,
+			 char *raw_value, int tag_value,
+			 Gedcom_val parsed_value)
 {
   output(1, "Header start\n");
   return (Gedcom_ctxt)0;
@@ -73,11 +75,34 @@ void header_end(Gedcom_ctxt self)
 char family_xreftags[100][255];
 int  family_nr = 0;
 
-Gedcom_ctxt family_start(int level, Gedcom_val xref, char *tag, int tag_value)
+Gedcom_ctxt family_start(int level, Gedcom_val xref, char *tag,
+			 char *raw_value, int tag_value,
+			 Gedcom_val parsed_value)
 {
   output(1, "Family start, xref is %s\n", GEDCOM_STRING(xref));
   strcpy(family_xreftags[family_nr], GEDCOM_STRING(xref));
   return (Gedcom_ctxt)(family_nr++);
+}
+
+Gedcom_ctxt rec_start(int level, Gedcom_val xref, char *tag,
+		      char *raw_value, int tag_value,
+		      Gedcom_val parsed_value)
+{
+  char *xref_str = NULL;
+  if (! GEDCOM_IS_NULL(xref))
+    xref_str = GEDCOM_STRING(xref);
+  output(1, "Rec %s start, xref is %s\n", tag, xref_str);
+  return (Gedcom_ctxt)tag_value;
+}
+
+Gedcom_ctxt note_start(int level, Gedcom_val xref, char *tag,
+		       char *raw_value, int tag_value,
+		       Gedcom_val parsed_value)
+{
+  output(0, "== %d %s (%d) %s (xref is %s)\n",
+	 level, tag, tag_value, GEDCOM_STRING(parsed_value),
+	 GEDCOM_STRING(xref));
+  return (Gedcom_ctxt)tag_value;
 }
 
 void family_end(Gedcom_ctxt self)
@@ -85,7 +110,9 @@ void family_end(Gedcom_ctxt self)
   output(1, "Family end, xref is %s\n", family_xreftags[(int)self]);
 }
 
-Gedcom_ctxt submit_start(int level, Gedcom_val xref, char *tag, int tag_value)
+Gedcom_ctxt submit_start(int level, Gedcom_val xref, char *tag,
+			 char *raw_value, int tag_value,
+			 Gedcom_val parsed_value)
 {
   output(1, "Submitter, xref is %s\n", GEDCOM_STRING(xref));
   return (Gedcom_ctxt)10000;
@@ -147,7 +174,14 @@ void subscribe_callbacks()
 {
   gedcom_subscribe_to_record(REC_HEAD, header_start, header_end);
   gedcom_subscribe_to_record(REC_FAM,  family_start, family_end);
+  gedcom_subscribe_to_record(REC_INDI, rec_start, NULL);
+  gedcom_subscribe_to_record(REC_OBJE, rec_start, NULL);
+  gedcom_subscribe_to_record(REC_NOTE, note_start, NULL);
+  gedcom_subscribe_to_record(REC_REPO, rec_start, NULL);
+  gedcom_subscribe_to_record(REC_SOUR, rec_start, NULL);
+  gedcom_subscribe_to_record(REC_SUBN, rec_start, NULL);
   gedcom_subscribe_to_record(REC_SUBM, submit_start, NULL);
+  gedcom_subscribe_to_record(REC_USER, rec_start, NULL);
   gedcom_subscribe_to_element(ELT_HEAD_SOUR, source_start, source_end);
   gedcom_subscribe_to_element(ELT_SOUR_DATA_EVEN_DATE,
 			      source_date_start, NULL);
@@ -156,12 +190,12 @@ void subscribe_callbacks()
 void gedcom_message_handler(Gedcom_msg_type type, char *msg)
 {
   if (type == MESSAGE)
-    fprintf(stderr, "MESSAGE: ");
+    output(1, "MESSAGE: ");
   else if (type == WARNING)
-    fprintf(stderr, "WARNING: ");
+    output(1, "WARNING: ");
   else if (type == ERROR)
-    fprintf(stderr, "ERROR: ");
-  fprintf(stderr, "%s\n", msg);
+    output(1, "ERROR: ");
+  output(1, "%s\n", msg);
 }
 
 int main(int argc, char* argv[])
