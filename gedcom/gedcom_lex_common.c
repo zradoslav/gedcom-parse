@@ -85,6 +85,57 @@ int test_loop(ENCODING enc, char* code)
  
 #endif /* of #ifdef LEXER_TEST */
 
+/* These are defined as functions here, because xgettext has trouble
+   extracting the strings out of long pre-processor defined */
+
+static void error_line_too_long()
+{
+  gedcom_error(_("Line too long, max %d characters allowed"), MAXGEDCLINELEN); 
+}
+
+static void error_level_leading_zero()
+{
+  gedcom_error (_("Level number with leading zero not allowed"));
+}
+
+static void error_level_out_of_range()
+{
+  gedcom_error (_("Level number out of range [0..%d]"), MAXGEDCLEVEL); 
+}
+
+static void error_level_too_high(int level_diff)
+{
+  gedcom_error (_("GEDCOM level number is %d higher than previous"),
+		level_diff); 
+}
+
+static void error_tag_too_long(char *tag)
+{
+  gedcom_error(_("Tag '%s' too long, max %d characters allowed"),
+	       tag, MAXGEDCTAGLEN); 
+}
+
+static void error_invalid_character(char *str, char ch)
+{
+  gedcom_error(_("Invalid character for encoding: '%s' (0x%02x)"), str, ch); 
+}
+
+static void error_pointer_too_long(char *ptr)
+{
+  gedcom_error(_("Pointer '%s' too long, max %d characters allowed"),
+	       ptr, MAXGEDCPTRLEN);
+}
+
+static void error_at_character()
+{
+  gedcom_error(_("'@' character should be written as '@@' in values"));
+}
+
+static void error_unexpected_character(char* str, char ch)
+{
+  gedcom_error(_("Unexpected character: '%s' (0x%02x)"), str, ch);
+}
+
 #else  /* of #ifndef IN_LEX */
 
 #define TO_INTERNAL(STR,OUTBUF) \
@@ -97,8 +148,7 @@ int test_loop(ENCODING enc, char* code)
   { if (line_len != (size_t)-1) {                                             \
       line_len += strlen(yytext);                                             \
       if (line_len > MAXGEDCLINELEN * encoding_width) {                       \
-        gedcom_error(_("Line too long, max %d characters allowed"),           \
-		     MAXGEDCLINELEN);                                         \
+        error_line_too_long();                                                \
         line_len = (size_t)-1;                                                \
         return BADTOKEN;                                                      \
       }                                                                       \
@@ -171,7 +221,7 @@ int test_loop(ENCODING enc, char* code)
 
 
 #define ACTION_0_DIGITS                                                       \
-   { gedcom_error (_("Level number with leading zero not allowed"));          \
+   { error_level_leading_zero();                                              \
      return BADTOKEN;                                                         \
    } 
 
@@ -180,8 +230,7 @@ int test_loop(ENCODING enc, char* code)
    { int level = atoi(TO_INTERNAL(yytext, str_buf));                          \
      CHECK_LINE_LEN;                                                          \
      if ((level < 0) || (level > MAXGEDCLEVEL)) {                             \
-       gedcom_error (_("Level number out of range [0..%d]"),                  \
-		     MAXGEDCLEVEL);                                           \
+       error_level_out_of_range();                                            \
        return BADTOKEN;                                                       \
      }                                                                        \
      level_diff = level - current_level;                                      \
@@ -198,8 +247,7 @@ int test_loop(ENCODING enc, char* code)
      }                                                                        \
      else {                                                                   \
        /* should never happen (error to GEDCOM spec) */                       \
-       gedcom_error (_("GEDCOM level number is %d higher than previous"),     \
-		     level_diff);                                             \
+       error_level_too_high(level_diff);                                      \
        return BADTOKEN;                                                       \
      }                                                                        \
    } 
@@ -207,8 +255,7 @@ int test_loop(ENCODING enc, char* code)
 
 #define ACTION_ALPHANUM                                                       \
    { if (strlen(yytext) > MAXGEDCTAGLEN * encoding_width) {                   \
-       gedcom_error(_("Tag '%s' too long, max %d characters allowed"),        \
-		    yytext, MAXGEDCTAGLEN);                                   \
+       error_tag_too_long(yytext);                                            \
        return BADTOKEN;                                                       \
      }                                                                        \
      CHECK_LINE_LEN;                                                          \
@@ -232,8 +279,7 @@ int test_loop(ENCODING enc, char* code)
     tmp = TO_INTERNAL(yytext, str_buf);                                       \
     if (!tmp) {                                                               \
       /* Something went wrong during conversion... */                         \
-          gedcom_error(_("Invalid character for encoding: '%s' (0x%02x)"),    \
-		 yytext, yytext[0]);                                          \
+          error_invalid_character(yytext, yytext[0]);                         \
           return BADTOKEN;                                                    \
     }                                                                         \
     else {                                                                    \
@@ -260,8 +306,7 @@ int test_loop(ENCODING enc, char* code)
 #define ACTION_POINTER                                                        \
   { CHECK_LINE_LEN;                                                           \
     if (strlen(yytext) > MAXGEDCPTRLEN * encoding_width) {                    \
-      gedcom_error(_("Pointer '%s' too long, max %d characters allowed"),     \
-		   yytext, MAXGEDCPTRLEN);                                    \
+      error_pointer_too_long(yytext);                                         \
       return BADTOKEN;                                                        \
     }                                                                         \
     gedcom_lval.string = TO_INTERNAL(yytext, ptr_buf);                        \
@@ -321,14 +366,13 @@ int test_loop(ENCODING enc, char* code)
       }                                                                       \
     }                                                                         \
     else {                                                                    \
-      gedcom_error(_("'@' character should be written as '@@' in values"));   \
+      error_at_character();                                                   \
       return BADTOKEN;                                                        \
     }                                                                         \
   }
 
 #define ACTION_UNEXPECTED                                                     \
-  { gedcom_error(_("Unexpected character: '%s' (0x%02x)"),                    \
-		 yytext, yytext[0]);                                          \
+  { error_unexpected_character(yytext, yytext[0]);                            \
     return BADTOKEN;                                                          \
   }
 
