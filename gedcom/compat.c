@@ -135,7 +135,10 @@ int compat_matrix[] =
   /* C_TAB_CHARACTER */       C_PAF5
 };
 
-int compat_state[C_NR_OF_RULES];
+union _COMPAT_STATE {
+  int i;
+  void* vp;
+} compat_state[C_NR_OF_RULES];
 
 /* Compatibility handling */
 
@@ -200,7 +203,7 @@ void compute_compatibility()
   default_charset = "";
   compatibility = 0;
   for (i = 0; i < C_NR_OF_RULES; i++)
-    compat_state[i] = 0;
+    compat_state[i].i = 0;
 
   switch (compatibility_program) {
     case CP_PAF:
@@ -266,12 +269,12 @@ void compat_generate_submitter_link(Gedcom_ctxt parent)
 		       parent, 1, ts, SUBMITTER_LINK,
 		       GEDCOM_MAKE_XREF_PTR(val1, xr));
   end_element(ELT_HEAD_SUBM, parent, self, NULL);
-  compat_state[C_NO_SUBMITTER] = 1;
+  compat_state[C_NO_SUBMITTER].i = 1;
 }
 
 void compat_generate_submitter()
 {
-  if (compat_state[C_NO_SUBMITTER]) {
+  if (compat_state[C_NO_SUBMITTER].i) {
     struct xref_value *xr = gedcom_parse_xref(SUBMITTER_LINK, XREF_DEFINED,
 					      XREF_SUBM);
     struct tag_struct ts;
@@ -294,7 +297,7 @@ void compat_generate_submitter()
     
     /* close "0 SUBM" */
     end_record(REC_SUBM, self1, NULL);
-    compat_state[C_NO_SUBMITTER] = 0;
+    compat_state[C_NO_SUBMITTER].i = 0;
   }
 }
 
@@ -384,6 +387,37 @@ int compat_generate_char(Gedcom_ctxt parent)
 }
 
 /********************************************************************/
+/*  C_HEAD_TIME                                                     */
+/********************************************************************/
+
+void compat_save_head_date_context(Gedcom_ctxt parent)
+{
+  compat_state[C_HEAD_TIME].vp = parent;
+}
+
+Gedcom_ctxt compat_generate_head_time_start(int level, struct tag_struct ts,
+					    char* value)
+{
+  Gedcom_ctxt parent = compat_state[C_HEAD_TIME].vp;
+  if (!value)
+    value = "-";
+  if (parent)
+    return start_element(ELT_HEAD_DATE_TIME,
+			 parent, level, ts, value,
+			 GEDCOM_MAKE_STRING(val1, value));
+  else
+    return NULL;
+}
+
+void compat_generate_head_time_end(Gedcom_ctxt self)
+{
+  Gedcom_ctxt parent = compat_state[C_HEAD_TIME].vp;
+  if (parent)
+    end_element(ELT_HEAD_DATE_TIME,
+		parent, self, GEDCOM_MAKE_NULL(val1));
+}
+
+/********************************************************************/
 /*  C_INDI_ADDR                                                     */
 /********************************************************************/
 
@@ -453,13 +487,13 @@ void compat_generate_slgc_famc_link(Gedcom_ctxt parent)
 		       parent, 2, ts, SLGC_FAMC_LINK,
 		       GEDCOM_MAKE_XREF_PTR(val1, xr));
   end_element(ELT_SUB_LIO_SLGC_FAMC, parent, self, NULL);
-  compat_state[C_NO_SLGC_FAMC]++;
+  compat_state[C_NO_SLGC_FAMC].i++;
 }
 
 void compat_generate_slgc_famc_fam()
 {
   /* If bigger than 1, then the FAM record has already been generated */
-  if (compat_state[C_NO_SLGC_FAMC] == 1) {
+  if (compat_state[C_NO_SLGC_FAMC].i == 1) {
     struct xref_value *xr = gedcom_parse_xref(SLGC_FAMC_LINK, XREF_DEFINED,
 					      XREF_FAM);
     struct tag_struct ts;
@@ -489,7 +523,7 @@ int compat_check_subm_comm(const char* tag, const char* parent_tag,
     safe_buf_append(b, tag);
     gedcom_warning(_("Converting non-standard tag '%s' to user tag '%s'"),
 		   tag, get_buf_string(b));
-    compat_state[C_SUBM_COMM] = 1;
+    compat_state[C_SUBM_COMM].i = 1;
     return 1;
   }
   else
@@ -498,13 +532,13 @@ int compat_check_subm_comm(const char* tag, const char* parent_tag,
 
 void compat_close_subm_comm()
 {
-  compat_state[C_SUBM_COMM] = 0;
+  compat_state[C_SUBM_COMM].i = 0;
 }
 
 int compat_check_subm_comm_cont(const char* tag)
 {
-  if (compat_state[C_SUBM_COMM] && !strcmp(tag, "CONT")) {
-    compat_state[C_SUBM_COMM] = 2;
+  if (compat_state[C_SUBM_COMM].i && !strcmp(tag, "CONT")) {
+    compat_state[C_SUBM_COMM].i = 2;
     return 1;
   }
   else
@@ -516,7 +550,7 @@ Gedcom_ctxt compat_subm_comm_cont_start(Gedcom_ctxt parent, char* str)
   Gedcom_ctxt self = NULL;
   struct tag_struct ts;
 
-  if (compat_state[C_SUBM_COMM] == 2) {
+  if (compat_state[C_SUBM_COMM].i == 2) {
     ts.string = "_CONT";
     ts.value  = USERTAG;
     self = start_element(ELT_USER, parent, 2, ts, str, &val2);
@@ -527,8 +561,8 @@ Gedcom_ctxt compat_subm_comm_cont_start(Gedcom_ctxt parent, char* str)
 
 void compat_subm_comm_cont_end(Gedcom_ctxt parent, Gedcom_ctxt self)
 {
-  if (compat_state[C_SUBM_COMM] == 2) {
+  if (compat_state[C_SUBM_COMM].i == 2) {
     end_element(ELT_USER, parent, self, NULL);
-    compat_state[C_SUBM_COMM] = 1;
+    compat_state[C_SUBM_COMM].i = 1;
   }
 }

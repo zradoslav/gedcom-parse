@@ -26,6 +26,7 @@
 
 #include "buffer.h"
 #include "gedcom.h"
+#include "gedcom_internal.h"
 
 typedef enum _COMPAT_RULES {
   C_NO_SUBMITTER,
@@ -52,22 +53,35 @@ void set_compatibility_version(const char* version);
 void compute_compatibility();
 int  compat_mode(Compat_rule rule);
 
+/* C_NO_SUBMITTER */
 void compat_generate_submitter_link(Gedcom_ctxt parent);
 void compat_generate_submitter();
 
+/* C_NO_GEDC, C_NO_GEDC_FORM */
 void compat_generate_gedcom(Gedcom_ctxt parent);
 void compat_generate_gedcom_form(Gedcom_ctxt parent);
 
+/* C_NO_CHAR */
 int  compat_generate_char(Gedcom_ctxt parent);
 
+/* C_HEAD_TIME */
+void compat_save_head_date_context(Gedcom_ctxt parent);
+Gedcom_ctxt compat_generate_head_time_start(int level, struct tag_struct ts,
+					    char* value);
+void compat_generate_head_time_end(Gedcom_ctxt self);
+
+/* C_INDI_ATTR */
 Gedcom_ctxt compat_generate_resi_start(Gedcom_ctxt parent);
 void compat_generate_resi_end(Gedcom_ctxt parent, Gedcom_ctxt self);
 
+/* C_551_TAGS */
 int  compat_check_551_tag(const char* tag, struct safe_buffer* b);
 
+/* C_NO_SLGC_FAMC */
 void compat_generate_slgc_famc_link(Gedcom_ctxt parent);
 void compat_generate_slgc_famc_fam();
 
+/* C_SUBM_COMM */
 int  compat_check_subm_comm(const char* tag, const char* parent_tag,
 			    struct safe_buffer* b);
 void compat_close_subm_comm();
