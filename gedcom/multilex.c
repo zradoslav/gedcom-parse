@@ -137,6 +137,25 @@ int determine_encoding(FILE* f)
 
 int init_called = 0;
 
+/** This function initializes the Gedcom parser library and must be called
+    before any other function in this library.
+
+    The function also initializes locale handling by calling
+    <tt> setlocale(LC_ALL, "") </tt>, in case the application would not do this
+    (it doesn't hurt for the application to do the same).
+
+    \attention This function should be called as early as possible.  The
+    requirement
+    is that it should come before the first call to \c iconv_open (part of the
+    generic character set conversion feature) in the program, either by your
+    program itself, or indirectly by the library calls it makes.
+    \attention Practically,
+    it should e.g. come before any calls to any GTK functions, because GTK
+    uses \c iconv_open in its initialization.
+
+    \retval 0 in case of success
+    \retval nonzero in case of failure (e.g. failure to set locale)
+ */
 int gedcom_init()
 {
   init_called = 1;
@@ -149,6 +168,28 @@ int gedcom_init()
   else
     return 0;
 }
+
+/** This function parses the given file.  By itself, it doesn't provide any
+    other information than the parse result.
+
+    The function also empties the cross-reference table before parsing, and
+    checks the validity of the
+    cross-references if the parse was successful.
+    The following conditions can occur in the cross-reference table:
+      - An xref was defined, but not used (warning)
+      - An xref was used, but not defined (error)
+      - An xref was used as a different type than the defined type (error)
+
+    \param file_name The name of the Gedcom file to parse
+
+    \retval 0 if the parse was successful and no errors were found in the
+    cross-reference table
+    \retval nonzero on errors, which can include:
+            - \ref gedcom_init() was not called
+	    - The given file was not found
+	    - The parse of the given file failed
+	    - There were errors found in the cross-reference table
+ */
 
 int gedcom_parse_file(const char* file_name)
 {
@@ -184,6 +225,15 @@ int gedcom_parse_file(const char* file_name)
 
   return result;
 }
+
+/** This function starts a new model.  It does this by parsing the \c new.ged
+    file in the data directory of the library (\c $PREFIX/share/gedcom-parse).
+    This can be used to start from an empty model, and to build up the model
+    by adding new records yourself.
+
+    \retval 0 on success
+    \retval nonzero on errors (mainly the errors from \ref gedcom_parse_file()).
+ */
 
 int gedcom_new_model()
 {

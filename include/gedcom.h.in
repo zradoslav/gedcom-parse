@@ -47,7 +47,7 @@ int gedcom_check_version(int major, int minor, int patch);
 /***  First the records and elements to subscribe upon                  ***/
 /**************************************************************************/
 									   
-typedef enum _REC {
+typedef enum Gedcom_rec {
   REC_HEAD,
   REC_FAM,
   REC_INDI,
@@ -61,7 +61,7 @@ typedef enum _REC {
   NR_OF_RECS     /* Just a final value to be used in array boundaries */
 } Gedcom_rec;
 
-typedef enum _ELT {
+typedef enum Gedcom_elt {
   ELT_HEAD_SOUR = NR_OF_RECS,
   ELT_HEAD_SOUR_VERS,
   ELT_HEAD_SOUR_NAME,
@@ -240,25 +240,27 @@ typedef enum _ELT {
 /***  Definition of some auxiliary types                                ***/
 /**************************************************************************/
 									   
-typedef enum _MECH {
+typedef enum Gedcom_err_mech {
   IMMED_FAIL,
   DEFER_FAIL,
   IGNORE_ERRORS
 } Gedcom_err_mech;
 
-typedef enum _MSG {
+  /** \brief Message type in message handler callbacks
+      \ingroup error */
+typedef enum Gedcom_msg_type {
   ERROR,
   WARNING,
   MESSAGE
 } Gedcom_msg_type;
 
-typedef enum _DATE_TYPE {
+typedef enum Date_type {
   DATE_UNRECOGNIZED,   /* Neither jday1 as jday2 are significant */
   DATE_EXACT,          /* Only jday1 is significant */
   DATE_BOUNDED         /* Both jday1 and jday2 are significant */
 } Date_type;
 
-typedef enum _CALENDAR_TYPE {
+typedef enum Calendar_type {
   CAL_GREGORIAN,
   CAL_JULIAN,
   CAL_HEBREW,
@@ -266,12 +268,12 @@ typedef enum _CALENDAR_TYPE {
   CAL_UNKNOWN
 } Calendar_type;
 
-typedef enum _YEAR_TYPE {
+typedef enum Year_type {
   YEAR_SINGLE,
   YEAR_DOUBLE     /* In this case, the 'year' indicates the last value */
 } Year_type;
 
-typedef enum _DATE_VAL_MOD {
+typedef enum Date_value_type {
   /* Simple date */
   DV_NO_MODIFIER,
   /* Range values */
@@ -324,7 +326,7 @@ struct date_value {
 /* Type for context handling, meant to be opaque */
 typedef void* Gedcom_ctxt;
 
-typedef enum _XREF_TYPE {
+typedef enum Xref_type {
   XREF_NONE,
   XREF_FAM,
   XREF_INDI,
@@ -344,7 +346,7 @@ struct xref_value {
   Gedcom_ctxt object;
 };
 
-typedef enum _AGE_TYPE {
+typedef enum Age_type {
   AGE_UNRECOGNIZED,
   AGE_CHILD,
   AGE_INFANT,
@@ -352,7 +354,7 @@ typedef enum _AGE_TYPE {
   AGE_NUMERIC
 } Age_type;
 
-typedef enum _AGE_MODIFIER {
+typedef enum Age_modifier {
   AGE_NO_MODIFIER,
   AGE_LESS_THAN,
   AGE_GREATER_THAN
@@ -367,25 +369,25 @@ struct age_value {
   char phrase[MAX_PHRASE_LEN + 1];
 };
 
-typedef enum _ENC {
+typedef enum Encoding {
   ONE_BYTE      = 0x00,
   TWO_BYTE_HILO = 0x01,
   TWO_BYTE_LOHI = 0x02
 } Encoding;
 
-typedef enum _ENC_BOM {
+typedef enum Enc_bom {
   WITHOUT_BOM = 0x00,
   WITH_BOM    = 0x10
 } Enc_bom;
 
-typedef enum _ENC_LINE_END {
+typedef enum Enc_line_end {
   END_CR    = 0,
   END_LF    = 1,
   END_CR_LF = 2,
   END_LF_CR = 3
 } Enc_line_end;
 
-typedef enum _ENC_FROM {
+typedef enum Enc_from {
   ENC_FROM_FILE = 0,
   ENC_FROM_SYS  = 1,
   ENC_MANUAL    = 2
@@ -393,13 +395,13 @@ typedef enum _ENC_FROM {
 
 struct encoding_state;
 
-typedef enum _DATE_INPUT {
+typedef enum Date_input {
   DI_FROM_STRINGS,
   DI_FROM_NUMBERS,
   DI_FROM_SDN
 } Date_input;
 
-typedef enum _COMPAT_OPTIONS {
+typedef enum Gedcom_compat {
   COMPAT_ALLOW_OUT_OF_CONTEXT = 0x01
 } Gedcom_compat;
 
@@ -489,6 +491,8 @@ typedef struct Gedcom_write_struct* Gedcom_write_hndl;
 #define GEDCOM_IS_XREF_PTR(VAL) \
    GV_IS_TYPE(VAL, GV_XREF_PTR)
 
+  /** \brief Message handler callback
+      \ingroup error */
 typedef void
         (*Gedcom_msg_handler)
         (Gedcom_msg_type type, char *msg);
@@ -516,14 +520,24 @@ typedef void
         (Gedcom_elt elt, Gedcom_ctxt parent, int level, char *tag,
          char *raw_value, int tag_value);
 
+  /** \brief Initializes the Gedcom parser library
+      \ingroup main */
 int     gedcom_init();
+  /** \brief Parses an existing Gedcom file
+      \ingroup main */
 int     gedcom_parse_file(const char* file_name);
+  /** \brief Starts a new Gedcom model
+      \ingroup main */
 int     gedcom_new_model();
-void    gedcom_set_debug_level(int level, FILE* trace_output);
+
+  /** \brief Sets the error handler callback
+      \ingroup error */
+void    gedcom_set_message_handler(Gedcom_msg_handler func);
+  
 void    gedcom_set_error_handling(Gedcom_err_mech mechanism);
+void    gedcom_set_debug_level(int level, FILE* trace_output);
 void    gedcom_set_compat_handling(int enable_compat);
 void    gedcom_set_compat_options(Gedcom_compat options);
-void    gedcom_set_message_handler(Gedcom_msg_handler func);
 void    gedcom_set_default_callback(Gedcom_def_cb func);
 
 void    gedcom_subscribe_to_record(Gedcom_rec rec,

@@ -1,0 +1,141 @@
+/* Documentation file
+   Copyright (C) 2001,2002,2003 The Genes Development Team
+   This file is part of the Gedcom parser library.
+   Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2003.
+
+   The Gedcom parser library is free software; you can redistribute it
+   and/or modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The Gedcom parser library is distributed in the hope that it will be
+   useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the Gedcom parser library; if not, write to the
+   Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+   02111-1307 USA.  */
+
+/* $Id$ */
+/* $Name$ */
+
+/*! \mainpage The Gedcom Parser Library
+
+  The Gedcom Parser Library is a C library that provides an API to applications
+  to parse and process arbitrary genealogy files in the standard GEDCOM format.
+  It supports
+  <a href="http://www.gendex.com/gedcom55/55gctoc.htm">release 5.5</a> of the
+  GEDCOM standard.
+
+  The following links provide a manual to the Gedcom parser library:
+
+   - \ref callback
+   - \ref gom
+
+  The Gedcom Parser Library provides two interfaces.  On the one hand, it can
+  be used as a callback-based parser (comparable to the SAX interface of XML);
+  on the other hand, the parser can be used to convert the GEDCOM file into an
+  object model (comparable to the DOM interface of XML).  It comes with:
+
+   - a library (\c libgedcom.so), to be linked in the application program,
+     which implements the callback parser
+   - a header file (\c gedcom.h), to be used in the sources of the application
+     program
+   - a header file (\c gedcom-tags.h) that is also installed, but that is
+     automatically included via \c gedcom.h
+
+  Additionally, if you want to use the C object model, the following should be
+  used (note that \c libgedcom.so is also needed in this case, because the
+  object model uses the callback parser internally):
+
+   - a library (\c libgedcom_gom.so), to be linked in the application program,
+     which implements the C object model
+   - a header file (\c gom.h), to be used in the source of the application
+     program
+
+  There is a separate script and an M4 macro (for autoconf) to help with
+  library and compilation flags, see the development support (TODO: REFERENCE!)
+*/
+
+/*! \defgroup callback Callback Interface */
+
+/*! \defgroup gom Gedcom Object Model in C */
+
+/*! \defgroup main Main functions of the parser
+    \ingroup callback
+
+  The very simplest call of the Gedcom callback parser is simply the following
+  piece of code (include of the \c gedcom.h header is assumed, as everywhere
+  in this manual):
+
+  \code
+  int result;
+  ...
+  gedcom_init();
+  ...
+  result = gedcom_parse_file("myfamily.ged");
+  \endcode
+
+  Although this will not provide much information, one thing it does is parse
+  the entire file and return the result.
+
+  The next sections will refine this
+  piece of code to be able to have meaningful errors and the actual data that
+  is in the file.
+*/
+
+/*! \defgroup error Error handling
+    \ingroup callback
+
+  The library can be used in several different circumstances, both
+  terminal-based as GUI-based.  Therefore, it leaves the actual display of the
+  error message up to the application.
+
+  For this, the application needs to register a callback before parsing the
+  GEDCOM file, which will be called by the library on errors, warnings and
+  messages.
+
+  A typical piece of code would be:
+
+  \code
+  void my_message_handler(Gedcom_msg_type type, char* msg)
+  {
+    ...
+  }
+  ...
+  gedcom_set_message_handler(my_message_handler);
+  ...
+  result = gedcom_parse_file("myfamily.ged");
+  \endcode
+
+  With this in place, the resulting code will show errors and warnings produced
+  by the parser, e.g. on the terminal if a simple \c printf is used in the
+  message handler.
+*/
+
+/*! \defgroup cb_mech Data callback mechanism
+    \ingroup callback
+*/
+
+/*! \defgroup write Support for writing GEDCOM files
+    \ingroup callback
+*/
+
+/*! \defgroup gommain Main functions of the object model
+    \ingroup gom
+
+  Programs using the Gedcom object model in C should use the following
+  (inclusion of
+  both the \c gedcom.h and \c gom.h headers is required; contrast this with
+  the example given for the \ref main "callback parser"):
+
+  \code
+  int result;
+  ...
+  gedcom_init();
+  ...
+  result = gom_parse_file("myfamily.ged");
+  \endcode
+*/
