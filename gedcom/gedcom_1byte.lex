@@ -22,7 +22,8 @@
 /* $Name$ */
 
 %{
-#undef IN_LEX    /* include only a specific part of the following file */
+#define LEX_SECTION 1  /* include only a specific part of the following file */
+#define yymyinit gedcom_1byte_myinit
 #include "gedcom_lex_common.c"
 
 static size_t encoding_width = 1;
@@ -53,7 +54,8 @@ pointer      @{alphanum}{non_at}+@
 %%
 
 %{
-#define IN_LEX    /* include only a specific part of the following file */
+#undef LEX_SECTION
+#define LEX_SECTION 2  /* include only a specific part of the following file */
 #include "gedcom_lex_common.c"
 
 ACTION_BEFORE_REGEXPS
@@ -215,15 +217,9 @@ ACTION_BEFORE_REGEXPS
 .                         ACTION_UNEXPECTED
 
 %%
-
-static int exitfuncregistered = 0;
-
-int yywrap()
-{
-  if (! exitfuncregistered && atexit(yylex_cleanup) == 0)
-    exitfuncregistered = 1;
-  return 1;
-}
+#undef LEX_SECTION
+#define LEX_SECTION 3  /* include only a specific part of the following file */
+#include "gedcom_lex_common.c"
 
 #ifdef LEXER_TEST
 int gedcom_lex()
