@@ -1,3 +1,0 @@
-#!/bin/sh
-
-$srcdir/src/test_script -2 $0 0 compat-paf.ged

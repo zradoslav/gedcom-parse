@@ -1,5 +1,5 @@
 
-=== Parsing file compat-paf.ged
+=== Parsing file compat-paf5.ged
 Header start
 Source is PAF (ctxt is 1001, parent is 1)
 == 2 NAME (342) Personal Ancestral File (ctxt is 1001, conversion failures: 0)
@@ -8,7 +8,7 @@ Source is PAF (ctxt is 1001, parent is 1)
 == 3 ADDR (266) 50 East North Temple Street (ctxt is 1001, conversion failures: 0)
 == 4 CONT (300) Salt Lake City, UT 84150 (ctxt is 1001, conversion failures: 0)
 == 4 CONT (300) USA (ctxt is 1001, conversion failures: 0)
-WARNING: Warning on line 8: Enabling compatibility with 'Personal Ancestral File'
+WARNING: Warning on line 8: Enabling compatibility with 'Personal Ancestral File', version 5
 Source context 1001 in parent 1
 == 1 DEST (310) Other (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 20 Dec 2002 (ctxt is 1, conversion failures: 0)
@@ -102,7 +102,7 @@ Rec REPO start, xref is @REPO1@
 
 === Total conversion failures: 0
 
-=== Parsing file compat-paf.ged
+=== Parsing file compat-paf5.ged
 Header start
 Source is PAF (ctxt is 1001, parent is 1)
 == 2 NAME (342) Personal Ancestral File (ctxt is 1001, conversion failures: 0)
@@ -111,7 +111,7 @@ Source is PAF (ctxt is 1001, parent is 1)
 == 3 ADDR (266) 50 East North Temple Street (ctxt is 1001, conversion failures: 0)
 == 4 CONT (300) Salt Lake City, UT 84150 (ctxt is 1001, conversion failures: 0)
 == 4 CONT (300) USA (ctxt is 1001, conversion failures: 0)
-WARNING: Warning on line 8: Enabling compatibility with 'Personal Ancestral File'
+WARNING: Warning on line 8: Enabling compatibility with 'Personal Ancestral File', version 5
 Source context 1001 in parent 1
 == 1 DEST (310) Other (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 20 Dec 2002 (ctxt is 1, conversion failures: 0)
