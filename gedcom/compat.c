@@ -31,7 +31,7 @@
 int compat_enabled = 1;
 int compatibility  = 0; 
 int compat_at = 0;
-char* default_charset;
+char* default_charset = "";
 
 #define SUBMITTER_LINK         "@__COMPAT__SUBM__@"
 #define DEFAULT_SUBMITTER_NAME "Submitter"
@@ -67,7 +67,6 @@ void set_compatibility(char* program)
     if (! strncmp(program, "ftree", 6)) {
       gedcom_warning(_("Enabling compatibility with 'ftree'"));
       compatibility = C_FTREE;
-      default_charset = "ANSI";
     }
     else if (! strncmp(program, "LIFELINES", 9)) {
       /* Matches "LIFELINES 3.0.2" */
