@@ -62,16 +62,24 @@ void xref_free(hnode_t *n, void *c __attribute__((unused)))
   free(n);
 }
 
-struct xref_node *make_xref_node()
+void clear_xref_node(struct xref_node *xr)
 {
-  struct xref_node *xr = (struct xref_node *)malloc(sizeof(struct xref_node));
   xr->xref.type    = XREF_NONE;
-  xr->xref.string  = NULL;
+  /* Make sure that the 'string' member always contains a valid string */
+  if (!xr->xref.string)
+    xr->xref.string  = strdup("");
   xr->xref.object  = NULL;
   xr->defined_type = XREF_NONE;
   xr->used_type    = XREF_NONE;
   xr->defined_line = -1;
   xr->used_line    = -1;
+}
+
+struct xref_node *make_xref_node()
+{
+  struct xref_node *xr = (struct xref_node *)malloc(sizeof(struct xref_node));
+  xr->xref.string = NULL;
+  clear_xref_node(xr);
   return xr;
 }
 
@@ -120,6 +128,7 @@ struct xref_value *gedcom_parse_xref(char *raw_value,
     char *key = strdup(raw_value);
     xr = make_xref_node();
     xr->xref.type = xref_type;
+    free(xr->xref.string);
     xr->xref.string = strdup(raw_value);
     hash_alloc_insert(xrefs, key, xr);
   }
@@ -140,16 +149,15 @@ struct xref_value *gedcom_parse_xref(char *raw_value,
 		   "on line %d"),
 		 xr->xref.string, xref_type_str[xr->defined_type],
 		 xr->defined_line);
-    return NULL;
-  }
-  
-  if ((ctxt == XREF_USED && xr->used_type != xref_type)
-      || (ctxt == XREF_DEFINED &&
-	  (xr->used_type != XREF_NONE && xr->used_type != xref_type))) {
+    clear_xref_node(xr);
+  }  
+  else if ((ctxt == XREF_USED && xr->used_type != xref_type)
+	   || (ctxt == XREF_DEFINED &&
+	       (xr->used_type != XREF_NONE && xr->used_type != xref_type))) {
     gedcom_error(_("Cross-reference %s previously used as pointer to %s, "
 		   "on line %d"),
 		 xr->xref.string, xref_type_str[xr->used_type], xr->used_line);
-    return NULL;
+    clear_xref_node(xr);
   }
   
   return &(xr->xref);
