@@ -12,12 +12,12 @@ define replace-VERSION
 endef
 
 %.tabgen.h:	%.tab.h
-	if [ ! -r $@ ] ; \
+	if [ ! -r $(srcdir)/$@ ] ; \
 	then \
-	  touch $@; \
+	  touch $(srcdir)/$@; \
 	fi
-	if ! diff -q $< $@ > /dev/null; \
+	if ! diff -q $< $(srcdir)/$@ > /dev/null; \
 	then \
-	  rm $@; \
-	  cp $< $@; \
+	  rm $(srcdir)/$@; \
+	  cp $(srcdir)/$< $(srcdir)/$@; \
 	fi
