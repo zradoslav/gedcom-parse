@@ -1,6 +1,6 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
-release 0.18 (NOT RELEASED YET):
+release 0.20.0 (NOT RELEASED YET):
 
  - The library should now be portable, i.e it should work on any POSIX system.
    On systems lacking glibc, libiconv is needed (see README).
