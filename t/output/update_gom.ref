@@ -236,7 +236,10 @@ Record id: '(null)'
 User data: 0x<null>
 === FAMILY (@FAM1@) ===
 Family events: 0x<null>
-Husband: 0x<null>
+Husband: 
+  type: 2
+  xref: '@IND1@'
+  object: 0x<non-null>
 Wife: 0x<null>
 Children: 0x<null>
 Number of children: '3'
@@ -353,6 +356,7 @@ Tag: '_TAG'
 String value: '(null)'
 Xref value: 0x<null>
 User data: 0x<null>
+ERROR: Error: Cross-reference @IND1@ still in use
 Test succeeded
 === HEADER ===
 Source:

@@ -224,6 +224,7 @@ int test_record_add_delete_functions()
   struct submitter* subm2;
   struct submission* subn1;
   struct user_rec* user1;
+  struct xref_value* xr;
   int result;
   char* value;
   const char* new_nr_of_children = "3";
@@ -277,35 +278,47 @@ int test_record_add_delete_functions()
   user1 = gom_add_user_rec("@USER1@", "_TAG");
   if (!user1) return 216;
 
+  xr = gom_make_individual_link(ind1);
+  if (!xr) return 217;
+
+  xr = gom_set_xref_value(&(fam1->husband), xr);
+  if (!xr) return 218;
+
   output(0, "Intermediate output:\n");
   show_data();
 
-  result = gom_delete_family(fam1);
-  if (result != 0) return 217;
+  result = gom_delete_individual(ind1);
+  if (result == 0) return 251;
+
+  xr = gom_set_xref_value(&(fam1->husband), NULL);
+  if (xr) return 252;
 
   result = gom_delete_individual(ind1);
-  if (result != 0) return 218;
+  if (result != 0) return 253;
+
+  result = gom_delete_family(fam1);
+  if (result != 0) return 250;
 
   result = gom_delete_multimedia(mm1);
-  if (result != 0) return 219;
+  if (result != 0) return 254;
 
   result = gom_delete_note(note1);
-  if (result != 0) return 220;
+  if (result != 0) return 255;
 
   result = gom_delete_repository(repo1);
-  if (result != 0) return 221;
+  if (result != 0) return 256;
 
   result = gom_delete_source(sour1);
-  if (result != 0) return 222;
+  if (result != 0) return 257;
 
   result = gom_delete_submitter(subm2);
-  if (result != 0) return 223;
+  if (result != 0) return 258;
 
   result = gom_delete_submission(subn1);
-  if (result != 0) return 224;
+  if (result != 0) return 259;
 
   result = gom_delete_user_rec(user1);
-  if (result != 0) return 225;
+  if (result != 0) return 260;
   
   return 0;
 }
