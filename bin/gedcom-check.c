@@ -47,6 +47,8 @@ void show_help ()
   printf("Options:\n");
   printf("  -h    Show this help text\n");
   printf("  -c    Enable compatibility mode\n");
+  printf("  -dg   Debug setting: only libgedcom debug messages\n");
+  printf("  -da   Debug setting: libgedcom + yacc debug messages\n");
   printf("Errors, warnings, ... are sent to stdout\n");
 }
 
@@ -69,13 +71,18 @@ int main(int argc, char* argv[])
 {
   Gedcom_err_mech mech = DEFER_FAIL;
   int compat_enabled   = 0;
+  int debug_level = 0;
   char* file_name = NULL;
   int result;
   
   if (argc > 1) {
     int i;
     for (i=1; i<argc; i++) {
-      if (!strncmp(argv[i], "-c", 3))
+      if (!strncmp(argv[i], "-da", 4))
+	debug_level = 2;
+      else if (!strncmp(argv[i], "-dg", 4))
+	debug_level = 1;
+      else if (!strncmp(argv[i], "-c", 3))
 	compat_enabled = 1;
       else if (!strncmp(argv[i], "-h", 3)) {
 	show_help();
@@ -101,6 +108,7 @@ int main(int argc, char* argv[])
   
   gedcom_init();
   setlocale(LC_ALL, "");
+  gedcom_set_debug_level(debug_level, NULL);
   gedcom_set_compat_handling(compat_enabled);
   gedcom_set_error_handling(mech);
   gedcom_set_message_handler(gedcom_message_handler);
