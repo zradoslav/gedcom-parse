@@ -31,6 +31,7 @@
 #define WRITE_GEDCOM "gom_write.ged"
 #define PROG_NAME "writegomtest"
 #define PROG_VERSION "3.14"
+#define TIMESTAMP 1000000000L
 
 void gedcom_message_handler(Gedcom_msg_type type, char *msg)
 {
@@ -90,6 +91,8 @@ int update_header(char* encoding)
 int main(int argc, char* argv[])
 {
   int result;
+  struct tm* tm_ptr;
+  time_t tval;
   int total_conv_fails = 0;
   char* outfilename = NULL;
   char* infilename  = NULL;
@@ -222,6 +225,14 @@ int main(int argc, char* argv[])
     result = gom_new_model();
     if (result == 0)
       result |= update_header(encoding);
+  }
+  /* Make sure we get a reproduceable output, in different timezones */
+  if (result == 0) {
+    tval   = TIMESTAMP;
+    tm_ptr = gmtime(&tval);
+    tm_ptr->tm_isdst = 0;
+    tval   = mktime(tm_ptr);
+    result = gom_header_update_timestamp(tval);
   }
   if (result == 0)
     result |= gom_write_file(gedfilename, &total_conv_fails);
