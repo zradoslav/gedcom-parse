@@ -23,7 +23,6 @@
  */
 
 #include "ANSI_Z39.47-tables.h"
-#include <stdio.h>
 
 /* Omit first half of table: assume identity mapping (ASCII) */
 static const unsigned short ansi_z39_47_2uni[128] = TABLE_TO_UCS4_BASIC;
