@@ -41,6 +41,7 @@ void        end_element(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
 
 extern Gedcom_val_struct val1;
 extern Gedcom_val_struct val2;
+extern Gedcom_err_mech error_mechanism;
 
 #define GEDCOM_MAKE(VAR, VALUE, TYPE, MEMBER) \
    (VAR.type = TYPE, VAR.value.MEMBER = VALUE, &VAR)
