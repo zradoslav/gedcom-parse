@@ -54,7 +54,8 @@ EXTRA_DIST = gedcom.y \
 	     gedcom_hilo.lex \
 	     gedcom_lohi.lex \
 	     gedcom_date.lex \
-	     gedcom_lex_common.c
+	     gedcom_lex_common.c \
+	     $(BUILT_SOURCES)
 
 include $(top_srcdir)/Makefile.inc
 
