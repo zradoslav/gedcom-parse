@@ -1,0 +1,181 @@
+/* Source object in the gedcom object model.
+   Copyright (C) 2002 The Genes Development Team
+   This file is part of the Gedcom parser library.
+   Contributed by Peter Verthez <Peter.Verthez@advalvas.be>, 2002.
+
+   The Gedcom parser library is free software; you can redistribute it
+   and/or modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The Gedcom parser library is distributed in the hope that it will be
+   useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the Gedcom parser library; if not, write to the
+   Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+   02111-1307 USA.  */
+
+/* $Id$ */
+/* $Name$ */
+
+#include <stdlib.h>
+#include <string.h>
+#include "source.h"
+#include "source_event.h"
+#include "note_sub.h"
+#include "source_description.h"
+#include "repository.h"
+#include "multimedia_link.h"
+#include "user_ref.h"
+#include "change_date.h"
+#include "user_rec.h"
+#include "gom.h"
+#include "gedcom.h"
+#include "gom_internal.h"
+
+struct source* gom_first_source = NULL;
+
+REC_CB(source, sour_start, make_source_record)
+GET_REC_BY_XREF(source, XREF_SOUR, gom_get_source_by_xref)
+NULL_CB(source, sour_data_start)
+STRING_CB(source, sour_data_agnc_start, data.agency)
+STRING_CB(source, sour_auth_start, author)
+STRING_CB(source, sour_titl_start, title)
+STRING_CB(source, sour_abbr_start, abbreviation)
+STRING_CB(source, sour_publ_start, publication)
+STRING_CB(source, sour_text_start, text)
+XREF_CB(source, sour_repo_start, repository.link, make_repository_record)
+
+void source_subscribe()
+{
+  gedcom_subscribe_to_record(REC_SOUR, sour_start, def_rec_end);
+  gedcom_subscribe_to_element(ELT_SOUR_DATA, sour_data_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SOUR_DATA_AGNC, sour_data_agnc_start,
+			      def_elt_end);
+  gedcom_subscribe_to_element(ELT_SOUR_AUTH, sour_auth_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SOUR_TITL, sour_titl_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SOUR_ABBR, sour_abbr_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SOUR_PUBL, sour_publ_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SOUR_TEXT, sour_text_start, def_elt_end);
+  gedcom_subscribe_to_element(ELT_SUB_REPO, sour_repo_start, def_elt_end);
+}
+
+void source_add_event(Gom_ctxt ctxt, struct source_event* evt)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  LINK_CHAIN_ELT(source_event, sour->data.event, evt)  
+}
+
+void source_add_note_to_data(Gom_ctxt ctxt, struct note_sub* note)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  LINK_CHAIN_ELT(note_sub, sour->data.note, note)  
+}
+
+void source_add_note_to_repo(Gom_ctxt ctxt, struct note_sub* note)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  LINK_CHAIN_ELT(note_sub, sour->repository.note, note)  
+}
+
+void source_add_description(Gom_ctxt ctxt, struct source_description* desc)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  LINK_CHAIN_ELT(source_description, sour->repository.description, desc)  
+}
+
+void source_add_to_value(NL_TYPE type, Gom_ctxt ctxt, char* str)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  switch (ctxt->ctxt_type) {
+    case ELT_SOUR_AUTH:
+      sour->author = concat_strings (type, sour->author, str); break;
+    case ELT_SOUR_TITL:
+      sour->title = concat_strings (type, sour->title, str); break;
+    case ELT_SOUR_PUBL:
+      sour->publication = concat_strings (type, sour->publication, str); break;
+    case ELT_SOUR_TEXT:
+      sour->text = concat_strings (type, sour->text, str); break;
+    default:
+      UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+  }
+}
+
+void source_add_mm_link(Gom_ctxt ctxt, struct multimedia_link* link)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  LINK_CHAIN_ELT(multimedia_link, sour->mm_link, link)
+}
+
+void source_add_note(Gom_ctxt ctxt, struct note_sub* note)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  LINK_CHAIN_ELT(note_sub, sour->note, note)
+}
+
+void source_add_user_ref(Gom_ctxt ctxt, struct user_ref_number* ref)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  LINK_CHAIN_ELT(user_ref_number, sour->ref, ref)
+}
+
+void source_set_record_id(Gom_ctxt ctxt, char *rin)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  sour->record_id = strdup(rin);
+}
+
+void source_set_change_date(Gom_ctxt ctxt, struct change_date* chan)
+{
+  struct source *sour = SAFE_CTXT_CAST(source, ctxt);
+  sour->change_date = chan;
+}
+
+void source_add_user_data(Gom_ctxt ctxt, struct user_data* data)
+{
+  struct source *obj = SAFE_CTXT_CAST(source, ctxt);
+  LINK_CHAIN_ELT(user_data, obj->extra, data)
+}
+
+void source_cleanup(struct source* sour)
+{
+  SAFE_FREE(sour->xrefstr);
+  DESTROY_CHAIN_ELTS(source_event, sour->data.event, source_event_cleanup)
+  SAFE_FREE(sour->data.agency)
+  DESTROY_CHAIN_ELTS(note_sub, sour->data.note, note_sub_cleanup)
+  SAFE_FREE(sour->author);
+  SAFE_FREE(sour->title);
+  SAFE_FREE(sour->abbreviation);
+  SAFE_FREE(sour->publication);
+  SAFE_FREE(sour->text);
+  DESTROY_CHAIN_ELTS(note_sub, sour->repository.note, note_sub_cleanup)
+  DESTROY_CHAIN_ELTS(source_description, sour->repository.description,
+		     source_description_cleanup)
+  DESTROY_CHAIN_ELTS(multimedia_link, sour->mm_link, multimedia_link_cleanup)
+  DESTROY_CHAIN_ELTS(note_sub, sour->note, note_sub_cleanup)
+  DESTROY_CHAIN_ELTS(user_ref_number, sour->ref, user_ref_cleanup)
+  SAFE_FREE(sour->record_id);
+  change_date_cleanup(sour->change_date);
+  DESTROY_CHAIN_ELTS(user_data, sour->extra, user_data_cleanup)
+}
+
+void sources_cleanup()
+{
+  DESTROY_CHAIN_ELTS(source, gom_first_source, source_cleanup);
+}
+
+struct source* gom_get_first_source()
+{
+  return gom_first_source;
+}
+
+struct source* make_source_record(char* xrefstr)
+{
+  struct source* src;
+  MAKE_CHAIN_ELT(source, gom_first_source, src);
+  src->xrefstr = strdup(xrefstr);
+  return src;
+}
