@@ -371,7 +371,7 @@ typedef void
 
 typedef Gedcom_ctxt
         (*Gedcom_rec_start_cb)
-        (int level, char *xref, char *tag);
+        (int level, Gedcom_val xref, char *tag);
 typedef void
         (*Gedcom_rec_end_cb)
         (Gedcom_ctxt self);

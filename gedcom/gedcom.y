@@ -430,7 +430,7 @@ record      : fam_rec
 /**** Header                                                      ****/
 /*********************************************************************/
 head_sect    : OPEN DELIM TAG_HEAD
-               { $<ctxt>$ = start_record(REC_HEAD, $1, NULL, $3);
+               { $<ctxt>$ = start_record(REC_HEAD, $1, GEDCOM_MAKE_NULL(), $3);
 	         START(HEAD, $<ctxt>$) }
                head_subs
                { if (compat_mode(C_FTREE))
@@ -858,7 +858,8 @@ trlr_sect   : OPEN DELIM TAG_TRLR CLOSE { }
 /**** Family record                                               ****/
 /*********************************************************************/
 fam_rec      : OPEN DELIM POINTER DELIM TAG_FAM
-               { $<ctxt>$ = start_record(REC_FAM, $1, $3, $5);
+               { $<ctxt>$ = start_record(REC_FAM,
+					 $1, GEDCOM_MAKE_STRING($3), $5);
 		 START(FAM, $<ctxt>$) }
                fam_subs
 	       { CHECK0 }
@@ -959,7 +960,8 @@ fam_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
 /**** Individual record                                           ****/
 /*********************************************************************/
 indiv_rec   : OPEN DELIM POINTER DELIM TAG_INDI
-              { $<ctxt>$ = start_record(REC_INDI, $1, $3, $5);
+              { $<ctxt>$ = start_record(REC_INDI,
+					$1, GEDCOM_MAKE_STRING($3), $5);
 		START(INDI, $<ctxt>$) }
               indi_subs
 	      { CHECK0 }
@@ -1117,7 +1119,8 @@ ftree_addr_sect : OPEN DELIM TAG_ADDR opt_line_item
 /**** Multimedia record                                           ****/
 /*********************************************************************/
 multim_rec  : OPEN DELIM POINTER DELIM TAG_OBJE
-              { $<ctxt>$ = start_record(REC_OBJE, $1, $3, $5);
+              { $<ctxt>$ = start_record(REC_OBJE,
+					$1, GEDCOM_MAKE_STRING($3), $5);
 		START(OBJE, $<ctxt>$) }
               obje_subs
 	      { CHECK2(FORM, BLOB) }
@@ -1221,7 +1224,8 @@ obje_obje_sect : OPEN DELIM TAG_OBJE mand_pointer
 /**** Note record                                                 ****/
 /*********************************************************************/
 note_rec    : OPEN DELIM POINTER DELIM TAG_NOTE note_line_item
-              { $<ctxt>$ = start_record(REC_NOTE, $1, $3, $5);
+              { $<ctxt>$ = start_record(REC_NOTE,
+					$1, GEDCOM_MAKE_STRING($3), $5);
 		START(NOTE, $<ctxt>$) }
               note_subs
 	      { CHECK0 }
@@ -1254,7 +1258,8 @@ note_sub    : continuation_sub  /* 0:M */
 /**** Repository record                                           ****/
 /*********************************************************************/
 repos_rec   : OPEN DELIM POINTER DELIM TAG_REPO
-              { $<ctxt>$ = start_record(REC_REPO, $1, $3, $5);
+              { $<ctxt>$ = start_record(REC_REPO,
+					$1, GEDCOM_MAKE_STRING($3), $5);
 		START(REPO, $<ctxt>$) }
               repo_subs
 	      { CHECK0 }
@@ -1292,7 +1297,8 @@ repo_name_sect : OPEN DELIM TAG_NAME mand_line_item
 /**** Source record                                               ****/
 /*********************************************************************/
 source_rec  : OPEN DELIM POINTER DELIM TAG_SOUR
-              { $<ctxt>$ = start_record(REC_SOUR, $1, $3, $5);
+              { $<ctxt>$ = start_record(REC_SOUR,
+					$1, GEDCOM_MAKE_STRING($3), $5);
 		START(SOUR, $<ctxt>$) }
               sour_subs
 	      { CHECK0 }
@@ -1514,7 +1520,8 @@ sour_text_sub  : continuation_sub  /* 0:M */
 /**** Submission record                                           ****/
 /*********************************************************************/
 submis_rec  : OPEN DELIM POINTER DELIM TAG_SUBN    
-              { $<ctxt>$ = start_record(REC_SUBN, $1, $3, $5);
+              { $<ctxt>$ = start_record(REC_SUBN,
+					$1, GEDCOM_MAKE_STRING($3), $5);
 		START(SUBN, $<ctxt>$) }
               subn_subs
 	      { CHECK0 }
@@ -1638,7 +1645,8 @@ subn_rin_sect  : OPEN DELIM TAG_RIN mand_line_item
 /**** Submitter record                                            ****/
 /*********************************************************************/
 submit_rec : OPEN DELIM POINTER DELIM TAG_SUBM    
-             { $<ctxt>$ = start_record(REC_SUBM, $1, $3, $5);
+             { $<ctxt>$ = start_record(REC_SUBM,
+				       $1, GEDCOM_MAKE_STRING($3), $5);
 		START(SUBM, $<ctxt>$) }
              subm_subs
 	     { CHECK1(NAME) }
@@ -3279,7 +3287,8 @@ user_rec    : OPEN DELIM opt_xref USERTAG
 	        }
 	      }
               opt_value
-              { $<ctxt>$ = start_record(REC_USER, $1, $3, $4);
+              { $<ctxt>$ = start_record(REC_USER,
+					$1, GEDCOM_MAKE_STRING($3), $4);
 	        START($4, $<ctxt>$)
 	      }
 	      user_sects

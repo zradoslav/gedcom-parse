@@ -39,20 +39,24 @@ void gedcom_subscribe_to_record(Gedcom_rec rec,
 				Gedcom_rec_start_cb cb_start,
 				Gedcom_rec_end_cb cb_end)
 {
-  record_start_callback[rec] = cb_start;
-  record_end_callback[rec]   = cb_end;
+  if (cb_start) {
+    record_start_callback[rec] = cb_start;
+    record_end_callback[rec]   = cb_end;
+  }
 }
 
 void gedcom_subscribe_to_element(Gedcom_elt elt,
 				 Gedcom_elt_start_cb cb_start,
 				 Gedcom_elt_end_cb cb_end)
 {
-  element_start_callback[elt] = cb_start;
-  element_end_callback[elt]   = cb_end;
+  if (cb_start) {
+    element_start_callback[elt] = cb_start;
+    element_end_callback[elt]   = cb_end;
+  }
 }
 
 Gedcom_ctxt start_record(Gedcom_rec rec,
-			 int level, char *xref, char *tag)
+			 int level, Gedcom_val xref, char *tag)
 {
   Gedcom_rec_start_cb cb = record_start_callback[rec];
   if (cb != NULL)

@@ -26,7 +26,8 @@
 
 #include "gedcom.h"
 
-Gedcom_ctxt start_record(Gedcom_rec rec, int level, char *xref, char *tag);
+Gedcom_ctxt start_record(Gedcom_rec rec,
+			 int level, Gedcom_val xref, char *tag);
 void        end_record(Gedcom_rec rec, Gedcom_ctxt self);
 
 Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent,
