@@ -9,8 +9,10 @@ TESTS := $(wildcard $(srcdir)/*.test)
 
 EXTRA_DIST=$(TESTS)
 
+TESTS_ENVIRONMENT=ICONV_PATH=@ICONV_PATH@
+
 all-local:
-	@rm -f testgedcom.out $(DMALLOC_LOG)
+	@rm -f *.out $(DMALLOC_LOG)
 
 check-% :	%.test all-local
 	@srcdir=$(srcdir); export srcdir; \
