@@ -164,6 +164,7 @@ static int dummy_conv = 0;
     gedcom_lval.tag.string = TO_INTERNAL(yytext, tag_buf);                   \
     gedcom_lval.tag.value  = TAG_##THETAG;                                   \
     BEGIN(NORMAL);                                                           \
+    line_no++;                                                               \
     return TAG_##THETAG;                                                     \
   }
 
@@ -260,12 +261,14 @@ static int dummy_conv = 0;
 #define ACTION_ALPHANUM                                                       \
    { if (strlen(yytext) > MAXGEDCTAGLEN * encoding_width) {                   \
        error_tag_too_long(yytext);                                            \
+       line_no++;                                                             \
        return BADTOKEN;                                                       \
      }                                                                        \
      CHECK_LINE_LEN;                                                          \
      gedcom_lval.tag.string = TO_INTERNAL(yytext, tag_buf);                   \
      gedcom_lval.tag.value  = USERTAG;                                        \
      BEGIN(NORMAL);                                                           \
+     line_no++;                                                               \
      return USERTAG;                                                          \
    }
 
@@ -327,7 +330,6 @@ static int dummy_conv = 0;
 #define ACTION_TERMINATOR                                                     \
   { CHECK_LINE_LEN;                                                           \
     INIT_LINE_LEN;                                                            \
-    line_no++;                                                                \
     BEGIN(INITIAL);                                                           \
   }
 

@@ -171,7 +171,7 @@ int gedcom_parse_file(const char* file_name)
       enc = determine_encoding(file);
       
       if (lexer_init(enc, file)) {
-	line_no = 1;
+	line_no = 0;
 	make_xref_table();
 	result = gedcom_parse();
 	line_no = 0;
