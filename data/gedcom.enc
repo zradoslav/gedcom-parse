@@ -17,4 +17,5 @@ ANSEL		1	ANSEL
 # Then some very frequently used non-standard encodings:
 # Note that CP1252 is a superset of ISO-8859-1, so that is covered too
 ANSI		1	CP1252
+# The following is explicitly allowed in the draft 5.5.1 GEDCOM standard
 UTF-8		1	UTF-8
