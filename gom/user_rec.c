@@ -181,7 +181,6 @@ Gedcom_ctxt user_elt_start(_ELT_PARAMS_)
 	data->xref_value = GEDCOM_XREF_PTR(parsed_value);
 
       if (! err) {
-	printf("Tag: %s, value: %s\n", data->tag, data->str_value);
 	switch (ctxt->obj_type) {
 	  case T_header:
 	    ADDFUNC2(header,user_data)(ctxt, data); break;
