@@ -10,14 +10,14 @@
 /* $Id$ */
 /* $Name$ */
 
-#ifndef __GEDCOM_H
-#define __GEDCOM_H
+#ifndef __GEDCOM_INTERNAL_H
+#define __GEDCOM_INTERNAL_H
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-#ifdef DMALLOC
+#ifdef WITH_DMALLOC
 #include <dmalloc.h>
 #endif
 
@@ -37,4 +37,4 @@ int        gedcom_parse();
 int        gedcom_lex();
 
 extern int line_no;
-#endif /* __GEDCOM_H */
+#endif /* __GEDCOM_INTERNAL_H */
