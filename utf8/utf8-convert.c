@@ -1,4 +1,4 @@
-/* Encoding utility from UTF-8 to locale and vice versa
+/* Encoding utility from UTF-8 to another charset and vice versa
    Copyright (C) 2001, 2002 Peter Verthez
 
    Permission granted to do anything with this file that you want, as long
@@ -16,18 +16,31 @@
 #include <iconv.h>
 #include "config.h"
 
-#define INITIAL_OUTSIZE 256
+#define INITIAL_BUFSIZE 256
 #define DEFAULT_UNKNOWN "?"
+
+#define INTERNAL_BUFFER 0
+#define EXTERNAL_BUFFER 1
+
+void reset_conv_buffer(struct conv_buffer* buf)
+{
+  memset(buf->buffer, 0, buf->size);
+}
 
 struct conv_buffer* create_conv_buffer(int size)
 {
   struct conv_buffer* buf = NULL;
 
+  if (size == 0) size = INITIAL_BUFSIZE;
+  
   buf = (struct conv_buffer*) malloc(sizeof(struct conv_buffer));
   if (buf) {
     buf->size   = size;
     buf->buffer = (char*)malloc(size);
-    if (!buf->buffer)
+    buf->type   = EXTERNAL_BUFFER;
+    if (buf->buffer)
+      reset_conv_buffer(buf);
+    else
       buf->size = 0;
   }
 
@@ -60,9 +73,10 @@ char* grow_conv_buffer(struct conv_buffer* buf, char* curr_pos)
     return NULL;
 }
 
-convert_t initialize_utf8_conversion(const char* charset)
+convert_t initialize_utf8_conversion(const char* charset, int external_outbuf)
 {
   struct convert *conv = NULL;
+  int save_errno = 0;
   int cleanup = 0;
 
   conv = (struct convert *)malloc(sizeof(struct convert));
@@ -72,6 +86,8 @@ convert_t initialize_utf8_conversion(const char* charset)
     /* First initialize to default values */
     conv->from_utf8  = (iconv_t)-1;
     conv->to_utf8    = (iconv_t)-1;
+    conv->inbuf      = NULL;
+    conv->insize     = 0;
     conv->outbuf     = NULL;
     conv->unknown    = NULL;
 
@@ -80,18 +96,29 @@ convert_t initialize_utf8_conversion(const char* charset)
     if (conv->from_utf8 != (iconv_t)-1) {
       conv->to_utf8 = iconv_open("UTF-8", charset);
       if (conv->to_utf8 != (iconv_t)-1) {
-	conv->outbuf = create_conv_buffer(INITIAL_OUTSIZE);
-	if (conv->outbuf) {
-	  conv->unknown = strdup(DEFAULT_UNKNOWN);
-	  if (conv->unknown)
-	    cleanup = 0;    /* All successful */
+	conv->unknown = strdup(DEFAULT_UNKNOWN);
+	if (conv->unknown) {
+	  conv->inbuf = create_conv_buffer(INITIAL_BUFSIZE);
+	  conv->inbuf->type = INTERNAL_BUFFER;
+	  if (conv->inbuf) {
+	    if (external_outbuf)
+	      cleanup = 0;
+	    else {
+	      conv->outbuf = create_conv_buffer(INITIAL_BUFSIZE);
+	      conv->outbuf->type = INTERNAL_BUFFER;
+	      if (conv->outbuf)
+		cleanup = 0;    /* All successful */
+	    }
+	  }
 	}
       }
     }
   }
 
   if (cleanup) {
+    save_errno = errno;
     cleanup_utf8_conversion(conv);
+    errno = save_errno;
     conv = NULL;
   }
   
@@ -115,6 +142,19 @@ int conversion_set_unknown(convert_t conv, const char* unknown)
   return result;
 }
 
+int conversion_set_output_buffer(convert_t conv, struct conv_buffer* buf)
+{
+  if (!conv)
+    return 0;
+  else if ((!conv->outbuf || conv->outbuf->type == EXTERNAL_BUFFER)
+	   && buf && buf->type == EXTERNAL_BUFFER) {
+    conv->outbuf = buf;
+    return 1;
+  }
+  else
+    return 0;
+}
+
 void cleanup_utf8_conversion(convert_t conv)
 {
   if (conv) {
@@ -122,7 +162,9 @@ void cleanup_utf8_conversion(convert_t conv)
       iconv_close(conv->from_utf8);
     if (conv->to_utf8 != (iconv_t)-1)
       iconv_close(conv->to_utf8);
-    if (conv->outbuf)
+    if (conv->inbuf && conv->inbuf->type == INTERNAL_BUFFER)
+      free_conv_buffer(conv->inbuf);
+    if (conv->outbuf && conv->outbuf->type == INTERNAL_BUFFER)
       free_conv_buffer(conv->outbuf);
     if (conv->unknown)
       free(conv->unknown);
@@ -139,7 +181,7 @@ char* convert_from_utf8(convert_t conv, const char* input, int* conv_fails)
   size_t nconv;
   struct conv_buffer* outbuf;
 
-  if (!conv) {
+  if (!conv || !conv->outbuf) {
     if (conv_fails != NULL) *conv_fails = insize;
     return NULL;
   }
@@ -150,7 +192,7 @@ char* convert_from_utf8(convert_t conv, const char* input, int* conv_fails)
   outbuf  = conv->outbuf;
   outptr  = outbuf->buffer;
   outsize = outbuf->size;
-  memset(outbuf->buffer, 0, outbuf->size);
+  reset_conv_buffer(conv->outbuf);
   nconv = iconv(conv->from_utf8, &inptr, &insize, &outptr, &outsize);
   while (nconv == (size_t)-1) {
     if (errno == E2BIG) {
@@ -201,7 +243,7 @@ char* convert_to_utf8(convert_t conv, const char* input)
   size_t nconv;
   struct conv_buffer* outbuf;
 
-  if (!conv)
+  if (!conv || !conv->outbuf)
     return NULL;
   /* make sure we start from an empty state */
   iconv(conv->to_utf8, NULL, NULL, NULL, NULL);
@@ -209,7 +251,7 @@ char* convert_to_utf8(convert_t conv, const char* input)
   outbuf  = conv->outbuf;
   outptr  = outbuf->buffer;
   outsize = outbuf->size;
-  memset(outbuf->buffer, 0, outbuf->size);
+  reset_conv_buffer(conv->outbuf);
   nconv = iconv(conv->to_utf8, &inptr, &insize, &outptr, &outsize);
   while (nconv == (size_t)-1) {
     if (errno == E2BIG) {
@@ -232,4 +274,51 @@ char* convert_to_utf8(convert_t conv, const char* input)
     nconv = iconv(conv->to_utf8, &inptr, &insize, &outptr, &outsize);
   }
   return outbuf->buffer;  
+}
+
+char* convert_to_utf8_incremental(convert_t conv,
+				  const char* input, size_t input_len)
+{
+  size_t res;
+  struct conv_buffer* outbuf = conv->outbuf;
+  struct conv_buffer* inbuf  = conv->inbuf;
+  size_t outsize = outbuf->size;
+  char* wrptr = outbuf->buffer;
+  ICONV_CONST char* rdptr = (ICONV_CONST char*) inbuf->buffer;
+  char* retval = outbuf->buffer;
+
+  if (!conv || !conv->outbuf)
+    return NULL;
+  
+  /* set up input buffer (concatenate to what was left previous time) */
+  /* can't use strcpy, because possible null bytes from unicode */
+  while (conv->insize + input_len > inbuf->size)
+    grow_conv_buffer(inbuf, inbuf->buffer + conv->insize);
+  memcpy(inbuf->buffer + conv->insize, input, input_len);
+  conv->insize += input_len;
+
+  /* set up output buffer (empty it) */
+  reset_conv_buffer(outbuf);
+
+  /* do the conversion */
+  res = iconv(conv->to_utf8, &rdptr, &conv->insize, &wrptr, &outsize);
+  if (res == (size_t)-1) {
+    if (errno == EILSEQ) {
+      /* restart from an empty state and return NULL */
+      retval = NULL;
+      rdptr++;
+      conv->insize--;
+    }
+    else if (errno == EINVAL) {
+      /* Do nothing, leave it to next iteration */
+    }
+    else {
+      retval = NULL;
+    }
+  }
+
+  /* then shift what is left over to the head of the input buffer */
+  memmove(inbuf->buffer, rdptr, conv->insize);
+  memset(inbuf->buffer + conv->insize, 0, inbuf->size - conv->insize);
+  return retval;
 }
