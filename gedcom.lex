@@ -29,7 +29,7 @@ pointer      @{alphanum}{non_at}+@
 
 %{
 int current_level=-1;
-int level_diff=MAXGEDCOMLEVEL;
+int level_diff=MAXGEDCLEVEL;
 int line_no=1;
 %} 
 
@@ -71,6 +71,8 @@ int line_no=1;
        that returns "pending" tokens. */
 
 %{
+char string_buf[MAXGEDCLINELEN+1];
+ 
 if (level_diff < 1) {
   level_diff++;
   return CLOSE;
@@ -82,10 +84,12 @@ else if (level_diff == 1) {
 else {
   /* out of brackets... */
 }
- 
-#define MKTAGACTION(tag)  { gedcom_lval.string = gedcom_text; \
-                            BEGIN(NORMAL); \
-                            return TAG_##tag; } 
+
+#define MKTAGACTION(tag) \
+  { gedcom_lval.string = gedcom_text; \
+    BEGIN(NORMAL); \
+    return TAG_##tag; }
+
 %}
 
 <INITIAL>{gen_delim}* /* ignore leading whitespace (also tabs) */
@@ -95,9 +99,9 @@ else {
                    }
 
 <INITIAL>{digit}+ { int level = atoi(gedcom_text);
-                    if ((level < 0) || (level > MAXGEDCOMLEVEL)) {
+                    if ((level < 0) || (level > MAXGEDCLEVEL)) {
 		      gedcom_error ("Level number out of range [0..%d]",
-				    MAXGEDCOMLEVEL);
+				    MAXGEDCLEVEL);
 		      return BADTOKEN;
 		    }
                     level_diff = level - current_level;
@@ -250,8 +254,13 @@ else {
 <EXPECT_TAG>WIFE  MKTAGACTION(WIFE)
 <EXPECT_TAG>WILL  MKTAGACTION(WILL)
      
-<EXPECT_TAG>{alphanum}+ { gedcom_lval.string = gedcom_text;
-                          BEGIN(NORMAL);
+<EXPECT_TAG>{alphanum}+ { if (strlen(gedcom_text) > MAXGEDCTAGLEN) {
+                            gedcom_error("Tag '%s' too long, max %d chars");
+                            return BADTOKEN;
+                          }
+                          strncpy(string_buf, gedcom_text, MAXGEDCTAGLEN+1);
+			  gedcom_lval.string = string_buf;
+			  BEGIN(NORMAL);
 			  return USERTAG;
                         }
 

@@ -1,6 +1,8 @@
 # $Id$
 # $Name$
 
+CFLAGS=-Wall -pedantic
+
 gedcom_parse:	standalone.o lex.gedcom_.o gedcom.tab.o
 	cc standalone.o lex.gedcom_.o gedcom.tab.o -o gedcom_parse
 
