@@ -10,6 +10,12 @@ AC_DEFUN([AM_ICONV],
 
   AC_ARG_WITH([libiconv-prefix],
 [  --with-libiconv-prefix=DIR  search for libiconv in DIR/include and DIR/lib], [
+    # Addition Peter Verthez
+    ICONV_PATH=`echo "$withval" | tr : '/dir'`
+    ICONV_PATH="$ICONV_PATH/dir"
+    AC_SUBST(ICONV_PATH)
+    # end of addition
+
     for dir in `echo "$withval" | tr : ' '`; do
       if test -d $dir/include; then CPPFLAGS="$CPPFLAGS -I$dir/include"; fi
       if test -d $dir/lib; then LDFLAGS="$LDFLAGS -L$dir/lib"; fi
