@@ -12,12 +12,12 @@ define replace-VERSION
 endef
 
 %.tabgen.h:	%.tab.h
-	if [ ! -r $(srcdir)/$@ ] ; \
+	@if [ ! -r $(srcdir)/$@ ] ; \
 	then \
           echo "Creating empty file for $@"; \
 	  touch $(srcdir)/$@; \
 	fi
-	if diff $< $(srcdir)/$@ > /dev/null 2>&1; \
+	@if diff $< $(srcdir)/$@ > /dev/null 2>&1; \
 	then \
 	  : ; \
 	else \
