@@ -11,7 +11,7 @@ EXTRA_DIST=$(TESTS) test_valgrind untest_valgrind
 TESTS_ENVIRONMENT=ICONV_PATH=@ICONV_PATH@
 
 all-local:
-	@rm -f *.out
+	@rm -f *.out *.ged
 
 check-% :	%.test all
 	@srcdir=$(srcdir); export srcdir; \

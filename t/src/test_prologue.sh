@@ -43,6 +43,13 @@ logfile=check.out
 reffile=$srcdir/output/$test_name.ref
 options="$options -o $outfile"
 
+if [ "$gedcom_out" ]
+then
+  gedfile=$test_name.ged
+  gedreffile=$srcdir/output/$test_name.ged
+  options="$options -w $gedfile"
+fi
+
 GCONV_PATH=.:$GCONV_PATH
 export GCONV_PATH
 LC_ALL=$GEDCOM_LANG

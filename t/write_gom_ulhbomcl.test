@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$srcdir/src/test_writegom $0 0 CR_LF UNICODE LOHI_BOM

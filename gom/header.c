@@ -173,3 +173,76 @@ struct header* gom_get_header()
 {
   return &gom_header;
 }
+
+int write_header(Gedcom_write_hndl hndl)
+{
+  int result = 0;
+  
+  result |= gedcom_write_record_str(hndl, REC_HEAD, NULL, NULL, NULL);
+  if (gom_header.source.id)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_SOUR, NULL, REC_HEAD,
+				       gom_header.source.id);
+  if (gom_header.source.name)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_SOUR_NAME, NULL,
+				       ELT_HEAD_SOUR,
+				       gom_header.source.name);
+  if (gom_header.source.version)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_SOUR_VERS, NULL,
+				       ELT_HEAD_SOUR,
+				       gom_header.source.version);
+  if (gom_header.source.corporation.name)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_SOUR_CORP, NULL,
+				       ELT_HEAD_SOUR,
+				       gom_header.source.corporation.name);
+  if (gom_header.source.data.name)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_SOUR_DATA, NULL,
+				       ELT_HEAD_SOUR,
+				       gom_header.source.data.name);
+  if (gom_header.source.data.copyright)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_SOUR_DATA_COPR, NULL,
+				       ELT_HEAD_SOUR_DATA,
+				       gom_header.source.data.copyright);
+  if (gom_header.destination)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_DEST, NULL, REC_HEAD,
+				       gom_header.destination);
+  if (gom_header.filename)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_FILE, NULL, REC_HEAD,
+				       gom_header.filename);
+  if (gom_header.copyright)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_COPR, NULL, REC_HEAD,
+				       gom_header.copyright);
+  result |= gedcom_write_element_str(hndl, ELT_HEAD_GEDC, NULL, REC_HEAD,
+				     NULL);
+  if (gom_header.gedcom.version)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_GEDC_VERS, NULL,
+				       ELT_HEAD_GEDC,
+				       gom_header.gedcom.version);
+  if (gom_header.gedcom.form)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_GEDC_FORM, NULL,
+				       ELT_HEAD_GEDC,
+				       gom_header.gedcom.form);
+  if (gom_header.charset.name)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_CHAR, NULL,
+				       REC_HEAD,
+				       gom_header.charset.name);
+  if (gom_header.charset.version)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_CHAR_VERS, NULL,
+				       ELT_HEAD_CHAR,
+				       gom_header.charset.version);
+  if (gom_header.language)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_LANG, NULL,
+				       REC_HEAD,
+				       gom_header.language);
+  if (gom_header.place_hierarchy) {
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_PLAC, NULL, REC_HEAD,
+				       NULL);
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_PLAC_FORM, NULL,
+				       ELT_HEAD_PLAC,
+				       gom_header.place_hierarchy);
+  }
+  if (gom_header.note)
+    result |= gedcom_write_element_str(hndl, ELT_HEAD_NOTE, NULL,
+				       REC_HEAD,
+				       gom_header.note);
+  return result;
+}

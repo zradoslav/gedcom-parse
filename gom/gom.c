@@ -115,6 +115,20 @@ int gom_new_model()
   return gedcom_new_model();
 }
 
+int gom_write_file(const char* file_name, int *total_conv_fails)
+{
+  Gedcom_write_hndl hndl;
+  int result = 1;
+
+  hndl = gedcom_write_open(file_name);
+  if (hndl) {
+    result = write_header(hndl);
+    result |= gedcom_write_close(hndl, total_conv_fails);
+  }
+
+  return result;
+}
+
 Gom_ctxt make_gom_ctxt(int ctxt_type, OBJ_TYPE obj_type, void *ctxt_ptr)
 {
   Gom_ctxt ctxt   = (Gom_ctxt)malloc(sizeof(struct Gom_ctxt_struct));

@@ -130,3 +130,48 @@ AC_DEFUN(gedcom_LIBICONV_HAS_ANSEL, [
     fi
   ])
 ])
+
+dnl gedcom_SYS_NEWLINE()
+dnl Checks how newline is written on the system
+dnl SYS_NEWLINE is set to one of the following:
+dnl END_CR, END_LF, END_CR_LF, END_LF_CR
+AC_DEFUN(gedcom_SYS_NEWLINE, [
+  AC_CACHE_CHECK(how to represent newline, ac_cv_system_newline, [
+    echo > newlinetest
+    AC_TRY_RUN([
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+int main() {
+  char buffer[11];
+  int i, fd;
+  FILE* f;
+  for (i=0; i<10; i++) { buffer[i] = '\0'; }
+  fd = open("newlinetest", O_RDONLY);
+  if (fd == -1) return 1;
+  read(fd, buffer, 10);
+  close(fd);
+  f = fopen("newlinetest", "w");
+  if (!f) return 1;
+  i = 0;
+  while (buffer[i] != '\0') { fprintf(f, "%02x", buffer[i++]); }
+  fclose(f);
+  return 0;
+}
+    ],
+    [system_newline_output=`cat newlinetest`
+     case "$system_newline_output" in
+       0a0d) ac_cv_system_newline="\"\x0A\x0D\"" ;;
+       0d0a) ac_cv_system_newline="\"\x0D\x0A\"" ;;
+       0a)   ac_cv_system_newline="\"\x0A\"" ;;
+       0d)   ac_cv_system_newline="\"\x0D\"" ;;
+       *)    ac_cv_system_newline="\"\x0A\"" ;;
+     esac],
+    ac_cv_system_newline="\"\x0A\"",
+    ac_cv_system_newline="\"\x0A\"")
+    rm -f newlinetest
+  ])
+  AC_DEFINE_UNQUOTED(SYS_NEWLINE,$ac_cv_system_newline,
+    [The representation of newline in text files in the system])
+])

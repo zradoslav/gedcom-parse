@@ -1,0 +1,27 @@
+#!/bin/sh
+# $Id$
+# $Name$
+
+builddir=`pwd`
+if [ -z "$srcdir" ]
+then
+  srcdir=.
+fi
+
+test_program=writegomtest
+test_libs="$builddir/../gedcom/libgedcom.la $builddir/../gom/libgedcom_gom.la"
+gedcom_out=1
+
+. $srcdir/src/test_prologue.sh
+
+terminator=$1
+encoding=$2
+unicode_details=$3
+options="$options -t $terminator -e $encoding"
+
+if [ "$encoding" == "UNICODE" ]
+then
+  options="$options -u $unicode_details"
+fi
+
+. $srcdir/src/test_bulk.sh

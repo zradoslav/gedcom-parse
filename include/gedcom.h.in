@@ -62,7 +62,7 @@ typedef enum _REC {
 } Gedcom_rec;
 
 typedef enum _ELT {
-  ELT_HEAD_SOUR = NR_OF_RECS + 1,
+  ELT_HEAD_SOUR = NR_OF_RECS,
   ELT_HEAD_SOUR_VERS,
   ELT_HEAD_SOUR_NAME,
   ELT_HEAD_SOUR_CORP,
@@ -367,6 +367,24 @@ struct age_value {
   char phrase[MAX_PHRASE_LEN + 1];
 };
 
+typedef enum _ENC {
+  ONE_BYTE      = 0x00,
+  TWO_BYTE_HILO = 0x01,
+  TWO_BYTE_LOHI = 0x02
+} Encoding;
+
+typedef enum _ENC_BOM {
+  WITHOUT_BOM = 0x00,
+  WITH_BOM    = 0x10
+} Enc_bom;
+
+typedef enum _ENC_LINE_END {
+  END_CR    = 0,
+  END_LF    = 1,
+  END_CR_LF = 2,
+  END_LF_CR = 3
+} Enc_line_end;
+
 /**************************************************************************/
 /***  Things meant to be internal, susceptible to changes               ***/
 /***  Use the GEDCOM_STRING/GEDCOM_DATE interface instead of relying    ***/
@@ -374,11 +392,11 @@ struct age_value {
 /**************************************************************************/
 									   
 typedef enum _GEDCOM_VAL_TYPE {
-  GV_NULL,
-  GV_CHAR_PTR,
-  GV_DATE_VALUE,
-  GV_AGE_VALUE,
-  GV_XREF_PTR
+  GV_NULL       = 0x01,
+  GV_CHAR_PTR   = 0x02,
+  GV_DATE_VALUE = 0x04,
+  GV_AGE_VALUE  = 0x08,
+  GV_XREF_PTR   = 0x10
 } Gedcom_val_type;
 
 union _Gedcom_val_union {
@@ -415,6 +433,10 @@ extern struct xref_value def_xref_val;
 
 /* Type for parsed values, meant to be opaque */
 typedef Gedcom_val_struct* Gedcom_val;
+
+/* Type for write handle, meant to be opaque */
+struct Gedcom_write_struct;
+typedef struct Gedcom_write_struct* Gedcom_write_hndl;
 
 /* Check to determine whether there is a parsed value or not */
 #define GEDCOM_IS_NULL(VAL) \
@@ -502,6 +524,19 @@ struct xref_value *gedcom_add_xref(Xref_type type, const char* xrefstr,
 struct xref_value *gedcom_link_xref(Xref_type type, const char* xrefstr);
 struct xref_value *gedcom_unlink_xref(Xref_type type, const char* xrefstr);
 int                gedcom_delete_xref(const char* xrefstr);
+
+/* Writing support */
+Gedcom_write_hndl  gedcom_write_open(const char* filename);
+int  gedcom_write_close(Gedcom_write_hndl hndl, int *total_conv_fails);
+int  gedcom_write_set_encoding(const char* charset, Encoding width,
+                               Enc_bom bom);
+int  gedcom_write_set_line_terminator(Enc_line_end end);
+int  gedcom_write_record_str(Gedcom_write_hndl hndl,
+			     Gedcom_rec rec, char* tag,
+			     struct xref_value* xref, char* val);
+int  gedcom_write_element_str(Gedcom_write_hndl hndl,
+			      Gedcom_elt elt, char* tag, int parent_rec_or_elt,
+			      char* val);
 
 /* For use in gom */
 int        gedcom_error(const char* s, ...);

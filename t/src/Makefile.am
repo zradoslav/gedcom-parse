@@ -6,7 +6,8 @@ INCLUDES = -DPKGDATADIR=\"$(pkgdatadir)\" -I $(srcdir)/../../include \
            -I $(srcdir)/../../utf8
 CFLAGS   = -g -O2 @EXTRA_CFLAGS@
 
-noinst_PROGRAMS = testgedcom pathtest gomtest updatetest testintl updategomtest
+noinst_PROGRAMS = testgedcom pathtest gomtest updatetest testintl updategomtest \
+		  writegomtest
 noinst_HEADERS = output.h dump_gom.h portability.h
 
 testgedcom_SOURCES = standalone.c output.c portability.c
@@ -29,10 +30,14 @@ updategomtest_SOURCES = update_gom.c output.c dump_gom.c portability.c
 updategomtest_LDFLAGS = -L../../gedcom/.libs -L../../gom/.libs
 updategomtest_LDADD = -lgedcom_gom -lgedcom @INTLLIBS@
 
+writegomtest_SOURCES = gom_write.c output.c portability.c
+writegomtest_LDFLAGS = -L../../gedcom/.libs -L../../gom/.libs
+writegomtest_LDADD = -lgedcom_gom -lgedcom @INTLLIBS@
+
 testintl_SOURCES = testintl.c output.c
 testintl_LDFLAGS = -L../../gedcom/.libs
 testintl_LDADD = -lgedcom @INTLLIBS@
 
-TEST_SCRIPT=test_script test_gom test_update test_intl test_updategom
+TEST_SCRIPT=test_script test_gom test_update test_intl test_updategom test_writegom
 
 EXTRA_DIST=$(TEST_SCRIPT)

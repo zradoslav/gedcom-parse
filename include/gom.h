@@ -417,6 +417,7 @@ struct user_rec {
 
 int  gom_parse_file(const char *file_name);
 int  gom_new_model();
+int  gom_write_file(const char* file_name, int *total_conv_fails);
 
 struct header*     gom_get_header();
 struct submission* gom_get_submission();

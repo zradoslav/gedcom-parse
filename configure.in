@@ -76,6 +76,7 @@ jm_GLIBC21
 dnl ==========================================================
 dnl My local stuff
 
+gedcom_SYS_NEWLINE
 AM_ICONV
 gedcom_SANE_ICONV
 if test "$am_cv_func_iconv" != yes -o "$is_iconv_sane" != yes; then

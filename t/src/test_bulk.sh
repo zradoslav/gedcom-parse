@@ -32,6 +32,18 @@ else
     then
       echo "Output agrees with reference output" >> $logfile
       rm $outfile
+      if [ "$gedcom_out" ]
+      then
+        if diff $gedfile $gedreffile >/dev/null 2>>$logfile
+	then
+	  echo "Gedcom output agrees with reference output" >> $logfile
+	  rm $gedfile
+	  exit 0
+	else
+	  echo "Differences with reference gedcom output detected!" >> $logfile
+	  exit 1
+	fi
+      fi
       exit 0
     else
       echo "Differences with reference output detected!" >> $logfile
