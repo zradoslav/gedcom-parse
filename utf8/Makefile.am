@@ -2,7 +2,7 @@
 # $Id$
 # $Name$
 
-SUBDIRS = @LCS_SUBDIRS@ .
+SUBDIRS = @LCS_SUBDIRS@ . doc
 
 INCLUDES = @LCS_INCLUDES@
 CFLAGS   = -O2 -W -Wall -pedantic -Wno-long-long @EXTRA_CFLAGS@
