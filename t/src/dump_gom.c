@@ -26,6 +26,16 @@
 #include "gom.h"
 #include "gedcom.h"
 
+char* null_str = "(null)";
+
+char* chk(char* input)
+{
+  if (input)
+    return input;
+  else
+    return null_str;
+}
+
 char* make_prefix(int depth)
 {
   char* prefix = (char*)calloc(depth+1, sizeof(char));
@@ -42,7 +52,8 @@ void dump_user_data(int st, int prefix_depth, struct user_data* data)
     output(st, "\n");
     for (data; data; data = data->next) {
       output(st, "%sData: \n", prefix);
-      output(st, "%s  %d, %s, %s\n", prefix, data->level, data->tag, data->str_value);
+      output(st, "%s  %d, %s, %s\n", prefix,
+	     data->level, chk(data->tag), chk(data->str_value));
       output(st, "%s  reference: ", prefix);
       dump_xref(st, prefix_depth + 4, data->xref_value);
     }
@@ -58,13 +69,13 @@ void dump_address(int st, int prefix_depth, struct address* addr)
   char* prefix = make_prefix(prefix_depth);
   if (addr) {
     output(st, "\n");
-    output(st, "%sFull label: %s\n", prefix, addr->full_label);
-    output(st, "%sLine 1: %s\n", prefix, addr->line1);
-    output(st, "%sLine 2: %s\n", prefix, addr->line2);
-    output(st, "%sCity: %s\n", prefix, addr->city);
-    output(st, "%sState: %s\n", prefix, addr->state);
-    output(st, "%sPostal: %s\n", prefix, addr->postal);
-    output(st, "%sCountry: %s\n", prefix, addr->country);
+    output(st, "%sFull label: %s\n", prefix, chk(addr->full_label));
+    output(st, "%sLine 1: %s\n", prefix, chk(addr->line1));
+    output(st, "%sLine 2: %s\n", prefix, chk(addr->line2));
+    output(st, "%sCity: %s\n", prefix, chk(addr->city));
+    output(st, "%sState: %s\n", prefix, chk(addr->state));
+    output(st, "%sPostal: %s\n", prefix, chk(addr->postal));
+    output(st, "%sCountry: %s\n", prefix, chk(addr->country));
     output(st, "%sUser data:", prefix);
     dump_user_data(st, prefix_depth + 2, addr->extra);
   }
@@ -82,21 +93,21 @@ void dump_date(int st, int prefix_depth, struct date_value* dv)
     output(st, "%stype: %d\n", prefix, dv->type);
     output(st, "%sdate1:\n", prefix);
     output(st, "%s  calendar type: %d\n", prefix, dv->date1.cal);
-    output(st, "%s  day: %s\n", prefix, dv->date1.day_str);
-    output(st, "%s  month: %s\n", prefix, dv->date1.month_str);
-    output(st, "%s  year: %s\n", prefix, dv->date1.year_str);
+    output(st, "%s  day: %s\n", prefix, chk(dv->date1.day_str));
+    output(st, "%s  month: %s\n", prefix, chk(dv->date1.month_str));
+    output(st, "%s  year: %s\n", prefix, chk(dv->date1.year_str));
     output(st, "%s  date type: %d\n", prefix, dv->date1.type);
     output(st, "%s  sdn1: %ld\n", prefix, dv->date1.sdn1);
     output(st, "%s  sdn2: %ld\n", prefix, dv->date1.sdn2);
     output(st, "%sdate2:\n", prefix);
     output(st, "%s  calendar type: %d\n", prefix, dv->date2.cal);
-    output(st, "%s  day: %s\n", prefix, dv->date2.day_str);
-    output(st, "%s  month: %s\n", prefix, dv->date2.month_str);
-    output(st, "%s  year: %s\n", prefix, dv->date2.year_str);
+    output(st, "%s  day: %s\n", prefix, chk(dv->date2.day_str));
+    output(st, "%s  month: %s\n", prefix, chk(dv->date2.month_str));
+    output(st, "%s  year: %s\n", prefix, chk(dv->date2.year_str));
     output(st, "%s  date type: %d\n", prefix, dv->date2.type);
     output(st, "%s  sdn1: %ld\n", prefix, dv->date2.sdn1);
     output(st, "%s  sdn2: %ld\n", prefix, dv->date2.sdn2);
-    output(st, "%sphrase: %s\n", prefix, dv->phrase);
+    output(st, "%sphrase: %s\n", prefix, chk(dv->phrase));
   }
   else {
     output(st, "%p\n", dv);
@@ -114,7 +125,7 @@ void dump_age(int st, int prefix_depth, struct age_value* age)
     output(st, "%syears: %d\n", prefix, age->years);
     output(st, "%smonths: %d\n", prefix, age->months);
     output(st, "%sdays: %d\n", prefix, age->days);
-    output(st, "%sphrase: %s\n", prefix, age->phrase);
+    output(st, "%sphrase: %s\n", prefix, chk(age->phrase));
   }
   else {
     output(st, "%p\n", age);
@@ -128,7 +139,7 @@ void dump_xref(int st, int prefix_depth, struct xref_value* xr)
   if (xr) {
     output(st, "\n");
     output(st, "%stype: %d\n", prefix, xr->type);
-    output(st, "%sxref: %s\n", prefix, xr->string);
+    output(st, "%sxref: %s\n", prefix, chk(xr->string));
     output(st, "%sobject: %p\n", prefix, xr->object);
   }
   else {
@@ -161,7 +172,7 @@ void dump_texts(int st, int prefix_depth, struct text* t)
   if (t) {
     output(st, "\n");
     for (t; t; t = t->next) {
-      output(st, "%sText: %s\n", prefix, t->text);
+      output(st, "%sText: %s\n", prefix, chk(t->text));
       output(st, "%sUser data:", prefix);
       dump_user_data(st, prefix_depth + 2, t->extra);
     }
@@ -178,8 +189,8 @@ void dump_user_ref(int st, int prefix_depth, struct user_ref_number* ref)
   if (ref) {
     output(st, "\n");
     for (ref; ref; ref = ref->next) {
-      output(st, "%sValue: %s\n", prefix, ref->value);
-      output(st, "%sType: %s\n", prefix, ref->type);
+      output(st, "%sValue: %s\n", prefix, chk(ref->value));
+      output(st, "%sType: %s\n", prefix, chk(ref->type));
       output(st, "%sUser data:", prefix);
       dump_user_data(st, prefix_depth + 2, ref->extra);
     }
@@ -199,7 +210,7 @@ void dump_note_sub(int st, int prefix_depth, struct note_sub* note)
     output(st, "\n");
     for (note; note; note = note->next) {
       output(st, "%sNote: \n", prefix);
-      output(st, "%s  text: %s\n", prefix, note->text);
+      output(st, "%s  text: %s\n", prefix, chk(note->text));
       output(st, "%s  reference: ", prefix);
       dump_xref(st, prefix_depth + 4, note->reference);
       output(st, "%s  citations: ", prefix);
@@ -223,9 +234,9 @@ void dump_mm_links(int st, int prefix_depth, struct multimedia_link* link)
       output(st, "%slink: \n", prefix);
       output(st, "%s  reference: ", prefix);
       dump_xref(st, prefix_depth + 4, link->reference);
-      output(st, "%s  Form: %s\n", prefix, link->form);
-      output(st, "%s  Title: %s\n", prefix, link->title);
-      output(st, "%s  File: %s\n", prefix, link->file);      
+      output(st, "%s  Form: %s\n", prefix, chk(link->form));
+      output(st, "%s  Title: %s\n", prefix, chk(link->title));
+      output(st, "%s  File: %s\n", prefix, chk(link->file));      
       output(st, "%s  notes: ", prefix);
       dump_note_sub(st, prefix_depth + 4, link->note);
       output(st, "%s  User data:", prefix);
@@ -245,17 +256,17 @@ void dump_citations(int st, int prefix_depth, struct source_citation* cit)
     output(st, "\n");
     for (cit; cit; cit = cit->next) {
       output(st, "%sCitation: \n", prefix);
-      output(st, "%s  description: %s\n", prefix, cit->description);
+      output(st, "%s  description: %s\n", prefix, chk(cit->description));
       output(st, "%s  reference: ", prefix);
       dump_xref(st, prefix_depth + 4, cit->reference);
-      output(st, "%s  page: %s\n", prefix, cit->page);
-      output(st, "%s  event: %s\n", prefix, cit->event);
-      output(st, "%s  role: %s\n", prefix, cit->role);
+      output(st, "%s  page: %s\n", prefix, chk(cit->page));
+      output(st, "%s  event: %s\n", prefix, chk(cit->event));
+      output(st, "%s  role: %s\n", prefix, chk(cit->role));
       output(st, "%s  Date: ", prefix);
       dump_date(st, prefix_depth + 4, cit->date);
       output(st, "%s  texts: ", prefix, prefix);
       dump_texts(st, prefix_depth + 4, cit->text);
-      output(st, "%s  quality: %s\n", prefix, cit->quality);
+      output(st, "%s  quality: %s\n", prefix, chk(cit->quality));
       output(st, "%s  multimedia links: ", prefix);
       dump_mm_links(st, prefix_depth + 4, cit->mm_link);
       output(st, "%s  notes: ", prefix);
@@ -276,12 +287,12 @@ void dump_lds(int st, int prefix_depth, struct lds_event* lds)
   if (lds) {
     output(st, "\n");
     for (lds; lds; lds = lds->next) {
-      output(st, "%sDate status: %s\n", prefix, lds->date);
+      output(st, "%sDate status: %s\n", prefix, chk(lds->date_status));
       output(st, "%sDate: ", prefix);
       dump_date(st, prefix_depth + 2, lds->date);
-      output(st, "%sTemple code: %s\n", prefix, lds->temple_code);
+      output(st, "%sTemple code: %s\n", prefix, chk(lds->temple_code));
       output(st, "%sPlace living ordinance: %s\n", prefix,
-	     lds->place_living_ordinance);
+	     chk(lds->place_living_ordinance));
       output(st, "%scitations: ", prefix);
       dump_citations(st, prefix_depth + 2, lds->citation);
       output(st, "%snotes: ", prefix);
@@ -305,7 +316,7 @@ void dump_change_date(int st, int prefix_depth, struct change_date* chan)
     output(st, "\n");
     output(st, "%sDate: ", prefix);
     dump_date(st, prefix_depth + 2, chan->date);
-    output(st, "%sTime: %s\n", prefix, chan->time);
+    output(st, "%sTime: %s\n", prefix, chk(chan->time));
     output(st, "%snotes: ", prefix);
     dump_note_sub(st, prefix_depth + 2, chan->note);
     output(st, "%sUser data:", prefix);
@@ -324,13 +335,13 @@ void dump_personal_name(int st, int prefix_depth, struct personal_name* name)
     output(st, "\n");
     for (name; name; name = name->next) {
       output(st, "%sName: \n", prefix);
-      output(st, "%s  Name: %s\n", prefix, name->name);
-      output(st, "%s  Prefix: %s\n", prefix, name->prefix);
-      output(st, "%s  Given: %s\n", prefix, name->given);
-      output(st, "%s  Nickname: %s\n", prefix, name->nickname);
-      output(st, "%s  Surname prefix: %s\n", prefix, name->surname_prefix);
-      output(st, "%s  Surname: %s\n", prefix, name->surname);
-      output(st, "%s  Suffix: %s\n", prefix, name->suffix);
+      output(st, "%s  Name: %s\n", prefix, chk(name->name));
+      output(st, "%s  Prefix: %s\n", prefix, chk(name->prefix));
+      output(st, "%s  Given: %s\n", prefix, chk(name->given));
+      output(st, "%s  Nickname: %s\n", prefix, chk(name->nickname));
+      output(st, "%s  Surname prefix: %s\n", prefix,chk(name->surname_prefix));
+      output(st, "%s  Surname: %s\n", prefix, chk(name->surname));
+      output(st, "%s  Suffix: %s\n", prefix, chk(name->suffix));
       output(st, "%s  citations: ", prefix);
       dump_citations(st, prefix_depth + 4, name->citation);
       output(st, "%s  notes: ", prefix);
@@ -351,7 +362,7 @@ void dump_pedigree(int st, int prefix_depth, struct pedigree* p)
   if (p) {
     output(st, "\n");
     for (p; p; p = p->next) {
-      output(st, "%sPedigree: %s\n", prefix, p->pedigree);
+      output(st, "%sPedigree: %s\n", prefix, chk(p->pedigree));
       output(st, "%sUser data:", prefix);
       dump_user_data(st, prefix_depth + 2, p->extra);
     }
@@ -394,8 +405,8 @@ void dump_association(int st, int prefix_depth, struct association *assoc)
       output(st, "%sAssociation:\n", prefix);
       output(st, "%s  To:\n", prefix);
       dump_xref(st, prefix_depth + 4, assoc->to);
-      output(st, "%s  Type: %s\n", prefix, assoc->type);
-      output(st, "%s  Relation: %s\n", assoc->relation);
+      output(st, "%s  Type: %s\n", prefix, chk(assoc->type));
+      output(st, "%s  Relation: %s\n", chk(assoc->relation));
       output(st, "%s  citations: ", prefix);
       dump_citations(st, prefix_depth + 4, assoc->citation);
       output(st, "%s  notes: ", prefix);
@@ -415,8 +426,8 @@ void dump_place(int st, int prefix_depth, struct place* place)
   char* prefix = make_prefix(prefix_depth);
   if (place) {
     output(st, "\n");
-    output(st, "%svalue: %s\n", prefix, place->value);
-    output(st, "%splace_hierarchy: %s\n", prefix, place->place_hierarchy);
+    output(st, "%svalue: %s\n", prefix, chk(place->value));
+    output(st, "%splace_hierarchy: %s\n", prefix, chk(place->place_hierarchy));
     output(st, "%scitations: ", prefix);
     dump_citations(st, prefix_depth + 2, place->citation);
     output(st, "%snotes: ", prefix);
@@ -437,10 +448,11 @@ void dump_source_events(int st, int prefix_depth, struct source_event* evt)
     output(st, "\n");
     for (evt; evt; evt = evt->next) {
       output(st, "%sEvent:\n", prefix);
-      output(st, "%s  Recorded events: %s\n", prefix, evt->recorded_events);
+      output(st, "%s  Recorded events: %s\n", prefix,
+	     chk(evt->recorded_events));
       output(st, "%s  Date period: ", prefix);
       dump_date(st, prefix_depth + 4, evt->date_period);
-      output(st, "%s  Jurisdiction: %s\n", prefix, evt->jurisdiction);
+      output(st, "%s  Jurisdiction: %s\n", prefix, chk(evt->jurisdiction));
       output(st, "%s  User data:", prefix);
       dump_user_data(st, prefix_depth + 4, evt->extra);
     }
@@ -459,8 +471,8 @@ void dump_source_descriptions(int st, int prefix_depth,
     output(st, "\n");
     for (desc; desc; desc = desc->next) {
       output(st, "%sSource description:\n", prefix);
-      output(st, "%s  Call number: %s\n", prefix, desc->call_number);
-      output(st, "%s  Media: %s\n", prefix, desc->media);
+      output(st, "%s  Call number: %s\n", prefix, chk(desc->call_number));
+      output(st, "%s  Media: %s\n", prefix, chk(desc->media));
       output(st, "%s  User data:", prefix);
       dump_user_data(st, prefix_depth + 4, desc->extra);
     }
@@ -477,22 +489,23 @@ void dump_events(int st, int prefix_depth, struct event *evt)
   if (evt) {
     output(st, "\n");
     for (evt; evt; evt = evt->next) {
-      output(st, "%sEvent: %d (%s)\n", prefix, evt->event, evt->event_name);
-      output(st, "%s  Value: %s\n", prefix, evt->val);
-      output(st, "%s  Type: %s\n", prefix, evt->type);
+      output(st, "%sEvent: %d (%s)\n", prefix, evt->event,
+	     chk(evt->event_name));
+      output(st, "%s  Value: %s\n", prefix, chk(evt->val));
+      output(st, "%s  Type: %s\n", prefix, chk(evt->type));
       output(st, "%s  Date: ", prefix);
       dump_date(st, prefix_depth + 4, evt->date);
       output(st, "%s  Place: ", prefix);
       dump_place(st, prefix_depth + 4, evt->place);
       output(st, "%s  Address: ", prefix);
       dump_address(st, prefix_depth + 4, evt->address);
-      output(st, "%s  Phone 1: %s\n", prefix, evt->phone[0]);
-      output(st, "%s  Phone 2: %s\n", prefix, evt->phone[1]);
-      output(st, "%s  Phone 3: %s\n", prefix, evt->phone[2]);
+      output(st, "%s  Phone 1: %s\n", prefix, chk(evt->phone[0]));
+      output(st, "%s  Phone 2: %s\n", prefix, chk(evt->phone[1]));
+      output(st, "%s  Phone 3: %s\n", prefix, chk(evt->phone[2]));
       output(st, "%s  Age: ", prefix);
       dump_age(st, prefix_depth + 4, evt->age);
-      output(st, "%s  Agency: %s\n", prefix, evt->agency);
-      output(st, "%s  Cause: %s\n", prefix, evt->cause);
+      output(st, "%s  Agency: %s\n", prefix, chk(evt->agency));
+      output(st, "%s  Cause: %s\n", prefix, chk(evt->cause));
       output(st, "%s  citations: ", prefix);
       dump_citations(st, prefix_depth + 4, evt->citation);
       output(st, "%s  multimedia links: ", prefix);
@@ -505,7 +518,8 @@ void dump_events(int st, int prefix_depth, struct event *evt)
       dump_age(st, prefix_depth + 4, evt->wife_age);
       output(st, "%s  Family: ", prefix);
       dump_xref(st, prefix_depth + 4, evt->family);
-      output(st, "%s  Adoption parent: %s\n", prefix, evt->adoption_parent);
+      output(st, "%s  Adoption parent: %s\n", prefix,
+	     chk(evt->adoption_parent));
       output(st, "%s  User data:", prefix);
       dump_user_data(st, prefix_depth + 4, evt->extra);
     }
@@ -521,42 +535,42 @@ void dump_header()
   struct header* header = gom_get_header();
   output(1, "=== HEADER ===\n");
   output(0, "Source:\n");
-  output(0, "  ID: %s\n", header->source.id);
-  output(0, "  Name: %s\n", header->source.name);
-  output(0, "  Version: %s\n", header->source.version);
+  output(0, "  ID: %s\n", chk(header->source.id));
+  output(0, "  Name: %s\n", chk(header->source.name));
+  output(0, "  Version: %s\n", chk(header->source.version));
   output(0, "  Corporation:\n");
-  output(0, "    Name: %s\n", header->source.corporation.name);
+  output(0, "    Name: %s\n", chk(header->source.corporation.name));
   output(0, "    Address: ");
   dump_address(0, 6, header->source.corporation.address);
-  output(0, "    Phone 1: %s\n", header->source.corporation.phone[0]);
-  output(0, "    Phone 2: %s\n", header->source.corporation.phone[1]);
-  output(0, "    Phone 3: %s\n", header->source.corporation.phone[2]);
+  output(0, "    Phone 1: %s\n", chk(header->source.corporation.phone[0]));
+  output(0, "    Phone 2: %s\n", chk(header->source.corporation.phone[1]));
+  output(0, "    Phone 3: %s\n", chk(header->source.corporation.phone[2]));
   output(0, "  Data:\n");
-  output(0, "    Name: %s\n", header->source.data.name);
+  output(0, "    Name: %s\n", chk(header->source.data.name));
   output(0, "    Date: ");
   dump_date(0, 6, header->source.data.date);
-  output(0, "    Copyright: %s\n", header->source.data.copyright);
-  output(0, "Destination: %s\n", header->destination);
+  output(0, "    Copyright: %s\n", chk(header->source.data.copyright));
+  output(0, "Destination: %s\n", chk(header->destination));
   output(0, "Date: ");
   dump_date(0, 2, header->date);
-  output(0, "Time: %s\n", header->time);
+  output(0, "Time: %s\n", chk(header->time));
   output(0, "Submitter: ");
   dump_xref(0, 2, header->submitter);
   output(0, "Submission: ");
   dump_xref(0, 2, header->submission);
-  output(0, "File name: %s\n", header->filename);
-  output(0, "Copyright: %s\n", header->copyright);
+  output(0, "File name: %s\n", chk(header->filename));
+  output(0, "Copyright: %s\n", chk(header->copyright));
   output(0, "Gedcom:\n");
-  output(0, "  Version: %s\n", header->gedcom.version);
-  output(0, "  Form: %s\n", header->gedcom.form);
+  output(0, "  Version: %s\n", chk(header->gedcom.version));
+  output(0, "  Form: %s\n", chk(header->gedcom.form));
   output(0, "Character set:\n");
-  output(0, "  Name: %s\n", header->charset.name);
-  output(0, "  Version: %s\n", header->charset.version);
-  output(0, "Language: %s\n", header->language);
-  output(0, "Place hierarchy: %s\n", header->place_hierarchy);
+  output(0, "  Name: %s\n", chk(header->charset.name));
+  output(0, "  Version: %s\n", chk(header->charset.version));
+  output(0, "Language: %s\n", chk(header->language));
+  output(0, "Place hierarchy: %s\n", chk(header->place_hierarchy));
   output(0, "Note:\n");
   output(0, "====\n");
-  output(0, "%s\n", header->note);
+  output(0, "%s\n", chk(header->note));
   output(0, "====\n");
   output(0, "User data:");
   dump_user_data(0, 2, header->extra);
@@ -566,16 +580,18 @@ void dump_submission()
 {
   struct submission* subn = gom_get_submission();
   if (subn) {
-    output(1, "=== SUBMISSION (%s) ===\n", subn->xrefstr);
+    output(1, "=== SUBMISSION (%s) ===\n", chk(subn->xrefstr));
     output(0, "Submitter: ");
     dump_xref(0, 2, subn->submitter);
-    output(0, "Family file: %s\n", subn->family_file);
-    output(0, "Temple code: %s\n", subn->temple_code);
-    output(0, "Nr of ancestor generations: %s\n", subn->nr_of_ancestor_gens);
+    output(0, "Family file: %s\n", chk(subn->family_file));
+    output(0, "Temple code: %s\n", chk(subn->temple_code));
+    output(0, "Nr of ancestor generations: %s\n",
+	   chk(subn->nr_of_ancestor_gens));
     output(0, "Nr of descendant generations: %s\n",
-	   subn->nr_of_descendant_gens);
-    output(0, "Ordinance process flag: %s\n", subn->ordinance_process_flag);
-    output(0, "Record id: %s\n", subn->record_id);
+	   chk(subn->nr_of_descendant_gens));
+    output(0, "Ordinance process flag: %s\n",
+	   chk(subn->ordinance_process_flag));
+    output(0, "Record id: %s\n", chk(subn->record_id));
     output(0, "User data:");
     dump_user_data(0, 2, subn->extra);
   }
@@ -585,7 +601,7 @@ void dump_families()
 {
   struct family* fam = gom_get_first_family();
   for (fam; fam; fam = fam->next) {
-    output(1, "=== FAMILY (%s) ===\n", fam->xrefstr);
+    output(1, "=== FAMILY (%s) ===\n", chk(fam->xrefstr));
     output(0, "Family events: ");
     dump_events(0, 2, fam->event);
     output(0, "Husband: ");
@@ -594,7 +610,7 @@ void dump_families()
     dump_xref(0, 2, fam->wife);
     output(0, "Children: ");
     dump_xref_list(0, 2, fam->children);
-    output(0, "Number of children: %s\n", fam->nr_of_children);
+    output(0, "Number of children: %s\n", chk(fam->nr_of_children));
     output(0, "Submitters: ");
     dump_xref_list(0, 2, fam->submitters);
     output(0, "LDS spouse sealings: ");
@@ -607,7 +623,7 @@ void dump_families()
     dump_note_sub(0, 2, fam->note);
     output(0, "user refs: ");
     dump_user_ref(0, 2, fam->ref);
-    output(0, "Record ID: %s\n", fam->record_id);
+    output(0, "Record ID: %s\n", chk(fam->record_id));
     output(0, "change date: ");
     dump_change_date(0, 2, fam->change_date);
     output(0, "User data:");
@@ -619,11 +635,11 @@ void dump_individuals()
 {
   struct individual* indiv = gom_get_first_individual();
   for (indiv; indiv; indiv = indiv->next) {
-    output(1, "=== INDIVIDUAL (%s) ===\n", indiv->xrefstr);
-    output(0, "Restriction notice: %s\n", indiv->restriction_notice);
+    output(1, "=== INDIVIDUAL (%s) ===\n", chk(indiv->xrefstr));
+    output(0, "Restriction notice: %s\n", chk(indiv->restriction_notice));
     output(0, "names: ");
     dump_personal_name(0, 2, indiv->name);
-    output(0, "Sex: %s\n", indiv->sex);
+    output(0, "Sex: %s\n", chk(indiv->sex));
     output(0, "Individual events: ");
     dump_events(0, 2, indiv->event);
     output(0, "Individual attributes: ");
@@ -650,11 +666,11 @@ void dump_individuals()
     dump_mm_links(0, 2, indiv->mm_link);
     output(0, "notes: ");
     dump_note_sub(0, 2, indiv->note);
-    output(0, "Record file nr: %s\n", indiv->record_file_nr);
-    output(0, "Ancestral file nr: %s\n", indiv->ancestral_file_nr);
+    output(0, "Record file nr: %s\n", chk(indiv->record_file_nr));
+    output(0, "Ancestral file nr: %s\n", chk(indiv->ancestral_file_nr));
     output(0, "user refs: ");
     dump_user_ref(0, 2, indiv->ref);
-    output(0, "Record ID: %s\n", indiv->record_id);
+    output(0, "Record ID: %s\n", chk(indiv->record_id));
     output(0, "change date: ");
     dump_change_date(0, 2, indiv->change_date);
     output(0, "User data:");
@@ -666,17 +682,17 @@ void dump_multimedia()
 {
   struct multimedia* obj = gom_get_first_multimedia();
   for (obj; obj; obj = obj->next) {
-    output(1, "=== MULTIMEDIA (%s) ===\n", obj->xrefstr);
-    output(0, "Form: %s\n", obj->form);
-    output(0, "Title: %s\n", obj->title);
+    output(1, "=== MULTIMEDIA (%s) ===\n", chk(obj->xrefstr));
+    output(0, "Form: %s\n", chk(obj->form));
+    output(0, "Title: %s\n", chk(obj->title));
     output(0, "notes: ");
     dump_note_sub(0, 2, obj->note);
-    output(0, "Data: %s\n", obj->data);
+    output(0, "Data: %s\n", chk(obj->data));
     output(0, "Continued: ");
     dump_xref(0, 2, obj->continued);
     output(0, "user refs: ");
     dump_user_ref(0, 2, obj->ref);
-    output(0, "Record ID: %s\n", obj->record_id);
+    output(0, "Record ID: %s\n", chk(obj->record_id));
     output(0, "change date: ");
     dump_change_date(0, 2, obj->change_date);
     output(0, "User data:");
@@ -688,13 +704,13 @@ void dump_notes()
 {
   struct note* note = gom_get_first_note();
   for (note; note; note = note->next) {
-    output(1, "=== NOTE (%s) ===\n", note->xrefstr);
-    output(0, "Text: %s\n", note->text);
+    output(1, "=== NOTE (%s) ===\n", chk(note->xrefstr));
+    output(0, "Text: %s\n", chk(note->text));
     output(0, "citations: ");
     dump_citations(0, 2, note->citation);
     output(0, "user refs: ");
     dump_user_ref(0, 2, note->ref);
-    output(0, "Record ID: %s\n", note->record_id);
+    output(0, "Record ID: %s\n", chk(note->record_id));
     output(0, "change date: ");
     dump_change_date(0, 2, note->change_date);
     output(0, "User data:");
@@ -706,18 +722,18 @@ void dump_repositories()
 {
   struct repository* repo = gom_get_first_repository();
   for (repo; repo; repo = repo->next) {
-    output(1, "=== REPOSITORY (%s) ===\n", repo->xrefstr);
-    output(0, "Name: %s\n", repo->name);
+    output(1, "=== REPOSITORY (%s) ===\n", chk(repo->xrefstr));
+    output(0, "Name: %s\n", chk(repo->name));
     output(0, "Address: ");
     dump_address(0, 2, repo->address);
-    output(0, "Phone 1: %s\n", repo->phone[0]);
-    output(0, "Phone 2: %s\n", repo->phone[1]);
-    output(0, "Phone 3: %s\n", repo->phone[2]);
+    output(0, "Phone 1: %s\n", chk(repo->phone[0]));
+    output(0, "Phone 2: %s\n", chk(repo->phone[1]));
+    output(0, "Phone 3: %s\n", chk(repo->phone[2]));
     output(0, "notes: ");
     dump_note_sub(0, 2, repo->note);
     output(0, "user refs: ");
     dump_user_ref(0, 2, repo->ref);
-    output(0, "Record ID: %s\n", repo->record_id);
+    output(0, "Record ID: %s\n", chk(repo->record_id));
     output(0, "change date: ");
     dump_change_date(0, 2, repo->change_date);
     output(0, "User data:");
@@ -729,18 +745,18 @@ void dump_sources()
 {
   struct source* sour = gom_get_first_source();
   for (sour; sour; sour = sour->next) {
-    output(1, "=== SOURCE (%s) ===\n", sour->xrefstr);
+    output(1, "=== SOURCE (%s) ===\n", chk(sour->xrefstr));
     output(0, "Data: \n");
     output(0, "  events: ");
     dump_source_events(0, 4, sour->data.event);
-    output(0, "  Agency: %s\n", sour->data.agency);
+    output(0, "  Agency: %s\n", chk(sour->data.agency));
     output(0, "  notes: ");
     dump_note_sub(0, 4, sour->data.note);
-    output(0, "Author: %s\n", sour->author);
-    output(0, "Title: %s\n", sour->title);
-    output(0, "Abbreviation: %s\n", sour->abbreviation);
-    output(0, "Publication: %s\n", sour->publication);
-    output(0, "Text: %s\n", sour->text);
+    output(0, "Author: %s\n", chk(sour->author));
+    output(0, "Title: %s\n", chk(sour->title));
+    output(0, "Abbreviation: %s\n", chk(sour->abbreviation));
+    output(0, "Publication: %s\n", chk(sour->publication));
+    output(0, "Text: %s\n", chk(sour->text));
     output(0, "Repository:\n");
     output(0, "  Link: ");
     dump_xref(0, 4, sour->repository.link);
@@ -754,7 +770,7 @@ void dump_sources()
     dump_note_sub(0, 2, sour->note);
     output(0, "user refs: ");
     dump_user_ref(0, 2, sour->ref);
-    output(0, "Record ID: %s\n", sour->record_id);
+    output(0, "Record ID: %s\n", chk(sour->record_id));
     output(0, "change date: ");
     dump_change_date(0, 2, sour->change_date);
     output(0, "User data:");
@@ -766,20 +782,20 @@ void dump_submitters()
 {
   struct submitter* subm = gom_get_first_submitter();
   for (subm; subm; subm = subm->next) {
-    output(1, "=== SUBMITTER (%s) ===\n", subm->xrefstr);
-    output(0, "Name: %s\n", subm->name);
+    output(1, "=== SUBMITTER (%s) ===\n", chk(subm->xrefstr));
+    output(0, "Name: %s\n", chk(subm->name));
     output(0, "Address: ");
     dump_address(0, 2, subm->address);
-    output(0, "Phone 1: %s\n", subm->phone[0]);
-    output(0, "Phone 2: %s\n", subm->phone[1]);
-    output(0, "Phone 3: %s\n", subm->phone[2]);
+    output(0, "Phone 1: %s\n", chk(subm->phone[0]));
+    output(0, "Phone 2: %s\n", chk(subm->phone[1]));
+    output(0, "Phone 3: %s\n", chk(subm->phone[2]));
     output(0, "multimedia links: ");
     dump_mm_links(0, 2, subm->mm_link);
-    output(0, "Language 1: %s\n", subm->language[0]);
-    output(0, "Language 2: %s\n", subm->language[1]);
-    output(0, "Language 3: %s\n", subm->language[2]);
-    output(0, "Record file nr: %s\n", subm->record_file_nr);
-    output(0, "Record ID: %s\n", subm->record_id);
+    output(0, "Language 1: %s\n", chk(subm->language[0]));
+    output(0, "Language 2: %s\n", chk(subm->language[1]));
+    output(0, "Language 3: %s\n", chk(subm->language[2]));
+    output(0, "Record file nr: %s\n", chk(subm->record_file_nr));
+    output(0, "Record ID: %s\n", chk(subm->record_id));
     output(0, "change date: ");
     dump_change_date(0, 2, subm->change_date);
     output(0, "User data:");
@@ -791,9 +807,9 @@ void dump_user_records()
 {
   struct user_rec* rec = gom_get_first_user_rec();
   for (rec; rec; rec = rec->next) {
-    output(1, "=== USER RECORD (%s) ===\n", rec->xrefstr);
+    output(1, "=== USER RECORD (%s) ===\n", chk(rec->xrefstr));
     output(0, "Tag: %s\n", rec->tag);
-    output(0, "String value: %s\n", rec->str_value);
+    output(0, "String value: %s\n", chk(rec->str_value));
     output(0, "Xref value: ");
     dump_xref(0, 2, rec->xref_value);
     output(0, "User data:");
