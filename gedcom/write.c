@@ -60,12 +60,20 @@ const char* terminator[] = {
 };
 
 void cleanup_write_buffer();
-
 struct safe_buffer write_buffer = { NULL, 0, NULL, 0, cleanup_write_buffer };
+
+void cleanup_convert_at_buffer();
+struct safe_buffer convert_at_buffer = { NULL, 0, NULL, 0,
+					 cleanup_convert_at_buffer };
 
 void cleanup_write_buffer()
 {
   cleanup_buffer(&write_buffer);
+}
+
+void cleanup_convert_at_buffer()
+{
+  cleanup_buffer(&convert_at_buffer);
 }
 
 int write_simple(Gedcom_write_hndl hndl,
@@ -87,18 +95,89 @@ int write_simple(Gedcom_write_hndl hndl,
       res += safe_buf_append(&write_buffer, " %s", value);
     res += safe_buf_append(&write_buffer, hndl->term);
 
-    converted = convert_from_utf8(hndl->conv, get_buf_string(&write_buffer),
-				  &conv_fails, &outlen);
-    
-    if (converted && (conv_fails == 0))
-      write(hndl->filedesc, converted, outlen);
+    if (utf8_strlen(get_buf_string(&write_buffer)) > MAXGEDCLINELEN) {
+      gedcom_error(_("Line too long"));
+    }
     else {
-      hndl->total_conv_fails += conv_fails;
-      gedcom_error
-	(_("Error converting output string: %s (%d conversion failures)"),
-	 strerror(errno), conv_fails);
+      converted = convert_from_utf8(hndl->conv, get_buf_string(&write_buffer),
+				    &conv_fails, &outlen);
+      
+      if (converted && (conv_fails == 0))
+	write(hndl->filedesc, converted, outlen);
+      else {
+	hndl->total_conv_fails += conv_fails;
+	gedcom_error
+	  (_("Error converting output string: %s (%d conversion failures)"),
+	   strerror(errno), conv_fails);
+      }
     }
   }
+  return 0;
+}
+
+int supports_continuation(int elt_or_rec, int which_continuation)
+{
+  return tag_data[elt_or_rec].options & which_continuation;
+}
+
+int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
+	       int level, char* xref, char* tag, char* value)
+{
+  int prefix_len, value_len, term_len;
+
+  prefix_len = utf8_strlen(tag) + 3;  /* for e.g. "0 INDI " */
+  if (level > 9) prefix_len++;
+  if (xref)      prefix_len += utf8_strlen(xref) + 1;
+  value_len  = utf8_strlen(value);
+  term_len   = strlen(hndl->term);
+
+  if (prefix_len + value_len + term_len <= MAXGEDCLINELEN)
+    write_simple(hndl, level, xref, tag, value);
+  else {
+    char* value_ptr = value;
+    char* nl_pos = strchr(value, '\n');
+    if (nl_pos && !supports_continuation(elt_or_rec, OPT_CONT)) {
+      gedcom_error (_("The tag %s doesn't support newlines\n"), tag);
+      return 1;
+    }
+    else {
+      char value_part[MAXGEDCLINELEN];
+      int cont_prefix_len, write_level = level;
+      cont_prefix_len = utf8_strlen("CONT") + 3;
+      if (level + 1 > 9) cont_prefix_len++;
+
+      while (value_ptr) {
+	char* cont_tag = "CONT";
+	int line_len = (nl_pos ? nl_pos - value_ptr : value_len);
+
+	if (prefix_len + line_len + term_len > MAXGEDCLINELEN) {
+	  line_len = MAXGEDCLINELEN - prefix_len - term_len;
+	  cont_tag = "CONC";
+	}
+	
+	memset(value_part, 0, sizeof(value_part));
+	strncpy(value_part, value_ptr, line_len);
+	write_simple(hndl, write_level, xref, tag, value_part);
+	
+	if (line_len < value_len) {
+	  value_ptr   = value_ptr + line_len;
+	  value_len   = value_len - line_len;
+	  while (*value_ptr == '\n') {
+	    value_ptr++;
+	    value_len--;
+	  }
+	  prefix_len  = cont_prefix_len;
+	  write_level = level + 1;
+	  xref        = NULL;
+	  tag         = cont_tag;
+	  nl_pos      = strchr(value_ptr, '\n');
+	}
+	else
+	  value_ptr = NULL;
+      }
+    }
+  }
+  
   return 0;
 }
 
@@ -117,6 +196,8 @@ int gedcom_write_set_encoding(const char* charset,
 	encoding = new_encoding;
 	write_encoding_details = width | bom;
       }
+      else
+	return 1;
     }
   }
   else {
@@ -125,6 +206,8 @@ int gedcom_write_set_encoding(const char* charset,
       encoding = new_encoding;
       write_encoding_details = ONE_BYTE;
     }
+    else
+      return 1;
   }
   return 0;
 }
@@ -241,6 +324,27 @@ int get_level(Gedcom_write_hndl hndl, int elt_or_rec, int parent)
   return hndl->ctxt_level;
 }
 
+char* convert_at(const char* input)
+{
+  if (input) {
+    const char* ptr = input;
+    reset_buffer(&convert_at_buffer);
+    while (*ptr) {
+      if (*ptr == '@') {
+	SAFE_BUF_ADDCHAR(&convert_at_buffer, '@');
+	SAFE_BUF_ADDCHAR(&convert_at_buffer, '@');
+      }
+      else {
+	SAFE_BUF_ADDCHAR(&convert_at_buffer, *ptr);
+      }
+      ptr++;
+    }
+    return get_buf_string(&convert_at_buffer);
+  }
+  else
+    return NULL;
+}
+
 int gedcom_write_record_str(Gedcom_write_hndl hndl,
 			    Gedcom_rec rec, char* tag,
 			    struct xref_value* xref, char* val)
@@ -255,7 +359,11 @@ int gedcom_write_record_str(Gedcom_write_hndl hndl,
   if (tag_str && check_type(rec, (val ? GV_CHAR_PTR : GV_NULL))) {
     if (xref)
       xref_str = xref->string;
-    result = write_simple(hndl, level, xref_str, tag_str, val);
+    if (supports_continuation(rec, OPT_CONT | OPT_CONC))
+      result = write_long(hndl, rec, level, xref_str, tag_str,
+			  convert_at(val));
+    else
+      result = write_simple(hndl, level, xref_str, tag_str, convert_at(val));
   }
 
   return result;
@@ -273,7 +381,10 @@ int gedcom_write_element_str(Gedcom_write_hndl hndl,
   level   = get_level(hndl, elt, parent_rec_or_elt);
   if (tag_str && (level != -1)
       && check_type(elt, (val ? GV_CHAR_PTR : GV_NULL))) {
-    result = write_simple(hndl, level, NULL, tag_str, val);
+    if (supports_continuation(elt, OPT_CONT | OPT_CONC))
+      result = write_long(hndl, elt, level, NULL, tag_str, convert_at(val));
+    else
+      result = write_simple(hndl, level, NULL, tag_str, convert_at(val));
   }
 
   return result;
