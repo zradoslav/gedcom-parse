@@ -28,12 +28,12 @@
 
 static convert_t locale_conv = NULL;
 
-void close_conversion_contexts()
+static void close_conversion_contexts()
 {
   cleanup_utf8_conversion(locale_conv);
 }
 
-int open_conversion_contexts()
+static int open_conversion_contexts()
 {
   assert (locale_conv == NULL);
   locale_conv = initialize_utf8_conversion(locale_charset(), 0);
