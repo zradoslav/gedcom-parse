@@ -475,7 +475,7 @@ typedef void
         (Gedcom_elt elt, Gedcom_ctxt parent, int level, char *tag,
          char *raw_value, int tag_value);
 
-void    gedcom_init();
+int     gedcom_init();
 int     gedcom_parse_file(const char* file_name);
 int     gedcom_new_model();
 void    gedcom_set_debug_level(int level, FILE* trace_output);
