@@ -1,4 +1,51 @@
+2002-09-12  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.17
+
+	* gedcom/gedcom_lex_common.c, gedcom/interface.c, gedcom/message.c:
+	Fixes for internationalization.
+
+	* doc/make_gom_xref, doc/usage.html: Documentation for the gedcom
+	object model.
+
+2002-09-09  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gom/*: First check-in of gedcom object model.
+
+2002-09-08  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* all: More thorough error checking on library calls.
+
+2002-09-01  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom.y: Use XREF_ANY for an association instead of XREF_INDI
+
+	* include/gedcom.h.in, gedcom/xref.c: Added XREF_ANY for when type of
+	xref_value is not known yet.  Added function gedcom_get_by_xref.
+
+2002-08-28  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/interface.c: A little more checking (for duplicate
+	registration).
+
+	* gedcom/age.c, gedcom/age.h, gedcom/gedcom.y, include/gedcom.h,
+	t/standalone.c:
+	Parsing age values.
+
+2002-08-25  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/xref.c: Clean up xref table at exit (not after check), or when
+	new file is parsed.
+
+	* include/gedcom.h.in, gedcom/interface.c, t/standalone.c: Added
+	extra argument to callback functions: the record/element identifier.
+
 2002-08-16  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/compat.*, gedcom/gedcom.y: Moved all compatibility handling
+	functions to compat.c; let default charset depend on the program.
+
+	* t/test_script: Check for a core file.
 
 	* release 0.16
 

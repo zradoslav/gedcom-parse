@@ -1,9 +1,11 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
-release 0.17 (??):
+release 0.17 (12 September 2002):
 
  - New features (see documentation):
-     - function gedcom_get_by_xref
+     - new function gedcom_get_by_xref
+     - age values are parsed
+     - gedcom object model in C
 
  - INTERFACE CHANGE: the callback functions now take an extra argument: the
    record/element identifier (that is also used as first argument in the
