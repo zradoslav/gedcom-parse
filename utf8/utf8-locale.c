@@ -16,11 +16,6 @@
 
 static convert_t locale_conv = NULL;
 
-void convert_set_unknown(const char* unknown)
-{
-  conversion_set_unknown(locale_conv, unknown);
-}
-
 void close_conversion_contexts()
 {
   cleanup_utf8_conversion(locale_conv);
@@ -29,7 +24,7 @@ void close_conversion_contexts()
 int open_conversion_contexts()
 {
   assert (locale_conv == NULL);
-  locale_conv = initialize_utf8_conversion(locale_charset());
+  locale_conv = initialize_utf8_conversion(locale_charset(), 0);
 
   if (locale_conv) {
     atexit(close_conversion_contexts);
@@ -38,6 +33,13 @@ int open_conversion_contexts()
   else {
     return -1;
   }
+}
+
+void convert_set_unknown(const char* unknown)
+{
+  if (!locale_conv)
+    open_conversion_contexts();
+  conversion_set_unknown(locale_conv, unknown);
 }
 
 char* convert_utf8_to_locale(const char* input, int *conv_fails)
