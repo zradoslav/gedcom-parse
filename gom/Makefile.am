@@ -54,6 +54,7 @@ noinst_HEADERS = header.h \
 		 association.h \
 		 source_event.h \
 		 source_description.h \
-		 user_rec.h
+		 user_rec.h \
+		 gom_internal.h
 
 libgedcom_gom_la_LDFLAGS = -version-info $(LIBVERSION)
