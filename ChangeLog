@@ -1,3 +1,12 @@
+2002-12-07  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/gedcom.y: Pass complete concatenated text in end callback
+	(this causes a backward incompatibility in the end record callback!)
+
+2002-12-04  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/write.c, gom/gom.c: Beginnings of write support.
+
 2002-12-01  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gedcom/encoding.c (to_internal): Use the conv_buffer interface
@@ -10,7 +19,7 @@
 
 2002-11-24  Peter Verthez  <Peter.Verthez@advalvas.be>
 
-	* gedcom/message.c: Extracted safe buffer mechanism to message.c
+	* gedcom/message.c: Extracted safe buffer mechanism to buffer.c
 	for reuse.
 
 2002-11-22  Peter Verthez  <Peter.Verthez@advalvas.be>

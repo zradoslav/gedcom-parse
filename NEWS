@@ -1,5 +1,32 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
+release 0.18 (NOT RELEASED YET):
+
+ - The library should now be portable, i.e it should work on any POSIX system.
+   On systems lacking glibc, libiconv is needed (see README).
+
+ - New features (see documentation):
+     - callback interface:
+        - functions to manipulate cross-references (add, delete, link and
+          unlink)
+        - support for writing Gedcom files
+        - complete concatenated text (e.g. for notes) is now passed in the
+          end callback
+     - C object model interface:
+        - functions for string retrieval and modification
+        - support for writing Gedcom files
+     - development support:
+        - m4 macro that can be used in configure.in
+
+ - INTERFACE CHANGE: the end record callback function now takes an extra
+   argument: a Gedcom_val, which contains in the case of a REC_NOTE the
+   complete concatenated string.
+
+ - The return value of gedcom_init() has changed from void to int to be able
+   to return a status, but this should not impact any programs.
+
+ - Various bugfixes.
+
 release 0.17 (12 September 2002):
 
  - New features (see documentation):

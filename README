@@ -5,6 +5,9 @@ to parse and process arbitrary genealogy files in the standard gedcom format.
 
 Its main features are:
 
+ - portable to any POSIX systems (libiconv is needed on systems that lack
+   glibc 2.2, see below)
+
  - strict callback-based parser written in C (using lex/yacc), a C object
    model is also available (compare to the difference between SAX and DOM
    in XML).
@@ -26,6 +29,8 @@ Its main features are:
 
  - specific parsing of age values
 
+ - support for writing Gedcom files
+
  - "compatibility-mode" parsing, to allow for not-exactly-standard syntaxes
    used by other genealogy programs; currently, compatibility is added for:
      - ftree
@@ -39,7 +44,7 @@ To do list:
  - compatibility with other genealogy programs
  - older/newer Gedcom standards ?
  - modifying data
- - writing GEDCOM files, GEDML files
+ - writing GEDML files
  - C++ object model
  - ...
 
@@ -56,18 +61,27 @@ spin-off, and which uses this library:
 
 Requirements:
 ------------
- - glibc 2.2 or higher
+For using the library:
+ - either glibc 2.2 or higher, or libiconv
 
-To build from sources, you'll also need:
+Note:
+
+  The official libiconv package doesn't have ANSEL support, and is not
+  extensible except by modifying its source code.
+
+  There is a modified libiconv package available on the SourceForge project
+  page, which is called 'libiconv-gedcom-1.8.x', based on libiconv 1.8.
+  Install this if you need ANSEL support and you don't have glibc 2.2.
+
+To compile the package, you'll need:
  - gcc
+
+To compile from the CVS sources, you'll need in addition:
  - autoconf
  - automake
  - flex
  - bison (won't work with plain yacc)
-
-It is possible that it also runs on other platforms than Linux (and that the
-glibc version requirement can be loosened), however, I can only support Linux
-because that is the only platform I have...
+ - perl
 
 
 Installation:
