@@ -2,5 +2,5 @@
 # $Id$
 # $Name$
 
-# subdirectory libiconv is not automatically 'make'd
-SUBDIRS = @DIRS@
+SUBDIRS = @DIRS@ libiconv
+noinst_HEADERS = ANSI_Z39.47-tables.h
