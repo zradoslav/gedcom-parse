@@ -6,10 +6,11 @@ SUBDIRS = images .
 DOC_FILES = index.html usage.html parser.html interface.html links.html \
 	    encoding.html 
 GENERATED_DOC_FILES = gomxref.html
-VERSIONED_FILES = index.html
-EXTRA_DIST = $(DOC_FILES)
+DOC_GEN = make_gom_xref
+EXTRA_DIST = $(DOC_FILES) $(DOC_GEN)
 docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
 
+VERSIONED_FILES = index.html
 include $(top_srcdir)/Makefile.inc
 
 doc_DATA = $(DOC_FILES) $(GENERATED_DOC_FILES)
@@ -19,4 +20,4 @@ dist-hook:
 
 gomxref.html:	$(srcdir)/../include/gom.h
 	srcdir=$(srcdir); export srcdir; \
-        ./make_gom_xref
+        $(srcdir)/make_gom_xref
