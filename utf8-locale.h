@@ -12,8 +12,14 @@
 #ifndef __UTF8_LOCALE_H
 #define __UTF8_LOCALE_H
 
+#include <features.h>
+
+__BEGIN_DECLS
+
 void  convert_set_unknown(const char* unknown);
 char* convert_utf8_to_locale(char* input);
 char* convert_locale_to_utf8(char* input);
+
+__END_DECLS
 
 #endif /* __UTF8_LOCALE_H */
