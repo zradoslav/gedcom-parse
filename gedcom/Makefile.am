@@ -41,7 +41,8 @@ BUILT_SOURCES = lex.gedcom_1byte_.c \
 		gedcom.tabgen.h \
 		gedcom_date.tab.c \
 		gedcom_date.tab.h \
-		gedcom_date.tabgen.h
+		gedcom_date.tabgen.h \
+		tag_names.h
 noinst_HEADERS = encoding.h \
 		 gedcom_internal.h \
 		 interface.h \
@@ -60,6 +61,7 @@ EXTRA_DIST = gedcom.y \
 	     gedcom_lohi.lex \
 	     gedcom_date.lex \
 	     gedcom_lex_common.c \
+	     process_tags
 	     $(BUILT_SOURCES)
 
 include $(top_srcdir)/Makefile.inc
@@ -81,6 +83,10 @@ lex.gedcom_lohi_.c:	gedcom_lohi.lex
 
 lex.gedcom_date_.c:	gedcom_date.lex
 	$(LEX) $(LFLAGS) -Pgedcom_date_ $<
+
+tag_names.h:	$(srcdir)/gedcom.tabgen.h process_tags
+	srcdir=$(srcdir); export srcdir; \
+        perl $(srcdir)/process_tags
 
 lex.gedcom_1byte_.c:	gedcom.tabgen.h gedcom_lex_common.c
 lex.gedcom_hilo_.c:	gedcom.tabgen.h gedcom_lex_common.c
