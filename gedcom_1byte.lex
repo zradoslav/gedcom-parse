@@ -13,6 +13,8 @@
 %{
 #undef IN_LEX    /* include only a specific part of the following file */
 #include "gedcom_lex_common.c"
+
+static size_t encoding_width = 1;
 %}
 
 %s NORMAL
@@ -46,7 +48,7 @@ ACTION_BEFORE_REGEXPS
   
 %}
 
-<INITIAL>{gen_delim}* /* ignore leading whitespace (also tabs) */
+<INITIAL>{gen_delim}* ACTION_INITIAL_WHITESPACE
 
 <INITIAL>0{digit}+    ACTION_0_DIGITS
 
