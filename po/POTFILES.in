@@ -7,3 +7,4 @@ gedcom/gedcom.y
 gedcom/gedcom_lex_common.c
 gedcom/multilex.c
 gedcom/message.c
+gedcom/interface.c
