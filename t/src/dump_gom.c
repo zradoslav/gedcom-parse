@@ -85,17 +85,25 @@ void dump_date(int st, int prefix_depth, struct date_value* dv)
     output(st, "%stype: %d\n", prefix, dv->type);
     output(st, "%sdate1:\n", prefix);
     output(st, "%s  calendar type: %d\n", prefix, dv->date1.cal);
-    output(st, "%s  day: '%s'\n", prefix, str_val(dv->date1.day_str));
-    output(st, "%s  month: '%s'\n", prefix, str_val(dv->date1.month_str));
-    output(st, "%s  year: '%s'\n", prefix, str_val(dv->date1.year_str));
+    output(st, "%s  day: '%s', %d\n", prefix,
+	   str_val(dv->date1.day_str), dv->date1.day);
+    output(st, "%s  month: '%s', %d\n", prefix,
+	   str_val(dv->date1.month_str), dv->date1.month);
+    output(st, "%s  year: '%s', %d\n", prefix,
+	   str_val(dv->date1.year_str), dv->date1.year);
+    output(st, "%s  year type: %d\n", prefix, dv->date1.year_type);
     output(st, "%s  date type: %d\n", prefix, dv->date1.type);
     output(st, "%s  sdn1: %ld\n", prefix, dv->date1.sdn1);
     output(st, "%s  sdn2: %ld\n", prefix, dv->date1.sdn2);
     output(st, "%sdate2:\n", prefix);
     output(st, "%s  calendar type: %d\n", prefix, dv->date2.cal);
-    output(st, "%s  day: '%s'\n", prefix, str_val(dv->date2.day_str));
-    output(st, "%s  month: '%s'\n", prefix, str_val(dv->date2.month_str));
-    output(st, "%s  year: '%s'\n", prefix, str_val(dv->date2.year_str));
+    output(st, "%s  day: '%s', %d\n", prefix,
+	   str_val(dv->date2.day_str), dv->date2.day);
+    output(st, "%s  month: '%s', %d\n", prefix,
+	   str_val(dv->date2.month_str), dv->date2.month);
+    output(st, "%s  year: '%s', %d\n", prefix,
+	   str_val(dv->date2.year_str), dv->date2.year);
+    output(st, "%s  year type: %d\n", prefix, dv->date2.year_type);
     output(st, "%s  date type: %d\n", prefix, dv->date2.type);
     output(st, "%s  sdn1: %ld\n", prefix, dv->date2.sdn1);
     output(st, "%s  sdn2: %ld\n", prefix, dv->date2.sdn2);
@@ -105,6 +113,11 @@ void dump_date(int st, int prefix_depth, struct date_value* dv)
     output(st, "%s\n", ptr_val(dv));
   }
   free(prefix);
+}
+
+void show_date(struct date_value* dv)
+{
+  dump_date(0, 2, dv);
 }
 
 void dump_age(int st, int prefix_depth, struct age_value* age)

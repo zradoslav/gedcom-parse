@@ -24,6 +24,9 @@
 #ifndef __DUMP_GOM_H
 #define __DUMP_GOM_H
 
+#include "gedcom.h"
+
 void show_data();
+void show_date(struct date_value* dv);
   
 #endif /* __DUMP_GOM_H */
