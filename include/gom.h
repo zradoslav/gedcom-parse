@@ -476,6 +476,10 @@ char* gom_get_string_for_locale(char* data, int* conversion_failures);
 char* gom_set_string_for_locale(char** data, const char* locale_str);
 void  gom_set_unknown(const char* unknown);
 
+struct change_date* gom_add_change_date(struct change_date** obj);
+int   gom_delete_change_date(struct change_date** obj);
+int   gom_update_timestamp(struct change_date** obj, time_t t);
+  
 #ifdef __cplusplus
 }
 #endif

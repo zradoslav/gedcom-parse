@@ -23,6 +23,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "change_date.h"
 #include "family.h"
 #include "individual.h"
@@ -101,6 +102,78 @@ void CLEANFUNC(change_date)(struct change_date *chan)
     DESTROY_CHAIN_ELTS(user_data, chan->extra);
   }
   SAFE_FREE(chan);
+}
+
+struct change_date* gom_add_change_date(struct change_date** chan)
+{
+  struct change_date *obj = NULL;
+  if (chan && ! *chan) {
+    obj = (struct change_date*) malloc(sizeof(struct change_date));
+    if (! obj)
+      MEMORY_ERROR;
+    else {
+      memset(obj, 0, sizeof(struct change_date));
+      *chan = obj;
+    }
+  }
+  return obj;
+}
+
+int gom_delete_change_date(struct change_date** chan)
+{
+  int result = 1;
+  if (chan && *chan) {
+    CLEANFUNC(change_date)(*chan);
+    free(*chan);
+    *chan = NULL;
+    result = 0;
+  }
+  return result;
+}
+
+int update_date(struct date_value** dv, struct tm* tm_ptr)
+{
+  int result;
+  struct date_value* dval = gedcom_new_date_value(NULL);
+  dval->type        = DV_NO_MODIFIER;
+  dval->date1.cal   = CAL_GREGORIAN;
+  dval->date1.day   = tm_ptr->tm_mday;
+  dval->date1.month = tm_ptr->tm_mon + 1;
+  dval->date1.year  = tm_ptr->tm_year + 1900;
+  result = gedcom_normalize_date(DI_FROM_NUMBERS, dval);
+
+  if (result == 0) {
+    if (*dv) free(*dv);
+    *dv = dval;
+  }
+  return result;
+}
+
+int update_time(char** tv, struct tm* tm_ptr)
+{
+  char tval[16];
+  sprintf(tval, "%02d:%02d:%02d",
+	  tm_ptr->tm_hour, tm_ptr->tm_min, tm_ptr->tm_sec);
+
+  if (gom_set_string(tv, tval))
+    return 0;
+  else
+    return 1;
+}
+
+int gom_update_timestamp(struct change_date** chan, time_t t)
+{
+  int result = 1;
+  if (chan) {
+    if (! *chan) gom_add_change_date(chan);
+    if (*chan) {
+      struct tm *tm_ptr = localtime(&t);
+      result = 0;
+      result |= update_date(&((*chan)->date), tm_ptr);
+      result |= update_time(&((*chan)->time), tm_ptr);
+    }
+  }
+  return result;
 }
 
 int write_change_date(Gedcom_write_hndl hndl, int parent,
