@@ -47,6 +47,8 @@ typedef enum _COMPAT_RULES {
   C_TAB_CHARACTER,
   C_SUBM_CTRY,
   C_NOTE_TOO_LONG,
+  C_NOTE_CONC_SOUR,
+  C_NONSTD_SOUR_TAGS,
   C_NR_OF_RULES
 } Compat_rule;
 
@@ -102,5 +104,20 @@ void compat_subm_comm_cont_end(Gedcom_ctxt parent, Gedcom_ctxt self);
 int  compat_long_line(int level, int tag);
 char* compat_long_line_get_prefix(char* str);
 void compat_long_line_finish(Gedcom_ctxt parent, int level);
+
+/* C_NOTE_CONC_SOUR */
+Gedcom_ctxt compat_generate_note_sour_start(Gedcom_ctxt parent,
+					    int level, struct tag_struct ts,
+					    char* pointer);
+void compat_generate_note_sour_end(Gedcom_ctxt self);
+
+/* C_NONSTD_SOUR_TAGS */
+int  compat_check_sour_tag(const char* tag, struct safe_buffer* b);
+Gedcom_ctxt compat_generate_nonstd_sour_start(Gedcom_ctxt parent, int level,
+					      struct tag_struct ts,
+					      char* value,
+					      struct safe_buffer* b);
+void compat_generate_nonstd_sour_end(Gedcom_ctxt parent, Gedcom_ctxt self);
+int compat_generate_nonstd_sour_state();
 
 #endif /* __COMPAT_H */

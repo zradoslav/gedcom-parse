@@ -1,0 +1,517 @@
+
+=== Parsing file compat-easytree-2.ged
+Header start
+Source is EasyTree (ctxt is 1001, parent is 1)
+== 2 VERS (391) V8.0 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) Sierra On-Line (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 4: Enabling compatibility with 'EasyTree'
+Source context 1001 in parent 1
+== 1 DEST (310) EasyTree (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 3 MAR 2002 (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) d:\Program Files\Sierra\GSK8\genealogy\DAISH.UDS (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE_LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) IBM_WINDOWS (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @U1@ (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @U1@
+== 1 NAME (342) - (ctxt is 10000, conversion failures: 0)
+== 0 NOTE (348) - (xref is @N42@)
+== 1 CONC (297) Census 1881 gives the following information. (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) - (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) Dwelling: 8 Albert Road, Charlton, Kent, England (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) born Newport, Isle of Wight, age 40 (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) Occ: Primitive Methodist Minister of Peter St. Chapel (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) - (ctxt is 348, conversion failures: 0)
+== 1 SOUR (377) @S6@ (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348) - (xref is @N91@)
+== 1 CONC (297) 2nd name is "Anna" in IGI Christening record (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) - (ctxt is 348, conversion failures: 0)
+Rec SOUR start, xref is @S1@
+WARNING: Warning on line 27: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 28: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 136551 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S2@
+WARNING: Warning on line 30: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 31: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) M062613 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S3@
+WARNING: Warning on line 33: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Phillimores Record (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 34: Converting invalidly used tag 'FILE' to user tag '_FILE'
+== 1 _FILE (324) Marr_14c.txt (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 35: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) Hampshire (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S4@
+WARNING: Warning on line 37: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 38: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) C069311 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S5@
+WARNING: Warning on line 40: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Web Site (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 41: Converting undefined tag 'URL' to user tag '_URL'
+== 1 _URL (264) http://worldconnect.genealogy.rootsweb.com/cgi-bin/igm.cgi?surname=daish&given=&start=0&skipdb=&bplace=&stype=Exact&bskip=&dskip=&dplace= (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S6@
+WARNING: Warning on line 43: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Census (ctxt is 377, conversion failures: 0)
+== 1 TITL (388) 1881 Census - Charlton, Kent (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 45: Converting invalidly used tag 'PLAC' to user tag '_PLAC'
+== 1 _PLAC (358) Charlton, Kent (now part of Dover) (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 46: Converting invalidly used tag 'DATE' to user tag '_DATE'
+== 1 _DATE (306) 1881 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 47: Converting invalidly used tag 'MEDI' to user tag '_MEDI'
+== 1 _MEDI (341) FHL Film (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 48: Converting undefined tag 'LOCA' to user tag '_LOCA'
+== 1 _LOCA (264) 1341237 piece 1000 folio 124 page 20 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S8@
+WARNING: Warning on line 50: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Bishops Transcripts (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 51: Converting invalidly used tag 'PLAC' to user tag '_PLAC'
+== 1 _PLAC (358) Newport, Isle of Wight (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 52: Converting undefined tag 'REGI' to user tag '_REGI'
+== 1 _REGI (264) 1724 to 1812 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S9@
+WARNING: Warning on line 54: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Probate (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 55: Converting invalidly used tag 'PLAC' to user tag '_PLAC'
+== 1 _PLAC (358) Winchester (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S10@
+WARNING: Warning on line 57: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Will (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S11@
+WARNING: Warning on line 59: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S12@
+WARNING: Warning on line 61: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 62: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) 7503283 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 63: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0820199 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 64: Converting invalidly used tag 'PAGE' to user tag '_PAGE'
+== 1 _PAGE (355) 62 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S13@
+WARNING: Warning on line 66: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 67: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M136791 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 68: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1041226 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S14@
+WARNING: Warning on line 70: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Will (ctxt is 377, conversion failures: 0)
+== 1 TITL (388) Will of William Daish of Whippingham, 1773 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 72: Converting undefined tag 'URL' to user tag '_URL'
+== 1 _URL (264) http://www.daish.net/documents/Will_William_Daish_Whippinhgam_1793.htm (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S15@
+WARNING: Warning on line 74: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Parish Record (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 75: Converting invalidly used tag 'DATE' to user tag '_DATE'
+== 1 _DATE (306) 19 Feb 1775 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 76: Converting invalidly used tag 'PLAC' to user tag '_PLAC'
+== 1 _PLAC (358) Godshill, Isle of Wight (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S16@
+WARNING: Warning on line 78: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 79: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) C062616 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 80: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0919743 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S17@
+WARNING: Warning on line 82: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 83: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) J136791 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 84: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1041226 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S18@
+WARNING: Warning on line 86: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 87: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) 7203823 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 88: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0820199 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 89: Converting invalidly used tag 'PAGE' to user tag '_PAGE'
+== 1 _PAGE (355) 67 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S19@
+WARNING: Warning on line 91: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S20@
+WARNING: Warning on line 93: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 94: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M063062 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 95: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0918892 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S21@
+WARNING: Warning on line 97: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 98: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M146691 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 99: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1042025 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S22@
+WARNING: Warning on line 101: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 102: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 6142825 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S23@
+WARNING: Warning on line 104: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 105: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) C063062 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 106: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0918892 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S24@
+WARNING: Warning on line 108: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 109: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M146691 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 110: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1042025 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S25@
+WARNING: Warning on line 112: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 113: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) K146691 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 114: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1042025 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S26@
+WARNING: Warning on line 116: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 117: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) C063062 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 118: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0918892 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S27@
+WARNING: Warning on line 120: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 121: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M136791 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 122: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1041226 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S28@
+WARNING: Warning on line 124: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 125: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 6142825 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S29@
+WARNING: Warning on line 127: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 128: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) J146691 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 129: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1042025 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S30@
+== 1 AUTH (278) The Church of Jesus Christ of Latter-day Saints (ctxt is 377, conversion failures: 0)
+== 1 TITL (388) Ancestral File (R) (ctxt is 377, conversion failures: 0)
+== 1 PUBL (362) Copyright (c) 1987, June 1998, data as of 5 January 1998 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 134: Converting invalidly used tag 'REPO' to user tag '_REPO'
+== 1 _REPO (367) Family History Library 35 N West Temple Street (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S32@
+WARNING: Warning on line 136: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 137: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) A184752 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S33@
+WARNING: Warning on line 139: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) IGI (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 140: Converting invalidly used tag 'REPO' to user tag '_REPO'
+== 1 _REPO (367) IGI Record (ctxt is 377, conversion failures: 0)
+WARNING: Warning: Cross-reference @S14@ defined on line 69 is never used
+WARNING: Warning: Cross-reference @S5@ defined on line 39 is never used
+WARNING: Warning: Cross-reference @S2@ defined on line 29 is never used
+WARNING: Warning: Cross-reference @S1@ defined on line 26 is never used
+WARNING: Warning: Cross-reference @N42@ defined on line 15 is never used
+WARNING: Warning: Cross-reference @S30@ defined on line 130 is never used
+WARNING: Warning: Cross-reference @S33@ defined on line 138 is never used
+WARNING: Warning: Cross-reference @S12@ defined on line 60 is never used
+WARNING: Warning: Cross-reference @N91@ defined on line 23 is never used
+WARNING: Warning: Cross-reference @S20@ defined on line 92 is never used
+WARNING: Warning: Cross-reference @S26@ defined on line 115 is never used
+WARNING: Warning: Cross-reference @S18@ defined on line 85 is never used
+WARNING: Warning: Cross-reference @S9@ defined on line 53 is never used
+WARNING: Warning: Cross-reference @S25@ defined on line 111 is never used
+WARNING: Warning: Cross-reference @S19@ defined on line 90 is never used
+WARNING: Warning: Cross-reference @S27@ defined on line 119 is never used
+WARNING: Warning: Cross-reference @S10@ defined on line 56 is never used
+WARNING: Warning: Cross-reference @S3@ defined on line 32 is never used
+WARNING: Warning: Cross-reference @S17@ defined on line 81 is never used
+WARNING: Warning: Cross-reference @S28@ defined on line 123 is never used
+WARNING: Warning: Cross-reference @S29@ defined on line 126 is never used
+WARNING: Warning: Cross-reference @S11@ defined on line 58 is never used
+WARNING: Warning: Cross-reference @S22@ defined on line 100 is never used
+WARNING: Warning: Cross-reference @S21@ defined on line 96 is never used
+WARNING: Warning: Cross-reference @S24@ defined on line 107 is never used
+WARNING: Warning: Cross-reference @S23@ defined on line 103 is never used
+WARNING: Warning: Cross-reference @S13@ defined on line 65 is never used
+WARNING: Warning: Cross-reference @S4@ defined on line 36 is never used
+WARNING: Warning: Cross-reference @S8@ defined on line 49 is never used
+WARNING: Warning: Cross-reference @S16@ defined on line 77 is never used
+WARNING: Warning: Cross-reference @S32@ defined on line 135 is never used
+WARNING: Warning: Cross-reference @S15@ defined on line 73 is never used
+
+=== Total conversion failures: 0
+
+=== Parsing file compat-easytree-2.ged
+Header start
+Source is EasyTree (ctxt is 1001, parent is 1)
+== 2 VERS (391) V8.0 (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) Sierra On-Line (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 4: Enabling compatibility with 'EasyTree'
+Source context 1001 in parent 1
+== 1 DEST (310) EasyTree (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 3 MAR 2002 (ctxt is 1, conversion failures: 0)
+== 1 FILE (324) d:\Program Files\Sierra\GSK8\genealogy\DAISH.UDS (ctxt is 1, conversion failures: 0)
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE_LINKED (ctxt is 1, conversion failures: 0)
+== 1 CHAR (292) IBM_WINDOWS (ctxt is 1, conversion failures: 0)
+== 1 SUBM (382) @U1@ (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @U1@
+== 1 NAME (342) - (ctxt is 10000, conversion failures: 0)
+== 0 NOTE (348) - (xref is @N42@)
+== 1 CONC (297) Census 1881 gives the following information. (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) - (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) Dwelling: 8 Albert Road, Charlton, Kent, England (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) born Newport, Isle of Wight, age 40 (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) Occ: Primitive Methodist Minister of Peter St. Chapel (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) - (ctxt is 348, conversion failures: 0)
+== 1 SOUR (377) @S6@ (ctxt is 348, conversion failures: 0)
+== 0 NOTE (348) - (xref is @N91@)
+== 1 CONC (297) 2nd name is "Anna" in IGI Christening record (ctxt is 348, conversion failures: 0)
+== 1 CONC (297) - (ctxt is 348, conversion failures: 0)
+Rec SOUR start, xref is @S1@
+WARNING: Warning on line 27: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 28: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 136551 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S2@
+WARNING: Warning on line 30: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 31: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) M062613 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S3@
+WARNING: Warning on line 33: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Phillimores Record (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 34: Converting invalidly used tag 'FILE' to user tag '_FILE'
+== 1 _FILE (324) Marr_14c.txt (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 35: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) Hampshire (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S4@
+WARNING: Warning on line 37: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 38: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) C069311 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S5@
+WARNING: Warning on line 40: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Web Site (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 41: Converting undefined tag 'URL' to user tag '_URL'
+== 1 _URL (264) http://worldconnect.genealogy.rootsweb.com/cgi-bin/igm.cgi?surname=daish&given=&start=0&skipdb=&bplace=&stype=Exact&bskip=&dskip=&dplace= (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S6@
+WARNING: Warning on line 43: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Census (ctxt is 377, conversion failures: 0)
+== 1 TITL (388) 1881 Census - Charlton, Kent (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 45: Converting invalidly used tag 'PLAC' to user tag '_PLAC'
+== 1 _PLAC (358) Charlton, Kent (now part of Dover) (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 46: Converting invalidly used tag 'DATE' to user tag '_DATE'
+== 1 _DATE (306) 1881 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 47: Converting invalidly used tag 'MEDI' to user tag '_MEDI'
+== 1 _MEDI (341) FHL Film (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 48: Converting undefined tag 'LOCA' to user tag '_LOCA'
+== 1 _LOCA (264) 1341237 piece 1000 folio 124 page 20 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S8@
+WARNING: Warning on line 50: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Bishops Transcripts (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 51: Converting invalidly used tag 'PLAC' to user tag '_PLAC'
+== 1 _PLAC (358) Newport, Isle of Wight (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 52: Converting undefined tag 'REGI' to user tag '_REGI'
+== 1 _REGI (264) 1724 to 1812 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S9@
+WARNING: Warning on line 54: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Probate (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 55: Converting invalidly used tag 'PLAC' to user tag '_PLAC'
+== 1 _PLAC (358) Winchester (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S10@
+WARNING: Warning on line 57: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Will (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S11@
+WARNING: Warning on line 59: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S12@
+WARNING: Warning on line 61: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 62: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) 7503283 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 63: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0820199 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 64: Converting invalidly used tag 'PAGE' to user tag '_PAGE'
+== 1 _PAGE (355) 62 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S13@
+WARNING: Warning on line 66: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 67: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M136791 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 68: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1041226 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S14@
+WARNING: Warning on line 70: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Will (ctxt is 377, conversion failures: 0)
+== 1 TITL (388) Will of William Daish of Whippingham, 1773 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 72: Converting undefined tag 'URL' to user tag '_URL'
+== 1 _URL (264) http://www.daish.net/documents/Will_William_Daish_Whippinhgam_1793.htm (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S15@
+WARNING: Warning on line 74: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) Parish Record (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 75: Converting invalidly used tag 'DATE' to user tag '_DATE'
+== 1 _DATE (306) 19 Feb 1775 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 76: Converting invalidly used tag 'PLAC' to user tag '_PLAC'
+== 1 _PLAC (358) Godshill, Isle of Wight (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S16@
+WARNING: Warning on line 78: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 79: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) C062616 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 80: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0919743 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S17@
+WARNING: Warning on line 82: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 83: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) J136791 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 84: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1041226 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S18@
+WARNING: Warning on line 86: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 87: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) 7203823 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 88: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0820199 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 89: Converting invalidly used tag 'PAGE' to user tag '_PAGE'
+== 1 _PAGE (355) 67 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S19@
+WARNING: Warning on line 91: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S20@
+WARNING: Warning on line 93: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 94: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M063062 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 95: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0918892 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S21@
+WARNING: Warning on line 97: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 98: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M146691 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 99: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1042025 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S22@
+WARNING: Warning on line 101: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 102: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 6142825 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S23@
+WARNING: Warning on line 104: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 105: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) C063062 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 106: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0918892 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S24@
+WARNING: Warning on line 108: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 109: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M146691 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 110: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1042025 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S25@
+WARNING: Warning on line 112: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 113: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) K146691 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 114: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1042025 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S26@
+WARNING: Warning on line 116: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 117: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) C063062 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 118: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 0918892 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S27@
+WARNING: Warning on line 120: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 121: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) M136791 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 122: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1041226 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S28@
+WARNING: Warning on line 124: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 125: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 6142825 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S29@
+WARNING: Warning on line 127: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 128: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) J146691 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 129: Converting undefined tag 'FILN' to user tag '_FILN'
+== 1 _FILN (264) 1042025 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S30@
+== 1 AUTH (278) The Church of Jesus Christ of Latter-day Saints (ctxt is 377, conversion failures: 0)
+== 1 TITL (388) Ancestral File (R) (ctxt is 377, conversion failures: 0)
+== 1 PUBL (362) Copyright (c) 1987, June 1998, data as of 5 January 1998 (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 134: Converting invalidly used tag 'REPO' to user tag '_REPO'
+== 1 _REPO (367) Family History Library 35 N West Temple Street (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S32@
+WARNING: Warning on line 136: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) LDS Records (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 137: Converting undefined tag 'VOL' to user tag '_VOL'
+== 1 _VOL (264) A184752 (ctxt is 377, conversion failures: 0)
+Rec SOUR start, xref is @S33@
+WARNING: Warning on line 139: Converting invalidly used tag 'TYPE' to user tag '_TYPE'
+== 1 _TYPE (390) IGI (ctxt is 377, conversion failures: 0)
+WARNING: Warning on line 140: Converting invalidly used tag 'REPO' to user tag '_REPO'
+== 1 _REPO (367) IGI Record (ctxt is 377, conversion failures: 0)
+WARNING: Warning: Cross-reference @S14@ defined on line 69 is never used
+WARNING: Warning: Cross-reference @S5@ defined on line 39 is never used
+WARNING: Warning: Cross-reference @S2@ defined on line 29 is never used
+WARNING: Warning: Cross-reference @S1@ defined on line 26 is never used
+WARNING: Warning: Cross-reference @N42@ defined on line 15 is never used
+WARNING: Warning: Cross-reference @S30@ defined on line 130 is never used
+WARNING: Warning: Cross-reference @S33@ defined on line 138 is never used
+WARNING: Warning: Cross-reference @S12@ defined on line 60 is never used
+WARNING: Warning: Cross-reference @N91@ defined on line 23 is never used
+WARNING: Warning: Cross-reference @S20@ defined on line 92 is never used
+WARNING: Warning: Cross-reference @S26@ defined on line 115 is never used
+WARNING: Warning: Cross-reference @S18@ defined on line 85 is never used
+WARNING: Warning: Cross-reference @S9@ defined on line 53 is never used
+WARNING: Warning: Cross-reference @S25@ defined on line 111 is never used
+WARNING: Warning: Cross-reference @S19@ defined on line 90 is never used
+WARNING: Warning: Cross-reference @S27@ defined on line 119 is never used
+WARNING: Warning: Cross-reference @S10@ defined on line 56 is never used
+WARNING: Warning: Cross-reference @S3@ defined on line 32 is never used
+WARNING: Warning: Cross-reference @S17@ defined on line 81 is never used
+WARNING: Warning: Cross-reference @S28@ defined on line 123 is never used
+WARNING: Warning: Cross-reference @S29@ defined on line 126 is never used
+WARNING: Warning: Cross-reference @S11@ defined on line 58 is never used
+WARNING: Warning: Cross-reference @S22@ defined on line 100 is never used
+WARNING: Warning: Cross-reference @S21@ defined on line 96 is never used
+WARNING: Warning: Cross-reference @S24@ defined on line 107 is never used
+WARNING: Warning: Cross-reference @S23@ defined on line 103 is never used
+WARNING: Warning: Cross-reference @S13@ defined on line 65 is never used
+WARNING: Warning: Cross-reference @S4@ defined on line 36 is never used
+WARNING: Warning: Cross-reference @S8@ defined on line 49 is never used
+WARNING: Warning: Cross-reference @S16@ defined on line 77 is never used
+WARNING: Warning: Cross-reference @S32@ defined on line 135 is never used
+WARNING: Warning: Cross-reference @S15@ defined on line 73 is never used
+
+=== Total conversion failures: 0
+Parse succeeded

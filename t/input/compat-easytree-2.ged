@@ -1,0 +1,141 @@
+0 HEAD 
+1 SOUR EasyTree
+2 VERS V8.0
+2 CORP Sierra On-Line
+1 DEST EasyTree
+1 DATE 3 MAR 2002
+1 FILE d:\Program Files\Sierra\GSK8\genealogy\DAISH.UDS
+1 GEDC 
+2 VERS 5.5
+2 FORM LINEAGE_LINKED
+1 CHAR IBM WINDOWS
+1 SUBM @U1@
+0 @U1@ SUBM
+1 NAME 
+0 @N42@ NOTE
+1 CONC Census 1881 gives the following information.
+1 CONC 
+1 CONC Dwelling: 8 Albert Road, Charlton, Kent, England
+1 CONC born Newport, Isle of Wight, age 40
+1 CONC Occ: Primitive Methodist Minister of Peter St. Chapel 
+1 CONC 
+2 SOUR @S6@
+0 @N91@ NOTE
+1 CONC 2nd name is "Anna" in IGI Christening record
+1 CONC 
+0 @S1@ SOUR
+1 TYPE LDS Records
+1 FILN 136551
+0 @S2@ SOUR
+1 TYPE LDS Records
+1 FILN M062613
+0 @S3@ SOUR
+1 TYPE Phillimores Record
+1 FILE Marr_14c.txt
+1 FILN Hampshire
+0 @S4@ SOUR
+1 TYPE LDS Records
+1 FILN C069311
+0 @S5@ SOUR
+1 TYPE Web Site
+1 URL http://worldconnect.genealogy.rootsweb.com/cgi-bin/igm.cgi?surname=daish&given=&start=0&skipdb=&bplace=&stype=Exact&bskip=&dskip=&dplace=
+0 @S6@ SOUR
+1 TYPE Census
+1 TITL 1881 Census - Charlton, Kent
+1 PLAC Charlton, Kent (now part of Dover)
+1 DATE 1881
+1 MEDI FHL Film
+1 LOCA 1341237 piece 1000 folio 124 page 20
+0 @S8@ SOUR
+1 TYPE Bishops Transcripts
+1 PLAC Newport, Isle of Wight
+1 REGI 1724 to 1812
+0 @S9@ SOUR
+1 TYPE Probate
+1 PLAC Winchester
+0 @S10@ SOUR
+1 TYPE Will
+0 @S11@ SOUR
+1 TYPE LDS Records
+0 @S12@ SOUR
+1 TYPE LDS Records
+1 VOL 7503283
+1 FILN 0820199
+1 PAGE 62
+0 @S13@ SOUR
+1 TYPE LDS Records
+1 VOL M136791
+1 FILN 1041226
+0 @S14@ SOUR
+1 TYPE Will
+1 TITL Will of William Daish of Whippingham, 1773
+1 URL http://www.daish.net/documents/Will_William_Daish_Whippinhgam_1793.htm
+0 @S15@ SOUR
+1 TYPE Parish Record
+1 DATE 19 Feb 1775
+1 PLAC Godshill, Isle of Wight
+0 @S16@ SOUR
+1 TYPE LDS Records
+1 VOL C062616
+1 FILN 0919743
+0 @S17@ SOUR
+1 TYPE LDS Records
+1 VOL J136791
+1 FILN 1041226
+0 @S18@ SOUR
+1 TYPE LDS Records
+1 VOL 7203823
+1 FILN 0820199
+1 PAGE 67
+0 @S19@ SOUR
+1 TYPE LDS Records
+0 @S20@ SOUR
+1 TYPE LDS Records
+1 VOL M063062
+1 FILN 0918892
+0 @S21@ SOUR
+1 TYPE LDS Records
+1 VOL M146691
+1 FILN 1042025
+0 @S22@ SOUR
+1 TYPE LDS Records
+1 FILN 6142825
+0 @S23@ SOUR
+1 TYPE LDS Records
+1 VOL C063062
+1 FILN 0918892
+0 @S24@ SOUR
+1 TYPE LDS Records
+1 VOL M146691
+1 FILN 1042025
+0 @S25@ SOUR
+1 TYPE LDS Records
+1 VOL K146691
+1 FILN 1042025
+0 @S26@ SOUR
+1 TYPE LDS Records
+1 VOL C063062
+1 FILN 0918892
+0 @S27@ SOUR
+1 TYPE LDS Records
+1 VOL M136791
+1 FILN 1041226
+0 @S28@ SOUR
+1 TYPE LDS Records
+1 FILN 6142825
+0 @S29@ SOUR
+1 TYPE LDS Records
+1 VOL J146691
+1 FILN 1042025
+0 @S30@ SOUR
+1 AUTH The Church of Jesus Christ of Latter-day Saints
+1 TITL Ancestral File (R)
+1 PUBL Copyright (c) 1987, June 1998, data as of 5 January 1998
+1 REPO Family History Library 35 N West Temple Street
+0 @S32@ SOUR
+1 TYPE LDS Records
+1 VOL A184752
+0 @S33@ SOUR
+1 TYPE IGI
+1 REPO IGI Record
+0 TRLR 

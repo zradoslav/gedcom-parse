@@ -185,6 +185,7 @@ void clean_up();
 	 clean_up(); YYABORT;                                                 \
        }                                                                      \
        else if (error_mechanism == DEFER_FAIL) {                              \
+         gedcom_debug_print("Fail on line %d", line_no);                      \
          yyerrok; fail = 1;                                                   \
        }                                                                      \
        else if (error_mechanism == IGNORE_ERRORS) {                           \
@@ -261,7 +262,7 @@ void clean_up();
 }
 
 %token_table
-%expect 310
+%expect 317
 
 %token <string> BADTOKEN
 %token <number> OPEN
@@ -1550,6 +1551,24 @@ sour_sub    : sour_data_sect  { OCCUR2(DATA, 0, 1) }
             | sour_abbr_sect  { OCCUR2(ABBR, 0, 1) }
             | sour_publ_sect  { OCCUR2(PUBL, 0, 1) }
             | sour_text_sect  { OCCUR2(TEXT, 0, 1) }
+            | sour_type_sect  { if (!compat_mode(C_NONSTD_SOUR_TAGS))
+	                          INVALID_TAG("TYPE");
+	                        OCCUR2(TYPE, 0, 1) }
+            | sour_file_sect  { if (!compat_mode(C_NONSTD_SOUR_TAGS))
+	                          INVALID_TAG("FILE");
+	                        OCCUR2(FILE, 0, 1) }
+            | sour_plac_sect  { if (!compat_mode(C_NONSTD_SOUR_TAGS))
+	                          INVALID_TAG("PLAC");
+	                        OCCUR2(PLAC, 0, 1) }
+            | sour_date_sect  { if (!compat_mode(C_NONSTD_SOUR_TAGS))
+	                          INVALID_TAG("DATE");
+	                        OCCUR2(DATE, 0, 1) }
+            | sour_medi_sect  { if (!compat_mode(C_NONSTD_SOUR_TAGS))
+	                          INVALID_TAG("MEDI");
+	                        OCCUR2(MEDI, 0, 1) }
+            | sour_page_sect  { if (!compat_mode(C_NONSTD_SOUR_TAGS))
+	                          INVALID_TAG("PAGE");
+	                        OCCUR2(PAGE, 0, 1) }
             | source_repos_cit_sub  /* 0:1 */
             | multim_link_sub  /* 0:M */
             | note_struc_sub  /* 0:M */
@@ -1768,6 +1787,90 @@ sour_text_subs : /* empty */
 
 sour_text_sub  : continuation_sub  /* 0:M */
                | no_std_sub
+               ;
+
+/* Only for compatibility */
+sour_type_sect : OPEN DELIM TAG_TYPE opt_line_item  
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS)) {
+		     $<ctxt>$ =
+		       compat_generate_nonstd_sour_start(PARENT, $1, $3, $4,
+							 &usertag_buffer);
+		   }
+                 }
+                 CLOSE            
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS))
+		     compat_generate_nonstd_sour_end(PARENT, $<ctxt>5);
+		 }
+               ;
+
+/* Only for compatibility */
+sour_file_sect : OPEN DELIM TAG_FILE opt_line_item  
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS)) {
+		     $<ctxt>$ =
+		       compat_generate_nonstd_sour_start(PARENT, $1, $3, $4,
+							 &usertag_buffer);
+		   }
+                 }
+                 CLOSE            
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS))
+		     compat_generate_nonstd_sour_end(PARENT, $<ctxt>5);
+		 }
+               ;
+
+/* Only for compatibility */
+sour_plac_sect : OPEN DELIM TAG_PLAC opt_line_item  
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS)) {
+		     $<ctxt>$ =
+		       compat_generate_nonstd_sour_start(PARENT, $1, $3, $4,
+							 &usertag_buffer);
+		   }
+                 }
+                 CLOSE            
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS))
+		     compat_generate_nonstd_sour_end(PARENT, $<ctxt>5);
+		 }
+               ;
+
+/* Only for compatibility */
+sour_date_sect : OPEN DELIM TAG_DATE opt_line_item  
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS)) {
+		     $<ctxt>$ =
+		       compat_generate_nonstd_sour_start(PARENT, $1, $3, $4,
+							 &usertag_buffer);
+		   }
+                 }
+                 CLOSE            
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS))
+		     compat_generate_nonstd_sour_end(PARENT, $<ctxt>5);
+		 }
+               ;
+
+/* Only for compatibility */
+sour_medi_sect : OPEN DELIM TAG_MEDI opt_line_item  
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS)) {
+		     $<ctxt>$ =
+		       compat_generate_nonstd_sour_start(PARENT, $1, $3, $4,
+							 &usertag_buffer);
+		   }
+                 }
+                 CLOSE            
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS))
+		     compat_generate_nonstd_sour_end(PARENT, $<ctxt>5);
+		 }
+               ;
+
+/* Only for compatibility */
+sour_page_sect : OPEN DELIM TAG_PAGE opt_line_item  
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS)) {
+		     $<ctxt>$ =
+		       compat_generate_nonstd_sour_start(PARENT, $1, $3, $4,
+							 &usertag_buffer);
+		   }
+                 }
+                 CLOSE            
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS))
+		     compat_generate_nonstd_sour_end(PARENT, $<ctxt>5);
+		 }
                ;
 
 /*********************************************************************/
@@ -2348,7 +2451,7 @@ cont_sect : OPEN DELIM TAG_CONT opt_line_item
 	        safe_buf_append(&concat_buffer, $4);
 	      START(CONT, $1, $<ctxt>$)  
             }  
-            no_std_subs  
+            cont_conc_subs  
             { CHECK0 }  
             CLOSE  
             { end_element(ELT_SUB_CONT, PARENT, $<ctxt>5,
@@ -2366,13 +2469,40 @@ conc_sect : OPEN DELIM TAG_CONC mand_line_item
 	      safe_buf_append(&concat_buffer, $4);
 	      START(CONC, $1, $<ctxt>$)  
             }  
-            no_std_subs  
+            cont_conc_subs  
             { CHECK0 }  
             CLOSE  
             { end_element(ELT_SUB_CONC, PARENT, $<ctxt>5,
 			  GEDCOM_MAKE_NULL(val1));
 	    }
           ; 
+
+cont_conc_subs : /* empty */
+               | cont_conc_subs cont_conc_sub
+               ;
+
+cont_conc_sub  : cont_conc_sour_sect { if (!compat_mode(C_NOTE_CONC_SOUR))
+	                                 INVALID_TAG("SOUR");
+	                               OCCUR2(SOUR, 0, 1) } 
+               | no_std_sub
+	       ;
+
+/* Only for compatibility */
+cont_conc_sour_sect : OPEN DELIM TAG_SOUR DELIM POINTER
+                      { if (compat_mode(C_NOTE_CONC_SOUR)) {
+		          $<ctxt>$
+			    = compat_generate_note_sour_start(GRANDPARENT(1),
+							      $1, $3, $5);
+			  if ($<ctxt>$ == (void*)-1) HANDLE_ERROR;
+                        }
+                      }
+                      no_std_subs
+                      CLOSE
+                      { if (compat_mode(C_NOTE_CONC_SOUR)) {
+		          compat_generate_note_sour_end($<ctxt>6);
+		        }
+                      }
+	              ;
 
 /* EVENT DETAIL */
 event_detail_sub : event_detail_type_sect  { OCCUR2(TYPE, 0, 1) }
@@ -3599,22 +3729,41 @@ source_cit_emb_sub : continuation_sub
 
 /* SOURCE REPOSITORY CITATION */
 source_repos_cit_sub : source_repos_repo_sect  { OCCUR2(REPO, 0, 1) }
+                     | source_repos_repo_txt_sect
+                       { if (!compat_mode(C_NONSTD_SOUR_TAGS))
+			   INVALID_TAG("REPO");
+		         OCCUR2(REPO, 0, 1)
+		       }
                      ;
 
-source_repos_repo_sect : OPEN DELIM TAG_REPO mand_pointer
+/* Only for compatibility */
+source_repos_repo_txt_sect : OPEN DELIM TAG_REPO opt_line_item
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS)) {
+		     $<ctxt>$ =
+		       compat_generate_nonstd_sour_start(PARENT, $1, $3, $4,
+							 &usertag_buffer);
+		   }
+                 }
+                 CLOSE            
+                 { if (compat_mode(C_NONSTD_SOUR_TAGS))
+		     compat_generate_nonstd_sour_end(PARENT, $<ctxt>5);
+		 }
+               ;
+
+source_repos_repo_sect : OPEN DELIM TAG_REPO DELIM POINTER
                          { struct xref_value *xr
-			     = gedcom_parse_xref($4, XREF_USED, XREF_REPO);
-		           if (xr == NULL) HANDLE_ERROR;
+			     = gedcom_parse_xref($5, XREF_USED, XREF_REPO);
+			   if (xr == NULL) HANDLE_ERROR;
 			   $<ctxt>$
 			     = start_element(ELT_SUB_REPO,
-					     PARENT, $1, $3, $4,
+					     PARENT, $1, $3, $5,
 					     GEDCOM_MAKE_XREF_PTR(val1, xr));
-			   START(REPO, $1, $<ctxt>$) 
-                         }
+			   START(REPO, $1, $<ctxt>$);
+			 }
                          source_repos_repo_subs
 			 { CHECK0 }
                          CLOSE 
-                         { end_element(ELT_SUB_REPO, PARENT, $<ctxt>5, 
+                         { end_element(ELT_SUB_REPO, PARENT, $<ctxt>6, 
 				       GEDCOM_MAKE_NULL(val1));
 			 }
                        ;
@@ -3716,8 +3865,11 @@ no_std_rec  : user_rec /* 0:M */
 
 user_rec    : OPEN DELIM opt_xref USERTAG
               { if ($4.string[0] != '_') {
-		  if (compat_mode(C_551_TAGS)
-		      && compat_check_551_tag($4.string, &usertag_buffer)) {
+		  if ((compat_mode(C_551_TAGS)
+		       && compat_check_551_tag($4.string, &usertag_buffer))
+		      ||
+		      (compat_mode(C_NONSTD_SOUR_TAGS)
+		       && compat_check_sour_tag($4.string, &usertag_buffer))) {
 		    $4.string = get_buf_string(&usertag_buffer);
 		  }
 		  else {		  
@@ -3746,13 +3898,15 @@ user_rec    : OPEN DELIM opt_xref USERTAG
             ;
 user_sect   : OPEN DELIM opt_xref USERTAG
               { if ($4.string[0] != '_') {
-		  if (compat_mode(C_551_TAGS)
-		      && compat_check_551_tag($4.string, &usertag_buffer)) {
-		    $4.string = get_buf_string(&usertag_buffer);
-		  }
-		  else if (compat_mode(C_SUBM_COMM) &&
-			   compat_check_subm_comm($4.string, get_parenttag(0),
-						  &usertag_buffer)) {
+		  if ((compat_mode(C_551_TAGS)
+		       && compat_check_551_tag($4.string, &usertag_buffer))
+		      ||
+		      (compat_mode(C_SUBM_COMM)
+		       && compat_check_subm_comm($4.string, get_parenttag(0),
+						 &usertag_buffer))
+		      ||
+		      (compat_mode(C_NONSTD_SOUR_TAGS)
+		       && compat_check_sour_tag($4.string, &usertag_buffer))) {
 		    $4.string = get_buf_string(&usertag_buffer);
 		  }
 		  else {

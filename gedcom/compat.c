@@ -95,6 +95,7 @@ struct program_data data[] = {
 	- some 5.5.1 (draft) tags are used: EMAIL, FONE, ROMN
 	- no FAMC field in SLGC
 	- uses tab character (will be converted to 8 spaces here)
+	- lines too long
 
     - Personal Ancestral File 2:
         - '@' not written as '@@' in values
@@ -110,6 +111,8 @@ struct program_data data[] = {
 	- no submitter link in the header
 	- NOTE doesn't have a value
 	- NOTE.NOTE instead of NOTE.COND
+	- NOTE.CONC.SOUR instead of NOTE.SOUR
+	- non-standard tags in SOUR records
 
     - Personal Ancestral File 4:
         - '@' not written as '@@' in values
@@ -127,7 +130,7 @@ int compat_matrix[] =
   /* C_HEAD_TIME */           C_LIFELINES,
   /* C_NO_DOUBLE_AT */        C_LIFELINES | C_PAF5 | C_PAF2 | C_FAMORIG
                                | C_PAF4,
-  /* C_NO_REQUIRED_VALUES */  C_LIFELINES | C_PAF5,
+  /* C_NO_REQUIRED_VALUES */  C_LIFELINES | C_PAF5 | C_EASYTREE,
   /* C_551_TAGS */            C_PAF5,
   /* C_NO_SLGC_FAMC */        C_PAF5,
   /* C_SUBM_COMM */           C_PAF2,
@@ -137,7 +140,9 @@ int compat_matrix[] =
   /* C_NOTE_NOTE */           C_EASYTREE,
   /* C_TAB_CHARACTER */       C_PAF5,
   /* C_SUBM_CTRY */           C_PAF4,
-  /* C_NOTE_TOO_LONG */       C_PAF4
+  /* C_NOTE_TOO_LONG */       C_PAF4 | C_PAF5,
+  /* C_NOTE_CONC_SOUR */      C_EASYTREE,
+  /* C_NONSTD_SOUR_TAGS */    C_EASYTREE
 };
 
 union _COMPAT_STATE {
@@ -679,4 +684,97 @@ void compat_long_line_finish(Gedcom_ctxt parent, int level)
 			 GEDCOM_MAKE_STRING(val1, output));
     end_element(ELT_SUB_CONC, parent, ctxt, GEDCOM_MAKE_NULL(val1));
   }
+}
+
+/********************************************************************/
+/*  C_NOTE_CONC_SOUR                                                */
+/********************************************************************/
+
+Gedcom_ctxt compat_generate_note_sour_start(Gedcom_ctxt parent,
+					    int level, struct tag_struct ts,
+					    char* pointer)
+{
+  Gedcom_ctxt self;
+  struct xref_value *xr = gedcom_parse_xref(pointer, XREF_USED, XREF_SOUR);
+  if (xr == NULL) {
+    self = (void*)-1;
+  }
+  else {
+    self = start_element(ELT_SUB_SOUR, parent, level-1, ts, pointer,
+			 GEDCOM_MAKE_XREF_PTR(val1, xr));
+  }
+  compat_state[C_NOTE_CONC_SOUR].vp = parent;
+  return self;
+}
+
+void compat_generate_note_sour_end(Gedcom_ctxt self)
+{
+  if (self != (void*) -1) {
+    end_element(ELT_SUB_SOUR, compat_state[C_NOTE_CONC_SOUR].vp,
+		self, GEDCOM_MAKE_NULL(val1));
+  }
+}
+
+/********************************************************************/
+/*  C_NONSTD_SOUR_TAGS                                              */
+/********************************************************************/
+
+int is_nonstd_sour_tag(const char* tag)
+{
+  if (strncmp(tag, "FILN", 5))
+    return 1;
+  else if (strncmp(tag, "URL", 4))
+    return 1;
+  else if (strncmp(tag, "LOCA", 5))
+    return 1;
+  else if (strncmp(tag, "REGI", 5))
+    return 1;
+  else if (strncmp(tag, "VOL", 4))
+    return 1;
+  else
+    return 0;
+}
+
+int compat_check_sour_tag(const char* tag, struct safe_buffer* b)
+{
+  if (is_nonstd_sour_tag(tag)) {
+    reset_buffer(b);
+    SAFE_BUF_ADDCHAR(b, '_');
+    safe_buf_append(b, tag);
+    gedcom_warning(_("Converting undefined tag '%s' to user tag '%s'"),
+		   tag, get_buf_string(b));
+    return 1;
+  }
+  else
+    return 0;
+}
+
+Gedcom_ctxt compat_generate_nonstd_sour_start(Gedcom_ctxt parent, int level,
+					      struct tag_struct ts,
+					      char* value,
+					      struct safe_buffer* b)
+{
+  Gedcom_ctxt self = NULL;
+  reset_buffer(b);
+  SAFE_BUF_ADDCHAR(b, '_');
+  safe_buf_append(b, ts.string);
+  gedcom_warning(_("Converting invalidly used tag '%s' to user tag '%s'"),
+		 ts.string, get_buf_string(b));
+  ts.string = get_buf_string(b);
+
+  self = start_element(ELT_USER, parent, level, ts, value,
+		       GEDCOM_MAKE_NULL_OR_STRING(val1, value));
+  compat_state[C_NONSTD_SOUR_TAGS].i = 1;
+  return self;
+}
+
+void compat_generate_nonstd_sour_end(Gedcom_ctxt parent, Gedcom_ctxt self)
+{
+  end_element(ELT_USER, parent, self, NULL);
+  compat_state[C_NONSTD_SOUR_TAGS].i = 0;
+}
+
+int compat_generate_nonstd_sour_state()
+{
+  return compat_state[C_NONSTD_SOUR_TAGS].i;
 }
