@@ -14,8 +14,6 @@
 #define __MULTILEX_H
 #include <stdio.h>
 
-int        gedcom_parse_file(char* file_name);
-
 int        gedcom_1byte_lex();
 extern FILE *gedcom_1byte_in;
 
