@@ -1423,7 +1423,7 @@ note_line_item : /* empty */
 		       gedcom_error(_("Missing value")); YYERROR;
 		     }
 		     else {
-		       $$ = "";
+		       $$ = "-";
 		     }
 		   }
                | DELIM line_item
@@ -2285,14 +2285,7 @@ cont_sect : OPEN DELIM TAG_CONT mand_line_item
             { $<ctxt>$ = start_element(ELT_SUB_CONT,
 				       PARENT, $1, $3, $4, 
 				       GEDCOM_MAKE_STRING(val1, $4));
-	      if (compat_mode(C_NOTE_NO_VALUE)) {
-		char* str = get_buf_string(&concat_buffer);
-		if (str[0] != '\0')
-		  SAFE_BUF_ADDCHAR(&concat_buffer, '\n');
-	      }
-	      else {
-	        SAFE_BUF_ADDCHAR(&concat_buffer, '\n');
-	      }
+	      SAFE_BUF_ADDCHAR(&concat_buffer, '\n');
 	      safe_buf_append(&concat_buffer, $4);
 	      START(CONT, $1, $<ctxt>$)  
             }  
@@ -3751,7 +3744,7 @@ mand_pointer : /* empty */ { gedcom_error(_("Missing pointer")); YYERROR; }
 mand_line_item : /* empty */
                  { if (compat_mode(C_NO_REQUIRED_VALUES)) {
                      gedcom_debug_print("==Val: ==");
-		     $$ = "";
+		     $$ = "-";
 		   }
 		   else {
 		     gedcom_error(_("Missing value")); YYERROR;
