@@ -77,24 +77,10 @@ int compat_matrix[] =
   /* C_NO_DOUBLE_AT */        C_LIFELINES | C_PAF,
   /* C_NO_REQUIRED_VALUES */  C_LIFELINES,
   /* C_551_TAGS */            C_PAF,
-  /* C_NO_SLGC_FAMC */        C_PAF,
-  /* C_NR_OF_RULES */         0
+  /* C_NO_SLGC_FAMC */        C_PAF
 };
 
-int compat_state[] =
-{
-  /* C_NO_SUBMITTER */        0,
-  /* C_INDI_ADDR */           0,
-  /* C_NOTE_NO_VALUE */       0,
-  /* C_NO_GEDC */             0,
-  /* C_NO_CHAR */             0,
-  /* C_HEAD_TIME */           0,
-  /* C_NO_DOUBLE_AT */        0,
-  /* C_NO_REQUIRED_VALUES */  0,
-  /* C_551_TAGS */            0,
-  /* C_NO_SLGC_FAMC */        0,
-  /* C_NR_OF_RULES */         0
-};
+int compat_state[C_NR_OF_RULES];
 
 /* Compatibility handling */
 
