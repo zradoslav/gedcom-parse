@@ -155,6 +155,8 @@ AC_OUTPUT(GNUmakefile
 	  doc/Makefile
 	  doc/images/Makefile
 	  doc/index.html
+	  doc/doxygen/Makefile
+	  doc/doxygen/doxygen.conf
 	  include/Makefile
 	  include/gedcom.h
           intl/Makefile
