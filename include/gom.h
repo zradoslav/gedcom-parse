@@ -24,7 +24,7 @@
 #ifndef __GEDCOM_GOM_H
 #define __GEDCOM_GOM_H
 
-#include <sys/cdefs.h>
+#include "gedcom.h"
 
 __BEGIN_DECLS
 
