@@ -102,8 +102,9 @@ the <code>-lgedcom</code> option
 on the linking of the program as the last option, so that its initialization
 code is run first. &nbsp;In the case of using the C object model, the linking
 options should be: <code>-lgedcom_gom -lgedcom</code><br>
-          <br>
-        The next sections will refine this piece of code to be able to have
+          <br>The function <code>gedcom_init()</code> also initializes locale handling by calling <code>setlocale(LC_ALL, "")</code>, in case the application would not do this (it doesn't hurt for the application to do the same).<br>
+&nbsp;<br>
+The next sections will refine this piece of code to be able to have
  meaningful errors   and the actual data that is in the file.<br>
                            
 <hr width="100%" size="2">                       
@@ -724,6 +725,7 @@ There are three preprocessor symbols defined for version checks in the
 <pre>                    </pre>
                                                                         
                                                         
+<br>
 <br>
 <br>
 <br>
