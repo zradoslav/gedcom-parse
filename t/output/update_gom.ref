@@ -164,6 +164,8 @@ Valid French revolution date:
     sdn2: -1
   phrase: ''
 String: '@#DFRENCH R@ 16 PLUV 7'
+ERROR: Error: Cross-reference key '@FAM1@' is already in use
+ERROR: Error: Cross-reference key '@SUBMITTER@' is already in use
 Test succeeded
 === HEADER ===
 Source:
@@ -223,6 +225,101 @@ Note:
 (null)
 ====
 User data: 0x<null>
+=== SUBMISSION (@SUBMISSION@) ===
+Submitter: 0x<null>
+Family file: '(null)'
+Temple code: '(null)'
+Nr of ancestor generations: '(null)'
+Nr of descendant generations: '(null)'
+Ordinance process flag: '(null)'
+Record id: '(null)'
+User data: 0x<null>
+=== FAMILY (@FAM1@) ===
+Family events: 0x<null>
+Husband: 0x<null>
+Wife: 0x<null>
+Children: 0x<null>
+Number of children: '3'
+Submitters: 0x<null>
+LDS spouse sealings: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+user refs: 0x<null>
+Record ID: '(null)'
+change date: 0x<null>
+User data: 0x<null>
+=== INDIVIDUAL (@IND1@) ===
+Restriction notice: '(null)'
+names: 0x<null>
+Sex: '(null)'
+Individual events: 0x<null>
+Individual attributes: 0x<null>
+LDS individual ordinance: 0x<null>
+Child to family links: 0x<null>
+Spouse to family links: 0x<null>
+Submitters: 0x<null>
+Associations: 0x<null>
+Aliases: 0x<null>
+Ancestor interest: 0x<null>
+Descendant interest: 0x<null>
+citations: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+Record file nr: '(null)'
+Ancestral file nr: '(null)'
+user refs: 0x<null>
+Record ID: '(null)'
+change date: 0x<null>
+User data: 0x<null>
+=== MULTIMEDIA (@OBJ1@) ===
+Form: '(null)'
+Title: '(null)'
+notes: 0x<null>
+Data: '(null)'
+Continued: 0x<null>
+user refs: 0x<null>
+Record ID: '(null)'
+change date: 0x<null>
+User data: 0x<null>
+=== NOTE (@NOTE1@) ===
+Text: 'This is some text'
+citations: 0x<null>
+user refs: 0x<null>
+Record ID: '(null)'
+change date: 0x<null>
+User data: 0x<null>
+=== REPOSITORY (@REPO1@) ===
+Name: '(null)'
+Address: 0x<null>
+Phone 1: '(null)'
+Phone 2: '(null)'
+Phone 3: '(null)'
+notes: 0x<null>
+user refs: 0x<null>
+Record ID: '(null)'
+change date: 0x<null>
+User data: 0x<null>
+=== SOURCE (@SOUR1@) ===
+Data: 
+  events: 0x<null>
+  Agency: '(null)'
+  notes: 0x<null>
+Author: '(null)'
+Title: '(null)'
+Abbreviation: '(null)'
+Publication: '(null)'
+Text: '(null)'
+Repository:
+  Link: 0x<null>
+  notes: 0x<null>
+  source descriptions: 0x<null>
+multimedia links: 0x<null>
+notes: 0x<null>
+user refs: 0x<null>
+Record ID: '(null)'
+change date: 0x<null>
+User data: 0x<null>
 === SUBMITTER (@SUBMITTER@) ===
 Name: 'België'
 Address: 0x<null>
@@ -236,4 +333,23 @@ Language 3: '(null)'
 Record file nr: '(null)'
 Record ID: '(null)'
 change date: 0x<null>
+User data: 0x<null>
+=== SUBMITTER (@SUBM2@) ===
+Name: '(null)'
+Address: 0x<null>
+Phone 1: '(null)'
+Phone 2: '(null)'
+Phone 3: '(null)'
+multimedia links: 0x<null>
+Language 1: '(null)'
+Language 2: '(null)'
+Language 3: '(null)'
+Record file nr: '(null)'
+Record ID: '(null)'
+change date: 0x<null>
+User data: 0x<null>
+=== USER RECORD (@USER1@) ===
+Tag: '_TAG'
+String value: '(null)'
+Xref value: 0x<null>
 User data: 0x<null>
