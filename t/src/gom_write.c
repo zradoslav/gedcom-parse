@@ -235,8 +235,8 @@ int main(int argc, char* argv[])
   gedcom_init();
   setlocale(LC_ALL, "");
   gedcom_set_message_handler(gedcom_message_handler);
-  gedcom_write_set_encoding(encoding, enc, bom);
-  gedcom_write_set_line_terminator(end);
+  gedcom_write_set_encoding(ENC_MANUAL, encoding, enc, bom);
+  gedcom_write_set_line_terminator(ENC_MANUAL, end);
 
   output_open(outfilename);
 

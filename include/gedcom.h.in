@@ -385,6 +385,14 @@ typedef enum _ENC_LINE_END {
   END_LF_CR = 3
 } Enc_line_end;
 
+typedef enum _ENC_FROM {
+  ENC_FROM_FILE = 0,
+  ENC_FROM_SYS  = 1,
+  ENC_MANUAL    = 2
+} Enc_from;
+
+struct encoding_state;
+
 typedef enum _DATE_INPUT {
   DI_FROM_STRINGS,
   DI_FROM_NUMBERS,
@@ -540,9 +548,10 @@ int                gedcom_delete_xref(const char* xrefstr);
 /* Writing support */
 Gedcom_write_hndl  gedcom_write_open(const char* filename);
 int  gedcom_write_close(Gedcom_write_hndl hndl, int *total_conv_fails);
-int  gedcom_write_set_encoding(const char* charset, Encoding width,
+int  gedcom_write_set_encoding(Enc_from from,
+			       const char* charset, Encoding width,
                                Enc_bom bom);
-int  gedcom_write_set_line_terminator(Enc_line_end end);
+int  gedcom_write_set_line_terminator(Enc_from from, Enc_line_end end);
 
 int  gedcom_write_record_str(Gedcom_write_hndl hndl,
 			     Gedcom_rec rec, char* xrefstr, char* val);
