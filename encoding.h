@@ -1,3 +1,6 @@
+/* $Id$ */
+/* $Name$ */
+
 /* Basic file encoding */
 #ifndef __ENCODING_H
 #define __ENCODING_H

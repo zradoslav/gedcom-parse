@@ -8,12 +8,15 @@ CFLAGS=-g -W -Wall -pedantic
 YFLAGS=--debug --defines
 LFLAGS=-8
 
+all:	ansel_module gedcom_parse
+
 gedcom_parse:	standalone.o lex.gedcom_1byte_.o lex.gedcom_hilo_.o \
                 lex.gedcom_lohi_.o gedcom.tab.o message.o multilex.o \
 		encoding.o
 	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
-libgedcom.so:
+ansel_module:
+	cd ansel && $(MAKE)
 
 lex.gedcom_1byte_.c:	gedcom_1byte.lex gedcom.tab.h gedcom.h multilex.h
 	$(LEX) $(LFLAGS) -Pgedcom_1byte_ gedcom_1byte.lex
@@ -30,6 +33,7 @@ gedcom.tab.c gedcom.tab.h:	gedcom.y gedcom.h
 clean:
 	rm -f core gedcom_parse test_* *.o lex.gedcom_* \
         gedcom.tab.* gedcom.output
+	cd ansel && $(MAKE) clean
 
 # Lexer test programs
 
@@ -53,7 +57,7 @@ lex.gedcom_lohi_.test.o:	lex.gedcom_lohi_.c
 
 # Test of parser
 
-test:	gedcom_parse
+test:	all
 	@export GCONV_PATH=./ansel; \
         for file in t/*.ged; do \
 	  echo "=== testing $$file"; \

@@ -1,5 +1,6 @@
 /* $Id$ */
 /* $Name$ */
+
 #ifndef __GEDCOM_H
 #define __GEDCOM_H
 #include <stdarg.h>

@@ -1,3 +1,6 @@
+/* $Id$ */
+/* $Name$ */
+
 /* Generic conversion to and from ANSI Z39.47 (also known as ANSEL)
    Based on the ansi_x3.110.c file from the glibc sources
    Data coming from:
@@ -11,7 +14,6 @@
 #include <gconv.h>
 #include <stdint.h>
 #include <string.h>
-#include <stdio.h>
 
 static const uint32_t to_ucs4[256] =
 {

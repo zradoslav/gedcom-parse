@@ -1,3 +1,6 @@
+/* $Id$ */
+/* $Name$ */
+
 #include <string.h>
 #include <iconv.h>
 #include <search.h>
@@ -76,7 +79,7 @@ void init_encodings()
 		       ENCODING_CONF_FILE);
 	  return;
 	}
-	else if (buffer[0] != '#') {
+	else if ((buffer[0] != '#') && (strcmp(buffer, "\n") != 0)) {
 	  if (sscanf(buffer, "%s %s %s", gedcom_n, charwidth, iconv_n) == 3) {
 	    add_encoding(gedcom_n, charwidth, iconv_n);
 	  }
@@ -116,6 +119,10 @@ int open_conv_to_internal(char* fromcode)
     memset(conv_buf, 0, sizeof(conv_buf));
     conv_buf_size = 0;
     cd_to_internal = iconv_open(INTERNAL_ENCODING, encoding);
+    if (cd_to_internal == (iconv_t) -1) {
+      gedcom_error("Error opening conversion context for encoding %s: %s",
+		   encoding, strerror(errno));
+    }
   }
   return (cd_to_internal != (iconv_t) -1);  
 }
