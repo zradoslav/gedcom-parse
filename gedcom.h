@@ -10,9 +10,9 @@
 
 /* Error handling mechanisms */
 typedef enum _MECH {
-  FAIL_PARSE,
-  IGNORE_RECORD,
-  IGNORE_LINE
+  IMMED_FAIL,
+  DEFER_FAIL,
+  IGNORE_ERRORS
 } MECHANISM;
 
 int        gedcom_error(char* s, ...);
