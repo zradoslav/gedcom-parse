@@ -7,7 +7,8 @@ then
 fi
 builddir=`pwd`
 
-export GCONV_PATH=.:$GCONV_PATH
+GCONV_PATH=.:$GCONV_PATH
+export GCONV_PATH
 ln -s $srcdir/../data/gedcom.enc .
 ln -s $builddir/../iconv/glibc/.libs/ANSI_Z39.47.so .
 ln -s $srcdir/../iconv/glibc/gconv-modules .
@@ -16,7 +17,8 @@ retval=0
 
 if [ "$ICONV_PATH" ]
 then
-  export PATH=$ICONV_PATH:$PATH
+  PATH=$ICONV_PATH:$PATH
+  export PATH
 fi
 
 echo "Testing conversion from ANSEL to UTF-8" >> testgedcom.out
