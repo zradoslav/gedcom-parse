@@ -25,6 +25,10 @@ if [ -z "$expected_result" ]
 then
   expected_result=0
 fi
+if [ -z "$GEDCOM_LANG" ]
+then
+  GEDCOM_LANG=C
+fi
 
 # For use outside Makefile
 if [ -z "$srcdir" ]
@@ -41,8 +45,8 @@ options="$options -o $outfile"
 
 GCONV_PATH=.:$GCONV_PATH
 export GCONV_PATH
-LANG=C
-export LANG
+LC_ALL=$GEDCOM_LANG
+export LC_ALL
 ln -s $srcdir/../data/gedcom.enc .
 ln -s $builddir/../data/new.ged .
 ln -s $builddir/../iconv/glibc/.libs/ANSI_Z39.47.so .
