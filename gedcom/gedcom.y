@@ -168,9 +168,9 @@ enum _COMPAT {
 /* These are defined at the bottom of the file */ 
 void push_countarray();
 void set_parenttag(char* tag);
-char* get_parenttag(); 
+char* get_parenttag(int offset); 
 void set_parentctxt(Gedcom_ctxt ctxt);
-Gedcom_ctxt get_parentctxt();
+Gedcom_ctxt get_parentctxt(int offset);
 void pop_countarray();
 int  count_tag(int tag);
 int  check_occurrence(int tag);
@@ -204,10 +204,12 @@ int  compat_mode(int flags);
        START2(PARENTCTXT);                                                    \
      }
 #define PARENT                                                                \
-     get_parentctxt()
+     get_parentctxt(0)
+#define GRANDPARENT(OFF)                                                      \
+     get_parentctxt(OFF)
 #define CHK(TAG)                                                              \
      { if (!check_occurrence(TAG_##TAG)) {                                    \
-         char* parenttag = get_parenttag();                                   \
+         char* parenttag = get_parenttag(0);                                  \
          gedcom_error(_("The tag '%s' is mandatory within '%s', but missing"),\
 		      #TAG, parenttag);                                       \
          HANDLE_ERROR;                                                        \
@@ -229,14 +231,14 @@ int  compat_mode(int flags);
 #define OCCUR2(CHILDTAG, MIN, MAX)                                            \
      { int num = count_tag(TAG_##CHILDTAG);                                   \
        if (num > MAX) {                                                       \
-         char* parenttag = get_parenttag();                                   \
+         char* parenttag = get_parenttag(0);                                  \
          gedcom_error(_("The tag '%s' can maximally occur %d time(s) within '%s'"),                                                                          \
 		      #CHILDTAG, MAX, parenttag);                             \
          HANDLE_ERROR;                                                        \
        }                                                                      \
      }
 #define INVALID_TAG(CHILDTAG)                                                 \
-     { char* parenttag = get_parenttag();                                     \
+     { char* parenttag = get_parenttag(0);                                    \
        gedcom_error(_("The tag '%s' is not a valid tag within '%s'"),         \
 		    CHILDTAG, parenttag);                                     \
        HANDLE_ERROR;                                                          \
@@ -1199,9 +1201,24 @@ ftree_addr_subs : /* empty */
                 ;
 
 ftree_addr_sub  : continuation_sub
-                | phon_sect
+                | ftree_addr_phon_sect
                 | no_std_sub
                 ;
+
+ftree_addr_phon_sect : OPEN DELIM TAG_PHON mand_line_item              
+                       { $<ctxt>$
+			   = start_element(ELT_SUB_PHON,
+					   GRANDPARENT(1), $1, $3, $4, 
+					   GEDCOM_MAKE_STRING(val1, $4));
+	                 START(PHON, $<ctxt>$)               
+		       }               
+                       no_std_subs               
+                       { CHECK0 }               
+                       CLOSE               
+                       { end_element(ELT_SUB_PHON, GRANDPARENT(1),
+				     $<ctxt>5, NULL);
+	               }
+            ;
 
 /*********************************************************************/
 /**** Multimedia record                                           ****/
@@ -3787,14 +3804,14 @@ void set_parentctxt(Gedcom_ctxt ctxt)
   ctxt_stack[count_level+1] = ctxt;
 }
 
-char* get_parenttag()
+char* get_parenttag(int offset)
 {
-  return tag_stack[count_level];
+  return tag_stack[count_level - offset];
 }
 
-Gedcom_ctxt get_parentctxt()
+Gedcom_ctxt get_parentctxt(int offset)
 {
-  return ctxt_stack[count_level];
+  return ctxt_stack[count_level - offset];
 }
 
 int count_tag(int tag)
