@@ -69,7 +69,7 @@ void gom_cleanup()
   user_recs_cleanup();
 }
 
-int gom_parse_file(const char* file_name)
+void subscribe_all()
 {
   gedcom_set_default_callback(gom_default_callback);
   header_subscribe();
@@ -101,7 +101,18 @@ int gom_parse_file(const char* file_name)
   if (atexit(gom_cleanup) != 0) {
     gedcom_warning(_("Could not register gom cleanup function"));
   }
+}
+
+int gom_parse_file(const char* file_name)
+{
+  subscribe_all();
   return gedcom_parse_file(file_name);
+}
+
+int gom_new_model()
+{
+  subscribe_all();
+  return gedcom_new_model();
 }
 
 Gom_ctxt make_gom_ctxt(int ctxt_type, OBJ_TYPE obj_type, void *ctxt_ptr)
@@ -117,7 +128,7 @@ Gom_ctxt make_gom_ctxt(int ctxt_type, OBJ_TYPE obj_type, void *ctxt_ptr)
   return ctxt;
 }
 
-void NULL_DESTROY(void* anything)
+void NULL_DESTROY(void* anything UNUSED)
 {
 }
 
@@ -152,21 +163,22 @@ void gom_no_context(const char* file, int line)
 		 file, line);
 }
 
-void gom_default_callback (Gedcom_elt elt, Gedcom_ctxt parent, int level,
-			   char* tag, char* raw_value, int parsed_tag)
+void gom_default_callback (Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,
+			   int level, char* tag, char* raw_value,
+			   int parsed_tag UNUSED)
 {
   gedcom_warning(_("Data loss in import: \"%d %s %s\""),
                  level, tag, raw_value);
 }
 
-void def_rec_end(Gedcom_rec rec, Gedcom_ctxt self)
+void def_rec_end(Gedcom_rec rec UNUSED, Gedcom_ctxt self)
 {
   Gom_ctxt ctxt = (Gom_ctxt)self;
   destroy_gom_ctxt(ctxt);
 }
 
-void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
-		 Gedcom_val parsed_value)
+void def_elt_end(Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,
+		 Gedcom_ctxt self, Gedcom_val parsed_value UNUSED)
 {
   Gom_ctxt ctxt = (Gom_ctxt)self;
   destroy_gom_ctxt(ctxt);
