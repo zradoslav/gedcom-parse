@@ -103,15 +103,29 @@ void subscribe_all()
   }
 }
 
+int gom_active = 0;
+
 int gom_parse_file(const char* file_name)
 {
-  subscribe_all();
+  if (gom_active) {
+    gom_cleanup();
+  }
+  else {
+    subscribe_all();
+  }
+  gom_active = 1;
   return gedcom_parse_file(file_name);
 }
 
 int gom_new_model()
 {
-  subscribe_all();
+  if (gom_active) {
+    gom_cleanup();
+  }
+  else {
+    subscribe_all();
+  }
+  gom_active = 1;
   return gedcom_new_model();
 }
 
