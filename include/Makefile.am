@@ -6,5 +6,5 @@ include_HEADERS = gedcom.h \
 BUILT_SOURCES = gedcom-tags.h
 
 gedcom-tags.h:	$(srcdir)/../gedcom/gedcom.tab.h
-	cat $(srcdir)/../gedcom/gedcom.tab.h | grep "TAG_\|USERTAG" > gedcom-tags.h
+	grep "TAG_\|USERTAG" $(srcdir)/../gedcom/gedcom.tab.h > gedcom-tags.h
 
