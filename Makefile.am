@@ -3,10 +3,5 @@
 # $Name$
 SUBDIRS = intl iconv utf8 gedcom gom include . t doc data po
 
-EXTRA_DIST = Makefile.inc
-VERSIONED_FILES = README
+EXTRA_DIST = README.in
 
-include $(top_srcdir)/Makefile.inc
-
-dist-hook:
-	$(replace-VERSION)
