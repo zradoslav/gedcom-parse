@@ -44,14 +44,24 @@ const char* default_charset = "";
 enum _COMPAT_PROGRAM {
   CP_FTREE = 1,
   CP_LIFELINES,
-  CP_PAF
+  CP_PAF,
+  CP_FAMORIG
+};
+
+const char* program_name[] = {
+  /* NULL */         "",
+  /* CP_FTREE */     "ftree",
+  /* CP_LIFELINES */ "Lifelines",
+  /* CP_PAF */       "Personal Ancestral File",
+  /* CP_FAMORIG */   "Family Origins"
 };
 
 enum _COMPAT {
   C_FTREE = 0x01,
   C_LIFELINES = 0x02,
   C_PAF5 = 0x04,
-  C_PAF2 = 0x08
+  C_PAF2 = 0x08,
+  C_FAMORIG = 0x10
 };
 
 /* Incompatibility list (with GEDCOM 5.5):
@@ -78,6 +88,9 @@ enum _COMPAT {
         - '@' not written as '@@' in values
 	- COMM tag in submitter record
 	- double dates written as e.g. '1815/1816' instead of '1815/16'
+
+    - Family Origins:
+        - '@' not written as '@@' in values
  */
 
 int compat_matrix[] =
@@ -88,7 +101,7 @@ int compat_matrix[] =
   /* C_NO_GEDC */             C_LIFELINES | C_PAF2,
   /* C_NO_CHAR */             C_LIFELINES,
   /* C_HEAD_TIME */           C_LIFELINES,
-  /* C_NO_DOUBLE_AT */        C_LIFELINES | C_PAF5 | C_PAF2,
+  /* C_NO_DOUBLE_AT */        C_LIFELINES | C_PAF5 | C_PAF2 | C_FAMORIG,
   /* C_NO_REQUIRED_VALUES */  C_LIFELINES,
   /* C_551_TAGS */            C_PAF5,
   /* C_NO_SLGC_FAMC */        C_PAF5,
@@ -115,24 +128,77 @@ void enable_compat_msg(const char* program_name, int version)
 		   program_name);
 }
 
+int program_equal(const char* program, const char* compare)
+{
+  return !strncmp(program, compare, strlen(compare)+1);
+}
+
+int program_equal_continued(const char* program, const char* compare)
+{
+  size_t len = strlen(compare);
+  int result = strncmp(program, compare, len);
+  if (result == 0) {
+    if (strlen(program) > len)
+      set_compatibility_version(program + len);
+  }
+  return !result;
+}
+
 void set_compatibility_program(const char* program)
 {
   compatibility_program = 0;
   if (compat_enabled) {
-    if (! strncmp(program, "ftree", 6)) {
+    if (program_equal(program, "ftree")) {
       compatibility_program = CP_FTREE;
     }
-    else if (! strncmp(program, "LIFELINES", 9)) {
+    else if (program_equal_continued(program, "LIFELINES")) {
       compatibility_program = CP_LIFELINES;
-      if (strlen(program) > 9)
-	set_compatibility_version(program + 9);
     }
-    else if (! strncmp(program, "PAF", 3)) {
+    else if (program_equal_continued(program, "PAF")) {
       compatibility_program = CP_PAF;
-      if (strlen(program) > 3)
-	set_compatibility_version(program + 3);
+    }
+    else if (program_equal(program, "FamilyOrigins")) {
+      compatibility_program = CP_FAMORIG;
     }
   }
+}
+
+void compute_compatibility()
+{
+  /* Reinitialize compatibility */
+  int i;
+  int version = 0;
+  default_charset = "";
+  compatibility = 0;
+  for (i = 0; i < C_NR_OF_RULES; i++)
+    compat_state[i] = 0;
+
+  switch (compatibility_program) {
+    case CP_FTREE:
+      compatibility = C_FTREE;
+      break;
+    case CP_LIFELINES:
+      compatibility = C_LIFELINES;
+      default_charset = "ANSI";
+      break;
+    case CP_PAF:
+      if (compatibility_version >= 20000 && compatibility_version < 30000) {
+	compatibility = C_PAF2;
+	version = 2;
+      }
+      else if (compatibility_version >= 50000) {
+	compatibility = C_PAF5;
+	version = 5;
+      }
+      break;
+    case CP_FAMORIG:
+      compatibility = C_FAMORIG;
+      break;
+    default:
+      break;
+  }
+  if (compatibility)
+    enable_compat_msg(program_name[compatibility_program], version);
 }
 
 void set_compatibility_version(const char* version)
@@ -147,40 +213,6 @@ void set_compatibility_version(const char* version)
 			 major, minor, patch);
       compatibility_version = major * 10000 + minor * 100 + patch;
     }
-  }
-}
-
-void compute_compatibility()
-{
-  /* Reinitialize compatibility */
-  int i;
-  default_charset = "";
-  compatibility = 0;
-  for (i = 0; i < C_NR_OF_RULES; i++)
-    compat_state[i] = 0;
-
-  switch (compatibility_program) {
-    case CP_FTREE:
-      enable_compat_msg("ftree", 0);
-      compatibility = C_FTREE;
-      break;
-    case CP_LIFELINES:
-      enable_compat_msg("Lifelines", 0);
-      compatibility = C_LIFELINES;
-      default_charset = "ANSI";
-      break;
-    case CP_PAF:
-      if (compatibility_version >= 20000 && compatibility_version < 30000) {
-	enable_compat_msg("Personal Ancestral File", 2);
-	compatibility = C_PAF2;
-      }
-      else if (compatibility_version >= 50000) {
-	enable_compat_msg("Personal Ancestral File", 5);
-	compatibility = C_PAF5;
-      }
-      break;
-    default:
-      break;
   }
 }
 
