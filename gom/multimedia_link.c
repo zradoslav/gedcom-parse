@@ -46,10 +46,11 @@ Gedcom_ctxt sub_obje_start(_ELT_PARAMS_)
   else {
     struct multimedia_link *mm = SUB_MAKEFUNC(multimedia_link)();
     if (mm) {
+      int type = ctxt_type(ctxt);
       if (GEDCOM_IS_XREF_PTR(parsed_value))
 	mm->reference = GEDCOM_XREF_PTR(parsed_value);
       
-      switch (ctxt->ctxt_type) {
+      switch (type) {
 	case ELT_SUB_FAM_EVT:
 	case ELT_SUB_FAM_EVT_EVEN:
 	case ELT_SUB_INDIV_ATTR:
@@ -70,7 +71,7 @@ Gedcom_ctxt sub_obje_start(_ELT_PARAMS_)
 	case REC_SUBM:
 	  ADDFUNC2(submitter,multimedia_link)(ctxt, mm); break;
 	default:
-	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  UNEXPECTED_CONTEXT(type);
       }
       result = MAKE_GOM_CTXT(elt, multimedia_link, mm);
     }

@@ -57,22 +57,15 @@ typedef enum {
   T_LAST
 } OBJ_TYPE;
 
-/* Assumptions for context:
-    - In case of error, NULL is passed as context
-    - If not NULL, the ctxt_ptr of the context is not NULL also
-    - UNEXPECTED_CONTEXT is not treated as an error, but as a warning
-*/
-
-struct Gom_ctxt_struct {
-  int ctxt_type;
-  OBJ_TYPE obj_type;
-  void* ctxt_ptr;
-};
-
+struct Gom_ctxt_struct;
 typedef struct Gom_ctxt_struct *Gom_ctxt;
 
 Gom_ctxt make_gom_ctxt(int ctxt_type, OBJ_TYPE obj_type, void *ctxt_ptr);
-void destroy_gom_ctxt(Gom_ctxt ctxt);
+Gom_ctxt dup_gom_ctxt(Gom_ctxt ctxt, int ctxt_type);
+void* safe_ctxt_cast(Gom_ctxt ctxt, OBJ_TYPE type, const char* file, int line);
+int ctxt_type(Gom_ctxt ctxt);
+OBJ_TYPE ctxt_obj_type(Gom_ctxt ctxt);
+
 void gom_cast_error(const char* file, int line,
 		    OBJ_TYPE expected, OBJ_TYPE found);
 void gom_no_context(const char* file, int line);
@@ -90,10 +83,7 @@ int gom_write_xref_list(Gedcom_write_hndl hndl,
   make_gom_ctxt(CTXT_TYPE, T_ ## STRUCTTYPE, CTXT_PTR)
 
 #define SAFE_CTXT_CAST(STRUCTTYPE, VAL)                                       \
-  (((VAL)->obj_type == T_ ## STRUCTTYPE) ?                                    \
-   (VAL)->ctxt_ptr :                                                          \
-   (gom_cast_error(__FILE__, __LINE__, T_ ## STRUCTTYPE, (VAL)->obj_type),    \
-    (VAL)->ctxt_ptr))
+  safe_ctxt_cast(VAL, T_ ## STRUCTTYPE, __FILE__, __LINE__)
 
 #define SAFE_FREE(PTR)                                                        \
   if (PTR) {                                                                  \

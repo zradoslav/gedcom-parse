@@ -438,7 +438,7 @@ void ADDFUNC2_STRN(STRUCTTYPE,FIELD)(Gom_ctxt ctxt, const char *str)          \
 	else                                                                  \
 	  obj->FIELD = newvalue;                                              \
       }                                                                       \
-      destroy_gom_ctxt(ctxt);                                                 \
+      def_elt_end(elt, parent, self, parsed_value);                           \
     }                                                                         \
   }
 
@@ -458,7 +458,7 @@ void ADDFUNC2_STRN(STRUCTTYPE,FIELD)(Gom_ctxt ctxt, const char *str)          \
 	else                                                                  \
 	  obj->FIELD = newvalue;                                              \
       }                                                                       \
-      destroy_gom_ctxt(ctxt);                                                 \
+      def_rec_end(rec, self, parsed_value);                                   \
     }                                                                         \
   }
 

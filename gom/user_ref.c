@@ -51,7 +51,8 @@ Gedcom_ctxt sub_user_ref_start(_ELT_PARAMS_)
 	free(refn);
       }
       else {
-	switch (ctxt->ctxt_type) {
+	int type = ctxt_type(ctxt);
+	switch (type) {
 	  case REC_FAM:
 	    ADDFUNC2(family,user_ref_number)(ctxt, refn); break;
 	  case REC_INDI:
@@ -65,7 +66,7 @@ Gedcom_ctxt sub_user_ref_start(_ELT_PARAMS_)
 	  case REC_SOUR:
 	    ADDFUNC2(source,user_ref_number)(ctxt, refn); break;
 	  default:
-	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	    UNEXPECTED_CONTEXT(type);
 	}
 	
 	result = MAKE_GOM_CTXT(elt, user_ref_number, refn);
@@ -95,8 +96,9 @@ Gedcom_ctxt sub_user_rin_start(_ELT_PARAMS_)
     NO_CONTEXT;
   else {
     char *str = GEDCOM_STRING(parsed_value);
+    int type = ctxt_type(ctxt);
 
-    switch (ctxt->ctxt_type) {
+    switch (type) {
       case REC_FAM:
 	ADDFUNC2_STR(family,record_id)(ctxt, str); break;
       case REC_INDI:
@@ -110,9 +112,9 @@ Gedcom_ctxt sub_user_rin_start(_ELT_PARAMS_)
       case REC_SOUR:
 	ADDFUNC2_STR(source,record_id)(ctxt, str); break;
       default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	UNEXPECTED_CONTEXT(type);
     }
-    result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+    result = dup_gom_ctxt(ctxt, elt);
   }
   return (Gedcom_ctxt)result;
 }

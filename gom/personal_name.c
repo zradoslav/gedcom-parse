@@ -47,11 +47,12 @@ Gedcom_ctxt sub_name_start(_ELT_PARAMS_)
 	free(name);
       }
       else {
-	switch (ctxt->ctxt_type) {
+	int type = ctxt_type(ctxt);
+	switch (type) {
 	  case REC_INDI:
 	    ADDFUNC2(individual,personal_name)(ctxt, name); break;
 	  default:
-	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	    UNEXPECTED_CONTEXT(type);
 	}
 	result = MAKE_GOM_CTXT(elt, personal_name, name);
       }

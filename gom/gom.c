@@ -174,6 +174,26 @@ void gom_default_callback (Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,
                  level, tag, raw_value);
 }
 
+void gom_mem_error(const char *filename, int line)
+{
+  gedcom_error(_("Could not allocate memory at %s, %d"), filename, line);
+}
+
+void gom_xref_already_in_use(const char *xrefstr)
+{
+  gedcom_error(_("Cross-reference key '%s' is already in use"), xrefstr);
+}
+
+void gom_move_error(const char* type)
+{
+  gedcom_warning(_("Could not move struct of type %s"), type);
+}
+
+void gom_find_error(const char* type)
+{
+  gedcom_warning(_("Could not find struct of type %s in chain"), type);
+}
+
 void set_xref_type(struct xref_value* xr, const char *str)
 {
   if (!strcasecmp(str, "FAM"))

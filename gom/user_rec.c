@@ -181,7 +181,7 @@ Gedcom_ctxt user_elt_start(_ELT_PARAMS_)
 	data->xref_value = GEDCOM_XREF_PTR(parsed_value);
 
       if (! err) {
-	switch (ctxt->obj_type) {
+	switch (ctxt_obj_type(ctxt)) {
 	  case T_header:
 	    ADDFUNC2(header,user_data)(ctxt, data); break;
 	  case T_submission:
@@ -231,9 +231,9 @@ Gedcom_ctxt user_elt_start(_ELT_PARAMS_)
 	  case T_source_description:
 	    ADDFUNC2(source_description,user_data)(ctxt, data); break;
 	  default:
-	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	    UNEXPECTED_CONTEXT(ctxt_type(ctxt));
 	}
-	result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+	result = dup_gom_ctxt(ctxt, elt);
       }
     }
   }

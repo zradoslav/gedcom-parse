@@ -48,7 +48,8 @@ Gedcom_ctxt sub_chan_start(_ELT_PARAMS_)
   else {
     struct change_date *chan = SUB_MAKEFUNC(change_date)();
     if (chan) {
-      switch (ctxt->ctxt_type) {
+      int type = ctxt_type(ctxt);
+      switch (type) {
 	case REC_FAM:
 	  ADDFUNC2_NOLIST(family,change_date)(ctxt, chan); break;
 	case REC_INDI:
@@ -64,7 +65,7 @@ Gedcom_ctxt sub_chan_start(_ELT_PARAMS_)
 	case REC_SUBM:
 	  ADDFUNC2_NOLIST(submitter,change_date)(ctxt, chan); break;
 	default:
-	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  UNEXPECTED_CONTEXT(type);
       }
       result = MAKE_GOM_CTXT(elt, change_date, chan);
     }

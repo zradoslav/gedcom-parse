@@ -47,11 +47,12 @@ Gedcom_ctxt sub_sour_caln_start(_ELT_PARAMS_)
 	free(desc);
       }
       else {
-	switch (ctxt->ctxt_type) {
+	int type = ctxt_type(ctxt);
+	switch (type) {
 	  case ELT_SUB_REPO:
 	    ADDFUNC2(source,source_description)(ctxt, desc); break;
 	  default:
-	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	    UNEXPECTED_CONTEXT(type);
 	}
 	result = MAKE_GOM_CTXT(elt, source_description, desc);
       }

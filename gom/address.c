@@ -43,7 +43,8 @@ Gedcom_ctxt sub_addr_start(_ELT_PARAMS_)
   else {
     struct address *addr = SUB_MAKEFUNC(address)();
     if (addr) {
-      switch (ctxt->ctxt_type) {
+      int type = ctxt_type(ctxt);
+      switch (type) {
 	case ELT_HEAD_SOUR_CORP:
 	  ADDFUNC2_NOLIST(header,address)(ctxt, addr); break;
 	case ELT_SUB_FAM_EVT:
@@ -60,7 +61,7 @@ Gedcom_ctxt sub_addr_start(_ELT_PARAMS_)
 	case REC_SUBM:
 	  ADDFUNC2_NOLIST(submitter,address)(ctxt, addr); break;
 	default:
-	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  UNEXPECTED_CONTEXT(type);
       }
       result = MAKE_GOM_CTXT(elt, address, addr);
     }
@@ -76,7 +77,7 @@ Gedcom_ctxt sub_addr_cont_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else {
-    result = make_gom_ctxt(elt, ctxt->ctxt_type, ctxt->ctxt_ptr);
+    result = dup_gom_ctxt(ctxt, elt);
   }
   return (Gedcom_ctxt)result;
 }
@@ -104,7 +105,8 @@ Gedcom_ctxt sub_phon_start(_ELT_PARAMS_)
     NO_CONTEXT;
   else {
     char *str = GEDCOM_STRING(parsed_value);
-    switch (ctxt->ctxt_type) {
+    int type = ctxt_type(ctxt);
+    switch (type) {
       case ELT_HEAD_SOUR_CORP:
 	header_add_phone(ctxt, str); break;
       case ELT_SUB_FAM_EVT:
@@ -120,9 +122,9 @@ Gedcom_ctxt sub_phon_start(_ELT_PARAMS_)
       case REC_SUBM:
 	submitter_add_phone(ctxt, str); break;
       default:
-	UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	UNEXPECTED_CONTEXT(type);
     }
-    result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+    result = dup_gom_ctxt(ctxt, elt);
   }
   return (Gedcom_ctxt)result;
 }

@@ -61,7 +61,7 @@ Gedcom_ctxt obje_blob_cont_start(_ELT_PARAMS_)
   if (! ctxt)
     NO_CONTEXT;
   else
-    result = make_gom_ctxt(elt, ctxt->obj_type, ctxt->ctxt_ptr);
+    result = dup_gom_ctxt(ctxt, elt);
   
   return (Gedcom_ctxt)result;
 }

@@ -31,7 +31,8 @@ libgedcom_gom_la_SOURCES = gom.c \
 			   source_event.c \
 			   source_description.c \
 		  	   user_rec.c \
-			   gom_modify.c
+			   gom_modify.c \
+			   gom_internal.c
 noinst_HEADERS = header.h \
 		 submission.h \
 		 submitter.h \

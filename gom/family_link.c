@@ -41,13 +41,14 @@ Gedcom_ctxt sub_fam_link_start(_ELT_PARAMS_)
   else {
     struct family_link *link = SUB_MAKEFUNC(family_link)();
     if (link) {
+      int type = ctxt_type(ctxt);
       link->family = GEDCOM_XREF_PTR(parsed_value);
       
-      switch (ctxt->ctxt_type) {
+      switch (type) {
 	case REC_INDI:
 	  ADDFUNC2(individual,family_link)(ctxt, elt, link); break;
 	default:
-	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  UNEXPECTED_CONTEXT(type);
       }
       result = MAKE_GOM_CTXT(elt, family_link, link);
     }

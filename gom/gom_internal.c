@@ -37,6 +37,24 @@ const char* ctxt_names[] =
   "association", "source_event", "source_description"
 };
 
+/* Assumptions for context:
+    - In case of error, NULL is passed as context
+    - If not NULL, the ctxt_ptr of the context is not NULL also
+    - UNEXPECTED_CONTEXT is not treated as an error, but as a warning
+
+   The context chain keeps contexts until the end of the record, so that
+   elements out of context can be handled.
+*/
+
+struct Gom_ctxt_struct {
+  int ctxt_type;
+  OBJ_TYPE obj_type;
+  void* ctxt_ptr;
+  struct Gom_ctxt_struct* next;
+};
+
+struct Gom_ctxt_struct* ctxt_chain = NULL;
+
 Gom_ctxt make_gom_ctxt(int ctxt_type, OBJ_TYPE obj_type, void *ctxt_ptr)
 {
   Gom_ctxt ctxt   = (Gom_ctxt)malloc(sizeof(struct Gom_ctxt_struct));
@@ -46,8 +64,33 @@ Gom_ctxt make_gom_ctxt(int ctxt_type, OBJ_TYPE obj_type, void *ctxt_ptr)
     ctxt->ctxt_type = ctxt_type;
     ctxt->obj_type  = obj_type;
     ctxt->ctxt_ptr  = ctxt_ptr;
+    ctxt->next      = ctxt_chain;
+    ctxt_chain      = ctxt;
   }
   return ctxt;
+}
+
+Gom_ctxt dup_gom_ctxt(Gom_ctxt ctxt, int ctxt_type)
+{
+  return make_gom_ctxt(ctxt_type, ctxt->obj_type, ctxt->ctxt_ptr);
+}
+
+int ctxt_type(Gom_ctxt ctxt)
+{
+  return ctxt->ctxt_type;
+}
+
+OBJ_TYPE ctxt_obj_type(Gom_ctxt ctxt)
+{
+  return ctxt->obj_type;
+}
+
+void* safe_ctxt_cast(Gom_ctxt ctxt, OBJ_TYPE type, const char* file, int line)
+{
+  if (ctxt->obj_type != type) {
+    gom_cast_error(file, line, type, ctxt->obj_type);
+  }
+  return ctxt->ctxt_ptr;
 }
 
 void NULL_DESTROY(void* anything UNUSED)
@@ -74,16 +117,6 @@ void gom_cast_error(const char* file, int line,
   abort();
 }
 
-void gom_mem_error(const char *filename, int line)
-{
-  gedcom_error(_("Could not allocate memory at %s, %d"), filename, line);
-}
-
-void gom_xref_already_in_use(const char *xrefstr)
-{
-  gedcom_error(_("Cross-reference key '%s' is already in use"), xrefstr);
-}
-
 void gom_unexpected_context(const char* file, int line, OBJ_TYPE found)
 {
   const char* found_name    = "<out-of-bounds>";
@@ -99,27 +132,18 @@ void gom_no_context(const char* file, int line)
 		 file, line);
 }
 
-void gom_move_error(const char* type)
-{
-  gedcom_warning(_("Could not move struct of type %s"), type);
-}
-
-void gom_find_error(const char* type)
-{
-  gedcom_warning(_("Could not find struct of type %s in chain"), type);
-}
-
-void def_rec_end(Gedcom_rec rec UNUSED, Gedcom_ctxt self,
+void def_rec_end(Gedcom_rec rec UNUSED, Gedcom_ctxt self UNUSED,
 		 Gedcom_val parsed_value UNUSED)
 {
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-  destroy_gom_ctxt(ctxt);
+  Gom_ctxt ctxt;
+  while (ctxt_chain) {
+    ctxt = ctxt_chain;
+    ctxt_chain = ctxt->next;
+    destroy_gom_ctxt(ctxt);
+  }
 }
 
-/* TODO: do this in a way so that elements out of context can be handled */
 void def_elt_end(Gedcom_elt elt UNUSED, Gedcom_ctxt parent UNUSED,
-		 Gedcom_ctxt self, Gedcom_val parsed_value UNUSED)
+		 Gedcom_ctxt self UNUSED, Gedcom_val parsed_value UNUSED)
 {
-  Gom_ctxt ctxt = (Gom_ctxt)self;
-  destroy_gom_ctxt(ctxt);
 }

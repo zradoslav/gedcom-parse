@@ -50,13 +50,14 @@ Gedcom_ctxt sub_lds_event_start(_ELT_PARAMS_)
 	free(lds_evt);
       }
       else {
-	switch (ctxt->ctxt_type) {
+	int type = ctxt_type(ctxt);
+	switch (type) {
 	  case REC_FAM:
 	    ADDFUNC2(family,lds_event)(ctxt, lds_evt); break;
 	  case REC_INDI:
 	    ADDFUNC2(individual,lds_event)(ctxt, lds_evt); break;
 	  default:
-	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	    UNEXPECTED_CONTEXT(type);
 	}
 	result = MAKE_GOM_CTXT(elt, lds_event, lds_evt);
       }

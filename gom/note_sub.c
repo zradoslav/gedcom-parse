@@ -54,10 +54,11 @@ Gedcom_ctxt sub_note_start(_ELT_PARAMS_)
   else {
     struct note_sub *note = SUB_MAKEFUNC(note_sub)();
     if (note) {
+      int type = ctxt_type(ctxt);
       if (GEDCOM_IS_XREF_PTR(parsed_value))
 	note->reference = GEDCOM_XREF_PTR(parsed_value);
 
-      switch (ctxt->ctxt_type) {
+      switch (type) {
 	case ELT_SUB_PLAC:
 	  ADDFUNC2(place,note_sub)(ctxt, note); break;
 	case ELT_SUB_FAM_EVT:
@@ -101,7 +102,7 @@ Gedcom_ctxt sub_note_start(_ELT_PARAMS_)
 	case REC_SOUR:
 	  ADDFUNC2(source,note_sub)(ctxt, note); break;
 	default:
-	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  UNEXPECTED_CONTEXT(type);
       }
       result = MAKE_GOM_CTXT(elt, note_sub, note);
     }

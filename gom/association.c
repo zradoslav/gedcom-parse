@@ -42,13 +42,14 @@ Gedcom_ctxt sub_assoc_start(_ELT_PARAMS_)
   else {
     struct association *assoc = SUB_MAKEFUNC(association)();
     if (assoc) {
+      int type = ctxt_type(ctxt);
       assoc->to = GEDCOM_XREF_PTR(parsed_value);
-      
-      switch (ctxt->ctxt_type) {
+
+      switch (type) {
 	case REC_INDI:
 	  ADDFUNC2(individual,association)(ctxt, assoc);
 	default:
-	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  UNEXPECTED_CONTEXT(type);
       }
       result = MAKE_GOM_CTXT(elt, association, assoc);
     }

@@ -50,7 +50,8 @@ Gedcom_ctxt sub_place_start(_ELT_PARAMS_)
 	free(place);
       }
       else {
-	switch (ctxt->ctxt_type) {
+	int type = ctxt_type(ctxt);
+	switch (type) {
 	  case ELT_SUB_FAM_EVT:
 	  case ELT_SUB_FAM_EVT_EVEN:
 	  case ELT_SUB_INDIV_ATTR:
@@ -61,7 +62,7 @@ Gedcom_ctxt sub_place_start(_ELT_PARAMS_)
 	  case ELT_SUB_INDIV_EVEN:
 	    ADDFUNC2_NOLIST(event,place)(ctxt, place); break;
 	  default:
-	    UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	    UNEXPECTED_CONTEXT(type);
 	}
 	result = MAKE_GOM_CTXT(elt, place, place);
       }

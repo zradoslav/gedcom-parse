@@ -65,13 +65,14 @@ Gedcom_ctxt sub_evt_start(_ELT_PARAMS_)
 	}
 
 	if (! err) {
-	  switch (ctxt->ctxt_type) {
+	  int type = ctxt_type(ctxt);
+	  switch (type) {
 	    case REC_FAM:
 	      ADDFUNC2(family,event)(ctxt, evt); break;
 	    case REC_INDI:
 	      ADDFUNC2(individual,event)(ctxt, evt); break;
 	    default:
-	      UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	      UNEXPECTED_CONTEXT(type);
 	  }
 	  result = MAKE_GOM_CTXT(elt, event, evt);
 	}
@@ -111,11 +112,12 @@ Gedcom_ctxt sub_attr_start(_ELT_PARAMS_)
 	}
 
 	if (! err) {
-	  switch (ctxt->ctxt_type) {
+	  int type = ctxt_type(ctxt);
+	  switch (type) {
 	    case REC_INDI:
 	      ADDFUNC2_TOVAR(individual,event,attribute)(ctxt, evt); break;
 	    default:
-	      UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	      UNEXPECTED_CONTEXT(type);
 	  }
 	  result = MAKE_GOM_CTXT(elt, event, evt);
 	}
@@ -160,7 +162,8 @@ Gedcom_ctxt sub_fam_evt_age_start(_ELT_PARAMS_)
     if (evt) {
       int err = 0;
       struct age_value age = GEDCOM_AGE(parsed_value);
-      switch (ctxt->ctxt_type) {
+      int type = ctxt_type(ctxt);
+      switch (type) {
 	case ELT_SUB_FAM_EVT_HUSB:
 	  evt->husband_age = gedcom_new_age_value(&age);
 	  if (! evt->husband_age) {
@@ -176,7 +179,7 @@ Gedcom_ctxt sub_fam_evt_age_start(_ELT_PARAMS_)
 	  }
 	  break;
 	default:
-	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  UNEXPECTED_CONTEXT(type);
       }
       if (! err)
 	result = MAKE_GOM_CTXT(elt, event, evt);

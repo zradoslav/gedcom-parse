@@ -49,10 +49,11 @@ Gedcom_ctxt sub_citation_start(_ELT_PARAMS_)
   else {
     struct source_citation *cit = SUB_MAKEFUNC(source_citation)();
     if (cit) {
+      int type = ctxt_type(ctxt);
       if (GEDCOM_IS_XREF_PTR(parsed_value))
 	cit->reference = GEDCOM_XREF_PTR(parsed_value);
 
-      switch (ctxt->ctxt_type) {
+      switch (type) {
 	case ELT_SUB_PLAC:
 	  ADDFUNC2(place,source_citation)(ctxt, cit); break;
 	case ELT_SUB_FAM_EVT:
@@ -81,7 +82,7 @@ Gedcom_ctxt sub_citation_start(_ELT_PARAMS_)
 	case REC_NOTE:
 	  ADDFUNC2(note,source_citation)(ctxt, cit); break;
 	default:
-	  UNEXPECTED_CONTEXT(ctxt->ctxt_type);
+	  UNEXPECTED_CONTEXT(type);
       }
       result = MAKE_GOM_CTXT(elt, source_citation, cit);
     }
