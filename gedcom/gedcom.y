@@ -2785,7 +2785,8 @@ line_item   : anychar  { size_t i;
                        }
             | ESCAPE   { CLEAR_BUFFER(line_item_buf);
 	                 line_item_buf_ptr = line_item_buf;
-			 /* For now, ignore escapes */
+			 for (i=0; i < strlen($1); i++)
+			   *line_item_buf_ptr++ = $1[i];
 			 $$ = line_item_buf;
 	               }
             | line_item anychar
@@ -2799,7 +2800,8 @@ line_item   : anychar  { size_t i;
 		    $$ = line_item_buf;
 		  }
             | line_item ESCAPE
-                  { /* For now, ignore escapes */
+                  { for (i=0; i < strlen($2); i++)
+		      *line_item_buf_ptr++ = $2[i];
 		    $$ = line_item_buf;
 		  }
             ;
