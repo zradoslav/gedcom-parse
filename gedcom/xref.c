@@ -126,6 +126,17 @@ int check_xref_table()
   return result;
 }
 
+struct xref_value *gedcom_get_by_xref(char *key)
+{
+  hnode_t *node = hash_lookup(xrefs, key);
+  if (node) {
+    struct xref_node *xr = (struct xref_node *)hnode_get(node);
+    return &(xr->xref);
+  }
+  else
+    return NULL;
+}
+
 struct xref_value *gedcom_parse_xref(char *raw_value,
 				     Xref_ctxt ctxt, Xref_type xref_type)
 {
@@ -153,9 +164,11 @@ struct xref_value *gedcom_parse_xref(char *raw_value,
     xr->used_line = line_no;
   }
   
-  if ((ctxt == XREF_DEFINED && xr->defined_type != xref_type)
+  if ((ctxt == XREF_DEFINED && xr->defined_type != xref_type &&
+       xr->defined_type != XREF_ANY)
       || (ctxt == XREF_USED &&
-	  (xr->defined_type != XREF_NONE && xr->defined_type != xref_type))) {
+	  (xr->defined_type != XREF_NONE && xr->defined_type != xref_type &&
+	   xr->defined_type != XREF_ANY))) {
     gedcom_error(_("Cross-reference %s previously defined as pointer to %s, "
 		   "on line %d"),
 		 xr->xref.string, xref_type_str[xr->defined_type],
