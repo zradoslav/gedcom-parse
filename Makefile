@@ -34,7 +34,7 @@ gedcom.tab.c gedcom.tab.h:	gedcom.y gedcom.h
 	$(YACC) $(YFLAGS) --name-prefix=gedcom_ gedcom.y
 
 clean:
-	rm -f core gedcom_parse test_* *.o lex.gedcom_* \
+	rm -f core gedcom_parse lexer_* *.o lex.gedcom_* \
         gedcom.tab.* gedcom.output
 	cd ansel && $(MAKE) clean
 
