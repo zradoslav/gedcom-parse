@@ -166,6 +166,7 @@ Valid French revolution date:
 String: '@#DFRENCH R@ 16 PLUV 7'
 ERROR: Error: Cross-reference key '@FAM1@' is already in use
 ERROR: Error: Cross-reference key '@SUBMITTER@' is already in use
+WARNING: Warning: Could not move struct of type xref_list
 Intermediate output:
 === HEADER ===
 Source:

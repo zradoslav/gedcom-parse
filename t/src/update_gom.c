@@ -300,6 +300,18 @@ int test_record_add_delete_functions()
   xrl = gom_add_xref(&(fam1->children), ind4->xrefstr);
   if (!xrl) return 124;
 
+  result = gom_move_xref(MOVE_UP, &(fam1->children), ind4->xrefstr);
+  if (result != 0) return 127;
+
+  result = gom_move_xref(MOVE_UP, &(fam1->children), ind4->xrefstr);
+  if (result != 0) return 128;
+
+  result = gom_move_xref(MOVE_UP, &(fam1->children), ind4->xrefstr);
+  if (result != 0) return 129;
+
+  result = gom_move_xref(MOVE_DOWN, &(fam1->children), ind4->xrefstr);
+  if (result != 0) return 130;
+
   result = gom_remove_xref(&(fam1->children), ind3->xrefstr);
   if (result != 0) return 125;
 
