@@ -1,10 +1,10 @@
 
 === Parsing file compat-ftree.ged
 Header start
-WARNING: Warning on line 2: Enabling compatibility with 'ftree'
 Source is ftree (ctxt is 1001, parent is 1)
 == 2 VERS (391) 1.5 (ctxt is 1001, conversion failures: 0)
 == 2 NAME (342) Ftree for Linux (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 4: Enabling compatibility with 'ftree'
 Source context 1001 in parent 1
 == 1 DATE (306) 28 Aug 2000 (ctxt is 1, conversion failures: 0)
 == 2 TIME (387) 23:38 (ctxt is 1, conversion failures: 0)
@@ -1061,10 +1061,10 @@ Rec SOUR start, xref is @S0001@
 
 === Parsing file compat-ftree.ged
 Header start
-WARNING: Warning on line 2: Enabling compatibility with 'ftree'
 Source is ftree (ctxt is 1001, parent is 1)
 == 2 VERS (391) 1.5 (ctxt is 1001, conversion failures: 0)
 == 2 NAME (342) Ftree for Linux (ctxt is 1001, conversion failures: 0)
+WARNING: Warning on line 4: Enabling compatibility with 'ftree'
 Source context 1001 in parent 1
 == 1 DATE (306) 28 Aug 2000 (ctxt is 1, conversion failures: 0)
 == 2 TIME (387) 23:38 (ctxt is 1, conversion failures: 0)

@@ -1,8 +1,8 @@
 
 === Parsing file compat-lifelines.ged
 Header start
-WARNING: Warning on line 2: Enabling compatibility with 'Lifelines'
 Source is LIFELINES 3.0.2 (ctxt is 1001, parent is 1)
+WARNING: Warning on line 2: Enabling compatibility with 'Lifelines'
 Source context 1001 in parent 1
 == 1 DEST (310) ANY (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 1 JUL 1997 (ctxt is 1, conversion failures: 0)
@@ -100,8 +100,8 @@ Contents of the date_value:
 
 === Parsing file compat-lifelines.ged
 Header start
-WARNING: Warning on line 2: Enabling compatibility with 'Lifelines'
 Source is LIFELINES 3.0.2 (ctxt is 1001, parent is 1)
+WARNING: Warning on line 2: Enabling compatibility with 'Lifelines'
 Source context 1001 in parent 1
 == 1 DEST (310) ANY (ctxt is 1, conversion failures: 0)
 == 1 DATE (306) 1 JUL 1997 (ctxt is 1, conversion failures: 0)
