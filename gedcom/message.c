@@ -23,17 +23,11 @@
 
 #include "gedcom_internal.h"
 #include "gedcom.h"
+#include "buffer.h"
 
-#if HAVE_VSNPRINTF
-#define INITIAL_BUF_SIZE 256
-#else
-/* Risk on overflowing buffer, so make size big */
-#define INITIAL_BUF_SIZE 65536
-#endif
+void cleanup_mess_buffer();
 
-char *mess_buffer = NULL;
-size_t bufsize;
-
+struct safe_buffer mess_buffer = { NULL, 0, cleanup_mess_buffer };
 Gedcom_msg_handler msg_handler = NULL;
 
 void gedcom_set_message_handler(Gedcom_msg_handler func)
@@ -41,81 +35,9 @@ void gedcom_set_message_handler(Gedcom_msg_handler func)
   msg_handler = func;
 }
 
-void reset_mess_buffer()
-{
-  if (mess_buffer != NULL)
-    mess_buffer[0] = '\0';
-}
-
 void cleanup_mess_buffer()
 {
-  if (mess_buffer)
-    free(mess_buffer);
-}
-
-void init_mess_buffer()
-{
-  if (mess_buffer == NULL) {
-    mess_buffer = (char *)malloc(INITIAL_BUF_SIZE);
-    if (mess_buffer) {
-      mess_buffer[0] = '\0';
-      bufsize = INITIAL_BUF_SIZE;
-      if (atexit(cleanup_mess_buffer) != 0)
-	gedcom_warning(_("Could not register buffer cleanup function"));
-    }
-    else {
-      fprintf(stderr, _("Could not allocate memory at %s, %d"),
-	      __FILE__, __LINE__);
-      fprintf(stderr, "\n");
-    }
-  }
-}
-
-int safe_buf_vappend(const char *s, va_list ap)
-{
-  int res = 0;
-  int len;
-  init_mess_buffer();
-  if (mess_buffer) {
-    len = strlen(mess_buffer);
-    while (1) {
-      char *buf_ptr = mess_buffer + len;
-      int rest_size = bufsize - len;
-      
-#if HAVE_VSNPRINTF
-      res = vsnprintf(buf_ptr, rest_size, s, ap);
-      
-      if (res > -1 && res < rest_size) {
-	break;
-      }
-      else  {
-	bufsize *= 2;
-	mess_buffer = realloc(mess_buffer, bufsize);
-      }
-#else /* not HAVE_VSNPRINTF */
-#  if HAVE_VSPRINTF
-#     warning "Using VSPRINTF. Buffer overflow could happen!"
-      vsprintf(buf_ptr, s, ap);
-      break;
-#  else /* not HAVE_VPRINTF */
-#     error "Your standard library has neither vsnprintf nor vsprintf defined. One of them is required!"
-#  endif
-#endif
-    }
-  }
-  return res;
-}
-
-int safe_buf_append(const char *s, ...)
-{
-  int res;
-  va_list ap;
-  
-  va_start(ap, s);
-  res = safe_buf_vappend(s, ap);
-  va_end(ap);
-  
-  return res;
+  cleanup_buffer(&mess_buffer);
 }
 
 int gedcom_message(const char* s, ...)
@@ -124,11 +46,11 @@ int gedcom_message(const char* s, ...)
   va_list ap;
 
   va_start(ap, s);
-  reset_mess_buffer();
-  res = safe_buf_vappend(s, ap);
+  reset_buffer(&mess_buffer);
+  res = safe_buf_vappend(&mess_buffer, s, ap);
   va_end(ap);
   if (msg_handler)
-    (*msg_handler)(MESSAGE, mess_buffer);
+    (*msg_handler)(MESSAGE, get_buf_string(&mess_buffer));
   return res;
 }
 
@@ -137,16 +59,16 @@ int gedcom_warning(const char* s, ...)
   int res;
   va_list ap;
 
-  reset_mess_buffer();
+  reset_buffer(&mess_buffer);
   if (line_no != 0) 
-    safe_buf_append(_("Warning on line %d: "), line_no);
+    safe_buf_append(&mess_buffer, _("Warning on line %d: "), line_no);
   else
-    safe_buf_append(_("Warning: "));
+    safe_buf_append(&mess_buffer, _("Warning: "));
   va_start(ap, s);
-  res = safe_buf_vappend(s, ap);
+  res = safe_buf_vappend(&mess_buffer, s, ap);
   va_end(ap);
   if (msg_handler)
-    (*msg_handler)(WARNING, mess_buffer);
+    (*msg_handler)(WARNING, get_buf_string(&mess_buffer));
   
   return res;
 }
@@ -156,16 +78,16 @@ int gedcom_error(const char* s, ...)
   int res;
   va_list ap;
 
-  reset_mess_buffer();
+  reset_buffer(&mess_buffer);
   if (line_no != 0)
-    safe_buf_append(_("Error on line %d: "), line_no);
+    safe_buf_append(&mess_buffer, _("Error on line %d: "), line_no);
   else
-    safe_buf_append(_("Error: "));
+    safe_buf_append(&mess_buffer, _("Error: "));
   va_start(ap, s);
-  res = safe_buf_vappend(s, ap);
+  res = safe_buf_vappend(&mess_buffer, s, ap);
   va_end(ap);
   if (msg_handler)
-    (*msg_handler)(ERROR, mess_buffer);
+    (*msg_handler)(ERROR, get_buf_string(&mess_buffer));
   
   return res;
 }
