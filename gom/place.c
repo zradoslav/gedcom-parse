@@ -72,7 +72,7 @@ Gedcom_ctxt sub_place_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(place)
-DEFINE_SUB_ADDFUNC(place)
+DEFINE_SUB_SETFUNC(place)
 DEFINE_SUB_DELETEFUNC(place)
      
 DEFINE_STRING_CB(place, sub_place_form_start, place_hierarchy)

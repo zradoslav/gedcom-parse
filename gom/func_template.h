@@ -29,8 +29,8 @@
 #define DESTROYFUNC(STRUCTTYPE)  destroy_ ## STRUCTTYPE ## _record
 #define GETXREFFUNC(STRUCTTYPE)  gom_get_ ## STRUCTTYPE ## _by_xref
 #define CLEANFUNC(STRUCTTYPE)    STRUCTTYPE ## _cleanup
-#define ADDFUNC(STRUCTTYPE)      gom_add_ ## STRUCTTYPE
-#define SUB_ADDFUNC(STRUCTTYPE)  gom_add_ ## STRUCTTYPE
+#define ADDFUNC(STRUCTTYPE)      gom_new_ ## STRUCTTYPE
+#define SUB_SETFUNC(STRUCTTYPE)  gom_set_new_ ## STRUCTTYPE
 #define UNREFALLFUNC(STRUCTTYPE) STRUCTTYPE ## _unref_all
 #define DELETEFUNC(STRUCTTYPE)   gom_delete_ ## STRUCTTYPE
 #define SUB_DELETEFUNC(STRUCTTYPE) gom_delete_ ## STRUCTTYPE
@@ -188,8 +188,8 @@
     return obj;                                                               \
   }
 
-#define DEFINE_SUB_ADDFUNC(STRUCTTYPE)                                        \
-  struct STRUCTTYPE *SUB_ADDFUNC(STRUCTTYPE)(struct STRUCTTYPE** addto)       \
+#define DEFINE_SUB_SETFUNC(STRUCTTYPE)                                        \
+  struct STRUCTTYPE *SUB_SETFUNC(STRUCTTYPE)(struct STRUCTTYPE** addto)       \
   {                                                                           \
     struct STRUCTTYPE *obj = NULL;                                            \
     if (addto && ! *addto) {                                                  \

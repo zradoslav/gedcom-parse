@@ -74,7 +74,7 @@ Gedcom_ctxt sub_chan_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(change_date)
-DEFINE_SUB_ADDFUNC(change_date)
+DEFINE_SUB_SETFUNC(change_date)
 DEFINE_SUB_DELETEFUNC(change_date)
 
 DEFINE_DATE_CB(change_date, sub_chan_date_start, date)
@@ -145,7 +145,7 @@ int gom_update_timestamp(struct change_date** chan, time_t t)
 {
   int result = 1;
   if (chan) {
-    if (! *chan) gom_add_change_date(chan);
+    if (! *chan) gom_set_new_change_date(chan);
     if (*chan) {
       struct tm *tm_ptr = localtime(&t);
       result = 0;

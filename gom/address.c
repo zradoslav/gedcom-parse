@@ -82,7 +82,7 @@ Gedcom_ctxt sub_addr_cont_start(_ELT_PARAMS_)
 }
 
 DEFINE_SUB_MAKEFUNC(address)
-DEFINE_SUB_ADDFUNC(address)
+DEFINE_SUB_SETFUNC(address)
 DEFINE_SUB_DELETEFUNC(address)
 
 DEFINE_STRING_END_CB(address, sub_addr_end, full_label)
