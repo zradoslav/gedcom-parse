@@ -66,7 +66,32 @@ typedef enum _ELT {
   ELT_HEAD_PLAC,
   ELT_HEAD_PLAC_FORM,
   ELT_HEAD_NOTE,
+  
+  ELT_FAM_HUSB,
+  ELT_FAM_WIFE,
+  ELT_FAM_CHIL,
+  ELT_FAM_NCHI,
+  ELT_FAM_SUBM,
+  
+  ELT_INDI_RESN,
+  ELT_INDI_SEX,
+  ELT_INDI_SUBM,
+  ELT_INDI_ALIA,
+  ELT_INDI_ANCI,
+  ELT_INDI_DESI,
+  ELT_INDI_RFN,
+  ELT_INDI_AFN,
+  
+  ELT_OBJE_FORM,
+  ELT_OBJE_TITL,
+  ELT_OBJE_BLOB,
+  ELT_OBJE_BLOB_CONT,
+  ELT_OBJE_OBJE,
+  
+  ELT_REPO_NAME,
+  
   ELT_USER,
+  
   NR_OF_ELTS     /* Just a final value to be used in array boundaries */
 } Gedcom_elt;
 
