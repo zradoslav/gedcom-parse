@@ -221,6 +221,39 @@ ACTION_BEFORE_REGEXPS
 #define LEX_SECTION 3  /* include only a specific part of the following file */
 #include "gedcom_lex_common.c"
 
+int gedcom_check_token(const char* str, ParseState state, int check_token)
+{
+  int result = 0;
+  int token;
+  YY_BUFFER_STATE buffer;
+
+  yy_delete_buffer(YY_CURRENT_BUFFER);
+  buffer = yy_scan_string(str);
+
+  if (state == STATE_NORMAL)
+    BEGIN(NORMAL);
+  else if (state == STATE_INITIAL)
+    BEGIN(INITIAL);
+  else if (state == STATE_EXPECT_TAG)
+    BEGIN(EXPECT_TAG);
+
+  /* Input is UTF-8 coming from the application, so bypass iconv */
+  dummy_conv = 1;
+  token = yylex();
+  if (token != check_token)
+    result = 1;
+  
+  if (token != 0) {
+    token = yylex();
+    if (token != 0)
+      result = 1;
+  }
+  dummy_conv = 0;
+  
+  yy_delete_buffer(buffer);
+  return result;
+}
+
 #ifdef LEXER_TEST
 int gedcom_lex()
 {
