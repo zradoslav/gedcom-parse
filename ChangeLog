@@ -1,3 +1,26 @@
+2003-01-04  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/compat.c, gedcom/gedcom.y: Some compatibility with PAF added.
+
+	* gedcom/multilex.c (determine_encoding): Recognize the UTF-8 byte
+	order mark.
+
+	* gom/change_date.c: Added functions to update timestamps in any
+	record.
+
+	* gedcom/compat.*, gedcom.y, gedcom_lex_common.c: Better separation
+	of compatibility handling.
+
+	* t/compat-*: Tests for compatibility handling.
+
+2003-01-03  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* bin/gedcom-check.c: Added program to check validity of a GEDCOM file.
+
+2003-01-02  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gom/*: Added functions to add and remove records.
+
 2002-12-30  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* release 0.20.0

@@ -1,5 +1,17 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
+release 0.21.0 (NOT RELEASED YET):
+
+ - New features (see documentation):
+     - C object model interface:
+        - functions to add and remove records
+        - functions to update timestamps in records
+     - programs:
+        - gedcom-check (checks standards compliancy of GEDCOM files)
+
+ - Some compatibility with PAF (Personal Ancestral File) is added (thanks
+   Hans Fugal).
+
 release 0.20.0 (30 December 2002):
 
  - The release numbering scheme is changed to a three-part version number.
