@@ -50,7 +50,7 @@ gedcom.tab.c gedcom.tab.h:	gedcom.y gedcom_internal.h
 clean:
 	rm -f core gedcom_parse lexer_* *.o *.lo *.la .libs/* lex.gedcom_* \
         gedcom.tab.* gedcom.output libgedcom.so
-	rmdir .libs
+	rm -rf .libs
 	cd ansel && $(MAKE) clean
 
 # Lexer test programs
