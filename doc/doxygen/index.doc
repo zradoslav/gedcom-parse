@@ -76,7 +76,7 @@
 
 /*! \defgroup callback Callback Interface */
 
-/*! \defgroup main Main functions of the parser
+/*! \defgroup maingedcom Main functions of the parser
     \ingroup callback
 
   The very simplest call of the Gedcom callback parser is simply the following
@@ -487,25 +487,6 @@
   debugging output is generated, but this can be changed.
 */
 
-/*! \defgroup gommain Main functions of the object model
-    \ingroup gom
-
-  Programs using the Gedcom object model in C should use the following
-  (inclusion of
-  both the \c gedcom.h and \c gom.h headers is required; contrast this with
-  the example given for the \ref main "callback parser"):
-
-  \code
-  int result;
-  ...
-  gedcom_init();
-  ...
-  result = gom_parse_file("myfamily.ged");
-  \endcode
-*/
-
-/*! \defgroup gom Gedcom Object Model in C */
-
 /*! \defgroup devel Development support
   \section configure Macro for configure.in
 
@@ -578,3 +559,250 @@
   \endcode
  */
 
+/*! \defgroup gom Gedcom Object Model in C */
+
+/*! \defgroup gommain Main functions of the object model
+    \ingroup gom
+
+  Programs using the Gedcom object model in C should use the following
+  (inclusion of
+  both the \c gedcom.h and \c gom.h headers is required; contrast this with
+  the example given for the \ref maingedcom "callback parser"):
+
+  \code
+  int result;
+  ...
+  gedcom_init();
+  ...
+  result = gom_parse_file("myfamily.ged");
+  \endcode
+
+  In the Gedcom object model, all the data is immediately available after
+  calling gom_parse_file().  For this, an entire model based on C structs
+  is used.  These structs are documented
+  <a href=gomxref.html>here</a>, and follow the GEDCOM syntax quite closely.
+  Each of the records in a GEDCOM file is modelled by a separate struct, and
+  some common sub-structures have their own struct definition.
+
+  The next sections describe the functions to be used to get at these structs.
+*/
+
+/*! \defgroup gomget Retrieving information in the object model
+  \ingroup gom
+
+  \section gomget_basic Basic retrieval
+
+  The functions documented in this section allow to retrieve the objects
+  from the object model:
+
+   - First, there are two functions to get the header record and the submission
+     record (there can be only one of them in a GEDCOM file):
+     \code
+       struct header*      gom_get_header();
+       struct submission*  gom_get_submission();
+     \endcode
+
+   - Further, for each of the other records, there are two functions, one to
+     get the first of such records, and one to get a record via its
+     cross-reference tag in the GEDCOM file:
+     \code
+       struct XXX*   gom_get_first_XXX();
+       struct XXX*   gom_get_XXX_by_xref(const char* xref);
+     \endcode
+
+     The XXX stands for one of the following: family, individual, multimedia,
+     note, repository, source, submitter, user_rec.
+
+     Note that the structs are documented <a href=gomxref.html>here</a>.
+
+  \section gomget_obj_list Object lists
+
+  All records of a certain type are linked together in a linked list.  The
+  above functions only give access to the first record of each linked list.
+  The others can be accessed by traversing the linked list via the \c next
+  member of the structs.  This means that e.g. the following piece of code will
+  traverse the linked list of family records:
+  \code
+    struct family* fam;
+
+    for (fam = gom_get_first_family() ; fam ; fam = fam->next) {
+      ...
+    }
+  \endcode
+
+  The \c next member of the last element in the list is guaranteed to have the
+  \c NULL value.
+
+  Actually, the linked list is a doubly-linked list: each record also has a
+  \c previous member.  But for implementation reasons the behaviour of this
+  \c previous member on the edges of the linked list will not be guaranteed,
+  i.e. it can be circular or terminated with \c NULL, no assumptions can be
+  made in the application code.
+
+  This linked-list model applies also to all sub-structures of the main record
+  structs, i.e. each struct that has a \c next and \c previous member follows
+  the above conventions.  This means that the following piece of code
+  traverses all children of a family (see the details of the different
+  structs <a href=gomxref.html>here</a>):
+  \code
+    struct family* fam = ...;
+
+    struct xref_list* xrl;
+    for (xrl = fam->children ; xrl ; xrl = xrl->next) {
+      ...
+    } 
+  \endcode
+
+  Note that all character strings in the object model are encoded in UTF-8
+  (<a href=encoding.html>Why UTF-8?</a>), but see \ref gom_mod_string "further"
+  for how to
+  convert these automatically.
+
+  All structs and sub-structures are documented <a href=gomxref.html>here</a>.
+
+  \section gomget_user User data
+
+  Each of the structs has an extra member called \c extra (of type struct
+  user_data*).  This gathers all non-standard GEDCOM tags within the scope of
+  the struct in a flat linked list, no matter what the internal structure of
+  the non-standard tags is.  Each element of the linked list has:
+    - a level: the level number in the GEDCOM file
+    - a tag: the tag given in the GEDCOM file
+    - a value: the value, which can be a string value or a cross-reference
+      value (one of the two will be non-NULL)
+
+  This way, none of the information in the GEDCOM file is lost, even the
+  non-standard information.
+*/
+
+/*! \defgroup gom_modify Modifying the object model
+   \ingroup gom
+*/
+
+/*! \defgroup gom_mod_string Manipulating strings
+   \ingroup gom_modify
+
+  There are some functions available to retrieve and change strings in the
+  Gedcom object model, depending on whether you use UTF-8 strings in your
+  application or locale-defined strings.
+
+  The functions gom_get_string() and gom_set_string() retrieve and set the
+  string in UTF-8 encoding.  The first one is in fact superfluous, because it
+  just returns the data pointer, but it is there for symmetry with the
+  functions given below for the locale-defined input and output.
+
+  Examples of use of these functions would be, e.g. for retrieving and setting
+  the system ID in the header:
+  \code
+    struct header* head = gom_get_header();
+    char* oldvalue = gom_get_string(head->source.id);
+    char* newvalue = "My_Gedcom_Tool";
+
+    if (gom_set_string(&head->source.id, newvalue)) {
+      printf("Modified system id from %s to %s\n", oldvalue, newvalue);
+    }
+  \endcode
+
+  Next to these functions, the functions gom_get_string_for_locale() and
+  gom_set_string_for_locale() retrieve and set the string in the format defined
+  by the current locale.
+
+  The use of these functions is the same as the previous ones, but e.g. in
+  the "en_US" locale the string will be returned by the first function in
+  the ISO-8859-1 encoding.  Conversion to and from UTF-8 for the object model
+  is done on the fly.
+*/
+
+/*! \defgroup gom_add_rec Adding and deleting records
+   \ingroup gom_modify
+
+  For each of the record types, there are two functions to add and delete
+  records:
+  \code
+    struct XXX*   gom_new_XXX(const char* xref);
+    int           gom_delete_XXX(struct XXX* obj);
+  \endcode
+
+  The XXX stands for one of the following: family, individual, multimedia,
+  note, repository, source, submitter, user_rec.
+
+  For submission records, the gom_delete_submission() function has no
+  parameters, because there can be only one submission record.
+
+  When creating new records, the application is responsible for making sure
+  that the mandatory fields (according to the GEDCOM spec) are filled in
+  afterwards.  In a later release, there will be checks in gom_write_file()
+  to missing information.
+
+  Note that records cannot be deleted if there are still referenced (see
+  gom_add_xref()): the delete function will return an error then.
+
+  All structs and sub-structures are documented <a href=gomxref.html>here</a>.
+*/
+
+/*! \defgroup gom_add_xref Adding, deleting and moving cross-references
+   \ingroup gom_modify
+*/
+
+/*! \defgroup gom_add_sub Adding, deleting and moving substructures
+   \ingroup gom_modify
+
+  For struct members that are just a single value, the following functions
+  are available:
+  \code
+    struct XXX*   gom_set_new_XXX(struct XXX** data);
+    int           gom_delete_XXX(struct XXX** data);
+  \endcode
+
+  This is the case for XXX equal to address, change_date or place.  The first
+  function creates a new substructure and assigns it to \c data.  The fields
+  in the substructure still need to be filled in by the application.  The
+  second function deletes the value from \c data.
+
+  Note that for change_date structs there is the gom_update_timestamp()
+  short-cut function, which updates the time and date directly.
+
+  For struct members that are a list (as described
+  \ref gomget_obj_list "here"), the following functions are available:
+  \code
+    struct XXX*   gom_add_new_XXX(struct XXX** data);
+    int           gom_remove_XXX(struct XXX** data, struct XXX* obj);
+    int           gom_move_XXX(Gom_direction dir, struct XXX** data, struct XXX* obj);
+  \endcode
+
+  This is the case for all XXX sub-structs that have a \c next and \c previous
+  member.
+
+  The first function creates a new substructure and adds it to the end of the
+  \c data list.  The second function deletes the object from the \c data list
+  if present (if not present, an error is generated and 1 is returned).
+
+  The third function moves the given \c obj up or down the \c data list,
+  depending on the \c dir parameter, similar to gom_move_xref().
+
+  All structs and sub-structures are documented <a href=gomxref.html>here</a>.
+*/
+
+/*! \defgroup gom_write Writing the object model to file
+   \ingroup gom
+
+  Writing the current object model to a file is simply done using
+  gom_write_file().  The customization functions given \ref write "here" can
+  be used before gom_write_file() to control some settings.
+
+  Before you write the file, you can update the timestamp in the header using
+  the function gom_header_update_timestamp().
+
+  Typically, this function would be used as follows, to set the current time
+  in the timestamp:
+  \code
+    int result;
+    result = gom_header_update_timestamp(time(NULL));
+  \endcode
+*/
+
+/*! \defgroup gom_struct Structure definitions
+   \ingroup gom
+
+  All structs and sub-structures are documented <a href=gomxref.html>here</a>.
+*/ 
