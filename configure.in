@@ -17,7 +17,7 @@ AC_SUBST(LIBVERSION)
 dnl =============================================================
 AM_INIT_AUTOMAKE(${NAME},${VERSION})
 AM_CONFIG_HEADER(config.h)
-ALL_LINGUAS=""
+ALL_LINGUAS="nl"
 
 AC_PROG_CC
 AM_PROG_LIBTOOL
