@@ -55,17 +55,19 @@ dnl Own functions
 dnl gedcom_GLIBC_ICONV()
 dnl Checks whether iconv is coming from glibc, defines USE_GLIBC_ICONV if so
 dnl The variable $is_glibc_iconv contains yes or no
-AC_DEFUN(gedcom_GLIBC_ICONV, [
-  AC_CACHE_CHECK(for the GNU C Library iconv implementation, is_glibc_iconv, [
+AC_DEFUN(gedcom_GLIBC22_ICONV, [
+  AC_CACHE_CHECK(for the GNU C Library 2.2 iconv implementation, is_glibc22_iconv, [
     AC_EGREP_CPP(yes,
     [
 #include <iconv.h>
 #ifdef __GLIBC__
+ #if (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 2) || (__GLIBC__ > 2)
 yes
+ #endif
 #endif
-    ], is_glibc_iconv=yes, is_glibc_iconv=no)
+    ], is_glibc22_iconv=yes, is_glibc22_iconv=no)
   ])
-  if test "$is_glibc_iconv" = yes; then
+  if test "$is_glibc22_iconv" = yes; then
     AC_DEFINE(USE_GLIBC_ICONV,1,
       [Define if the GNU implementation of iconv in glibc is used])
   fi

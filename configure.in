@@ -99,8 +99,8 @@ else
   AC_SUBST(LCS_SUBDIRS)
   AC_SUBST(LCS_INCLUDES)
   AC_SUBST(LCS_LIBADD)
-  gedcom_GLIBC_ICONV
-  if test "$is_glibc_iconv" = yes; then
+  gedcom_GLIBC22_ICONV
+  if test "$is_glibc22_iconv" = yes; then
     DIRS="glibc"
     is_ansel_supported=yes
     AC_SUBST(DIRS)
