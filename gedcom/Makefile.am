@@ -61,7 +61,15 @@ EXTRA_DIST = gedcom.y \
 	     gedcom_lohi.lex \
 	     gedcom_date.lex \
 	     gedcom_lex_common.c \
-	     gedcom.tabgen.h \
+	     lex.gedcom_1byte_.c \
+	     lex.gedcom_hilo_.c \
+	     lex.gedcom_lohi_.c \
+	     lex.gedcom_date_.c \
+	     gedcom.tab.c \
+	     gedcom_date.tab.c \
+	     gedcom.tab.h \
+	     gedcom_date.tab.h \
+             gedcom.tabgen.h \
 	     gedcom_date.tabgen.h \
 	     tag_names.h \
 	     process_tags
