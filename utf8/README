@@ -1,0 +1,9 @@
+This is libutf8tools, a library with tools to manipulate and convert
+UTF-8 strings.  It is installed together with gedcom-parse.
+
+See the doc subdirectory for documentation.
+
+
+###############################################################################
+# $Id$
+# $Name$

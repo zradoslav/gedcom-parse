@@ -1,6 +1,9 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
-release 0.20.0 (NOT RELEASED YET):
+release 0.20.0 (30 December 2002):
+
+ - The release numbering scheme is changed to a three-part version number.
+   Patches will just update the last digit.
 
  - The library should now be portable, i.e it should work on any POSIX system.
    On systems lacking glibc, libiconv is needed (see README).
@@ -19,6 +22,7 @@ release 0.20.0 (NOT RELEASED YET):
         - support for writing Gedcom files
      - development support:
         - m4 macro that can be used in configure.in
+        - gedcom-config script for linking and compilation flags
 
  - The library now comes with an extra shared library (libutf8tools),
    which needs to be linked in in any programs that use the gedcom parser

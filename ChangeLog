@@ -1,5 +1,7 @@
 2002-12-30  Peter Verthez  <Peter.Verthez@advalvas.be>
 
+	* release 0.20.0
+
 	* gedcom/write.c: Give warning if character set in HEAD.CHAR is not
 	the same as current character set (and force value).
 

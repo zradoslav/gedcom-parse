@@ -1,7 +1,8 @@
 The Gedcom parser library (release @VERSION@)
 -------------------------
 The Gedcom parser library is a C library that provides an API to applications
-to parse and process arbitrary genealogy files in the standard gedcom format.
+to parse, process and write arbitrary genealogy files in the standard gedcom
+format.
 
 Its main features are:
 
@@ -23,13 +24,15 @@ Its main features are:
  - internationalization of the error and warning messages
 
  - specific parsing of date values to a calendar-neutral date system (Julian
-   days aka serial day numbers); the date parser can be called separately
+   days aka serial day numbers); the date parser can be called separately and
+   dates can be manipulated
 
  - specific parsing and checking of cross-references
 
  - specific parsing of age values
 
- - support for writing Gedcom files
+ - support for writing Gedcom files (both in line-by-line format, or via the
+   Gedcom object model)
 
  - "compatibility-mode" parsing, to allow for not-exactly-standard syntaxes
    used by other genealogy programs; currently, compatibility is added for:
@@ -91,6 +94,11 @@ This is simply:
   ./configure
   make
   make install
+
+If libiconv is not automatically found, you can give its path to configure,
+for example, if the library lives in /home/mydir/lib:
+
+  ./configure --with-libiconv-prefix=/home/mydir
 
 You can also run some tests via:
   make check
