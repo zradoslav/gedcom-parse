@@ -230,6 +230,7 @@ int gedcom_check_token(const char* str, ParseState state, int check_token)
   yy_delete_buffer(YY_CURRENT_BUFFER);
   buffer = yy_scan_string(str);
 
+  INIT_LINE_LEN;
   if (state == STATE_NORMAL)
     BEGIN(NORMAL);
   else if (state == STATE_INITIAL)
