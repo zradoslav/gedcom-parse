@@ -37,7 +37,7 @@ fi
 builddir=`pwd`
 export GCONV_PATH=.:$GCONV_PATH
 export LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$builddir/../gom/.libs:$LD_LIBRARY_PATH
-ln -s $srcdir/../gedcom.enc .
+ln -s $srcdir/../data/gedcom.enc .
 ln -s $builddir/../ansel/.libs/ANSI_Z39.47.so .
 ln -s $srcdir/../ansel/gconv-modules .
 rm -f core
