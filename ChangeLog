@@ -1,3 +1,10 @@
+2002-01-02  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* t/test_script: Return exit code from testgedcom.
+
+	* gedcom/hash.*, gedcom/encoding.*: Use hash implementation from
+	kazlib (see AUTHORS for pointer).
+
 2001-12-31  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* release 0.12
