@@ -37,15 +37,15 @@ char* gom_get_string(char* data)
   return data;
 }
 
-char* gom_get_string_locale(char* data, int* conversion_failures)
+char* gom_get_string_for_locale(char* data, int* conversion_failures)
 {
   return convert_utf8_to_locale(gom_get_string(data), conversion_failures);
 }
 
-char* gom_set_string(char** data, const char* utf8_value)
+char* gom_set_string(char** data, const char* utf8_str)
 {
   char* result = NULL;
-  char* newptr = strdup(utf8_value);
+  char* newptr = strdup(utf8_str);
   
   if (!newptr)
     MEMORY_ERROR;
@@ -58,7 +58,7 @@ char* gom_set_string(char** data, const char* utf8_value)
   return result;
 }
 
-char* gom_set_string_locale(char** data, const char* locale_value)
+char* gom_set_string_for_locale(char** data, const char* locale_str)
 {
-  return gom_set_string(data, convert_locale_to_utf8(locale_value));
+  return gom_set_string(data, convert_locale_to_utf8(locale_str));
 }

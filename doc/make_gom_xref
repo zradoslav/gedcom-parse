@@ -16,11 +16,16 @@ my $index = "";
 my $section = "";
 
 open INPUT, $inputfile or die "Can't read $inputfile\n";
-open OUTPUT, ">$outputfile" or die "Can't read $outputfile\n";
+open OUTPUT, ">$outputfile" or die "Can't write $outputfile\n";
 
 sub gedcom_link {
   my ($sublink) = @_;
-  return "(<A href=\"javascript:popup_gedcom('$sublink')\">?</A>)";
+  if ($sublink) {
+    return "(<A href=\"javascript:popup_gedcom('$sublink')\">?</A>)";
+  }
+  else {
+    return "";
+  }
 }
 
 while (<INPUT>)
@@ -53,18 +58,10 @@ while (<INPUT>)
     }
     
     if ($section eq "sub") {
-      $sub_structs .= "$_";
-      if ($gedc_ref) {
-	$sub_structs .= " " . gedcom_link($gedc_ref);
-      }
-      $sub_structs .= "\n";
+      $sub_structs .= "$_ " . gedcom_link($gedc_ref) . "\n";
     }
     else {
-      $main_structs .= "$_";
-      if ($gedc_ref) {
-	$main_structs .= " " . gedcom_link($gedc_ref);
-      }
-      $main_structs .= "\n";
+      $main_structs .= "$_ " . gedcom_link($gedc_ref) . "\n";
     }
   }
 }
@@ -86,7 +83,7 @@ print OUTPUT <<"END_OF_HTML";
 </head>
 <body bgcolor="White">
   
-<h1 align="center">Gedcom object model in C</h1>
+<h1 align="center">Gedcom object model in C: Structures</h1>
 This page provides a cross-reference of all objects in the Gedcom object
 model for C.  The '(?)' links are links to the
 <a href="http://www.gendex.com/gedcom55/55gctoc.htm">Gedcom standard</a>
