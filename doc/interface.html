@@ -14,11 +14,11 @@
         <li><a href="#Gedcom_val_types">Gedcom_val types</a></li>
                    
   <ul>
-         <li><a href="#struct_date_value">struct date_value</a></li>
-         <li><a href="#struct_date">struct date</a></li><li><a href="#age_value">struct age_value</a><br>
+         <li><a href="#date_value">struct date_value</a></li>
+         <li><a href="#date">struct date</a></li><li><a href="#age_value">struct age_value</a><br>
     </li>
 
-     <li><a href="#struct_xref_value">struct xref_value</a><br>
+     <li><a href="#xref_value">struct xref_value</a><br>
         </li>
                    
   </ul>
@@ -1865,13 +1865,13 @@ the value    that is returned by <code>GEDCOM_STRING(val)</code> is always the s
 <code>raw_value</code> passed    to the start callback, and is thus in fact redundant.<br>
      <br>
       The date value is used for all elements that return a date. &nbsp;See 
-<a href="#struct_date_value">here</a> for the definition.<br>
+<a href="#date_value">here</a> for the definition.<br>
  <br>
  The xref value is for cross-references between records in the file. &nbsp;See 
-<a href="#struct_xref_value">here</a> for the definition.<br>
+<a href="#xref_value">here</a> for the definition.<br>
      <br>
          
-<h3><a name="struct_date_value"></a>struct date_value</h3>
+<h3><a name="date_value"></a>struct date_value</h3>
      This struct describes a date as given in the GEDCOM file, and has the
  following  definition:<br>
          
@@ -1999,7 +1999,7 @@ the value    that is returned by <code>GEDCOM_STRING(val)</code> is always the s
   </table>
        <br>
                    
-  <h3><a name="struct_date"></a>struct date<br>
+  <h3><a name="date"></a>struct date<br>
        </h3>
      The <code>date1</code> and <code>date2</code> also have a strict syntax:<br>
                    
@@ -2184,7 +2184,7 @@ The modifier can be one of the following:<br>
 <li><code> AGE_NO_MODIFIER</code> : no modifier</li><li><code>AGE_LESS_THAN</code><code></code>&nbsp; : the modifier '&lt;' is added</li><li><code>AGE_GREATER_THAN </code>: the modifier '&gt;' is added</li>
 </ul>
 <br>
-<h3><a name="struct_xref_value"></a>struct xref_value</h3>
+<h3><a name="xref_value"></a>struct xref_value</h3>
 
  This struct represents a cross-reference in the GEDCOM file (but note that 
 the <code>Gedcom_val</code> contains a pointer to such a struct, not the struct
