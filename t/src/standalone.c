@@ -30,7 +30,7 @@
 #include <locale.h>
 #include <errno.h>
 #include <iconv.h>
-#include "utf8-locale.h"
+#include "utf8.h"
 
 #define BOGUS_FILE_NAME "bogus.ged"
 int total_conv_fails = 0;
