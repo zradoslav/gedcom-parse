@@ -1,6 +1,7 @@
 ## Process this file with automake to produce Makefile.in
-# $Id$
-# $Name$
+# Make sure the following lines don't change at release...
+# $blaId: bogus.ged,v 1.1 2002/11/01 08:38:39 verthezp Exp $
+# $blaName:  $
 
 SUBDIRS=src input output .
 
