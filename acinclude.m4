@@ -1,3 +1,5 @@
+dnl $Id$
+dnl $Name$
 dnl From iconv.m4:
 #serial AM2
 
@@ -11,8 +13,8 @@ AC_DEFUN([AM_ICONV],
   AC_ARG_WITH([libiconv-prefix],
 [  --with-libiconv-prefix=DIR  search for libiconv in DIR/include and DIR/lib], [
     # Addition Peter Verthez
-    ICONV_PATH=`echo "$withval" | tr : '/dir'`
-    ICONV_PATH="$ICONV_PATH/dir"
+    ICONV_PATH=`echo "$withval" | tr : '/bin'`
+    ICONV_PATH="$ICONV_PATH/bin"
     AC_SUBST(ICONV_PATH)
     # end of addition
 
