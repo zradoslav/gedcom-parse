@@ -83,8 +83,20 @@ struct xref_node *make_xref_node()
   return xr;
 }
 
+void cleanup_xrefs()
+{
+  hash_free(xrefs);
+  xrefs = NULL;
+}
+
 void make_xref_table()
 {
+  if (xrefs)
+    cleanup_xrefs();
+  else
+    /* Only register initially (if xrefs is still NULL) */
+    /* So that it is only registered once */
+    atexit(cleanup_xrefs);
   xrefs = hash_create(HASHCOUNT_T_MAX, NULL, NULL);
   hash_set_allocator(xrefs, xref_alloc, xref_free, NULL);
 }
@@ -111,7 +123,6 @@ int check_xref_table()
     }
   }
   
-  hash_free(xrefs);
   return result;
 }
 
