@@ -1,2 +1,5 @@
+New in 1.8.2:
+* Added charset aliases for darwin.
+
 New in 1.8.1:
 * Added ANSEL converter.
