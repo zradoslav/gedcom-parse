@@ -117,6 +117,10 @@ int determine_encoding(FILE* f)
     else if (first[0] == '\xBF') {
       gedcom_debug_print(_("UTF-8 encoding, with BOM"));
     }
+    else {
+      gedcom_warning(_("Unknown encoding, falling back to one-byte"));
+      rewind_file(f);
+    }
     return ONE_BYTE;
   }
   else {
