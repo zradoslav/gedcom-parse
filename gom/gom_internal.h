@@ -79,6 +79,10 @@ void gom_unexpected_context(char* file, int line, OBJ_TYPE found);
 #define UNEXPECTED_CONTEXT(CTXT_TYPE)                                         \
   gom_unexpected_context(__FILE__, __LINE__, CTXT_TYPE)
 
+void gom_mem_error(char *filename, int line);
+
+#define MEMORY_ERROR gom_mem_error(__FILE__, __LINE__)
+
 void def_rec_end(Gedcom_rec rec, Gedcom_ctxt self);
 void def_elt_end(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
 		 Gedcom_val parsed_value);
