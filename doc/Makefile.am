@@ -4,14 +4,15 @@
 
 SUBDIRS = images .
 DOC_FILES = index.html usage.html parser.html interface.html links.html \
-	    encoding.html gomxref.html
+	    encoding.html 
+GENERATED_DOC_FILES = gomxref.html
 VERSIONED_FILES = index.html
 EXTRA_DIST = $(DOC_FILES)
 docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
 
 include $(top_srcdir)/Makefile.inc
 
-doc_DATA = $(DOC_FILES)
+doc_DATA = $(DOC_FILES) $(GENERATED_DOC_FILES)
 
 dist-hook:
 	$(replace-VERSION)
