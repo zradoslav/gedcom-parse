@@ -33,8 +33,11 @@
 
 void reset_buffer(struct safe_buffer* b)
 {
-  if (b && b->buffer != NULL)
-    b->buffer[0] = '\0';
+  if (b && b->buffer != NULL) {
+    memset(b->buffer, 0, b->bufsize);
+    b->buf_end = b->buffer;
+    b->buflen  = 0;
+  }
 }
 
 void cleanup_buffer(struct safe_buffer *b)
@@ -50,6 +53,8 @@ void init_buffer(struct safe_buffer *b)
     if (b->buffer) {
       b->buffer[0] = '\0';
       b->bufsize = INITIAL_BUF_SIZE;
+      b->buf_end = b->buffer;
+      b->buflen  = 0;
       if (b->cleanup_func && atexit(b->cleanup_func) != 0) {
 	fprintf(stderr, _("Could not register buffer cleanup function"));
 	fprintf(stderr, "\n");
@@ -63,31 +68,38 @@ void init_buffer(struct safe_buffer *b)
   }
 }
 
+void grow_buffer(struct safe_buffer *b)
+{
+  b->bufsize *= 2;
+  b->buffer = realloc(b->buffer, b->bufsize);
+  b->buf_end = b->buffer + b->buflen;
+}
+
 int safe_buf_vappend(struct safe_buffer *b, const char *s, va_list ap)
 {
   int res = 0;
-  int len;
   init_buffer(b);
   if (b && b->buffer) {
-    len = strlen(b->buffer);
     while (1) {
-      char *buf_ptr = b->buffer + len;
-      int rest_size = b->bufsize - len;
+      int rest_size = b->bufsize - b->buflen;
       
 #if HAVE_VSNPRINTF
-      res = vsnprintf(buf_ptr, rest_size, s, ap);
+      res = vsnprintf(b->buf_end, rest_size, s, ap);
       
       if (res > -1 && res < rest_size) {
+	b->buf_end = b->buf_end + res;
+	b->buflen  = b->buflen + res;
 	break;
       }
-      else  {
-	b->bufsize *= 2;
-	b->buffer = realloc(b->buffer, b->bufsize);
+      else {
+	grow_buffer(b);
       }
 #else /* not HAVE_VSNPRINTF */
 #  if HAVE_VSPRINTF
 #     warning "Using VSPRINTF. Buffer overflow could happen!"
-      vsprintf(buf_ptr, s, ap);
+      res = vsprintf(b->buf_end, s, ap);
+      b->buf_end = b->buf_end + res;
+      b->buflen  = b->buflen + res;
       break;
 #  else /* not HAVE_VPRINTF */
 #     error "Your standard library has neither vsnprintf nor vsprintf defined. One of them is required!"

@@ -29,16 +29,33 @@
 
 struct safe_buffer {
   char* buffer;
-  size_t bufsize;
+  size_t bufsize;  /* total size */
+  char* buf_end;
+  size_t buflen;   /* used size */
   void (*cleanup_func)(void);
 };
 
 void init_buffer(struct safe_buffer* b);
 void reset_buffer(struct safe_buffer* b);
 void cleanup_buffer(struct safe_buffer* b);
+void grow_buffer(struct safe_buffer* b);
 
 int safe_buf_vappend(struct safe_buffer* b, const char* s, va_list ap);
 int safe_buf_append(struct safe_buffer* b, const char* s, ...);
 char* get_buf_string(struct safe_buffer* b);
+
+#define SAFE_BUF_ADDCHAR(b, ch)                                               \
+  {                                                                           \
+    struct safe_buffer *buf = b;                                              \
+    char c = ch;                                                              \
+    if (buf && buf->buffer == NULL)                                           \
+      init_buffer(buf);                                                       \
+    if (buf && buf->buffer) {                                                 \
+      if (buf->buflen == buf->bufsize)                                        \
+	grow_buffer(buf);                                                     \
+      *buf->buf_end++ = c;                                                    \
+      buf->buflen++;                                                          \
+    }                                                                         \
+  }
 
 #endif /* __BUFFER_H */

@@ -27,7 +27,7 @@
 
 void cleanup_mess_buffer();
 
-struct safe_buffer mess_buffer = { NULL, 0, cleanup_mess_buffer };
+struct safe_buffer mess_buffer = { NULL, 0, NULL, 0, cleanup_mess_buffer };
 Gedcom_msg_handler msg_handler = NULL;
 
 void gedcom_set_message_handler(Gedcom_msg_handler func)

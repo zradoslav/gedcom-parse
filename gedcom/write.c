@@ -61,7 +61,7 @@ const char* terminator[] = {
 
 void cleanup_write_buffer();
 
-struct safe_buffer write_buffer = { NULL, 0, cleanup_write_buffer };
+struct safe_buffer write_buffer = { NULL, 0, NULL, 0, cleanup_write_buffer };
 
 void cleanup_write_buffer()
 {
