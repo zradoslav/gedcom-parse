@@ -28,13 +28,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-#ifdef WITH_DMALLOC
-#include <dmalloc.h>
-#endif
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
 #include <libintl.h>
+#ifdef WITH_DMALLOC
+#include <dmalloc.h>
+#endif
 
 #define _(string) gettext(string)
 #define N_(string) (string)
@@ -54,13 +54,12 @@ struct tag_struct {
   int value;
 };
 
-int        gedcom_error(char* s, ...);
-int        gedcom_warning(char* s, ...);
-int        gedcom_message(char* s, ...);
-int        gedcom_debug_print(char* s, ...);
-
 int        gedcom_parse();
 int        gedcom_lex();
+
+void       gedcom_mem_error(char *filename, int line);
+
+#define MEMORY_ERROR gedcom_mem_error(__FILE__, __LINE__)
 
 extern int line_no;
 #endif /* __GEDCOM_INTERNAL_H */
