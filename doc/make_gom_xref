@@ -23,7 +23,7 @@ while (<INPUT>)
   $section = "sub"  if m|/\* Sub-structures \*/|;
   $section = "main" if m|/\* Main structures \*/|;
   $section = ""     if m|/\* Functions \*/|;
-  $generated = $1   if m|/\* \$Id$ \*/|;
+  $generated = $1   if m|/\* [\$]Id: (.*?) \$ \*/|;
   next if m|/\*|;
 
   if ($section ne "") {
