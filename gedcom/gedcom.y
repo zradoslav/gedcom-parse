@@ -1234,6 +1234,8 @@ indi_addr_sect : OPEN DELIM TAG_ADDR opt_line_item
 			= start_element(ELT_SUB_ADDR,
 					par, $1 + 1, $3, $4,
 					GEDCOM_MAKE_NULL_OR_STRING(val2, $4));
+		      reset_buffer(&concat_buffer);
+		      safe_buf_append(&concat_buffer, $4);
 		      START(ADDR, $1 + 1, $<ctxt>$);
 		    }
 		  else { START(ADDR, $1, NULL) }
@@ -1243,8 +1245,9 @@ indi_addr_sect : OPEN DELIM TAG_ADDR opt_line_item
                   CLOSE
                   { if (compat_mode(C_INDI_ADDR)) {
 		      Gedcom_ctxt par = PARENT;
+		      char* complete = get_buf_string(&concat_buffer);
 		      end_element(ELT_SUB_ADDR, par, $<ctxt>5,
-				  GEDCOM_MAKE_NULL(val1));
+				  GEDCOM_MAKE_STRING(val1, complete));
 		      CHECK0;
 		      compat_generate_resi_end(PARENT, par);
 		    } 
