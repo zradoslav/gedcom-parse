@@ -130,6 +130,7 @@ AC_OUTPUT(GNUmakefile
 	  t/Makefile
 	  t/src/Makefile
 	  t/input/Makefile
+	  t/output/Makefile
 	  data/Makefile
 	  data/new.ged
 	  doc/Makefile
