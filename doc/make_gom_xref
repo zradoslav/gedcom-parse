@@ -4,8 +4,9 @@
 use strict;
 use diagnostics;
 
+my ($inputfile) = @ARGV;
+
 my $gedcom_ref_doc="http://www.gendex.com/gedcom55/55gcch2.htm";
-my $inputfile ="$ENV{srcdir}/../include/gom.h";
 my $outputfile ="gomxref.html";
 my $ext_link = "interface.html";
 my $generated = "";
