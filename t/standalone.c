@@ -63,6 +63,7 @@ void show_help ()
   printf("  -da   Debug setting: libgedcom + yacc debug messages\n");
   printf("  -2    Run the test parse 2 times instead of once\n");
   printf("  -3    Run the test parse 3 times instead of once\n");
+  printf("  -b    Parse a bogus file before parsing the main file\n");
   printf("  -q    No output to standard output\n");
 }
 
@@ -142,9 +143,9 @@ void source_end(Gedcom_ctxt parent, Gedcom_ctxt self, Gedcom_val parsed_value)
   output(1, "Source context %d in parent %d\n", (int)self, (int)parent);
 }
 
-Gedcom_ctxt source_date_start(Gedcom_ctxt parent, int level, char *tag,
-			      char* raw_value,
-			      int tag_value, Gedcom_val parsed_value)
+Gedcom_ctxt date_start(Gedcom_ctxt parent, int level, char *tag,
+		       char* raw_value,
+		       int tag_value, Gedcom_val parsed_value)
 {
   struct date_value dv;
   Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
@@ -197,7 +198,8 @@ void subscribe_callbacks()
   gedcom_subscribe_to_record(REC_USER, rec_start, NULL);
   gedcom_subscribe_to_element(ELT_HEAD_SOUR, source_start, source_end);
   gedcom_subscribe_to_element(ELT_SOUR_DATA_EVEN_DATE,
-			      source_date_start, NULL);
+			      date_start, NULL);
+  gedcom_subscribe_to_element(ELT_SUB_EVT_DATE, date_start, NULL);
 }
 
 void gedcom_message_handler(Gedcom_msg_type type, char *msg)
@@ -217,6 +219,7 @@ int main(int argc, char* argv[])
   int compat_enabled = 1;
   int debug_level = 0;
   int run_times   = 1;
+  int bogus       = 0;
   int result      = 0;
   char* file_name = NULL;
 
@@ -244,6 +247,9 @@ int main(int argc, char* argv[])
       }
       else if (!strncmp(argv[i], "-3", 3)) {
 	run_times = 3;
+      }
+      else if (!strncmp(argv[i], "-b", 3)) {
+	bogus = 1;
       }
       else if (!strncmp(argv[i], "-q", 3)) {
 	quiet = 1;
@@ -279,8 +285,10 @@ int main(int argc, char* argv[])
   if (!outfile) {
     printf("Could not open %s for appending\n", OUTFILE);
   }
-  output(0, "\n=== Parsing bogus file %s\n", BOGUS_FILE_NAME);
-  gedcom_parse_file(BOGUS_FILE_NAME);
+  if (bogus) {
+    output(0, "\n=== Parsing bogus file %s\n", BOGUS_FILE_NAME);
+    gedcom_parse_file(BOGUS_FILE_NAME);
+  }
   while (run_times-- > 0) {
     output(0, "\n=== Parsing file %s\n", file_name);
     result |= gedcom_parse_file(file_name);
