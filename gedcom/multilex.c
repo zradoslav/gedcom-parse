@@ -68,6 +68,12 @@ int gedcom_lex()
   return (*lf)();
 }
 
+void rewind_file(FILE* f)
+{
+  if (fseek(f, 0, 0) != 0)
+    gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
+}
+
 int determine_encoding(FILE* f)
 {
   char first[2];
@@ -76,42 +82,46 @@ int determine_encoding(FILE* f)
   read = fread(first, 1, 2, f);
   if (read != 2) {
     gedcom_warning(_("Error reading from input file: %s"), strerror(errno));
+    rewind_file(f);
     return ONE_BYTE;
   }
   else if ((first[0] == '0') && (first[1] == ' ')) {
     gedcom_debug_print(_("One-byte encoding"));
-    if (fseek(f, 0, 0) != 0)
-      gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
+    rewind_file(f);
     return ONE_BYTE;
   }
-  else if ((first[0] == '\0') && (first[1] == '0'))
-  {
+  else if ((first[0] == '\0') && (first[1] == '0')) {
     gedcom_debug_print(_("Two-byte encoding, high-low"));
-    if (fseek(f, 0, 0) != 0)
-      gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
+    rewind_file(f);
     return TWO_BYTE_HILO;
   }
-  else if ((first[0] == '\xFE') && (first[1] == '\xFF'))
-  {
+  else if ((first[0] == '\xFE') && (first[1] == '\xFF')) {
     gedcom_debug_print(_("Two-byte encoding, high-low, with BOM"));
     return TWO_BYTE_HILO;
   }
-  else if ((first[0] == '0') && (first[1] == '\0'))
-  {
+  else if ((first[0] == '0') && (first[1] == '\0')) {
     gedcom_debug_print(_("Two-byte encoding, low-high"));
-    if (fseek(f, 0, 0) != 0)
-      gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
+    rewind_file(f);
     return TWO_BYTE_LOHI;
   }
-  else if ((first[0] == '\xFF') && (first[1] == '\xFE'))
-  {
+  else if ((first[0] == '\xFF') && (first[1] == '\xFE')) {
     gedcom_debug_print(_("Two-byte encoding, low-high, with BOM"));
     return TWO_BYTE_LOHI;
   }
+  else if ((first[0] == '\xEF') && (first[1] == '\xBB')) {
+    read = fread(first, 1, 1, f);
+    if (read != 1) {
+      gedcom_warning(_("Error reading from input file: %s"), strerror(errno));
+      rewind_file(f);
+    }
+    else if (first[0] == '\xBF') {
+      gedcom_debug_print(_("UTF-8 encoding, with BOM"));
+    }
+    return ONE_BYTE;
+  }
   else {
     gedcom_warning(_("Unknown encoding, falling back to one-byte"));
-    if (fseek(f, 0, 0) != 0)
-      gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
+    rewind_file(f);
     return ONE_BYTE;
   }
 }
