@@ -18,10 +18,16 @@
 #include "encoding.h"
 
 #define YY_NO_UNPUT
-  
-static int current_level=-1;
+
+static size_t encoding_width;
+static int current_level = -1;
 static int level_diff=MAXGEDCLEVEL;
- 
+static size_t line_len = 0;
+
+static char ptr_buf[MAXGEDCPTRLEN * UTF_FACTOR + 1];
+static char tag_buf[MAXGEDCTAGLEN * UTF_FACTOR + 1];
+static char str_buf[MAXGEDCLINELEN * UTF_FACTOR + 1];
+
 #ifdef LEXER_TEST 
 YYSTYPE gedcom_lval;
 int line_no = 1;
@@ -43,14 +49,14 @@ int test_loop(ENCODING enc, char* code)
   while (tok) {
     switch(tok) {
       case BADTOKEN: printf("BADTOKEN "); break;
-      case OPEN: printf("OPEN(%d) ", gedcom_lval.level); break;
+      case OPEN: printf("OPEN(%d) ", gedcom_lval.number); break;
       case CLOSE: printf("CLOSE "); break;
       case ESCAPE: printf("ESCAPE(%s) ", gedcom_lval.string); break;
       case DELIM: printf("DELIM "); break;
       case ANYCHAR: printf("%s ", gedcom_lval.string); break;
-      case POINTER: printf("POINTER(%s) ", gedcom_lval.pointer); break;
-      case USERTAG: printf("USERTAG(%s) ", gedcom_lval.tag); break;
-      default: printf("TAG(%s) ", gedcom_lval.tag); break;
+      case POINTER: printf("POINTER(%s) ", gedcom_lval.string); break;
+      case USERTAG: printf("USERTAG(%s) ", gedcom_lval.string); break;
+      default: printf("TAG(%s) ", gedcom_lval.string); break;
     }
     tok = gedcom_lex();
   }
@@ -63,16 +69,29 @@ int test_loop(ENCODING enc, char* code)
 
 #else  /* of #ifndef IN_LEX */
 
-char string_buf[MAXGEDCLINELEN+1];
- 
-#define TO_INTERNAL(str) to_internal(str, yyleng) 
+#define TO_INTERNAL(STR,OUTBUF) \
+  to_internal(STR, yyleng, OUTBUF, sizeof(OUTBUF))
 
-#define MKTAGACTION(the_tag)                                                 \
-  { gedcom_lval.tag = TO_INTERNAL(yytext);                                   \
-    BEGIN(NORMAL);                                                           \
-    return TAG_##the_tag;                                                    \
+#define INIT_LINE_LEN \
+  line_len = 0;
+
+#define CHECK_LINE_LEN                                                        \
+  { if (line_len != (size_t)-1)                                               \
+      line_len += strlen(yytext);                                             \
+    if (line_len > MAXGEDCLINELEN * encoding_width) {                         \
+      gedcom_error("Line too long, max %d characters",                        \
+		   MAXGEDCLINELEN);                                           \
+      line_len = (size_t)-1;                                                  \
+      return BADTOKEN;                                                        \
+    }                                                                         \
   }
 
+#define MKTAGACTION(THETAG)                                                  \
+  { CHECK_LINE_LEN;                                                          \
+    gedcom_lval.string = TO_INTERNAL(yytext, tag_buf);                       \
+    BEGIN(NORMAL);                                                           \
+    return TAG_##THETAG;                                                     \
+  }
 
 /* The GEDCOM level number is converted into a sequence of opening
    and closing brackets.  Simply put, the following GEDCOM fragment:
@@ -116,13 +135,19 @@ char string_buf[MAXGEDCLINELEN+1];
      }                                                                        \
      else if (level_diff == 1) {                                              \
        level_diff++;                                                          \
-       gedcom_lval.level = current_level;                                     \
+       gedcom_lval.number = current_level;                                    \
        return OPEN;                                                           \
      }                                                                        \
      else {                                                                   \
        /* out of brackets... */                                               \
      }                                                                        \
-   } 
+   }
+
+
+#define ACTION_INITIAL_WHITESPACE                                             \
+  { CHECK_LINE_LEN;                                                           \
+    /* ignore initial whitespace further */                                   \
+  }
 
 
 #define ACTION_0_DIGITS                                                       \
@@ -132,7 +157,8 @@ char string_buf[MAXGEDCLINELEN+1];
 
 
 #define ACTION_DIGITS                                                         \
-   { int level = atoi(TO_INTERNAL(yytext));                                   \
+   { int level = atoi(TO_INTERNAL(yytext, str_buf));                          \
+     CHECK_LINE_LEN;                                                          \
      if ((level < 0) || (level > MAXGEDCLEVEL)) {                             \
        gedcom_error ("Level number out of range [0..%d]",                     \
 		     MAXGEDCLEVEL);                                           \
@@ -147,7 +173,7 @@ char string_buf[MAXGEDCLINELEN+1];
      }                                                                        \
      else if (level_diff == 1) {                                              \
        level_diff++;                                                          \
-       gedcom_lval.level = current_level;                                     \
+       gedcom_lval.number = current_level;                                    \
        return OPEN;                                                           \
      }                                                                        \
      else {                                                                   \
@@ -161,28 +187,31 @@ char string_buf[MAXGEDCLINELEN+1];
 
 
 #define ACTION_ALPHANUM                                                       \
-   { if (strlen(yytext) > MAXGEDCTAGLEN) {                                    \
-       gedcom_error("Tag '%s' too long, max %d chars");                       \
+   { if (strlen(yytext) > MAXGEDCTAGLEN * encoding_width) {                   \
+       gedcom_error("Tag '%s' too long, max %d characters",                   \
+		    yytext, MAXGEDCTAGLEN);                                   \
        return BADTOKEN;                                                       \
      }                                                                        \
-     strncpy(string_buf, yytext, MAXGEDCTAGLEN+1);                            \
-     gedcom_lval.tag = TO_INTERNAL(string_buf);                               \
+     CHECK_LINE_LEN;                                                          \
+     gedcom_lval.string = TO_INTERNAL(yytext, tag_buf);                       \
      BEGIN(NORMAL);                                                           \
      return USERTAG;                                                          \
    }
 
 
 #define ACTION_DELIM                                                          \
-  { gedcom_lval.string = TO_INTERNAL(yytext);                                 \
+  { CHECK_LINE_LEN;                                                           \
+    gedcom_lval.string = TO_INTERNAL(yytext, str_buf);                        \
     return DELIM;                                                             \
   }
 
 
 #define ACTION_ANY                                                            \
-  { gedcom_lval.string = TO_INTERNAL(yytext);                                 \
-    /* Due to character conversions, it is possible                           \
-       that the current character will be combined with                       \
-       the next, and so now we don't have a character yet...                  \
+  { CHECK_LINE_LEN;                                                           \
+    gedcom_lval.string = TO_INTERNAL(yytext, str_buf);                        \
+    /* Due to character conversions, it is possible that the current          \
+       character will be combined with the next, and so now we don't have a   \
+       character yet...                                                       \
        In principle, this is only applicable to the 1byte case (e.g. ANSEL),  \
        but it doesn't harm the unicode case.                                  \
     */                                                                        \
@@ -192,13 +221,20 @@ char string_buf[MAXGEDCLINELEN+1];
 
 
 #define ACTION_ESCAPE                                                         \
-  { gedcom_lval.string = TO_INTERNAL(yytext);                                 \
+  { CHECK_LINE_LEN;                                                           \
+    gedcom_lval.string = TO_INTERNAL(yytext, str_buf);                        \
     return ESCAPE;                                                            \
   }
 
 
 #define ACTION_POINTER                                                        \
-  { gedcom_lval.pointer = TO_INTERNAL(yytext);                                \
+  { CHECK_LINE_LEN;                                                           \
+    if (strlen(yytext) > MAXGEDCPTRLEN * encoding_width) {                    \
+      gedcom_error("Pointer '%s' too long, max %d characters",                \
+		   yytext, MAXGEDCPTRLEN);                                    \
+      return BADTOKEN;                                                        \
+    }                                                                         \
+    gedcom_lval.string = TO_INTERNAL(yytext, ptr_buf);                        \
     return POINTER;                                                           \
   }
 
@@ -210,7 +246,9 @@ char string_buf[MAXGEDCLINELEN+1];
 */
 
 #define ACTION_TERMINATOR                                                     \
-  { line_no++;                                                                \
+  { CHECK_LINE_LEN;                                                           \
+    INIT_LINE_LEN;                                                            \
+    line_no++;                                                                \
     BEGIN(INITIAL);                                                           \
   }
 
