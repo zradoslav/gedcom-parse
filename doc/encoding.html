@@ -1,8 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
-  <title>Character encoding</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Character encoding</title>
+  
   <meta http-equiv="content-type" content="text/html; 
-charset=UTF-8">
-</head><body>
+charset=UTF-8"></head><body>
 <h1 align="center">Character encoding<br>
 </h1>
 
@@ -11,21 +10,16 @@ charset=UTF-8">
 <ul>
 
   <li><a href="#The_character_encoding_problem">The character encoding problem</a></li>
-  <li><a href="#Unicode">Unicode code points</a></li><li><a href="#Unicode_encodings_UTF-8">Unicode encodings, UTF-8</a><br>
-  </li>
-
-</ul>
-
-<br>
+  <li><a href="#Unicode">Unicode code points</a></li><li><a href="#Unicode_encodings_UTF-8">Unicode encodings, UTF-8</a></li></ul><br>
 
 <hr width="100%" size="2">
 <h2><a name="The_character_encoding_problem"></a>The character encoding problem</h2>
 
 
-Developers are usually familiar with the ASCII character set. &nbsp;This
+Developers are usually familiar with the ASCII character set.  This
 is a character set that assigns a unique number to some characters, e.g.
 an "A" has ASCII code 65 (or 0x41 in hex), and an "a" has ASCII code 97 (or
-0x61 in hex). &nbsp;Some people may also have used ASCII codes for several
+0x61 in hex).  Some people may also have used ASCII codes for several
 drawing characters (such as a horizontal bar, a vertical bar, or a top-right
 corner) in the old DOS days, to be able to draw nice windows in text mode.<br>
 
@@ -33,15 +27,15 @@ corner) in the old DOS days, to be able to draw nice windows in text mode.<br>
 
 
 However, these last characters are strictly spoken not part of the ASCII
-set. &nbsp;The standard ASCII set contains only the character positions from
-0 to 127 (i.e. anything that fits into an integer that is 7 bits wide). &nbsp;An
-example of this table can be found <a href="http://web.cs.mun.ca/%7Emichael/c/ascii-table.html">here</a>. &nbsp;Anything that has an ASCII code between 128 and 255 is in principle undefined.<br>
+set.  The standard ASCII set contains only the character positions from
+0 to 127 (i.e. anything that fits into an integer that is 7 bits wide).  An
+example of this table can be found <a href="http://web.cs.mun.ca/%7Emichael/c/ascii-table.html">here</a>.  Anything that has an ASCII code between 128 and 255 is in principle undefined.<br>
 
 <br>
 
 
 Now, several systems (including the old DOS) have defined those character
-positions anyway, but usually in totally different ways. &nbsp;Some well
+positions anyway, but usually in totally different ways.  Some well
 known extensions are:<br>
 
 <ul>
@@ -54,9 +48,9 @@ displayed in the link also contains the standard ASCII part</li><li>the <a href=
 
 
 And these are only examples of character sets used in West-European languages.
-&nbsp;For Japanese, Chinese, Korean, Vietnamese, ... there are separate character
+ For Japanese, Chinese, Korean, Vietnamese, ... there are separate character
 sets in which one byte's meaning can even be influenced by what the previous
-byte was, i.e. these are multi-byte character sets. &nbsp;This is because
+byte was, i.e. these are multi-byte character sets.  This is because
 even 256 characters (the maximum for 8 bits) is totally inadequate to represent all characters in
 such languages.<br>
 
@@ -65,9 +59,9 @@ such languages.<br>
 
 So, summarizing, if a text file contains a byte that has a value 65, it is
 pretty safe to assume that this byte represents an "A", if we ignore the
-multi-byte character sets spoken of before. &nbsp;However, a value 233 cannot
+multi-byte character sets spoken of before.  However, a value 233 cannot
 be interpreted without knowing in which character set the text file is written.
-&nbsp;In Latin-1, it happens to be the character "&eacute;", but in another
+ In Latin-1, it happens to be the character "é", but in another
 character set it can be something totally different (e.g. in the DOS character
 set it is the Greek letter theta).<br>
 
@@ -81,7 +75,7 @@ set it is the Greek letter theta).<br>
 <br>
 
 
-Vice versa, if you need to write a character "&eacute;" to a file, it depends
+Vice versa, if you need to write a character "é" to a file, it depends
 on the character set you will use what the numerical value will be in the
 file: in Latin-1 it will be 233, but if you use the DOS character set it
 will be 130, making it necessary again to know the encoding when you want to re-read the file.<br>
@@ -102,15 +96,15 @@ different systems...<br>
 <h2><a name="Unicode"></a>Unicode code points</h2>
 
 
-Enter the&nbsp;<a href="www.unicode.org">Unicode</a> standard...<br>
+Enter the <a href="www.unicode.org">Unicode</a> standard...<br>
 
 <br>
 
 Unicode solves the problem of encoding by assigning unique numbers to <b>every</b>
- character that is used anywhere in the world. &nbsp;Since it is not possible
+ character that is used anywhere in the world.  Since it is not possible
 to do this in 8 bits (with a maximum of 256 code positions), a Unicode character
 is usually represented by 16 bits, denoted by U+0000 to U+FFFF in hexadecimal
-style. &nbsp;A number such as U+0123 is named a "code point".<br>
+style.  A number such as U+0123 is named a "code point".<br>
 
 <br>
  Recently (Unicode 3.1), some extensions have even been defined so that in 
@@ -148,19 +142,19 @@ this, but it also depends on the installed fonts of course):<br>
     <tr>
       <td valign="top">U+00E9<br>
       </td>
-      <td valign="top">&eacute;<br>
+      <td valign="top">é<br>
       </td>
     </tr>
     <tr>
       <td valign="top">U+03B8<br>
       </td>
-      <td valign="top">&#952; (the Greek theta)<br>
+      <td valign="top">θ (the Greek theta)<br>
       </td>
     </tr>
     <tr>
       <td valign="top">U+20AC<br>
       </td>
-      <td valign="top">&#8364; (the euro)<br>
+      <td valign="top">€ (the euro)<br>
       </td>
     </tr>
   </tbody>
@@ -168,9 +162,9 @@ this, but it also depends on the installed fonts of course):<br>
 
 <br>
 Using the Unicode code points there is no confusion anymore which character
-is meant, because they uniquely define the character. &nbsp;The full Unicode
+is meant, because they uniquely define the character.  The full Unicode
 code charts can be found <a href="http://www.unicode.org/charts">here</a>
- (as a set of PDF documents). &nbsp;A nice application to see all Unicode
+ (as a set of PDF documents).  A nice application to see all Unicode
 characters is the Unicode Character Map (ucm), which can be found <a href="ftp://ftp.dcs.ed.ac.uk/pub/jec/programs/">here</a>, and which allows to select and paste any Unicode character.<br>
 <br>
 Some additional terminology (more terminology follows in the next section):<br>
@@ -181,20 +175,22 @@ Some additional terminology (more terminology follows in the next section):<br>
   <li><b>ISO 10646</b>: the international standard that defines the Unicode character set<br>
     <br>
   </li>
-  <li><b>BMP</b> (Basic Multilingual Plane) or Plane 0 is the 16-bit subset
-of UCS, i.e. the characters U+0000 to U+FFFF, which is supposed to cover
-all characters is all currently used languages. &nbsp;Code points outside that range are used for historical character sets (e.g. hieroglyphs) and special symbols.</li>
+  <li><b>BMP</b>
+ (Basic Multilingual Plane) or Plane 0 is the 16-bit subset of UCS, i.e.
+the characters U+0000 to U+FFFF, which is supposed to cover all characters
+is all currently used languages.  Code points outside that range are used
+for historical character sets (e.g. hieroglyphs) and special symbols.</li>
 </ul>
 <hr width="100%" size="2">
 <h2><a name="Unicode_encodings_UTF-8"></a>Unicode encodings, UTF-8</h2>
 Since Unicode characters are generally represented by a number that is 16
 bits wide, as seen above (for the basic plane), it would seem that all text
 files would double in size, since the usual ASCII characters are 8 bits wide.
-&nbsp;However, the Unicode code points are not necessarily the values that
-are written to files... &nbsp;<br>
+ However, the Unicode code points are not necessarily the values that
+are written to files...  <br>
 <br>
 Indeed, the simplest solution is to take the code point that defines a character,
-split it up into two bytes, and write the two bytes to the file. &nbsp;This
+split it up into two bytes, and write the two bytes to the file.  This
 is called the UCS-2 encoding scheme:<br>
 <br>
 <table cellpadding="2" cellspacing="2" border="1" width="75%" align="center">
@@ -216,7 +212,7 @@ is called the UCS-2 encoding scheme:<br>
       </td>
     </tr>
     <tr>
-      <td valign="top">&eacute;<br>
+      <td valign="top">é<br>
       </td>
       <td valign="top">U+00E9<br>
       </td>
@@ -224,7 +220,7 @@ is called the UCS-2 encoding scheme:<br>
       </td>
     </tr>
     <tr>
-      <td valign="top">&#952; (theta)<br>
+      <td valign="top">θ (theta)<br>
       </td>
       <td valign="top">U+03B8<br>
       </td>
@@ -232,7 +228,7 @@ is called the UCS-2 encoding scheme:<br>
       </td>
     </tr>
     <tr>
-      <td valign="top">&#8364; (euro)<br>
+      <td valign="top">€ (euro)<br>
       </td>
       <td valign="top">U+20AC<br>
       </td>
@@ -243,24 +239,24 @@ is called the UCS-2 encoding scheme:<br>
 </table>
 <br>
 This table assumes a big-endian encoding of UCS-2: the endianness is in principle
-not defined, so there are two versions of UCS-2. &nbsp;The little-endian
+not defined, so there are two versions of UCS-2.  The little-endian
 encoding results in the same values as in the table above, but in the inverse
 order.<br>
 <br>
 So, we see that the UCS-2 encoding results in a doubling of file sizes for
-files that contain only English text. &nbsp;This is a disadvantage for this
-encoding. &nbsp;Another disadvantage is that null bytes can occur in normal
+files that contain only English text.  This is a disadvantage for this
+encoding.  Another disadvantage is that null bytes can occur in normal
 text, breaking all conventions for null-terminated C strings if you use the
-normal <code>char</code> type. &nbsp;This is why C also defines the <code>wchar_t</code>
- type, which can hold a 32-bit character (at least in GNU systems). &nbsp;To
+normal <code>char</code> type.  This is why C also defines the <code>wchar_t</code>
+ type, which can hold a 32-bit character (at least in GNU systems).  To
 avoid both of these disadvantages, UTF-8 was introduced.<br>
 <br>
 In UTF-8, the number of bytes used to write a character to a file depends
-on the Unicode code point. &nbsp;The corresponding table to the table above
+on the Unicode code point.  The corresponding table to the table above
 is:<br>
 <br>
 <table cellpadding="2" cellspacing="2" border="1" width="75%" align="center">
-<tbody><tr><td valign="top" align="center"><b>Character</b><br></td><td valign="top" align="center"><b>Unicode code point</b><br></td><td valign="top" align="center"><b>Byte values in file (UTF-8)</b><br></td></tr><tr><td valign="top">A<br></td><td valign="top">U+0041<br></td><td valign="top">0x41<br></td></tr><tr><td valign="top">&eacute;<br></td><td valign="top">U+00E9<br></td><td valign="top">0xC3, 0xA9<br></td></tr><tr><td valign="top">&#952; (theta)<br></td><td valign="top">U+03B8<br></td><td valign="top">0xCE, 0xB8<br></td></tr><tr><td valign="top">&#8364; (euro)<br></td><td valign="top">U+20AC<br></td><td valign="top">0xE2, 0x82, 0xAC<br></td></tr></tbody>
+<tbody><tr><td valign="top" align="center"><b>Character</b><br></td><td valign="top" align="center"><b>Unicode code point</b><br></td><td valign="top" align="center"><b>Byte values in file (UTF-8)</b><br></td></tr><tr><td valign="top">A<br></td><td valign="top">U+0041<br></td><td valign="top">0x41<br></td></tr><tr><td valign="top">é<br></td><td valign="top">U+00E9<br></td><td valign="top">0xC3, 0xA9<br></td></tr><tr><td valign="top">θ (theta)<br></td><td valign="top">U+03B8<br></td><td valign="top">0xCE, 0xB8<br></td></tr><tr><td valign="top">€ (euro)<br></td><td valign="top">U+20AC<br></td><td valign="top">0xE2, 0x82, 0xAC<br></td></tr></tbody>
 </table>
 <br>
 Some immediate observations:<br>
@@ -270,14 +266,14 @@ in a null-terminated C string (without having to use the <code>wchar_t</code> ty
     <br>
   </li>
   <li>Strict ASCII characters are encoded into 1 byte, which makes UTF-8
-completely backward compatible with ASCII. &nbsp;It doesn't change the size
-of normal ASCII text files.<br>
+completely backward compatible with ASCII.  It doesn't change the size
+of normal ASCII text strings or files.<br>
     <br>
   </li>
-  <li>Some characters need 3 bytes in UTF-8. &nbsp;Indeed, all basic plane
+  <li>Some characters need 3 bytes in UTF-8.  Indeed, all basic plane
 characters (U+0000 to U+FFFF) can be encoded in 1, 2 or 3 bytes.</li>
 </ul>
-An excellent explanation of how to encode characters in UTF-8 can be found <a href="http://www.cl.cam.ac.uk/%7Emgk25/unicode.html#utf-8">on this page</a>.<br>
+An excellent explanation of how to characters are encoded in UTF-8 can be found <a href="http://www.cl.cam.ac.uk/%7Emgk25/unicode.html#utf-8">on this page</a>.<br>
 <br>
 Some additional terminology regarding encoding schemes (less important here):<br>
 <ul>
@@ -301,6 +297,7 @@ of two 16-bit characters<br>
   <li><b>UTF-7</b>: can be safely forgotten... (a kind of 7-bit clean version of UTF-8)</li>
 </ul>
 Note that the byte order of UCS-2, UCS-4, UTF-16 and UTF-32 is not defined, so it can be big endian or little endian !<br>
+
 
 <hr width="100%" size="2">
 <pre><font size="-1">$Id$<br>$Name$</font><br></pre>
