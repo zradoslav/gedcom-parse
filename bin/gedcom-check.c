@@ -122,6 +122,10 @@ int main(int argc, char* argv[])
   }
   else {
     printf(_("Parse failed\n"));
+    if (!compat_enabled) {
+      printf(_("  Note: Compatibility mode was not enabled\n"));
+      printf(_("  You could try the check again using the '-c' option\n"));
+    }
   }
   return result;
 }
