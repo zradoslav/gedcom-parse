@@ -1,0 +1,6 @@
+#!/bin/sh
+
+builddir=`pwd`
+export LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$LD_LIBRARY_PATH
+export GCONV_PATH=./ansel
+$builddir/pathtest
