@@ -56,7 +56,7 @@ typedef enum _REC {
 } Gedcom_rec;
 
 typedef enum _ELT {
-  ELT_HEAD_SOUR,
+  ELT_HEAD_SOUR = NR_OF_RECS + 1,
   ELT_HEAD_SOUR_VERS,
   ELT_HEAD_SOUR_NAME,
   ELT_HEAD_SOUR_CORP,
@@ -414,25 +414,26 @@ typedef void
 
 typedef Gedcom_ctxt
         (*Gedcom_rec_start_cb)
-        (int level, Gedcom_val xref, char *tag, char *raw_value,
-	 int tag_value, Gedcom_val parsed_value);
+        (Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
+         char *raw_value, int tag_value, Gedcom_val parsed_value);
 typedef void
         (*Gedcom_rec_end_cb)
-        (Gedcom_ctxt self);
+        (Gedcom_rec rec, Gedcom_ctxt self);
 
 typedef Gedcom_ctxt
         (*Gedcom_elt_start_cb)
-        (Gedcom_ctxt parent,
+        (Gedcom_elt elt, Gedcom_ctxt parent,
 	 int level, char *tag, char *raw_value,
 	 int tag_value, Gedcom_val parsed_value);
 typedef void
         (*Gedcom_elt_end_cb)
-        (Gedcom_ctxt parent, Gedcom_ctxt self, Gedcom_val parsed_value);
+        (Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
+         Gedcom_val parsed_value);
 
 typedef void
         (*Gedcom_def_cb)
-        (Gedcom_ctxt parent, int level, char *tag, char *raw_value,
-	 int tag_value);
+        (Gedcom_elt elt, Gedcom_ctxt parent, int level, char *tag,
+         char *raw_value, int tag_value);
 
 void    gedcom_init();
 int     gedcom_parse_file(char* file_name);
