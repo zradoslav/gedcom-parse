@@ -12,8 +12,9 @@
 
 #ifndef IN_LEX
 
-#include "gedcom.tab.h"
+#include "external.h"
 #include "gedcom.h"
+#include "gedcom.tab.h"
 #include "multilex.h"
 #include "encoding.h"
 
