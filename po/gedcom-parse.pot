@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2001-12-30 14:17+0100\n"
+"POT-Creation-Date: 2001-12-30 22:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,37 +49,37 @@ msgid "Error opening conversion context for encoding %s: %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:1234 gedcom/gedcom.y:3330
+#: gedcom/gedcom.y:1238 gedcom/gedcom.y:3339
 msgid "Missing value"
 msgstr ""
 
-#: gedcom/gedcom.y:3276 gedcom/gedcom.y:3292
+#: gedcom/gedcom.y:3284 gedcom/gedcom.y:3301
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:3325
+#: gedcom/gedcom.y:3334
 msgid "Missing pointer"
 msgstr ""
 
-#: gedcom/gedcom.y:3402
+#: gedcom/gedcom.y:3411
 msgid "Missing cross-reference"
 msgstr ""
 
-#: gedcom/gedcom.y:3565
+#: gedcom/gedcom.y:3574
 msgid "Internal error: count array overflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3571
+#: gedcom/gedcom.y:3580
 msgid "Internal error: count array calloc error"
 msgstr ""
 
-#: gedcom/gedcom.y:3616
+#: gedcom/gedcom.y:3625
 msgid "Internal error: count array underflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3678
+#: gedcom/gedcom.y:3687
 msgid "Enabling compatibility with 'ftree'"
 msgstr ""
 
@@ -112,12 +112,12 @@ msgstr ""
 msgid "Could not open file '%s'"
 msgstr ""
 
-#: gedcom/message.c:109
+#: gedcom/message.c:108
 #, c-format
 msgid "Warning on line %d: "
 msgstr ""
 
-#: gedcom/message.c:126
+#: gedcom/message.c:124
 #, c-format
 msgid "Error on line %d: "
 msgstr ""
