@@ -28,6 +28,10 @@
 
 __BEGIN_DECLS
 
+/**************************************************************************/
+/***  First the records and elements to subscribe upon                  ***/
+/**************************************************************************/
+									   
 typedef enum _REC {
   REC_HEAD,
   REC_FAM,
@@ -89,12 +93,51 @@ typedef enum _ELT {
   ELT_OBJE_OBJE,
   
   ELT_REPO_NAME,
+
+  ELT_SOUR_DATA,
+  ELT_SOUR_DATA_EVEN,
+  ELT_SOUR_DATA_EVEN_DATE,
+  ELT_SOUR_DATA_EVEN_PLAC,
+  ELT_SOUR_DATA_AGNC,
+  ELT_SOUR_AUTH,
+  ELT_SOUR_TITL,
+  ELT_SOUR_ABBR,
+  ELT_SOUR_PUBL,
+  ELT_SOUR_TEXT,
+
+  ELT_SUBN_SUBM,
+  ELT_SUBN_FAMF,
+  ELT_SUBN_TEMP,
+  ELT_SUBN_ANCE,
+  ELT_SUBN_DESC,
+  ELT_SUBN_ORDI,
+  ELT_SUBN_RIN,
+
+  ELT_SUBM_NAME,
+  ELT_SUBM_LANG,
+  ELT_SUBM_RFN,
+  ELT_SUBM_RIN,
+
+  ELT_SUB_ADDR,
+  ELT_SUB_ADDR_CONT,
+  ELT_SUB_ADDR_ADR1,
+  ELT_SUB_ADDR_ADR2,
+  ELT_SUB_ADDR_CITY,
+  ELT_SUB_ADDR_STAE,
+  ELT_SUB_ADDR_POST,
+  ELT_SUB_ADDR_CTRY,
+  
+  ELT_SUB_PHON,
   
   ELT_USER,
   
   NR_OF_ELTS     /* Just a final value to be used in array boundaries */
 } Gedcom_elt;
 
+/**************************************************************************/
+/***  Definition of some auxiliary types                                ***/
+/**************************************************************************/
+									   
 typedef enum _MECH {
   IMMED_FAIL,
   DEFER_FAIL,
@@ -107,8 +150,119 @@ typedef enum _MSG {
   MESSAGE
 } Gedcom_msg_type;
 
+typedef enum _DATE_TYPE {
+  DATE_UNRECOGNIZED,   /* Neither jday1 as jday2 are significant */
+  DATE_EXACT,          /* Only jday1 is significant */
+  DATE_BOUNDED         /* Both jday1 and jday2 are significant */
+} Date_type;
+
+typedef enum _CALENDAR_TYPE {
+  CAL_GREGORIAN,
+  CAL_JULIAN,
+  CAL_HEBREW,
+  CAL_FRENCH_REV,
+  CAL_UNKNOWN
+} Calendar_type;
+
+typedef enum _YEAR_TYPE {
+  YEAR_SINGLE,
+  YEAR_DOUBLE     /* In this case, the 'year' indicates the last value */
+} Year_type;
+
+typedef enum _DATE_VAL_MOD {
+  /* Simple date */
+  DV_NO_MODIFIER,
+  /* Range values */
+  DV_BEFORE,
+  DV_AFTER,
+  DV_BETWEEN,       /* Two dates are given */
+  /* Period values */
+  DV_FROM,
+  DV_TO,
+  DV_FROM_TO,       /* Two dates are given */
+  /* Approx values */
+  DV_ABOUT,
+  DV_CALCULATED,
+  DV_ESTIMATED,
+  /* Other */
+  DV_INTERPRETED,   /* One date and a phrase is given */
+  DV_PHRASE         /* Only phrase is given */
+} Date_value_type;
+
+#define MAX_DAY_LEN    2
+#define MAX_MONTH_LEN  4
+#define MAX_YEAR_LEN   7
+#define MAX_PHRASE_LEN 35
+
+struct date {
+  Calendar_type cal;
+  char day_str[MAX_DAY_LEN + 1];
+  char month_str[MAX_MONTH_LEN + 1];
+  char year_str[MAX_YEAR_LEN + 1];
+  int day;    /* starts at 1 */
+  int month;  /* starts at 1 */
+  int year;   /* the highest value for double years */
+  Year_type year_type;
+  Date_type type;
+  long int sdn1;
+  long int sdn2;
+};
+
+struct date_value {
+  Date_value_type type;
+  struct date date1;
+  struct date date2;
+  char phrase[MAX_PHRASE_LEN + 1];
+};
+
+/**************************************************************************/
+/***  Things meant to be internal, susceptible to changes               ***/
+/***  Use the GEDCOM_STRING/GEDCOM_DATE interface instead of relying    ***/
+/***  on this !!                                                        ***/
+/**************************************************************************/
+									   
+typedef enum _GEDCOM_VAL_TYPE {
+  GV_CHAR_PTR,
+  GV_DATE_VALUE
+} Gedcom_val_type;
+
+union _Gedcom_val_union {
+  char* string_val;
+  struct date_value date_val;
+};
+
+typedef struct _Gedcom_val_struct {
+  Gedcom_val_type type;
+  union _Gedcom_val_union value;
+} Gedcom_val_struct;
+
+void gedcom_cast_error(char* file, int line);
+extern struct date_value def_date_val;
+
+#define GV_CHECK_CAST(VAL, TYPE, MEMBER, DEFVAL)                              \
+   ((VAL->type == TYPE) ?                                                     \
+    VAL->value.MEMBER :                                                       \
+    (gedcom_cast_error(__FILE__,__LINE__), DEFVAL))
+
+/**************************************************************************/
+/***  Function interface                                                ***/
+/**************************************************************************/
+
+/* Type for context handling, meant to be opaque */
 typedef void* Gedcom_ctxt;
-typedef void* Gedcom_val;
+
+/* Type for parsed values, meant to be opaque */
+typedef Gedcom_val_struct* Gedcom_val;
+
+/* This returns the char* from a Gedcom_val, if appropriate */
+/* It gives a gedcom_warning if the cast is not correct     */
+#define GEDCOM_STRING(VAL) \
+   GV_CHECK_CAST(VAL, GV_CHAR_PTR, string_val, "")
+
+/* This returns the struct date_value from a Gedcom_val, if appropriate */
+/* It gives a gedcom_warning if the cast is not correct                 */
+#define GEDCOM_DATE(VAL) \
+   GV_CHECK_CAST(VAL, GV_DATE_VALUE, date_val, def_date_val)
 
 typedef void
         (*Gedcom_msg_handler)
@@ -146,6 +300,9 @@ void    gedcom_subscribe_to_record(Gedcom_rec rec,
 void    gedcom_subscribe_to_element(Gedcom_elt elt,
 				    Gedcom_elt_start_cb cb_start,
 				    Gedcom_elt_end_cb cb_end);
+
+/* Separate value parsing functions */
+struct date_value gedcom_parse_date(char* line_value);
 
 __END_DECLS
 
