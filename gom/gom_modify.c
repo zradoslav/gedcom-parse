@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utf8tools.h"
+#include "user_rec.h"
 #include "gom.h"
 #include "gom_internal.h"
 
@@ -78,17 +79,31 @@ char* gom_set_string_for_locale(char** data, const char* locale_str)
   return result;
 }
 
-struct xref_value* gom_set_xref_value(struct xref_value** data,
-				      struct xref_value* newval)
+void CLEANFUNC(xref_list)(struct xref_list *obj)
+{
+  if (obj) {
+    DESTROY_CHAIN_ELTS(user_data, obj->extra);
+  }
+}
+
+struct xref_value* gom_set_xref(struct xref_value** data, const char* xref)
 {
   struct xref_value* result = NULL;
+  struct xref_value* newval = NULL;
+  
   if (data) {
+    if (xref) {
+      newval = gedcom_get_by_xref(xref);
+      if (!newval)
+	gedcom_error(_("No record found for xref '%s'"), xref);
+    }
+    
     /* Unreference the old value if not NULL */
     if (*data)
       result = gedcom_unlink_xref((*data)->type, (*data)->string);
     else
       result = newval;
-
+    
     /* Reference the new value if not NULL */
     if (result != NULL && newval) {
       result = gedcom_link_xref(newval->type, newval->string);
@@ -102,5 +117,56 @@ struct xref_value* gom_set_xref_value(struct xref_value** data,
       result = newval;
     }
   }
+  return result;
+}
+
+struct xref_list* gom_add_xref(struct xref_list** data, const char* xref)
+{
+  struct xref_value* result = NULL;
+  struct xref_value* newval = NULL;
+  struct xref_list* xrl = NULL;
+
+  if (data && xref) {
+    newval = gedcom_get_by_xref(xref);
+    if (!newval)
+      gedcom_error(_("No record found for xref '%s'"), xref);
+    else {
+      result = gedcom_link_xref(newval->type, newval->string);
+      if (result != NULL) {
+	MAKE_CHAIN_ELT(xref_list, *data, xrl);
+	if (xrl) xrl->xref = newval;
+      }
+    }
+  }
+
+  return xrl;
+}
+
+int gom_remove_xref(struct xref_list** data, const char* xref)
+{
+  struct xref_value* xr = NULL;
+  int result = 1;
+  
+  if (data && xref) {
+    xr = gedcom_get_by_xref(xref);
+    if (!xr)
+      gedcom_error(_("No record found for xref '%s'"), xref);
+    else {
+      struct xref_list* xrl = NULL;
+      for (xrl = *data ; xrl ; xrl = xrl->next) {
+	if (xrl->xref == xr) {
+	  UNLINK_CHAIN_ELT(xref_list, *data, xrl);
+	  gedcom_unlink_xref(xr->type, xr->string);
+	  CLEANFUNC(xref_list)(xrl);
+	  SAFE_FREE(xrl);
+	  result = 0;
+	  break;
+	}
+      }
+      if (result == 1)
+	gedcom_error(_("Xref '%s' to remove not part of chain"), xref);
+    }
+  }
+
   return result;
 }

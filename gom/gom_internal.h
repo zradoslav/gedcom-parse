@@ -116,8 +116,8 @@ int  update_time(char** tv, struct tm* tm_ptr);
 
 void NULL_DESTROY(void* anything);
 
-#define xref_list_cleanup NULL_DESTROY
-
 #include "func_template.h"
 
+DECLARE_CLEANFUNC(xref_list);
+  
 #endif /* __GOM_INTERNAL_H */

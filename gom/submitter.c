@@ -39,7 +39,6 @@ DEFINE_DESTROYFUNC(submitter, gom_first_submitter)
 DEFINE_ADDFUNC(submitter, XREF_SUBM)
 DEFINE_DELETEFUNC(submitter)
 DEFINE_GETXREFFUNC(submitter, XREF_SUBM)
-DEFINE_MAKELINKFUNC(submitter, XREF_SUBM)
      
 DEFINE_REC_CB(submitter, subm_start)
 DEFINE_STRING_CB(submitter, subm_name_start, name)

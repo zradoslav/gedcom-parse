@@ -33,7 +33,6 @@
 #define SUB_ADDFUNC(STRUCTTYPE)  gom_add_ ## STRUCTTYPE
 #define DELETEFUNC(STRUCTTYPE)   gom_delete_ ## STRUCTTYPE
 #define SUB_DELETEFUNC(STRUCTTYPE) gom_delete_ ## STRUCTTYPE
-#define MAKELINKFUNC(STRUCTTYPE) gom_make_ ## STRUCTTYPE ## _link
 #define ADDFUNC2(T1,T2)          T1 ## _add_ ## T2
 #define ADDFUNC2_TOVAR(T1,T2,F)  T1 ## _add_ ## T2 ## _to_ ## F
 #define ADDFUNC2_NOLIST(T1,T2)   ADDFUNC2(T1,T2)
@@ -75,9 +74,9 @@
     }                                                                         \
     else {                                                                    \
       VAL->next = NULL;                                                       \
-      FIRSTVAL->previous->next = VAL;                                         \
-      VAL->previous = FIRSTVAL->previous;                                     \
-      FIRSTVAL->previous = VAL;                                               \
+      (FIRSTVAL)->previous->next = VAL;                                       \
+      VAL->previous = (FIRSTVAL)->previous;                                   \
+      (FIRSTVAL)->previous = VAL;                                             \
     }                                                                         \
   }
 
@@ -90,6 +89,8 @@
       VAL->previous->next = VAL->next;                                        \
     if (VAL->next)                                                            \
       VAL->next->previous = VAL->previous;                                    \
+    else if (FIRSTVAL)                                                        \
+      (FIRSTVAL)->previous = VAL->previous;                                   \
   }
 
 #define MAKE_CHAIN_ELT(STRUCTTYPE, FIRSTVAL, VAL)                             \
@@ -108,6 +109,7 @@
     if (FIRSTVAL) {                                                           \
       struct STRUCTTYPE *runner, *next;                                       \
       runner = FIRSTVAL;                                                      \
+      FIRSTVAL = NULL;                                                        \
       while (runner) {                                                        \
 	next = runner->next;                                                  \
         CLEANFUNC(STRUCTTYPE)(runner);                                        \
@@ -148,7 +150,7 @@
     if (obj) {                                                                \
       CLEANFUNC(STRUCTTYPE)(obj);                                             \
       UNLINK_CHAIN_ELT(STRUCTTYPE, FIRSTVAL, obj);                            \
-      free(obj);                                                              \
+      SAFE_FREE(obj);                                                         \
     }                                                                         \
   }
 
@@ -193,6 +195,7 @@
     return obj;                                                               \
   }
 
+/* TODO: Check whether there are still xrefs linked in */
 #define DEFINE_DELETEFUNC(STRUCTTYPE)                                         \
   int DELETEFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj)                          \
   {                                                                           \
@@ -211,21 +214,10 @@
     int result = 1;                                                           \
     if (obj && *obj) {                                                        \
       CLEANFUNC(STRUCTTYPE)(*obj);                                            \
-      free(*obj);                                                             \
-      *obj = NULL;                                                            \
+      SAFE_FREE(*obj);                                                        \
       result = 0;                                                             \
     }                                                                         \
     return result;                                                            \
-  }
-
-#define DEFINE_MAKELINKFUNC(STRUCTTYPE,XREF_TYPE)                             \
-  struct xref_value* MAKELINKFUNC(STRUCTTYPE)(struct STRUCTTYPE* obj)         \
-  {                                                                           \
-    struct xref_value* xr = NULL;                                             \
-    if (obj && obj->xrefstr) {                                                \
-      xr = gedcom_get_by_xref(obj->xrefstr);                                  \
-    }                                                                         \
-    return xr;                                                                \
   }
 
 #define DEFINE_ADDFUNC2(STRUCTTYPE,T2,FIELD)                                  \

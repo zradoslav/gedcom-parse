@@ -43,7 +43,6 @@ DEFINE_DESTROYFUNC(source, gom_first_source)
 DEFINE_ADDFUNC(source, XREF_SOUR)
 DEFINE_DELETEFUNC(source)
 DEFINE_GETXREFFUNC(source, XREF_SOUR)
-DEFINE_MAKELINKFUNC(source, XREF_SOUR)
      
 DEFINE_REC_CB(source, sour_start)
 DEFINE_NULL_CB(source, sour_data_start)

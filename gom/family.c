@@ -45,7 +45,6 @@ DEFINE_DESTROYFUNC(family, gom_first_family)
 DEFINE_ADDFUNC(family, XREF_FAM)
 DEFINE_DELETEFUNC(family)
 DEFINE_GETXREFFUNC(family, XREF_FAM)
-DEFINE_MAKELINKFUNC(family, XREF_FAM)
      
 DEFINE_REC_CB(family, fam_start)
 DEFINE_XREF_CB(family, fam_husb_start, husband, individual)

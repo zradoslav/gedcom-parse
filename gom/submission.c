@@ -32,8 +32,6 @@
 
 struct submission* gom_submission = NULL;
 
-DEFINE_MAKELINKFUNC(submission, XREF_SUBN)
-     
 DEFINE_REC_CB(submission, subn_start)
 DEFINE_XREF_CB(submission, subn_subm_start, submitter, submitter)
 DEFINE_STRING_CB(submission, subn_famf_start, family_file)
