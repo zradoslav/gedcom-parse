@@ -1,0 +1,62 @@
+#!/bin/sh
+# $Id$
+# $Name$
+
+options="-q"
+extra_options=
+dmalloc=`which dmalloc`
+dmalloc_tmp=dmalloc.env
+
+while [ $# -gt 0 ]
+do
+  case "$1" in
+    -*) extra_options="$extra_options $1";;
+    *)  break;;
+  esac
+  shift
+done
+
+file=$1
+expected_result=$2
+if [ -z "$expected_result" ]
+then
+  expected_result=0
+fi
+
+# For use outside Makefile
+if [ -z "$srcdir" ]
+then
+  testfile=$file
+  srcdir=.
+  options=$extra_options
+else
+  testfile=$srcdir/input/$file
+  options="$options $extra_options"
+fi
+
+builddir=`pwd`
+export GCONV_PATH=.:$GCONV_PATH
+export LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$builddir/../gom/.libs:$LD_LIBRARY_PATH
+ln -s $srcdir/../data/gedcom.enc .
+ln -s $builddir/../ansel/.libs/ANSI_Z39.47.so .
+ln -s $srcdir/../ansel/gconv-modules .
+rm -f core
+if [ "$GOM_DMALLOC_TEST" = "" ]
+then
+  $GEDCOM_TESTENV $builddir/src/gomtest $options $testfile
+else
+  $dmalloc -b -l $GOM_DMALLOC_TEST -i 100 low > $dmalloc_tmp
+  . $dmalloc_tmp
+  rm $dmalloc_tmp
+  $GEDCOM_TESTENV $builddir/src/gomtest_static $options $testfile
+fi
+result=$?
+rm gedcom.enc
+rm ANSI_Z39.47.so
+rm gconv-modules
+if [ "$result" -eq "$expected_result" -a ! -r core ]
+then
+  exit 0
+else
+  exit 1
+fi
