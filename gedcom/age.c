@@ -170,7 +170,8 @@ char* gedcom_age_to_string(const struct age_value* val)
 
   switch (val->type) {
     case AGE_UNRECOGNIZED:
-      return val->phrase; break;
+      reset_buffer(&age_buffer);
+      safe_buf_append(&age_buffer, val->phrase); break;
     case AGE_CHILD:
       safe_buf_append(&age_buffer, "CHILD"); break;
     case AGE_INFANT:
