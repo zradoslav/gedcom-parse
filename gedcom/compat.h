@@ -57,6 +57,7 @@ void set_compatibility_program(const char* program);
 void set_compatibility_version(const char* version);
 void compute_compatibility();
 int  compat_mode(Compat_rule rule);
+void compat_close();
 
 /* C_NO_SUBMITTER */
 void compat_generate_submitter_link(Gedcom_ctxt parent);

@@ -269,6 +269,12 @@ int compat_mode(Compat_rule rule)
   return (compat_matrix[rule] & compatibility);
 }
 
+void compat_close()
+{
+  compatibility_program = 0;
+  compatibility = 0;
+}
+
 /********************************************************************/
 /*  C_NO_SUBMITTER                                                  */
 /********************************************************************/

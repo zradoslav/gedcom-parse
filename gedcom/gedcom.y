@@ -422,9 +422,13 @@ void clean_up();
 %%
 
 file        : head_sect records trlr_sect
-               { if (fail == 1) YYABORT; }
+               { compat_close();
+		 if (fail == 1) YYABORT;
+	       }
             | error
-               { clean_up(); }
+               { compat_close();
+	         clean_up();
+	       }
             ;
 
 records     : /* empty */
