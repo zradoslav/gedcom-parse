@@ -32,7 +32,7 @@
 #include <iconv.h>
 #include "utf8-locale.h"
 
-#define BOGUS_FILE_NAME "Makefile.am"
+#define BOGUS_FILE_NAME "bogus.ged"
 int total_conv_fails = 0;
 
 void show_help ()
@@ -49,7 +49,7 @@ void show_help ()
   printf("  -da   Debug setting: libgedcom + yacc debug messages\n");
   printf("  -2    Run the test parse 2 times instead of once\n");
   printf("  -3    Run the test parse 3 times instead of once\n");
-  printf("  -b    Parse a bogus file before parsing the main file\n");
+  printf("  -b    Parse a bogus file (bogus.ged) before parsing the main file\n");
   printf("  -q    No output to standard output\n");
   printf("  -o <outfile>  File to generate output to (def. testgedcom.out)\n");
 }
