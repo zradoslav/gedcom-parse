@@ -35,20 +35,20 @@ else
 fi
 
 builddir=`pwd`
+ltcmd="$srcdir/../libtool --mode=execute -dlopen $builddir/../gedcom/libgedcom.la -dlopen $builddir/../gom/libgedcom_gom.la"
 export GCONV_PATH=.:$GCONV_PATH
-export LD_LIBRARY_PATH=$builddir/../gedcom/.libs:$builddir/../gom/.libs:$LD_LIBRARY_PATH
 ln -s $srcdir/../data/gedcom.enc .
 ln -s $builddir/../ansel/.libs/ANSI_Z39.47.so .
 ln -s $srcdir/../ansel/gconv-modules .
 rm -f core
 if [ "$GOM_DMALLOC_TEST" = "" ]
 then
-  $GEDCOM_TESTENV $builddir/src/gomtest $options $testfile
+  $ltcmd $GEDCOM_TESTENV $builddir/src/gomtest $options $testfile
 else
   $dmalloc -b -l $GOM_DMALLOC_TEST -i 100 low > $dmalloc_tmp
   . $dmalloc_tmp
   rm $dmalloc_tmp
-  $GEDCOM_TESTENV $builddir/src/gomtest_static $options $testfile
+  $ltcmd $GEDCOM_TESTENV $builddir/src/gomtest_static $options $testfile
 fi
 result=$?
 rm gedcom.enc
