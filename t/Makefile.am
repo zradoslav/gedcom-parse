@@ -13,7 +13,7 @@ TESTS_ENVIRONMENT=ICONV_PATH=@ICONV_PATH@
 all-local:
 	@rm -f *.out
 
-check-% :	%.test all-local
+check-% :	%.test all
 	@srcdir=$(srcdir); export srcdir; \
         if $(TESTS_ENVIRONMENT) ./$<; then \
 	  echo "Test succeeded"; \
