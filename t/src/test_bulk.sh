@@ -10,6 +10,14 @@ done
 
 echo "======================================================">> $logfile
 echo "Performing test '$test_name'" >> $logfile
+
+if [ "$GEDCOM_NOOPTS" ]
+then
+  echo "Following options would be passed: $options $test_args"
+  options=
+  test_args=
+fi
+
 $ltcmd $GEDCOM_TESTENV $builddir/src/$test_program $options $test_args
 result=$?
 rm gedcom.enc

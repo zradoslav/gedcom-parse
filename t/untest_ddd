@@ -1,0 +1,2 @@
+unset GEDCOM_TESTENV
+unset GEDCOM_NOOPTS

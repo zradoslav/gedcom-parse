@@ -1,0 +1,2 @@
+export GEDCOM_TESTENV='ddd'
+export GEDCOM_NOOPTS=1
