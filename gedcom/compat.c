@@ -30,6 +30,7 @@
 #include "gedcom.h"
 
 int compat_enabled = 1;
+Gedcom_compat compat_options = 0;
 int compatibility  = 0;
 int compatibility_program = 0;
 int compatibility_version = 0;
@@ -112,6 +113,8 @@ struct program_data data[] = {
 
     - Personal Ancestral File 4:
         - '@' not written as '@@' in values
+	- SUBM.CTRY instead of SUBM.ADDR.CTRY
+	- lines too long
  */
 
 int compat_matrix[] =
@@ -132,7 +135,9 @@ int compat_matrix[] =
   /* C_CONC_NEEDS_SPACE */    C_FAMORIG,
   /* C_NO_GEDC_FORM */        C_EASYTREE,
   /* C_NOTE_NOTE */           C_EASYTREE,
-  /* C_TAB_CHARACTER */       C_PAF5
+  /* C_TAB_CHARACTER */       C_PAF5,
+  /* C_SUBM_CTRY */           C_PAF4,
+  /* C_NOTE_TOO_LONG */       C_PAF4
 };
 
 union _COMPAT_STATE {
@@ -145,6 +150,11 @@ union _COMPAT_STATE {
 void gedcom_set_compat_handling(int enable_compat)
 {
   compat_enabled = enable_compat;
+}
+
+void gedcom_set_compat_options(Gedcom_compat options)
+{
+  compat_options = options;
 }
 
 void enable_compat_msg(const char* program_name, int version)
@@ -398,23 +408,76 @@ void compat_save_head_date_context(Gedcom_ctxt parent)
 Gedcom_ctxt compat_generate_head_time_start(int level, struct tag_struct ts,
 					    char* value)
 {
-  Gedcom_ctxt parent = compat_state[C_HEAD_TIME].vp;
-  if (!value)
-    value = "-";
-  if (parent)
-    return start_element(ELT_HEAD_DATE_TIME,
-			 parent, level, ts, value,
-			 GEDCOM_MAKE_STRING(val1, value));
-  else
+  if (compat_options & COMPAT_ALLOW_OUT_OF_CONTEXT) {
+    Gedcom_ctxt parent = compat_state[C_HEAD_TIME].vp;
+    if (!value)
+      value = "-";
+    if (parent)
+      return start_element(ELT_HEAD_DATE_TIME,
+			   parent, level, ts, value,
+			   GEDCOM_MAKE_STRING(val1, value));
+    else
+      return NULL;
+  }
+  else {
+    gedcom_warning(_("Header change time '%s' lost in the compatibility (out of context)"),
+		   value);
     return NULL;
+  }
 }
 
 void compat_generate_head_time_end(Gedcom_ctxt self)
 {
-  Gedcom_ctxt parent = compat_state[C_HEAD_TIME].vp;
-  if (parent)
-    end_element(ELT_HEAD_DATE_TIME,
-		parent, self, GEDCOM_MAKE_NULL(val1));
+  if (compat_options & COMPAT_ALLOW_OUT_OF_CONTEXT) {
+    Gedcom_ctxt parent = compat_state[C_HEAD_TIME].vp;
+    if (parent)
+      end_element(ELT_HEAD_DATE_TIME,
+		  parent, self, GEDCOM_MAKE_NULL(val1));
+  }
+}
+
+/********************************************************************/
+/*  C_SUBM_CTRY                                                     */
+/********************************************************************/
+
+void compat_save_ctry_parent_context(Gedcom_ctxt parent)
+{
+  compat_state[C_SUBM_CTRY].vp = parent;
+}
+
+Gedcom_ctxt compat_generate_addr_ctry_start(int level, struct tag_struct ts,
+					    char* value)
+{
+  if (compat_options & COMPAT_ALLOW_OUT_OF_CONTEXT) {
+    Gedcom_ctxt parent = compat_state[C_SUBM_CTRY].vp;
+    if (!value)
+      value = "-";
+    if (parent)
+      return start_element(ELT_SUB_ADDR_CTRY,
+			   parent, level, ts, value,
+			   GEDCOM_MAKE_STRING(val1, value));
+    else
+      return NULL;
+  }
+  else {
+    gedcom_warning(_("Country '%s' lost in the compatibility (out of context)"), value);
+    return NULL;
+  }
+}
+
+void compat_generate_addr_ctry_end(Gedcom_ctxt self)
+{
+  if (compat_options & COMPAT_ALLOW_OUT_OF_CONTEXT) {
+    Gedcom_ctxt parent = compat_state[C_SUBM_CTRY].vp;
+    if (parent)
+      end_element(ELT_SUB_ADDR_CTRY,
+		  parent, self, GEDCOM_MAKE_NULL(val1));
+  }
+}
+
+void compat_free_ctry_parent_context()
+{
+  compat_state[C_SUBM_CTRY].vp = NULL;
 }
 
 /********************************************************************/
@@ -564,5 +627,56 @@ void compat_subm_comm_cont_end(Gedcom_ctxt parent, Gedcom_ctxt self)
   if (compat_state[C_SUBM_COMM].i == 2) {
     end_element(ELT_USER, parent, self, NULL);
     compat_state[C_SUBM_COMM].i = 1;
+  }
+}
+
+/********************************************************************/
+/*  C_NOTE_TOO_LONG                                                 */
+/********************************************************************/
+
+char compat_prefix[MAXGEDCLINELEN];
+
+int compat_long_line(int level, int tag)
+{
+  return compat_mode(C_NOTE_TOO_LONG) && (level > 0) && (tag == TAG_NOTE);
+}
+
+char* compat_long_line_get_prefix(char* str)
+{
+  if (str && utf8_strlen(str) > MAXGEDCLINELEN - 7) {
+    int len = MAXGEDCLINELEN - 7;
+    char* ch     = nth_utf8_char(str, len - 1);
+    char* nextch = next_utf8_char(ch);
+    memset(compat_prefix, 0, MAXGEDCLINELEN);
+    while (len > 1 && (*ch == ' ' || *nextch == ' ')) {
+      len--;
+      nextch = ch;
+      ch     = nth_utf8_char(str, len - 1);
+    }
+    len = nextch - str;
+    strncpy(compat_prefix, str, len);
+    compat_state[C_NOTE_TOO_LONG].vp = (void*)nextch;
+    return compat_prefix;
+  }
+  else {
+    compat_state[C_NOTE_TOO_LONG].vp = NULL;
+    return str;
+  }
+}
+
+void compat_long_line_finish(Gedcom_ctxt parent, int level)
+{
+  struct tag_struct ts;
+  ts.string = "CONC";
+  ts.value  = TAG_CONC;
+  
+  while (compat_state[C_NOTE_TOO_LONG].vp) {
+    Gedcom_ctxt ctxt;
+    char* input  = (char*)compat_state[C_NOTE_TOO_LONG].vp;
+    char* output = compat_long_line_get_prefix(input);
+
+    ctxt = start_element(ELT_SUB_CONC, parent, level + 1, ts, output,
+			 GEDCOM_MAKE_STRING(val1, output));
+    end_element(ELT_SUB_CONC, parent, ctxt, GEDCOM_MAKE_NULL(val1));
   }
 }
