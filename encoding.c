@@ -14,7 +14,7 @@
 #include <iconv.h>
 #include <search.h>
 #include <stdio.h>
-#include "gedcom.h"
+#include "gedcom_internal.h"
 #include "encoding.h"
 
 #define INTERNAL_ENCODING "UTF8"

@@ -10,7 +10,7 @@
 /* $Id$ */
 /* $Name$ */
 
-#include "gedcom.h"
+#include "gedcom_internal.h"
 #include "external.h"
 
 #define INITIAL_BUF_SIZE 256

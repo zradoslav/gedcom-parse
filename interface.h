@@ -13,7 +13,6 @@
 #ifndef __INTERFACE_H
 #define __INTERFACE_H
 
-#include "gedcom.h"
 #include "external.h"
 
 Gedcom_ctxt start_record(Gedcom_rec rec, int level, char *xref, char *tag);

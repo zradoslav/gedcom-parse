@@ -10,7 +10,7 @@
 /* $Id$ */
 /* $Name$ */
 
-#include "gedcom.h"
+#include "gedcom_internal.h"
 #include "multilex.h"
 #include "encoding.h"
 
