@@ -2234,17 +2234,61 @@ an error is produced). &nbsp;The first two checks are done at the end of
 the parsing, because cross-references can be defined after their usage in
 GEDCOM.<br>
 <br>
-An xref_value can also be retrieved by its key via the following function:<br>
-               
-<blockquote><code>struct xref_value* <b>gedcom_get_by_xref</b> (char *key)</code><br>
+The following functions are available to manipulate xref_value objects:<br>
+<blockquote><code>struct xref_value* <b>gedcom_get_by_xref</b> (const char *key)</code><br>
+  <blockquote>&nbsp;Retrieve an xref_value by its key. &nbsp;Returns <code>NULL</code> if the given key isn't a valid cross-reference key (see below) or isn't used.<br>
+  </blockquote>
+  <code>struct xref_value* <b>gedcom_add_xref</b> (Xref_type type, const char* key, Gedcom_ctxt object)</code> <br>
+  <blockquote>Add an xref_value of the given <code>type</code> (see list above), with the given <code>key</code>, to the given <code>object</code>, with a use count equal to 0. &nbsp;Returns the new xref_value if success. &nbsp;Returns <code>NULL</code> in one of the following cases:<br>
+    <ul>
+      <li>the key isn't a valid cross-reference key (see below)</li>
+      <li>there is already an xref_value with the same key</li>
+      <li>there was a memory allocation error</li>
+    </ul>
+  </blockquote>
+  <code>int <b>gedcom_delete_xref</b> (const char* key)<br>
+  </code>
+  <blockquote>Delete the xref_value corresponding to the given key. &nbsp;Returns 0 if success. &nbsp;Returns 1 in one of the following cases:<br>
+    <ul>
+      <li>the key isn't a valid cross-reference key (see below)</li>
+      <li>there is no xref_value with the given key</li>
+      <li>the xref_value is still in use, i.e. its use count is not 0 (see <code>gedcom_link_xref</code> and <code>gedcom_unlink_xref</code> below)</li>
+    </ul>
+  </blockquote>
+  <code>struct xref_value* <b>gedcom_link_xref</b> (Xref_type type, const char* key)<br>
+struct xref_value* <b>gedcom_unlink_xref</b> (Xref_type type, const char* key)</code><br>
+  <blockquote>Declare the xref_value corresponding to the given key as being
+used/no longer used (linked to or unlinked) as the given type. &nbsp;The
+use of these functions is not mandatory, but it can aid in spotting places in the code where xref_value objects are deleted while they are still referenced.<br>
+    <br>
+Returns the xref_value object if success, and its use count is incremented/decremented. &nbsp;Returns <code>NULL</code> in one of the following cases:<br>
+    <ul>
+      <li>the key isn't a valid cross-reference key (see below)</li>
+      <li>there is no xref_value with the given key</li>
+      <li>the xref_value was previously added as another type than the type provided here<br>
+      </li>
+    </ul>
+  </blockquote>
+</blockquote>
+<blockquote>
                        </blockquote>
-The function returns <code>NULL</code> if the given key isn't used.<br>
+
+A cross-reference key must be a string of maximum 22 characters, of the following format:<br>
+<ul>
+  <li>an at sign ('@')</li>
+  <li>followed by an alphanumeric character (A-Z, a-z, 0-9 or underscore)</li>
+  <li>followed by zero or more characters, which can be any character except an at sign</li>
+  <li>terminated by an at sign ('@')</li>
+</ul>
+An example would thus be: "@This is an xref_val@".<br>
+
                                                                        
               <hr width="100%" size="2">                            
               <pre>$Id$<br>$Name$<br></pre>
       <br>
                                                                         
               <br>
+<br>
 <br>
 <br>
 <br>
