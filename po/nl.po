@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gedcom-parse 0.17\n"
-"POT-Creation-Date: 2002-10-24 18:34+0200\n"
+"POT-Creation-Date: 2002-11-03 15:26+0100\n"
 "PO-Revision-Date: 2002-03-27 21:17+0100\n"
 "Last-Translator: Peter Verthez <Peter.Verthez@advalvas.be>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -25,9 +25,8 @@ msgid "No encoding defined for '%s'"
 msgstr "Geen codering gedefinieerd voor '%s'"
 
 #: gedcom/encoding.c:184
-#, fuzzy
 msgid "Could not register path cleanup function"
-msgstr "Kon functie voor vrijgeven van object model niet registreren"
+msgstr "Kon functie voor vrijgeven van padnaam niet registreren"
 
 #: gedcom/encoding.c:199
 msgid "Could not register encoding cleanup function"
@@ -71,22 +70,22 @@ msgstr "Fout bij het converteren van karakters: %s"
 #: gedcom/gedcom.y:207
 #, c-format
 msgid "The tag '%s' is mandatory within '%s', but missing"
-msgstr ""
+msgstr "De tag '%s' is verplicht binnen '%s', maar ontbreekt"
 
 #: gedcom/gedcom.y:229
 #, c-format
 msgid "The tag '%s' can maximally occur %d time(s) within '%s'"
-msgstr ""
+msgstr "De tag '%s' mag maximum %d keer voorkomen binnen '%s'"
 
 #: gedcom/gedcom.y:236
 #, c-format
 msgid "The tag '%s' is not a valid tag within '%s'"
-msgstr ""
+msgstr "De tag '%s' is niet geldig binnen '%s'"
 
 #: gedcom/gedcom.y:241
 #, c-format
 msgid "The tag '%s' is not a valid top-level tag"
-msgstr ""
+msgstr "De tag '%s' is geen geldige tag op het top niveau"
 
 #: gedcom/gedcom.y:669
 msgid "Header change time lost in the compatibility"
@@ -113,9 +112,8 @@ msgid "Missing cross-reference"
 msgstr "Naam voor verwijzingen ontbreekt"
 
 #: gedcom/gedcom.y:3815
-#, fuzzy
 msgid "Internal error: count level mismatch"
-msgstr "Interne fout: overloop van de telrij"
+msgstr "Interne fout: niveau fout"
 
 #: gedcom/gedcom.y:3819
 msgid "Internal error: count array overflow"
@@ -222,38 +220,33 @@ msgstr "Twee-byte codering, laag-hoog, met byte orde teken"
 msgid "Unknown encoding, falling back to one-byte"
 msgstr "Ongekende codering, valt terug op één-byte"
 
-#: gedcom/multilex.c:136
-msgid "Could not retrieve locale information"
-msgstr "Kon lokale informatie niet opvragen"
-
-#: gedcom/multilex.c:148
+#: gedcom/multilex.c:137
 #, c-format
-msgid "Could not retrieve locale domain: %s"
-msgstr "Kon lokaal domein niet opvragen: %s"
+msgid "Could not retrieve text domain: %s"
+msgstr "Kon tekstdomein niet opvragen: %s"
 
-#: gedcom/multilex.c:156
+#: gedcom/multilex.c:150
 #, c-format
-msgid "Could not set locale: %s"
-msgstr "Kon lokale informatie niet zetten: %s"
+msgid "Could not set text domain: %s"
+msgstr "Kon tekstdomein niet veranderen: %s"
 
-#: gedcom/multilex.c:161
+#: gedcom/multilex.c:155
 msgid "Internal error: GEDCOM parser not initialized"
 msgstr "Interne fout: GEDCOM verwerker niet geïnitializeerd"
 
-#: gedcom/multilex.c:166
+#: gedcom/multilex.c:160
 #, c-format
 msgid "Could not open file '%s': %s"
 msgstr "Kon bestand '%s' niet openen: %s"
 
-#: gedcom/multilex.c:188
+#: gedcom/multilex.c:181
 #, c-format
-msgid "Could not restore locale: %s"
-msgstr "Kon lokale informatie niet terugzetten: %s"
+msgid "Could not restore text domain: %s"
+msgstr "Kon tekstdomein niet terugzetten op de originele waarde: %s"
 
 #: gedcom/message.c:64
-#, fuzzy
 msgid "Could not register buffer cleanup function"
-msgstr "Kon functie om kruisverwijzingen te verwijderen niet registreren"
+msgstr "Kon functie om buffer te verwijderen niet registreren"
 
 #: gedcom/message.c:67 gedcom/message.c:175 gom/gom.c:151
 #, c-format
@@ -266,9 +259,8 @@ msgid "Warning on line %d: "
 msgstr "Waarschuwing op lijn %d: "
 
 #: gedcom/message.c:144
-#, fuzzy
 msgid "Warning: "
-msgstr "Waarschuwing op lijn %d: "
+msgstr "Waarschuwing: "
 
 #: gedcom/message.c:161
 #, c-format
@@ -277,7 +269,7 @@ msgstr "Fout op lijn %d: "
 
 #: gedcom/message.c:163
 msgid "Error: "
-msgstr ""
+msgstr "Fout: "
 
 #: gedcom/interface.c:36
 msgid "Internal error: Duplicate registration for default callback"
@@ -376,11 +368,10 @@ msgid "Cross-reference %s previously defined as pointer to %s, on line %d"
 msgstr ""
 "Verwijzing %s is voorheen gedefinieerd als een verwijzing naar %s, op lijn %d"
 
-#: gedcom/xref.c:192 gedcom/xref.c:331
-#, fuzzy, c-format
+#: gedcom/xref.c:192 gedcom/xref.c:337
+#, c-format
 msgid "Cross-reference %s previously defined as pointer to %s"
-msgstr ""
-"Verwijzing %s is voorheen gedefinieerd als een verwijzing naar %s, op lijn %d"
+msgstr "Verwijzing %s is voorheen gedefinieerd als een verwijzing naar %s"
 
 #: gedcom/xref.c:199
 #, c-format
@@ -389,31 +380,30 @@ msgstr ""
 "Verwijzing %s is voorheen gebruikt als een verwijzing naar %s, op lijn %d"
 
 #: gedcom/xref.c:204
-#, fuzzy, c-format
+#, c-format
 msgid "Cross-reference %s previously used as pointer to %s"
-msgstr ""
-"Verwijzing %s is voorheen gebruikt als een verwijzing naar %s, op lijn %d"
+msgstr "Verwijzing %s is voorheen gebruikt als een verwijzing naar %s"
 
-#: gedcom/xref.c:252 gedcom/xref.c:272 gedcom/xref.c:296 gedcom/xref.c:320
-#: gedcom/xref.c:351
+#: gedcom/xref.c:258 gedcom/xref.c:278 gedcom/xref.c:302 gedcom/xref.c:326
+#: gedcom/xref.c:357
 #, c-format
 msgid "String '%s' is not a valid cross-reference key"
-msgstr ""
+msgstr "Karakterrij '%s' is geen geldige verwijzing"
 
-#: gedcom/xref.c:277
-#, fuzzy, c-format
+#: gedcom/xref.c:283
+#, c-format
 msgid "Cross-reference %s already exists"
-msgstr "Verwijzing %s gebruikt op lijn %d is niet gedefinieerd"
+msgstr "Verwijzing %s bestaat al"
 
-#: gedcom/xref.c:301 gedcom/xref.c:325 gedcom/xref.c:356
-#, fuzzy, c-format
+#: gedcom/xref.c:307 gedcom/xref.c:331 gedcom/xref.c:362
+#, c-format
 msgid "Cross-reference %s not defined"
-msgstr "Verwijzing %s gebruikt op lijn %d is niet gedefinieerd"
+msgstr "Verwijzing %s is niet gedefinieerd"
 
-#: gedcom/xref.c:361
-#, fuzzy, c-format
+#: gedcom/xref.c:367
+#, c-format
 msgid "Cross-reference %s still in use"
-msgstr "Verwijzing %s gedefinieerd op lijn %d is nergens gebruikt"
+msgstr "Verwijzing %s wordt nog gebruikt"
 
 #: gedcom/compat.c:73
 msgid "Enabling compatibility with 'ftree'"
