@@ -21,7 +21,7 @@
 2 PLAC -
 2 SOUR ongeveer 1360
 1 DEAT
-2 DATE ()
+2 DATE (-)
 2 PLAC -
 2 SOUR -
 1 FAMC @F1@
@@ -30,7 +30,7 @@
 1 NOTE Nederlandse tak ? in 1405 was de oudste vleugen klaar
 0 @F1@ FAM
 1 MARR
-2 DATE ()
+2 DATE (-)
 2 PLAC -
 2 SOUR name@@domain.be (reclame voor genealogie boeken)
 1 HUSB @I7@

@@ -19,8 +19,10 @@ Submitter, xref is @__COMPAT__SUBM__@
 Family start, xref is @F1@
 == 1 HUSB (330) @I7@ (ctxt is 1, conversion failures: 0)
 == 1 MARR (339) (null) (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 9: Empty value changed to '-'
+WARNING: Warning on line 9: Putting date in 'phrase' member
 Contents of the date_value:
-  raw value: 
+  raw value: -
   type: 11
   date1:
     calendar type: 4
@@ -38,7 +40,7 @@ Contents of the date_value:
     date type: 0
     sdn1: -1
     sdn2: -1
-  phrase: 
+  phrase: -
 == 2 PLAC (358) - (ctxt is 1, conversion failures: 0)
 == 2 SOUR (377) name@domain.be (reclame voor genealogie boeken) (ctxt is 1, conversion failures: 0)
 Family end, xref is @F1@
@@ -70,8 +72,10 @@ Contents of the date_value:
 == 2 PLAC (358) - (ctxt is 333, conversion failures: 0)
 == 2 SOUR (377) ongeveer 1360 (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 21: Empty value changed to '-'
+WARNING: Warning on line 21: Putting date in 'phrase' member
 Contents of the date_value:
-  raw value: 
+  raw value: -
   type: 11
   date1:
     calendar type: 4
@@ -89,7 +93,7 @@ Contents of the date_value:
     date type: 0
     sdn1: -1
     sdn2: -1
-  phrase: 
+  phrase: -
 == 2 PLAC (358) - (ctxt is 333, conversion failures: 0)
 == 2 SOUR (377) - (ctxt is 333, conversion failures: 0)
 == 1 NOTE (348) Hij bouwde het Brusselse stadhuis in 1402. Hij bouwde ook kerken in (ctxt is 333, conversion failures: 0)
@@ -118,8 +122,10 @@ Submitter, xref is @__COMPAT__SUBM__@
 Family start, xref is @F1@
 == 1 HUSB (330) @I7@ (ctxt is 2, conversion failures: 0)
 == 1 MARR (339) (null) (ctxt is 2, conversion failures: 0)
+WARNING: Warning on line 9: Empty value changed to '-'
+WARNING: Warning on line 9: Putting date in 'phrase' member
 Contents of the date_value:
-  raw value: 
+  raw value: -
   type: 11
   date1:
     calendar type: 4
@@ -137,7 +143,7 @@ Contents of the date_value:
     date type: 0
     sdn1: -1
     sdn2: -1
-  phrase: 
+  phrase: -
 == 2 PLAC (358) - (ctxt is 2, conversion failures: 0)
 == 2 SOUR (377) name@domain.be (reclame voor genealogie boeken) (ctxt is 2, conversion failures: 0)
 Family end, xref is @F1@
@@ -169,8 +175,10 @@ Contents of the date_value:
 == 2 PLAC (358) - (ctxt is 333, conversion failures: 0)
 == 2 SOUR (377) ongeveer 1360 (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
+WARNING: Warning on line 21: Empty value changed to '-'
+WARNING: Warning on line 21: Putting date in 'phrase' member
 Contents of the date_value:
-  raw value: 
+  raw value: -
   type: 11
   date1:
     calendar type: 4
@@ -188,7 +196,7 @@ Contents of the date_value:
     date type: 0
     sdn1: -1
     sdn2: -1
-  phrase: 
+  phrase: -
 == 2 PLAC (358) - (ctxt is 333, conversion failures: 0)
 == 2 SOUR (377) - (ctxt is 333, conversion failures: 0)
 == 1 NOTE (348) Hij bouwde het Brusselse stadhuis in 1402. Hij bouwde ook kerken in (ctxt is 333, conversion failures: 0)

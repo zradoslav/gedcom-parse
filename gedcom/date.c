@@ -24,6 +24,8 @@
 #include "gedcom_internal.h"
 #include "sdncal.h"
 #include "buffer.h"
+#include "compat.h"
+#include <string.h>
 #include "date.h"
 
 struct date_value dv_s;
@@ -405,13 +407,21 @@ struct date_value gedcom_parse_date(const char* line_value)
   init_date(&date_s);
   init_date(&def_date);
   curr_line_value = line_value;
-  init_gedcom_date_lex(line_value);
-  gedcom_date_parse();
-  close_gedcom_date_lex();
-  if (dv_s.date1.cal != CAL_UNKNOWN)
-    numbers_to_sdn(&dv_s.date1);
-  if (dv_s.date2.cal != CAL_UNKNOWN)
-    numbers_to_sdn(&dv_s.date2);
+  if (compat_mode(C_NO_REQUIRED_VALUES)
+      && !strncmp(curr_line_value, "-", 2)) {
+    gedcom_date_error(_("Empty value changed to '-'"));
+    gedcom_date_error(_("Putting date in 'phrase' member"));
+    make_date_value(DV_PHRASE, &def_date, &def_date, curr_line_value);
+  }
+  else {
+    init_gedcom_date_lex(line_value);
+    gedcom_date_parse();
+    close_gedcom_date_lex();
+    if (dv_s.date1.cal != CAL_UNKNOWN)
+      numbers_to_sdn(&dv_s.date1);
+    if (dv_s.date2.cal != CAL_UNKNOWN)
+      numbers_to_sdn(&dv_s.date2);
+  }
   return dv_s;
 }
 

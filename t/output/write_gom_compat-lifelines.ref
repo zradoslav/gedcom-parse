@@ -1,6 +1,10 @@
 WARNING: Warning on line 2: Enabling compatibility with 'Lifelines'
 WARNING: Warning on line 5: Header change time lost in the compatibility
 WARNING: Warning on line 5: Adding link to submitter record with xref '@__COMPAT__SUBM__@'
+WARNING: Warning on line 9: Empty value changed to '-'
+WARNING: Warning on line 9: Putting date in 'phrase' member
+WARNING: Warning on line 21: Empty value changed to '-'
+WARNING: Warning on line 21: Putting date in 'phrase' member
 Writing file...
 Re-parsing file...
 Test succeeded
