@@ -71,34 +71,34 @@ int determine_encoding(FILE* f)
 
   fread(first, 1, 2, f);
   if ((first[0] == '0') && (first[1] == ' ')) {
-    gedcom_message(_("One-byte encoding"));
+    gedcom_debug_print(_("One-byte encoding"));
     fseek(f, 0, 0);
     return ONE_BYTE;
   }
   else if ((first[0] == '\0') && (first[1] == '0'))
   {
-    gedcom_message(_("Two-byte encoding, high-low"));
+    gedcom_debug_print(_("Two-byte encoding, high-low"));
     fseek(f, 0, 0);
     return TWO_BYTE_HILO;
   }
   else if ((first[0] == '\xFE') && (first[1] == '\xFF'))
   {
-    gedcom_message(_("Two-byte encoding, high-low, with BOM"));
+    gedcom_debug_print(_("Two-byte encoding, high-low, with BOM"));
     return TWO_BYTE_HILO;
   }
   else if ((first[0] == '0') && (first[1] == '\0'))
   {
-    gedcom_message(_("Two-byte encoding, low-high"));
+    gedcom_debug_print(_("Two-byte encoding, low-high"));
     fseek(f, 0, 0);
     return TWO_BYTE_LOHI;
   }
   else if ((first[0] == '\xFF') && (first[1] == '\xFE'))
   {
-    gedcom_message(_("Two-byte encoding, low-high, with BOM"));
+    gedcom_debug_print(_("Two-byte encoding, low-high, with BOM"));
     return TWO_BYTE_LOHI;
   }
   else {
-    gedcom_message(_("Unknown encoding, falling back to one-byte"));
+    gedcom_warning(_("Unknown encoding, falling back to one-byte"));
     fseek(f, 0, 0);
     return ONE_BYTE;
   }
@@ -126,6 +126,7 @@ int gedcom_parse_file(char* file_name)
     enc = determine_encoding(file);
     
     if (lexer_init(enc, file)) {
+      line_no = 1;
       result = gedcom_parse();
     }
     lexer_close();
