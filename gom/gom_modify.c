@@ -23,7 +23,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "utf8-locale.h"
+#include "utf8.h"
 #include "gom.h"
 #include "gom_internal.h"
 
@@ -45,14 +45,20 @@ char* gom_get_string_for_locale(char* data, int* conversion_failures)
 char* gom_set_string(char** data, const char* utf8_str)
 {
   char* result = NULL;
-  char* newptr = strdup(utf8_str);
-  
-  if (!newptr)
-    MEMORY_ERROR;
+  char* newptr;
+
+  if (!is_utf8_string(utf8_str)) {
+    gedcom_error(_("The input '%s' is not a valid UTF-8 string"), utf8_str);
+  }
   else {
-    if (*data) free(*data);
-    *data = newptr;
-    result = *data;
+    newptr = strdup(utf8_str);
+    if (!newptr)
+      MEMORY_ERROR;
+    else {
+      if (*data) free(*data);
+      *data = newptr;
+      result = *data;
+    }
   }
   
   return result;
@@ -60,5 +66,14 @@ char* gom_set_string(char** data, const char* utf8_str)
 
 char* gom_set_string_for_locale(char** data, const char* locale_str)
 {
-  return gom_set_string(data, convert_locale_to_utf8(locale_str));
+  char* result = NULL;
+  char* utf8_str = convert_locale_to_utf8(locale_str);
+  
+  if (!utf8_str)
+    gedcom_error(_("The input '%s' is not a valid string for the locale"),
+		 locale_str);
+  else
+    result = gom_set_string(data, utf8_str);
+
+  return result;
 }
