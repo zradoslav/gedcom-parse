@@ -169,7 +169,7 @@ Test succeeded
 Source:
   ID: 'TEST_UPDATE'
   Name: '(null)'
-  Version: '0.17'
+  Version: '0.20.0'
   Corporation:
     Name: '(null)'
     Address: 0x<null>
