@@ -3,6 +3,8 @@
 #  . set_testenv ddd
 # To clear the test environment:
 #  . set_testenv
+# To show the test environment:
+#  . set_testenv print
 
 testenv=$1
 
@@ -16,6 +18,10 @@ case "$testenv" in
     echo "Setting test environment for ddd"
     export GEDCOM_TESTENV='ddd'
     export GEDCOM_NOOPTS=1 ;;
+
+  print)
+    echo "GEDCOM_TESTENV=$GEDCOM_TESTENV"
+    echo "GEDCOM_NOOPTS=$GEDCOM_NOOPTS" ;;
 
   "")
     echo "Clearing test environment"
