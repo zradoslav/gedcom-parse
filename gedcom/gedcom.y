@@ -1207,6 +1207,7 @@ ftree_addr_sect : OPEN DELIM TAG_ADDR opt_line_item
 		      compat_generate_resi_end(PARENT, par);
 		    } 
 		  }
+                ;
 
 ftree_addr_subs : /* empty */
                 | ftree_addr_subs ftree_addr_sub
@@ -2474,6 +2475,7 @@ indiv_attr_sect : OPEN DELIM indiv_attr_tag mand_line_item
                   CLOSE
                   { end_element(ELT_SUB_INDIV_ATTR, PARENT, $<ctxt>5, NULL);
 		  }
+                ;
 
 indiv_attr_tag  : TAG_CAST { $$ = $1; START1(CAST) }
                 | TAG_DSCR { $$ = $1; START1(DSCR) }
@@ -2487,6 +2489,7 @@ indiv_attr_tag  : TAG_CAST { $$ = $1; START1(CAST) }
                 | TAG_RELI { $$ = $1; START1(RELI) }
                 | TAG_SSN  { $$ = $1; START1(SSN) }
                 | TAG_TITL { $$ = $1; START1(TITL) }
+                ;
 
 indiv_resi_sect : OPEN DELIM TAG_RESI 
                   { $<ctxt>$ = start_element(ELT_SUB_INDIV_RESI,
@@ -3625,6 +3628,7 @@ error_subs  : /* empty */
             ;
 
 error_sect  : OPEN DELIM opt_xref anytag opt_value error_subs CLOSE { }
+            ;
 
 gen_sect    : OPEN DELIM opt_xref anystdtag
               { INVALID_TAG($4.string); }
@@ -3793,6 +3797,7 @@ anystdtag   : TAG_ABBR
             | TAG_VERS   { }
             | TAG_WIFE   { }
             | TAG_WILL   { }
+            ;
 
 %%
 
