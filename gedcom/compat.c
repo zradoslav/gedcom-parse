@@ -28,15 +28,15 @@
 #include "gedcom_internal.h"
 #include "gedcom.h"
 
+int compat_enabled = 1;
+int compatibility  = 0; 
 int compat_at = 0;
+char* default_charset;
 
 #define SUBMITTER_LINK         "@__COMPAT__SUBM__@"
 #define DEFAULT_SUBMITTER_NAME "Submitter"
 #define DEFAULT_GEDCOM_VERS    "5.5"
 #define DEFAULT_GEDCOM_FORM    "LINEAGE-LINKED"
-/* Make default character set ANSI, for all 'special characters'
-   typically used in non-compliant gedcom generators */
-#define DEFAULT_CHAR           "ANSI"
 
 /* Incompatibily list (with GEDCOM 5.5):
 
@@ -52,6 +52,39 @@ int compat_at = 0;
 	- TIME field outside of DATE field in the header (will be ignored here)
 	- '@' not written as '@@' in values
  */
+
+/* Compatibility handling */
+
+void gedcom_set_compat_handling(int enable_compat)
+{
+  compat_enabled = enable_compat;
+}
+
+void set_compatibility(char* program)
+{
+  if (compat_enabled) {
+    if (! strncmp(program, "ftree", 6)) {
+      gedcom_warning(_("Enabling compatibility with 'ftree'"));
+      compatibility = C_FTREE;
+      default_charset = "ANSI";
+    }
+    else if (! strncmp(program, "LIFELINES", 9)) {
+      /* Matches "LIFELINES 3.0.2" */
+      gedcom_warning(_("Enabling compatibility with 'Lifelines'"));
+      compatibility = C_LIFELINES;
+      default_charset = "ANSI";
+      compat_at = 1;
+    }
+    else {
+      compatibility = 0;
+    }
+  }
+}
+
+int compat_mode(int compat_flags)
+{
+  return (compat_flags & compatibility);
+}
 
 void compat_generate_submitter_link(Gedcom_ctxt parent)
 {
@@ -137,12 +170,12 @@ int compat_generate_char(Gedcom_ctxt parent)
   /* first generate "1 CHAR <DEFAULT_CHAR>" */
   ts.string = "CHAR";
   ts.value  = TAG_CHAR;
-  self1 = start_element(ELT_HEAD_CHAR, parent, 1, ts, DEFAULT_CHAR,
-			GEDCOM_MAKE_STRING(val1, DEFAULT_CHAR));
+  self1 = start_element(ELT_HEAD_CHAR, parent, 1, ts, default_charset,
+			GEDCOM_MAKE_STRING(val1, default_charset));
   
   /* close "1 CHAR" */
   end_element(ELT_HEAD_CHAR, parent, self1, NULL);
-  if (open_conv_to_internal(DEFAULT_CHAR) == 0)
+  if (open_conv_to_internal(default_charset) == 0)
     return 1;
   else
     return 0;

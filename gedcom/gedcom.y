@@ -151,20 +151,13 @@
 
 int  count_level    = 0;
 int  fail           = 0;
-int  compat_enabled = 1;
 int  gedcom_high_level_debug = 0; 
-int  compatibility  = 0; 
 Gedcom_err_mech error_mechanism = IMMED_FAIL;
 Gedcom_val_struct val1;
 Gedcom_val_struct val2; 
  
 char line_item_buf[MAXGEDCLINELEN * UTF_FACTOR + 1];
 char *line_item_buf_ptr;
-
-enum _COMPAT {
-  C_FTREE = 0x01,
-  C_LIFELINES = 0x02
-};
 
 /* These are defined at the bottom of the file */ 
 void push_countarray();
@@ -175,8 +168,6 @@ Gedcom_ctxt get_parentctxt(int offset);
 void pop_countarray();
 int  count_tag(int tag);
 int  check_occurrence(int tag);
-void set_compatibility(char* program);
-int  compat_mode(int flags); 
 
 #define CLEAR_BUFFER(BUF)                                                     \
      memset(BUF, 0, sizeof(BUF));
@@ -3908,35 +3899,3 @@ void gedcom_set_error_handling(Gedcom_err_mech mechanism)
 {
   error_mechanism = mechanism;
 }
-
-/* Compatibility handling */
-
-void gedcom_set_compat_handling(int enable_compat)
-{
-  compat_enabled = enable_compat;
-}
-
-void set_compatibility(char* program)
-{
-  if (compat_enabled) {
-    if (! strncmp(program, "ftree", 6)) {
-      gedcom_warning(_("Enabling compatibility with 'ftree'"));
-      compatibility = C_FTREE;
-    }
-    else if (! strncmp(program, "LIFELINES", 9)) {
-      /* Matches "LIFELINES 3.0.2" */
-      gedcom_warning(_("Enabling compatibility with 'Lifelines'"));
-      compatibility = C_LIFELINES;
-      compat_at = 1;
-    }
-    else {
-      compatibility = 0;
-    }
-  }
-}
-
-int compat_mode(int compat_flags)
-{
-  return (compat_flags & compatibility);
-}
-

@@ -28,6 +28,13 @@
 
 extern int compat_at;
 
+enum _COMPAT {
+  C_FTREE = 0x01,
+  C_LIFELINES = 0x02
+};
+
+void set_compatibility(char* program);
+int  compat_mode(int flags); 
 void compat_generate_submitter_link(Gedcom_ctxt parent);
 void compat_generate_submitter();
 void compat_generate_gedcom(Gedcom_ctxt parent);
