@@ -14,12 +14,8 @@
 /* i.e. this is utf-16-be */
 
 %{
-#include "gedcom.tab.h"
-#include "gedcom.h"
-#include "multilex.h"
-#include "encoding.h"
-
-#define YY_NO_UNPUT
+#undef IN_LEX    /* include only a specific part of the following file */
+#include "gedcom_lex_common.c"
 %}
 
 %s NORMAL
@@ -43,19 +39,10 @@ gen_delim    {delim}|{tab}
 escape       \x00@\x00#{any_char}+\x00@
 pointer      \x00@{alphanum}{non_at}+\x00@
 
-%{
-static int current_level=-1;
-static int level_diff=MAXGEDCLEVEL;
- 
-#ifdef LEXER_TEST 
-YYSTYPE gedcom_lval;
-int line_no = 1; 
-#endif
-%} 
-
 %%
 
 %{
+#define IN_LEX    /* include only a specific part of the following file */
 #include "gedcom_lex_common.c"
 
 ACTION_BEFORE_REGEXPS
@@ -222,35 +209,13 @@ int yywrap()
 }
 
 #ifdef LEXER_TEST
+int gedcom_lex()
+{
+  return gedcom_hilo_lex();
+}
 
 int main()
 {
-  int tok, res;
-  init_encodings();
-  set_encoding_width(TWO_BYTE_HILO);
-  res = open_conv_to_internal("UNICODE");
-  if (!res) {
-    gedcom_error("Unable to open conversion context: %s",
-		 strerror(errno));
-    return 1;
-  }
-  tok = gedcom_hilo_lex();
-  while (tok) {
-    switch(tok) {
-      case BADTOKEN: printf("BADTOKEN "); break;
-      case OPEN: printf("OPEN(%d) ", gedcom_lval.level); break;
-      case CLOSE: printf("CLOSE "); break;
-      case ESCAPE: printf("ESCAPE(%s) ", gedcom_lval.string); break;
-      case DELIM: printf("DELIM "); break;
-      case ANYCHAR: printf("%s ", gedcom_lval.string); break;
-      case POINTER: printf("POINTER(%s) ", gedcom_lval.pointer); break;
-      case USERTAG: printf("USERTAG(%s) ", gedcom_lval.tag); break;
-      default: printf("TAG(%s) ", gedcom_lval.tag); break;
-    }
-    tok = gedcom_hilo_lex();
-  }
-  printf("\n");
-  close_conv_to_internal();
-  return 0;
+  return test_loop(TWO_BYTE_HILO, "UNICODE");
 }
 #endif

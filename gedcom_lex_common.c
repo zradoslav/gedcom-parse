@@ -10,14 +10,68 @@
 /* $Id$ */
 /* $Name$ */
 
+#ifndef IN_LEX
+
+#include "gedcom.tab.h"
+#include "gedcom.h"
+#include "multilex.h"
+#include "encoding.h"
+
+#define YY_NO_UNPUT
+  
+static int current_level=-1;
+static int level_diff=MAXGEDCLEVEL;
+ 
+#ifdef LEXER_TEST 
+YYSTYPE gedcom_lval;
+int line_no = 1;
+
+int gedcom_lex();
+
+int test_loop(ENCODING enc, char* code)
+{
+  int tok, res;
+  init_encodings();
+  set_encoding_width(enc);
+  res = open_conv_to_internal(code);
+  if (!res) {
+    gedcom_error("Unable to open conversion context: %s",
+		 strerror(errno));
+    return 1;
+  }
+  tok = gedcom_lex();
+  while (tok) {
+    switch(tok) {
+      case BADTOKEN: printf("BADTOKEN "); break;
+      case OPEN: printf("OPEN(%d) ", gedcom_lval.level); break;
+      case CLOSE: printf("CLOSE "); break;
+      case ESCAPE: printf("ESCAPE(%s) ", gedcom_lval.string); break;
+      case DELIM: printf("DELIM "); break;
+      case ANYCHAR: printf("%s ", gedcom_lval.string); break;
+      case POINTER: printf("POINTER(%s) ", gedcom_lval.pointer); break;
+      case USERTAG: printf("USERTAG(%s) ", gedcom_lval.tag); break;
+      default: printf("TAG(%s) ", gedcom_lval.tag); break;
+    }
+    tok = gedcom_lex();
+  }
+  printf("\n");
+  close_conv_to_internal();
+  return 0;  
+}
+ 
+#endif /* of #ifdef LEXER_TEST */
+
+#else  /* of #ifndef IN_LEX */
+
 char string_buf[MAXGEDCLINELEN+1];
  
 #define TO_INTERNAL(str) to_internal(str, yyleng) 
 
-#define MKTAGACTION(the_tag) \
-  { gedcom_lval.tag = TO_INTERNAL(yytext); \
-    BEGIN(NORMAL); \
-    return TAG_##the_tag; }
+#define MKTAGACTION(the_tag)                                                 \
+  { gedcom_lval.tag = TO_INTERNAL(yytext);                                   \
+    BEGIN(NORMAL);                                                           \
+    return TAG_##the_tag;                                                    \
+  }
 
 
 /* The GEDCOM level number is converted into a sequence of opening
@@ -182,3 +236,5 @@ char string_buf[MAXGEDCLINELEN+1];
 		 yytext, yytext[0]);                                          \
     return BADTOKEN;                                                          \
   }
+
+#endif /* IN_LEX */
