@@ -52,10 +52,10 @@ AC_DEFUN(jm_GLIBC21,
 )
 
 dnl Own functions
-dnl AC_GLIBC_ICONV()
+dnl gedcom_GLIBC_ICONV()
 dnl Checks whether iconv is coming from glibc, defines USE_GLIBC_ICONV if so
 dnl The variable $is_glibc_iconv contains yes or no
-AC_DEFUN(AC_GLIBC_ICONV, [
+AC_DEFUN(gedcom_GLIBC_ICONV, [
   AC_CACHE_CHECK(for the GNU C Library iconv implementation, is_glibc_iconv, [
     AC_EGREP_CPP(yes,
     [
@@ -71,10 +71,10 @@ yes
   fi
 ])
 
-dnl AC_LIBICONV_HAS_ANSEL()
+dnl gedcom_LIBICONV_HAS_ANSEL()
 dnl Checks whether libiconv has ANSEL support
 dnl The variable $is_ansel_supported contains yes or no
-AC_DEFUN(AC_LIBICONV_HAS_ANSEL, [
+AC_DEFUN(gedcom_LIBICONV_HAS_ANSEL, [
   AC_CACHE_CHECK(for ANSEL support in libiconv, is_ansel_supported, [
     my_save_LIBS="$LIBS"
     LIBS="$LIBS $LIBICONV"
