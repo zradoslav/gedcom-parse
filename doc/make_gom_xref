@@ -4,6 +4,7 @@
 use strict;
 use diagnostics;
 
+my $gedcom_ref_doc="http://www.gendex.com/gedcom55/55gcch2.htm";
 my $inputfile ="$ENV{srcdir}/../include/gom.h";
 my $outputfile ="gomxref.html";
 my $ext_link = "interface.html";
@@ -17,15 +18,25 @@ my $section = "";
 open INPUT, $inputfile or die "Can't read $inputfile\n";
 open OUTPUT, ">$outputfile" or die "Can't read $outputfile\n";
 
+sub gedcom_link {
+  my ($sublink) = @_;
+  return "(<A href=\"javascript:popup_gedcom('$sublink')\">?</A>)";
+}
+
 while (<INPUT>)
 {
-  $section = "sub"  if m|/\* Sub-structures \*/|;
-  $section = "main" if m|/\* Main structures \*/|;
-  $section = ""     if m|/\* Functions \*/|;
-  $generated = $1   if m|/\* [\$]Id: (.*?) \$ \*/|;
-  next if m|/\*|;
+  my $gedc_ref = "";
+  $section = "sub"  if m|^/\* Sub-structures \*/|;
+  $section = "main" if m|^/\* Main structures \*/|;
+  $section = ""     if m|^/\* Functions \*/|;
+  $generated = $1   if m|^/\* [\$]Id: (.*?) \$ \*/|;
+  next if m|^/\*|;
 
   if ($section ne "") {
+    chomp;
+    if (s|\s*/\* (.*?) \*/\s*$||) {
+      $gedc_ref = $1;
+    }
     if (m|^struct (.*) \{|) {
       s|^struct (.*?) \{|<a name="$1"><B>struct $1</B></a> \{|;
       if ($section eq "main") {
@@ -43,9 +54,17 @@ while (<INPUT>)
     
     if ($section eq "sub") {
       $sub_structs .= "$_";
+      if ($gedc_ref) {
+	$sub_structs .= " " . gedcom_link($gedc_ref);
+      }
+      $sub_structs .= "\n";
     }
     else {
       $main_structs .= "$_";
+      if ($gedc_ref) {
+	$main_structs .= " " . gedcom_link($gedc_ref);
+      }
+      $main_structs .= "\n";
     }
   }
 }
@@ -55,13 +74,26 @@ print OUTPUT <<"END_OF_HTML";
 <html>
 <head>
   <title>Gedcom object model in C</title>
+  <script language="JavaScript" type="text/javascript">
+  <!--
+    function popup_gedcom(sublink) {
+      Gedcom = window.open( '$gedcom_ref_doc' + '#' + sublink,
+			    'Gedcom reference',
+			    'scrollbars=yes,resizable=yes,toolbar=no,height=400, width=400');
+    }
+  // -->
+  </script>
 </head>
 <body bgcolor="White">
   
 <h1 align="center">Gedcom object model in C</h1>
 This page provides a cross-reference of all objects in the Gedcom object
-model for C.  The following links are fast links to the main structures
-in the Gedcom object model:
+model for C.  The '(?)' links are links to the
+<a href="http://www.gendex.com/gedcom55/55gctoc.htm">Gedcom standard</a>
+giving the meaning of each field.
+<P>
+The following links are fast links to the
+main structures in the Gedcom object model:
 
 <UL>
 $index
