@@ -8,6 +8,7 @@ CFLAGS   = -g -O2
 
 noinst_PROGRAMS = testgedcom pathtest gomtest updatetest @EXTRA_PROGS@
 EXTRA_PROGRAMS  = gomtest_static
+noinst_HEADERS = output.h dump_gom.h
 
 testgedcom_SOURCES = standalone.c output.c
 testgedcom_LDFLAGS = -L ../../gedcom/.libs -lgedcom
