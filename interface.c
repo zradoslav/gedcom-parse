@@ -10,6 +10,7 @@
 /* $Id$ */
 /* $Name$ */
 
+#include "gedcom_internal.h"
 #include "interface.h"
 
 static Gedcom_rec_start_cb record_start_callback [LAST_REC] = { NULL };
