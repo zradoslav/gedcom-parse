@@ -6,94 +6,122 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-09-12 21:34+0200\n"
+"POT-Creation-Date: 2002-10-24 18:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-#: gedcom/encoding.c:69
+#: gedcom/encoding.c:70
 #, c-format
 msgid "Duplicate entry found for encoding '%s', ignoring"
 msgstr ""
 
-#: gedcom/encoding.c:99
+#: gedcom/encoding.c:100
 #, c-format
 msgid "No encoding defined for '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:180
+#: gedcom/encoding.c:184
+msgid "Could not register path cleanup function"
+msgstr ""
+
+#: gedcom/encoding.c:199
 msgid "Could not register encoding cleanup function"
 msgstr ""
 
-#: gedcom/encoding.c:194
+#: gedcom/encoding.c:213
 #, c-format
 msgid "Could not open encoding configuration file '%s': %s"
 msgstr ""
 
-#: gedcom/encoding.c:201
+#: gedcom/encoding.c:220
 #, c-format
 msgid "Line too long in encoding configuration file '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:210
+#: gedcom/encoding.c:229
 #, c-format
 msgid "Missing data in encoding configuration file '%s'"
 msgstr ""
 
-#: gedcom/encoding.c:217
+#: gedcom/encoding.c:236
 #, c-format
 msgid "Error closing file '%s': %s"
 msgstr ""
 
-#: gedcom/encoding.c:245
+#: gedcom/encoding.c:263
 #, c-format
 msgid "Error opening conversion context for encoding %s: %s"
 msgstr ""
 
-#: gedcom/encoding.c:255
+#: gedcom/encoding.c:279
 #, c-format
 msgid "Error closing conversion context: %s"
 msgstr ""
 
-#: gedcom/encoding.c:288
+#: gedcom/encoding.c:314
 #, c-format
 msgid "Error in converting characters: %s"
 msgstr ""
 
-#: gedcom/gedcom.y:668
+#: gedcom/gedcom.y:207
+#, c-format
+msgid "The tag '%s' is mandatory within '%s', but missing"
+msgstr ""
+
+#: gedcom/gedcom.y:229
+#, c-format
+msgid "The tag '%s' can maximally occur %d time(s) within '%s'"
+msgstr ""
+
+#: gedcom/gedcom.y:236
+#, c-format
+msgid "The tag '%s' is not a valid tag within '%s'"
+msgstr ""
+
+#: gedcom/gedcom.y:241
+#, c-format
+msgid "The tag '%s' is not a valid top-level tag"
+msgstr ""
+
+#: gedcom/gedcom.y:669
 msgid "Header change time lost in the compatibility"
 msgstr ""
 
-#: gedcom/gedcom.y:1365 gedcom/gedcom.y:3566
+#: gedcom/gedcom.y:1367 gedcom/gedcom.y:3572
 msgid "Missing value"
 msgstr ""
 
-#: gedcom/gedcom.y:3495 gedcom/gedcom.y:3519
+#: gedcom/gedcom.y:3501 gedcom/gedcom.y:3525
 #, c-format
 msgid "Undefined tag (and not a valid user tag): %s"
 msgstr ""
 
 #. empty
-#: gedcom/gedcom.y:3554
+#: gedcom/gedcom.y:3560
 msgid "Missing pointer"
 msgstr ""
 
-#: gedcom/gedcom.y:3641
+#: gedcom/gedcom.y:3650
 msgid "Missing cross-reference"
 msgstr ""
 
-#: gedcom/gedcom.y:3804
+#: gedcom/gedcom.y:3815
+msgid "Internal error: count level mismatch"
+msgstr ""
+
+#: gedcom/gedcom.y:3819
 msgid "Internal error: count array overflow"
 msgstr ""
 
-#: gedcom/gedcom.y:3810
+#: gedcom/gedcom.y:3826
 msgid "Internal error: count array calloc error"
 msgstr ""
 
-#: gedcom/gedcom.y:3855
+#: gedcom/gedcom.y:3872
 msgid "Internal error: count array underflow"
 msgstr ""
 
@@ -155,82 +183,94 @@ msgstr ""
 msgid "Unexpected character: '%s' (0x%02x)"
 msgstr ""
 
-#: gedcom/multilex.c:76
+#: gedcom/multilex.c:78
 #, c-format
 msgid "Error reading from input file: %s"
 msgstr ""
 
-#: gedcom/multilex.c:80
+#: gedcom/multilex.c:82
 msgid "One-byte encoding"
 msgstr ""
 
-#: gedcom/multilex.c:82 gedcom/multilex.c:89 gedcom/multilex.c:101
-#: gedcom/multilex.c:112
+#: gedcom/multilex.c:84 gedcom/multilex.c:91 gedcom/multilex.c:103
+#: gedcom/multilex.c:114
 #, c-format
 msgid "Error positioning input file: %s"
 msgstr ""
 
-#: gedcom/multilex.c:87
+#: gedcom/multilex.c:89
 msgid "Two-byte encoding, high-low"
 msgstr ""
 
-#: gedcom/multilex.c:94
+#: gedcom/multilex.c:96
 msgid "Two-byte encoding, high-low, with BOM"
 msgstr ""
 
-#: gedcom/multilex.c:99
+#: gedcom/multilex.c:101
 msgid "Two-byte encoding, low-high"
 msgstr ""
 
-#: gedcom/multilex.c:106
+#: gedcom/multilex.c:108
 msgid "Two-byte encoding, low-high, with BOM"
 msgstr ""
 
-#: gedcom/multilex.c:110
+#: gedcom/multilex.c:112
 msgid "Unknown encoding, falling back to one-byte"
 msgstr ""
 
-#: gedcom/multilex.c:134
+#: gedcom/multilex.c:136
 msgid "Could not retrieve locale information"
 msgstr ""
 
-#: gedcom/multilex.c:146
+#: gedcom/multilex.c:148
 #, c-format
 msgid "Could not retrieve locale domain: %s"
 msgstr ""
 
-#: gedcom/multilex.c:154
+#: gedcom/multilex.c:156
 #, c-format
 msgid "Could not set locale: %s"
 msgstr ""
 
-#: gedcom/multilex.c:159
+#: gedcom/multilex.c:161
 msgid "Internal error: GEDCOM parser not initialized"
 msgstr ""
 
-#: gedcom/multilex.c:165
+#: gedcom/multilex.c:166
 #, c-format
 msgid "Could not open file '%s': %s"
 msgstr ""
 
-#: gedcom/multilex.c:186
+#: gedcom/multilex.c:188
 #, c-format
 msgid "Could not restore locale: %s"
 msgstr ""
 
-#: gedcom/message.c:53 gedcom/message.c:145 gom/gom.c:139
+#: gedcom/message.c:64
+msgid "Could not register buffer cleanup function"
+msgstr ""
+
+#: gedcom/message.c:67 gedcom/message.c:175 gom/gom.c:151
 #, c-format
 msgid "Could not allocate memory at %s, %d"
 msgstr ""
 
-#: gedcom/message.c:117
+#: gedcom/message.c:142
 #, c-format
 msgid "Warning on line %d: "
 msgstr ""
 
-#: gedcom/message.c:133
+#: gedcom/message.c:144
+msgid "Warning: "
+msgstr ""
+
+#: gedcom/message.c:161
 #, c-format
 msgid "Error on line %d: "
+msgstr ""
+
+#: gedcom/message.c:163
+msgid "Error: "
 msgstr ""
 
 #: gedcom/interface.c:36
@@ -268,68 +308,99 @@ msgstr ""
 msgid "Wrong cast of value in file %s, at line %d: %s instead of %s"
 msgstr ""
 
-#: gedcom/xref.c:31
+#: gedcom/xref.c:33
 msgid "nothing"
 msgstr ""
 
-#: gedcom/xref.c:32
+#: gedcom/xref.c:34
 msgid "a family"
 msgstr ""
 
-#: gedcom/xref.c:33
+#: gedcom/xref.c:35
 msgid "an individual"
 msgstr ""
 
-#: gedcom/xref.c:34
+#: gedcom/xref.c:36
 msgid "a note"
 msgstr ""
 
-#: gedcom/xref.c:35
+#: gedcom/xref.c:37
 msgid "a multimedia object"
 msgstr ""
 
-#: gedcom/xref.c:36
+#: gedcom/xref.c:38
 msgid "a source repository"
 msgstr ""
 
-#: gedcom/xref.c:37
+#: gedcom/xref.c:39
 msgid "a source"
 msgstr ""
 
-#: gedcom/xref.c:38
+#: gedcom/xref.c:40
 msgid "a submitter"
 msgstr ""
 
-#: gedcom/xref.c:39
+#: gedcom/xref.c:41
 msgid "a submission record"
 msgstr ""
 
-#: gedcom/xref.c:40
+#: gedcom/xref.c:42
 msgid "an application-specific record"
 msgstr ""
 
-#: gedcom/xref.c:105
+#: gedcom/xref.c:116
 msgid "Could not register xref cleanup function"
 msgstr ""
 
-#: gedcom/xref.c:123
+#: gedcom/xref.c:134
 #, c-format
 msgid "Cross-reference %s used on line %d is not defined"
 msgstr ""
 
-#: gedcom/xref.c:128
+#: gedcom/xref.c:139
 #, c-format
 msgid "Cross-reference %s defined on line %d is never used"
 msgstr ""
 
-#: gedcom/xref.c:185
+#: gedcom/xref.c:187
 #, c-format
 msgid "Cross-reference %s previously defined as pointer to %s, on line %d"
 msgstr ""
 
-#: gedcom/xref.c:194
+#: gedcom/xref.c:192 gedcom/xref.c:331
+#, c-format
+msgid "Cross-reference %s previously defined as pointer to %s"
+msgstr ""
+
+#: gedcom/xref.c:199
 #, c-format
 msgid "Cross-reference %s previously used as pointer to %s, on line %d"
+msgstr ""
+
+#: gedcom/xref.c:204
+#, c-format
+msgid "Cross-reference %s previously used as pointer to %s"
+msgstr ""
+
+#: gedcom/xref.c:252 gedcom/xref.c:272 gedcom/xref.c:296 gedcom/xref.c:320
+#: gedcom/xref.c:351
+#, c-format
+msgid "String '%s' is not a valid cross-reference key"
+msgstr ""
+
+#: gedcom/xref.c:277
+#, c-format
+msgid "Cross-reference %s already exists"
+msgstr ""
+
+#: gedcom/xref.c:301 gedcom/xref.c:325 gedcom/xref.c:356
+#, c-format
+msgid "Cross-reference %s not defined"
+msgstr ""
+
+#: gedcom/xref.c:361
+#, c-format
+msgid "Cross-reference %s still in use"
 msgstr ""
 
 #: gedcom/compat.c:73
@@ -345,17 +416,17 @@ msgstr ""
 msgid "Could not register gom cleanup function"
 msgstr ""
 
-#: gom/gom.c:144
+#: gom/gom.c:156
 #, c-format
 msgid "Internal error: Unexpected context at %s, line %d: %d"
 msgstr ""
 
-#: gom/gom.c:150
+#: gom/gom.c:162
 #, c-format
 msgid "Internal error: No context at %s, line %d"
 msgstr ""
 
-#: gom/gom.c:157
+#: gom/gom.c:170
 #, c-format
 msgid "Data loss in import: \"%d %s %s\""
 msgstr ""
