@@ -52,7 +52,7 @@ alphanum     {alpha}|{digit}
 gen_delim    {delim}|{tab}
 
 escape       @\x00#\x00{any_char}+@\x00
-pointer      @\x00{alphanum}{non_at}+@\x00
+pointer      @\x00{alphanum}{non_at}*@\x00
 
 %%
 
