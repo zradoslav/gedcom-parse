@@ -40,6 +40,7 @@ delim        \x00\x20
 tab          \x00[\t]
 hash         \x00#
 literal_at   \x00@\x00@
+normal_at    \x00@
 otherchar    \x00[\x21-\x22\x24-\x2F\x3A-\x3F\x5B-\x5E\x60\x7B-\x7E\x80-\xFF]|[\x01-\xFF][\x00-\xFF]
 terminator   \x00\x0D|\x00\x0A|\x00\x0D\x00\x0A|\x00\x0A\x00\x0D
 
@@ -211,6 +212,8 @@ ACTION_BEFORE_REGEXPS
 {gen_delim}*{terminator} ACTION_TERMINATOR
 
 <<EOF>>                  ACTION_EOF
+
+{normal_at}              ACTION_NORMAL_AT
 
 .                        ACTION_UNEXPECTED
 

@@ -23,12 +23,20 @@
 
 #include "compat.h"
 #include "interface.h"
+#include "encoding.h"
 #include "xref.h"
 #include "gedcom_internal.h"
 #include "gedcom.h"
 
-#define SUBMITTER_LINK "@__COMPAT__SUBM__@"
+int compat_at = 0;
+
+#define SUBMITTER_LINK         "@__COMPAT__SUBM__@"
 #define DEFAULT_SUBMITTER_NAME "Submitter"
+#define DEFAULT_GEDCOM_VERS    "5.5"
+#define DEFAULT_GEDCOM_FORM    "LINEAGE-LINKED"
+/* Make default character set ANSI, for all 'special characters'
+   typically used in non-compliant gedcom generators */
+#define DEFAULT_CHAR           "ANSI"
 
 /* Incompatibily list (with GEDCOM 5.5):
 
@@ -37,6 +45,12 @@
 	- INDI.ADDR instead of INDI.RESI.ADDR
 	- NOTE doesn't have a value
 
+    - Lifelines (3.0.2):
+        - no submitter record, no submitter link in the header
+	- no GEDC field in the header
+	- no CHAR field in the header
+	- TIME field outside of DATE field in the header (will be ignored here)
+	- '@' not written as '@@' in values
  */
 
 void compat_generate_submitter_link(Gedcom_ctxt parent)
@@ -78,6 +92,60 @@ void compat_generate_submitter()
 
   /* close "0 SUBM" */
   end_record(REC_SUBM, self1);
+}
+
+void compat_generate_gedcom(Gedcom_ctxt parent)
+{
+  struct tag_struct ts;
+  Gedcom_ctxt self1, self2;
+  
+  /* first generate "1 GEDC" */
+  ts.string = "GEDC";
+  ts.value  = TAG_GEDC;
+  self1 = start_element(ELT_HEAD_GEDC, parent, 1, ts, NULL,
+			GEDCOM_MAKE_NULL(val1));
+  
+  /* then generate "2 VERS <DEFAULT_GEDC_VERS>" */
+  ts.string = "VERS";
+  ts.value  = TAG_VERS;
+  self2 = start_element(ELT_HEAD_GEDC_VERS, self1, 2, ts,
+			DEFAULT_GEDCOM_VERS,
+			GEDCOM_MAKE_STRING(val1, DEFAULT_GEDCOM_VERS));
+  
+  /* close "2 VERS" */
+  end_element(ELT_HEAD_GEDC_VERS, self1, self2, NULL);
+  
+  /* then generate "2 FORM <DEFAULT_GEDCOM_FORM> */
+  ts.string = "FORM";
+  ts.value  = TAG_FORM;
+  self2 = start_element(ELT_HEAD_GEDC_FORM, self1, 2, ts,
+			DEFAULT_GEDCOM_FORM,
+			GEDCOM_MAKE_STRING(val1, DEFAULT_GEDCOM_FORM));
+  
+  /* close "2 FORM" */
+  end_element(ELT_HEAD_GEDC_FORM, self1, self2, NULL);
+  
+  /* close "1 GEDC" */
+  end_element(ELT_HEAD_GEDC, parent, self1, NULL);
+}
+
+int compat_generate_char(Gedcom_ctxt parent)
+{
+  struct tag_struct ts;
+  Gedcom_ctxt self1;
+  
+  /* first generate "1 CHAR <DEFAULT_CHAR>" */
+  ts.string = "CHAR";
+  ts.value  = TAG_CHAR;
+  self1 = start_element(ELT_HEAD_CHAR, parent, 1, ts, DEFAULT_CHAR,
+			GEDCOM_MAKE_STRING(val1, DEFAULT_CHAR));
+  
+  /* close "1 CHAR" */
+  end_element(ELT_HEAD_CHAR, parent, self1, NULL);
+  if (open_conv_to_internal(DEFAULT_CHAR) == 0)
+    return 1;
+  else
+    return 0;
 }
 
 Gedcom_ctxt compat_generate_resi_start(Gedcom_ctxt parent)

@@ -162,7 +162,8 @@ char line_item_buf[MAXGEDCLINELEN * UTF_FACTOR + 1];
 char *line_item_buf_ptr;
 
 enum _COMPAT {
-  C_FTREE = 0x01
+  C_FTREE = 0x01,
+  C_LIFELINES = 0x02
 };
 
 /* These are defined at the bottom of the file */ 
@@ -259,7 +260,7 @@ int  compat_mode(int flags);
 }
 
 %token_table
-%expect 303
+%expect 304
 
 %token <string> BADTOKEN
 %token <number> OPEN
@@ -452,12 +453,18 @@ head_sect    : OPEN DELIM TAG_HEAD
 		   CHECK3(SOUR, GEDC, CHAR);
 		   compat_generate_submitter_link($<ctxt>4);
 		 }
+	         else if (compat_mode(C_LIFELINES)) {
+		   CHECK1(SOUR);
+		   compat_generate_submitter_link($<ctxt>4);
+		   compat_generate_gedcom($<ctxt>4);
+		   if (compat_generate_char($<ctxt>4)) YYABORT;
+	         }
 	         else
 		   CHECK4(SOUR, SUBM, GEDC, CHAR)
 	       }
                CLOSE
                { end_record(REC_HEAD, $<ctxt>4);
-	         if (compat_mode(C_FTREE))
+	         if (compat_mode(C_FTREE | C_LIFELINES))
 	           compat_generate_submitter();
 	       }
              ;
@@ -469,6 +476,9 @@ head_subs    : /* empty */
 head_sub     : head_sour_sect  { OCCUR2(SOUR, 1, 1) }
              | head_dest_sect  { OCCUR2(DEST, 0, 1) }
              | head_date_sect  { OCCUR2(DATE, 0, 1) }
+             | head_time_sect  { if (!compat_mode(C_LIFELINES))
+	                          INVALID_TAG("TIME");
+	                         OCCUR2(TIME, 0, 1) }
              | head_subm_sect  { OCCUR2(SUBM, 1, 1) }
              | head_subn_sect  { OCCUR2(SUBN, 0, 1) }
              | head_file_sect  { OCCUR2(FILE, 0, 1) }
@@ -659,6 +669,13 @@ head_date_time_sect : OPEN DELIM TAG_TIME mand_line_item
 				    PARENT, $<ctxt>5, NULL);
 		      }
                     ;
+
+/* HEAD.TIME (Only for 'Lifelines' compatibility) */
+/* Just ignore the time... */
+head_time_sect : OPEN DELIM TAG_TIME opt_line_item
+                 { }
+                 CLOSE
+	       ;
 
 /* HEAD.SUBM */
 head_subm_sect : OPEN DELIM TAG_SUBM mand_pointer
@@ -3545,7 +3562,16 @@ mand_pointer : /* empty */ { gedcom_error(_("Missing pointer")); YYERROR; }
                                $$ = $2; }
              ;
 
-mand_line_item : /* empty */ { gedcom_error(_("Missing value")); YYERROR; }
+mand_line_item : /* empty */
+                 { if (compat_mode(C_LIFELINES)) {
+                     /* Lifelines tends to not care about mandatory values */
+		     gedcom_debug_print("==Val: ==");
+		     $$ = "";
+		   }
+		   else {
+		     gedcom_error(_("Missing value")); YYERROR;
+		   }
+		 }
                | DELIM line_item { gedcom_debug_print("==Val: %s==", $2);
                                    $$ = $2; }
                ;
@@ -3896,6 +3922,12 @@ void set_compatibility(char* program)
     if (! strncmp(program, "ftree", 6)) {
       gedcom_warning(_("Enabling compatibility with 'ftree'"));
       compatibility = C_FTREE;
+    }
+    else if (! strncmp(program, "LIFELINES", 9)) {
+      /* Matches "LIFELINES 3.0.2" */
+      gedcom_warning(_("Enabling compatibility with 'Lifelines'"));
+      compatibility = C_LIFELINES;
+      compat_at = 1;
     }
     else {
       compatibility = 0;

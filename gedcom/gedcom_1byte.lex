@@ -37,6 +37,7 @@ delim        " "
 tab          [\t]
 hash         #
 literal_at   @@
+normal_at    @
 otherchar    [\x21-\x22\x24-\x2F\x3A-\x3F\x5B-\x5E\x60\x7B-\x7E\x80-\xFE]
 terminator   \x0D|\x0A|\x0D\x0A|\x0A\x0D
 
@@ -208,6 +209,8 @@ ACTION_BEFORE_REGEXPS
 {gen_delim}*{terminator}  ACTION_TERMINATOR
 
 <<EOF>>                   ACTION_EOF
+
+{normal_at}               ACTION_NORMAL_AT
 
 .                         ACTION_UNEXPECTED
 

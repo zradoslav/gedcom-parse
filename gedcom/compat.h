@@ -26,8 +26,12 @@
 
 #include "gedcom.h"
 
+extern int compat_at;
+
 void compat_generate_submitter_link(Gedcom_ctxt parent);
 void compat_generate_submitter();
+void compat_generate_gedcom(Gedcom_ctxt parent);
+int  compat_generate_char(Gedcom_ctxt parent);
 Gedcom_ctxt compat_generate_resi_start(Gedcom_ctxt parent);
 void compat_generate_resi_end(Gedcom_ctxt parent, Gedcom_ctxt self);
 
