@@ -385,6 +385,12 @@ typedef enum _ENC_LINE_END {
   END_LF_CR = 3
 } Enc_line_end;
 
+typedef enum _DATE_INPUT {
+  DI_FROM_STRINGS,
+  DI_FROM_NUMBERS,
+  DI_FROM_SDN
+} Date_input;
+
 /**************************************************************************/
 /***  Things meant to be internal, susceptible to changes               ***/
 /***  Use the GEDCOM_STRING/GEDCOM_DATE interface instead of relying    ***/
@@ -514,9 +520,13 @@ void    gedcom_subscribe_to_element(Gedcom_elt elt,
 				    Gedcom_elt_end_cb cb_end);
 
 /* Separate value parsing functions */
-struct date_value gedcom_parse_date(const char* line_value);
-char*             gedcom_date_to_string(struct date_value* val);
+struct date_value  gedcom_parse_date(const char* line_value);
+char*              gedcom_date_to_string(struct date_value* val);
+struct date_value* gedcom_new_date_value(struct date_value* copy_from);
+int   gedcom_normalize_date(Date_input compute_from, struct date_value *val);
+
 struct age_value  gedcom_parse_age(const char* line_value);
+struct age_value* gedcom_new_age_value(struct age_value* copy_from);
 char*             gedcom_age_to_string(struct age_value* val);
 
 /* Handling cross-references */
