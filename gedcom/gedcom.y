@@ -761,7 +761,9 @@ head_gedc_form_sect : OPEN DELIM TAG_FORM mand_line_item
 
 /* HEAD.CHAR */
 head_char_sect : OPEN DELIM TAG_CHAR mand_line_item 
-                 { if (open_conv_to_internal($4) == 0) YYERROR;
+                 { /* Don't allow to continue if conversion context couldn't
+		      be opened */
+		   if (open_conv_to_internal($4) == 0) YYABORT;
 		   $<ctxt>$ = start_element(ELT_HEAD_CHAR,
 					    PARENT, $1, $3, $4,
 					    GEDCOM_MAKE_STRING(val1, $4));
