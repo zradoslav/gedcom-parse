@@ -37,24 +37,22 @@ Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent,
 void        end_element(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
 			Gedcom_val parsed_value);
 
-extern Gedcom_val_struct val;
+extern Gedcom_val_struct val1;
+extern Gedcom_val_struct val2;
 
-#define GEDCOM_MAKE(VALUE, TYPE, MEMBER) \
-   (val.type = TYPE, val.value.MEMBER = VALUE, &val)
+#define GEDCOM_MAKE(VAR, VALUE, TYPE, MEMBER) \
+   (VAR.type = TYPE, VAR.value.MEMBER = VALUE, &VAR)
 
-#define GEDCOM_MAKE_NULL() \
-   GEDCOM_MAKE(NULL, GV_NULL, string_val)
+#define GEDCOM_MAKE_NULL(VAR) \
+   GEDCOM_MAKE(VAR, NULL, GV_NULL, string_val)
 
-#define GEDCOM_MAKE_STRING(STRING) \
-   GEDCOM_MAKE(STRING, GV_CHAR_PTR, string_val)
+#define GEDCOM_MAKE_STRING(VAR, STRING) \
+   GEDCOM_MAKE(VAR, STRING, GV_CHAR_PTR, string_val)
 
-#define GEDCOM_MAKE_NULL_OR_STRING(STRING) \
+#define GEDCOM_MAKE_NULL_OR_STRING(VAR, STRING) \
    (STRING == NULL ? \
-    GEDCOM_MAKE_NULL() : \
-    GEDCOM_MAKE_STRING(STRING)) \
-
-#define GEDCOM_MAKE_DATE(DATE) \
-   GEDCOM_MAKE(DATE, GV_DATE_VALUE, date_val)
+    GEDCOM_MAKE_NULL(VAR) : \
+    GEDCOM_MAKE_STRING(VAR, STRING))
 
 
 #endif /* __INTERFACE_H */

@@ -47,4 +47,7 @@ struct date_value make_date_value(Date_value_type t, struct date d1,
 				  struct date d2, char* p);
 void              copy_date(struct date *to, struct date from);
 
+#define GEDCOM_MAKE_DATE(VAR, DATE) \
+   GEDCOM_MAKE(VAR, DATE, GV_DATE_VALUE, date_val)
+
 #endif /* __DATE_H */
