@@ -23,6 +23,7 @@
 
 #include "gedcom.h"
 #include "output.h"
+#include "portability.h"
 #include <locale.h>
 #include <stdio.h>
 
@@ -51,6 +52,7 @@ int test_xref_functions()
 {
   struct xref_value* xr;
   int result;
+  long int tmp;
 
   xr = gedcom_get_by_xref("@NOTHING_THERE@");
   if (xr != NULL)
@@ -81,7 +83,8 @@ int test_xref_functions()
     return 16;
   }
 
-  if ((int)xr->object != 1) {
+  tmp = void_ptr_to_int(xr->object);
+  if (tmp != 1) {
     output(1, "Not the correct cross-reference object\n");
     return 17;
   }
