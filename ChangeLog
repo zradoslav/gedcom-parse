@@ -1,3 +1,8 @@
+2002-12-21  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/date.c, gedcom/gedcom_date.*: New functions for handling
+	date values.
+
 2002-12-15  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gom/*.c, gedcom/write.c, gedcom/date.c, gedcom/age.c: Support for

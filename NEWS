@@ -9,6 +9,8 @@ release 0.18 (NOT RELEASED YET):
      - callback interface:
         - functions to manipulate cross-references (add, delete, link and
           unlink)
+        - functions to manipulate dates (strings to numbers and vice versa,
+          conversion between calendars, ...)
         - support for writing Gedcom files
         - complete concatenated text (e.g. for notes) is now passed in the
           end callback
