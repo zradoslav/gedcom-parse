@@ -237,22 +237,26 @@ static size_t conv_buf_size;
 
 int open_conv_to_internal(const char* fromcode)
 {
+  iconv_t new_cd_to_internal;
   const char *encoding = get_encoding(fromcode, the_enc);
-  if (cd_to_internal != (iconv_t) -1)
-    iconv_close(cd_to_internal);
   if (encoding == NULL) {
-    cd_to_internal = (iconv_t) -1;
+    new_cd_to_internal = (iconv_t) -1;
   }
   else {
     memset(conv_buf, 0, sizeof(conv_buf));
     conv_buf_size = 0;
-    cd_to_internal = iconv_open(INTERNAL_ENCODING, encoding);
-    if (cd_to_internal == (iconv_t) -1) {
+    new_cd_to_internal = iconv_open(INTERNAL_ENCODING, encoding);
+    if (new_cd_to_internal == (iconv_t) -1) {
       gedcom_error(_("Error opening conversion context for encoding %s: %s"),
 		   encoding, strerror(errno));
     }
   }
-  return (cd_to_internal != (iconv_t) -1);  
+  if (new_cd_to_internal != (iconv_t) -1) {
+    if (cd_to_internal != (iconv_t) -1)
+      iconv_close(cd_to_internal);
+    cd_to_internal = new_cd_to_internal;
+  }
+  return (new_cd_to_internal != (iconv_t) -1);  
 }
 
 void close_conv_to_internal()
