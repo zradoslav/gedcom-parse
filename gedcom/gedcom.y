@@ -420,6 +420,8 @@ int  compat_mode(int flags);
 
 file        : head_sect records trlr_sect
                { if (fail == 1) YYABORT; }
+            | error
+               {  }
             ;
 
 records     : /* empty */
