@@ -66,6 +66,7 @@ rm gconv-modules
 echo "Result is $result (expected: $expected_result)" >> $logfile
 if [ "$result" -ne "$expected_result" ]
 then
+  echo "Not the expected return value!" >> $logfile
   exit 1
 else
   if [ -r core ]
