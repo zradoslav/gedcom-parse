@@ -54,7 +54,8 @@ lex.gedcom_lohi_.test.o:	lex.gedcom_lohi_.c
 # Test of parser
 
 test:	gedcom_parse
-	@for file in t/*.ged; do \
+	@export GCONV_PATH=./ansel; \
+        for file in t/*.ged; do \
 	  echo "=== testing $$file"; \
 	  ./gedcom_parse $$file; \
 	done
