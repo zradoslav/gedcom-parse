@@ -126,3 +126,14 @@ void gedcom_cast_error(const char* file, int line,
     (_("Wrong cast of value in file %s, at line %d: %s instead of %s"),
      file, line, _(val_type_str[tried_bit]), _(val_type_str[real_bit]));
 }
+
+/** This function allows to customize what happens on an error.  It doesn't
+    influence the generation of error or warning messages, only the behaviour
+    of the parser and its return code.  See \ref Gedcom_err_mech for the
+    possible mechanisms.
+ */
+
+void gedcom_set_error_handling(Gedcom_err_mech mechanism)
+{
+  error_mechanism = mechanism;
+}
