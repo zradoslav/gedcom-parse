@@ -1,8 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
                                
-  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>The Gedcom parser library</title></head>
-
-<body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>The Gedcom parser library</title></head><body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
              
 <div align="center">       
 <h1>The Gedcom parser library</h1>
@@ -125,7 +123,9 @@ containing  a lot of special characters.<br>
  test file. &nbsp;Simply cat the file through the lexer on standard input
 and you should get all the tokens in the file. &nbsp;Similar  tests can be
 done using <code>make lexer_hilo</code> and <code>
-make lexer_lohi</code>    (for the unicode lexers). &nbsp;In each of the cases you need to know yourself which of the test files are appropriate to pass through the lexer.<br>
+make lexer_lohi</code>
+    (for the unicode lexers). &nbsp;In each of the cases you need to know
+yourself which of the test files are appropriate to pass through the lexer.<br>
                  <br>
        This concludes the testing setup. &nbsp;Now for some explanations...<br>
           <hr width="100%" size="2"><br>
@@ -164,7 +164,7 @@ corner) in the old DOS days, to be able to draw nice windows in text mode.<br>
 However, these last characters are strictly spoken not part of the ASCII
 set. &nbsp;The standard ASCII set contains only the character positions from
 0 to 127 (i.e. anything that fits into an integer that is 7 bits wide). &nbsp;An
-example of this table can be found <a href="http://web.cs.mun.ca/%7Emichael/ascii-table.html">here</a>. &nbsp;Anything that has an ASCII code between 128 and 255 is in principle undefined.<br>
+example of this table can be found <a href="http://web.cs.mun.ca/%7Emichael/c/ascii-table.html">here</a>. &nbsp;Anything that has an ASCII code between 128 and 255 is in principle undefined.<br>
           <br>
 Now, several systems (including the old DOS) have defined those character
 positions anyway, but usually in totally different ways. &nbsp;Some well
