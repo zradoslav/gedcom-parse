@@ -41,6 +41,12 @@ int   utf8_strlen(const char* input);
   /* Returns 1 if string is valid UTF-8 string, 0 otherwise */
 int   is_utf8_string(const char* input);
 
+  /* Returns respectively a pointer to the next or the nth UTF-8 character.
+     The value n = 0 is the first character of the input, i.e.
+     next_utf8_char(input) is the same as nth_utf8_char(input, 1) */
+char* next_utf8_char(char* input);
+char* nth_utf8_char(char* input, int n);
+
   /* Functions for creating and freeing conversion buffers yourself */
 conv_buffer_t create_conv_buffer(int size);
 void free_conv_buffer(conv_buffer_t buf);

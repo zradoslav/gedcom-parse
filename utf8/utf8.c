@@ -21,6 +21,7 @@
 /* $Name$ */
 
 #include "utf8tools.h"
+#include <string.h>
 
 int is_utf8_string(const char* str)
 {
@@ -78,11 +79,37 @@ int utf8_strlen(const char* str)
   if (!str) return 0;
   
   while (*str) {
-    if ((*str & 0x80) == 0 || (*str & 0xC0) == 0xC0)
-      num_char++;
+    if ((*str & 0xC0) != 0xC0) num_char++;
     str++;
   }
   
   return num_char;
 }
 
+char* next_utf8_char(char* str)
+{
+  if (!str) return NULL;
+
+  if (*str) {
+    str++;
+    while (*str && (*str & 0xC0) == 0x80)
+      str++;
+  }
+  return str;
+}
+
+char* nth_utf8_char(char* str, int n)
+{
+  int num_char = 0;
+  if (!str) return NULL;
+
+  if (*str) {
+    str++;
+    while (*str) {
+      if ((*str & 0xC0) != 0x80) num_char++;
+      if (num_char == n) break;
+      str++;
+    }
+  }
+  return str;
+}
