@@ -27,9 +27,8 @@
 #include "multilex.h"
 #include "encoding.h"
 #include "gedcom.h"
-#include "gedcom.tab.h"
-
-#define YY_NO_UNPUT
+#include "gedcom.tabgen.h"
+#include "compat.h"
 
 static size_t encoding_width;
 static int current_level = -1;
@@ -43,6 +42,7 @@ static char str_buf[MAXGEDCLINELEN * UTF_FACTOR + 1];
 #ifdef LEXER_TEST 
 YYSTYPE gedcom_lval;
 int line_no = 1;
+int compat_at = 0;
 
 int gedcom_lex();
 
@@ -227,16 +227,26 @@ int test_loop(ENCODING enc, char* code)
 
 
 #define ACTION_ANY                                                            \
-  { CHECK_LINE_LEN;                                                           \
-    gedcom_lval.string = TO_INTERNAL(yytext, str_buf);                        \
-    /* Due to character conversions, it is possible that the current          \
-       character will be combined with the next, and so now we don't have a   \
-       character yet...                                                       \
-       In principle, this is only applicable to the 1byte case (e.g. ANSEL),  \
-       but it doesn't harm the unicode case.                                  \
-    */                                                                        \
-    if (strlen(gedcom_lval.string) > 0)                                       \
-      return ANYCHAR;                                                         \
+  { char* tmp;                                                                \
+    CHECK_LINE_LEN;                                                           \
+    tmp = TO_INTERNAL(yytext, str_buf);                                       \
+    if (!tmp) {                                                               \
+      /* Something went wrong during conversion... */                         \
+          gedcom_error(_("Invalid character for encoding: '%s' (0x%02x)"),    \
+		 yytext, yytext[0]);                                          \
+          return BADTOKEN;                                                    \
+    }                                                                         \
+    else {                                                                    \
+      gedcom_lval.string = tmp;                                               \
+      /* Due to character conversions, it is possible that the current        \
+         character will be combined with the next, and so now we don't have a \
+         character yet...                                                     \
+         In principle, this is only applicable to the 1byte case (e.g. ANSEL),\
+         but it doesn't harm the unicode case.                                \
+      */                                                                      \
+      if (strlen(gedcom_lval.string) > 0)                                     \
+        return ANYCHAR;                                                       \
+    }                                                                         \
   }
 
 
@@ -296,6 +306,20 @@ int test_loop(ENCODING enc, char* code)
     }                                                                         \
   } 
 
+#define ACTION_NORMAL_AT                                                      \
+  { if (compat_at) {                                                          \
+      int i, j;                                                               \
+      char *yycopy = strdup(yytext);                                          \
+      for (i = 0; i < 2; i++)                                                 \
+        for (j = yyleng - 1; j >= 0; --j)                                     \
+          unput(yycopy[j]);                                                   \
+      free(yycopy);                                                           \
+    }                                                                         \
+    else {                                                                    \
+      gedcom_error(_("'@' character should be written as '@@' in values"));   \
+      return BADTOKEN;                                                        \
+    }                                                                         \
+  }
 
 #define ACTION_UNEXPECTED                                                     \
   { gedcom_error(_("Unexpected character: '%s' (0x%02x)"),                    \
