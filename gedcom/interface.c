@@ -61,7 +61,8 @@ Gedcom_ctxt start_record(Gedcom_rec rec,
 {
   Gedcom_rec_start_cb cb = record_start_callback[rec];
   if (cb != NULL)
-    return (*cb)(level, xref, tag.string, raw_value, tag.value, parsed_value);
+    return (*cb)(rec, level, xref, tag.string, raw_value, tag.value,
+		 parsed_value);
   else
     return NULL;
 }
@@ -70,7 +71,7 @@ void end_record(Gedcom_rec rec, Gedcom_ctxt self)
 {
   Gedcom_rec_end_cb cb = record_end_callback[rec];
   if (cb != NULL)
-    (*cb)(self);
+    (*cb)(rec, self);
 }
 
 Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent, 
@@ -80,10 +81,10 @@ Gedcom_ctxt start_element(Gedcom_elt elt, Gedcom_ctxt parent,
   Gedcom_elt_start_cb cb = element_start_callback[elt];
   Gedcom_ctxt ctxt = parent;
   if (cb != NULL)
-    ctxt = (*cb)(parent, level, tag.string, raw_value,
+    ctxt = (*cb)(elt, parent, level, tag.string, raw_value,
 		 tag.value, parsed_value);
   else if (default_cb != NULL && parent != NULL)
-    (*default_cb)(parent, level, tag.string, raw_value, tag.value);
+    (*default_cb)(elt, parent, level, tag.string, raw_value, tag.value);
   return ctxt;
 }
 
@@ -92,7 +93,7 @@ void end_element(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
 {
   Gedcom_elt_end_cb cb = element_end_callback[elt];
   if (cb != NULL)
-    (*cb)(parent, self, parsed_value);
+    (*cb)(elt, parent, self, parsed_value);
 }
 
 char* val_type_str[] = { N_("null value"),

@@ -83,7 +83,7 @@ void header_end(Gedcom_ctxt self)
 char family_xreftags[100][255];
 int  family_nr = 1;
 
-Gedcom_ctxt family_start(int level, Gedcom_val xref, char *tag,
+Gedcom_ctxt family_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
 			 char *raw_value, int tag_value,
 			 Gedcom_val parsed_value)
 {
@@ -94,7 +94,7 @@ Gedcom_ctxt family_start(int level, Gedcom_val xref, char *tag,
   return (Gedcom_ctxt)(family_nr++);
 }
 
-Gedcom_ctxt rec_start(int level, Gedcom_val xref, char *tag,
+Gedcom_ctxt rec_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
 		      char *raw_value, int tag_value,
 		      Gedcom_val parsed_value)
 {
@@ -105,7 +105,7 @@ Gedcom_ctxt rec_start(int level, Gedcom_val xref, char *tag,
   return (Gedcom_ctxt)tag_value;
 }
 
-Gedcom_ctxt note_start(int level, Gedcom_val xref, char *tag,
+Gedcom_ctxt note_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
 		       char *raw_value, int tag_value,
 		       Gedcom_val parsed_value)
 {
@@ -115,12 +115,12 @@ Gedcom_ctxt note_start(int level, Gedcom_val xref, char *tag,
   return (Gedcom_ctxt)tag_value;
 }
 
-void family_end(Gedcom_ctxt self)
+void family_end(Gedcom_rec rec, Gedcom_ctxt self)
 {
   output(1, "Family end, xref is %s\n", family_xreftags[(int)self]);
 }
 
-Gedcom_ctxt submit_start(int level, Gedcom_val xref, char *tag,
+Gedcom_ctxt submit_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
 			 char *raw_value, int tag_value,
 			 Gedcom_val parsed_value)
 {
@@ -128,8 +128,8 @@ Gedcom_ctxt submit_start(int level, Gedcom_val xref, char *tag,
   return (Gedcom_ctxt)10000;
 }
 
-Gedcom_ctxt source_start(Gedcom_ctxt parent, int level, char *tag,
-			 char* raw_value,
+Gedcom_ctxt source_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
+			 char *tag, char* raw_value,
 			 int tag_value, Gedcom_val parsed_value)
 {
   Gedcom_ctxt self = (Gedcom_ctxt)((int) parent + 1000);
@@ -138,13 +138,14 @@ Gedcom_ctxt source_start(Gedcom_ctxt parent, int level, char *tag,
   return self;
 }
 
-void source_end(Gedcom_ctxt parent, Gedcom_ctxt self, Gedcom_val parsed_value)
+void source_end(Gedcom_elt elt, Gedcom_ctxt parent, Gedcom_ctxt self,
+		Gedcom_val parsed_value)
 {
   output(1, "Source context %d in parent %d\n", (int)self, (int)parent);
 }
 
-Gedcom_ctxt date_start(Gedcom_ctxt parent, int level, char *tag,
-		       char* raw_value,
+Gedcom_ctxt date_start(Gedcom_elt elt, Gedcom_ctxt parent, int level,
+		       char *tag, char* raw_value,
 		       int tag_value, Gedcom_val parsed_value)
 {
   struct date_value dv;
@@ -173,8 +174,8 @@ Gedcom_ctxt date_start(Gedcom_ctxt parent, int level, char *tag,
   return self;
 }
 
-void default_cb(Gedcom_ctxt ctxt, int level, char *tag, char *raw_value,
-		int tag_value)
+void default_cb(Gedcom_elt elt, Gedcom_ctxt ctxt, int level, char *tag,
+		char *raw_value, int tag_value)
 {
   char   *converted = NULL;
   int    conv_fails = 0;
