@@ -17,4 +17,5 @@ dist-hook:
 	$(replace-VERSION)
 
 gomxref.html:	$(srcdir)/../include/gom.h
-	./make_gom_xref
+	srcdir=$(srcdir); export srcdir; \
+        ./make_gom_xref
