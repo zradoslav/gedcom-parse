@@ -423,33 +423,51 @@ int  gom_new_model();
 int  gom_write_file(const char* file_name, int *total_conv_fails);
 
 struct header*     gom_get_header();
-int  gom_header_update_timestamp(time_t t);
+int                gom_header_update_timestamp(time_t t);
   
 struct submission* gom_get_submission();
+struct submission* gom_add_submission(const char* xrefstr);
+int                gom_delete_submission();
 
 struct family*     gom_get_first_family();
 struct family*     gom_get_family_by_xref(const char *xref);
+struct family*     gom_add_family(const char* xrefstr);
+int                gom_delete_family(struct family* obj);
 
 struct individual* gom_get_first_individual();
 struct individual* gom_get_individual_by_xref(const char *xref);
+struct individual* gom_add_individual(const char* xrefstr);
+int                gom_delete_individual(struct individual* obj);
 
 struct multimedia* gom_get_first_multimedia();
 struct multimedia* gom_get_multimedia_by_xref(const char *xref);
+struct multimedia* gom_add_multimedia(const char* xrefstr);
+int                gom_delete_multimedia(struct multimedia* obj);
 
 struct note*       gom_get_first_note();
 struct note*       gom_get_note_by_xref(const char *xref);
+struct note*       gom_add_note(const char* xrefstr);
+int                gom_delete_note(struct note* obj);
 
 struct repository* gom_get_first_repository();
 struct repository* gom_get_repository_by_xref(const char *xref);
+struct repository* gom_add_repository(const char* xrefstr);
+int                gom_delete_repository(struct repository* obj);
 
 struct source*     gom_get_first_source();
 struct source*     gom_get_source_by_xref(const char *xref);
+struct source*     gom_add_source(const char* xrefstr);
+int                gom_delete_source(struct source* obj);
 
 struct submitter*  gom_get_first_submitter();
 struct submitter*  gom_get_submitter_by_xref(const char *xref);
+struct submitter*  gom_add_submitter(const char* xrefstr);
+int                gom_delete_submitter(struct submitter* obj);
 
 struct user_rec*   gom_get_first_user_rec();
 struct user_rec*   gom_get_user_rec_by_xref(const char *xref);
+struct user_rec*   gom_add_user_rec(const char* xrefstr, const char* tag);
+int                gom_delete_user_rec(struct user_rec* obj);
 
 char* gom_get_string(char* data);
 char* gom_set_string(char** data, const char* utf8_str);
