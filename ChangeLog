@@ -1,3 +1,8 @@
+2002-11-24  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/message.c: Extracted safe buffer mechanism to message.c
+	for reuse.
+
 2002-11-22  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* gom/gom_modify.c: Check whether given strings are valid.
