@@ -1,13 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <title>Using the GEDCOM parser library</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Using the GEDCOM parser library</title>
+  
                                                               
-  <meta http-equiv="content-type"
- content="text/html; charset=ISO-8859-1">
-</head>
-  <body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099"
- alink="#000099">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head>
+
+<body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
                  
 <h1 align="center">Using the GEDCOM parser library</h1>
          <br>
@@ -169,7 +165,8 @@ the  information that comes via the default callback in plain textual format.<br
         As a simple example, we will get some information from the header 
 of  a  GEDCOM  file. &nbsp;First, have a look at the following piece of code:<br>
                                                    
-<blockquote><code>Gedcom_ctxt <b>my_header_start_cb</b> (int level,    <br>
+<blockquote><code>Gedcom_ctxt <b>my_header_start_cb</b> (Gedcom_rec rec,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int level,    <br>
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gedcom_val xref, <br>
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
@@ -185,7 +182,7 @@ of  a  GEDCOM  file. &nbsp;First, have a look at the following piece of code:<br
         &nbsp; return (Gedcom_ctxt)1;<br>
         }<br>
                 <br>
-        void <b>my_header_end_cb</b> (Gedcom_ctxt self)<br>
+        void <b>my_header_end_cb</b> (Gedcom_rec rec, Gedcom_ctxt self)<br>
         {<br>
         &nbsp; printf("The header ends, context is %d\n", (int)self); &nbsp;
  /* context    will print as "1" */<br>
@@ -203,7 +200,7 @@ callback.  The end   callback is optional: you can pass <code>NULL</code>
  if you are  not interested   in the end callback. &nbsp;The identifiers
 to use as first  argument to the   function (here <code>REC_HEAD</code>)
 are described in the <a href="interface.html#Record_identifiers">     interface
-details</a> .<br>
+details</a> . &nbsp;These are also passed as first argument in the callbacks (the <code>Gedcom_rec</code> argument).<br>
                 <br>
         From the name of the function it becomes clear that this function 
 is  specific   to complete records. &nbsp;For the separate elements in records
@@ -242,7 +239,9 @@ and included via <code>    gedcom.h</code> (so no need to include <code>gedcom-t
         We will now retrieve the SOUR field (the name of the program that 
 wrote    the file) from the header:<br>
                                                                
-<blockquote><code>Gedcom_ctxt <b>my_header_source_start_cb</b>(Gedcom_ctxt
+<blockquote><code>Gedcom_ctxt <b>my_header_source_start_cb</b>(Gedcom_elt &nbsp;elt,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gedcom_ctxt
     parent,<br>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
   &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int &nbsp; 
@@ -265,7 +264,8 @@ wrote    the file) from the header:<br>
         &nbsp; return parent;<br>
         }<br>
                   <br>
-        void <b>my_header_source_end_cb</b>(Gedcom_ctxt parent,<br>
+        void <b>my_header_source_end_cb</b>(Gedcom_elt &nbsp;elt,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Gedcom_ctxt parent,<br>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
   &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;Gedcom_ctxt self,<br>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
@@ -291,8 +291,7 @@ wrote    the file) from the header:<br>
 can be its own context object of course. &nbsp;The end callback is called
 with both the context of the parent and the context of itself, which in this
 example will be the same. &nbsp;Again,  the list of identifiers to use as
-a first argument for the subscription function  are detailed in the <a
- href="interface.html#Element_identifiers">  interface  details</a> .<br>
+a first argument for the subscription function  are detailed in the <a href="interface.html#Element_identifiers">  interface  details</a> . &nbsp;Again, these are passed as first argument in the callback (the <code>Gedcom_elt</code> argument).<br>
                   <br>
         If we look at the other arguments of the start callback, we see the 
  level   number (the initial number of the line in the GEDCOM file), the tag
@@ -305,8 +304,7 @@ in   the section for record callbacks above.<br>
         The <code>Gedcom_val</code> type is meant to be an opaque type. &nbsp;The
     only thing that needs to be known about it is that it can contain specific
     data types, which have to be retrieved from it using pre-defined macros.
-   &nbsp;These data types are described in the <a
- href="interface.html#Gedcom_val_types">     interface details</a>.     
+   &nbsp;These data types are described in the <a href="interface.html#Gedcom_val_types">     interface details</a>.     
      <br>
                  <br>
         Some extra notes:<br>
@@ -334,7 +332,7 @@ in   the section for record callbacks above.<br>
  applications.  &nbsp;To preserve this extra data anyway, a default callback
  can be registered  by the application, as in the following example:<br>
                                                                
-<blockquote><code>void <b>my_default_cb</b> (Gedcom_ctxt parent,   int level,
+<blockquote><code>void <b>my_default_cb</b> (Gedcom_elt elt, Gedcom_ctxt parent,   int level,
  char* tag, char* raw_value, int parsed_tag)<br>
        {<br>
        &nbsp; ...<br>
@@ -365,7 +363,7 @@ data is saved again  in a GEDCOM file. &nbsp;To make it more specific, consider
        &nbsp; char* extra_text;<br>
        };<br>
                      <br>
-       Gedcom_ctxt my_header_start_cb(int level, Gedcom_val xref, char* tag,
+       Gedcom_ctxt my_header_start_cb(Gedcom_rec rec, int level, Gedcom_val xref, char* tag,
   char *raw_value,<br>
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int parsed_tag, Gedcom_val parsed_value)<br>
@@ -374,7 +372,7 @@ data is saved again  in a GEDCOM file. &nbsp;To make it more specific, consider
        &nbsp; return (Gedcom_ctxt)head;<br>
        }<br>
                      <br>
-       void my_default_cb(Gedcom_ctxt parent, int level, char* tag, char* 
+       void my_default_cb(Gedcom_elt elt, Gedcom_ctxt parent, int level, char* tag, char* 
 raw_value,   int parsed_tag)<br>
        {<br>
        &nbsp; struct header head = (struct header)parent;<br>
@@ -538,8 +536,7 @@ because any  locale can be converted to UTF-8.<br>
 implementation,  the following steps need to be taken by the application
 (more detailed info  can be found in the info file of the GNU libc library
 in the "Generic Charset  Conversion" section under "Character Set Handling"
-or online <a
- href="http://www.gnu.org/manual/glibc-2.2.3/html_chapter/libc_6.html#SEC99">
+or online <a href="http://www.gnu.org/manual/glibc-2.2.3/html_chapter/libc_6.html#SEC99">
   here</a>):<br>
                          
 <ul>
@@ -626,8 +623,7 @@ and  show an error. &nbsp;This is not very user friendly, of course.<br>
                                            <li>Skip over the character that
  can't be converted and append a "?" to the output buffer, then call <code>
   iconv</code> again. &nbsp;Skipping over a UTF-8 character is fairly simple,
- as follows from the <a
- href="http://www.cl.cam.ac.uk/%7Emgk25/unicode.html#utf-8">encoding rules</a>
+ as follows from the <a href="http://www.cl.cam.ac.uk/%7Emgk25/unicode.html#utf-8">encoding rules</a>
   :</li>
                                                
   </ul>
@@ -717,5 +713,5 @@ handle needs to be closed (when the program exits):<br>
 <pre>                    </pre>
                                                                         
                                                         
-</body>
-</html>
+<br>
+</body></html>
