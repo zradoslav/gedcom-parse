@@ -24,11 +24,11 @@
 #include "gedcom_internal.h"
 #include "interface.h"
 
-static Gedcom_rec_start_cb record_start_callback [LAST_REC] = { NULL };
-static Gedcom_rec_end_cb   record_end_callback   [LAST_REC] = { NULL };
-static Gedcom_elt_start_cb element_start_callback[LAST_ELT] = { NULL };
-static Gedcom_elt_end_cb   element_end_callback  [LAST_ELT] = { NULL };
-static Gedcom_def_cb       default_cb                       = NULL;
+static Gedcom_rec_start_cb record_start_callback [NR_OF_RECS] = { NULL };
+static Gedcom_rec_end_cb   record_end_callback   [NR_OF_RECS] = { NULL };
+static Gedcom_elt_start_cb element_start_callback[NR_OF_ELTS] = { NULL };
+static Gedcom_elt_end_cb   element_end_callback  [NR_OF_ELTS] = { NULL };
+static Gedcom_def_cb       default_cb                         = NULL;
 
 void gedcom_set_default_callback(Gedcom_def_cb func)
 {

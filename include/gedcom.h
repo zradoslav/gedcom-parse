@@ -39,7 +39,7 @@ typedef enum _REC {
   REC_SUBN,
   REC_SUBM,
   REC_USER,
-  LAST_REC
+  NR_OF_RECS     /* Just a final value to be used in array boundaries */
 } Gedcom_rec;
 
 typedef enum _ELT {
@@ -67,7 +67,7 @@ typedef enum _ELT {
   ELT_HEAD_PLAC_FORM,
   ELT_HEAD_NOTE,
   ELT_USER,
-  LAST_ELT
+  NR_OF_ELTS     /* Just a final value to be used in array boundaries */
 } Gedcom_elt;
 
 typedef enum _MECH {
