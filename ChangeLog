@@ -1,4 +1,20 @@
+2001-12-15  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.11
+	Moved CVS repository to sourceforge.net (project gedcom-parse)
+
+2001-12-10  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* all: Use of gettext.
+
+	* gedcom/Makefile.am: Support for the lexer test programs.
+
+	* all: Moved to LGPL license.
+
 2001-12-09  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/encoding.c (init_encodings): Put data directory of libgedcom
+	in the GCONV_PATH environment variable (for the ANSEL encoding).
 
 	* release 0.10
 
