@@ -12,10 +12,23 @@
           <li><a href="#Main_functions">Main functions</a></li>
 
     <li><a href="#Object_model_structure">Object model structure</a></li>
-
-    <li><a href="#User_data">User data</a><br>
-<br>
+  <ul>
+    <li><a href="#Object_lists">Object lists</a><br>
     </li>
+  </ul>
+
+
+    
+  <ul>
+    <li><a href="#User_data">User data</a></li>
+  </ul>
+  <li><a href="#Other_functions">Other functions</a></li>
+  <ul>
+    <li><a href="#Manipulating_strings">Manipulating strings</a><br>
+      <br>
+    </li>
+  </ul>
+
 
   
 
@@ -31,12 +44,12 @@
 
 </h2>
 There are two ways to start with a GEDCOM object model (after having called <code>gedcom_init</code>): either by starting from scratch, or by starting from a given GEDCOM file. &nbsp;This is done via the following two functions:<br>
-<blockquote><code>int <b>gom_parse_file</b> (const char* file_name)<br>
+<blockquote><code>int <b>gom_parse_file</b> (const char* file_name);<br>
   </code>
   <blockquote>This initializes the object model by parsing the GEDCOM file given by <code>file_name</code>. &nbsp;It returns 0 on success and 1 on failure.<br>
   </blockquote>
 </blockquote>
-<blockquote><code>int <b>gom_new_model</b> ()<br>
+<blockquote><code>int <b>gom_new_model</b> ();<br>
   </code>
   <blockquote>This starts an empty model. &nbsp;Actually, this is done by processing the file "<code>new.ged</code>" in the gedcom-parse data directory.<br>
   </blockquote>
@@ -63,12 +76,14 @@ struct XXX* &nbsp; <b>gom_get_XXX_by_xref</b>(char* xref);</code><br>
     </blockquote>
   </li>
 </ul>
-<blockquote>The <b>XXX</b> stands for one of the following: <code>family, </code><code>individual, multimedia, note, repository, source, submitter, user_rec</code>.<br>
+<blockquote>The <code><b>XXX</b></code> stands for one of the following: <code><b>family</b>, </code><code><b>individual</b>, <b>multimedia</b>, <b>note</b>, <b>repository</b>, <b>source</b>, <b>submitter</b>, <b>user_rec</b></code>.<br>
 </blockquote>
+<hr width="100%" size="2">
 <h2><a name="Object_model_structure"></a>Object model structure<br>
 
 </h2>
-
+<h3><a name="Object_lists"></a>Object lists<br>
+</h3>
 All records of a certain type are linked together in a linked list. &nbsp;The
 above functions only give access to the first record of each linked list.
 &nbsp;The others can be accessed by traversing the linked list via the <code>next</code> member of the structs. &nbsp;This means that e.g. the following piece of code will traverse the linked list of family records:<br>
@@ -83,7 +98,7 @@ The <code>next</code> member of the last element in the list is guaranteed to ha
 Actually, the linked list is a doubly-linked list: each record also has a <code>previous</code> member. &nbsp;But for implementation reasons the behaviour of this <code>previous</code> member on the edges of the linked list will not be guaranteed, i.e. it can be circular or terminated with <code>NULL</code>, no assumptions can be made in the application code.<br>
 <br>
 This linked-list model applies also to all sub-structures of the main record structs, i.e. each struct that has a <code>next </code>and <code>previous</code>
-member following the above conventions. &nbsp;This means that the following
+member follows the above conventions. &nbsp;This means that the following
 piece of code traverses all children of a family (see the details of the
 different structs <a href="gomxref.html">here</a>):<br>
 <blockquote><code>struct family* fam = ...;<br>
@@ -93,8 +108,9 @@ for (xrl = fam-&gt;children ; xrl ; xrl = xrl-&gt;next) {<br>
 &nbsp; ...<br>
 }</code> <br>
 </blockquote>
-Note that all character strings in the object model are encoded in UTF-8 (<a href="file:///home/verthezp/src/external/gedcom-parse/doc/encoding.html">Why UTF-8?</a>).<br>
-<h2><a name="User_data"></a>User data</h2>
+Note that all character strings in the object model are encoded in UTF-8 (<a href="file:///home/verthezp/src/external/gedcom-parse/doc/encoding.html">Why UTF-8?</a>), but see <a href="#Manipulating_strings">below</a> for how to convert these automatically.<br>
+<h3><a name="User_data"></a>User data</h3>
+
 
 Each of the structs has an extra member called <code>extra</code> (of type <code>struct user_data*</code>).
 &nbsp;This gathers all non-standard GEDCOM tags within the scope of the struct
@@ -107,14 +123,59 @@ tags is. &nbsp;Each element of the linked list has:<br>
   </li>
 </ul>
 This way, none of the information in the GEDCOM file is lost, even the non-standard information.<br>
-<hr width="100%" size="2">                                              
-                              
+<br>
+<hr width="100%" size="2">
+<h2><a name="Other_functions"></a>Other functions</h2>
+<h3><a name="Manipulating_strings"></a>Manipulating strings<br>
+</h3>
+There are some functions available to retrieve and change strings in the
+Gedcom object model, depending whether you use UTF-8 strings in your application
+or locale-defined strings.<br>
+<br>
+The following functions retrieve and set the string in UTF-8 encoding:<br>
+<blockquote><code>char* <b>gom_get_string</b> (char* data);<br>
+char* <b>gom_set_string</b> (char** data, const char* utf8_str);</code><br>
+</blockquote>
+The first function is in fact superfluous, because it just returns the <code>data</code>, but it is there for symmetry with the functions given below for the locale-defined input and output. &nbsp;<br>
+<br>
+The second function returns the new value if successful, or <code>NULL</code>
+if an error occurred (e.g. failure to allocate memory). &nbsp;It makes a
+copy of the input string to store it in the object model. &nbsp;It also takes
+care of deallocating the old value of the data if needed. &nbsp;Note that
+the set function needs the address of the data variable, to be able to modify
+it.<br>
+<br>
+Examples of use of these strings would be, e.g. for retrieving and setting the system ID in the header:<br>
+<blockquote><code>struct header* head = gom_get_header();</code><code></code><br>
+  <code>char* oldvalue = gom_get_string(head-&gt;source.id);<br>
+char* newvalue = "My_Gedcom_Tool";<br>
+  </code><br>
+  <code>if (gom_set_string(&amp;head-&gt;source.id, newvalue)) {<br>
+&nbsp; printf("Modified system id from %s to %s\n", oldvalue, newvalue);<br>
+}</code><br>
+</blockquote>
+<br>
+A second couple of functions retrieve and set the string in the format defined by the current locale:<br>
+<blockquote><code>char* <b>gom_get_string_for_locale</b> (char* data, int* conversion_failures);<br>
+char* <b>gom_set_string_for_locale</b> (char** data, const char* locale_str)</code>;<br>
+</blockquote>
+The use of these functions is the same as the previous ones, but e.g. in
+the "en_US" locale the string will be returned by the first function in the
+ISO-8859-1 encoding and the second function expects the <code>locale_str</code> to be in this encoding. &nbsp;Conversion to and from UTF-8 for the object model is done on the fly.<br>
+<br>
+Since the conversion from UTF-8 to the locale encoding is not always possible,
+the get function has a second parameter that can return the number of conversion
+failures for the result string. &nbsp;Pass a pointer to an integer if you
+want to know this. &nbsp;You can pass <code>NULL</code> if you're not interested.<br>
+<hr width="100%" size="2">
 <pre><font size="-1">$Id$<br>$Name$</font><br></pre>
+
                                                                         
                   
 <pre>                    </pre>
                                                                         
                                                         
+<br>
 <br>
 <br>
 <br>
