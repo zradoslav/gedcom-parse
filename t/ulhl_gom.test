@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$srcdir/test_gom ulhl.ged 0
