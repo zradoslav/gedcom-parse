@@ -45,32 +45,39 @@ void init_mess_buffer()
 {
   if (mess_buffer == NULL) {
     mess_buffer = (char *)malloc(INITIAL_BUF_SIZE);
-    mess_buffer[0] = '\0';
-    bufsize = INITIAL_BUF_SIZE;
+    if (mess_buffer) {
+      mess_buffer[0] = '\0';
+      bufsize = INITIAL_BUF_SIZE;
+    }
+    else
+      fprintf(stderr, _("Could not allocate memory at %s, %d\n"),
+	      __FILE__, __LINE__);
   }
 }
 
 int safe_buf_vappend(char *s, va_list ap)
 {
-  int res;
+  int res = 0;
   int len;
   init_mess_buffer();
-  len = strlen(mess_buffer);
-  while (1) {
-    char *buf_ptr = mess_buffer + len;
-    int rest_size = bufsize - len;
-    
-    res = vsnprintf(buf_ptr, rest_size, s, ap);
-    
-    if (res > -1 && res < rest_size) {
-      break;
-    }
-    else  {
-      bufsize *= 2;
-      mess_buffer = realloc(mess_buffer, bufsize);
+  if (mess_buffer) {
+    len = strlen(mess_buffer);
+    while (1) {
+      char *buf_ptr = mess_buffer + len;
+      int rest_size = bufsize - len;
+      
+      res = vsnprintf(buf_ptr, rest_size, s, ap);
+      
+      if (res > -1 && res < rest_size) {
+	break;
+      }
+      else  {
+	bufsize *= 2;
+	mess_buffer = realloc(mess_buffer, bufsize);
+      }
     }
   }
-  return res;  
+  return res;
 }
 
 int safe_buf_append(char *s, ...)
@@ -129,4 +136,9 @@ int gedcom_error(char* s, ...)
     (*msg_handler)(ERROR, mess_buffer);
   
   return res;
+}
+
+void gedcom_mem_error(char *filename, int line)
+{
+  gedcom_error(_("Could not allocate memory at %s, %d"), filename, line);
 }
