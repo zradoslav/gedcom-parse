@@ -347,11 +347,77 @@ int numbers_to_strings(struct date *d)
   return result;
 }
 
-int gedcom_normalize_date(Date_input input, struct date_value *val)
+/** This function can be called to ensure that an updated date_value is
+    consistent, i.e. all its struct fields are consistent with each other.
+    Depending on which fields you have updated, you should give the correct
+    \c compute_from field.
+
+    The following table gives an overview of the input and output parameters
+    (the calendar type \c cal is always an input parameter, and should not be
+    \c CAL_UNKNOWN):
+     <table border="1" width="100%">
+       <tr>
+         <th><b>compute_from</b></th>
+	 <th><b>input parameters</b></th>
+	 <th><b>output parameters</b></th>
+       </tr>
+       <tr>
+         <td><code>DI_FROM_STRINGS</code></td>
+	 <td><code>day_str, month_str, year_str</code></td>
+	 <td><code>day, month, year, year_type<br>
+	     type, sdn1, sdn2</code></td>
+       </tr>
+       <tr>
+         <td><code>DI_FROM_NUMBERS</code></td>
+	 <td><code>day, month, year, year_type</code></td>
+	 <td><code>day_str, month_str, year_str<br>
+	     type, sdn1, sdn2</code></td>
+       </tr>
+       <tr>
+         <td><code>DI_FROM_SDN</code></td>
+	 <td><code>type, sdn1, sdn2</code></td>
+	 <td><code>day, month, year<br>
+	     day_str, month_str, year_str</code></td>
+       </tr>
+     </table>
+
+    If the type in the date_value is \c DV_PHRASE, no conversions take place,
+    otherwise one or both of the date structs are processed according to the
+    table above, depending on the type.
+
+    This function could also be used to convert a date from one calendar to
+    another, because the serial day number is calendar independent (error
+    handling is ignored in this example):
+    
+    \code
+      struct date_value* dv = gedcom_new_date_value(NULL);
+      dv->date1.cal = CAL_GREGORIAN;
+      dv->date1.day   = 4;
+      dv->date1.month = 2;
+      dv->date1.year  = 1799;
+      dv->date1.year_type = YEAR_SINGLE;
+      gedcom_normalize_date(DI_FROM_NUMBERS, dv);
+
+      dv->date1.cal = CAL_FRENCH_REV;
+      gedcom_normalize_date(DI_FROM_SDN, dv);
+    \endcode
+
+    At the end of this piece of code, the day, month and year are filled in
+    according to the French Revolution calendar.
+
+    \param compute_from Determines which fields will be taken as input to
+    compute the other fields.
+     
+    \param val The struct date_value to update (it will be updated in place)
+
+    \retval 0 on success
+    \retval >0 on failure
+*/
+int gedcom_normalize_date(Date_input compute_from, struct date_value *val)
 {
   int result = 0;
   if (val->type != DV_PHRASE) {
-    switch (input) {
+    switch (compute_from) {
       case DI_FROM_STRINGS:
 	result |= strings_to_numbers(&val->date1);
 	result |= numbers_to_sdn(&val->date1);
@@ -383,6 +449,15 @@ int gedcom_normalize_date(Date_input input, struct date_value *val)
   return result;
 }
 
+/** This function creates a new date_value struct and initializes it properly,
+    or copies an existing date value.
+
+    \param copy_from  A given struct date_value to copy (or \c NULL).
+
+    \return If the parameter \c copy_from is NULL, a new value is created and
+    given initial values.  If it is non-NULL, the given value is copied into
+    a new date value.  In both cases, the new value is returned.
+*/
 struct date_value* gedcom_new_date_value(const struct date_value* copy_from)
 {
   struct date_value* dv_ptr;
@@ -402,6 +477,14 @@ struct date_value* gedcom_new_date_value(const struct date_value* copy_from)
   return dv_ptr;
 }
 
+/** This function allows to convert the given \c line_value into a struct
+    date_value.
+    
+    \param line_value A string containing the date to parse
+
+    \return The parsed date; note that this return value is statically
+    allocated, and is thus overwritten on each call.
+*/
 struct date_value gedcom_parse_date(const char* line_value)
 {
   int result = 0;
@@ -464,6 +547,14 @@ void write_date(const struct date* d)
   }
 }
 
+/** This function converts the given struct date_value into its string
+    representation.
+
+    \param val  The given parsed date
+
+    \return The string representation of the parsed date; note that this value
+    is statically allocated, and is thus overwritten on each call
+*/
 char* gedcom_date_to_string(const struct date_value* val)
 {
   init_buffer(&date_buffer);

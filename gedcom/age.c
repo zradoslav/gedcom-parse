@@ -103,6 +103,15 @@ int parse_numeric_age(struct age_value *age, const char *ptr)
   return 0;
 }
 
+/** This function creates a new age_value struct and initializes it properly,
+    or copies an existing age value.
+
+    \param copy_from  A given struct age_value to copy (or \c NULL).
+
+    \return If the parameter \c copy_from is NULL, a new value is created and
+    given initial values.  If it is non-NULL, the given value is copied into
+    a new age value.  In both cases, the new value is returned.
+*/
 struct age_value* gedcom_new_age_value(const struct age_value* copy_from)
 {
   struct age_value* age_ptr;
@@ -118,6 +127,14 @@ struct age_value* gedcom_new_age_value(const struct age_value* copy_from)
   return age_ptr;
 }
 
+/** This function allows to convert the given \c line_value into a struct
+    age_value.
+    
+    \param line_value A string containing the age to parse
+
+    \return The parsed age; note that this return value is statically
+    allocated, and is thus overwritten on each call.
+*/
 struct age_value gedcom_parse_age(const char* line_value)
 {
   const char *ptr = line_value;
@@ -154,6 +171,14 @@ struct age_value gedcom_parse_age(const char* line_value)
   return age_s;
 }
 
+/** This function converts the given struct age_value into its string
+    representation.
+
+    \param val  The given parsed age
+
+    \return The string representation of the parsed age; note that this value
+    is statically allocated, and is thus overwritten on each call
+*/
 char* gedcom_age_to_string(const struct age_value* val)
 {
   int num = 0;

@@ -68,9 +68,39 @@ void set_read_encoding_terminator(char* term)
   strncpy(read_encoding.terminator, term, MAX_TERMINATOR_LEN);
 }
 
-int gedcom_write_set_encoding(Enc_from from, const char* new_charset,
+/** Allows to change the encoding for writing files.  It should be called
+    \em before calling gedcom_write_open(), i.e. it affects all files that are
+    opened after it is being called.
+
+    Valid values for the character set are given in
+    the first column in the file \c gedcom.enc in the data directory of
+    gedcom-parse (\c $PREFIX/share/gedcom-parse).  The character sets UNICODE,
+    ASCII and ANSEL are always supported (these are standard for GEDCOM), as
+    well as ANSI (not standard), but there may be others.
+
+    Note that you still need to pass the correct charset value for the
+    \c HEAD.CHAR tag, otherwise you will get a warning and the value will
+    be forced to the correct value.
+
+    \param from Indicates how you want the encoding to be set.  When
+    ENC_FROM_FILE is selected, the other parameters in the function are ignored
+    (they can be passed as 0).  ENC_FROM_SYS is not a valid value here.
+    The default setting is ENC_FROM_FILE.
+    \param charset  The character set to be used.
+    \param width    The width and endianness of the character set.  You can
+    pass 0 for non-UNICODE encodings.
+    \param bom      Determines whether a byte-order-mark should be written in
+    the file in case of UNICODE encoding (usually preferred because it then
+    clearly indicates the byte ordering).  You can pass 0 for non-UNICODE
+    encodings, but the byte-order-mark can also be used for UTF-8.
+
+    \retval 0 in case of success
+    \retval >0 in case of error
+ */
+int gedcom_write_set_encoding(Enc_from from, const char* charset,
 			      Encoding width, Enc_bom bom)
 {
+  const char* new_charset = charset;
   char* new_encoding = NULL;
   if (from == ENC_FROM_SYS) {
     return 1;
@@ -120,6 +150,24 @@ void init_write_encoding()
   }
 }
 
+/** Allows to change the line terminator to use on writing.  It should be
+    called
+    \em before calling gedcom_write_open(), i.e. it affects all files that are
+    opened after it is being called.
+
+    By default, the line terminator is set to the appropriate line terminator
+    on the current platform, so it only needs to be changed if there is some
+    special reason for it.
+
+    \param from Indicates how you want the encoding to be set.  When
+    ENC_FROM_FILE or ENC_FROM_SYS is selected, the other parameter in the
+    function is ignored (and can be passed as 0).
+    The default setting is ENC_FROM_SYS.
+    \param end  The wanted line terminator.
+
+    \retval 0 if success
+    \retval >0 if failure
+*/
 int gedcom_write_set_line_terminator(Enc_from from, Enc_line_end end)
 {
   const char* new_term = NULL;

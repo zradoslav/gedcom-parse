@@ -252,6 +252,14 @@ int is_valid_pointer(const char *key)
 	  gedcom_check_token(key, STATE_NORMAL, POINTER) == 0);
 }
 
+/** Retrieve an xref_value by its key.
+
+    \param key  The given cross-reference key
+
+    \return The object referenced by the key, or \c NULL if the given key
+    isn't a valid cross-reference key (see detailed description of
+    \ref parsed_xref) or isn't used.
+*/ 
 struct xref_value* gedcom_get_by_xref(const char *key)
 {
   if (!is_valid_pointer(key)) {
@@ -269,6 +277,20 @@ struct xref_value* gedcom_get_by_xref(const char *key)
   }
 }
 
+/** Add an xref_value of the given type, with the given key, to the given
+    object, with a use count equal to 0.
+
+    \param type  The type of the referenced object
+    \param xrefstr  The key for the object
+    \param object   The object to be referenced
+
+    \return The new xref_value if success, or \c NULL in one of the following
+    cases:
+     - the key isn't a valid cross-reference key (see detailed description of
+       \ref parsed_xref)
+     - there is already an xref_value with the same key
+     - there was a memory allocation error
+*/
 struct xref_value* gedcom_add_xref(Xref_type type, const char* xrefstr,
 				   Gedcom_ctxt object)
 {
@@ -294,6 +316,22 @@ struct xref_value* gedcom_add_xref(Xref_type type, const char* xrefstr,
     return NULL;
 }
 
+/** Declare the xref_value corresponding to the given key as being used as the
+    given type.  The use of this function is not mandatory, but it can aid in
+    spotting places in the code where xref_value objects are deleted while
+    they are still referenced.
+
+    \param type  The type of the referenced object
+    \param xrefstr  The key for the object
+
+    \return The xref_value object if success, and its use count is incremented.
+    Returns NULL in one of the following cases:
+     - the key isn't a valid cross-reference key (see detailed description of
+       \ref parsed_xref)
+     - there is no xref_value with the given key
+     - the xref_value was previously added as another type than the type
+       provided here
+ */
 struct xref_value* gedcom_link_xref(Xref_type type, const char* xrefstr)
 {
   struct xref_node *xr = NULL;
@@ -319,6 +357,22 @@ struct xref_value* gedcom_link_xref(Xref_type type, const char* xrefstr)
     return NULL;
 }
 
+/** Declare the xref_value corresponding to the given key no longer used.
+    The use of this function is not mandatory, but it can aid in
+    spotting places in the code where xref_value objects are deleted while
+    they are still referenced.
+
+    \param type  The type of the referenced object
+    \param xrefstr  The key for the object
+
+    \return The xref_value object if success, and its use count is decremented.
+    Returns NULL in one of the following cases:
+     - the key isn't a valid cross-reference key (see detailed description of
+       \ref parsed_xref)
+     - there is no xref_value with the given key
+     - the xref_value was previously added as another type than the type
+       provided here
+ */
 struct xref_value* gedcom_unlink_xref(Xref_type type, const char* xrefstr)
 {
   struct xref_node *xr = NULL;
@@ -348,6 +402,17 @@ struct xref_value* gedcom_unlink_xref(Xref_type type, const char* xrefstr)
     return NULL;
 }
 
+/** Delete the xref_value corresponding to the given key.
+
+    \param xrefstr  The key for the object
+
+    \return 0 if success; 1 in one of the following cases:
+      - the key isn't a valid cross-reference key (see detailed description of
+       \ref parsed_xref)
+      - there is no xref_value with the given key
+      - the xref_value is still in use, i.e. its use count is not 0 (see
+        gedcom_link_xref() and gedcom_unlink_xref())
+ */
 int gedcom_delete_xref(const char* xrefstr)
 {
   struct xref_node *xr = NULL;

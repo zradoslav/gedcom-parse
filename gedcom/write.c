@@ -189,6 +189,13 @@ int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
   return 0;
 }
 
+/** The basic function for opening a GEDCOM file for writing.
+
+    \param filename  The name of the file to write
+
+    \return A write handle, which needs to be used in the writing functions,
+    or \c NULL in case of errors.
+ */
 Gedcom_write_hndl gedcom_write_open(const char *filename)
 {
   Gedcom_write_hndl hndl;
@@ -237,6 +244,16 @@ Gedcom_write_hndl gedcom_write_open(const char *filename)
   return hndl;
 }
 
+/** The basic function for closing a GEDCOM file for writing.
+
+    \param hndl  The write handle as returned by gedcom_write_open().
+    \param total_conv_fails  If you pass an actual integer pointer for this,
+    the function will write in it the total number of conversion failures;
+    you can pass \c NULL if you're not interested
+
+    \retval 0 in case of success
+    \retval >0 in case of failure.
+ */
 int gedcom_write_close(Gedcom_write_hndl hndl, int* total_conv_fails)
 {
   int result = 0;
@@ -347,6 +364,21 @@ int _gedcom_write_val(Gedcom_write_hndl hndl,
   return result;
 }
 
+/** Function for writing lines corresponding to standard records (i.e. on
+    level 0).
+
+    \param hndl The write handle that was returned by gedcom_write_open().
+    \param rec  One of the identifiers given in the first column in
+    <a href=interface.html#Record_identifiers>this table</a> (except REC_USER).
+    \param xrefstr The cross-reference key of the record (something like
+    \c "@FAM01@".
+    \param val  The value of the record line, which should be \c NULL for some
+    record types, according to
+    <a href=interface.html#Record_identifiers>this table</a>.
+
+    \retval 0 on success
+    \retval >0 on failure
+*/  
 int gedcom_write_record_str(Gedcom_write_hndl hndl,
 			    Gedcom_rec rec, const char* xrefstr,
 			    const char* val)
@@ -357,6 +389,31 @@ int gedcom_write_record_str(Gedcom_write_hndl hndl,
   return result;
 }
 
+/** Function for writing lines corresponding to standard elements (i.e. on
+    level bigger than 0), with a string as value.
+
+    \param hndl The write handle that was returned by gedcom_write_open().
+    \param elt  One of the identifiers given in the first column in
+    <a href=interface.html#Element_identifiers>this table</a>
+    (except ELT_USER).
+    \param tag Some of the \c elt identifiers can actually stand for different
+    tags.  For this reason, the \c tag has to be passed for some of them.  This
+    parsed tag is the same as was returned by the callback functions, and is
+    an identifier of the form <code>TAG_<em>name</em></code>.  This parameter
+    is needed whenever the second column in 
+    <a href=interface.html#Element_identifiers>this table</a> shows several
+    possible tags (this is e.g. the case for \c ELT_SUB_FAM_EVT).  Otherwise,
+    you can pass 0.
+    \param parent_rec_or_elt The corresponding \c rec or \c elt identifier of
+    the logically enclosing statement: this will determine the level number
+    written on the line, as the level number of the parent + 1.
+    \param val  The value of the element line, which should be \c NULL for some
+    element types, according to
+    <a href=interface.html#Element_identifiers>this table</a>.
+
+    \retval 0 on success
+    \retval >0 on failure
+*/  
 int gedcom_write_element_str(Gedcom_write_hndl hndl,
 			     Gedcom_elt elt, int tag, int parent_rec_or_elt,
 			     const char* val)
@@ -368,6 +425,11 @@ int gedcom_write_element_str(Gedcom_write_hndl hndl,
   return result;
 }
 
+/** Function for writing lines corresponding to standard elements (i.e. on
+    level bigger than 0), with a cross-reference as value.
+
+    See gedcom_write_element_str() for details.
+*/  
 int gedcom_write_element_xref(Gedcom_write_hndl hndl,
 			      Gedcom_elt elt, int tag, int parent_rec_or_elt,
 			      const struct xref_value* val)
@@ -379,6 +441,11 @@ int gedcom_write_element_xref(Gedcom_write_hndl hndl,
   return result;
 }
 
+/** Function for writing lines corresponding to standard elements (i.e. on
+    level bigger than 0), with a date as value.
+
+    See gedcom_write_element_str() for details.
+*/  
 int gedcom_write_element_date(Gedcom_write_hndl hndl,
 			      Gedcom_elt elt, int tag, int parent_rec_or_elt,
 			      const struct date_value* val)
@@ -390,6 +457,11 @@ int gedcom_write_element_date(Gedcom_write_hndl hndl,
   return result;
 }
 
+/** Function for writing lines corresponding to standard elements (i.e. on
+    level bigger than 0), with an age as value.
+
+    See gedcom_write_element_str() for details.
+*/  
 int gedcom_write_element_age(Gedcom_write_hndl hndl,
 			     Gedcom_elt elt, int tag, int parent_rec_or_elt,
 			     const struct age_value* val)
@@ -401,6 +473,23 @@ int gedcom_write_element_age(Gedcom_write_hndl hndl,
   return result;
 }
 
+/** Function for writing lines corresponding to user-defined records and
+    elements, with a string as value.
+
+    In the case of user-defined tags, the
+    level and tag string are passed verbatim (not controlled by the library).
+    This allows to write any extra data that doesn't use a standard tag, but
+    is only allowed for tags starting with an underscore.
+
+    \param hndl The write handle that was returned by gedcom_write_open().
+    \param level  The integer level of the GEDCOM line
+    \param tag  The tag, as a literal string
+    \param xrefstr An optional cross-reference of the record or element.
+    \param value The value of the record or element line.
+
+    \retval 0 on success
+    \retval >0 on failure
+*/  
 int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, const char* tag,
 			  const char* xrefstr, const char* value)
 {
@@ -410,6 +499,11 @@ int gedcom_write_user_str(Gedcom_write_hndl hndl, int level, const char* tag,
   return result;
 }
 
+/** Function for writing lines corresponding to user-defined records and
+    elements, with a cross-reference as value.
+
+    See gedcom_write_user_str() for details.
+*/  
 int gedcom_write_user_xref(Gedcom_write_hndl hndl, int level, const char* tag,
 			   const char* xrefstr, const struct xref_value* val)
 {

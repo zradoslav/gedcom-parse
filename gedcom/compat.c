@@ -162,11 +162,22 @@ union _COMPAT_STATE {
 
 /* Compatibility handling */
 
+/** Allows to enable/disable the compatibility mode.
+
+    \param enable_compat  This argument can be:
+      - 0  Disable compatibility mode
+      - 1  Allow compatibility mode (this is the default)
+ */
 void gedcom_set_compat_handling(int enable_compat)
 {
   compat_enabled = enable_compat;
 }
 
+/** Allows to set some options for the compatibility handling.
+
+    \param options  Can be an OR'ed combination of the options listed defined
+    by the enum \ref Gedcom_compat.
+*/
 void gedcom_set_compat_options(Gedcom_compat options)
 {
   compat_options = options;

@@ -4319,26 +4319,13 @@ void cleanup_usertag_buffer()
   cleanup_buffer(&usertag_buffer);
 }
 
-/* Enabling debug mode */
-/* level 0: no debugging */
-/* level 1: only internal */
-/* level 2: also bison */
 FILE* trace_output;
 
-void gedcom_set_debug_level(int level, FILE* f)
+void gedcom_enable_internal_debug()
 {
-  if (f != NULL)
-    trace_output = f;
-  else
-    trace_output = stderr;
-  if (level > 0) {
-    gedcom_high_level_debug = 1;
-  }
-  if (level > 1) {
 #if YYDEBUG != 0
-    gedcom_debug = 1;
+  gedcom_debug = 1;
 #endif
-  }
 }
 
 int gedcom_debug_print(const char* s, ...)

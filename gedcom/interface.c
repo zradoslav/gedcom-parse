@@ -30,6 +30,10 @@ static Gedcom_elt_start_cb element_start_callback[NR_OF_ELTS] = { NULL };
 static Gedcom_elt_end_cb   element_end_callback  [NR_OF_ELTS] = { NULL };
 static Gedcom_def_cb       default_cb                         = NULL;
 
+/** This function allows to set the default callback.  You can only register
+    one default callback.
+    \param func The default callback.
+ */
 void gedcom_set_default_callback(Gedcom_def_cb func)
 {
   if (default_cb) {
@@ -38,6 +42,16 @@ void gedcom_set_default_callback(Gedcom_def_cb func)
   default_cb = func;
 }
 
+/** This function allows to subscribe to a record of a certain type, with a
+    start and an end
+    callback.  The end callback is optional: you can pass \c NULL if you are
+    not interested in the end callback.  You can only register once for a
+    given record type.
+    \param rec The record to subscribe to (see the
+    <a href="interface.html#Record_identifiers">interface details</a>)
+    \param cb_start The start callback
+    \param cb_end The end callback
+ */
 void gedcom_subscribe_to_record(Gedcom_rec rec,
 				Gedcom_rec_start_cb cb_start,
 				Gedcom_rec_end_cb cb_end)
@@ -50,6 +64,16 @@ void gedcom_subscribe_to_record(Gedcom_rec rec,
   }
 }
 
+/** This function allows to subscribe to an element of a certain type, with a
+    start and an end
+    callback.  The end callback is optional: you can pass \c NULL if you are
+    not interested in the end callback.  You can only register once for a given
+    element type.
+    \param elt The element to subscribe to (see the
+    <a href="interface.html#Element_identifiers">interface details</a>)
+    \param cb_start The start callback
+    \param cb_end The end callback
+ */
 void gedcom_subscribe_to_element(Gedcom_elt elt,
 				 Gedcom_elt_start_cb cb_start,
 				 Gedcom_elt_end_cb cb_end)
@@ -129,11 +153,36 @@ void gedcom_cast_error(const char* file, int line,
 
 /** This function allows to customize what happens on an error.  It doesn't
     influence the generation of error or warning messages, only the behaviour
-    of the parser and its return code.  See \ref Gedcom_err_mech for the
-    possible mechanisms.
+    of the parser and its return code.
+    \param mechanism The mechanism to be used; see \ref Gedcom_err_mech
+    for the possible mechanisms.
  */
-
 void gedcom_set_error_handling(Gedcom_err_mech mechanism)
 {
   error_mechanism = mechanism;
 }
+
+/** This function allows to change the debug level.
+
+    \param level  The debug level, one of the following values:
+      - 0: no debugging information (this is the default)
+      - 1: only debugging information from libgedcom itself
+      - 2: debugging information from libgedcom and yacc
+      
+    \param f A file handle (which must be open) to write debugging information
+    to; if \c NULL is passed, \c stderr will be used.
+*/
+void gedcom_set_debug_level(int level, FILE* f)
+{
+  if (f != NULL)
+    trace_output = f;
+  else
+    trace_output = stderr;
+  if (level > 0) {
+    gedcom_high_level_debug = 1;
+  }
+  if (level > 1) {
+    gedcom_enable_internal_debug();
+  }
+}
+

@@ -66,6 +66,7 @@ typedef enum _PARSE_STATE {
 int  gedcom_parse();
 int  gedcom_lex();
 int  gedcom_check_token(const char* str, ParseState state, int check_token);
+void gedcom_enable_internal_debug();
 
 void gedcom_mem_error(const char *filename, int line);
 
@@ -74,4 +75,8 @@ void gedcom_mem_error(const char *filename, int line);
 
 extern int line_no;
 extern int init_called;
+extern int gedcom_high_level_debug; 
+extern FILE* trace_output;
+
+
 #endif /* __GEDCOM_INTERNAL_H */
