@@ -178,7 +178,7 @@ Gedcom_ctxt get_parentctxt(int offset);
 void pop_countarray();
 int  count_tag(int tag);
 int  check_occurrence(int tag);
-void clean_up(); 
+void clean_up();
 
 #define HANDLE_ERROR                                                          \
      { if (error_mechanism == IMMED_FAIL) {                                   \
@@ -1423,7 +1423,7 @@ note_line_item : /* empty */
 		       gedcom_error(_("Missing value")); YYERROR;
 		     }
 		     else {
-		       $$ = "-";
+		       $$ = VALUE_IF_MISSING;
 		     }
 		   }
                | DELIM line_item
@@ -2281,12 +2281,13 @@ continuation_sub : cont_sect  /* 0:M */
                  | conc_sect  /* 0:M */
                  ;
 
-cont_sect : OPEN DELIM TAG_CONT mand_line_item 
+cont_sect : OPEN DELIM TAG_CONT opt_line_item 
             { $<ctxt>$ = start_element(ELT_SUB_CONT,
 				       PARENT, $1, $3, $4, 
-				       GEDCOM_MAKE_STRING(val1, $4));
+				       GEDCOM_MAKE_NULL_OR_STRING(val1, $4));
 	      SAFE_BUF_ADDCHAR(&concat_buffer, '\n');
-	      safe_buf_append(&concat_buffer, $4);
+	      if (GEDCOM_IS_STRING(&val1))
+	        safe_buf_append(&concat_buffer, $4);
 	      START(CONT, $1, $<ctxt>$)  
             }  
             no_std_subs  
@@ -3744,7 +3745,7 @@ mand_pointer : /* empty */ { gedcom_error(_("Missing pointer")); YYERROR; }
 mand_line_item : /* empty */
                  { if (compat_mode(C_NO_REQUIRED_VALUES)) {
                      gedcom_debug_print("==Val: ==");
-		     $$ = "-";
+		     $$ = VALUE_IF_MISSING;
 		   }
 		   else {
 		     gedcom_error(_("Missing value")); YYERROR;
