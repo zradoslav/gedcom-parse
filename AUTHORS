@@ -14,6 +14,7 @@ Integrated external code and data:
                            (http://heiner-eichmann.de/gedcom/gedcom.htm)
   - Hash table code      : Kaz Kylheku
                            (http://users.footprints.net/~kaz/kazlib.html)
+  - libcharset           : Bruno Haible <bruno@clisp.org>
 
 # $Id$
 # $Name$
