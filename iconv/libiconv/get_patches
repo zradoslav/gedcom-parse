@@ -31,3 +31,12 @@ do
   echo "  $file"
   diff -u $file.orig $file > $topdir/$file.patch
 done
+
+#############################################################################
+echo "Getting patches in libcharset/lib subdirectory..."
+cd $libiconvdir/libcharset/lib
+for file in config.charset
+do
+  echo "  $file"
+  diff -u $file.orig $file > $topdir/$file.patch
+done
