@@ -1,11 +1,9 @@
 ## Process this file with automake to produce Makefile.in
 # $Id$
 # $Name$
-SUBDIRS = intl ansel gedcom gom include . t doc po
+SUBDIRS = intl ansel utf8 gedcom gom include . t doc data po
 
-pkgdata_DATA = gedcom.enc
-
-EXTRA_DIST = $(pkgdata_DATA) Makefile.inc
+EXTRA_DIST = Makefile.inc
 VERSIONED_FILES = README
 
 include $(top_srcdir)/Makefile.inc
