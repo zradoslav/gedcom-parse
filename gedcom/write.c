@@ -165,7 +165,7 @@ int write_long(Gedcom_write_hndl hndl, int elt_or_rec,
 	if (line_len < value_len) {
 	  value_ptr   = value_ptr + line_len;
 	  value_len   = value_len - line_len;
-	  while (*value_ptr == '\n') {
+	  if (*value_ptr == '\n') {
 	    value_ptr++;
 	    value_len--;
 	  }
