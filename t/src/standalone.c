@@ -50,6 +50,7 @@ void show_help ()
   printf("  -3    Run the test parse 3 times instead of once\n");
   printf("  -b    Parse a bogus file before parsing the main file\n");
   printf("  -q    No output to standard output\n");
+  printf("  -o <outfile>  File to generate output to (def. testgedcom.out)\n");
 }
 
 Gedcom_ctxt header_start(Gedcom_rec rec, int level, Gedcom_val xref, char *tag,
@@ -227,6 +228,7 @@ int main(int argc, char* argv[])
   int run_times   = 1;
   int bogus       = 0;
   int result      = 0;
+  char* outfilename = NULL;
   char* file_name = NULL;
 
   if (argc > 1) {
@@ -260,6 +262,17 @@ int main(int argc, char* argv[])
       else if (!strncmp(argv[i], "-q", 3)) {
 	output_set_quiet(1);
       }
+      else if (!strncmp(argv[i], "-o", 3)) {
+	i++;
+	if (i < argc) {
+	  outfilename = argv[i];
+	}
+	else {
+	  printf ("Missing output file name\n");
+	  show_help();
+	  exit(1);
+	}
+      }
       else if (strncmp(argv[i], "-", 1)) {
 	file_name = argv[i];
 	break;
@@ -287,7 +300,7 @@ int main(int argc, char* argv[])
   gedcom_set_default_callback(default_cb);
   
   subscribe_callbacks();
-  output_open();
+  output_open(outfilename);
   if (bogus) {
     output(0, "\n=== Parsing bogus file %s\n", BOGUS_FILE_NAME);
     gedcom_parse_file(BOGUS_FILE_NAME);

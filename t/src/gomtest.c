@@ -41,6 +41,7 @@ void show_help ()
   printf("  -dg   Debug setting: only libgedcom debug messages\n");
   printf("  -da   Debug setting: libgedcom + yacc debug messages\n");
   printf("  -q    No output to standard output\n");
+  printf("  -o <outfile>  File to generate output to (def. testgedcom.out)\n");
 }
 
 void gedcom_message_handler(Gedcom_msg_type type, char *msg)
@@ -54,6 +55,7 @@ int main(int argc, char* argv[])
   int compat_enabled = 1;
   int debug_level = 0;
   int result      = 0;
+  char* outfilename = NULL;
   char* file_name = NULL;
 
   if (argc > 1) {
@@ -77,6 +79,17 @@ int main(int argc, char* argv[])
       }
       else if (!strncmp(argv[i], "-q", 3)) {
 	output_set_quiet(1);
+      }
+      else if (!strncmp(argv[i], "-o", 3)) {
+	i++;
+	if (i < argc) {
+	  outfilename = argv[i];
+	}
+	else {
+	  printf ("Missing output file name\n");
+	  show_help();
+	  exit(1);
+	}
       }
       else if (strncmp(argv[i], "-", 1)) {
 	file_name = argv[i];
@@ -103,7 +116,7 @@ int main(int argc, char* argv[])
   gedcom_set_error_handling(mech);
   gedcom_set_message_handler(gedcom_message_handler);
 
-  output_open();
+  output_open(outfilename);
   output(0, "\n=== Parsing file %s\n", file_name);
   result = gom_parse_file(file_name);
   if (result == 0) {

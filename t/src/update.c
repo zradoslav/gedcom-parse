@@ -44,6 +44,7 @@ void show_help ()
   printf("Options:\n");
   printf("  -h    Show this help text\n");
   printf("  -q    No output to standard output\n");
+  printf("  -o <outfile>  File to generate output to (def. testgedcom.out)\n");
 }
 
 int test_xref_functions()
@@ -135,6 +136,7 @@ int test_xref_functions()
 int main(int argc, char* argv[])
 {
   int result;
+  char* outfilename = NULL;
   
   if (argc > 1) {
     int i;
@@ -145,6 +147,17 @@ int main(int argc, char* argv[])
       }
       else if (!strncmp(argv[i], "-q", 3)) {
 	output_set_quiet(1);
+      }
+      else if (!strncmp(argv[i], "-o", 3)) {
+	i++;
+	if (i < argc) {
+	  outfilename = argv[i];
+	}
+	else {
+	  printf ("Missing output file name\n");
+	  show_help();
+	  exit(1);
+	}
       }
       else {
 	printf ("Unrecognized option: %s\n", argv[i]);
@@ -158,7 +171,7 @@ int main(int argc, char* argv[])
   setlocale(LC_ALL, "");
   gedcom_set_message_handler(gedcom_message_handler);
 
-  output_open();
+  output_open(outfilename);
   
   result = gedcom_new_model();
   if (result == 0)

@@ -27,9 +27,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-void output(int to_stdout_too, char* format, ...);
+void output(int to_stdout_too, const char* format, ...);
 void output_set_quiet(int q);
-void output_open();
+void output_open(const char *outfilename);
 void output_close();
   
 #endif /* __OUTPUT_H */

@@ -25,11 +25,11 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#define OUTFILE "testgedcom.out"
+#define OUTFILE "check.out"
 FILE* outfile = NULL;
 int quiet = 0;
 
-void output(int to_stdout_too, char* format, ...)
+void output(int to_stdout_too, const char* format, ...)
 {
   va_list ap;
   va_start(ap, format);
@@ -47,11 +47,13 @@ void output_set_quiet(int q)
   quiet = q;
 }
 
-void output_open()
+void output_open(const char *outfilename)
 {
-  outfile = fopen(OUTFILE, "a");
+  if (!outfilename)
+    outfilename = OUTFILE;
+  outfile = fopen(outfilename, "a");
   if (!outfile) {
-    printf("Could not open %s for appending\n", OUTFILE);
+    printf("Could not open %s for appending\n", outfilename);
   }
 }
 
