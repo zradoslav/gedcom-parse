@@ -1,5 +1,11 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
+release 0.17 (??):
+
+ - INTERFACE CHANGE: the callback functions now take an extra argument: the
+   record/element identifier (that is also used as first argument in the
+   *_subscribe_* functions).  The extra argument is the first argument.
+
 release 0.16 (16 August 2002):
 
  - Another bugfixing release.
