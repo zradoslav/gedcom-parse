@@ -825,9 +825,8 @@ element   start callback.<br>
     ELT_SUB_INDIV_RESI,<br>
     ELT_SUB_INDIV_BIRT,<br>
     ELT_SUB_INDIV_GEN,<br>
-    ELT_SUB_INDIV_ADOP<br>
-          </code><br>
-          <br>
+    ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
            </td>
@@ -915,9 +914,8 @@ element   start callback.<br>
     ELT_SUB_INDIV_RESI,<br>
     ELT_SUB_INDIV_BIRT,<br>
     ELT_SUB_INDIV_GEN,<br>
-    ELT_SUB_INDIV_ADOP<br>
-          </code><br>
-          <br>
+    ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
            </td>
@@ -929,7 +927,14 @@ element   start callback.<br>
            </td>
            <td valign="top"><code>REC_INDI</code><br>
            </td>
-           <td valign="top"><code>XREF_PTR(INDI)</code><br>
+           <td valign="top"><code>XREF_PTR(FAM),<br>
+XREF_PTR(INDI),<br>
+XREF_PTR(NOTE),<br>
+XREF_PTR(OBJE),<br>
+XREF_PTR(REPO),<br>
+XREF_PTR(SOUR),<br>
+XREF_PTR(SUBM),<br>
+XREF_PTR(SUBN)</code><br>
            </td>
          </tr>
          <tr>
@@ -1047,8 +1052,8 @@ element   start callback.<br>
     ELT_SUB_INDIV_RESI,<br>
     ELT_SUB_INDIV_BIRT,<br>
     ELT_SUB_INDIV_GEN,<br>
-    ELT_SUB_INDIV_ADOP<br>
-          </code><br>
+    ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
            </td>
@@ -1064,10 +1069,8 @@ element   start callback.<br>
      ELT_SUB_INDIV_RESI,<br>
      ELT_SUB_INDIV_BIRT,<br>
      ELT_SUB_INDIV_GEN,<br>
-     ELT_SUB_INDIV_ADOP<br>
-          </code><br>
-          <br>
-          <br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>DATE</code><br>
            </td>
@@ -1083,9 +1086,8 @@ element   start callback.<br>
     ELT_SUB_INDIV_RESI</code><code>,<br>
      ELT_SUB_INDIV_BIRT,<br>
      ELT_SUB_INDIV_GEN,<br>
-     ELT_SUB_INDIV_ADOP</code><br>
-          <br>
-          <br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>AGE</code><br>
            </td>
@@ -1101,9 +1103,8 @@ element   start callback.<br>
     ELT_SUB_INDIV_RESI</code><code>,<br>
      ELT_SUB_INDIV_BIRT,<br>
      ELT_SUB_INDIV_GEN,<br>
-     ELT_SUB_INDIV_ADOP</code><br>
-          <br>
-          <br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
            </td>
@@ -1119,9 +1120,8 @@ element   start callback.<br>
     ELT_SUB_INDIV_RESI</code><code>,<br>
      ELT_SUB_INDIV_BIRT,<br>
      ELT_SUB_INDIV_GEN,<br>
-     ELT_SUB_INDIV_ADOP</code><br>
-          <br>
-          <br>
+     ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN</code><br>
            </td>
            <td valign="top"><code>STRING</code><br>
            </td>
@@ -1466,6 +1466,7 @@ element   start callback.<br>
      ELT_SUB_INDIV_BIRT,<br>
      ELT_SUB_INDIV_GEN,<br>
      ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN,<br>
     ELT_SUB_SOUR</code><br>
            </td>
            <td valign="top"><code>NULL<br>
@@ -1519,6 +1520,7 @@ element   start callback.<br>
      ELT_SUB_INDIV_BIRT,<br>
      ELT_SUB_INDIV_GEN,<br>
      ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN,<br>
     ELT_SUB_LIO_BAPL,<br>
     ELT_SUB_LIO_SLGC,<br>
     ELT_SUB_LSS_SLGS,<br>
@@ -1642,6 +1644,7 @@ element   start callback.<br>
      ELT_SUB_INDIV_BIRT,<br>
      ELT_SUB_INDIV_GEN,<br>
      ELT_SUB_INDIV_ADOP,<br>
+ELT_SUB_INDIV_EVEN,<br>
     ELT_SUB_LIO_BAPL,<br>
     ELT_SUB_LIO_SLGC,<br>
     ELT_SUB_LSS_SLGS,<br>
@@ -2200,7 +2203,9 @@ be one of:<br>
                  <li><code>XREF_REPO</code></li>
                  <li><code>XREF_SOUR</code></li>
                  <li><code>XREF_SUBM</code></li>
-                 <li><code>XREF_SUBN</code></li>
+                 <li><code>XREF_SUBN</code></li><li><code>XREF_ANY</code> (if the type is not known, see below)<br>
+  </li>
+
                  <li><code>XREF_USER</code> (for application-specific cross-references)<br>
                    <code></code></li>
                
@@ -2211,6 +2216,10 @@ can be filled by the application with an object (of any type) that corresponds
 with the cross-reference, and then later extracted when the cross-reference 
 is used or defined again in the file. &nbsp;This relieves the application 
 from the burden of maintaining the mapping between cross-references and objects.<br>
+<br>
+The value <code>XREF_ANY</code> is used when the type of the object is not
+immediately known: it has to come from further information. &nbsp;This is
+the case in an association (<code>ELT_SUB_ASSO</code>): the type is then given by the <code>TYPE</code> subtag.<br>
                <br>
   The parser checks whether all cross-references that are used are defined
  (if not, an error is produced) and whether all cross-references that are
@@ -2219,11 +2228,18 @@ the type of the cross-reference is the same on definition and use (if not,
 an error is produced). &nbsp;The first two checks are done at the end of
 the parsing, because cross-references can be defined after their usage in
 GEDCOM.<br>
-               <br>
+<br>
+An xref_value can also be retrieved by its key via the following function:<br>
+               
+<blockquote><code>struct xref_value* <b>gedcom_get_by_xref</b> (char *key)</code><br>
+                       </blockquote>
+The function returns <code>NULL</code> if the given key isn't used.<br>
                                                                        
               <hr width="100%" size="2">                            
               <pre>$Id$<br>$Name$<br></pre>
       <br>
                                                                         
               <br>
+<br>
+<br>
 </body></html>
