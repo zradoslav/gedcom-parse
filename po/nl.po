@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gedcom-parse 0.90.0\n"
-"POT-Creation-Date: 2003-02-02 15:43+0100\n"
+"POT-Creation-Date: 2003-02-02 16:26+0100\n"
 "PO-Revision-Date: 2003-02-02 15:50+0100\n"
 "Last-Translator: Peter Verthez <Peter.Verthez@advalvas.be>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -436,7 +436,9 @@ msgstr "Verwijzing naar indiener record met verwijzing '%s' wordt toegevoegd"
 #: gedcom/compat.c:428
 #, c-format
 msgid "Header change time '%s' lost in the compatibility (out of context)"
-msgstr "Laatste tijd van verandering van de hoofding '%s' ging verloren in de uitwisselbaarheid (buiten context)"
+msgstr ""
+"Laatste tijd van verandering van de hoofding '%s' ging verloren in de "
+"uitwisselbaarheid (buiten context)"
 
 #: gedcom/compat.c:468
 #, c-format

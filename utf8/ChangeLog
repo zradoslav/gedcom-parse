@@ -1,3 +1,7 @@
+2003-02-02  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.2.0
+
 2003-02-01  Peter Verthez  <Peter.Verthez@advalvas.be>
 
 	* utf8tools.h, utf8.c: New functions next_utf8_char and nth_utf8_char.

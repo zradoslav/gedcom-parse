@@ -1,16 +1,37 @@
 NOTE: NO BACKWARD COMPATIBILITY IS GUARANTEED FOR 0.x RELEASES !!
 
-release 0.21.0 (NOT RELEASED YET):
+release 0.90.0 (2 February 2003):
+
+ - The interface of libgedcom and libgedcom_gom should now be functionally
+   complete.  The library can now be regarded as beta.
 
  - New features (see documentation):
      - C object model interface:
         - functions to add and remove records
         - functions to update timestamps in records
+        - functions for setting, adding, removing and moving xref values
+        - functions for setting, adding, removing and moving substructs
+        - function to set options for compatibility handling
      - programs:
         - gedcom-check (checks standards compliancy of GEDCOM files)
+        - gedcom-sanitize (converts to standard GEDCOM)
 
- - Some compatibility with PAF (Personal Ancestral File) is added (thanks
-   Hans Fugal).
+ - INTERFACE CHANGE: The two functions gedcom_write_set_encoding and
+   gedcom_write_set_line_terminator now take an extra first argument, which
+   can indicate whether the setting should be taken from the file, from the
+   system or be manually set.  An easy fix for your program is to add as first
+   argument ENC_MANUAL.  See documentation for details.
+
+ - INTERFACE CHANGE: The signatures of gedcom_write_... and the date and age
+   functions have been updated for const correctness.  This should be
+   especially useful for programs using C++.
+
+ - Some compatibility added (not necessarily complete):
+    - PAF (Personal Ancestral File), version 2, 4 and 5
+    - Family Origins
+    - EasyTree
+
+ - Lots of bug fixes.
 
 release 0.20.0 (30 December 2002):
 

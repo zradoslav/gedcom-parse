@@ -1,4 +1,29 @@
+2003-02-02  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* release 0.90.0
+
+2003-02-01  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/compat.c, gedcom/gedcom.y, gedcom/gedcom_lex_common.c:
+	More EasyTree compatibility.
+
+	* gom/gom.c, gom/gom_internal.h: Better warning messages for context
+	mismatches.
+
+	* gedcom/compat.c, gedcom/gedcom.y, gedcom/gedcom_lex_common.c:
+	Added compatibility for PAF 4.
+
+	* include/gedcom.h.in, gedcom/compat.c: New function
+	gedcom_set_compat_options.
+
 2003-01-26  Peter Verthez  <Peter.Verthez@advalvas.be>
+
+	* gedcom/compat.c: Added compatibility for Family Origins.
+
+	* gedcom/gedcom.y: Allow empty CONT tags.
+
+	* include/gom.h, gom/*.c: Added functions to add, remove and move
+	substructs.
 
 	* gedcom/date.c (numbers_to_strings): Some checking of input.
 

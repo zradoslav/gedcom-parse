@@ -8,7 +8,7 @@ dnl Global variables
 NAME=gedcom-parse
 AC_SUBST(NAME)
 
-VERSION=0.20.0
+VERSION=0.90.0
 VERSION_MAJOR=`echo $VERSION | sed 's/\..*$//'`
 changequote(<<,>>)
 VERSION_MINOR=`echo $VERSION | sed 's/^[^\.]*\.//' | sed 's/\..*$//'`
@@ -19,7 +19,7 @@ AC_SUBST(VERSION_MINOR)
 AC_SUBST(VERSION_PATCH)
 AC_SUBST(VERSION)
 
-LIBVERSION=0:8
+LIBVERSION=0:9
 AC_SUBST(LIBVERSION)
 
 SHELL=/bin/sh

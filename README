@@ -35,9 +35,13 @@ Its main features are:
    Gedcom object model)
 
  - "compatibility-mode" parsing, to allow for not-exactly-standard syntaxes
-   used by other genealogy programs; currently, compatibility is added for:
+   used by other genealogy programs; currently, compatibility is added for
+   (not necessarily complete):
      - ftree
-     - Lifelines 3.0.2 (not complete)
+     - Lifelines 3.0.2
+     - Personal Ancestral File (PAF), version 2, 4 and 5
+     - Family Origins
+     - EasyTree
 
 NOTE:
  - NO BACKWARD COMPATIBILITY is guaranteed for 0.x releases !
@@ -46,7 +50,6 @@ To do list:
  - specific parsing of other special values
  - compatibility with other genealogy programs
  - older/newer Gedcom standards ?
- - modifying data
  - writing GEDML files
  - C++ object model
  - ...
