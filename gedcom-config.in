@@ -5,9 +5,9 @@ exec_prefix=@exec_prefix@
 exec_prefix_set=no
 version=@VERSION@
 
-gedcom_libs="-L@libdir@ -rdynamic -lgedcom -lutf8tools"
+gedcom_libs="-L@libdir@ -lgedcom -lutf8tools"
 gedcom_cflags="-I@includedir@"
-gedcom_gom_libs="-L@libdir@ -rdynamic -lgedcom_gom -lgedcom -lutf8tools"
+gedcom_gom_libs="-L@libdir@ -lgedcom_gom -lgedcom -lutf8tools"
 gedcom_gom_cflags="-I@includedir@"
 
 usage()
