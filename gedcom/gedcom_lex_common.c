@@ -97,7 +97,7 @@ int test_loop(ENCODING enc, char* code)
   { if (line_len != (size_t)-1) {                                             \
       line_len += strlen(yytext);                                             \
       if (line_len > MAXGEDCLINELEN * encoding_width) {                       \
-        gedcom_error("Line too long, max %d characters",                      \
+        gedcom_error(_("Line too long, max %d characters"),                   \
 		     MAXGEDCLINELEN);                                         \
         line_len = (size_t)-1;                                                \
         return BADTOKEN;                                                      \
@@ -170,7 +170,7 @@ int test_loop(ENCODING enc, char* code)
 
 
 #define ACTION_0_DIGITS                                                       \
-   { gedcom_error ("Level number with leading zero");                         \
+   { gedcom_error (_("Level number with leading zero"));                      \
      return BADTOKEN;                                                         \
    } 
 
@@ -179,7 +179,7 @@ int test_loop(ENCODING enc, char* code)
    { int level = atoi(TO_INTERNAL(yytext, str_buf));                          \
      CHECK_LINE_LEN;                                                          \
      if ((level < 0) || (level > MAXGEDCLEVEL)) {                             \
-       gedcom_error ("Level number out of range [0..%d]",                     \
+       gedcom_error (_("Level number out of range [0..%d]"),                  \
 		     MAXGEDCLEVEL);                                           \
        return BADTOKEN;                                                       \
      }                                                                        \
@@ -197,8 +197,7 @@ int test_loop(ENCODING enc, char* code)
      }                                                                        \
      else {                                                                   \
        /* should never happen (error to GEDCOM spec) */                       \
-       gedcom_error ("GEDCOM level number is %d higher than "                 \
-		     "previous",                                              \
+       gedcom_error (_("GEDCOM level number is %d higher than previous"),     \
 		     level_diff);                                             \
        return BADTOKEN;                                                       \
      }                                                                        \
@@ -207,7 +206,7 @@ int test_loop(ENCODING enc, char* code)
 
 #define ACTION_ALPHANUM                                                       \
    { if (strlen(yytext) > MAXGEDCTAGLEN * encoding_width) {                   \
-       gedcom_error("Tag '%s' too long, max %d characters",                   \
+       gedcom_error(_("Tag '%s' too long, max %d characters"),                \
 		    yytext, MAXGEDCTAGLEN);                                   \
        return BADTOKEN;                                                       \
      }                                                                        \
@@ -249,7 +248,7 @@ int test_loop(ENCODING enc, char* code)
 #define ACTION_POINTER                                                        \
   { CHECK_LINE_LEN;                                                           \
     if (strlen(yytext) > MAXGEDCPTRLEN * encoding_width) {                    \
-      gedcom_error("Pointer '%s' too long, max %d characters",                \
+      gedcom_error(_("Pointer '%s' too long, max %d characters"),             \
 		   yytext, MAXGEDCPTRLEN);                                    \
       return BADTOKEN;                                                        \
     }                                                                         \
@@ -293,7 +292,7 @@ int test_loop(ENCODING enc, char* code)
 
 
 #define ACTION_UNEXPECTED                                                     \
-  { gedcom_error("Unexpected character: '%s' (0x%02x)",                       \
+  { gedcom_error(_("Unexpected character: '%s' (0x%02x)"),                    \
 		 yytext, yytext[0]);                                          \
     return BADTOKEN;                                                          \
   }

@@ -106,7 +106,7 @@ int gedcom_warning(char* s, ...)
   va_list ap;
 
   reset_mess_buffer();
-  safe_buf_append("Warning on line %d: ", line_no);
+  safe_buf_append(_("Warning on line %d: "), line_no);
   va_start(ap, s);
   res = safe_buf_vappend(s, ap);
   va_end(ap);
@@ -123,7 +123,7 @@ int gedcom_error(char* s, ...)
   va_list ap;
 
   reset_mess_buffer();
-  safe_buf_append("Error on line %d: ", line_no);
+  safe_buf_append(_("Error on line %d: "), line_no);
   va_start(ap, s);
   res = safe_buf_vappend(s, ap);
   va_end(ap);

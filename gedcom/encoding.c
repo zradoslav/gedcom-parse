@@ -64,7 +64,7 @@ void add_encoding(char *gedcom_n, char* charwidth, char *iconv_n)
   strcpy(nodeptr->iconv_name, iconv_n);
   datum = tsearch(nodeptr, &encoding_mapping, node_compare);
   if ((datum == NULL) || (*datum != nodeptr)) {
-    gedcom_warning("Duplicate entry found for encoding '%s', ignoring",
+    gedcom_warning(_("Duplicate entry found for encoding '%s', ignoring"),
 		   gedcom_n);
   }
 }
@@ -81,7 +81,7 @@ char* get_encoding(char* gedcom_n, ENCODING enc)
   datum = tfind(&search_node, &encoding_mapping, node_compare);
   free(buffer);
   if (datum == NULL) {
-    gedcom_error("No encoding found for '%s'", gedcom_n);
+    gedcom_error(_("No encoding found for '%s'"), gedcom_n);
     return NULL;
   }
   else {
@@ -118,7 +118,7 @@ void init_encodings()
 		GCONV_SEARCH_PATH, gconv_path, PKGDATADIR);
       }
       if (putenv(new_gconv_path) != 0) {
-	gedcom_warning("Failed updating environment variable %s",
+	gedcom_warning(_("Failed updating environment variable %s"),
 		       GCONV_SEARCH_PATH);
       }
     }
@@ -131,13 +131,13 @@ void init_encodings()
       in = fopen(path, "r");
     }
     if (in == NULL) {
-      gedcom_warning("Could not open encoding configuration file '%s'",
+      gedcom_warning(_("Could not open encoding configuration file '%s'"),
 		     ENCODING_CONF_FILE);
     }
     else {
       while (fgets(buffer, sizeof(buffer), in) != NULL) {
 	if (buffer[strlen(buffer) - 1] != '\n') {
-	  gedcom_error("Line too long in encoding configuration file '%s'",
+	  gedcom_error(_("Line too long in encoding configuration file '%s'"),
 		       ENCODING_CONF_FILE);
 	  return;
 	}
@@ -146,7 +146,7 @@ void init_encodings()
 	    add_encoding(gedcom_n, charwidth, iconv_n);
 	  }
 	  else {
-	    gedcom_error("Missing data in encoding configuration file '%s'",
+	    gedcom_error(_("Missing data in encoding configuration file '%s'"),
 			 ENCODING_CONF_FILE);
 	    return;
 	  }
@@ -178,7 +178,7 @@ int open_conv_to_internal(char* fromcode)
     conv_buf_size = 0;
     cd_to_internal = iconv_open(INTERNAL_ENCODING, encoding);
     if (cd_to_internal == (iconv_t) -1) {
-      gedcom_error("Error opening conversion context for encoding %s: %s",
+      gedcom_error(_("Error opening conversion context for encoding %s: %s"),
 		   encoding, strerror(errno));
     }
   }

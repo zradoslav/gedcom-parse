@@ -197,7 +197,7 @@ int  compat_mode(int flags);
 #define CHK(TAG)                                                              \
      { if (!check_occurrence(TAG_##TAG)) {                                    \
          char* parenttag = get_parenttag();                                   \
-         gedcom_error("The tag '%s' is mandatory within '%s', but missing",   \
+         gedcom_error(_("The tag '%s' is mandatory within '%s', but missing"),\
 		      #TAG, parenttag);                                       \
          HANDLE_ERROR;                                                        \
        }                                                                      \
@@ -219,20 +219,19 @@ int  compat_mode(int flags);
      { int num = count_tag(TAG_##CHILDTAG);                                   \
        if (num > MAX) {                                                       \
          char* parenttag = get_parenttag();                                   \
-         gedcom_error("The tag '%s' can maximally occur %d "                  \
-		      "time(s) within '%s'",                                  \
+         gedcom_error(_("The tag '%s' can maximally occur %d time(s) within '%s'"),                                                                          \
 		      #CHILDTAG, MAX, parenttag);                             \
          HANDLE_ERROR;                                                        \
        }                                                                      \
      }
 #define INVALID_TAG(CHILDTAG)                                                 \
      { char* parenttag = get_parenttag();                                     \
-       gedcom_error("The tag '%s' is not a valid tag within '%s'",            \
+       gedcom_error(_("The tag '%s' is not a valid tag within '%s'"),         \
 		    CHILDTAG, parenttag);                                     \
        HANDLE_ERROR;                                                          \
      }
 #define INVALID_TOP_TAG(CHILDTAG)                                             \
-     { gedcom_error("The tag '%s' is not a valid top-level tag",              \
+     { gedcom_error(_("The tag '%s' is not a valid top-level tag"),           \
 		    CHILDTAG); \
        HANDLE_ERROR; \
      }
@@ -1044,12 +1043,11 @@ note_rec    : OPEN DELIM POINTER DELIM TAG_NOTE note_line_item
 
 note_line_item : /* empty */
                    { if (!compat_mode(C_FTREE)) {
-		       gedcom_error("Missing value"); YYERROR;
+		       gedcom_error(_("Missing value")); YYERROR;
 		     }
 		   }
                | DELIM line_item
-                   { gedcom_debug_print("==Val: %s==\n", $2);
-		     $$ = $2; }
+                   { $$ = $2; }
                ;
 
 note_subs   : /* empty */
@@ -2265,7 +2263,7 @@ no_std_rec  : user_rec /* 0:M */
 
 user_rec    : OPEN DELIM opt_xref USERTAG 
               { if ($4[0] != '_') {
-		  gedcom_error("Undefined tag (and not a valid user tag): %s",
+		  gedcom_error(_("Undefined tag (and not a valid user tag): %s"),
 			       $4);
 		  YYERROR;
 	        }
@@ -2281,7 +2279,7 @@ user_rec    : OPEN DELIM opt_xref USERTAG
             ;
 user_sect   : OPEN DELIM opt_xref USERTAG 
               { if ($4[0] != '_') {
-		  gedcom_error("Undefined tag (and not a valid user tag): %s",
+		  gedcom_error(_("Undefined tag (and not a valid user tag): %s"),
 			       $4);
 		  YYERROR;
 	        }
@@ -2313,14 +2311,12 @@ line_value  : POINTER        { $$ = $1; }
             | line_item        { $$ = $1; }
             ;
 
-mand_pointer : /* empty */ { gedcom_error("Missing pointer"); YYERROR; }
-             | DELIM POINTER { gedcom_debug_print("==Ptr: %s==\n", $2);
-	                       $$ = $2; }
+mand_pointer : /* empty */ { gedcom_error(_("Missing pointer")); YYERROR; }
+             | DELIM POINTER { $$ = $2; }
              ;
 
-mand_line_item : /* empty */ { gedcom_error("Missing value"); YYERROR; }
-               | DELIM line_item { gedcom_debug_print("==Val: %s==\n", $2);
-	                           $$ = $2; }
+mand_line_item : /* empty */ { gedcom_error(_("Missing value")); YYERROR; }
+               | DELIM line_item { $$ = $2; }
                ;
 
 opt_line_item : /* empty */ { }
@@ -2386,7 +2382,7 @@ gen_rec_norm : OPEN DELIM opt_xref anystdtag
              ;
 
 gen_rec_top : OPEN DELIM anytoptag
-              { gedcom_error("Missing cross-reference"); YYERROR; }
+              { gedcom_error(_("Missing cross-reference")); YYERROR; }
               opt_value opt_sects CLOSE
                 { }
             ;
@@ -2549,13 +2545,13 @@ void push_countarray()
 {
   int *count = NULL;
   if (count_level > MAXGEDCLEVEL) {
-    gedcom_error("Internal error: count array overflow");
+    gedcom_error(_("Internal error: count array overflow"));
     exit(1);
   }
   else {
     count = (int *)calloc(YYNTOKENS, sizeof(int));
     if (count == NULL) {
-      gedcom_error("Internal error: count array calloc error");
+      gedcom_error(_("Internal error: count array calloc error"));
       exit(1);
     }
     else {
@@ -2600,7 +2596,7 @@ void pop_countarray()
 {
   int *count;
   if (count_level < 0) {
-    gedcom_error("Internal error: count array underflow");
+    gedcom_error(_("Internal error: count array underflow"));
     exit(1);
   }
   else {
@@ -2660,9 +2656,8 @@ void gedcom_set_compat_handling(int enable_compat)
 void set_compatibility(char* program)
 {
   if (compat_enabled) {
-    gedcom_debug_print("==== Program: %s\n", program);
     if (! strncmp(program, "ftree", 6)) {
-      gedcom_warning("Enabling compatibility with 'ftree'");
+      gedcom_warning(_("Enabling compatibility with 'ftree'"));
       compatibility = C_FTREE;
     }
     else {
