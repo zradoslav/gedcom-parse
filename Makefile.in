@@ -1,6 +1,6 @@
 # $Id$
 # $Name$
-all:
+all clean check install:
 	@if test -r GNUmakefile; then \
 	   echo Sorry, GNU make is required; \
 	   case `gmake --version 2>/dev/null` in \
