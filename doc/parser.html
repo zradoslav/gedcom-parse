@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
                                
-  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>The Gedcom parser library</title></head><body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>The Gedcom parser library internals</title></head><body text="#000000" bgcolor="#ffffff" link="#000099" vlink="#990099" alink="#000099">
              
 <div align="center">       
-<h1>The Gedcom parser library</h1>
+<h1>The Gedcom parser library internals</h1>
              
 <div align="left">The intention of this page is to provide some explanation
     of the gedcom parser, to aid development on and with it. &nbsp;First,
@@ -151,56 +151,9 @@ the file.<br>
           <br>
 This basic description ignores the problem of character encoding. &nbsp;The next section describes what this problem exactly is.<br>
           <br>
-          <h3><a name="Character_encoding"></a>Character encoding</h3>
-          <h4><i>The character encoding problem</i><br>
-          </h4>
-Developers are usually familiar with the ASCII character set. &nbsp;This
-is a character set that assigns a unique number to some characters, e.g.
-an "A" has ASCII code 65 (or 0x41 in hex), and an "a" has ASCII code 97 (or
-0x61 in hex). &nbsp;Some people may also have used ASCII codes for several
-drawing characters (such as a horizontal bar, a vertical bar, or a top-right
-corner) in the old DOS days, to be able to draw nice windows in text mode.<br>
-          <br>
-However, these last characters are strictly spoken not part of the ASCII
-set. &nbsp;The standard ASCII set contains only the character positions from
-0 to 127 (i.e. anything that fits into an integer that is 7 bits wide). &nbsp;An
-example of this table can be found <a href="http://web.cs.mun.ca/%7Emichael/c/ascii-table.html">here</a>. &nbsp;Anything that has an ASCII code between 128 and 255 is in principle undefined.<br>
-          <br>
-Now, several systems (including the old DOS) have defined those character
-positions anyway, but usually in totally different ways. &nbsp;Some well
-known extensions are:<br>
-          <ul>
-            <li>the <a href="http://czyborra.com/charsets/cp437.gif">DOS</a>
- character set, nowadays usually known as Code Page 437, but sometimes also
-named LatinUS, ECS (Extended Character Set) or PC-8; note that the table
-displayed in the link also contains the standard ASCII part</li>
-            <li>the <a href="http://czyborra.com/charsets/cp1252.gif">ANSI</a> character set, also known as Code Page 1252, and usually the default on Windows</li>
-            <li>the <a href="http://czyborra.com/charsets/iso8859-1.gif">ISO-8859-1</a> character set (also called Latin-1), which is an ISO standard for Western European languages, mostly used on various Unices</li>
-            <li>the <a href="http://czyborra.com/charsets/adobe-stdenc.gif">Adobe Standard Encoding</a>, which is by default used in Postscript, unless overridden</li>
-          </ul>
-And these are only examples of character sets used in West-European languages.
-&nbsp;For Japanese, Chinese, Korean, Vietnamese, ... there are separate character
-sets in which one byte's meaning can even be influenced by what the previous
-byte was, i.e. these are multi-byte character sets. &nbsp;This is because
-even 256 characters is totally inadequate to represent all characters in
-such languages.<br>
-          <br>
-So, summarizing, if a text file contains a byte that has a value 65, it is
-pretty safe to assume that this byte represents an "A", if we ignore the
-multi-byte character sets spoken of before. &nbsp;However, a value 233 cannot
-be interpreted without knowing in which character set the text file is written.
-&nbsp;In Latin-1, it happens to be the character "&eacute;", but in another
-character set it can be something totally different (e.g. in the DOS character
-set it is the Greek letter theta).<br>
-          <br>
-Vice versa, if you need to write a character "&eacute;" to a file, it depends
-on the character set you will use what the numerical value will be in the
-file: in Latin-1 it will be 233, but if you use the DOS character set it
-will be 130.<br>
-          <br>
-          <h4><i>Unicode</i></h4>
-Enter the Unicode standard...<br>
-          <br>
+          <h3><a name="Character_encoding"></a>Character encoding</h3>Refer to <a href="encoding.html">this page</a> for some introduction on character encoding...<br>
+
+          <h4></h4><br>
 TO BE COMPLETED<br>
 
                                                

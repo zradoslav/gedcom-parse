@@ -3,7 +3,8 @@
 # $Name$
 
 SUBDIRS = images .
-DOC_FILES = index.html usage.html parser.html interface.html links.html
+DOC_FILES = index.html usage.html parser.html interface.html links.html \
+	    encoding.html
 VERSIONED_FILES = index.html
 EXTRA_DIST = $(DOC_FILES)
 docdir = $(datadir)/doc/@PACKAGE@-@VERSION@
