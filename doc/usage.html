@@ -575,8 +575,8 @@ their sources can use the following statements in configure.in (the example
 is checking for gedcom-parse, version 1.34):<br>
                                               <blockquote><code>AC_CHECK_LIB(gedcom, gedcom_parse_file,,<br>
 &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;AC_MSG_ERROR(Cannot find libgedcom: Please install gedcom-parse))<br>
-AC_CACHE_CHECK(for libgedcom version, ac_cv_gedcom_version_ok,<br>
-[AC_TRY_RUN([<br>
+AC_MSG_CHECKING(for libgedcom version)<br>
+AC_TRY_RUN([<br>
 #include &lt;stdio.h&gt;<br>
 #include &lt;stdlib.h&gt;<br>
 #include &lt;gedcom.h&gt;<br>
@@ -586,9 +586,10 @@ main()<br>
 if (GEDCOM_PARSE_VERSION &gt;= 1034) exit(0);<br>
 exit(1);<br>
 }],<br>
-ac_cv_gedcom_version_ok='yes',<br>
-ac_cv_gedcom_version_ok='no')])<br>
-if test "$ac_cv_gedcom_version_ok" = 'yes' ; then<br>
+ac_gedcom_version_ok='yes',<br>
+ac_gedcom_version_ok='no',<br>
+ac_gedcom_version_ok='no')<br>
+if test "$ac_gedcom_version_ok" = 'yes' ; then<br>
 &nbsp; AC_MSG_RESULT(ok)<br>
 else<br>
 &nbsp; AC_MSG_RESULT(not ok)<br>
