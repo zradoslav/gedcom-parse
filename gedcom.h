@@ -18,10 +18,11 @@
 #include <string.h>
 #include <errno.h>
 
-#define MAXGEDCLEVEL 99
-#define MAXGEDCLINELEN 256
-#define MAXGEDCTAGLEN 31
-#define MAXSTDTAGLENGTH 4
+#define MAXGEDCLEVEL    99
+#define MAXGEDCLINELEN  255
+#define MAXGEDCTAGLEN   31
+#define MAXSTDTAGLEN    4
+#define MAXGEDCPTRLEN   22
 #define GEDCOMTAGOFFSET 257
 
 /* Error handling mechanisms */
