@@ -117,10 +117,11 @@ libintl.a libgnuintl.a: $(OBJECTS)
 libintl.la libgnuintl.la: $(OBJECTS)
 	$(LIBTOOL) --mode=link \
 	  $(CC) $(CPPFLAGS) $(CFLAGS) $(XCFLAGS) $(LDFLAGS) -o $@ \
-	  $(OBJECTS) @LIBICONV@ \
-	  -version-info $(LTV_CURRENT):$(LTV_REVISION):$(LTV_AGE) \
-	  -rpath $(libdir) \
-	  -no-undefined
+	  $(OBJECTS) @LIBICONV@
+#\
+#	  -version-info $(LTV_CURRENT):$(LTV_REVISION):$(LTV_AGE) \
+#	  -rpath $(libdir) \
+#	  -no-undefined
 
 libintl.h: libgnuintl.h
 	cp $(srcdir)/libgnuintl.h libintl.h
