@@ -112,6 +112,7 @@ README).
 fi
 
 AC_OUTPUT(Makefile
+	  README
 	  gedcom/Makefile
 	  gedcom/calendar/Makefile
 	  gom/Makefile
@@ -127,6 +128,7 @@ AC_OUTPUT(Makefile
 	  data/new.ged
 	  doc/Makefile
 	  doc/images/Makefile
+	  doc/index.html
 	  include/Makefile
 	  include/gedcom.h
           intl/Makefile
