@@ -4353,9 +4353,3 @@ int gedcom_debug_print(const char* s, ...)
   }
   return(res);
 }
-
-/* Setting the error mechanism */
-void gedcom_set_error_handling(Gedcom_err_mech mechanism)
-{
-  error_mechanism = mechanism;
-}
