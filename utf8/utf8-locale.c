@@ -70,8 +70,10 @@ char* convert_utf8_to_locale(const char* input, int *conv_fails)
   char   *outptr;
   size_t nconv;
 
-  if (utf8_to_locale == (iconv_t) -1 && (open_conversion_contexts() == -1))
+  if (utf8_to_locale == (iconv_t) -1 && (open_conversion_contexts() == -1)) {
+    if (conv_fails != NULL) *conv_fails = insize;
     return NULL;
+  }
   assert(utf8_to_locale != (iconv_t) -1);
   /* make sure we start from an empty state */
   iconv(utf8_to_locale, NULL, NULL, NULL, NULL);
@@ -113,6 +115,7 @@ char* convert_utf8_to_locale(const char* input, int *conv_fails)
     else {
       /* EINVAL should not happen, since we convert entire strings */
       /* EBADF is an error which should be captured by the assert above */
+      if (conv_fails != NULL) *conv_fails += insize;
       return NULL;
     }
     nconv = iconv(utf8_to_locale, &inptr, &insize, &outptr, &outsize);
