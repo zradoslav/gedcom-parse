@@ -39,7 +39,7 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
-== 2 PLAC (358)  (ctxt is 1, conversion failures: 0)
+== 2 PLAC (358) - (ctxt is 1, conversion failures: 0)
 == 2 SOUR (377) name@domain.be (reclame voor genealogie boeken) (ctxt is 1, conversion failures: 0)
 Family end, xref is @F1@
 Rec INDI start, xref is @I7@
@@ -67,7 +67,7 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
-== 2 PLAC (358)  (ctxt is 333, conversion failures: 0)
+== 2 PLAC (358) - (ctxt is 333, conversion failures: 0)
 == 2 SOUR (377) ongeveer 1360 (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
 Contents of the date_value:
@@ -90,8 +90,8 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
-== 2 PLAC (358)  (ctxt is 333, conversion failures: 0)
-== 2 SOUR (377)  (ctxt is 333, conversion failures: 0)
+== 2 PLAC (358) - (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) - (ctxt is 333, conversion failures: 0)
 == 1 NOTE (348) Hij bouwde het Brusselse stadhuis in 1402. Hij bouwde ook kerken in (ctxt is 333, conversion failures: 0)
 == 1 NOTE (348) Belgi? en Nederland. Misschien is hij wel het ontstaan van de (ctxt is 333, conversion failures: 1)
 == 1 NOTE (348) Nederlandse tak ? in 1405 was de oudste vleugen klaar (ctxt is 333, conversion failures: 0)
@@ -138,7 +138,7 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
-== 2 PLAC (358)  (ctxt is 2, conversion failures: 0)
+== 2 PLAC (358) - (ctxt is 2, conversion failures: 0)
 == 2 SOUR (377) name@domain.be (reclame voor genealogie boeken) (ctxt is 2, conversion failures: 0)
 Family end, xref is @F1@
 Rec INDI start, xref is @I7@
@@ -166,7 +166,7 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
-== 2 PLAC (358)  (ctxt is 333, conversion failures: 0)
+== 2 PLAC (358) - (ctxt is 333, conversion failures: 0)
 == 2 SOUR (377) ongeveer 1360 (ctxt is 333, conversion failures: 0)
 == 1 DEAT (307) (null) (ctxt is 333, conversion failures: 0)
 Contents of the date_value:
@@ -189,8 +189,8 @@ Contents of the date_value:
     sdn1: -1
     sdn2: -1
   phrase: 
-== 2 PLAC (358)  (ctxt is 333, conversion failures: 0)
-== 2 SOUR (377)  (ctxt is 333, conversion failures: 0)
+== 2 PLAC (358) - (ctxt is 333, conversion failures: 0)
+== 2 SOUR (377) - (ctxt is 333, conversion failures: 0)
 == 1 NOTE (348) Hij bouwde het Brusselse stadhuis in 1402. Hij bouwde ook kerken in (ctxt is 333, conversion failures: 0)
 == 1 NOTE (348) Belgi? en Nederland. Misschien is hij wel het ontstaan van de (ctxt is 333, conversion failures: 1)
 == 1 NOTE (348) Nederlandse tak ? in 1405 was de oudste vleugen klaar (ctxt is 333, conversion failures: 0)

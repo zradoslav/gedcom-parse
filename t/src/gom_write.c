@@ -235,8 +235,6 @@ int main(int argc, char* argv[])
   gedcom_init();
   setlocale(LC_ALL, "");
   gedcom_set_message_handler(gedcom_message_handler);
-  gedcom_write_set_encoding(ENC_MANUAL, encoding, enc, bom);
-  gedcom_write_set_line_terminator(ENC_MANUAL, end);
 
   output_open(outfilename);
 
@@ -244,6 +242,8 @@ int main(int argc, char* argv[])
     result = gom_parse_file(infilename);
   }
   else {
+    gedcom_write_set_encoding(ENC_MANUAL, encoding, enc, bom);
+    gedcom_write_set_line_terminator(ENC_MANUAL, end);
     result = gom_new_model();
     if (result == 0)
       result |= update_header(encoding);
@@ -256,6 +256,7 @@ int main(int argc, char* argv[])
   }
   if (result == 0 && total_conv_fails == 0) {
     output(1, "Re-parsing file...\n");
+    gedcom_set_compat_handling(0);
     result |= gom_parse_file(gedfilename);
   }
   if (result == 0) {

@@ -1,0 +1,37 @@
+0 HEAD
+1 CHAR ANSI
+1 SOUR LIFELINES 3.0.2
+1 DEST ANY
+1 DATE 9 SEP 2001
+2 TIME 02:46:40
+1 SUBM @__COMPAT__SUBM__@
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+0 @__COMPAT__SUBM__@ SUBM
+1 NAME Submitter
+1 CHAN
+2 DATE 9 SEP 2001
+3 TIME 02:46:40
+0 @I7@ INDI
+1 NAME Jacob (Jacques) /Blablabla/
+1 SEX M
+1 BIRT
+2 DATE 1360
+2 PLAC -
+2 SOUR ongeveer 1360
+1 DEAT
+2 DATE ()
+2 PLAC -
+2 SOUR -
+1 FAMC @F1@
+1 NOTE Hij bouwde het Brusselse stadhuis in 1402. Hij bouwde ook kerken in
+1 NOTE België en Nederland. Misschien is hij wel het ontstaan van de
+1 NOTE Nederlandse tak ? in 1405 was de oudste vleugen klaar
+0 @F1@ FAM
+1 MARR
+2 DATE ()
+2 PLAC -
+2 SOUR name@@domain.be (reclame voor genealogie boeken)
+1 HUSB @I7@
+0 TRLR
