@@ -24,6 +24,8 @@
 #ifndef __GEDCOM_GOM_H
 #define __GEDCOM_GOM_H
 
+#include <sys/cdefs.h>
+
 __BEGIN_DECLS
 
 /* Sub-structures */
