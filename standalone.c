@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "external.h"
+#include "gedcom.h"
 
 void show_help ()
 {

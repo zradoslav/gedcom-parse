@@ -11,7 +11,7 @@
 /* $Name$ */
 
 #include "gedcom_internal.h"
-#include "external.h"
+#include "gedcom.h"
 
 #define INITIAL_BUF_SIZE 256
 char *mess_buffer = NULL;
