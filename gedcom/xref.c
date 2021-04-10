@@ -21,6 +21,8 @@
 /* $Id$ */
 /* $Name$ */
 
+#include <string.h>
+
 #include "gedcom_internal.h"
 #include "gedcom.h"
 #include "gedcom.tabgen.h"

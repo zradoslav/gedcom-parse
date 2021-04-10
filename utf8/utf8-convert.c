@@ -27,6 +27,8 @@
 #include <iconv.h>
 #include "config.h"
 
+#define ICONV_CONST
+
 #define INITIAL_BUFSIZE 256
 #define DEFAULT_UNKNOWN "?"
 
