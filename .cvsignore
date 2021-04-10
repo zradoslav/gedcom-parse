@@ -1,5 +1,0 @@
-aclocal.m4
-configure
-config.h.in
-GNUmakefile.in
-stamp-h.in
