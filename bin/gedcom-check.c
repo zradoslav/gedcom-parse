@@ -18,15 +18,20 @@
    Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
    02111-1307 USA.  */
 
-/* $Id$ */
-/* $Name$ */
-
 #include "config.h"
 #include "gedcom.h"
 #include "utf8tools.h"
-#include <stdio.h>
-#include <string.h>
+
 #include <stdlib.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+#include <errno.h>
+#include <string.h>
+#include <locale.h>
+
+#include <getopt.h>
+#include <unistd.h>
 
 #ifdef ENABLE_NLS
 #include <libintl.h>
@@ -35,100 +40,152 @@
 #define N_(string) (string)
 #endif
 
-#include <locale.h>
-
 #ifdef __GNUC__
 #define UNUSED __attribute__((unused))
 #else
 #define UNUSED
 #endif
 
-void show_help ()
+static void usage()
 {
-  printf("Checks a GEDCOM file on standards compliancy\n\n");
-  printf("Usage:  gedcom-check [options] file\n");
-  printf("Options:\n");
-  printf("  -h    Show this help text\n");
-  printf("  -c    Enable compatibility mode\n");
-  printf("  -dg   Debug setting: only libgedcom debug messages\n");
-  printf("  -da   Debug setting: libgedcom + yacc debug messages\n");
-  printf("Errors, warnings, ... are sent to stdout\n");
+	printf("GEDCOM file validator\n");
+	printf("\n");
+	printf("usage:\tgedcom-check [options] file\n");
+	printf("options:\n");
+	printf("\t-v, --verbose=LEVEL  show messages from library (1) and parser (2)\n");
+	printf("\t--compat             allow non-standard extensions\n");
+//	printf("\t--strict             only standard, strict mode (default)\n");
+	printf("\t-h, --help           print this message and exit\n");
+	printf("\t-V, --version        print version and exit\n");
+
+	exit(EXIT_SUCCESS);
 }
+
+static void version()
+{
+	printf("%s v%s\n", "gedcom-parse", gedcom_version());
+
+	exit(EXIT_SUCCESS);
+}
+
+#ifdef ENABLE_NLS
+static void localize()
+{
+	static bool init = false;
+
+	if(!init)
+	{
+		setlocale(LC_ALL, "");
+		bindtextdomain(PACKAGE, LOCALEDIR);
+		textdomain(PACKAGE);
+		init = true;
+	}
+}
+#endif
 
 void default_cb(Gedcom_elt elt UNUSED, Gedcom_ctxt ctxt UNUSED,
-		int level UNUSED, char *tag UNUSED,
-		char *raw_value UNUSED, int tag_value UNUSED)
+				int level UNUSED, char* tag UNUSED,
+				char* raw_value UNUSED, int tag_value UNUSED)
 {
-  /* do nothing */
+	/* do nothing */
 }
 
-void gedcom_message_handler(Gedcom_msg_type type UNUSED, char *msg)
+void gedcom_message_handler(Gedcom_msg_type type UNUSED, char* msg)
 {
-  char *converted = NULL;
-  int  conv_fails = 0;
-  converted = convert_utf8_to_locale(msg, &conv_fails);
-  printf("%s\n", converted);
+	const char* converted = NULL;
+
+	int  conv_fails = 0;
+	converted = convert_utf8_to_locale(msg, &conv_fails);
+	printf("%s\n", converted);
 }
 
 int main(int argc, char* argv[])
 {
-  Gedcom_err_mech mech = DEFER_FAIL;
-  int compat_enabled   = 0;
-  int debug_level = 0;
-  char* file_name = NULL;
-  int result;
-  
-  if (argc > 1) {
-    int i;
-    for (i=1; i<argc; i++) {
-      if (!strncmp(argv[i], "-da", 4))
-	debug_level = 2;
-      else if (!strncmp(argv[i], "-dg", 4))
-	debug_level = 1;
-      else if (!strncmp(argv[i], "-c", 3))
-	compat_enabled = 1;
-      else if (!strncmp(argv[i], "-h", 3)) {
-	show_help();
-	exit(1);
-      }
-      else if (strncmp(argv[i], "-", 1)) {
-	file_name = argv[i];
-	break;
-      }
-      else {
-	printf ("Unrecognized option: %s\n", argv[i]);
-	show_help();
-	exit(1);
-      }
-    }
-  }
-  
-  if (!file_name) {
-    printf("No file name given\n");
-    show_help();
-    exit(1);
-  }
-  
-  gedcom_init();
-  setlocale(LC_ALL, "");
-  gedcom_set_debug_level(debug_level, NULL);
-  gedcom_set_compat_handling(compat_enabled);
-  gedcom_set_compat_options(COMPAT_ALLOW_OUT_OF_CONTEXT);
-  gedcom_set_error_handling(mech);
-  gedcom_set_message_handler(gedcom_message_handler);
-  gedcom_set_default_callback(default_cb);
+#ifdef ENABLE_NLS
+	localize();
+#endif
+	int retcode = EXIT_SUCCESS;
 
-  result = gedcom_parse_file(file_name);
-  
-  if (result == 0) {
-    printf(_("Parse succeeded\n"));
-  }
-  else {
-    printf(_("Parse failed\n"));
-    if (!compat_enabled) {
-      printf(_("  Note: Compatibility mode was not enabled\n"));
-      printf(_("  You could try the check again using the '-c' option\n"));
-    }
-  }
-  return result;
+	static int compat = 0;
+	int verbose = 0;
+	const char* filepath = NULL;
+
+	static struct option long_options[] = {
+		{ "compat",  no_argument,       NULL,   'c' },
+//		{ "strict",  no_argument,       &compat, 0  },
+		{ "verbose", required_argument, NULL,   'v' },
+		{ "help",    no_argument,       NULL,   'h' },
+		{ "version", no_argument,      	NULL,   'V' },
+		{ 0, 0, 0, 0}
+	};
+
+	while(true)
+	{
+		int option_index = 0;
+		int c = getopt_long(argc, argv, "v:chV",
+							long_options, &option_index);
+		if(c == -1)
+			break;
+
+		switch(c)
+		{
+		case 'v':
+			if(optarg)
+				verbose = atoi(optarg);
+			break;
+		case 'c':
+			compat = 1;
+			break;
+		case 'V':
+			version();
+			break;
+		case 'h':
+			usage();
+			break;
+		case '?':
+		default:
+			retcode = EINVAL;
+			goto on_exit;
+		}
+	}
+	if(optind == argc - 1)
+		filepath = argv[optind++];
+	else if(optind == argc)
+	{
+		fprintf(stderr, _("No file name given\n"));
+		exit(EINVAL);
+	}
+	else
+	{
+		errno = E2BIG;
+		fprintf(stderr, "%s\n", strerror(errno));
+		retcode = errno;
+		goto on_exit;
+	}
+
+	if(access(filepath, F_OK))
+	{
+		fprintf(stderr, "%s\n", strerror(errno));
+		retcode = errno;
+		goto on_exit;
+	}
+
+	gedcom_init();
+	gedcom_set_debug_level(verbose, NULL);
+	gedcom_set_compat_handling(compat);
+	gedcom_set_compat_options(COMPAT_ALLOW_OUT_OF_CONTEXT);
+	gedcom_set_error_handling(DEFER_FAIL);
+	gedcom_set_message_handler(gedcom_message_handler);
+	gedcom_set_default_callback(default_cb);
+
+	retcode = gedcom_parse_file(filepath);
+	if(retcode)
+	{
+		printf(_("Parse failed\n"));
+		if(!compat)
+			printf("Try to enable compatibility mode\n");
+	}
+
+on_exit:
+	return retcode;
 }
