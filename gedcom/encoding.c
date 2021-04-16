@@ -33,7 +33,6 @@
 #include "utf8tools.h"
 
 #define ENCODING_CONF_FILE "gedcom.enc"
-#define GCONV_SEARCH_PATH "GCONV_PATH"
 #define MAXBUF 255
 
 static hash_t *encodings = NULL;
@@ -115,80 +114,6 @@ char* get_encoding(const char* gedcom_n, Encoding enc)
 void cleanup_encodings()
 {
   hash_free(encodings);
-}
-
-#ifdef USE_GLIBC_ICONV
-
-static char *new_gconv_path;
-
-void cleanup_gconv_path()
-{
-  /* Clean up environment */
-  putenv(GCONV_SEARCH_PATH);
-  if (new_gconv_path)
-    free(new_gconv_path);  
-}
-
-/* Let function be called before main() */
-void update_gconv_search_path() __attribute__ ((constructor));
-
-#endif /* USE_GLIBC_ICONV */
-
-/* Note:
-
-   The environment variable GCONV_PATH has to be adjusted before the very
-   first call of iconv_open.  For the most general case, it means that we
-   have to make our own constructor here (in case some of the other library
-   constructors would use iconv_open).
-
-   However, it looks like a change of an environment variable in a constructor
-   doesn't always survive until the main() function.  This is the case if
-   the environment variable is a new one, for which there was no room yet
-   in the initial environment.  The initial environment is located on the
-   stack, but when variables are added, it is moved to the heap (to be able
-   to grow).  Now, the main function takes again the one from the stack, not
-   from the heap, so changes are lost.
-
-   For this, the function below will also be called in gedcom_init(), which
-   needs to be called as early as possible in the program.
- */
-
-void update_gconv_search_path()
-{
-#ifdef USE_GLIBC_ICONV
-  char *gconv_path;
-  /* Add gedcom data directory to gconv search path */
-  gconv_path = getenv(GCONV_SEARCH_PATH);
-  if (gconv_path == NULL || strstr(gconv_path, PKGDATADIR) == NULL) {
-    if (gconv_path == NULL) {
-      new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
-				      + strlen(PKGDATADIR)
-				      + 2);
-      if (new_gconv_path)
-	sprintf(new_gconv_path, "%s=%s", GCONV_SEARCH_PATH, PKGDATADIR);
-    }
-    else {
-      new_gconv_path = (char *)malloc(strlen(GCONV_SEARCH_PATH)
-				      + strlen(gconv_path)
-				      + strlen(PKGDATADIR)
-				      + 3);
-      if (new_gconv_path)
-	sprintf(new_gconv_path, "%s=%s:%s",
-		GCONV_SEARCH_PATH, gconv_path, PKGDATADIR);
-    }
-    if (new_gconv_path) 
-      /* Ignore failures of putenv (can't do anything about it anyway) */
-      putenv(new_gconv_path);
-    else {
-      fprintf(stderr, "Could not allocate memory at %s, %d\n",
-	      __FILE__, __LINE__);
-      abort();
-    }
-  }
-  if (init_called && atexit(cleanup_gconv_path) != 0) {
-    gedcom_warning(_("Could not register path cleanup function"));
-  }    
-#endif /* USE_GLIBC_ICONV */
 }
 
 void init_encodings()

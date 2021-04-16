@@ -29,7 +29,6 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/gedcom)
 include_directories(${CMAKE_SOURCE_DIR}/gedcom/calendar)
 include_directories(${CMAKE_SOURCE_DIR}/utf8)
-include_directories(${CMAKE_SOURCE_DIR}/utf8/libcharset)
 
 include_directories(${CMAKE_BINARY_DIR}/include)
 include_directories(${CMAKE_BINARY_DIR}/gedcom)

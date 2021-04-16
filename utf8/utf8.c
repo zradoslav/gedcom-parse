@@ -20,8 +20,9 @@
 /* $Id$ */
 /* $Name$ */
 
+#include <unistr.h>
+
 #include "utf8tools.h"
-#include <string.h>
 
 int is_utf8_string(const char* str)
 {
@@ -72,44 +73,28 @@ int is_utf8_string(const char* str)
   return (expect_bytes == 0);
 }
 
-int utf8_strlen(const char* str)
+size_t utf8_strlen(const char* str)
 {
-  int num_char = 0;
-  
-  if (!str) return 0;
-  
-  while (*str) {
-    if ((*str & 0xC0) != 0xC0) num_char++;
-    str++;
-  }
-  
-  return num_char;
+	size_t n = 0;
+	ucs4_t c;
+	for(const uint8_t* it = str; it; it = u8_next(&c, it))
+		n++;
+	return --n;
 }
 
-char* next_utf8_char(char* str)
+const char* next_utf8_char(const char* str)
 {
-  if (!str) return NULL;
+	if(!str)
+		return NULL;
 
-  if (*str) {
-    str++;
-    while (*str && (*str & 0xC0) == 0x80)
-      str++;
-  }
-  return str;
+	ucs4_t c;
+	return u8_next(&c, str);
 }
 
-char* nth_utf8_char(char* str, int n)
+const char* nth_utf8_char(const char* str, size_t n)
 {
-  int num_char = 0;
-  if (!str) return NULL;
+	const char* s = str;
+	while(n-- && (s = next_utf8_char(s)));
 
-  if (*str) {
-    str++;
-    while (*str) {
-      if ((*str & 0xC0) != 0x80) num_char++;
-      if (num_char == n) break;
-      str++;
-    }
-  }
-  return str;
+	return s;
 }

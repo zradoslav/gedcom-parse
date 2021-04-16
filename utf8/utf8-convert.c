@@ -265,47 +265,6 @@ char* convert_from_utf8(convert_t conv, const char* input, int* conv_fails,
   return outbuf->buffer;
 }
 
-char* convert_to_utf8(convert_t conv, const char* input, size_t input_len)
-{
-  size_t outsize;
-  ICONV_CONST char *inptr  = (ICONV_CONST char*) input;
-  char   *outptr;
-  size_t nconv;
-  struct conv_buffer* outbuf;
-
-  if (!conv || !conv->outbuf || !input)
-    return NULL;
-  /* make sure we start from an empty state */
-  iconv(conv->to_utf8, NULL, NULL, NULL, NULL);
-  /* set up output buffer (empty it) */
-  outbuf  = conv->outbuf;
-  outptr  = outbuf->buffer;
-  outsize = outbuf->size;
-  reset_conv_buffer(conv->outbuf);
-  nconv = iconv(conv->to_utf8, &inptr, &input_len, &outptr, &outsize);
-  while (nconv == (size_t)-1) {
-    if (errno == E2BIG) {
-      /* grow the output buffer */
-      outptr  = grow_conv_buffer(outbuf, outptr);
-      if (outptr)
-	outsize = outbuf->size - (outptr - outbuf->buffer);
-      else {
-	errno = ENOMEM;
-	return NULL;
-      }
-    }
-    else {
-      /* EILSEQ happens when the input doesn't match the source encoding,
-         return NULL in this case */
-      /* EINVAL should not happen, since we convert entire strings */
-      /* EBADF is an error which should be captured by the first if above */
-      return NULL;
-    }
-    nconv = iconv(conv->to_utf8, &inptr, &input_len, &outptr, &outsize);
-  }
-  return outbuf->buffer;  
-}
-
 char* convert_to_utf8_incremental(convert_t conv,
 				  const char* input, size_t input_len)
 {

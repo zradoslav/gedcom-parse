@@ -163,7 +163,6 @@ int init_called = 0;
 int gedcom_init()
 {
   init_called = 1;
-  update_gconv_search_path();
   init_encodings();
   if (!setlocale(LC_ALL, "")
       || ! bindtextdomain(PACKAGE, LOCALEDIR)

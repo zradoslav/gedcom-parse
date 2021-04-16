@@ -21,51 +21,37 @@
 /* $Name$ */
 
 #include "utf8tools.h"
+
 #include <stdlib.h>
-#include <assert.h>
 #include <string.h>
-#include "libcharset.h"
 
-static convert_t locale_conv = NULL;
-
-static void close_conversion_contexts()
-{
-  cleanup_utf8_conversion(locale_conv);
-}
-
-static int open_conversion_contexts()
-{
-  assert (locale_conv == NULL);
-  locale_conv = initialize_utf8_conversion(locale_charset(), 0);
-
-  if (locale_conv) {
-    atexit(close_conversion_contexts);
-    return 0;
-  }
-  else {
-    return -1;
-  }
-}
+#include <uniconv.h>
 
 void convert_set_unknown(const char* unknown)
 {
-  if (!locale_conv)
-    open_conversion_contexts();
-  conversion_set_unknown(locale_conv, unknown);
+	conversion_set_unknown(NULL, unknown);
 }
 
-char* convert_utf8_to_locale(const char* input, int *conv_fails)
+const char* convert_utf8_to_locale(const char* input, int *conv_fails)
 {
-  if (!locale_conv)
-    open_conversion_contexts();
+	size_t result_len;
+	const char* result_str;
 
-  return convert_from_utf8(locale_conv, input, conv_fails, NULL);
+	result_str = u8_conv_to_encoding(locale_charset(), iconveh_question_mark, input, strlen(input),
+	                                 NULL, NULL, &result_len);
+
+	printf("intentionally memleaked: %zu b\n", result_len);
+	return result_str;
 }
 
-char* convert_locale_to_utf8(const char* input)
+const char* convert_locale_to_utf8(const char* input)
 {
-  if (!locale_conv)
-    open_conversion_contexts();
+	size_t result_len;
+	const char* result_str;
 
-  return convert_to_utf8(locale_conv, input, strlen(input));
+	result_str = u8_conv_from_encoding(locale_charset(), iconveh_question_mark, input, strlen(input),
+	                                 NULL, NULL, &result_len);
+
+	printf("intentionally memleaked: %zu b\n", result_len);
+	return result_str;
 }

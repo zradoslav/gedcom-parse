@@ -36,7 +36,7 @@ typedef struct convert *convert_t;
 
   /* Returns -1 if the string is not a valid UTF-8 string, returns its
      string length otherwise */
-int   utf8_strlen(const char* input);
+size_t utf8_strlen(const char* input);
 
   /* Returns 1 if string is valid UTF-8 string, 0 otherwise */
 int   is_utf8_string(const char* input);
@@ -44,8 +44,8 @@ int   is_utf8_string(const char* input);
   /* Returns respectively a pointer to the next or the nth UTF-8 character.
      The value n = 0 is the first character of the input, i.e.
      next_utf8_char(input) is the same as nth_utf8_char(input, 1) */
-char* next_utf8_char(char* input);
-char* nth_utf8_char(char* input, int n);
+const char* next_utf8_char(const char* input);
+const char* nth_utf8_char(const char* input, size_t n);
 
   /* Functions for creating and freeing conversion buffers yourself */
 conv_buffer_t create_conv_buffer(int size);
@@ -60,15 +60,14 @@ int   conversion_set_output_buffer(convert_t conv, conv_buffer_t buf);
 void  cleanup_utf8_conversion(convert_t conv);
 char* convert_from_utf8(convert_t conv, const char* input, int* conv_fails,
 			size_t* output_len);
-char* convert_to_utf8(convert_t conv, const char* input, size_t input_len);
 char* convert_to_utf8_incremental(convert_t conv,
 				  const char* input, size_t input_len);
 
   /* Specific locale conversion interface (initializes a convert_t structure
      implicitly */
 void  convert_set_unknown(const char* unknown);
-char* convert_utf8_to_locale(const char* input, int *conv_fails);
-char* convert_locale_to_utf8(const char* input);
+const char* convert_utf8_to_locale(const char* input, int *conv_fails);
+const char* convert_locale_to_utf8(const char* input);
 
 #ifdef __cplusplus
 }
