@@ -24,6 +24,8 @@
 #include "encoding_state.h"
 #include <string.h>
 
+#define SYS_NEWLINE "\n"
+
 struct encoding_state read_encoding;
 /* SYS_NEWLINE is defined in config.h */
 struct encoding_state write_encoding =

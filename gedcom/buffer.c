@@ -21,15 +21,13 @@
 /* $Id$ */
 /* $Name$ */
 
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "buffer.h"
 #include "gedcom_internal.h"
 
-#if HAVE_VSNPRINTF
 #define INITIAL_BUF_SIZE 256
-#else
-/* Risk on overflowing buffer, so make size big */
-#define INITIAL_BUF_SIZE 65536
-#endif
 
 void reset_buffer(struct safe_buffer* b)
 {
@@ -91,7 +89,6 @@ int safe_buf_vappend(struct safe_buffer *b, const char *s, va_list ap)
     while (1) {
       int rest_size = b->bufsize - b->buflen;
       
-#if HAVE_VSNPRINTF
       res = vsnprintf(b->buf_end, rest_size, s, ap);
       
       if (res > -1 && res < rest_size) {
@@ -102,17 +99,6 @@ int safe_buf_vappend(struct safe_buffer *b, const char *s, va_list ap)
       else {
 	grow_buffer(b);
       }
-#else /* not HAVE_VSNPRINTF */
-#  if HAVE_VSPRINTF
-#     warning "Using VSPRINTF. Buffer overflow could happen!"
-      res = vsprintf(b->buf_end, s, ap);
-      b->buf_end = b->buf_end + res;
-      b->buflen  = b->buflen + res;
-      break;
-#  else /* not HAVE_VPRINTF */
-#     error "Your standard library has neither vsnprintf nor vsprintf defined. One of them is required!"
-#  endif
-#endif
     }
   }
   return res;

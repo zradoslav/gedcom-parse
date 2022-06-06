@@ -437,8 +437,10 @@ static void free_conv_buffers()
 static void yylex_cleanup()
 {
   /* fix memory leak in lex */
+#ifdef FIXME
   yy_delete_buffer(yy_current_buffer);
   yy_current_buffer = NULL;
+#endif
   free_conv_buffers();
 }
 
