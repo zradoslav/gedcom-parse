@@ -18,9 +18,6 @@
    Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
    02111-1307 USA.  */
 
-/* $Id$ */
-/* $Name$ */
-
 #ifndef __GEDCOM_H
 #define __GEDCOM_H
 
@@ -34,12 +31,6 @@ extern "C" {
 #ifndef GEDCOM_INTERNAL
 #include <gedcom-tags.h>
 #endif
-
-#define GEDCOM_PARSE_VERSION_MAJOR @VERSION_MAJOR@
-#define GEDCOM_PARSE_VERSION_MINOR @VERSION_MINOR@
-#define GEDCOM_PARSE_VERSION_PATCH @VERSION_PATCH@
-#define GEDCOM_PARSE_VERSION \
-  (GEDCOM_PARSE_VERSION_MAJOR * 1000 + GEDCOM_PARSE_VERSION_MINOR)
 
 int gedcom_check_version(int major, int minor, int patch);
 

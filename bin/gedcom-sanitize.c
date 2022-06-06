@@ -21,27 +21,28 @@
 /* $Id$ */
 /* $Name$ */
 
+#include "config.h"
 #include "gedcom.h"
 #include "gom.h"
 #include "utf8tools.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <locale.h>
+
+#ifdef ENABLE_NLS
 #include <libintl.h>
 
 #define _(string) dgettext(PACKAGE, string)
 #define N_(string) (string)
+#endif
 
 #ifdef __GNUC__
 #define UNUSED __attribute__((unused))
 #else
 #define UNUSED
 #endif
-
-#define PROG_NAME "GEDCOM_PARSE"
 
 void show_help ()
 {
@@ -74,16 +75,16 @@ int update_header()
     char* value;
     int result, i;
     
-    value = gom_set_string(&head->source.id, PROG_NAME);
-    if (value == NULL || strcmp (value, PROG_NAME))
+    value = gom_set_string(&head->source.id, PACKAGE);
+    if (value == NULL || strcmp (value, PACKAGE))
       return 1;
 
     value = gom_set_string(&head->source.name, NULL);
     if (value != NULL)
       return 1;
 
-    value = gom_set_string(&head->source.version, VERSION);
-    if (value == NULL || strcmp (value, VERSION))
+    value = gom_set_string(&head->source.version, PACKAGE_VERSION);
+    if (value == NULL || strcmp (value, PACKAGE_VERSION))
       return 1;
 
     value = gom_set_string(&head->source.corporation.name, NULL);

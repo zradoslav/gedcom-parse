@@ -37,8 +37,8 @@ struct encoding_state {
   char         terminator[MAX_TERMINATOR_LEN + 1];
 };
 
-struct encoding_state read_encoding;
-struct encoding_state write_encoding;
+extern struct encoding_state read_encoding;
+extern struct encoding_state write_encoding;
 
 void set_read_encoding(const char* charset, const char* encoding);
 void set_read_encoding_width(Encoding enc);

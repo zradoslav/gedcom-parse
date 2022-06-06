@@ -21,18 +21,21 @@
 /* $Id$ */
 /* $Name$ */
 
+#include "config.h"
 #include "gedcom.h"
 #include "utf8tools.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+
+#ifdef ENABLE_NLS
 #include <libintl.h>
 
 #define _(string) dgettext(PACKAGE, string)
 #define N_(string) (string)
+#endif
+
+#include <locale.h>
 
 #ifdef __GNUC__
 #define UNUSED __attribute__((unused))

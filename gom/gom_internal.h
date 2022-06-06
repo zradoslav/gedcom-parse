@@ -26,16 +26,18 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <libintl.h>
 #include <time.h>
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+
+#include "config.h"
 #include "gom.h"
 #include "gedcom.h"
       
+#ifdef ENABLE_NLS
+#include <libintl.h>
+
 #define _(string) dgettext(PACKAGE, string)
 #define N_(string) (string)
+#endif
 
 #ifdef __GNUC__
 #define UNUSED __attribute__((unused))

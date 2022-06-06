@@ -1,0 +1,5 @@
+option('i18n',
+    type: 'boolean',
+    value : true,
+    description : 'enable localization of gedcom-parse'
+)

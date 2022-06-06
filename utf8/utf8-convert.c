@@ -192,8 +192,10 @@ void cleanup_utf8_conversion(convert_t conv)
       free_conv_buffer(conv->inbuf);
     if (conv->outbuf && conv->outbuf->type == INTERNAL_BUFFER)
       free_conv_buffer(conv->outbuf);
+#ifdef FIXME
     if (conv->unknown)
       free(conv->unknown);
+#endif
     free(conv);
   }
 }

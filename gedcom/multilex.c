@@ -21,6 +21,10 @@
 /* $Id$ */
 /* $Name$ */
 
+#include "config.h"
+
+#include <locale.h>
+
 #include "gedcom_internal.h"
 #include "multilex.h"
 #include "encoding.h"
@@ -262,15 +266,15 @@ int gedcom_new_model()
 
 int gedcom_check_version(int major, int minor, int patch)
 {
-  if (major < GEDCOM_PARSE_VERSION_MAJOR)
+  if (major < PACKAGE_VERSION_MAJOR)
     return 1;
-  else if (major > GEDCOM_PARSE_VERSION_MAJOR)
+  else if (major > PACKAGE_VERSION_MAJOR)
     return 0;
-  else if (minor < GEDCOM_PARSE_VERSION_MINOR)
+  else if (minor < PACKAGE_VERSION_MINOR)
     return 1;
-  else if (minor > GEDCOM_PARSE_VERSION_MINOR)
+  else if (minor > PACKAGE_VERSION_MINOR)
     return 0;
-  else if (patch <= GEDCOM_PARSE_VERSION_PATCH)
+  else if (patch <= PACKAGE_VERSION_PATCH)
     return 1;
   else
     return 0;

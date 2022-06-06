@@ -23,18 +23,21 @@
 
 #ifndef __GEDCOM_INTERNAL_H
 #define __GEDCOM_INTERNAL_H
+
+#include "config.h"
+
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+
+#ifdef ENABLE_NLS
 #include <libintl.h>
 
 #define _(string) dgettext(PACKAGE, string)
 #define N_(string) (string)
+#endif
 
 #define MAXGEDCLEVEL    99
 #define MAXGEDCLINELEN  255
@@ -43,6 +46,7 @@
 #define MAXGEDCPTRLEN   22
 #define GEDCOMTAGOFFSET 257
 #define INTERNAL_ENCODING "UTF-8"
+#define PATH_MAX        255
 
 #define GEDCOM_INTERNAL 1
 
