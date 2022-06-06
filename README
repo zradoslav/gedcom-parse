@@ -1,72 +1,76 @@
-The Gedcom parser library (release @VERSION@)
+gedcom-parser-ng - GEDCOM 5.5 parser
+=====================================
+
+Forked from original gedcom-parser by Peter Verthez [1].
+
+The Gedcom parser library
 -------------------------
+
 The Gedcom parser library is a C library that provides an API to applications
 to parse, process and write arbitrary genealogy files in the standard gedcom
 format.
 
 Its main features are:
 
- - portable to any POSIX systems (libiconv is needed on systems that lack
+- portable to any POSIX systems (libiconv is needed on systems that lack
    glibc 2.2, see below)
 
- - strict callback-based parser written in C (using lex/yacc), a C object
+- strict callback-based parser written in C (using lex/yacc), a C object
    model is also available (compare to the difference between SAX and DOM
    in XML).
 
- - supports the Gedcom 5.5 standard fully
+- supports the Gedcom 5.5 standard fully
 
- - supports the standard encoding formats (ASCII, ANSEL, UNICODE), but
+- supports the standard encoding formats (ASCII, ANSEL, UNICODE), but
    extensible (via a configuration file) to other encoding formats; by
    default ANSI is also supported.
 
- - all strings passed from callbacks to the using program are in UTF-8 format
+- all strings passed from callbacks to the using program are in UTF-8 format
 
- - internationalization of the error and warning messages
+- internationalization of the error and warning messages
 
- - specific parsing of date values to a calendar-neutral date system (Julian
+- specific parsing of date values to a calendar-neutral date system (Julian
    days aka serial day numbers); the date parser can be called separately and
    dates can be manipulated
 
- - specific parsing and checking of cross-references
+- specific parsing and checking of cross-references
 
- - specific parsing of age values
+- specific parsing of age values
 
- - support for writing Gedcom files (both in line-by-line format, or via the
+- support for writing Gedcom files (both in line-by-line format, or via the
    Gedcom object model)
 
- - "compatibility-mode" parsing, to allow for not-exactly-standard syntaxes
+- "compatibility-mode" parsing, to allow for not-exactly-standard syntaxes
    used by other genealogy programs; currently, compatibility is added for
    (not necessarily complete):
-     - ftree
-     - Lifelines 3.0.2
-     - Personal Ancestral File (PAF), version 2, 4 and 5
-     - Family Origins
-     - EasyTree
+   - ftree
+   - Lifelines 3.0.2
+   - Personal Ancestral File (PAF), version 2, 4 and 5
+   - Family Origins
+   - EasyTree
 
 NOTE:
  - NO BACKWARD COMPATIBILITY is guaranteed for 0.x releases !
 
-To do list:
- - specific parsing of other special values
- - compatibility with other genealogy programs
- - older/newer Gedcom standards ?
- - writing GEDML files
- - C++ object model
- - ...
+
+To do list
+----------
+
+- specific parsing of other special values
+- compatibility with other genealogy programs
+- older/newer Gedcom standards ?
+- writing GEDML files
+- C++ object model
+- ...
 
 For more information, refer to the documentation in the doc subdirectory,
 or to the SourceForge project web site and summary page:
   http://gedcom-parse.sourceforge.net
   http://sourceforge.net/projects/gedcom-parse
 
-Also, have a look at the 'Genes' program, from which this library is a
-spin-off, and which uses this library:
-  http://genes.sourceforge.net
-  http://sourceforge.net/projects/genes
-
-
 Requirements:
 ------------
+
 For using the library:
  - either glibc 2.2 or higher, or libiconv
 
@@ -92,6 +96,7 @@ To compile from the CVS sources, you'll need in addition:
 
 Installation:
 ------------
+
 This is simply:
 
   ./configure
@@ -106,7 +111,4 @@ for example, if the library lives in /home/mydir/lib:
 You can also run some tests via:
   make check
 
-
-###############################################################################
-# $Id$
-# $Name$
+[1] http://gedcom-parse.sourceforge.net/
