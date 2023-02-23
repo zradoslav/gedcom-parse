@@ -24,6 +24,8 @@
 /* In high-low order, a space is encoded as 0x00 0x20 */
 /* i.e. this is utf-16-be */
 
+%option noyywrap
+
 %{
 #define LEX_SECTION 1  /* include only a specific part of the following file */
 #define yymyinit gedcom_hilo_myinit

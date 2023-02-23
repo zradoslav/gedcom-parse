@@ -31,7 +31,7 @@ static char buf[MAX_DATE_TOKEN][MAX_PHRASE_LEN+1];
 static int token_nr = 0; 
 %}
 
-%option case-insensitive
+%option case-insensitive noyywrap
 %s PHRASE
 
 %%
@@ -183,11 +183,6 @@ int get_year_tokens(const char* str, char** year1, char** year2)
   }
   yy_delete_buffer(buffer);
   return num_tokens;
-}
-
-int yywrap()
-{
-  return 1;
 }
 
 static YY_BUFFER_STATE hndl;

@@ -422,11 +422,6 @@ static int dummy_conv = 0;
 
 #elif LEX_SECTION == 3
 
-int yywrap()
-{
-  return 1;
-}
-
 static void free_conv_buffers()
 {
   free_conv_buffer(ptr_buffer);

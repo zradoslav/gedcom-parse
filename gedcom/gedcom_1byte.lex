@@ -21,6 +21,8 @@
 /* $Id$ */
 /* $Name$ */
 
+%option noyywrap
+
 %{
 #define LEX_SECTION 1  /* include only a specific part of the following file */
 #define yymyinit gedcom_1byte_myinit
