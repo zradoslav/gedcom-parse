@@ -73,12 +73,6 @@ int gedcom_lex()
   return (*lf)();
 }
 
-void rewind_file(FILE* f)
-{
-  if (fseek(f, 0, 0) != 0)
-    gedcom_warning(_("Error positioning input file: %s"), strerror(errno));
-}
-
 int determine_encoding(FILE* f)
 {
   char first[2];
@@ -88,17 +82,17 @@ int determine_encoding(FILE* f)
   read = fread(first, 1, 2, f);
   if (read != 2) {
     gedcom_warning(_("Error reading from input file: %s"), strerror(errno));
-    rewind_file(f);
+    rewind(f);
     return ONE_BYTE;
   }
   else if ((first[0] == '0') && (first[1] == ' ')) {
     gedcom_debug_print("One-byte encoding");
-    rewind_file(f);
+    rewind(f);
     return ONE_BYTE;
   }
   else if ((first[0] == '\0') && (first[1] == '0')) {
     gedcom_debug_print("Two-byte encoding, high-low");
-    rewind_file(f);
+    rewind(f);
     return TWO_BYTE_HILO;
   }
   else if ((first[0] == '\xFE') && (first[1] == '\xFF')) {
@@ -108,7 +102,7 @@ int determine_encoding(FILE* f)
   }
   else if ((first[0] == '0') && (first[1] == '\0')) {
     gedcom_debug_print("Two-byte encoding, low-high");
-    rewind_file(f);
+    rewind(f);
     return TWO_BYTE_LOHI;
   }
   else if ((first[0] == '\xFF') && (first[1] == '\xFE')) {
@@ -120,7 +114,7 @@ int determine_encoding(FILE* f)
     read = fread(first, 1, 1, f);
     if (read != 1) {
       gedcom_warning(_("Error reading from input file: %s"), strerror(errno));
-      rewind_file(f);
+      rewind(f);
     }
     else if (first[0] == '\xBF') {
       set_read_encoding_bom(WITH_BOM);
@@ -128,13 +122,13 @@ int determine_encoding(FILE* f)
     }
     else {
       gedcom_warning(_("Unknown encoding, falling back to one-byte"));
-      rewind_file(f);
+      rewind(f);
     }
     return ONE_BYTE;
   }
   else {
     gedcom_warning(_("Unknown encoding, falling back to one-byte"));
-    rewind_file(f);
+    rewind(f);
     return ONE_BYTE;
   }
 }
